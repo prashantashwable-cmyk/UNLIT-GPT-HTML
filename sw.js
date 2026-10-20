@@ -1,6 +1,6 @@
 /* Offline support when the app is served over https (for example GitHub Pages).
    Opening AIEC-Elevator-OS.html directly from the phone works without this file. */
-const CACHE = 'aiec-os-v1';
+const CACHE = 'aiec-os-v2';
 const SHELL = ['./', './index.html', './AIEC-Elevator-OS.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {

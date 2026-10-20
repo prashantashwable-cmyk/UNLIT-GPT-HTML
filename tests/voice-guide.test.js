@@ -1,0 +1,50 @@
+/* Voice guide: every wizard step speaks once, in Marathi, saying the step number, what to do and which button to press. */
+const { launch, tap } = require('./lib');
+const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log('ok -', m); };
+(async () => {
+  const { browser, page, errors } = await launch();
+  await page.evaluate(() => {
+    window.__said = [];
+    const fake = { speaking: false, cancel() {}, getVoices: () => [{ lang: 'mr-IN', name: 'Marathi' }], speak(u) { window.__said.push({ text: u.text, lang: u.lang }); }, onvoiceschanged: null };
+    Object.defineProperty(window, 'speechSynthesis', { value: fake, configurable: true });
+    window.SpeechSynthesisUtterance = function (text) { this.text = text; };
+    Voice.init();
+    App.set.lang = 'mr'; LANG = 'mr'; App.set.introDone = true;
+  });
+  await page.evaluate(() => enterPractice()); await page.waitForTimeout(3500);
+  await page.evaluate(() => { loginAs(S.users.PFIELD); ACT.permsDone(); });
+  await page.waitForTimeout(200);
+  const said = () => page.evaluate(() => window.__said.splice(0));
+  await said();
+  await page.evaluate(() => wiz('lead', null)); await page.waitForTimeout(500);
+  let s = await said();
+  console.log('STEP 1 says:', s.map(x => x.text).join(' | '));
+  assert(s.length === 1 && s[0].lang === 'mr-IN', 'step 1 speaks once in Marathi');
+  assert(s[0].text.includes('पायरी 1') && s[0].text.includes('सुरक्षित') && s[0].text.includes('पुढे बटण'), 'step 1 says the step, the safety instruction and the button');
+  await tap(page, '[data-a="pick"][data-k="safe"]', { wait: 300 });
+  s = await said();
+  assert(s.length >= 1 && /थांबलो/.test(s[s.length - 1].text), 'tapping a choice speaks that choice back');
+  await tap(page, '[data-a="wizNext"]', { wait: 500 });
+  s = await said();
+  console.log('STEP 2 says:', s.map(x => x.text).join(' | '));
+  assert(s.length === 1 && s[0].text.includes('पायरी 2') && s[0].text.includes('कॅमेरा बटण'), 'photo step explains how to use the camera');
+  await tap(page, '[data-a="wizNext"]', { wait: 400 });
+  s = await said();
+  assert(s.length === 1 && /फोटो/.test(s[0].text), 'a missing photo error is spoken');
+  await page.evaluate(() => { W.ctx.b = [{ id: 'E1', m: 'x', kind: 'photo', t: nowISO(), q: {} }]; W.ctx.s = W.ctx.b.slice(); W.err = null; W.sid = 'contact'; W._spoken = null; render(); });
+  await page.waitForTimeout(500);
+  s = await said();
+  console.log('CONTACT says:', s.map(x => x.text).join(' | '));
+  assert(s[0].text.includes('भरा:') && s[0].text.includes('मोबाइल नंबर'), 'form step names the fields to fill');
+  await page.evaluate(() => { W.sid = 'review'; W._spoken = null; render(); }); await page.waitForTimeout(500);
+  s = await said();
+  assert(s[0].text.includes('हिरवे') && s[0].text.includes('साइट जतन करा'), 'last step names the green save button');
+  /* turned off in settings: silent */
+  await page.evaluate(() => { App.set.guide = false; W.sid = 'q'; W._spoken = null; render(); }); await page.waitForTimeout(500);
+  s = await said();
+  assert(s.length === 0, 'voice guide can be turned off');
+  console.log('ERRORS', errors.join('\n') || 'none');
+  await browser.close();
+  if (errors.length) process.exit(1);
+  console.log('VOICE PASSED');
+})().catch(e => { console.error('FAILED', e.message); process.exit(1); });

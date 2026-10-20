@@ -93,6 +93,8 @@ textarea.in{min-height:96px;resize:vertical}
 .in-row .in{flex:1;min-width:0}
 .mic{min-width:56px;min-height:54px;border-radius:12px;border:2px solid var(--line);background:#fff;font-size:1.4rem;flex:none}
 .mic.rec{background:var(--bad-bg);border-color:var(--bad)}
+.guide-btn{min-height:50px;border-color:var(--gold);background:var(--gold-l);font-size:1rem}
+.guide-btn.rec{background:var(--graph);color:#fff}
 .stepper{display:flex;align-items:center;justify-content:center;gap:16px;margin:8px 0}
 .stepper button{width:74px;height:74px;border-radius:50%;border:2px solid var(--line);background:#fff;font-size:2.2rem;font-weight:800;line-height:1}
 .stepper output{font-size:2.8rem;font-weight:800;min-width:90px;text-align:center}
@@ -1360,6 +1362,46 @@ const L = {
   ag_cancel: ['Cancellation & refund', 'रद्द करना और रिफ़ंड', 'रद्द करणे आणि परतावा'],
   ag_cancel_text: ['As per company policy approved by Finance. No material will be taken back or penalty charged without a written decision by an authorised person.', 'अकाउंट्स द्वारा मंज़ूर कंपनी नीति के अनुसार। अधिकृत व्यक्ति के लिखित फ़ैसले के बिना कोई सामान वापस नहीं लिया जाएगा न जुर्माना लगेगा।', 'हिशेब विभागाने मंजूर केलेल्या कंपनी धोरणानुसार. अधिकृत व्यक्तीच्या लेखी निर्णयाशिवाय कोणतेही साहित्य परत घेतले जाणार नाही किंवा दंड लावला जाणार नाही.'],
 
+  /* voice guide */
+  g_listen: ['Listen to the guide', 'मार्गदर्शन सुनें', 'मार्गदर्शन ऐका'],
+  g_step: ['Step {n} of {m}', '{m} में से चरण {n}', '{m} पैकी पायरी {n}'],
+  g_choose: ['Choose one: {list}', 'एक चुनें: {list}', 'एक निवडा: {list}'],
+  g_yesno: ['For each line, press the green Yes or the red No button', 'हर लाइन के लिए हरा हाँ या लाल नहीं बटन दबाएँ', 'प्रत्येक ओळीसाठी हिरवे होय किंवा लाल नाही बटण दाबा'],
+  g_stepper: ['Press plus or minus to change the number', 'संख्या बदलने के लिए प्लस या माइनस दबाएँ', 'आकडा बदलण्यासाठी अधिक किंवा उणे बटण दाबा'],
+  g_photo: ['Press the camera button. Hold the phone steady and press the round yellow button. If the photo is clear, press Use this photo, otherwise press Take again', 'कैमरा बटन दबाएँ। फ़ोन स्थिर पकड़ें और गोल पीला बटन दबाएँ। फोटो साफ़ हो तो यह फोटो रखें दबाएँ, नहीं तो फिर से लें दबाएँ', 'कॅमेरा बटण दाबा. फोन स्थिर धरा आणि गोल पिवळे बटण दाबा. फोटो स्पष्ट असेल तर हा फोटो वापरा दाबा, नाहीतर पुन्हा घ्या दाबा'],
+  g_sign: ['Press Sign here, sign with your finger inside the box, then press Done', 'यहाँ साइन करें दबाएँ, बॉक्स में उँगली से साइन करें, फिर हो गया दबाएँ', 'येथे सही करा दाबा, चौकटीत बोटाने सही करा, मग झाले दाबा'],
+  g_fill: ['Fill: {list}', 'भरें: {list}', 'भरा: {list}'],
+  g_mic: ['You can press the microphone and speak instead of typing', 'टाइप की जगह माइक दबाकर बोल सकते हैं', 'टाइप करण्याऐवजी माइक दाबून बोलू शकता'],
+  g_next: ['When done, press the big Next button at the bottom', 'हो जाने पर नीचे का बड़ा आगे बटन दबाएँ', 'झाल्यावर खालचे मोठे पुढे बटण दाबा'],
+  g_save: ['Check everything, then press the big green {btn} button at the bottom', 'सब देख लें, फिर नीचे का बड़ा हरा {btn} बटन दबाएँ', 'सर्व तपासा, मग खालचे मोठे हिरवे {btn} बटण दाबा'],
+  voice_guide: ['Voice guide for every step', 'हर चरण के लिए आवाज़ मार्गदर्शन', 'प्रत्येक पायरीसाठी आवाज मार्गदर्शन'],
+  voice_guide_d: ['Speaks what to do and which button to press', 'क्या करना है और कौन सा बटन दबाना है, बोलकर बताता है', 'काय करायचे आणि कोणते बटण दाबायचे ते बोलून सांगते'],
+  voice_test: ['Test the voice', 'आवाज़ जाँचें', 'आवाज तपासा'],
+  voice_test_say: ['Namaste. I will guide you at every step. Press the big buttons and follow my voice.', 'नमस्ते। मैं हर चरण में आपका मार्गदर्शन करूँगा। बड़े बटन दबाएँ और मेरी आवाज़ के अनुसार चलें।', 'नमस्कार. मी प्रत्येक पायरीवर तुम्हाला मार्गदर्शन करेन. मोठी बटणे दाबा आणि माझ्या आवाजानुसार करा.'],
+  voice_mr_ok: ['Marathi voice is installed on this phone.', 'इस फ़ोन पर मराठी आवाज़ है।', 'या फोनवर मराठी आवाज उपलब्ध आहे.'],
+  voice_mr_missing: ['Marathi voice not found. Open phone Settings → Text-to-speech → Speech Services by Google → Install voice data → Marathi. Until then a Hindi voice is used.', 'मराठी आवाज़ नहीं मिली। फ़ोन सेटिंग्स → टेक्स्ट-टू-स्पीच → Speech Services by Google → Install voice data → Marathi। तब तक हिंदी आवाज़ चलेगी।', 'मराठी आवाज सापडला नाही. फोन सेटिंग्ज → टेक्स्ट-टू-स्पीच → Speech Services by Google → Install voice data → मराठी निवडा. तोपर्यंत हिंदी आवाज वापरला जाईल.'],
+  g_lead_safe: ['Stop your bike at the side of the road and switch off the engine before you touch the phone', 'फ़ोन छूने से पहले बाइक सड़क के किनारे रोकें और इंजन बंद करें', 'फोनला हात लावण्याआधी बाइक रस्त्याच्या कडेला थांबवा आणि इंजिन बंद करा'],
+  g_lead_b: ['Walk back until the whole building fits in the screen, from ground to top', 'पीछे जाएँ जब तक पूरी बिल्डिंग, नीचे से ऊपर तक, स्क्रीन में न आ जाए', 'तळापासून वरपर्यंत संपूर्ण इमारत स्क्रीनमध्ये येईपर्यंत मागे जा'],
+  g_lead_s: ['Do not go near open edges or holes. Take the photo from where you stand safely', 'खुले किनारे या गड्ढे के पास न जाएँ। जहाँ सुरक्षित खड़े हैं वहीं से फोटो लें', 'उघड्या कडा किंवा खड्ड्यांजवळ जाऊ नका. जिथे सुरक्षित उभे आहात तिथूनच फोटो घ्या'],
+  g_lead_x: ['This photo is not required. You can press Next', 'यह फोटो ज़रूरी नहीं है। आप आगे दबा सकते हैं', 'हा फोटो आवश्यक नाही. तुम्ही पुढे दाबू शकता'],
+  g_lead_loc: ['If the green box says location found, it is done. Also write a landmark like a temple, school or shop name', 'अगर हरे बॉक्स में लोकेशन मिली लिखा है तो हो गया। साथ में मंदिर, स्कूल या दुकान जैसी पहचान भी लिखें', 'हिरव्या चौकटीत ठिकाण मिळाले असे लिहिले असेल तर झाले. सोबत मंदिर, शाळा किंवा दुकान अशी खूणही लिहा'],
+  g_lead_contact: ['Ask the watchman or builder for the owner’s mobile number. After typing, press Read the number to me and check it', 'चौकीदार या बिल्डर से मालिक का मोबाइल नंबर पूछें। लिखने के बाद नंबर पढ़कर सुनाएँ दबाकर जाँचें', 'वॉचमन किंवा बिल्डरकडून मालकाचा मोबाइल नंबर विचारा. लिहिल्यानंतर नंबर वाचून दाखवा दाबून तपासा'],
+  g_lead_review: ['Press Listen to all details to hear everything again', 'सारी जानकारी फिर सुनने के लिए सारी जानकारी सुनें दबाएँ', 'सर्व माहिती पुन्हा ऐकण्यासाठी सर्व माहिती ऐका दाबा'],
+  g_review_look: ['Tap a photo to see it big. If the photos and phone number look right, accept the lead', 'फोटो बड़ा देखने के लिए उसे दबाएँ। फोटो और नंबर ठीक लगें तो लीड स्वीकारें', 'फोटो मोठा पाहण्यासाठी त्यावर दाबा. फोटो आणि नंबर बरोबर वाटले तर लीड स्वीकारा'],
+  g_call_talk: ['Press Phone call to call now. After the call, come back to this screen', 'अभी कॉल करने के लिए फ़ोन कॉल दबाएँ। कॉल के बाद इसी स्क्रीन पर वापस आएँ', 'आत्ता कॉल करण्यासाठी फोन कॉल दाबा. कॉलनंतर याच स्क्रीनवर परत या'],
+  g_sign_read: ['Press Read the agreement aloud to hear it. Then tap the box to agree', 'करार सुनने के लिए करार पढ़कर सुनाएँ दबाएँ। फिर सहमति के लिए बॉक्स दबाएँ', 'करार ऐकण्यासाठी करार वाचून ऐकवा दाबा. मग संमतीसाठी चौकट दाबा'],
+  g_paynew_ref: ['Copy the UTR number from the customer’s payment message. Do not accept a screenshot as proof', 'ग्राहक के भुगतान संदेश से UTR नंबर लिखें। स्क्रीनशॉट को सबूत न मानें', 'ग्राहकाच्या पेमेंट संदेशातून UTR नंबर लिहा. स्क्रीनशॉट पुरावा मानू नका'],
+  g_payverify_look: ['Open your bank statement. Choose Money received only if you can see this amount in the bank', 'अपना बैंक स्टेटमेंट खोलें। पैसा बैंक में आ गया तभी चुनें जब यह रकम बैंक में दिखे', 'तुमचे बँक स्टेटमेंट उघडा. ही रक्कम बँकेत दिसत असेल तरच पैसे बँकेत आले निवडा'],
+  g_prepitem_do: ['Do this work first. Then take a photo that shows it is finished', 'पहले यह काम करें। फिर पूरा हुआ दिखाने वाला फोटो लें', 'आधी हे काम करा. मग ते पूर्ण झाल्याचे दाखवणारा फोटो घ्या'],
+  g_fixitem_do: ['Fix this problem first. Then take a photo of the fixed place', 'पहले यह कमी ठीक करें। फिर ठीक की गई जगह का फोटो लें', 'आधी ही त्रुटी दुरुस्त करा. मग दुरुस्त केलेल्या जागेचा फोटो घ्या'],
+  g_sopstep_do: ['Wear helmet and safety belt. Finish this work, then take a photo or a short video. If you cannot do it, press I can’t do this step', 'हेलमेट और सेफ़्टी बेल्ट पहनें। यह काम पूरा करें, फिर फोटो या छोटा वीडियो लें। न कर पाएँ तो मैं यह चरण नहीं कर पा रहा दबाएँ', 'हेल्मेट आणि सेफ्टी बेल्ट घाला. हे काम पूर्ण करा, मग फोटो किंवा छोटा व्हिडिओ घ्या. करता येत नसेल तर मला ही पायरी करता येत नाही दाबा'],
+  g_blocker_why: ['If anyone is in danger, stop work now and call your supervisor', 'अगर किसी को खतरा है तो अभी काम रोकें और सुपरवाइज़र को कॉल करें', 'कोणाला धोका असेल तर आत्ताच काम थांबवा आणि सुपरवायझरला कॉल करा'],
+  g_qcsite_meas: ['Use a measuring tape. Write every number in millimetres', 'नापने का टेप इस्तेमाल करें। हर संख्या मिलीमीटर में लिखें', 'मोजपट्टी वापरा. प्रत्येक आकडा मिलिमीटरमध्ये लिहा'],
+  g_dispatch_seal: ['Read the number printed on the seal carefully and type it exactly', 'सील पर छपा नंबर ध्यान से पढ़ें और ठीक वैसा ही लिखें', 'सीलवर छापलेला नंबर नीट वाचा आणि तसाच लिहा'],
+  g_arrival_seal: ['Read the seal on the vehicle yourself. Do not ask the driver for the number', 'गाड़ी का सील खुद पढ़ें। ड्राइवर से नंबर न पूछें', 'वाहनावरील सील स्वतः वाचा. ड्रायव्हरला नंबर विचारू नका'],
+  g_mhand_items: ['Count each item with the customer. Press the green tick if it is fine, the burst sign if damaged, or the question mark if missing', 'ग्राहक के साथ हर चीज़ गिनें। ठीक हो तो हरा टिक, खराब हो तो टूटा निशान, गायब हो तो प्रश्नचिह्न दबाएँ', 'ग्राहकासोबत प्रत्येक वस्तू मोजा. ठीक असेल तर हिरवी खूण, खराब असेल तर फुटलेली खूण, गहाळ असेल तर प्रश्नचिन्ह दाबा'],
+  g_hsign_read: ['Read the details. Tap the box only if it is true, then press Next', 'जानकारी पढ़ें। सही हो तभी बॉक्स दबाएँ, फिर आगे दबाएँ', 'माहिती वाचा. खरे असेल तरच चौकट दाबा, मग पुढे दाबा'],
+
   /* event names (timeline, permissions) */
   ev_ORG_CREATED: ['Company created', 'कंपनी बनी', 'कंपनी तयार झाली'],
   ev_USER_ADDED: ['Person added', 'व्यक्ति जोड़ा', 'व्यक्ती जोडली'],
@@ -2302,7 +2344,7 @@ function go(name, p = {}, opt = {}) {
   if (App.stack.length > 40) App.stack.shift();
   App.route = { name, p };
   render(); window.scrollTo(0, 0);
-  if (App.set.autoRead && App.pageSay) setTimeout(() => Voice.say(App.pageSay), 250);
+  if (App.set.autoRead && App.pageSay && !AFTER[name]) setTimeout(() => Voice.say(App.pageSay), 250);
 }
 function back() {
   Voice.stop();
@@ -2373,9 +2415,13 @@ const Voice = {
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(String(text).replace(/[\u{1F000}-\u{1FAFF}\u{2190}-\u{2BFF}\u{FE0F}]/gu, ' '));
     const v = this.pick();
-    u.lang = v ? v.lang : SPEECH[LANG]; if (v) u.voice = v; u.rate = 0.92;
+    u.lang = v ? v.lang : SPEECH[LANG]; if (v) u.voice = v; u.rate = LANG === 'en' ? 0.95 : 0.88;
+    u.onend = u.onerror = () => document.querySelectorAll('.guide-btn').forEach(b => b.classList.remove('rec'));
+    document.querySelectorAll('.guide-btn').forEach(b => b.classList.add('rec'));
     speechSynthesis.speak(u);
   },
+  has(l) { return this.voices.some(x => x.lang.replace('_', '-').toLowerCase().startsWith(l)); },
+  speaking() { return 'speechSynthesis' in window && speechSynthesis.speaking; },
   stop() { if ('speechSynthesis' in window) speechSynthesis.cancel(); }
 };
 function spokenToDigits(s) {
@@ -2754,22 +2800,48 @@ SCREENS.wiz = () => {
     <div class="prog" role="progressbar" aria-valuemin="1" aria-valuemax="${steps.length}" aria-valuenow="${i + 1}"><i style="width:${Math.round((i + 1) / steps.length * 100)}%"></i></div>
     ${W.resumed && i === 0 ? `<div class="note">💾 ${t('draft_resumed')}</div>` : ''}
     <div class="big-i" aria-hidden="true">${st.icon}</div><p class="say">${esc(sayTxt)}</p>
+    <button class="btn guide-btn" data-a="guide" style="margin:-4px 0 14px">🔊 ${t('g_listen')}</button>
     ${st.body(ctx, P)}
     ${W.err ? `<div class="err" role="alert">⚠️ ${esc(W.err)}</div>` : ''}
     <p class="small muted center">💾 ${t('autosaved')}</p></main>
     <div class="foot"><div class="foot-in"><button class="btn ${last ? 'btn-ok' : 'btn-p'} btn-big" data-a="wizNext">${last ? (W.def.saveIcon || '💾') + ' ' + esc(t(W.def.save || 'save')) : esc(t('next')) + ' →'}</button></div></div>`;
 };
+/* spoken step-by-step guide: built from the step's own words plus what is on the screen */
+const guideOn = () => App.set.guide !== false;
+function buildGuide() {
+  const steps = visSteps(), i = steps.findIndex(s => s.id === W.sid), st = steps[i], P = W.pid ? S.projects[W.pid] : null, last = i === steps.length - 1;
+  const parts = [t('g_step', { n: i + 1, m: steps.length }), typeof st.say === 'function' ? st.say(W.ctx, P) : t(st.say)];
+  const own = 'g_' + W.id + '_' + st.id; if (L[own]) parts.push(t(own));
+  const main = $('#app main');
+  if (main) {
+    const tl = [...main.querySelectorAll('.tile[data-a="pick"], .tile[data-a="toggle"]')].map(b => (b.querySelector('span:last-child') || b).innerText.split('\n')[0].trim()).filter(Boolean);
+    if (tl.length) parts.push(t('g_choose', { list: tl.join(', ') }));
+    if (main.querySelector('.check-row')) parts.push(t('g_yesno'));
+    if (main.querySelector('.stepper')) parts.push(t('g_stepper'));
+    if (main.querySelector('[data-a="cam"]')) parts.push(t('g_photo'));
+    if (main.querySelector('[data-a="sign"]')) parts.push(t('g_sign'));
+    const fl = [...main.querySelectorAll('.field label > span')].map(x => x.firstChild ? x.firstChild.textContent.trim() : '').filter(Boolean);
+    if (fl.length) { parts.push(t('g_fill', { list: fl.join(', ') })); if (SR) parts.push(t('g_mic')); }
+  }
+  parts.push(last ? t('g_save', { btn: t(W.def.save || 'save') }) : t('g_next'));
+  return parts.map(x => String(x).trim().replace(/[.।?!]+$/, '')).filter(Boolean).join('. ') + '.';
+}
+AFTER.wiz = () => {
+  if (!W) return;
+  const g = buildGuide(); App.pageSay = g; App.pageHelp = g;
+  if ((guideOn() || App.set.autoRead) && W._spoken !== W.sid && !W.err) { W._spoken = W.sid; setTimeout(() => { if (W && App.route.name === 'wiz') Voice.say(g); }, 250); }
+};
+AFTER.cl = () => { if (guideOn() || App.set.autoRead) setTimeout(() => Voice.say(App.pageSay), 250); };
 let wizBusy = false;
 async function wizNext() {
   if (wizBusy) return;
   const P = W.pid ? S.projects[W.pid] : null, steps = visSteps(), i = steps.findIndex(s => s.id === W.sid), st = steps[i];
   const e = st.check ? st.check(W.ctx, P) : null;
-  if (e) { W.err = errText(e); render(); if (App.set.autoRead) Voice.say(W.err); const el = $('.err'); if (el) el.scrollIntoView({ block: 'center' }); return; }
+  if (e) { W.err = errText(e); render(); if (App.set.autoRead || guideOn()) Voice.say(W.err); const el = $('.err'); if (el) el.scrollIntoView({ block: 'center' }); return; }
   W.err = null;
   if (i < steps.length - 1) {
     const nx = steps[i + 1]; W.sid = nx.id; saveDraft(); render(); window.scrollTo(0, 0);
     if (nx.enter) nx.enter(W.ctx, P);
-    if (App.set.autoRead) Voice.say(App.pageSay);
     return;
   }
   wizBusy = true;
@@ -3831,7 +3903,7 @@ SCREENS.done = p => {
     ${p.pid && S.projects[p.pid] && canSee(App.me, S.projects[p.pid]) ? `<button class="btn" data-a="openProject" data-v="${p.pid}">📋 ${t('open_project')}</button>` : ''}
     <button class="btn" data-a="nav" data-v="home">🏠 ${t('nav_home')}</button></div></main>`;
 };
-AFTER.done = () => { if (!App.set.autoRead) return; Voice.say(App.pageSay); };
+AFTER.done = () => { if (App.set.autoRead || guideOn()) setTimeout(() => Voice.say(App.pageSay), 250); };
 
 /* ---------- map (offline plot; tap a pin to open the project) ---------- */
 SCREENS.map = () => {
@@ -3957,7 +4029,10 @@ SCREENS.me = () => {
   return topBar(t('me')) + `<main class="wrap"><div class="hero"><div class="row"><span style="font-size:2.4rem">${ROLE_ICON[u.role]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + u.role)}</span></div></div><p class="small muted" style="margin:8px 0 0">${t('role_note')}</p></div>
     <div class="card"><h3>🗣️ ${t('language')}</h3><div class="tiles three">${LANGS.map(l => `<button class="tile ${LANG === l ? 'on' : ''}" data-a="setLang" data-v="${l}" style="min-height:64px">${LANG_NAME[l]}</button>`).join('')}</div></div>
     <div class="card"><h3>🔠 ${t('text_size')}</h3><div class="tiles three">${[['n', 'size_n'], ['l', 'size_l'], ['xl', 'size_xl']].map(([k, l]) => `<button class="tile ${(App.set.size || 'n') === k ? 'on' : ''}" data-a="setSize" data-v="${k}" style="min-height:64px;font-size:${k === 'n' ? 1 : k === 'l' ? 1.15 : 1.3}rem">${t(l)}</button>`).join('')}</div>
-      <div style="height:10px"></div><div class="tiles one"><button class="tile ${App.set.autoRead ? 'on' : ''}" data-a="toggleAuto"><span class="i">🔊</span>${t('auto_read')}</button></div></div>
+      <div style="height:10px"></div><div class="tiles one"><button class="tile ${guideOn() ? 'on' : ''}" data-a="toggleGuide"><span class="i">🗣️</span><span>${t('voice_guide')}<br><small>${t('voice_guide_d')}</small></span></button>
+      <button class="tile ${App.set.autoRead ? 'on' : ''}" data-a="toggleAuto"><span class="i">🔊</span>${t('auto_read')}</button></div>
+      <button class="btn" style="margin-top:10px" data-a="testVoice">▶ ${t('voice_test')}</button>
+      ${'speechSynthesis' in window ? (Voice.has('mr') ? `<div class="okbox">✅ ${t('voice_mr_ok')}</div>` : `<div class="warnbox">⚠️ ${t('voice_mr_missing')}</div>`) : `<div class="warnbox">⚠️ ${t('no_tts')}</div>`}</div>
     <div class="stack">${row('nav', 'perm', '🔐', 'what_can_i_do')}${row('intro', '', '🎓', 'watch_intro')}${row('nav', 'data', '📤', 'share_data')}
       ${adm ? row('nav', 'users', '👥', 'users') : ''}${['owner', 'admin', 'sales', 'finance'].includes(u.role) ? row('nav', 'rules', '📏', 'business_rules') : ''}${adm ? row('nav', 'audit', '🧾', 'audit_log') : ''}${adm ? row('nav', 'problems', '⚠️', 'problems') : ''}
       ${row('nav', 'about', 'ℹ️', 'about_privacy')}
@@ -4250,7 +4325,15 @@ const ACT = {
   /* wizard */
   wizNext: () => wizNext(),
   wizRestart: async () => { const { id, pid, opts } = W; await clearDraft(W); W = null; App.route = App.stack.pop() || { name: 'home', p: {} }; wiz(id, pid, opts); },
-  pick: (v, el) => { if (!W) return; setPath(W.ctx, el.dataset.k, v); W.err = null; saveDraft(); render(); },
+  pick: (v, el) => {
+    if (!W) return;
+    const label = (el.querySelector('span:last-child') || el).innerText.split('\n')[0];
+    setPath(W.ctx, el.dataset.k, v); W.err = null; saveDraft(); render();
+    if (guideOn()) Voice.say(label);
+  },
+  guide: () => { if (Voice.speaking()) { Voice.stop(); document.querySelectorAll('.guide-btn').forEach(b => b.classList.remove('rec')); } else Voice.say(App.pageSay); },
+  toggleGuide: () => { App.set.guide = !guideOn(); saveSettings(); render(); if (guideOn()) Voice.say(t('voice_guide')); },
+  testVoice: () => Voice.say(t('voice_test_say')),
   toggle: (v, el) => { setPath(W.ctx, el.dataset.k, !getPath(W.ctx, el.dataset.k)); W.err = null; saveDraft(); render(); },
   toggleIn: (v, el) => { const arr = getPath(W.ctx, el.dataset.k) || []; const i = arr.indexOf(v); if (i < 0) arr.push(v); else arr.splice(i, 1); setPath(W.ctx, el.dataset.k, arr); saveDraft(); render(); },
   step: (v, el) => { const k = el.dataset.k; setPath(W.ctx, k, Math.max(+el.dataset.min, Math.min(+el.dataset.max, (+getPath(W.ctx, k) || 0) + (+v)))); saveDraft(); render(); },
