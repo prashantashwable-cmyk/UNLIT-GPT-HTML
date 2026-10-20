@@ -8,10 +8,12 @@ fs.mkdirSync(OUT, { recursive: true });
 async function launch(opts = {}) {
   const browser = await chromium.launch({ args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream', '--allow-file-access-from-files'] });
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, geolocation: { latitude: 18.5204, longitude: 73.8567, accuracy: 10 }, permissions: ['geolocation', 'camera', 'microphone'], deviceScaleFactor: 1, ...opts });
+  /* tests run offline: the street map's library and tiles are unreachable, so the app must fall back cleanly */
+  await ctx.route(/^https:\/\/(unpkg\.com|tile\.openstreetmap\.org)\//, r => r.abort('internetdisconnected'));
   const page = await ctx.newPage();
   const errors = [];
   page.on('pageerror', e => errors.push('pageerror: ' + e.message));
-  page.on('console', m => { if (m.type() === 'error' || m.type() === 'warning') errors.push(m.type() + ': ' + m.text()); });
+  page.on('console', m => { if ((m.type() === 'error' || m.type() === 'warning') && !/Failed to load resource/.test(m.text())) errors.push(m.type() + ': ' + m.text()); });
   await page.goto(APP);
   await page.waitForTimeout(400);
   await page.evaluate(() => { window.__miss = new Set(); const o = t; window.t = (k, v) => { if (!L[k]) window.__miss.add(k); return o(k, v); }; });
