@@ -161,6 +161,10 @@ textarea.in{min-height:96px;resize:vertical}
 .dots{display:flex;justify-content:center;gap:14px;margin:14px 0}
 .dots i{width:20px;height:20px;border-radius:50%;border:3px solid var(--graph)}
 .dots i.f{background:var(--graph)}
+.lmap{height:60vh;min-height:300px;border-radius:var(--r);border:1px solid var(--line);position:relative;z-index:0;isolation:isolate;margin-bottom:10px}
+.lmap .leaflet-popup-content{font:inherit;font-size:.95rem;min-width:200px}
+.pin span{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--graph);border:3px solid var(--gold);font-size:17px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+.pin span.lost{background:var(--bad)}.pin span.done{background:var(--ok)}
 .map{width:100%;height:auto;background:#e8eee4;border-radius:var(--r);border:1px solid var(--line);display:block}
 table.mx{border-collapse:collapse;font-size:.76rem;width:100%}
 table.mx td,table.mx th{border:1px solid var(--line);padding:4px 3px;text-align:center}
@@ -1153,7 +1157,7 @@ const L = {
   map_empty: ['No sites with GPS location yet.', 'अभी GPS लोकेशन वाली कोई साइट नहीं।', 'अजून GPS ठिकाण असलेली साइट नाही.'],
   map_me: ['you', 'आप', 'तुम्ही'],
   map_route: ["today's photo route", 'आज का फोटो रास्ता', 'आजचा फोटो मार्ग'],
-  map_note: ['Simple offline map. Use Directions to navigate.', 'साधारण ऑफ़लाइन नक्शा। जाने के लिए “रास्ता” दबाएँ।', 'साधा ऑफलाइन नकाशा. जाण्यासाठी “मार्ग” दाबा.'],
+  map_note: ['Tap a pin, then Directions to navigate. Without internet a simple map is shown.', 'पिन दबाएँ, फिर जाने के लिए “रास्ता” दबाएँ। इंटरनेट न हो तो साधारण नक्शा दिखता है।', 'पिन दाबा, मग जाण्यासाठी “मार्ग” दाबा. इंटरनेट नसल्यास साधा नकाशा दिसतो.'],
 
   /* projects list */
   s_projects: ['Find a project by name, number, address or phone.', 'नाम, नंबर, पता या फ़ोन से प्रोजेक्ट ढूँढें।', 'नाव, नंबर, पत्ता किंवा फोनने प्रकल्प शोधा.'],
@@ -3931,10 +3935,50 @@ SCREENS.map = () => {
   }
   const sel = App.form.mp && S.projects[App.form.mp];
   const list = ps.slice().sort((a, b) => me ? haversine(me, a.site.gps) - haversine(me, b.site.gps) : 0);
+  App.mapData = { ps, route, me };
   return topBar(t('map')) + `<main class="wrap"><div class="tabs" style="position:static;padding:0 0 10px">${[['all', '📋', 'all'], ['mine', '👉', 'mine']].map(([v, i, l]) => `<button class="${f === v ? 'on' : ''}" data-a="mfilter" data-v="${v}">${i} ${t(l)}</button>`).join('')}<button data-a="gpsMap">📍 ${t('where_am_i')}</button></div>
-    ${svg}${sel ? `<div class="card" style="margin-top:10px">${projCard(sel).replace('class="task"', 'class="task" style="margin:0"')}<a class="btn" style="margin-top:8px" href="${dirLink(sel.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>` : ''}
+    <div id="lmap" class="lmap" hidden></div><div id="svgmap">${svg}</div>${sel ? `<div class="card" style="margin-top:10px">${projCard(sel).replace('class="task"', 'class="task" style="margin:0"')}<a class="btn" style="margin-top:8px" href="${dirLink(sel.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>` : ''}
     <p class="small muted">🔵 ${t('map_me')} ${route.length ? ' · ┅ ' + t('map_route') : ''} · ${t('map_note')}</p>
     ${list.slice(0, 20).map(P => `<div class="list-item"><span class="grow">${STAGES[P.stage][1]} <b>${esc(P.id)}</b> · ${esc(projTitle(P))}</span>${me ? `<span class="chip c-mute">${(haversine(me, P.site.gps) / 1000).toFixed(1)} km</span>` : ''}<button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶</button></div>`).join('')}</main>` + nav('map');
+};
+
+/* street map (OpenStreetMap) when online; the simple plot above stays as the offline fallback */
+let leafletP = null;
+function loadLeaflet() {
+  if (window.leaflet) return Promise.resolve(window.leaflet);
+  if (!leafletP) leafletP = new Promise((res, rej) => {
+    const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'; document.head.appendChild(css);
+    const js = document.createElement('script'); js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+    js.onload = () => window.leaflet ? res(window.leaflet) : rej(new Error('leaflet'));
+    js.onerror = () => { leafletP = null; rej(new Error('leaflet')); };
+    document.head.appendChild(js);
+  });
+  return leafletP;
+}
+AFTER.map = () => {
+  const d = App.mapData;
+  if (!d || !navigator.onLine) return;
+  loadLeaflet().then(Lf => {
+    const el = document.getElementById('lmap'), plot = document.getElementById('svgmap');
+    if (!el || App.route.name !== 'map') return;
+    el.hidden = false;
+    const m = Lf.map(el, { zoomControl: true });
+    const tiles = Lf.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(m);
+    let loaded = false, failed = 0;
+    tiles.on('tileload', () => { if (!loaded && d.ps.length && plot) plot.hidden = true; loaded = true; });
+    tiles.on('tileerror', () => { if (++failed > 4 && !loaded) { m.remove(); el.hidden = true; } });
+    const pts = [];
+    for (const P of d.ps) {
+      const g = P.site.gps; pts.push([g.lat, g.lng]);
+      const icon = Lf.divIcon({ className: 'pin', html: `<span class="${P.stage === 'lost' ? 'lost' : P.stage === 'amc' ? 'done' : ''}">${STAGES[P.stage][1]}</span>`, iconSize: [36, 36], iconAnchor: [18, 18] });
+      Lf.marker([g.lat, g.lng], { icon, title: P.id }).addTo(m).bindPopup(`<b>${esc(P.id)}</b> · ${esc(projTitle(P))}<br>${stageChip(P)}<div class="row" style="margin-top:8px"><button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶ ${t('open_project')}</button><a class="btn btn-sm" href="${dirLink(g)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>`);
+    }
+    if (d.route.length > 1) { Lf.polyline(d.route.map(g => [g.lat, g.lng]), { color: '#1c5596', weight: 4, dashArray: '6 6' }).addTo(m); d.route.forEach(g => pts.push([g.lat, g.lng])); }
+    if (d.me) { Lf.circleMarker([d.me.lat, d.me.lng], { radius: 9, color: '#fff', weight: 3, fillColor: '#1c5596', fillOpacity: 1 }).addTo(m).bindPopup(t('map_me')); pts.push([d.me.lat, d.me.lng]); }
+    if (pts.length > 1) m.fitBounds(pts, { padding: [30, 30], maxZoom: 16 });
+    else if (pts.length) m.setView(pts[0], 15);
+    else m.setView([18.5204, 73.8567], 11);
+  }).catch(() => { /* offline or blocked: the simple plot stays */ });
 };
 
 /* ---------- chat inbox ---------- */
