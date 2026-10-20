@@ -70,7 +70,7 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * 🎤 lets people speak names, addresses and numbers instead of typing; "Read the number to me" confirms phone numbers.
 * Work is saved automatically as a draft; ← never loses work.
 * After every action: **What happened** and **What happens next** (and who will do it).
-* Text size: Normal / Large / Extra large (tested at 320 px width with no sideways scrolling).
+* Screen size 20%–150% (Me → Screen size) scales the whole page; below 60% a normal-size "↺ 100%" button stays on screen. Tested at 320 px width up to 150% with no sideways scrolling.
 * Rider safety: lead capture and shift start begin with "Have you stopped in a safe place?" and are blocked if the phone reports movement.
 * Practice mode with sample data for every role — separate from real data and never sends calls or messages.
 

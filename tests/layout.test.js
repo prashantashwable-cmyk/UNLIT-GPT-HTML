@@ -1,4 +1,4 @@
-/* Every screen for every role at 320px wide with Extra-large text, in Marathi and Hindi: no horizontal scroll, no missing words, no errors. */
+/* Every screen for every role at 320px wide with the screen scale at 150%, in Marathi and Hindi: no horizontal scroll, no missing words, no errors. */
 const { launch, tap, miss, pin } = require('./lib');
 (async () => {
   const { browser, page, errors } = await launch({ viewport: { width: 320, height: 640 } });
@@ -11,7 +11,7 @@ const { launch, tap, miss, pin } = require('./lib');
       over.push(`${label} [${r.route}] ${r.sw}>${r.w} :: ${wide.join(' | ')}`);
     }
   };
-  await page.evaluate(() => { App.set.lang = 'mr'; LANG = 'mr'; App.set.introDone = true; App.set.size = 'xl'; document.documentElement.dataset.size = 'xl'; });
+  await page.evaluate(() => { App.set.lang = 'mr'; LANG = 'mr'; App.set.introDone = true; App.set.scale = 150; applyScale(); });
   await page.evaluate(() => enterPractice()); await W8(3500);
   for (const lang of ['mr', 'hi']) {
     await page.evaluate(l => { LANG = l; App.set.lang = l; }, lang);
