@@ -1,0 +1,17 @@
+{
+  "name": "AIEC Elevator OS",
+  "short_name": "AIEC OS",
+  "description": "Lead-to-handover work manager for All India Elevators Company",
+  "lang": "mr",
+  "start_url": "./AIEC-Elevator-OS.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f2ed",
+  "theme_color": "#23262f",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

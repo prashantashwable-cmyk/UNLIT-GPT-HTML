@@ -1,0 +1,318 @@
+ALL INDIA ELEVATORS COMPANY (AIEC)
+AIEC ELEVATOR OS — MASTER PRODUCT SPECIFICATION (ENGLISH)
+Reconstructed from the original brainstorm into a practical workflow specification.
+
+Purpose and Core Principle
+--------------------------
+ALL INDIA ELEVATORS COMPANY (AIEC) — AIEC ELEVATOR OS
+A practical, role-based mobile operating system that connects the complete elevator business workflow: lead generation, sales, quotation, agreement, site readiness, quality checks, material dispatch and handover, installation, final inspection, customer handover and annual maintenance (AMC).
+Core principle: A person with limited reading ability or little experience using apps must be able to understand what to do next, see how to do it, complete the task, and understand what happens afterward. Use pictures, short instructions, audio guidance, local languages, automatic data capture and one task at a time.
+This document reconstructs the original brainstorm into a connected product specification. It is a specification for design and development, not a claim that the app or hardware integrations have already been implemented.
+
+1. End-to-End Business Workflow
+-------------------------------
+• Field worker finds a construction site and records site photos, location, address and contact details.
+• The lead is assigned to Sales. Sales verifies the lead, contacts the prospect and records communication in the app.
+• Sales records lift requirements and prepares a quotation using approved pricing rules. Exceptions go to an authorised human for approval.
+• After the deal is approved, the customer completes the digital agreement and token payment, then receives illustrated instructions for preparing the lift shaft and power supply.
+• A QC inspector visits the site, records measurements and evidence, and approves the site or lists required corrections.
+• After the required approvals, technical drawings and specifications become available. The supplier packs and dispatches the material with a recorded identity, seal, dispatch evidence and tracking information where available.
+• The material reaches the site. Payment conditions, identity checks, authorised approvals and evidence must be satisfied before material handover or container unlocking.
+• The technician follows the approved installation SOP, records required photos/videos, reports blockers in the project chat and requests inspection at the right stage.
+• AI may flag missing, unclear or inconsistent evidence. AI must not independently make high-impact safety, payment, dispute or legal decisions; an authorised person reviews such cases.
+• QC performs final inspection. Defects create correction tasks and re-inspection. After approval, customer handover, required signatures, NOC and AMC setup are completed.
+Every screen, map, chat, timeline and dashboard must show the same authoritative project status for the same project ID.
+
+2. Design for People Who Find Apps Difficult
+--------------------------------------------
+• One main task per screen. Do not overload users with many competing buttons or long forms.
+• Use large, well-spaced touch targets that are easy to tap on small phones.
+• Use a clear picture or familiar icon plus a short text label. Never rely on an icon alone for an important action.
+• Provide a speaker button to read the current instruction aloud in the selected language. Use speech-to-text where it is reliable and appropriate.
+• Provide Marathi and Hindi throughout the app, including buttons, alerts, training, message templates and help. Keep the language switch easy to find.
+• Prefer everyday words. Explain technical terms with a short definition or illustration.
+• Show progress such as “Step 2 of 5”, a progress bar, and the next action.
+• Auto-fill date, time, signed-in user, GPS location, address and device/app details when permission and connectivity allow.
+• Save work automatically. If offline, clearly state that it is saved on the phone and will sync when the network returns.
+• Allow normal data to be corrected. Never silently rewrite payment, safety, approval or audit records; corrections must create an auditable event.
+• After each action, explain what happened and what comes next.
+• Keep Help available on every important screen. Offer audio instructions, examples and in-app chat with the responsible role.
+• Do not encourage phone use while riding a motorcycle. The rider must stop in a safe place before taking photos, filling forms or confirming actions.
+• Support readable text, strong contrast, screen readers and reduced-motion preferences. Avoid arbitrary scaling that makes controls unusable; provide tested display options.
+
+3. First Launch and Login
+-------------------------
+• Show the AIEC logo and a clear Start button.
+• Let the user choose Marathi or Hindi and play a short sample instruction.
+• Authenticate the user and assign their role securely. Users must not be able to grant themselves higher permissions by selecting a role.
+• Explain each permission before requesting it: location for mapping; camera/microphone for evidence and voice input; notifications for assigned work and approvals.
+• Offer a practice mode with sample data. Practice must never create real leads, payments, approvals or customer messages.
+• Provide a short, illustrated, audio-guided introduction. Experienced users may skip it.
+• Offer installation as a Progressive Web App (PWA) where supported. Do not claim installation succeeded until confirmed by the platform.
+
+4. Common Screen Layout
+-----------------------
+• Top: current page name, language switch and notifications.
+• Main area: one primary task or the most important status.
+• Primary action: a large button with an explicit verb, such as “Save Site” or “Request QC”.
+• Progress: completed steps and remaining steps.
+• Bottom navigation: ideally four or five main destinations, each with icon and text.
+• Persistent Help and audio instruction controls where appropriate.
+• Show status using both words and an icon, not colour alone—for example, “Waiting for approval”.
+• Do not hide important actions behind swipe-only gestures, long presses or complex menus.
+
+5. Role-Based Home Screens
+--------------------------
+After login, show a role-specific “What should I do now?” home screen.
+• A large “Start My Next Task” button.
+• Today’s assigned tasks and their statuses.
+• Urgent safety issues and pending approvals, if relevant to the role.
+• A simple progress indicator and a Help button.
+• A map only when it helps that role. Do not confuse a field worker with empty analytics or a manager with irrelevant field forms.
+If no task is assigned, say so clearly and offer the appropriate next step.
+
+6. Lead Generation — Rider / Field Worker
+-----------------------------------------
+Goal: find construction sites that may need a lift, collect trustworthy evidence and send a useful lead to Sales with minimal typing.
+• Start the field shift or route only after the rider has stopped safely. Record start time and location when permission is available.
+• Show map, GPS/network status and the day’s route. Track visited sites and work locations only with appropriate user notice and permissions.
+• At a site, stop safely and tap “Add New Site”. Open the in-app camera.
+• For evidence, do not allow photos/videos to be uploaded from the phone’s file manager. Allow multiple in-app captures per site.
+• Guide the user to capture: a recognisable building/site photo; the lift shaft from a safe position; a photo that gives context such as floors/building; and extra evidence when needed.
+• Show examples of acceptable photos. Allow retakes when an image is blurred or incomplete.
+• Preserve the original media and record available evidence metadata: GPS coordinates, map pin, detected address, date/time, signed-in user, device/app information and unique evidence ID. A text overlay on an image is not, by itself, proof that metadata is authentic.
+• Attempt to detect the address. If uncertain, ask the user to confirm the address or move the map pin.
+• Capture contact name and phone number by voice, keypad or supported contact scanning. Read back or display the number for confirmation.
+• Ask only simple questions: Is the lift shaft ready? Yes / No / Not sure. How many floors? If known. Who should Sales contact?
+• Show a review screen with photos, map location and contact number. Allow the user to listen to the recorded details.
+• On “Save Site”, confirm that the site was saved and that Sales will review it.
+• If details are missing, explain what is missing and allow draft saving when permitted.
+• Detect possible duplicates. Offer to attach new information to the existing lead rather than create a conflicting record. The original 10% duplicate-lead commission rule must be shown clearly and approved by an authorised administrator before use.
+• The map should show leads, captured photos, travelled route and covered areas. Selecting a map pin should open the related lead and evidence.
+• At shift end, show a simple daily report: sites visited, valid leads submitted, route/area covered and items requiring correction.
+Safety: never require a rider to operate the phone while moving. Any background location tracking must be disclosed, permission-based and limited to a legitimate purpose.
+
+7. Sales and Lead Follow-Up
+---------------------------
+• Sales receives new leads in a clear queue with lead source, site photos, location, contact details, completeness and duplicate warnings.
+• A salesperson accepts or returns the lead with a reason. Assignment and reassignment are recorded in the audit history.
+• The lead map should filter by status, area, date, assigned salesperson and next follow-up date.
+• Provide approved WhatsApp/message templates that can include appropriate site information and photos. Record the message action and outcome; do not claim delivery unless confirmed by the connected service.
+• Record calls and follow-ups inside the app. Prefer in-app chat or logged communication over undocumented verbal decisions.
+• Capture customer requirements: building use, number of floors/stops, capacity, lift type, finish, expected timeline, site readiness, power supply and other required technical details.
+• Use a clear lead pipeline: New → Review → Contacted → Requirements Collected → Quotation → Negotiation → Won/Lost/Follow-up.
+• A lost lead requires a reason. Follow-up tasks should have an owner and due date.
+
+8. Quotation and Negotiation Rules
+----------------------------------
+Generate quotations from approved product, configuration, tax, installation, transport and pricing rules. The app should calculate options based on confirmed requirements such as number of floors, automatic/manual operation and stainless-steel (SS) or powder-coated mild-steel (MS) finish.
+The original brainstorm proposed a 60% initial margin, a negotiation bot able to negotiate up to 30%, a 20% minimum margin, and human negotiation after the bot limit. These are unapproved business assumptions until the owner confirms how “margin” and “discount” are calculated.
+• Never allow an AI bot to quote below the authorised floor or change commercial terms outside its permissions.
+• Show the customer-facing quotation clearly, with scope, exclusions, taxes, payment milestones, validity, delivery assumptions and approval status.
+• Every revision must have a version number, timestamp, author and reason. Preserve older versions.
+• Escalate exceptions, low-margin quotes, unusual discounts and non-standard terms to the authorised human approver.
+
+9. Agreement, Token Payment and Customer Preparation
+----------------------------------------------------
+• After commercial approval, prepare a digital agreement from an approved template.
+• Make the agreement available for customer review, acceptance and legally appropriate signature. Store the signed version and its audit trail.
+• The original idea specifies a ₹10,000 token payment. Treat this amount as a proposed rule until the owner approves it and finance confirms the accounting and refund conditions.
+• Confirm payment only through an integrated payment provider or verified finance workflow. A screenshot alone must not be treated as conclusive proof of payment.
+• After the required agreement and payment conditions are satisfied, send the customer illustrated, language-appropriate SOP instructions for shaft preparation and power supply.
+• Track customer preparation as checklist items with photos, due dates, help instructions and status.
+
+10. Site Readiness and QC Approval
+----------------------------------
+• QC opens the project and sees the site address, requirements, drawings available to that stage and previous evidence.
+• Record site measurements, shaft dimensions, access, safety conditions, power readiness and any other required checks in the approved checklist.
+• Capture evidence through the in-app camera, with multiple photos/videos as required.
+• QC selects one of the explicit outcomes: Approved; Corrections Required; or Revisit Required.
+• If corrections are required, list each item in plain language, assign an owner and due date, and notify the customer or responsible team.
+• Only authorised approval should unlock the next dependent stage, such as release of approved drawings or material preparation.
+Technical checklists and SOPs must be validated by qualified personnel against the applicable Maharashtra and Indian lift regulations and project requirements. The app must not invent or replace statutory requirements.
+
+11. Material Procurement, Dispatch, Tracking and Handover
+---------------------------------------------------------
+• Create a material list linked to the project and approved drawings/specifications.
+• Supplier records packing, item identification, serial/batch numbers where applicable, seal number, dispatch date/time and evidence.
+• Where supported and lawfully configured, track the container/vehicle location and record tamper, movement or route alerts. Do not imply GPS, motion sensors, CCTV or digital locks exist unless the hardware is actually integrated and tested.
+• At arrival, record location, time, seal condition, material condition and photos/videos.
+• The original payment idea was 90% when the container reaches the site, with the company paying the supplier, and the remaining 10% at handover completion. This is a proposed commercial policy requiring owner, finance, supplier and legal approval before configuration.
+• If the customer does not pay, the original idea suggests returning material to the supplier. Do not trigger return, cancellation or a financial penalty automatically without a documented contract, authorised human decision and safe logistics plan.
+• Offer EMI only through an approved bank/NBFC partner and a compliant customer journey. Display lender terms and eligibility from the provider; do not imply approval before the lender confirms it.
+• Material handover should require the defined participants, such as customer and technician, to verify items and sign digitally. Record shortages, damage and exceptions.
+• If a digital lock is integrated, define access control, emergency override, failure handling and an immutable access log. Dual authorisation (for example customer + technician + administrator permission) and CCTV evidence are proposed controls that must be tested in the physical system before reliance.
+Security rule: the app must never unlock a container solely because a screen says payment was made. It must check the trusted payment state, user permissions, required approvals and physical-device response.
+
+12. Installation Technician Workflow
+------------------------------------
+• The technician home screen shows today’s assigned site, route/map, project status, target dates and pending tasks.
+• At arrival, record attendance/location as allowed and confirm that the site is safe and ready to work.
+• Show the approved installation SOP in short numbered steps with pictures and audio guidance.
+• Require the technician to complete each required step in order and submit the specified photo/video evidence.
+• Allow multiple in-app photos/videos for each stage. Preserve originals and attach evidence to the project, task, user and timestamp.
+• If a step cannot be completed, require a blocker reason, optional voice note and supporting evidence. Assign the blocker to the responsible role.
+• The original target is completion within two weeks after the site is declared ready. Treat this as a planning target until the owner approves exceptions, working-day rules and dependencies.
+• Do not let users mark critical stages complete when mandatory evidence or safety checks are missing. Escalation and emergency procedures must remain available.
+• AI may check evidence completeness and flag suspected mismatches. Critical or disputed results must be reviewed by a qualified human.
+• Technicians should use project chat for questions, approvals and blockers instead of relying only on phone calls.
+
+13. Quality Control, Payment and Final Handover
+-----------------------------------------------
+• QC can schedule announced or surprise inspections according to an approved policy. The app should record who authorised the inspection and the outcome.
+• Check installation against approved SOPs, drawings and relevant safety requirements. Record pass/fail results, evidence, defects and corrective actions.
+• A failed inspection creates a correction task and a re-inspection step; it must not silently advance the project.
+• The original idea proposes weekly technician payments after admin approval, SOP compliance and customer satisfaction checks. Finance and the owner must define the actual payment formula, evidence requirements, dispute process and applicable employment/contract terms.
+• Do not withhold payment solely on an unreviewed AI score. Provide human review and a dispute/appeal process.
+• Final handover requires completion of mandatory QC, correction closure, customer acceptance and digital signatures from the defined participants, potentially customer, technician and QC.
+• Generate the handover pack, required NOC and warranty/maintenance documents only when authorised conditions are met.
+• Create the AMC schedule, service contact route, service history and reminders after handover.
+
+14. Customer App / Customer View
+--------------------------------
+• Show quotation versions, approved scope, negotiation messages, agreement, verified payment history and EMI schedule when applicable.
+• Show site-preparation checklist, installation schedule, current stage, completed stages and the next expected action.
+• Let the customer submit questions, complaints and supporting photos through a structured in-app chat/ticket.
+• Show complaint owner, response status, expected next step and resolution history.
+• Show QC outcomes, handover documents, warranty and AMC status, plus upcoming service visits.
+• Protect other customers’ data and internal company notes through strict role- and project-based access.
+
+15. New Worker Onboarding and Training
+--------------------------------------
+• Provide a worker directory/aggregator with search and filters for skills, location, availability and onboarding status.
+• Collect only necessary worker details with appropriate consent and access controls.
+• Provide short training videos, illustrated SOPs, audio explanations and simple knowledge checks.
+• Track training completion, verified skills, required documents and authorisation to perform specific tasks.
+• An AI assistant may answer questions using approved AIEC training material and must say when it cannot confirm an answer.
+• Explain earning/payment rules transparently. Do not promise work or income that has not been confirmed.
+
+16. Admin Control Center
+------------------------
+• Show all projects and roles with status, owner, current stage, due date, delay, pending approvals and critical exceptions.
+• Provide map, filters and drill-down views for leads, sales, QC, material, installation, complaints, payments and AMC.
+• Provide queues for pending approvals, missing evidence, overdue tasks, failed inspections, payment exceptions and security alerts.
+• Allow an administrator to assign/reassign tasks, set authorised exceptions, request more evidence and record decisions.
+• High-risk actions should require appropriate permissions and, where configured, a second approver.
+• Every material change must create an audit event: actor, timestamp, previous value, new value, reason, linked evidence and approval reference.
+• Dashboards must derive from the same project and event data as the operational screens. Avoid separate editable status values that can conflict.
+
+17. Owner Dashboard and Business Intelligence
+---------------------------------------------
+• Prioritise business development and decisions rather than routine task execution.
+• Show lead volume, lead quality, conversion rate, source/area performance, quotation pipeline, approved margin, sales, receivables, supplier liabilities and cash-flow indicators.
+• Show project stage aging, delays, installation cycle time, QC failure/rework, material loss/damage, complaints, customer satisfaction and AMC renewal indicators.
+• Provide drill-down from each metric to the underlying projects and auditable events.
+• Clearly distinguish actual, estimated, forecast and missing data. Never present an estimate as a verified actual.
+
+18. One Project Record, Chat, Timeline and Audit History
+--------------------------------------------------------
+Chat, board, timeline, map and dashboards must not become separate sources of truth. Each project has one project ID and one authoritative state machine.
+• A chat message can create or reference a task, question, approval request, decision or blocker. Record sender, recipient/role, timestamp, attachments and resolution.
+• Approvals must show what is being approved, supporting evidence, approver identity, decision, timestamp and reason when rejected.
+• The timeline records stage changes, task completion, QC results, payment confirmation, material custody, signatures and handover.
+• Calls or decisions made outside the app should be summarised in the project record by an authorised participant, with the source identified; do not fabricate a recording or claim an undocumented conversation is verified.
+• Prevent conflicting approvals or duplicate tasks across modules. A single approval engine should control dependent workflow transitions.
+
+19. Data, Security, Privacy and Evidence
+----------------------------------------
+• Use role-based and project-based access. Workers see only what they need for their assigned duties.
+• Protect personal data such as customer phone numbers, worker details, GPS history, photos and payment records. Explain why information is collected and who can access it.
+• Apply appropriate retention, deletion, access logging and incident response policies, subject to applicable law and contracts.
+• Encrypt data in transit and at rest where supported; use secure authentication, session expiry, access revocation and backups.
+• Evidence should have a unique ID, original media, uploader, capture time, available location metadata, linked task/project and change history.
+• Do not describe a photo overlay, GPS reading or AI result as tamper-proof. Use layered controls and explain known limitations.
+• Offline data must be protected on the device and synchronised with conflict handling. Show whether each item is local, syncing or successfully synced.
+• Provide a documented process for suspected theft, missing material, damaged seals, unauthorised access or GPS/CCTV alerts: preserve evidence, notify authorised roles, freeze relevant transitions if necessary, assign an incident owner and record resolution.
+
+20. Alerts and Escalations
+--------------------------
+• Notify the responsible person when a task is assigned, a due date approaches, an approval is requested, evidence is rejected, a blocker is raised or a project stage changes.
+• Escalate overdue critical tasks to the supervisor/admin using approved timing rules.
+• Security alerts may include seal mismatch, unexpected movement, geofence departure, missing tracking signal, attempted unauthorised unlock or material discrepancy—but only when the required device/integration exists and has been tested.
+• Payment alerts must distinguish payment initiated, pending, failed, reversed and confirmed. Only a trusted verified state can satisfy a payment gate.
+• Every alert should explain what happened, who must act and the next available action.
+
+21. Maps, Gamification and Performance
+--------------------------------------
+• Rider map: leads, photos, route and covered areas, with filters and direct links to lead details.
+• Technician map: assigned sites, stage progress, due dates and relevant payment status.
+• Leaderboards and rewards may recognise valid leads, quality, on-time completion, safety and customer satisfaction.
+• Do not reward speed in a way that encourages unsafe riding, skipped SOP steps, false evidence or low-quality leads.
+• Show the rules and calculation behind commissions, points and rankings. Corrections and disputes must be auditable.
+
+22. App Appearance and Device Support
+-------------------------------------
+• Use a clean, modern, mobile-first interface with clear cards, icons, status labels and progress bars. A premium graphite-and-gold theme may be used for owner/admin command-center views if suitable, but readability and task clarity come first.
+• Support common Android phones, small screens, varying network quality and portrait use.
+• Provide a visible PWA install option where supported, with clear instructions and accurate install status.
+• Offer a tested text/display-size setting. Do not let a 20%–130% arbitrary scaling slider break layout, hide buttons or make controls inaccessible.
+• Provide graceful loading, offline, empty, error and permission-denied states in plain language.
+
+23. Recommended Data Model
+--------------------------
+• User and Role: identity, role, permissions, language, active status and training status.
+• Lead: lead ID, source, site/contact details, coordinates, address confidence, owner, status, duplicate links and follow-up schedule.
+• Evidence: evidence ID, media reference, type, capture/upload times, user, device/app metadata, location metadata, linked task and integrity/check status.
+• Customer and Project: customer ID, project ID, contacts, site, product requirements, project stage, owner and risk flags.
+• Quotation and Agreement: version, line items, pricing inputs, taxes, discount/margin calculations, approvals, agreement version and signatures.
+• Payment: provider reference, amount, currency, purpose, status, confirmation source, timestamps, refunds/reversals and reconciliation state.
+• Task and SOP Step: task ID, project, assigned role/user, prerequisites, due date, required evidence, status, blocker and approval gate.
+• QC Inspection: checklist version, measurements, outcomes, defects, corrective tasks, inspector and evidence.
+• Material Custody: item/serial/quantity, supplier, package/container, seal, dispatch/arrival events, condition, custodian and handover signatures.
+• Chat and Approval: conversation, participants, message, attachments, approval request, decision and resolution.
+• Audit Event: actor, action, object, prior/new state, timestamp, reason, evidence and correlation/project ID.
+• AMC/Service: contract, coverage, visits, complaints, service tasks, due dates, renewal and closure evidence.
+
+24. Implementation Order
+------------------------
+• Phase 1 — Foundation: user login, secure roles, language toggle, shared project record, task engine, chat, notifications and audit history.
+• Phase 2 — Lead generation: in-app multi-photo camera, location/address, contact capture, duplicate checks, offline saving and lead map.
+• Phase 3 — Sales: lead queue, follow-ups, customer requirements, message templates, quotation versions and approval rules.
+• Phase 4 — Agreement and site readiness: agreement templates, verified token payment, illustrated customer SOP and QC approval.
+• Phase 5 — Material: inventory, supplier dispatch, custody, delivery evidence, payment gates and handover.
+• Phase 6 — Installation: technician task flow, SOP evidence, blockers, QC inspections, correction loops and handover.
+• Phase 7 — Customer, AMC and worker onboarding: customer portal, complaints, service history, training and worker verification.
+• Phase 8 — Admin/owner analytics, gamification, AI assistance and external integrations.
+Build and test each phase in a separate development branch or controlled release. Do not break the existing project. Use test data and sandbox integrations before enabling real payments, customer messaging, locks, cameras or supplier workflows.
+
+25. Acceptance Checklist
+------------------------
+• A new user can complete a common task using pictures/audio and minimal reading without a trainer beside them.
+• All key workflows work in Marathi and Hindi, including errors and approval messages.
+• A rider cannot be encouraged or required to operate the app while moving.
+• Multiple in-app photos/videos can be attached to a site/task; direct file-manager upload is disabled for designated evidence workflows.
+• GPS/address uncertainty, camera denial, offline use, sync failure and duplicate leads have clear recovery paths.
+• One project status is consistent across the map, chat, board, timeline and dashboards.
+• Critical stage changes require the right prerequisites and authorised approval.
+• Payments are confirmed from a trusted source and support pending, failed, reversed and reconciled states.
+• AI cannot independently make critical safety, payment, employment or dispute decisions.
+• Every important action has an audit trail and linked evidence where required.
+• Customer data and location/media evidence are protected by permissions and documented retention rules.
+• Physical integrations—GPS, CCTV, motion sensors, digital locks and payment services—are separately tested before being represented as operational.
+
+26. Business Rules Requiring Owner Approval
+-------------------------------------------
+• Quotation assumptions: 60% initial margin, up to 30% bot negotiation, 20% minimum margin. Define whether these refer to margin, markup or discount and approve the calculation method.
+• ₹10,000 token payment: confirm amount, tax/accounting treatment, refund rules and trigger conditions.
+• 90% payment on material arrival and 10% at handover: confirm milestones, proof requirements, dispute handling and supplier payment timing.
+• 10% commission for duplicate-lead updates: define eligible cases, calculation base, payment recipient and dispute process.
+• Two-week installation target: define when the clock starts, working days, dependencies, exclusions and escalation.
+• Weekly technician payments: define approved milestones, customer feedback handling, rework, deductions if lawful, and dispute resolution.
+• Material return after non-payment: obtain legal/contract review and define a safe, authorised process; no automatic physical action.
+• Digital lock/CCTV/motion/GPS setup: confirm actual hardware, fail-safe behaviour, emergency access, data retention and authorised access.
+• Applicable technical SOPs and statutory requirements: approval by qualified lift professionals and legal/regulatory review.
+
+27. Research and Standards to Review
+------------------------------------
+Use the following as design/review references; they do not replace legal advice, technical certification or project-specific compliance review.
+W3C — Web Content Accessibility Guidelines (WCAG) 2.2, including mobile accessibility considerations: https://www.w3.org/TR/wcag2mobile-22/
+Government of India — Guidelines for Indian Government Websites and Apps, mobile app accessibility statement: https://guidelines.india.gov.in/new-mobile-app-statement/
+W3C — Understanding Target Size (Minimum): https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum
+India Code — Maharashtra Lifts Act, 1939 (consult the current applicable law and rules): https://www.indiacode.nic.in/bitstream/123456789/21983/1/the_maharashtra_lifts_act_1939.pdf
+MeitY — Digital Personal Data Protection Act, 2023: https://www.meity.gov.in/writereaddata/files/Digital%20Personal%20Data%20Protection%20Act%202023.pdf
+MeitY — Digital Personal Data Protection Rules, 2025: https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digit
+
+Final Product Rule
+------------------
+AIEC Elevator OS should act as a work manager and assistant: it tells each person what to do next, guides them through the approved steps, collects the required evidence, routes questions and approvals to the right person, records decisions and shows the same project status to everyone who is authorised to see it.
+The system should make unsafe or unauthorised actions difficult, missing evidence visible, exceptions traceable and the next action obvious. Automation should reduce effort without replacing accountable human judgement in high-impact decisions.

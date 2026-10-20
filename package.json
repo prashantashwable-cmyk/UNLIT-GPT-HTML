@@ -1,0 +1,12 @@
+{
+  "name": "aiec-elevator-os",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AIEC Elevator OS - single-file offline app, lead to handover",
+  "scripts": {
+    "test": "node tests/run-all.js"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}
