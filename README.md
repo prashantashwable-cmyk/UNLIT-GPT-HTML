@@ -18,7 +18,9 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
 
 **Real company use:** the Owner creates the company, then adds each person under **Me → People & roles**. Every person gets a role and a 4-digit PIN from the Owner/Admin — nobody can choose their own role.
 
-**Install as an app (optional):** host the repository on GitHub Pages (Settings → Pages → deploy from branch) and open the link in Chrome → **Add to Home screen**. The service worker (`sw.js`) then keeps the app working offline. Opening the HTML file directly also works; installation is only for convenience.
+**Install as an app (required for real use):** real company work only opens inside the installed app; opening the link in a normal browser tab shows an install screen (Practice mode still works there for demos). The installed app also asks the phone to keep its data permanently.
+
+**Hosting:** host the repository on GitHub Pages (Settings → Pages → deploy from branch) and open the link in Chrome → **Add to Home screen**. The service worker (`sw.js`) then keeps the app working offline. Opening the HTML file directly also works; installation is only for convenience.
 
 ---
 

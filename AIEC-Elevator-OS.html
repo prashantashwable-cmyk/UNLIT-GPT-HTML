@@ -1406,6 +1406,22 @@ const L = {
   g_mhand_items: ['Count each item with the customer. Press the green tick if it is fine, the burst sign if damaged, or the question mark if missing', 'ग्राहक के साथ हर चीज़ गिनें। ठीक हो तो हरा टिक, खराब हो तो टूटा निशान, गायब हो तो प्रश्नचिह्न दबाएँ', 'ग्राहकासोबत प्रत्येक वस्तू मोजा. ठीक असेल तर हिरवी खूण, खराब असेल तर फुटलेली खूण, गहाळ असेल तर प्रश्नचिन्ह दाबा'],
   g_hsign_read: ['Read the details. Tap the box only if it is true, then press Next', 'जानकारी पढ़ें। सही हो तभी बॉक्स दबाएँ, फिर आगे दबाएँ', 'माहिती वाचा. खरे असेल तरच चौकट दाबा, मग पुढे दाबा'],
 
+  /* install gate */
+  inst_title: ['Install the app', 'ऐप इंस्टॉल करें', 'ॲप इन्स्टॉल करा'],
+  inst_say: ['Install the AIEC app on this phone before real work. Then open it from the AIEC icon on your home screen.', 'असली काम से पहले इस फ़ोन पर AIEC ऐप इंस्टॉल करें। फिर होम स्क्रीन के AIEC आइकन से खोलें।', 'खरे काम सुरू करण्याआधी या फोनवर AIEC ॲप इन्स्टॉल करा. मग होम स्क्रीनवरील AIEC चिन्हावरून उघडा.'],
+  inst_why: ['The installed app keeps your work safely on the phone, works without internet, and opens the camera and GPS every time. Practice mode works without installing.', 'इंस्टॉल ऐप आपका काम फ़ोन में सुरक्षित रखता है, बिना इंटरनेट चलता है और हर बार कैमरा व GPS खोलता है। अभ्यास मोड बिना इंस्टॉल चलता है।', 'इन्स्टॉल केलेले ॲप तुमचे काम फोनवर सुरक्षित ठेवते, इंटरनेटशिवाय चालते आणि प्रत्येक वेळी कॅमेरा व GPS उघडते. सराव मोड इन्स्टॉलशिवाय चालतो.'],
+  inst_done: ['Installed. Now close this page and open AIEC from your home screen.', 'इंस्टॉल हो गया। अब यह पेज बंद करें और होम स्क्रीन से AIEC खोलें।', 'इन्स्टॉल झाले. आता हे पेज बंद करा आणि होम स्क्रीनवरून AIEC उघडा.'],
+  inst_and_1: ['Tap the ⋮ menu at the top right of Chrome.', 'Chrome में ऊपर दाईं ओर ⋮ मेनू दबाएँ।', 'Chrome मध्ये वर उजवीकडे ⋮ मेनू दाबा.'],
+  inst_and_2: ['Tap “Install app” or “Add to Home screen”, then “Install”.', '“ऐप इंस्टॉल करें” या “होम स्क्रीन पर जोड़ें” दबाएँ, फिर “इंस्टॉल”।', '“ॲप इन्स्टॉल करा” किंवा “होम स्क्रीनवर जोडा” दाबा, मग “इन्स्टॉल”.'],
+  inst_and_3: ['Open AIEC from the new icon on your home screen.', 'होम स्क्रीन के नए आइकन से AIEC खोलें।', 'होम स्क्रीनवरील नवीन चिन्हावरून AIEC उघडा.'],
+  inst_ios_1: ['Open this page in Safari and tap the Share button (square with arrow).', 'यह पेज Safari में खोलें और शेयर बटन (तीर वाला चौकोर) दबाएँ।', 'हे पेज Safari मध्ये उघडा आणि शेअर बटण (बाण असलेला चौकोन) दाबा.'],
+  inst_ios_2: ['Tap “Add to Home Screen”, then “Add”.', '“Add to Home Screen” दबाएँ, फिर “Add”।', '“Add to Home Screen” दाबा, मग “Add”.'],
+  inst_ios_3: ['Open AIEC from the new icon on your home screen.', 'होम स्क्रीन के नए आइकन से AIEC खोलें।', 'होम स्क्रीनवरील नवीन चिन्हावरून AIEC उघडा.'],
+  inst_open_link: ['This file cannot be installed. Open this web link in Chrome and install from there:', 'यह फ़ाइल इंस्टॉल नहीं हो सकती। यह वेब लिंक Chrome में खोलें और वहाँ से इंस्टॉल करें:', 'ही फाइल इन्स्टॉल होऊ शकत नाही. ही वेब लिंक Chrome मध्ये उघडा आणि तिथून इन्स्टॉल करा:'],
+  inst_copy: ['Copy link', 'लिंक कॉपी करें', 'लिंक कॉपी करा'],
+  inst_copied: ['Link copied', 'लिंक कॉपी हुआ', 'लिंक कॉपी झाली'],
+  inst_practice: ['For demo and training only', 'सिर्फ़ डेमो और ट्रेनिंग के लिए', 'फक्त डेमो आणि प्रशिक्षणासाठी'],
+
   /* event names (timeline, permissions) */
   ev_ORG_CREATED: ['Company created', 'कंपनी बनी', 'कंपनी तयार झाली'],
   ev_USER_ADDED: ['Person added', 'व्यक्ति जोड़ा', 'व्यक्ती जोडली'],
@@ -2361,11 +2377,19 @@ window.addEventListener('popstate', () => {
   if (App.ovClose) { App.ovClose(); } else back();
   history.pushState({ aiec: 1 }, '');
 });
+/* real company use only inside the installed app; practice mode works anywhere */
+const APP_URL = 'https://prashantashwable-cmyk.github.io/UNLIT-GPT-HTML/';
+function isInstalled() {
+  const mm = q => window.matchMedia && window.matchMedia(q).matches;
+  return mm('(display-mode: standalone)') || mm('(display-mode: fullscreen)') || mm('(display-mode: minimal-ui)') || navigator.standalone === true || document.referrer.startsWith('android-app://');
+}
+const installGate = () => App.mode === 'real' && !isInstalled() && !App.set.devNoInstallGate;
 function render() {
   const r = App.route;
   App.pageSay = ''; App.pageHelp = '';
   let h;
-  try { h = (SCREENS[r.name] || SCREENS.home)(r.p || {}); }
+  const gated = installGate() && !['welcome', 'lang', 'intro', 'install'].includes(r.name);
+  try { h = gated ? SCREENS.install() : (SCREENS[r.name] || SCREENS.home)(r.p || {}); }
   catch (e) { console.error(e); h = `<main class="wrap"><div class="err">⚠️ ${esc(e.message)}</div><button class="btn btn-p" data-a="nav" data-v="home">🏠 ${t('nav_home')}</button></main>`; }
   const banner = App.mode === 'practice' ? `<div class="practice">🎓 ${t('practice_banner')}</div>` : '';
   $('#app').innerHTML = banner + h;
@@ -3506,6 +3530,18 @@ WIZ.addinfo = {
    Screens
    ===================================================================== */
 const LOGO = `<svg class="logo" viewBox="0 0 120 120" role="img" aria-label="AIEC"><rect width="120" height="120" rx="26" fill="#23262f"/><rect x="34" y="16" width="52" height="70" rx="6" fill="none" stroke="#c9a227" stroke-width="6"/><line x1="60" y1="16" x2="60" y2="86" stroke="#c9a227" stroke-width="4"/><path d="M42 40l7-8 7 8M64 64l7 8 7-8" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="108" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="17" fill="#fff" letter-spacing="3">AIEC</text></svg>`;
+SCREENS.install = () => {
+  const ua = navigator.userAgent, ios = /iPhone|iPad|iPod/.test(ua), web = location.protocol === 'https:';
+  App.pageSay = t('inst_say');
+  const steps = !web ? [t('inst_open_link')] : App.installEvt ? [] : ios ? [t('inst_ios_1'), t('inst_ios_2'), t('inst_ios_3')] : [t('inst_and_1'), t('inst_and_2'), t('inst_and_3')];
+  return topBar(t('inst_title'), {}) + `<main class="wrap"><div class="center">${LOGO}</div><p class="say">📲 ${t('inst_say')}</p>
+    <div class="note">${t('inst_why')}</div>
+    ${App.installEvt ? `<button class="btn btn-p btn-big" data-a="install"><span class="i">📲</span>${t('install_app')}</button>` : ''}
+    ${App.installDone ? `<div class="okbox">✅ ${t('inst_done')}</div>` : ''}
+    ${steps.length ? `<div class="card"><ol style="padding-left:22px;margin:0;font-size:1.05rem;line-height:1.7">${steps.map(x => `<li>${esc(x)}</li>`).join('')}</ol></div>` : ''}
+    ${!web ? `<div class="card center"><b style="font-size:1.05rem;overflow-wrap:anywhere">${APP_URL}</b><br><button class="btn btn-sm" style="margin-top:8px" data-a="copyUrl">📋 ${t('inst_copy')}</button></div>` : ''}
+    <div style="height:14px"></div><button class="btn" data-a="practice">🎓 ${t('setup_practice')}<br><small class="muted">${t('inst_practice')}</small></button></main>`;
+};
 SCREENS.boot = () => `<main class="wrap center" style="padding-top:30vh">${LOGO}<p>…</p></main>`;
 SCREENS.welcome = () => {
   App.pageSay = t('welcome_say');
@@ -4508,6 +4544,7 @@ const ACT = {
     sheet(`<h2>👤 ${t('export_person')}</h2>${list.length ? `<div class="tiles one">${list.map(x => `<button class="tile" data-a="exportFor" data-v="${x.uid}"><span class="i">${ROLE_ICON[x.role]}</span>${esc(x.name)}<small>${t('r_' + x.role)}</small></button>`).join('')}</div>` : t('nothing_here')}`);
   },
   exportFor: v => { closeSheet(); exportFile('person', v); },
+  copyUrl: async () => { try { await navigator.clipboard.writeText(APP_URL); toast(t('inst_copied')); } catch (e) { toast(APP_URL); } },
   install: async () => {
     const e = App.installEvt; if (!e) return;
     e.prompt();
@@ -4667,8 +4704,10 @@ async function boot() {
     const l = document.createElement('link'); l.rel = 'manifest'; l.href = 'manifest.webmanifest'; document.head.appendChild(l);
     if (location.protocol === 'https:' && 'serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { });
   }
-  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); App.installEvt = e; if (App.route.name === 'me') render(); });
-  window.addEventListener('appinstalled', () => { App.installEvt = null; toast(t('installed_ok')); });
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); App.installEvt = e; if (App.route.name === 'me' || installGate()) render(); });
+  window.addEventListener('appinstalled', () => { App.installEvt = null; App.installDone = true; toast(t('installed_ok')); render(); });
+  /* installed app: ask the phone to keep this app's data even when storage runs low */
+  if (isInstalled() && navigator.storage && navigator.storage.persist) navigator.storage.persist().then(ok => { App.persisted = ok; }).catch(() => { });
   window.addEventListener('offline', () => toast(t('offline_saved')));
   window.addEventListener('online', () => toast(t('online_again')));
 }

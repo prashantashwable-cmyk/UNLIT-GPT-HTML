@@ -16,6 +16,7 @@ async function launch(opts = {}) {
   page.on('console', m => { if ((m.type() === 'error' || m.type() === 'warning') && !/Failed to load resource/.test(m.text())) errors.push(m.type() + ': ' + m.text()); });
   await page.goto(APP);
   await page.waitForTimeout(400);
+  await page.evaluate(() => { App.set.devNoInstallGate = true; render(); });
   await page.evaluate(() => { window.__miss = new Set(); const o = t; window.t = (k, v) => { if (!L[k]) window.__miss.add(k); return o(k, v); }; });
   return { browser, ctx, page, errors };
 }
