@@ -137,6 +137,11 @@ textarea.in{min-height:96px;resize:vertical}
 .sig{background:#fff;border:2px dashed var(--graph);border-radius:12px;width:100%;height:240px;touch-action:none;display:block}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:118px;z-index:200;background:var(--graph);color:#fff;padding:12px 18px;border-radius:14px;max-width:92%;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.25)}
 .toast.bad{background:var(--bad)}
+.ntf{position:fixed;top:8px;left:8px;right:8px;max-width:560px;margin:0 auto;z-index:250;background:#fff;color:var(--ink);border-radius:16px;border-left:8px solid var(--gold);box-shadow:0 6px 24px rgba(0,0,0,.3);padding:12px 14px;display:flex;gap:10px;align-items:center;animation:ntfin .25s ease-out}
+.ntf.urgent{border-left-color:var(--warn,#d97706)}.ntf.alarm{border-left-color:var(--bad);animation:ntfin .25s ease-out,ntfshake .5s .25s 2}
+.ntf .ib{color:var(--ink);background:#eee;border:0;flex:none}.ntf .btn{flex:none}
+.ntf .i{font-size:2rem}.ntf b{display:block}.ntf .grow{flex:1;min-width:0;overflow-wrap:anywhere}
+@keyframes ntfin{from{transform:translateY(-120%)}to{transform:none}}@keyframes ntfshake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px}
 .kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;text-align:left;border-left:5px solid var(--gold);color:var(--ink);width:100%;min-width:0;overflow-wrap:anywhere}
 .kpi b{display:block;font-size:1.35rem}
@@ -322,7 +327,7 @@ const L = {
   perm_mic: ['Microphone', 'माइक', 'माइक'],
   perm_mic_d: ['Only when you press 🎤 to speak instead of typing.', 'सिर्फ़ जब आप टाइप की जगह बोलने के लिए 🎤 दबाएँ।', 'फक्त टाइपऐवजी बोलण्यासाठी 🎤 दाबाल तेव्हा.'],
   perm_notify: ['Notifications', 'सूचनाएँ', 'सूचना'],
-  perm_notify_d: ['Your work list (🔔) shows new tasks inside the app.', 'आपकी काम की सूची (🔔) ऐप में नए काम दिखाती है।', 'तुमची कामाची यादी (🔔) ॲपमध्ये नवीन कामे दाखवते.'],
+  perm_notify_d: ['The app rings and shows a message when new work comes to you. Allow notifications so you also hear it when the app is in the background.', 'नया काम आने पर ऐप घंटी बजाता है और संदेश दिखाता है। ऐप पीछे हो तब भी सुनने के लिए सूचनाओं की अनुमति दें।', 'नवीन काम आल्यावर ॲप घंटी वाजवते आणि संदेश दाखवते. ॲप मागे असतानाही ऐकू येण्यासाठी सूचनांना परवानगी द्या.'],
   allow_now: ['Allow now', 'अभी अनुमति दें', 'आत्ता परवानगी द्या'],
   cam_ok: ['Camera is ready', 'कैमरा तैयार है', 'कॅमेरा तयार आहे'],
 
@@ -1866,6 +1871,40 @@ const L = {
   cfg_remindDays: ['Days before a reminder to the person', 'व्यक्ति को याद दिलाने से पहले दिन', 'व्यक्तीला आठवण देण्यापूर्वी दिवस'],
   cfg_escOwnerDays: ['Days before stuck work goes to the Owner', 'अटका काम मालिक को जाने से पहले दिन', 'अडकलेले काम मालकाकडे जाण्यापूर्वी दिवस'],
   cfg_onbDays: ['Days to finish onboarding', 'ऑनबोर्डिंग पूरा करने के दिन', 'ऑनबोर्डिंग पूर्ण करण्याचे दिवस'],
+  /* ---------- notifications with sound ---------- */
+  ntf_title: ['Notifications and sound', 'सूचना और आवाज़', 'सूचना आणि आवाज'],
+  s_notify: ['The app rings and shows a message when new work comes to you or when work is escalated.', 'नया काम आने पर या काम ऊपर भेजे जाने पर ऐप घंटी बजाता है और संदेश दिखाता है।', 'नवीन काम आल्यावर किंवा काम वर पाठवले गेल्यावर ॲप घंटी वाजवते आणि संदेश दाखवते.'],
+  ntf_phone: ['Phone notifications', 'फ़ोन सूचनाएँ', 'फोन सूचना'],
+  ntf_perm_ok: ['Phone notifications are allowed.', 'फ़ोन सूचनाओं की अनुमति है।', 'फोन सूचनांना परवानगी आहे.'],
+  ntf_perm_denied: ['Notifications are blocked. Open phone Settings → Apps → AIEC (or Chrome) → Notifications → Allow.', 'सूचनाएँ बंद हैं। फ़ोन सेटिंग → ऐप्स → AIEC (या Chrome) → सूचनाएँ → अनुमति दें।', 'सूचना बंद आहेत. फोन सेटिंग → ॲप्स → AIEC (किंवा Chrome) → सूचना → परवानगी द्या.'],
+  ntf_perm_none: ['This browser cannot show phone notifications. Sound and messages inside the app still work.', 'यह ब्राउज़र फ़ोन सूचनाएँ नहीं दिखा सकता। ऐप के अंदर आवाज़ और संदेश फिर भी चलते हैं।', 'हा ब्राउझर फोन सूचना दाखवू शकत नाही. ॲपमधील आवाज आणि संदेश तरीही चालतात.'],
+  ntf_allow: ['Allow notifications', 'सूचनाओं की अनुमति दें', 'सूचनांना परवानगी द्या'],
+  ntf_bg_on: ['Background check is on: the phone checks for escalations about every hour, even when the app is closed (the phone decides the exact time).', 'बैकग्राउंड जाँच चालू है: ऐप बंद होने पर भी फ़ोन लगभग हर घंटे एस्केलेशन जाँचता है (सही समय फ़ोन तय करता है)।', 'बॅकग्राउंड तपासणी चालू आहे: ॲप बंद असतानाही फोन साधारण दर तासाला एस्कलेशन तपासतो (नेमकी वेळ फोन ठरवतो).'],
+  ntf_sound: ['Sound', 'आवाज़', 'आवाज'],
+  ntf_vibrate: ['Vibrate', 'कंपन', 'कंपन'],
+  ntf_speak: ['Speak the task', 'काम बोलकर बताएँ', 'काम बोलून सांगा'],
+  ntf_speak_d: ['Reads the new task aloud', 'नया काम ज़ोर से पढ़ता है', 'नवीन काम मोठ्याने वाचते'],
+  ntf_phone_on: ['Phone notification', 'फ़ोन सूचना', 'फोन सूचना'],
+  ntf_phone_d: ['When the app is in the background', 'जब ऐप पीछे चल रहा हो', 'ॲप मागे चालू असताना'],
+  ntf_volume: ['Volume', 'आवाज़ का स्तर', 'आवाजाची पातळी'],
+  ntf_low: ['Low', 'धीमा', 'कमी'],
+  ntf_mid: ['Medium', 'मध्यम', 'मध्यम'],
+  ntf_high: ['Loud', 'तेज़', 'मोठा'],
+  ntf_test: ['Try the sounds', 'आवाज़ सुनकर देखें', 'आवाज ऐकून पाहा'],
+  ntf_snd_task: ['New task — ding', 'नया काम — टन', 'नवीन काम — टिंग'],
+  ntf_snd_urgent: ['Urgent / Admin — beeps', 'ज़रूरी / एडमिन — बीप', 'तातडीचे / ॲडमिन — बीप'],
+  ntf_snd_alarm: ['Escalated to Owner — siren', 'मालिक तक पहुँचा — सायरन', 'मालकापर्यंत पोहोचले — सायरन'],
+  ntf_phone_test: ['Test phone notification', 'फ़ोन सूचना जाँचें', 'फोन सूचना तपासा'],
+  ntf_phone_test_d: ['If you see this, phone notifications work.', 'यह दिख रहा है तो फ़ोन सूचनाएँ काम कर रही हैं।', 'हे दिसत असेल तर फोन सूचना चालतात.'],
+  ntf_quiet: ['Quiet hours', 'शांत समय', 'शांत वेळ'],
+  ntf_quiet_d: ['No sound at night, except escalations to the Owner', 'रात में आवाज़ नहीं, मालिक तक पहुँचे काम को छोड़कर', 'रात्री आवाज नाही, मालकापर्यंत पोहोचलेले काम सोडून'],
+  ntf_from: ['From', 'से', 'पासून'],
+  ntf_to: ['To', 'तक', 'पर्यंत'],
+  ntf_limits: ['Sound and messages work while the app is open or recently used. When the phone closes the app to save battery, alerts can be late. Instant alerts when the app is fully closed need a company server (push) or the Android app.', 'ऐप खुला हो या हाल में इस्तेमाल हुआ हो तब आवाज़ और संदेश चलते हैं। बैटरी बचाने के लिए फ़ोन ऐप बंद करे तो सूचना देर से आ सकती है। ऐप पूरी तरह बंद होने पर तुरंत सूचना के लिए कंपनी सर्वर (पुश) या Android ऐप चाहिए।', 'ॲप उघडे असताना किंवा नुकतेच वापरले असताना आवाज आणि संदेश चालतात. बॅटरी वाचवण्यासाठी फोनने ॲप बंद केल्यास सूचना उशिरा येऊ शकतात. ॲप पूर्ण बंद असताना लगेच सूचनेसाठी कंपनी सर्व्हर (पुश) किंवा Android ॲप लागते.'],
+  ntf_new: ['New work: {task}', 'नया काम: {task}', 'नवीन काम: {task}'],
+  ntf_esc: ['Work is stuck: {task}', 'काम अटका है: {task}', 'काम अडकले आहे: {task}'],
+  ntf_many: ['{n} new tasks for you', 'आपके लिए {n} नए काम', 'तुमच्यासाठी {n} नवीन कामे'],
+  ntf_open_btn: ['Open', 'खोलें', 'उघडा'],
   /* event names (timeline, permissions) */
   ev_ORG_CREATED: ['Company created', 'कंपनी बनी', 'कंपनी तयार झाली'],
   ev_USER_ADDED: ['Person added', 'व्यक्ति जोड़ा', 'व्यक्ती जोडली'],
@@ -2195,6 +2234,13 @@ function escLevel(days, k) {
 }
 const hasAdmin = () => Object.values(S.users).some(u => u.active && u.role === 'admin');
 const escKey = (pid, k, id) => [pid || '-', k, id == null ? '' : id].join('|');
+/* who is told at level 2 / 3; null when nobody is higher than the person who must act */
+function escUp(n, lv) {
+  const up = lv >= 3 || n.roles.includes('admin') || !hasAdmin() ? ['owner'] : ['admin'];
+  if (up.every(r => n.roles.includes(r))) return null;
+  if (lv >= 3 && hasAdmin() && !n.roles.includes('admin')) up.push('admin');
+  return up;
+}
 /* marks a waiting task with its level and returns the "work is stuck" task for the next level up, if any */
 function escFor(n, from, id) {
   const key = escKey(n.pid, n.k, id), ack = S.escAck[key];
@@ -2203,9 +2249,7 @@ function escFor(n, from, id) {
   if (ack && ack.n >= 2 && lv >= 2) lv = 3; /* the office acted twice and it is still stuck: Owner */
   n.level = Math.max(n.level || 0, lv); n.days = days;
   if (lv < 2 || (ack && ack.until >= todayStr())) return null;
-  const up = lv >= 3 || n.roles.includes('admin') || !hasAdmin() ? ['owner'] : ['admin'];
-  if (up.every(r => n.roles.includes(r))) return null;
-  if (lv >= 3 && hasAdmin() && !n.roles.includes('admin')) up.push('admin');
+  const up = escUp(n, lv); if (!up) return null;
   return { k: 'escalated', roles: up, pid: n.pid, ref: n.k, who: n.roles, whoUids: (n.uids || []).filter(Boolean), days, level: lv, eid: key, tid: n.tid, uid: n.uid, not: n.k === 'onboarding' ? n.uid : undefined, urgent: lv >= 3, acks: ack ? ack.n : 0 };
 }
 const ticketOf = (P, tid) => P.tickets.find(x => x.id === tid);
@@ -3108,7 +3152,7 @@ async function perform(type, pid, data, opt = {}) {
   }
   if (err) { if (!opt.quiet) toast(errText(err), true); return { ok: false, err }; }
   apply(S, ev); EVENTS.push(ev);
-  if (!opt.noSave) await saveAll();
+  if (!opt.noSave) { await saveAll(); if (App.me) Notify.check({ silent: true }); }
   return { ok: true, ev };
 }
 /* a quick pre-check used to show or hide buttons; perform() still validates fully */
@@ -4419,7 +4463,7 @@ SCREENS.perms = () => {
     <div class="card"><h3>📍 ${t('perm_loc')}</h3><p class="small">${t('perm_loc_d')}</p><button class="btn" data-a="askGps">📍 ${t('allow_now')}</button></div>
     ${needCam ? `<div class="card"><h3>📷 ${t('perm_cam')}</h3><p class="small">${t('perm_cam_d')}</p><button class="btn" data-a="askCam">📷 ${t('allow_now')}</button></div>` : ''}
     <div class="card"><h3>🎤 ${t('perm_mic')}</h3><p class="small">${t('perm_mic_d')}</p></div>
-    <div class="card"><h3>🔔 ${t('perm_notify')}</h3><p class="small">${t('perm_notify_d')}</p></div></main>
+    <div class="card"><h3>🔔 ${t('perm_notify')}</h3><p class="small">${t('perm_notify_d')}</p>${Notify.perm() === 'default' ? `<button class="btn" data-a="ntfAllow">🔔 ${t('allow_now')}</button>` : Notify.perm() === 'granted' ? `<div class="okbox">✅ ${t('ntf_perm_ok')}</div>` : ''}</div></main>
     <div class="foot"><div class="foot-in"><button class="btn btn-p btn-big" data-a="permsDone">${t('next')} →</button></div></div>`;
 };
 
@@ -4930,6 +4974,7 @@ SCREENS.me = () => {
       ${['owner', 'admin', 'sales', 'finance', 'tech'].includes(u.role) ? row('nav', 'templates', '💬', 'templates') : ''}
       ${['owner', 'admin'].includes(u.role) ? row('nav', 'escalations', '⏫', 'esc_title') : ''}
       ${u.role !== 'customer' ? row('nav2', 'leaders|', '🏆', 'leaderboard') : ''}
+      ${row('nav', 'notify', '🔔', 'ntf_title')}
       ${row('nav', 'helper', '🙋', 'helper')}
       ${row('nav', 'about', 'ℹ️', 'about_privacy')}
       ${App.installEvt ? row('install', '', '📲', 'install_app') : standalone ? `<div class="okbox">📲 ${t('installed_ok')}</div>` : `<p class="small muted">📲 ${t('install_hint')}</p>`}
@@ -5070,6 +5115,7 @@ async function importText(text) {
   S = rebuild(all); EVENTS = all;
   await saveAll();
   const rej = S.rejected.filter(r => fresh.some(f => f.id === r.ev.id)).length;
+  if (App.me) Notify.check();
   return { ok: true, added: fresh.length - rej, rejected: rej + refused, before };
 }
 
@@ -5375,6 +5421,118 @@ function escBanner() {
   return `<button class="task ${a ? 'urgent' : ''}" data-a="nav" data-v="escalations" style="margin-top:12px"><span class="ti">⏫</span><span class="grow" style="flex:1;min-width:0"><b>${t('esc_title')}</b><span class="small muted">${t('esc_count', { a, b })}</span></span><span class="go">▶</span></button>`;
 }
 
+/* =====================================================================
+   Notifications with sound: new tasks and escalations, checked every minute and when the app opens
+   ===================================================================== */
+const Notify = {
+  ctx: null, timer: null,
+  set() { return Object.assign({ sound: true, vol: 2, vibrate: true, speak: false, phone: true, quiet: false, qFrom: '21:00', qTo: '07:00' }, App.set.notify || {}); },
+  save(k, v) { App.set.notify = Object.assign(this.set(), { [k]: v }); saveSettings(); },
+  sig: n => [n.k, n.pid || '', n.ref || '', n.level || 0, n.tid || n.bid || n.iid || n.mid || n.payId || n.aid || n.uid || '', n.week || '', n.module || '', n.slot || '', n.visit == null ? '' : n.visit].join('|'),
+  kind: n => (n.level || 0) >= 3 ? 'alarm' : n.urgent || n.overdue || (n.level || 0) >= 2 ? 'urgent' : 'task',
+  quietNow() { const s = this.set(); if (!s.quiet) return false; const hm = new Date().toTimeString().slice(0, 5); return s.qFrom > s.qTo ? (hm >= s.qFrom || hm < s.qTo) : (hm >= s.qFrom && hm < s.qTo); },
+  /* the phone only allows sound after the person has touched the screen once */
+  unlock() { if (!this.ctx && navigator.userActivation && !navigator.userActivation.hasBeenActive) return; try { const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; this.ctx = this.ctx || new AC(); if (this.ctx.state === 'suspended') this.ctx.resume(); } catch (e) { /* no audio */ } },
+  /* sounds are made by the app itself, so they work offline: ding = new task, beeps = urgent, siren = escalated to the Owner */
+  tone(kind, force) {
+    const s = this.set(); if (!s.sound && !force) return false;
+    try {
+      if (!this.ctx && navigator.userActivation && !navigator.userActivation.hasBeenActive) return false;
+      this.unlock(); const c = this.ctx; if (!c) return false;
+      const vol = [0, 0.12, 0.3, 0.6][s.vol] || 0.3, t0 = c.currentTime + 0.03;
+      const pat = { task: [[880, 0, 0.18], [1320, 0.2, 0.35]], urgent: [[988, 0, 0.12], [988, 0.18, 0.12], [988, 0.36, 0.12], [1480, 0.56, 0.35]], alarm: [[1568, 0, 0.25], [1175, 0.28, 0.25], [1568, 0.56, 0.25], [1175, 0.84, 0.25], [1568, 1.12, 0.5]] }[kind] || [];
+      for (const [f, at, d] of pat) {
+        const o = c.createOscillator(), g = c.createGain();
+        o.type = kind === 'alarm' ? 'square' : 'sine'; o.frequency.value = f;
+        g.gain.setValueAtTime(0.0001, t0 + at); g.gain.linearRampToValueAtTime(kind === 'alarm' ? vol * 0.5 : vol, t0 + at + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + at + d);
+        o.connect(g); g.connect(c.destination); o.start(t0 + at); o.stop(t0 + at + d + 0.05);
+      }
+      return true;
+    } catch (e) { return false; }
+  },
+  buzz(kind) { const s = this.set(); if (s.vibrate && navigator.vibrate) try { navigator.vibrate({ task: [200], urgent: [200, 100, 200, 100, 200], alarm: [400, 150, 400, 150, 800] }[kind]); } catch (e) { /* not supported */ } },
+  perm: () => !('Notification' in window) ? 'none' : Notification.permission,
+  async ask() { if (this.perm() === 'default') { try { await Notification.requestPermission(); } catch (e) { /* old browser */ } } this.setupBackground(); return this.perm(); },
+  async phone(title, body, kind, silent) {
+    if (!this.set().phone || this.perm() !== 'granted') return false;
+    const o = { body, icon: 'icon-192.png', badge: 'icon-192.png', tag: 'aiec-tasks', lang: LANG, silent: !!silent };
+    try {
+      const r = navigator.serviceWorker ? await navigator.serviceWorker.getRegistration().catch(() => null) : null;
+      if (r) { await r.showNotification(title, Object.assign(o, { renotify: true, requireInteraction: kind === 'alarm', vibrate: silent ? [] : { task: [200], urgent: [200, 100, 200], alarm: [400, 150, 400, 150, 800] }[kind] })); return true; }
+      new Notification(title, o); return true;
+    } catch (e) { return false; }
+  },
+  banner(title, body, kind) {
+    let el = document.getElementById('ntf'); if (!el) { el = document.createElement('div'); el.id = 'ntf'; el.setAttribute('role', 'alert'); document.body.appendChild(el); }
+    el.innerHTML = `<div class="ntf ${kind}"><span class="i" aria-hidden="true">${{ task: '🔔', urgent: '⚠️', alarm: '🚨' }[kind]}</span><span class="grow"><b>${esc(title)}</b><span class="small">${esc(body)}</span></span><button class="btn btn-sm btn-p" data-a="ntfOpen">▶ ${t('ntf_open_btn')}</button><button class="ib" data-a="ntfClose" aria-label="${t('close')}">✕</button></div>`;
+    clearTimeout(this.bt); this.bt = setTimeout(() => this.hide(), kind === 'alarm' ? 15000 : 8000); this.shownAt = Date.now();
+  },
+  hide() { const el = document.getElementById('ntf'); if (el) el.innerHTML = ''; },
+  bannerOld() { return Date.now() - (this.shownAt || 0) > 1500;
+  },
+  badge(n) { try { if (navigator.setAppBadge) n ? navigator.setAppBadge(n) : navigator.clearAppBadge(); } catch (e) { /* not supported */ } },
+  /* compare my task list with what I have already been told about */
+  check(opt = {}) {
+    const u = App.me; if (!u || App.locked || !S.org) return [];
+    const tasks = myTasks(u), key = 'seen_' + App.mode + '_' + u.uid, seen = new Set(App.set[key] || []);
+    const fresh = tasks.filter(n => !seen.has(this.sig(n)));
+    App.set[key] = tasks.map(n => this.sig(n)).slice(0, 500);
+    this.badge(tasks.length); this.schedule(u);
+    if (opt.silent || !fresh.length) { saveSettings(); return []; }
+    const rank = n => ['task', 'urgent', 'alarm'].indexOf(this.kind(n)), top = fresh.slice().sort((a, b) => rank(b) - rank(a))[0], kind = this.kind(top);
+    const what = t('tk_' + (top.k === 'escalated' ? top.ref : top.k)), where = top.pid || (top.uid ? userName(top.uid) : '');
+    const title = fresh.length === 1 ? t(top.k === 'escalated' ? 'ntf_esc' : 'ntf_new', { task: what }) : t('ntf_many', { n: fresh.length });
+    const body = [fresh.length === 1 ? '' : what, where, top.k === 'escalated' ? t('esc_lv', { n: top.level }) : ''].filter(Boolean).join(' · ') || t('ntf_open_btn');
+    const quiet = this.quietNow() && kind !== 'alarm';
+    (App.notifyLog = App.notifyLog || []).push({ kind, title, body, n: fresh.length, quiet, hidden: document.hidden, t: Date.now() });
+    if (!quiet) { this.tone(kind); this.buzz(kind); }
+    if (document.hidden) this.phone(title, body, kind, quiet);
+    else { this.banner(title, body, kind); if (!quiet && this.set().speak) Voice.say(title + '. ' + body); }
+    saveSettings();
+    return fresh;
+  },
+  /* times when my waiting work will move up a level, kept for the background check of the installed app */
+  schedule(u) {
+    if (!('caches' in window) || location.protocol !== 'https:') return;
+    const c = S.config, now = Date.now(), items = [];
+    const plan = (n, base) => { if (!n.since) return; [c.remindDays, c.escalateDays, c.escOwnerDays].forEach((d, i) => { const at = new Date(n.since).getTime() + d * 864e5, lv = i + 1; if (at <= now || at > now + 7 * 864e5) return;
+      const mine = lv === 1 ? isMine(n, u) : (escUp(n, lv) || []).includes(u.role); if (mine) items.push({ id: this.sig(n) + '|' + lv, at, kind: ['task', 'urgent', 'alarm'][i], title: t(lv === 1 ? 'ntf_new' : 'ntf_esc', { task: t('tk_' + n.k) }), body: (base || '') + (n.pid || '') }); }); };
+    for (const P of visibleProjects(u)) for (const n of needs(P)) plan(n);
+    items.sort((a, b) => a.at - b.at);
+    caches.open('aiec-notify').then(ch => ch.put('./aiec-notify.json', new Response(JSON.stringify({ uid: u.uid, items: items.slice(0, 40) }), { headers: { 'content-type': 'application/json' } }))).catch(() => { });
+  },
+  async setupBackground() {
+    try {
+      const r = navigator.serviceWorker && (await navigator.serviceWorker.getRegistration());
+      if (r && r.periodicSync && this.perm() === 'granted') { const st = await navigator.permissions.query({ name: 'periodic-background-sync' }); if (st.state === 'granted') { await r.periodicSync.register('aiec-check', { minInterval: 3600e3 }); App.bgSync = true; } }
+    } catch (e) { App.bgSync = false; }
+  },
+  start() {
+    clearInterval(this.timer); this.timer = setInterval(() => this.check(), 60000);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) this.check(); });
+    document.addEventListener('pointerdown', () => this.unlock(), true);
+    /* the message never stays in the way: it goes away when the person scrolls */
+    window.addEventListener('scroll', () => { if (this.bannerOld()) this.hide(); }, { passive: true });
+    if (navigator.serviceWorker) navigator.serviceWorker.addEventListener('message', e => { if (e.data && e.data.aiec === 'openTasks' && App.me) go('home'); });
+    this.setupBackground();
+  }
+};
+SCREENS.notify = () => {
+  const s = Notify.set(), p = Notify.perm();
+  App.pageSay = t('s_notify');
+  const tog = (k, i, l, d) => `<button class="tile ${s[k] ? 'on' : ''}" data-a="ntfToggle" data-v="${k}" aria-pressed="${!!s[k]}"><span class="i">${i}</span><span>${t(l)}${d ? `<br><small>${t(d)}</small>` : ''}</span></button>`;
+  return topBar(t('ntf_title'), { back: true }) + `<main class="wrap"><p class="say">🔔 ${t('s_notify')}</p>
+    <div class="card"><h3>📲 ${t('ntf_phone')}</h3>${p === 'granted' ? `<div class="okbox">✅ ${t('ntf_perm_ok')}</div>` : p === 'denied' ? `<div class="warnbox">⚠️ ${t('ntf_perm_denied')}</div>` : p === 'none' ? `<div class="warnbox">⚠️ ${t('ntf_perm_none')}</div>` : `<button class="btn btn-p btn-big" data-a="ntfAllow">🔔 ${t('ntf_allow')}</button>`}
+      ${App.bgSync ? `<p class="small">🔄 ${t('ntf_bg_on')}</p>` : ''}</div>
+    <div class="tiles">${tog('sound', '🔊', 'ntf_sound')}${tog('vibrate', '📳', 'ntf_vibrate')}${tog('speak', '🗣️', 'ntf_speak', 'ntf_speak_d')}${tog('phone', '📲', 'ntf_phone_on', 'ntf_phone_d')}</div>
+    <div class="card" style="margin-top:12px"><h3>🔉 ${t('ntf_volume')}</h3><div class="tiles three">${[[1, '🔈', 'ntf_low'], [2, '🔉', 'ntf_mid'], [3, '🔊', 'ntf_high']].map(([v, i, l]) => `<button class="tile ${s.vol === v ? 'on' : ''}" data-a="ntfVol" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`).join('')}</div></div>
+    <div class="card"><h3>🎵 ${t('ntf_test')}</h3><div class="stack">
+      <button class="btn" data-a="ntfTest" data-v="task">🔔 ${t('ntf_snd_task')}</button><button class="btn" data-a="ntfTest" data-v="urgent">⚠️ ${t('ntf_snd_urgent')}</button><button class="btn" data-a="ntfTest" data-v="alarm">🚨 ${t('ntf_snd_alarm')}</button>
+      ${p === 'granted' ? `<button class="btn" data-a="ntfPhoneTest">📲 ${t('ntf_phone_test')}</button>` : ''}</div></div>
+    <div class="card"><div class="tiles one">${tog('quiet', '🌙', 'ntf_quiet', 'ntf_quiet_d')}</div>${s.quiet ? `<div class="row" style="margin-top:8px"><label class="grow">${t('ntf_from')}<input class="in" type="time" id="ntf_qFrom" value="${s.qFrom}"></label><label class="grow">${t('ntf_to')}<input class="in" type="time" id="ntf_qTo" value="${s.qTo}"></label></div>` : ''}</div>
+    <div class="note">ℹ️ ${t('ntf_limits')}</div></main>` + nav('me');
+};
+
 /* ---------- technician weekly pay ---------- */
 const weekLabel = k => fmtD(k) + ' – ' + fmtD(addDays(6, new Date(k + 'T12:00:00')));
 SCREENS.earn = ({ uid }) => {
@@ -5549,6 +5707,7 @@ function loginAs(u) {
   if (App.locked) { App.locked = false; App.route = App.lockedRoute || { name: 'home', p: {} }; render(); return; }
   App.stack = []; W = null;
   go(App.set.permsSeen && App.set.permsSeen[App.mode + u.uid] ? 'home' : 'perms', {}, { replace: true });
+  setTimeout(() => Notify.check(), 900);
 }
 async function tryPin(uid) {
   const u = S.users[uid]; App.set.lock = App.set.lock || {};
@@ -5818,6 +5977,13 @@ const ACT = {
   },
   scaleStep: v => setScale(getScale() + (+v)),
   scaleSet: v => setScale(+v),
+  ntfToggle: v => { Notify.save(v, !Notify.set()[v]); if (v === 'sound' && Notify.set().sound) Notify.tone('task'); if (v === 'phone' && Notify.set().phone) Notify.ask(); render(); },
+  ntfVol: v => { Notify.save('vol', +v); Notify.tone('task', true); render(); },
+  ntfTest: v => { Notify.tone(v, true); Notify.buzz(v); Notify.banner(t('ntf_test'), t('ntf_snd_' + v), v); },
+  ntfPhoneTest: () => { Notify.phone(t('ntf_test'), t('ntf_phone_test_d'), 'urgent', false); },
+  ntfAllow: async () => { await Notify.ask(); render(); },
+  ntfOpen: () => { const el = document.getElementById('ntf'); if (el) el.innerHTML = ''; if (App.me) { App.stack = []; go('home'); } },
+  ntfClose: () => { const el = document.getElementById('ntf'); if (el) el.innerHTML = ''; },
   toggleAuto: () => { App.set.autoRead = !App.set.autoRead; saveSettings(); render(); if (App.set.autoRead) Voice.say(t('auto_read')); },
   moreAudit: () => { App.form.alim = (App.form.alim || 150) + 150; render(); },
   sheetBg: (v, el, e) => { if (e.target === el) closeSheet(); },
@@ -5848,6 +6014,7 @@ document.addEventListener('input', e => {
 document.addEventListener('change', e => {
   const el = e.target;
   if (el.id === 'f_scale') { setScale(+el.value); return; }
+  if (el.id === 'ntf_qFrom' || el.id === 'ntf_qTo') { Notify.save(el.id.slice(4), el.value); return; }
   if (el.dataset.aChange === 'import' && el.files && el.files[0]) { doImport(el.files[0]); el.value = ''; }
   if (el.type === 'checkbox' && el.dataset.f) App.form[el.dataset.f] = el.checked;
   if (el.type === 'date' && el.dataset.k && W) { setPath(W.ctx, el.dataset.k, el.value); saveDraft(); render(); }
@@ -5992,6 +6159,7 @@ async function boot() {
   window.addEventListener('appinstalled', () => { App.installEvt = null; App.installDone = true; toast(t('installed_ok')); render(); });
   /* installed app: ask the phone to keep this app's data even when storage runs low */
   if (isInstalled() && navigator.storage && navigator.storage.persist) navigator.storage.persist().then(ok => { App.persisted = ok; }).catch(() => { });
+  Notify.start();
   window.addEventListener('offline', () => toast(t('offline_saved')));
   window.addEventListener('online', () => toast(t('online_again')));
 }
