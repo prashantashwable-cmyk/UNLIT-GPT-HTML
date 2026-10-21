@@ -1905,6 +1905,16 @@ const L = {
   ntf_esc: ['Work is stuck: {task}', 'काम अटका है: {task}', 'काम अडकले आहे: {task}'],
   ntf_many: ['{n} new tasks for you', 'आपके लिए {n} नए काम', 'तुमच्यासाठी {n} नवीन कामे'],
   ntf_open_btn: ['Open', 'खोलें', 'उघडा'],
+  me_work: ['My work', 'मेरा काम', 'माझे काम'],
+  me_office: ['Office', 'ऑफ़िस', 'ऑफिस'],
+  me_settings: ['Settings', 'सेटिंग', 'सेटिंग'],
+  me_voice: ['Voice', 'आवाज़ से मदद', 'आवाजाची मदत'],
+  me_app: ['App', 'ऐप', 'ॲप'],
+  ntf_sound_on: ['Sound is on', 'आवाज़ चालू है', 'आवाज चालू आहे'],
+  ntf_sound_off: ['Sound is off', 'आवाज़ बंद है', 'आवाज बंद आहे'],
+  show_all_n: ['Show all ({n})', 'सब दिखाएँ ({n})', 'सर्व दाखवा ({n})'],
+  esc_late: ['Late', 'देर हो गई', 'उशीर झाला'],
+  show_less: ['Show less', 'कम दिखाएँ', 'कमी दाखवा'],
   /* event names (timeline, permissions) */
   ev_ORG_CREATED: ['Company created', 'कंपनी बनी', 'कंपनी तयार झाली'],
   ev_USER_ADDED: ['Person added', 'व्यक्ति जोड़ा', 'व्यक्ती जोडली'],
@@ -3471,7 +3481,7 @@ function setPath(o, path, v) {
 }
 const fid = k => 'f_' + String(k).replace(/\W/g, '_');
 function topBar(title, o = {}) {
-  const n = App.me && !App.locked ? myTasks(App.me).length : 0;
+  const n = App.me && !App.locked ? myTasks(App.me).filter(x => x.k !== 'escalated' || !['owner', 'admin'].includes(App.me.role)).length : 0;
   return `<header class="top">${o.back ? `<button class="ib" data-a="back" aria-label="${t('back')}">←</button>` : `<span aria-hidden="true" style="font-size:1.7rem;margin:0 2px">🛗</span>`}
   <h1>${esc(title)}</h1>
   <button class="ib" data-a="sayPage" aria-label="${t('listen')}">🔊</button>
@@ -3530,16 +3540,19 @@ function taskCard(n, i) {
     const info = n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
       : ['onb_profile', 'check_docs'].includes(n.k) ? userName(n.uid) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
     return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
-    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}</span><span class="go" aria-hidden="true">▶</span></button>`;
+    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
   return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}${esc(sub)}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span><br>
-    ${n.urgent ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${n.overdue ? `<span class="chip c-bad">⏰ ${t('overdue')}</span> ` : ''}<span class="chip c-mute">🕒 ${t('days_n', { n: n.days != null ? n.days : daysSince(P.since) })}</span> ${escChip(n)}${n.k === 'escalated' && n.who ? ` <span class="chip c-warn">${esc(t('waiting_for', { who: escWho(n) }))}</span>` : ''}</span><span class="go" aria-hidden="true">▶</span></button>`;
+    ${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${n.overdue ? `<span class="chip c-bad">⏰ ${t('overdue')}</span> ` : ''}<span class="chip c-mute">🕒 ${t('days_n', { n: n.days != null ? n.days : daysSince(P.since) })}</span> ${escChip(n)}${n.k === 'escalated' && n.who ? ` <span class="chip c-warn">${esc(t('waiting_for', { who: escWho(n) }))}</span>` : ''}</span><span class="go" aria-hidden="true">▶</span></button>`;
 }
 /* escalation level as words and an icon, never colour alone */
 function escChip(n) {
+  if (App.me && App.me.role === 'customer') return '';
   if (n.k === 'escalated') return `<span class="chip ${n.level >= 3 ? 'c-bad' : 'c-warn'}">${n.level >= 3 ? '🔴' : '🟠'} ${t('esc_lv', { n: n.level })} · ${t(n.level >= 3 ? 'esc_to_owner' : 'esc_to_admin')}</span>`;
   if (!n.level) return '';
+  /* the Owner/Admin doing their own late work is not "informed" of it: just late */
+  if (App.me && ['owner', 'admin'].includes(App.me.role) && n.k !== 'escalated' && n.level >= 2 && n.k) return `<span class="chip c-warn">⏰ ${t('esc_late')}</span>`;
   return `<span class="chip ${n.level >= 3 ? 'c-bad' : 'c-warn'}">${['', '⏰ ' + t('esc_l1'), '⏫ ' + t('esc_l2'), '🔴 ' + t('esc_l3')][n.level]}</span>`;
 }
 const escWho = n => (n.whoUids || []).length ? n.whoUids.map(userName).join(', ') : rolesTxt(n.who || []);
@@ -4474,22 +4487,29 @@ function hero(u) {
 SCREENS.home = () => {
   const u = App.me;
   if (u.role === 'customer') return customerHome();
-  const tasks = myTasks(u);
+  const adm = ['owner', 'admin'].includes(u.role);
+  /* Owner/Admin: escalations are in their own banner and screen, so the task list keeps the work only they can do */
+  const tasks = adm ? myTasks(u).filter(n => n.k !== 'escalated') : myTasks(u);
   App.pageSay = tasks.length ? t('say_home_tasks', { n: tasks.length, first: t('tk_' + tasks[0].k) }) : t('no_tasks') + ' ' + t(u.role === 'field' ? 'no_tasks_field' : 'no_tasks_other');
   App.tasks = tasks;
   let h = topBar(t('nav_home')) + `<main class="wrap">${hero(u)}`;
   if (u.role === 'field') h += shiftCard();
-  if (!onboarding(u.uid).ready) h += onbCard(u.uid, { short: true });
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))} · ${esc(tasks[0].pid)}</p>`;
   else h += `<div class="card center"><div class="big-i">☕</div><b>${t('no_tasks')}</b><p class="muted">${t(u.role === 'field' ? 'no_tasks_field' : 'no_tasks_other')}</p></div>`;
   if (u.role === 'field' || u.role === 'sales') h += `<button class="btn btn-big ${tasks.length ? '' : 'btn-p'}" style="margin-top:12px" data-a="addSite"><span class="i">➕</span>${t('add_site')}</button>`;
+  if (!onboarding(u.uid).ready) h += onbCard(u.uid, { short: true });
   if (['owner', 'admin'].includes(u.role) && Object.keys(S.users).length < 3) h += `<div class="warnbox" style="margin-top:12px">👥 ${t('add_team_hint')}<br><button class="btn btn-p" style="margin-top:8px" data-a="nav" data-v="users">➕ ${t('add_person')}</button></div>`;
   if (['owner', 'admin'].includes(u.role)) h += escBanner() + queuesCard();
-  if (tasks.length) h += `<h2 class="sec">${t('my_tasks')} (${tasks.length})</h2>` + tasks.map((n, i) => taskCard(n, i)).join('');
+  if (tasks.length) h += `<h2 class="sec">${t('my_tasks')} (${tasks.length})</h2>` + taskList(tasks);
   if (u.role === 'owner' || u.role === 'admin') h += dashboard();
   if (u.role === 'field') h += fieldScore();
   return h + '</main>' + nav('home');
 };
+/* long lists show the first 8; the rest is one tap away */
+function taskList(tasks) {
+  const all = App.form.allTasks || tasks.length <= 8, list = all ? tasks : tasks.slice(0, 8);
+  return list.map((n, i) => taskCard(n, i)).join('') + (tasks.length > 8 ? `<button class="btn" data-a="allTasks">${all ? '▲ ' + t('show_less') : '▼ ' + t('show_all_n', { n: tasks.length })}</button>` : '');
+}
 function shiftCard() {
   const sh = S.shifts[App.me.uid];
   return `<div class="card">${sh ? `<div class="row"><span class="chip c-ok">🟢 ${t('shift_on', { time: fmtD(sh.start, true) })}</span></div><button class="btn" style="margin-top:8px" data-a="endShift">🏁 ${t('end_shift')}</button>`
@@ -4950,36 +4970,34 @@ SCREENS.doc = ({ pid, kind, v }) => {
 
 /* ---------- me / settings ---------- */
 SCREENS.me = () => {
-  const u = App.me, adm = ['owner', 'admin'].includes(u.role);
+  const u = App.me, r = u.role, adm = ['owner', 'admin'].includes(r), staff = r !== 'customer';
   App.pageSay = t('s_me');
   const standalone = window.matchMedia && window.matchMedia('(display-mode: standalone)').matches;
-  const row = (a, v, i, l) => `<button class="btn" data-a="${a}" data-v="${v || ''}" style="justify-content:flex-start">${i} ${t(l)}</button>`;
-  return topBar(t('me')) + `<main class="wrap"><div class="hero"><div class="row"><span style="font-size:2.4rem">${ROLE_ICON[u.role]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + u.role)}</span></div></div><p class="small muted" style="margin:8px 0 0">${t('role_note')}</p></div>
+  /* picture tiles in groups: my work first, then office, settings and the app itself */
+  const tile = (a, v, i, l, on) => on === false ? '' : `<button class="tile" data-a="${a}" data-v="${v || ''}"><span class="i" aria-hidden="true">${i}</span>${t(l)}</button>`;
+  const group = (icon, l, body) => body.trim() ? `<h2 class="sec">${icon} ${t(l)}</h2><div class="tiles">${body}</div>` : '';
+  return topBar(t('me')) + `<main class="wrap"><div class="hero"><div class="row"><span style="font-size:2.4rem">${ROLE_ICON[r]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + r)}</span></div></div><p class="small muted" style="margin:8px 0 0">${t('role_note')}</p></div>
+    ${group('🧰', 'me_work', tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', r === 'tech')
+      + tile('nav2', 'leaders|', '🏆', 'leaderboard', staff) + tile('nav', 'templates', '💬', 'templates', ['owner', 'admin', 'sales', 'finance', 'tech'].includes(r)) + tile('nav', 'helper', '🙋', 'helper'))}
+    ${group('🏢', 'me_office', tile('nav', 'escalations', '⏫', 'esc_title', adm) + tile('nav', 'workers', '🪪', 'workers', adm) + tile('nav', 'users', '👥', 'users', adm)
+      + tile('nav', 'rules', '📏', 'business_rules', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'audit', '🧾', 'audit_log', adm) + tile('nav', 'problems', '⚠️', 'problems', adm))}
+    <h2 class="sec">⚙️ ${t('me_settings')}</h2>
     <div class="card"><h3>🗣️ ${t('language')}</h3><div class="tiles three">${LANGS.map(l => `<button class="tile ${LANG === l ? 'on' : ''}" data-a="setLang" data-v="${l}" style="min-height:64px">${LANG_NAME[l]}</button>`).join('')}</div></div>
     <div class="card"><h3>🔍 ${t('screen_size')}</h3><p class="small muted" style="margin:0 0 6px">${t('screen_size_d')}</p>
       <div class="stepper"><button data-a="scaleStep" data-v="-10" aria-label="−10%">−</button><output class="scale-out" id="scaleOut">${getScale()}%</output><button data-a="scaleStep" data-v="10" aria-label="+10%">+</button></div>
       <label class="sr" for="f_scale">${t('screen_size')}</label><input class="scale" type="range" id="f_scale" min="20" max="150" step="5" value="${getScale()}">
       <div class="row small muted" style="justify-content:space-between"><span>20%</span><span>100%</span><span>150%</span></div>
       <div class="tiles three" style="margin-top:8px">${[[80, 'size_s'], [100, 'size_n'], [130, 'size_xl']].map(([z, l]) => `<button class="tile ${getScale() === z ? 'on' : ''}" data-a="scaleSet" data-v="${z}" style="min-height:64px">${t(l)}<small>${z}%</small></button>`).join('')}</div>
-      ${getScale() < 60 ? `<div class="warnbox">⚠️ ${t('scale_small')}</div>` : ''}
-      <div style="height:10px"></div><div class="tiles one"><button class="tile ${guideOn() ? 'on' : ''}" data-a="toggleGuide"><span class="i">🗣️</span><span>${t('voice_guide')}<br><small>${t('voice_guide_d')}</small></span></button>
+      ${getScale() < 60 ? `<div class="warnbox">⚠️ ${t('scale_small')}</div>` : ''}</div>
+    <div class="card"><h3>🔊 ${t('me_voice')}</h3><div class="tiles one"><button class="tile ${guideOn() ? 'on' : ''}" data-a="toggleGuide"><span class="i">🗣️</span><span>${t('voice_guide')}<br><small>${t('voice_guide_d')}</small></span></button>
       <button class="tile ${App.set.autoRead ? 'on' : ''}" data-a="toggleAuto"><span class="i">🔊</span>${t('auto_read')}</button></div>
       <button class="btn" style="margin-top:10px" data-a="testVoice">▶ ${t('voice_test')}</button>
       ${'speechSynthesis' in window ? (Voice.has('mr') ? `<div class="okbox">✅ ${t('voice_mr_ok')}</div>` : `<div class="warnbox">⚠️ ${t('voice_mr_missing')}</div>`) : `<div class="warnbox">⚠️ ${t('no_tts')}</div>`}</div>
-    <div class="stack">${row('nav', 'perm', '🔐', 'what_can_i_do')}${row('intro', '', '🎓', 'watch_intro')}${row('nav', 'data', '📤', 'share_data')}
-      ${adm ? row('nav', 'users', '👥', 'users') : ''}${['owner', 'admin', 'sales', 'finance'].includes(u.role) ? row('nav', 'rules', '📏', 'business_rules') : ''}${adm ? row('nav', 'audit', '🧾', 'audit_log') : ''}${adm ? row('nav', 'problems', '⚠️', 'problems') : ''}
-      ${u.role !== 'customer' ? row('nav2', 'worker|' + u.uid, '🪪', 'my_profile') + row('nav', 'training', '🎓', 'training') : ''}
-      ${u.role === 'tech' ? row('nav2', 'earn|' + u.uid, '💰', 'earnings') : ''}
-      ${adm ? row('nav', 'workers', '👥', 'workers') : ''}
-      ${['owner', 'admin', 'sales', 'finance', 'tech'].includes(u.role) ? row('nav', 'templates', '💬', 'templates') : ''}
-      ${['owner', 'admin'].includes(u.role) ? row('nav', 'escalations', '⏫', 'esc_title') : ''}
-      ${u.role !== 'customer' ? row('nav2', 'leaders|', '🏆', 'leaderboard') : ''}
-      ${row('nav', 'notify', '🔔', 'ntf_title')}
-      ${row('nav', 'helper', '🙋', 'helper')}
-      ${row('nav', 'about', 'ℹ️', 'about_privacy')}
-      ${App.installEvt ? row('install', '', '📲', 'install_app') : standalone ? `<div class="okbox">📲 ${t('installed_ok')}</div>` : `<p class="small muted">📲 ${t('install_hint')}</p>`}
-      ${App.mode === 'practice' ? row('resetPractice', '', '♻️', 'reset_practice') + row('exitPractice', '', '🚪', 'exit_practice') : ''}
-      <button class="btn btn-bad" data-a="logout">🚪 ${t('logout')}</button></div>
+    <div class="tiles one">${`<button class="tile" data-a="nav" data-v="notify"><span class="i">🔔</span><span>${t('ntf_title')}<br><small>${t(Notify.set().sound ? 'ntf_sound_on' : 'ntf_sound_off')}</small></span></button>`}</div>
+    ${group('📱', 'me_app', tile('nav', 'data', '📤', 'share_data') + tile('nav', 'perm', '🔐', 'what_can_i_do') + tile('intro', '', '🎬', 'watch_intro') + tile('nav', 'about', 'ℹ️', 'about_privacy')
+      + (App.installEvt ? tile('install', '', '📲', 'install_app') : '') + (App.mode === 'practice' ? tile('resetPractice', '', '♻️', 'reset_practice') + tile('exitPractice', '', '🚪', 'exit_practice') : ''))}
+    ${!App.installEvt ? (standalone ? `<div class="okbox" style="margin-top:10px">📲 ${t('installed_ok')}</div>` : `<p class="small muted">📲 ${t('install_hint')}</p>`) : ''}
+    <button class="btn btn-bad" style="margin-top:14px" data-a="logout">🚪 ${t('logout')}</button>
     <p class="small muted center">${storageLabel()} · ${EVENTS.length} ${t('records')}</p></main>` + nav('me');
 };
 const storageLabel = () => ({ idb: '💾 ' + t('storage_ok'), ls: '💾 ' + t('storage_ls_short'), mem: '⚠️ ' + t('storage_mem_short') })[KV.mode];
@@ -5354,7 +5372,7 @@ function onbCard(uid, opt = {}) {
   const me = uid === App.me.uid, nextSelf = ob.steps.find(x => !x.done && x.who === 'self');
   return `<div class="card"><div class="row"><h3 class="grow" style="margin:0">🪪 ${t('onb_title')}</h3>${ob.ready ? `<span class="chip c-ok">✅ ${t('onb_ready')}</span>` : `<span class="chip c-info">${t('onb_progress', { n: ob.done, m: ob.total })}</span>`}</div>
     <div class="bar" style="margin:8px 0"><span class="b"><i style="width:${pct}%"></i></span><b>${pct}%</b></div>
-    ${opt.short && ob.ready ? '' : ob.steps.map(x => `<div class="list-item small"><span>${x.done ? '✅' : x.bad ? '❌' : '⬜'}</span><span class="grow">${esc(onbStepText(x))}</span><span class="chip c-mute">${x.who === 'office' ? '🏢 ' + t('onb_who_office') : '🙋 ' + t(me ? 'onb_who_you' : 'onb_who_person')}</span></div>`).join('')}
+    ${opt.short ? '' : ob.steps.map(x => `<div class="list-item small"><span>${x.done ? '✅' : x.bad ? '❌' : '⬜'}</span><span class="grow">${esc(onbStepText(x))}</span><span class="chip c-mute">${x.who === 'office' ? '🏢 ' + t('onb_who_office') : '🙋 ' + t(me ? 'onb_who_you' : 'onb_who_person')}</span></div>`).join('')}
     ${!ob.ready && lv ? `<div class="${lv >= 2 ? 'warnbox' : 'note'}" style="margin-top:8px">${escChip({ level: lv })} ${t('onb_waiting', { n: days })}</div>` : ''}
     ${me && nextSelf ? `<button class="btn btn-p" style="margin-top:8px" data-a="wizOpen" data-v="${nextSelf.k === 'profile' ? 'wprofile||uid|' + uid : 'train||module|' + nextSelf.module}">▶ ${t('onb_next')}</button>` : ''}
     ${!opt.short ? `<p class="small muted" style="margin:8px 0 0">${t('onb_note')}</p>` : ''}</div>`;
@@ -5703,6 +5721,7 @@ function finishIntro() {
   if (App.me) { App.stack = []; go('home', {}, { replace: true }); } else go(S.org ? 'login' : 'setup', {}, { replace: true });
 }
 function loginAs(u) {
+  if (App.me && App.me.uid !== u.uid) Notify.hide();
   App.me = u; App.set.lastUser = u.uid; App.lastActive = Date.now(); saveSettings();
   if (App.locked) { App.locked = false; App.route = App.lockedRoute || { name: 'home', p: {} }; render(); return; }
   App.stack = []; W = null;
@@ -5782,7 +5801,7 @@ const ACT = {
     render();
     if (f.pin.length === 4) await tryPin(uid);
   },
-  logout: () => { Voice.stop(); App.me = null; App.locked = false; W = null; App.stack = []; App.form = {}; go('login', {}, { replace: true }); },
+  logout: () => { Voice.stop(); Notify.hide(); App.me = null; App.locked = false; W = null; App.stack = []; App.form = {}; go('login', {}, { replace: true }); },
   permsDone: () => { App.set.permsSeen = Object.assign({}, App.set.permsSeen, { [App.mode + App.me.uid]: true }); saveSettings(); App.stack = []; go('home', {}, { replace: true }); },
   askGps: async () => { const gp = await Geo.get(); toast(gp ? t('gps_ok', { acc: gp.acc }) : t('gps_denied'), !gp); },
   askCam: async () => {
@@ -5984,6 +6003,7 @@ const ACT = {
   ntfAllow: async () => { await Notify.ask(); render(); },
   ntfOpen: () => { const el = document.getElementById('ntf'); if (el) el.innerHTML = ''; if (App.me) { App.stack = []; go('home'); } },
   ntfClose: () => { const el = document.getElementById('ntf'); if (el) el.innerHTML = ''; },
+  allTasks: () => { App.form.allTasks = !App.form.allTasks; render(); },
   toggleAuto: () => { App.set.autoRead = !App.set.autoRead; saveSettings(); render(); if (App.set.autoRead) Voice.say(t('auto_read')); },
   moreAudit: () => { App.form.alim = (App.form.alim || 150) + 150; render(); },
   sheetBg: (v, el, e) => { if (e.target === el) closeSheet(); },
