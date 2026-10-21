@@ -73,6 +73,11 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 | 🗺️ Address from GPS | With internet, the new-site screen suggests the address for the GPS point (OpenStreetMap Nominatim) in the chosen language. The person checks it before using it. |
 | 📷 Reused photo check | A photo that is the same as, or nearly the same as, one used before is flagged ("Same photo used before") for a person to review. |
 
+### Owner and Admin have separate to-do lists
+* **Owner** gets the decisions: quotations above the discount limit, technician weekly pay, approval requests in chat, and checking the Admin's own documents.
+* **Admin** gets the daily work: releasing drawings and assigning teams, work problems, security problems, tickets, new workers' documents, pay questions and completing handovers.
+* When the Admin's work is late, it goes up the ladder to the Owner. If the company has no Admin, the Owner gets everything. Two-person approvals go to whichever of the two did not ask. Both keep full permission to act on any project.
+
 ### Enforced role permissions
 * Each event type has an allowed role list and allowed stages (see **Me → What can I do?**; Owner/Admin see the full matrix).
 * Project-level access: a field worker sees only their sites, a supplier only their orders (no customer phone, no prices), a technician only assigned jobs (no margins), a customer only their own lift (no internal notes, approvals or margins).

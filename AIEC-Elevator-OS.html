@@ -2258,6 +2258,7 @@ const hasAdmin = () => Object.values(S.users).some(u => u.active && u.role === '
 const escKey = (pid, k, id) => [pid || '-', k, id == null ? '' : id].join('|');
 /* who is told at level 2 / 3; null when nobody is higher than the person who must act */
 function escUp(n, lv) {
+  if (n.roles.length === 1 && n.roles[0] === 'owner') return null; /* nobody is above the Owner */
   const up = lv >= 3 || n.roles.includes('admin') || !hasAdmin() ? ['owner'] : ['admin'];
   if (up.every(r => n.roles.includes(r))) return null;
   if (lv >= 3 && hasAdmin() && !n.roles.includes('admin')) up.push('admin');
@@ -2990,9 +2991,21 @@ function rebuild(events) {
   return st;
 }
 
+/* Owner and Admin do not share the same to-do list: the Owner decides money and price, the Admin runs daily work.
+   Both keep the permission to act; this only decides whose list a task appears on. The Owner sees Admin work again only when it is late (escalation). */
+const OWNER_TASKS = ['approve_quote', 'approve_pay', 'answer_approval'];
+const SHARED_TASKS = ['second_approval'];
+const activeOf = role => Object.values(S.users).some(u => u.active && u.role === role);
+function splitOA(n) {
+  if (SHARED_TASKS.includes(n.k) || !(n.roles.includes('owner') && n.roles.includes('admin'))) return n;
+  const owner = OWNER_TASKS.includes(n.k) || (n.k === 'answer' && n.approval);
+  if (owner && activeOf('owner')) n.roles = n.roles.filter(r => r !== 'admin');
+  else if (!owner && hasAdmin()) n.roles = n.roles.filter(r => r !== 'owner');
+  return n;
+}
 /* ---------- what must happen next (single task engine) ---------- */
 function needs(P) {
-  const out = [], add = (k, roles, o = {}) => out.push(Object.assign({ k, roles, pid: P.id }, o));
+  const out = [], add = (k, roles, o = {}) => out.push(splitOA(Object.assign({ k, roles, pid: P.id }, o)));
   const payNeed = purpose => {
     const p = activePay(P, purpose);
     if (!p) add('record_payment', ['sales', 'finance'], { uids: [P.sales], purpose });
@@ -3035,7 +3048,7 @@ function needs(P) {
   for (const b of P.blockers) if (b.open) add('resolve_blocker', uniq([b.role, 'admin']), { bid: b.id, urgent: true, since: b.t });
   for (const i of P.incidents) if (i.open) add('resolve_incident', ['admin', 'owner'], { iid: i.id, urgent: true, since: i.t });
   if (P.followUp && SALES_TALK.includes(P.stage) && P.followUp.due <= todayStr()) add('follow_up', ['sales'], { uids: [P.sales], overdue: P.followUp.due < todayStr(), since: P.followUp.due + 'T12:00:00' });
-  for (const m of P.chat) if (m.open && m.toRole) add('answer', m.kind === 'approval' ? ['owner', 'admin'] : uniq([m.toRole]), { mid: m.id, not: m.by, since: m.t });
+  for (const m of P.chat) if (m.open && m.toRole) add('answer', m.kind === 'approval' ? ['owner', 'admin'] : uniq([m.toRole]), { mid: m.id, not: m.by, since: m.t, approval: m.kind === 'approval' });
   /* AMC: service visits due within 7 days, renewal within 30 days of the end date */
   if (P.stage === 'amc' && P.done) {
     P.done.amc.visits.forEach((d, i) => { if (!P.service[i] && d <= addDays(7)) add('amc_visit', ['tech'], { uids: [P.tech], visit: i, overdue: d < todayStr(), since: d + 'T12:00:00' }); });
@@ -3054,7 +3067,7 @@ function needs(P) {
 }
 /* work that is not tied to one project: second approvals, pay, training */
 function globalNeeds(u, all) {
-  const out = [], add = (k, roles, o = {}) => { const n = Object.assign({ k, roles, pid: null }, o); out.push(n); return n; };
+  const out = [], add = (k, roles, o = {}) => { const n = splitOA(Object.assign({ k, roles, pid: null }, o)); out.push(n); return n; };
   const up = (n, from, id) => { const e = escFor(n, from, id); if (e) out.push(e); };
   for (const id of S.approvalOrder) { const r = S.approvals[id]; if (r.status === 'pending') add('second_approval', ['owner', 'admin'], { aid: id, not: r.by, urgent: true }); }
   if (all || ['owner', 'admin', 'finance', 'tech'].includes(u.role)) {
@@ -3072,7 +3085,7 @@ function globalNeeds(u, all) {
     const ob = onboarding(x.uid); if (ob.ready) continue;
     if (!ob.steps[0].done) add('onb_profile', [x.role], { uids: [x.uid], uid: x.uid });
     const tr = ob.steps.find(st => st.k === 'train' && !st.done); if (tr) add('training', [x.role], { uids: [x.uid], module: tr.module });
-    if (ob.steps.some(st => st.who === 'office' && !st.done)) add('check_docs', ['admin', 'owner'], { uid: x.uid, not: x.uid });
+    if (ob.steps.some(st => st.who === 'office' && !st.done)) add('check_docs', x.role === 'admin' ? ['owner'] : ['admin', 'owner'], { uid: x.uid, not: x.uid });
     up({ k: 'onboarding', roles: [x.role], pid: null, uid: x.uid, uids: [x.uid] }, x.t, x.uid);
   }
   return all ? out : out.filter(n => isMine(n, u));

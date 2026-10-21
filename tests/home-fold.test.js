@@ -19,6 +19,13 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const n = await vis('details[data-fold="tasks"] .task');
   await page.locator('details[data-fold="tasks"] .task').first().click(); await page.waitForTimeout(250);
   assert(n === all - hot && await page.evaluate(() => App.route.name !== 'home' || !!W), 'folded work opens like any other task');
+  /* Owner and Admin have different lists */
+  const oa = await page.evaluate(() => { const f = u => myTasks(S.users[u]).filter(n => n.k !== 'escalated').map(n => n.k + '|' + (n.pid || n.uid || '') + '|' + (n.week || '')); return { o: f('POWNER'), a: f('PADMIN') }; });
+  assert(oa.o.length && oa.a.length && !oa.o.some(x => oa.a.includes(x)), 'Owner and Admin never get the same task: ' + oa.o.map(x => x.split('|')[0]).join(',') + ' / ' + oa.a.map(x => x.split('|')[0]).join(','));
+  assert(oa.o.every(x => /^(approve_quote|approve_pay|answer|second_approval|check_docs)/.test(x)), 'the Owner gets decisions about money, price and the Admin');
+  assert(await page.evaluate(() => { const P = S.projects['AIEC-P006']; P.since = new Date(Date.now() - 4 * 864e5).toISOString(); return myTasks(S.users.POWNER).some(n => n.k === 'escalated' && n.pid === 'AIEC-P006') === false && myTasks(S.users.PADMIN).some(n => n.k === 'escalated' && n.pid === 'AIEC-P006'); }), 'late field work goes to the Admin first');
+  assert(await page.evaluate(() => { const P = S.projects['AIEC-P003']; const b = P.blockers.find(x => x.open); b.t = new Date(Date.now() - 4 * 864e5).toISOString(); return myTasks(S.users.POWNER).some(n => n.k === 'escalated' && n.ref === 'resolve_blocker'); }), "the Admin's own late work goes to the Owner");
+  await page.evaluate(() => { loginAs(S.users.POWNER); ACT.permsDone(); Notify.hide(); });
   /* customer and technician */
   await page.evaluate(() => { loginAs(S.users.PCUST); ACT.permsDone(); Notify.hide(); }); await page.waitForTimeout(200);
   assert(await vis('.tiles .tile[data-a="openDocP"]') === 0 && await page.$('details[data-fold="cdocs"]'), 'customer papers and help are folded');
