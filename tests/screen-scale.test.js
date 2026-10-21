@@ -5,7 +5,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const { browser, page, errors } = await launch();
   await page.evaluate(() => { App.set.lang = 'en'; LANG = 'en'; App.set.introDone = true; App.set.guide = false; });
   await page.evaluate(() => enterPractice()); await page.waitForTimeout(3500);
-  await page.evaluate(() => { loginAs(S.users.PFIELD); ACT.permsDone(); ACT.nav('me'); }); await page.waitForTimeout(200);
+  await page.evaluate(() => { loginAs(S.users.PFIELD); ACT.permsDone(); Notify.hide(); ACT.nav('me'); }); await page.waitForTimeout(200);
+  await page.click('details[data-fold="me_set"] > summary'); await page.waitForTimeout(150);
+  assert(await page.evaluate(() => App.set.fold.me_set === true), 'settings open with one tap and stay open');
   for (let i = 0; i < 3; i++) await page.click('[data-a="scaleStep"][data-v="10"]');
   assert(await page.evaluate(() => getScale() === 130 && document.documentElement.style.zoom === '1.3'), '+ button raises the scale to 130%');
   for (let i = 0; i < 4; i++) await page.click('[data-a="scaleStep"][data-v="10"]');
