@@ -1774,12 +1774,12 @@ const L = {
 
   /* ---------- business rules ---------- */
   rg_control: ['Control and checks', 'नियंत्रण और जाँच', 'नियंत्रण आणि तपासणी'],
-  rg_control_d: ['Days before stuck work goes to the Owner/Admin; two-person approval for risky changes (1 = on); only trained technicians get jobs (1 = on).', 'अटका काम कितने दिन बाद मालिक/एडमिन को जाए; जोखिम वाले बदलाव के लिए दो व्यक्तियों की मंज़ूरी (1 = चालू); केवल प्रशिक्षित तकनीशियन को काम (1 = चालू)।', 'अडकलेले काम किती दिवसांनी मालक/ॲडमिनकडे जावे; धोकादायक बदलासाठी दोन व्यक्तींची मंजुरी (1 = चालू); फक्त प्रशिक्षित तंत्रज्ञाला काम (1 = चालू).'],
+  rg_control_d: ['Escalation ladder (reminder → Admin → Owner) and days to finish onboarding; two-person approval for risky changes (1 = on); only fully onboarded technicians get jobs (1 = on).', 'एस्केलेशन सीढ़ी (याद → एडमिन → मालिक) और ऑनबोर्डिंग के दिन; जोखिम वाले बदलाव के लिए दो व्यक्तियों की मंज़ूरी (1 = चालू); केवल पूरी तरह तैयार तकनीशियन को काम (1 = चालू)।', 'एस्कलेशन शिडी (आठवण → ॲडमिन → मालक) आणि ऑनबोर्डिंगचे दिवस; धोकादायक बदलासाठी दोन व्यक्तींची मंजुरी (1 = चालू); फक्त पूर्ण तयार तंत्रज्ञाला काम (1 = चालू).'],
   rg_techpay: ['Technician pay', 'तकनीशियन भुगतान', 'तंत्रज्ञाचे पैसे'],
   rg_techpay_d: ['Pay per installation step with proof, bonus for passing final inspection first time, and pay per service visit. Check with Finance and labour rules.', 'सबूत वाले हर इंस्टॉलेशन चरण का भुगतान, पहली बार अंतिम जाँच पास का बोनस और हर सर्विस विज़िट का भुगतान। अकाउंट्स और श्रम नियमों से जाँचें।', 'पुराव्यासह प्रत्येक बसवण्याच्या पायरीचे पैसे, पहिल्याच वेळी अंतिम तपासणी पासचा बोनस आणि प्रत्येक सर्व्हिस भेटीचे पैसे. हिशेब विभाग आणि कामगार नियमांशी तपासा.'],
   rg_amc: ['Maintenance contract (AMC)', 'रखरखाव अनुबंध (AMC)', 'देखभाल करार (AMC)'],
   rg_amc_d: ['Yearly price for the maintenance contract after the warranty.', 'वारंटी के बाद रखरखाव अनुबंध की सालाना कीमत।', 'वॉरंटीनंतर देखभाल कराराची वार्षिक किंमत.'],
-  cfg_escalateDays: ['Days before stuck work is sent up', 'अटका काम कितने दिन बाद ऊपर भेजें', 'अडकलेले काम किती दिवसांनी वर पाठवावे'],
+  cfg_escalateDays: ['Days before stuck work goes to the Admin', 'अटका काम एडमिन को जाने से पहले दिन', 'अडकलेले काम ॲडमिनकडे जाण्यापूर्वी दिवस'],
   cfg_dualControl: ['Two-person approval (1 = on, 0 = off)', 'दो व्यक्ति मंज़ूरी (1 = चालू, 0 = बंद)', 'दोन व्यक्ती मंजुरी (1 = चालू, 0 = बंद)'],
   cfg_requireTraining: ['Only trained technicians get jobs (1 = on, 0 = off)', 'केवल प्रशिक्षित तकनीशियन को काम (1 = चालू, 0 = बंद)', 'फक्त प्रशिक्षित तंत्रज्ञाला काम (1 = चालू, 0 = बंद)'],
   cfg_paySopStep: ['Pay per installation step, ₹', 'हर इंस्टॉलेशन चरण का भुगतान, ₹', 'प्रत्येक बसवण्याच्या पायरीचे पैसे, ₹'],
@@ -1807,6 +1807,65 @@ const L = {
   ev_PAY_PAID: ['Technician paid', 'तकनीशियन को भुगतान', 'तंत्रज्ञाला पैसे दिले'],
   ev_PAY_DISPUTED: ['Pay question asked', 'भुगतान पर सवाल', 'पैशांबद्दल प्रश्न'],
   ev_PAY_DISPUTE_ANSWERED: ['Pay question answered', 'भुगतान सवाल का जवाब', 'पैशांच्या प्रश्नाचे उत्तर'],
+  /* ---------- automatic onboarding ---------- */
+  onb_title: ['Getting started', 'काम की शुरुआत', 'कामाची सुरुवात'],
+  onb_ready: ['Ready for work', 'काम के लिए तैयार', 'कामासाठी तयार'],
+  onb_progress: ['{n} of {m} done', '{m} में से {n} पूरे', '{m} पैकी {n} पूर्ण'],
+  onb_step_profile: ['Fill in phone, work area and skills', 'फ़ोन, काम का इलाका और कौशल भरें', 'फोन, कामाचा भाग आणि कौशल्ये भरा'],
+  onb_step_doc: ['{doc} — checked by office', '{doc} — ऑफ़िस जाँचेगा', '{doc} — ऑफिस तपासेल'],
+  onb_step_train: ['Training: {m}', 'ट्रेनिंग: {m}', 'प्रशिक्षण: {m}'],
+  onb_who_office: ['Office', 'ऑफ़िस', 'ऑफिस'],
+  onb_who_you: ['You', 'आप', 'तुम्ही'],
+  onb_who_person: ['Worker', 'कर्मचारी', 'कर्मचारी'],
+  onb_waiting: ['Started {n} days ago and not finished.', '{n} दिन पहले शुरू हुआ, अभी पूरा नहीं।', '{n} दिवसांपूर्वी सुरू झाले, अजून पूर्ण नाही.'],
+  onb_next: ['Do my next step', 'मेरा अगला कदम करें', 'माझी पुढची पायरी करा'],
+  onb_note: ['These steps start by themselves when a person is added. Each person sees their own steps on the home screen; the office gets a task to check documents. If it is not finished in time, it goes to the Admin and then the Owner.', 'व्यक्ति जोड़ते ही ये कदम अपने आप शुरू होते हैं। हर व्यक्ति को होम स्क्रीन पर अपने कदम दिखते हैं; ऑफ़िस को कागज़ जाँचने का काम मिलता है। समय पर पूरा न हो तो पहले एडमिन और फिर मालिक को जाता है।', 'व्यक्ती जोडताच या पायऱ्या आपोआप सुरू होतात. प्रत्येकाला होम स्क्रीनवर स्वतःच्या पायऱ्या दिसतात; ऑफिसला कागदपत्रे तपासण्याचे काम मिळते. वेळेत पूर्ण न झाल्यास आधी ॲडमिन आणि मग मालकाकडे जाते.'],
+  onb_started: ['Onboarding has started automatically: {n} steps. The person will see them after logging in.', 'ऑनबोर्डिंग अपने आप शुरू हो गया: {n} कदम। लॉगिन करने पर व्यक्ति को दिखेंगे।', 'ऑनबोर्डिंग आपोआप सुरू झाले: {n} पायऱ्या. लॉगिन केल्यावर व्यक्तीला दिसतील.'],
+  tk_onb_profile: ['Fill in your profile', 'अपनी प्रोफ़ाइल भरें', 'तुमची प्रोफाइल भरा'],
+  tk_check_docs: ['Check new worker\'s documents', 'नए कर्मचारी के कागज़ जाँचें', 'नवीन कर्मचाऱ्याची कागदपत्रे तपासा'],
+  tk_onboarding: ['Finish onboarding', 'ऑनबोर्डिंग पूरा करें', 'ऑनबोर्डिंग पूर्ण करा'],
+
+  /* ---------- escalation ladder ---------- */
+  esc_title: ['Escalations', 'एस्केलेशन (ऊपर भेजा काम)', 'एस्कलेशन (वर पाठवलेले काम)'],
+  s_escalations: ['Work that is waiting too long. The highest level is shown first.', 'बहुत देर से रुका काम। सबसे ऊँचा स्तर पहले दिखता है।', 'खूप वेळ थांबलेले काम. सर्वात उच्च स्तर आधी दिसतो.'],
+  esc_count: ['🔴 {a} with Owner · 🟠 {b} with Admin', '🔴 {a} मालिक के पास · 🟠 {b} एडमिन के पास', '🔴 {a} मालकाकडे · 🟠 {b} ॲडमिनकडे'],
+  esc_ladder: ['How escalation works', 'एस्केलेशन कैसे होता है', 'एस्कलेशन कसे होते'],
+  esc_rule1: ['After {n} day(s): reminder to the person who must do it', '{n} दिन बाद: काम करने वाले व्यक्ति को याद दिलाना', '{n} दिवसांनी: काम करणाऱ्या व्यक्तीला आठवण'],
+  esc_rule2: ['After {n} days: sent to the Admin', '{n} दिन बाद: एडमिन को भेजा जाता है', '{n} दिवसांनी: ॲडमिनकडे पाठवले जाते'],
+  esc_rule3: ['After {n} days, or if the Admin acted twice and it is still stuck: sent to the Owner', '{n} दिन बाद, या एडमिन के दो बार कदम उठाने पर भी अटका रहे तो: मालिक को भेजा जाता है', '{n} दिवसांनी, किंवा ॲडमिनने दोनदा कृती करूनही अडकलेले असल्यास: मालकाकडे पाठवले जाते'],
+  esc_rule4: ['New worker not ready after {n} days: Admin; after {m} days: Owner', 'नया कर्मचारी {n} दिन में तैयार नहीं: एडमिन; {m} दिन में: मालिक', 'नवीन कर्मचारी {n} दिवसांत तयार नाही: ॲडमिन; {m} दिवसांत: मालक'],
+  esc_open: ['Needs action', 'कार्रवाई चाहिए', 'कृती हवी'],
+  esc_none: ['Nothing is stuck. Well done!', 'कुछ भी अटका नहीं है। बढ़िया!', 'काहीही अडकलेले नाही. छान!'],
+  esc_reminders: ['Reminders shown to workers', 'कर्मचारियों को दिखाई याद', 'कर्मचाऱ्यांना दाखवलेल्या आठवणी'],
+  esc_recent: ['What the office did', 'ऑफ़िस ने क्या किया', 'ऑफिसने काय केले'],
+  esc_lv: ['Level {n}', 'स्तर {n}', 'स्तर {n}'],
+  esc_to_admin: ['Admin', 'एडमिन', 'ॲडमिन'],
+  esc_to_owner: ['Owner', 'मालिक', 'मालक'],
+  esc_l1: ['Reminder', 'याद दिलाना', 'आठवण'],
+  esc_l2: ['Admin informed', 'एडमिन को बताया', 'ॲडमिनला कळवले'],
+  esc_l3: ['Owner informed', 'मालिक को बताया', 'मालकाला कळवले'],
+  esc_who: ['Waiting for', 'किसका इंतज़ार', 'कोणाची वाट'],
+  esc_days: ['Waiting', 'रुका हुआ', 'थांबलेले'],
+  esc_prev: ['Last action', 'पिछली कार्रवाई', 'मागील कृती'],
+  esc_repeat: ['The office already acted twice and the work is still stuck.', 'ऑफ़िस दो बार कदम उठा चुका है और काम अभी भी अटका है।', 'ऑफिसने दोनदा कृती केली तरी काम अजून अडकलेले आहे.'],
+  esc_open_project: ['Open project', 'प्रोजेक्ट खोलें', 'प्रकल्प उघडा'],
+  esc_open_worker: ['Open worker', 'कर्मचारी खोलें', 'कर्मचारी उघडा'],
+  esc_called: ['I spoke to them', 'मैंने बात की', 'मी बोललो'],
+  esc_called_d: ['They will finish it soon', 'वे जल्दी पूरा करेंगे', 'ते लवकर पूर्ण करतील'],
+  esc_new_date: ['New date agreed', 'नई तारीख तय', 'नवीन तारीख ठरली'],
+  esc_new_date_d: ['There is a real reason for the delay', 'देरी का सही कारण है', 'उशिराचे खरे कारण आहे'],
+  esc_reassign: ['Give to another person', 'दूसरे व्यक्ति को दें', 'दुसऱ्या व्यक्तीला द्या'],
+  esc_reassign_d: ['The work moves to someone else', 'काम किसी और को जाएगा', 'काम दुसऱ्याकडे जाईल'],
+  s_esc_look: ['This work is stuck. What did you do about it?', 'यह काम अटका है। आपने इसके लिए क्या किया?', 'हे काम अडकले आहे. तुम्ही यासाठी काय केले?'],
+  s_esc_who: ['Who will do this work now?', 'अब यह काम कौन करेगा?', 'आता हे काम कोण करेल?'],
+  s_esc_when: ['By which date will it be done? Write what was agreed.', 'किस तारीख तक होगा? जो तय हुआ वह लिखें।', 'कोणत्या तारखेपर्यंत होईल? काय ठरले ते लिहा.'],
+  err_esc_far: ['Choose a date within the next 7 days.', 'अगले 7 दिनों के अंदर की तारीख चुनें।', 'पुढील 7 दिवसांतील तारीख निवडा.'],
+  what_esc_acted: ['Saved. The work will be checked again on {d}. If it is still stuck, it goes up again.', 'सेव हुआ। {d} को फिर जाँचा जाएगा। तब भी अटका रहा तो फिर ऊपर जाएगा।', 'जतन झाले. {d} रोजी पुन्हा तपासले जाईल. तेव्हाही अडकलेले असल्यास पुन्हा वर जाईल.'],
+  next_esc: ['The person sees the work in their tasks with a reminder.', 'व्यक्ति को अपने कामों में याद के साथ काम दिखेगा।', 'व्यक्तीला त्यांच्या कामांत आठवणीसह काम दिसेल.'],
+  ev_ESC_ACTED: ['Office acted on stuck work', 'अटके काम पर ऑफ़िस की कार्रवाई', 'अडकलेल्या कामावर ऑफिसची कृती'],
+  cfg_remindDays: ['Days before a reminder to the person', 'व्यक्ति को याद दिलाने से पहले दिन', 'व्यक्तीला आठवण देण्यापूर्वी दिवस'],
+  cfg_escOwnerDays: ['Days before stuck work goes to the Owner', 'अटका काम मालिक को जाने से पहले दिन', 'अडकलेले काम मालकाकडे जाण्यापूर्वी दिवस'],
+  cfg_onbDays: ['Days to finish onboarding', 'ऑनबोर्डिंग पूरा करने के दिन', 'ऑनबोर्डिंग पूर्ण करण्याचे दिवस'],
   /* event names (timeline, permissions) */
   ev_ORG_CREATED: ['Company created', 'कंपनी बनी', 'कंपनी तयार झाली'],
   ev_USER_ADDED: ['Person added', 'व्यक्ति जोड़ा', 'व्यक्ती जोडली'],
@@ -2013,7 +2072,7 @@ const DEFAULT_CONFIG = {
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 30, minMargin: 20,
   token: 10000, arrivalPct: 90, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, dupCommission: 10,
-  escalateDays: 3, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
+  remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
 const RULE_GROUPS = {
@@ -2024,7 +2083,7 @@ const RULE_GROUPS = {
   install: ['installDays'],
   service: ['warrantyMonths', 'amcVisits', 'validityDays'],
   dup: ['dupCommission'],
-  control: ['escalateDays', 'dualControl', 'requireTraining'],
+  control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'dualControl', 'requireTraining'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
   amc: ['amcPrice']
 };
@@ -2069,7 +2128,7 @@ function materialList(req) {
 /* ---------- state ---------- */
 function emptyState() {
   return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
-    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {} };
+    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [] };
 }
 let S = emptyState();
 let EVENTS = [];
@@ -2116,8 +2175,39 @@ const wk = S => S.workers;
 function worker(uid) { return S.workers[uid] || (S.workers[uid] = { profile: {}, docs: {}, training: {} }); }
 function modulesFor(role) { return TRAIN.filter(m => m[1].includes(role)).map(m => m[0]); }
 function trainingDone(uid) { const u = S.users[uid]; if (!u) return 0; const w = S.workers[uid]; return modulesFor(u.role).filter(m => w && w.training[m]).length; }
-/* authorised to install: identity verified + safety and installation training passed */
-function isAuthorised(uid) { const w = S.workers[uid]; return !!(w && w.docs.id === 'verified' && w.training.safety && w.training.install); }
+/* onboarding checklist, worked out from saved events: profile, documents checked by the office, training */
+const REQ_DOCS = { tech: ['id', 'address', 'safety_cert'], qc: ['id', 'address', 'safety_cert'] };
+function onboarding(uid) {
+  const u = S.users[uid], w = S.workers[uid] || { profile: {}, docs: {}, training: {} }, p = w.profile;
+  if (!u || !STAFF.includes(u.role) || u.role === 'owner') return { steps: [], done: 0, total: 0, ready: true };
+  const steps = [{ k: 'profile', who: 'self', done: !!(p.phone && p.area && (p.skills || []).length) }]
+    .concat((REQ_DOCS[u.role] || ['id', 'address']).map(d => ({ k: 'doc', doc: d, who: 'office', done: w.docs[d] === 'verified', bad: w.docs[d] === 'rejected' })))
+    .concat(modulesFor(u.role).map(m => ({ k: 'train', module: m, who: 'self', done: !!w.training[m] })));
+  const done = steps.filter(x => x.done).length;
+  return { steps, done, total: steps.length, ready: done === steps.length };
+}
+/* authorised to install: onboarding complete (profile, documents checked, all training passed) */
+function isAuthorised(uid) { return onboarding(uid).ready; }
+/* escalation ladder: 1 = reminder to the person, 2 = Admin, 3 = Owner (days are business rules) */
+function escLevel(days, k) {
+  const c = S.config, o = k === 'onboarding' ? [Math.ceil(c.onbDays / 2), c.onbDays, c.onbDays * 2] : [c.remindDays, c.escalateDays, c.escOwnerDays];
+  return days >= o[2] ? 3 : days >= o[1] ? 2 : days >= o[0] ? 1 : 0;
+}
+const hasAdmin = () => Object.values(S.users).some(u => u.active && u.role === 'admin');
+const escKey = (pid, k, id) => [pid || '-', k, id == null ? '' : id].join('|');
+/* marks a waiting task with its level and returns the "work is stuck" task for the next level up, if any */
+function escFor(n, from, id) {
+  const key = escKey(n.pid, n.k, id), ack = S.escAck[key];
+  const days = daysSince(ack && ack.reset && ack.reset > from ? ack.reset : from);
+  let lv = escLevel(days, n.k);
+  if (ack && ack.n >= 2 && lv >= 2) lv = 3; /* the office acted twice and it is still stuck: Owner */
+  n.level = Math.max(n.level || 0, lv); n.days = days;
+  if (lv < 2 || (ack && ack.until >= todayStr())) return null;
+  const up = lv >= 3 || n.roles.includes('admin') || !hasAdmin() ? ['owner'] : ['admin'];
+  if (up.every(r => n.roles.includes(r))) return null;
+  if (lv >= 3 && hasAdmin() && !n.roles.includes('admin')) up.push('admin');
+  return { k: 'escalated', roles: up, pid: n.pid, ref: n.k, who: n.roles, whoUids: (n.uids || []).filter(Boolean), days, level: lv, eid: key, tid: n.tid, uid: n.uid, not: n.k === 'onboarding' ? n.uid : undefined, urgent: lv >= 3, acks: ack ? ack.n : 0 };
+}
 const ticketOf = (P, tid) => P.tickets.find(x => x.id === tid);
 function weekKey(iso) { const d = new Date(iso); const z = new Date(d.getTime() - d.getTimezoneOffset() * 60000); const day = (z.getUTCDay() + 6) % 7; z.setUTCDate(z.getUTCDate() - day); return z.toISOString().slice(0, 10); }
 /* technician earnings, worked out from completed work and the approved pay rules */
@@ -2501,6 +2591,15 @@ const RULES = {
     roles: ['sales', 'admin', 'owner'], project: true, stages: ['amc'], check: (S, ev) =>
       need([1, 2, 3].includes(+ev.data.years) && +ev.data.amount >= 0 && ev.data.amount !== '', 'err_fill')
   },
+  /* escalation: what the Owner/Admin did about stuck work */
+  ESC_ACTED: {
+    roles: ['admin', 'owner'], check: (S, ev) => {
+      const d = ev.data;
+      if (!d.key || !['called', 'new_date', 'reassign'].includes(d.action)) return 'err_choose';
+      if (!/^\d{4}-\d\d-\d\d$/.test(d.until || '') || d.until > addDays(7, new Date(ev.t))) return 'err_esc_far';
+      return need((d.note || '').trim(), 'err_reason');
+    }
+  },
   /* two-person approval */
   APPROVAL_REQUESTED: {
     roles: STAFF, check: (S, ev, u) => {
@@ -2786,6 +2885,12 @@ function apply(S, ev) {
       P.renewals.push({ t: ev.t, by: ev.by, years: +d.years, amount: +d.amount, from, to: P.amcEnd, note: d.note || '' });
       break;
     }
+    case 'ESC_ACTED': {
+      const prev = S.escAck[d.key];
+      S.escAck[d.key] = { until: d.until, by: ev.by, t: ev.t, action: d.action, note: d.note, uid: d.uid || '', n: d.action === 'reassign' ? 0 : (prev ? prev.n : 0) + 1, reset: d.action === 'reassign' ? ev.t : prev && prev.reset };
+      S.escLog.unshift({ key: d.key, pid: ev.pid, ref: d.ref, level: d.level, action: d.action, uid: d.uid || '', until: d.until, note: d.note, by: ev.by, t: ev.t });
+      break;
+    }
     case 'APPROVAL_REQUESTED': S.approvals[d.aid] = { id: d.aid, by: ev.by, t: ev.t, action: d.action, reason: d.reason || '', status: 'pending' }; S.approvalOrder.push(d.aid); break;
     case 'APPROVAL_DECIDED': {
       const r = S.approvals[d.aid]; r.status = d.decision === 'approve' ? 'approved' : 'rejected'; r.decidedBy = ev.by; r.decidedAt = ev.t; r.note = d.reason || '';
@@ -2825,7 +2930,7 @@ function needs(P) {
   const payNeed = purpose => {
     const p = activePay(P, purpose);
     if (!p) add('record_payment', ['sales', 'finance'], { uids: [P.sales], purpose });
-    else if (p.status === 'pending') add('verify_payment', ['finance'], { not: p.recordedBy, payId: p.id, purpose, urgent: true });
+    else if (p.status === 'pending') add('verify_payment', ['finance'], { not: p.recordedBy, payId: p.id, purpose, urgent: true, since: p.t });
     return p && p.status === 'confirmed';
   };
   const q = lastQuote(P);
@@ -2861,41 +2966,50 @@ function needs(P) {
       }
       break;
   }
-  for (const b of P.blockers) if (b.open) add('resolve_blocker', uniq([b.role, 'admin']), { bid: b.id, urgent: true });
-  for (const i of P.incidents) if (i.open) add('resolve_incident', ['admin', 'owner'], { iid: i.id, urgent: true });
-  if (P.followUp && SALES_TALK.includes(P.stage) && P.followUp.due <= todayStr()) add('follow_up', ['sales'], { uids: [P.sales], overdue: P.followUp.due < todayStr() });
-  for (const m of P.chat) if (m.open && m.toRole) add('answer', m.kind === 'approval' ? ['owner', 'admin'] : uniq([m.toRole]), { mid: m.id, not: m.by });
+  for (const b of P.blockers) if (b.open) add('resolve_blocker', uniq([b.role, 'admin']), { bid: b.id, urgent: true, since: b.t });
+  for (const i of P.incidents) if (i.open) add('resolve_incident', ['admin', 'owner'], { iid: i.id, urgent: true, since: i.t });
+  if (P.followUp && SALES_TALK.includes(P.stage) && P.followUp.due <= todayStr()) add('follow_up', ['sales'], { uids: [P.sales], overdue: P.followUp.due < todayStr(), since: P.followUp.due + 'T12:00:00' });
+  for (const m of P.chat) if (m.open && m.toRole) add('answer', m.kind === 'approval' ? ['owner', 'admin'] : uniq([m.toRole]), { mid: m.id, not: m.by, since: m.t });
   /* AMC: service visits due within 7 days, renewal within 30 days of the end date */
   if (P.stage === 'amc' && P.done) {
-    P.done.amc.visits.forEach((d, i) => { if (!P.service[i] && d <= addDays(7)) add('amc_visit', ['tech'], { uids: [P.tech], visit: i, overdue: d < todayStr() }); });
-    if (P.amcEnd && P.amcEnd <= addDays(30)) add('amc_renew', ['sales', 'admin'], { uids: [P.sales], overdue: P.amcEnd < todayStr() });
+    P.done.amc.visits.forEach((d, i) => { if (!P.service[i] && d <= addDays(7)) add('amc_visit', ['tech'], { uids: [P.tech], visit: i, overdue: d < todayStr(), since: d + 'T12:00:00' }); });
+    if (P.amcEnd && P.amcEnd <= addDays(30)) add('amc_renew', ['sales', 'admin'], { uids: [P.sales], overdue: P.amcEnd < todayStr(), since: P.amcEnd + 'T12:00:00' });
   }
   for (const x of P.tickets) {
-    if (x.status === 'open') add('assign_ticket', ['admin', 'owner', 'sales'], { tid: x.id, urgent: x.kind === 'breakdown', uids: [P.sales] });
-    else if (['assigned', 'in_progress'].includes(x.status)) add('work_ticket', [roleOf(x.owner) || 'admin'], { uids: [x.owner], tid: x.id, urgent: x.kind === 'breakdown', overdue: x.due && x.due < todayStr() });
+    if (x.status === 'open') add('assign_ticket', ['admin', 'owner', 'sales'], { tid: x.id, urgent: x.kind === 'breakdown', uids: [P.sales], since: x.t });
+    else if (['assigned', 'in_progress'].includes(x.status)) add('work_ticket', [roleOf(x.owner) || 'admin'], { uids: [x.owner], tid: x.id, urgent: x.kind === 'breakdown', overdue: x.due && x.due < todayStr(), since: x.due ? addDays(1, new Date(x.due + 'T12:00:00')) + 'T00:00:00' : null });
     else if (x.status === 'resolved') add('confirm_ticket', P.customer ? ['customer'] : ['admin', 'owner'], { uids: [P.customer], tid: x.id });
-    if (x.due && x.due < todayStr() && ['assigned', 'in_progress'].includes(x.status)) add('escalated', ['admin', 'owner'], { ref: 'work_ticket', days: daysSince(x.due + 'T12:00:00'), tid: x.id, urgent: true });
   }
-  /* escalation: the main next step has waited too long */
-  const main = out.find(x => !['resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'escalated', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
-  if (main && OPEN_STAGES.includes(P.stage) && !main.roles.includes('admin') && daysSince(P.since) >= (S.config.escalateDays || 3)) add('escalated', ['admin', 'owner'], { ref: main.k, who: main.roles, days: daysSince(P.since) });
+  /* escalation ladder: the main next step counts from the day the stage began, other work from its own date */
+  const main = out.find(x => !['resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
+  if (main && OPEN_STAGES.includes(P.stage) && !main.since) Object.assign(main, { since: P.since, escId: P.stage });
+  for (const n of out.slice()) if (n.since) { const e = escFor(n, n.since, n.escId || n.bid || n.iid || n.tid || n.mid || n.payId || n.visit); if (e) out.push(e); }
   return out;
 }
 /* work that is not tied to one project: second approvals, pay, training */
-function globalNeeds(u) {
-  const out = [], add = (k, roles, o = {}) => out.push(Object.assign({ k, roles, pid: null }, o));
+function globalNeeds(u, all) {
+  const out = [], add = (k, roles, o = {}) => { const n = Object.assign({ k, roles, pid: null }, o); out.push(n); return n; };
+  const up = (n, from, id) => { const e = escFor(n, from, id); if (e) out.push(e); };
   for (const id of S.approvalOrder) { const r = S.approvals[id]; if (r.status === 'pending') add('second_approval', ['owner', 'admin'], { aid: id, not: r.by, urgent: true }); }
-  if (['owner', 'admin', 'finance', 'tech'].includes(u.role)) {
+  if (all || ['owner', 'admin', 'finance', 'tech'].includes(u.role)) {
     for (const x of Object.values(S.users).filter(y => y.role === 'tech' && y.active)) {
       for (const w of weeksFor(x.uid)) {
-        if (!w.pay || w.pay.status === 'open') { if (w.week < weekKey(nowISO()) && w.total > 0) add('approve_pay', ['owner', 'admin'], { uid: x.uid, week: w.week }); }
-        else if (w.pay.status === 'approved') add('pay_tech', ['finance'], { uid: x.uid, week: w.week, not: w.pay.approvedBy });
-        if (w.pay && w.pay.dispute && w.pay.dispute.open) add('pay_dispute', ['owner', 'admin'], { uid: x.uid, week: w.week, urgent: true });
+        const id = x.uid + '|' + w.week;
+        if (!w.pay || w.pay.status === 'open') { if (w.week < weekKey(nowISO()) && w.total > 0) up(add('approve_pay', ['owner', 'admin'], { uid: x.uid, week: w.week }), addDays(7, new Date(w.week + 'T12:00:00')) + 'T00:00:00', id); }
+        else if (w.pay.status === 'approved') up(add('pay_tech', ['finance'], { uid: x.uid, week: w.week, not: w.pay.approvedBy }), w.pay.approvedAt, id);
+        if (w.pay && w.pay.dispute && w.pay.dispute.open) up(add('pay_dispute', ['owner', 'admin'], { uid: x.uid, week: w.week, urgent: true }), w.pay.dispute.t, id);
       }
     }
   }
-  if (STAFF.includes(u.role) && !['owner'].includes(u.role)) { const w = S.workers[u.uid]; const left = modulesFor(u.role).filter(m => !(w && w.training[m])); if (left.length) add('training', [u.role], { uids: [u.uid], module: left[0] }); }
-  return out.filter(n => isMine(n, u));
+  /* onboarding starts by itself when a person is added: their own steps, document checks for the office, and escalation if it drags on */
+  for (const x of Object.values(S.users).filter(y => y.active && STAFF.includes(y.role) && y.role !== 'owner')) {
+    const ob = onboarding(x.uid); if (ob.ready) continue;
+    if (!ob.steps[0].done) add('onb_profile', [x.role], { uids: [x.uid], uid: x.uid });
+    const tr = ob.steps.find(st => st.k === 'train' && !st.done); if (tr) add('training', [x.role], { uids: [x.uid], module: tr.module });
+    if (ob.steps.some(st => st.who === 'office' && !st.done)) add('check_docs', ['admin', 'owner'], { uid: x.uid, not: x.uid });
+    up({ k: 'onboarding', roles: [x.role], pid: null, uid: x.uid, uids: [x.uid] }, x.t, x.uid);
+  }
+  return all ? out : out.filter(n => isMine(n, u));
 }
 function isMine(n, u) {
   if (!n.roles.includes(u.role)) return false;
@@ -2908,7 +3022,7 @@ function myTasks(u) {
   const out = [];
   for (const P of visibleProjects(u)) for (const n of needs(P)) if (isMine(n, u)) out.push(n);
   out.push(...globalNeeds(u));
-  const w = n => (n.urgent ? 0 : 2) + (n.overdue ? -1 : 0) + (n.k === 'training' ? 3 : 0);
+  const w = n => (n.urgent ? 0 : 2) + (n.overdue ? -1 : 0) - (n.level || 0) + (n.k === 'training' ? 3 : 0);
   const since = n => n.pid && S.projects[n.pid] ? S.projects[n.pid].since : '9';
   return out.sort((a, b) => w(a) - w(b) || (since(a) < since(b) ? -1 : 1));
 }
@@ -3362,21 +3476,29 @@ const TASK_ICON = {
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
-  amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓'
+  amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑'
 };
 function projTitle(P) { return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
   const P = S.projects[n.pid];
   const sub = n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
   if (!P) {
-    const info = n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
+    const info = n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
+      : ['onb_profile', 'check_docs'].includes(n.k) ? userName(n.uid) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
     return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
-    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent ? `<br><span class="chip c-bad">⚠️ ${t('urgent')}</span>` : ''}</span><span class="go" aria-hidden="true">▶</span></button>`;
+    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
   return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}${esc(sub)}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span><br>
-    ${n.urgent ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${n.overdue ? `<span class="chip c-bad">⏰ ${t('overdue')}</span> ` : ''}<span class="chip c-mute">🕒 ${t('days_n', { n: n.days != null ? n.days : daysSince(P.since) })}</span>${n.k === 'escalated' && n.who ? ` <span class="chip c-warn">${esc(t('waiting_for', { who: rolesTxt(n.who) }))}</span>` : ''}</span><span class="go" aria-hidden="true">▶</span></button>`;
+    ${n.urgent ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${n.overdue ? `<span class="chip c-bad">⏰ ${t('overdue')}</span> ` : ''}<span class="chip c-mute">🕒 ${t('days_n', { n: n.days != null ? n.days : daysSince(P.since) })}</span> ${escChip(n)}${n.k === 'escalated' && n.who ? ` <span class="chip c-warn">${esc(t('waiting_for', { who: escWho(n) }))}</span>` : ''}</span><span class="go" aria-hidden="true">▶</span></button>`;
 }
+/* escalation level as words and an icon, never colour alone */
+function escChip(n) {
+  if (n.k === 'escalated') return `<span class="chip ${n.level >= 3 ? 'c-bad' : 'c-warn'}">${n.level >= 3 ? '🔴' : '🟠'} ${t('esc_lv', { n: n.level })} · ${t(n.level >= 3 ? 'esc_to_owner' : 'esc_to_admin')}</span>`;
+  if (!n.level) return '';
+  return `<span class="chip ${n.level >= 3 ? 'c-bad' : 'c-warn'}">${['', '⏰ ' + t('esc_l1'), '⏫ ' + t('esc_l2'), '🔴 ' + t('esc_l3')][n.level]}</span>`;
+}
+const escWho = n => (n.whoUids || []).length ? n.whoUids.map(userName).join(', ') : rolesTxt(n.who || []);
 function projCard(P) {
   return `<button class="task" data-a="openProject" data-v="${P.id}"><span class="ti" aria-hidden="true">${STAGES[P.stage][1]}</span>
     <span style="flex:1;min-width:0"><b>${esc(P.id)} · ${esc(projTitle(P))}</b><span class="small muted">${esc((P.site.address || '').slice(0, 60))}</span><br>${stageChip(P)} ${waitLine(P)}</span><span class="go" aria-hidden="true">▶</span></button>`;
@@ -4313,11 +4435,12 @@ SCREENS.home = () => {
   App.tasks = tasks;
   let h = topBar(t('nav_home')) + `<main class="wrap">${hero(u)}`;
   if (u.role === 'field') h += shiftCard();
+  if (!onboarding(u.uid).ready) h += onbCard(u.uid, { short: true });
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))} · ${esc(tasks[0].pid)}</p>`;
   else h += `<div class="card center"><div class="big-i">☕</div><b>${t('no_tasks')}</b><p class="muted">${t(u.role === 'field' ? 'no_tasks_field' : 'no_tasks_other')}</p></div>`;
   if (u.role === 'field' || u.role === 'sales') h += `<button class="btn btn-big ${tasks.length ? '' : 'btn-p'}" style="margin-top:12px" data-a="addSite"><span class="i">➕</span>${t('add_site')}</button>`;
   if (['owner', 'admin'].includes(u.role) && Object.keys(S.users).length < 3) h += `<div class="warnbox" style="margin-top:12px">👥 ${t('add_team_hint')}<br><button class="btn btn-p" style="margin-top:8px" data-a="nav" data-v="users">➕ ${t('add_person')}</button></div>`;
-  if (['owner', 'admin'].includes(u.role)) h += queuesCard();
+  if (['owner', 'admin'].includes(u.role)) h += escBanner() + queuesCard();
   if (tasks.length) h += `<h2 class="sec">${t('my_tasks')} (${tasks.length})</h2>` + tasks.map((n, i) => taskCard(n, i)).join('');
   if (u.role === 'owner' || u.role === 'admin') h += dashboard();
   if (u.role === 'field') h += fieldScore();
@@ -4489,6 +4612,7 @@ function evText(ev) {
     PREP_ITEM_DONE: () => t('prep_' + d.item), BLOCKER_RAISED: () => t('br_' + d.reason), HANDOVER_SIGNED: () => t('slot_' + d.slot), ASSIGNED: () => t('r_' + d.role) + ': ' + userName(d.uid),
     MSG_LOGGED: () => tplName(d.template), MSG_STATUS: () => t('ms_' + d.status), SERVICE_DONE: () => t('amc_visit_n', { n: +d.visit + 1 }),
     TICKET_OPENED: () => t('tkind_' + d.kind) + ': ' + (d.text || '').slice(0, 50), TICKET_ASSIGNED: () => userName(d.uid) + ' · ' + d.due, TICKET_UPDATED: () => t('ts_' + d.status), TICKET_CLOSED: () => d.ok === false ? t('ts_reopened') : t('ts_closed'),
+    ESC_ACTED: () => t('tk_' + d.ref) + ' · ' + t('esc_' + d.action) + (d.uid ? ' → ' + userName(d.uid) : '') + ' · 📅 ' + fmtD(d.until),
     AMC_RENEWED: () => d.years + ' ' + t('years'), APPROVAL_DECIDED: () => t('dec_' + d.decision), APPROVAL_REQUESTED: () => t('ev_' + (d.action || {}).type),
     PAY_APPROVED: () => userName(d.uid) + ' · ' + money(d.amount), PAY_PAID: () => userName(d.uid) + ' · ' + d.ref, TRAINING_PASSED: () => t('tr_' + d.module + '_t'), DOC_VERIFIED: () => userName(d.uid) + ' · ' + t('doc_' + d.doc),
     CONTACT_CORRECTED: () => d.field + ': ' + (d.reason || ''), CHAT_POSTED: () => (d.text || '').slice(0, 60), REQ_SAVED: () => d.req ? d.req.stops + ' ' + t('q_stops') : '',
@@ -4804,6 +4928,7 @@ SCREENS.me = () => {
       ${u.role === 'tech' ? row('nav2', 'earn|' + u.uid, '💰', 'earnings') : ''}
       ${adm ? row('nav', 'workers', '👥', 'workers') : ''}
       ${['owner', 'admin', 'sales', 'finance', 'tech'].includes(u.role) ? row('nav', 'templates', '💬', 'templates') : ''}
+      ${['owner', 'admin'].includes(u.role) ? row('nav', 'escalations', '⏫', 'esc_title') : ''}
       ${u.role !== 'customer' ? row('nav2', 'leaders|', '🏆', 'leaderboard') : ''}
       ${row('nav', 'helper', '🙋', 'helper')}
       ${row('nav', 'about', 'ℹ️', 'about_privacy')}
@@ -5117,7 +5242,7 @@ SCREENS.workers = () => {
   const f = App.form, q = (f.wq || '').toLowerCase(), r = f.wr || 'all', av = f.wa || 'all';
   let list = Object.values(S.users).filter(u => u.role !== 'customer');
   if (r !== 'all') list = list.filter(u => u.role === r);
-  if (av === 'incomplete') list = list.filter(u => trainingDone(u.uid) < modulesFor(u.role).length || DOCS.slice(0, 1).some(d => !(S.workers[u.uid] && S.workers[u.uid].docs[d] === 'verified')));
+  if (av === 'incomplete') list = list.filter(u => !onboarding(u.uid).ready);
   else if (av !== 'all') list = list.filter(u => ((S.workers[u.uid] || {}).profile || {}).availability === av);
   if (q) list = list.filter(u => { const p = (S.workers[u.uid] || {}).profile || {}; return [u.name, p.area, (p.skills || []).map(x => t('skill_' + x)).join(' ')].join(' ').toLowerCase().includes(q); });
   const chip = (k, v, l) => `<button class="${f[k] === v || (!f[k] && v === 'all') ? 'on' : ''}" data-a="wfilter" data-v="${k}|${v}">${l}</button>`;
@@ -5126,7 +5251,7 @@ SCREENS.workers = () => {
     <div class="tabs" style="position:static;padding:0 0 10px">${chip('wa', 'all', t('all'))}${['available', 'busy', 'leave'].map(x => chip('wa', x, t('av_' + x))).join('')}${chip('wa', 'incomplete', '⚠️ ' + t('onb_incomplete'))}</div>
     ${list.map(u => { const w = S.workers[u.uid] || { profile: {}, docs: {}, training: {} }, p = w.profile;
       return `<button class="task" data-a="nav2" data-v="worker|${u.uid}"><span class="ti">${ROLE_ICON[u.role]}</span><span style="flex:1"><b>${esc(u.name)}</b><span class="small muted">${t('r_' + u.role)}${p.area ? ' · 📍 ' + esc(p.area) : ''}</span><br>
-        ${p.availability ? `<span class="chip ${p.availability === 'available' ? 'c-ok' : 'c-mute'}">${t('av_' + p.availability)}</span> ` : ''}<span class="chip c-info">🎓 ${trainingDone(u.uid)}/${modulesFor(u.role).length}</span> <span class="chip c-mute">🪪 ${DOCS.filter(d => w.docs[d] === 'verified').length}/${DOCS.length}</span> ${authChip(u.uid)}
+        ${p.availability ? `<span class="chip ${p.availability === 'available' ? 'c-ok' : 'c-mute'}">${t('av_' + p.availability)}</span> ` : ''}${(ob => !ob.total ? '' : ob.ready ? `<span class="chip c-ok">✅ ${t('onb_ready')}</span>` : `<span class="chip c-info">🪪 ${t('onb_progress', { n: ob.done, m: ob.total })}</span> ${escChip({ level: escLevel(daysSince(u.t), 'onboarding') })}`)(onboarding(u.uid))}
         ${(p.skills || []).length ? `<br><span class="small">${p.skills.map(x => t('skill_' + x)).join(', ')}</span>` : ''}</span><span class="go">▶</span></button>`; }).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
 };
 SCREENS.worker = ({ uid }) => {
@@ -5135,7 +5260,7 @@ SCREENS.worker = ({ uid }) => {
   const w = S.workers[uid] || { profile: {}, docs: {}, training: {} }, p = w.profile, adm = ['owner', 'admin'].includes(me.role) && uid !== me.uid;
   App.pageSay = t('s_worker');
   return topBar(uid === me.uid ? t('my_profile') : u.name, { back: true }) + `<main class="wrap">
-    <div class="hero"><div class="row"><span style="font-size:2.2rem">${ROLE_ICON[u.role]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + u.role)}</span></div></div><div style="margin-top:6px">${authChip(uid)}</div></div>
+    <div class="hero"><div class="row"><span style="font-size:2.2rem">${ROLE_ICON[u.role]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + u.role)}</span></div></div><div style="margin-top:6px">${authChip(uid)}</div></div>${onbCard(uid)}
     <div class="card"><h3>👤 ${t('profile')}</h3>${kv([['f_phone', esc(p.phone || '')], ['w_area', esc(p.area || '')], ['w_avail', p.availability ? t('av_' + p.availability) : ''], ['w_skills', (p.skills || []).map(x => t('skill_' + x)).join(', ')]])}
       <button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="wprofile||uid|${uid}">✏️ ${t('edit')}</button><p class="small muted">${t('w_privacy')}</p></div>
     <div class="card"><h3>🪪 ${t('w_docs')}</h3>${DOCS.map(d => `<div class="list-item"><span class="grow">${t('doc_' + d)}</span><span class="chip ${w.docs[d] === 'verified' ? 'c-ok' : w.docs[d] === 'rejected' ? 'c-bad' : 'c-mute'}">${t('ds_' + (w.docs[d] || 'pending'))}</span>
@@ -5173,6 +5298,82 @@ WIZ.train = {
     return r.ok ? { ok: true, title: t('done_title'), what: t('what_train_pass', { n: score, m: t('tr_' + m[0] + '_t') }), next: t('train_next') } : r;
   }
 };
+
+/* ---------- automatic onboarding: checklist card ---------- */
+function onbStepText(x) { return x.k === 'profile' ? t('onb_step_profile') : x.k === 'doc' ? t('onb_step_doc', { doc: t('doc_' + x.doc) }) : t('onb_step_train', { m: t('tr_' + x.module + '_t') }); }
+function onbCard(uid, opt = {}) {
+  const ob = onboarding(uid);
+  if (!ob.total) return '';
+  const days = daysSince(S.users[uid].t), lv = ob.ready ? 0 : escLevel(days, 'onboarding'), pct = Math.round(ob.done / ob.total * 100);
+  const me = uid === App.me.uid, nextSelf = ob.steps.find(x => !x.done && x.who === 'self');
+  return `<div class="card"><div class="row"><h3 class="grow" style="margin:0">🪪 ${t('onb_title')}</h3>${ob.ready ? `<span class="chip c-ok">✅ ${t('onb_ready')}</span>` : `<span class="chip c-info">${t('onb_progress', { n: ob.done, m: ob.total })}</span>`}</div>
+    <div class="bar" style="margin:8px 0"><span class="b"><i style="width:${pct}%"></i></span><b>${pct}%</b></div>
+    ${opt.short && ob.ready ? '' : ob.steps.map(x => `<div class="list-item small"><span>${x.done ? '✅' : x.bad ? '❌' : '⬜'}</span><span class="grow">${esc(onbStepText(x))}</span><span class="chip c-mute">${x.who === 'office' ? '🏢 ' + t('onb_who_office') : '🙋 ' + t(me ? 'onb_who_you' : 'onb_who_person')}</span></div>`).join('')}
+    ${!ob.ready && lv ? `<div class="${lv >= 2 ? 'warnbox' : 'note'}" style="margin-top:8px">${escChip({ level: lv })} ${t('onb_waiting', { n: days })}</div>` : ''}
+    ${me && nextSelf ? `<button class="btn btn-p" style="margin-top:8px" data-a="wizOpen" data-v="${nextSelf.k === 'profile' ? 'wprofile||uid|' + uid : 'train||module|' + nextSelf.module}">▶ ${t('onb_next')}</button>` : ''}
+    ${!opt.short ? `<p class="small muted" style="margin:8px 0 0">${t('onb_note')}</p>` : ''}</div>`;
+}
+
+/* ---------- escalation: act on stuck work ---------- */
+const ESC_ICON = { called: '📞', new_date: '📅', reassign: '🔁' };
+function escCandidates() {
+  const o = W.opts, P = W.pid ? S.projects[W.pid] : null;
+  if (!P || !(o.whoUids || []).length) return [];
+  if (['work_ticket', 'assign_ticket'].includes(o.ref)) return Object.values(S.users).filter(u => u.active && ['tech', 'sales', 'qc', 'admin'].includes(u.role) && !o.whoUids.includes(u.uid));
+  const r = (o.who || []).find(x => ['sales', 'tech', 'supplier', 'qc'].includes(x));
+  return r && OPEN_STAGES.includes(P.stage) ? Object.values(S.users).filter(u => u.active && u.role === r && !o.whoUids.includes(u.uid)) : [];
+}
+function escSummary() {
+  const o = W.opts, P = W.pid ? S.projects[W.pid] : null, ack = S.escAck[o.eid];
+  const what = t('tk_' + o.ref) + (P ? ' · ' + P.id + ' · ' + projTitle(P) : o.uid ? ' · ' + userName(o.uid) : '');
+  return `<div class="card"><b>${esc(what)}</b><div style="margin:6px 0">${escChip({ k: 'escalated', level: o.lvl })}</div>${kv([['esc_who', esc(escWho(o))], ['esc_days', t('days_n', { n: o.days })]])}
+    ${ack ? `<div class="note" style="margin-top:8px">${t('esc_prev')}: ${ESC_ICON[ack.action]} ${t('esc_' + ack.action)} · ${esc(userName(ack.by))} · ${fmtD(ack.t, true)}<br>${esc(ack.note)}</div>` : ''}
+    ${o.acks >= 2 ? `<div class="warnbox">🔴 ${t('esc_repeat')}</div>` : ''}
+    ${P ? `<button class="btn btn-sm" style="margin-top:8px" data-a="openProject" data-v="${P.id}">📂 ${t('esc_open_project')}</button>` : o.uid ? `<button class="btn btn-sm" style="margin-top:8px" data-a="nav2" data-v="worker|${o.uid}">🪪 ${t('esc_open_worker')}</button>` : ''}</div>`;
+}
+WIZ.escalate = {
+  title: 'tk_escalated', save: 'save', saveIcon: '⏫', noDraft: true,
+  init: () => ({ action: '', uid: '', until: addDays(1), note: '' }),
+  steps: [
+    { id: 'look', icon: '⏫', say: 's_esc_look', body: () => escSummary() + tiles('action', ['called', 'new_date'].concat(escCandidates().length ? ['reassign'] : []).map(a => [a, ESC_ICON[a], 'esc_' + a, 'esc_' + a + '_d']), 'one'), check: c => c.action ? null : 'err_choose' },
+    { id: 'who', icon: '👤', say: 's_esc_who', skip: c => c.action !== 'reassign', body: () => tiles('uid', escCandidates().map(u => [u.uid, ROLE_ICON[u.role], u.name]), 'one'), check: c => S.users[c.uid] ? null : 'err_pick_person' },
+    { id: 'when', icon: '📅', say: 's_esc_when', body: () => dateTiles('until') + inp('note', 'f_note', { area: true, mic: true }), check: c => !/^\d{4}-\d\d-\d\d$/.test(c.until) ? 'err_date' : c.until > addDays(7) ? 'err_esc_far' : !c.note.trim() ? 'err_reason' : null }
+  ],
+  async finish(c) {
+    const o = W.opts, pid = W.pid || null, list = [];
+    if (c.action === 'reassign') list.push(['work_ticket', 'assign_ticket'].includes(o.ref) ? ['TICKET_ASSIGNED', pid, { tid: o.tid, uid: c.uid, due: c.until }] : ['ASSIGNED', pid, { role: roleOf(c.uid), uid: c.uid }]);
+    list.push(['ESC_ACTED', pid, { key: o.eid, ref: o.ref, level: o.lvl, action: c.action, uid: c.action === 'reassign' ? c.uid : '', until: c.until, note: c.note.trim() }]);
+    const r = await run(list);
+    return r.ok ? { ok: true, title: t('done_title'), what: t('what_esc_acted', { d: fmtD(c.until) }), next: t('next_esc') } : r;
+  }
+};
+/* every escalation in the company, highest level first (Owner/Admin) */
+function allEscalations() {
+  const list = [], rem = [];
+  for (const P of Object.values(S.projects)) for (const n of needs(P)) { if (n.k === 'escalated') list.push(n); else if (n.level === 1) rem.push(n); }
+  for (const n of globalNeeds(App.me, true)) { if (n.k === 'escalated') list.push(n); else if (n.level === 1) rem.push(n); }
+  /* the Owner sees every escalation; the Admin sees the ones sent to them */
+  return { list: (App.me.role === 'owner' ? list : list.filter(n => isMine(n, App.me))).sort((a, b) => b.level - a.level || b.days - a.days), rem: rem.sort((a, b) => b.days - a.days) };
+}
+SCREENS.escalations = () => {
+  if (!['owner', 'admin'].includes(App.me.role)) return SCREENS.home();
+  const { list, rem } = allEscalations(), c = S.config;
+  App.tasks = list; App.pageSay = t('s_escalations') + ' ' + t('esc_count', { a: list.filter(n => n.level >= 3).length, b: list.filter(n => n.level === 2).length });
+  return topBar(t('esc_title'), { back: true }) + `<main class="wrap"><div class="card"><h3>📶 ${t('esc_ladder')}</h3>
+      <div class="list-item small"><span>⏰</span><span class="grow">${t('esc_rule1', { n: c.remindDays })}</span></div>
+      <div class="list-item small"><span>🟠</span><span class="grow">${t('esc_rule2', { n: c.escalateDays })}</span></div>
+      <div class="list-item small"><span>🔴</span><span class="grow">${t('esc_rule3', { n: c.escOwnerDays })}</span></div>
+      <div class="list-item small"><span>🪪</span><span class="grow">${t('esc_rule4', { n: c.onbDays, m: c.onbDays * 2 })}</span></div>
+      <div style="margin-top:6px">${ruleChip('control')}</div></div>
+    <h2 class="sec">⏫ ${t('esc_open')} (${list.length})</h2>${list.map((n, i) => taskCard(n, i)).join('') || `<div class="card center">✅ ${t('esc_none')}</div>`}
+    ${rem.length ? `<h2 class="sec">⏰ ${t('esc_reminders')} (${rem.length})</h2><div class="card">${rem.slice(0, 20).map(n => `<div class="list-item small"><span>${TASK_ICON[n.k] || '▶'}</span><span class="grow"><b>${esc(t('tk_' + n.k))}</b>${n.pid ? ' · ' + esc(n.pid) : ''}<br><span class="muted">${esc(escWho({ whoUids: (n.uids || []).filter(Boolean), who: n.roles }))} · ${t('days_n', { n: n.days })}</span></span></div>`).join('')}</div>` : ''}
+    ${S.escLog.length ? `<h2 class="sec">🧾 ${t('esc_recent')}</h2><div class="card">${S.escLog.slice(0, 15).map(x => `<div class="list-item small" style="display:block">${ESC_ICON[x.action]} <b>${esc(t('tk_' + x.ref))}</b>${x.pid ? ' · ' + esc(x.pid) : ''} · ${t('esc_' + x.action)}${x.uid ? ' → ' + esc(userName(x.uid)) : ''}<br><span class="muted">${esc(userName(x.by))} · ${fmtD(x.t, true)} · 📅 ${fmtD(x.until)} · ${esc(x.note)}</span></div>`).join('')}</div>` : ''}
+  </main>` + nav('me');
+};
+function escBanner() {
+  const { list } = allEscalations(), a = list.filter(n => n.level >= 3).length, b = list.length - a;
+  return `<button class="task ${a ? 'urgent' : ''}" data-a="nav" data-v="escalations" style="margin-top:12px"><span class="ti">⏫</span><span class="grow" style="flex:1;min-width:0"><b>${t('esc_title')}</b><span class="small muted">${t('esc_count', { a, b })}</span></span><span class="go">▶</span></button>`;
+}
 
 /* ---------- technician weekly pay ---------- */
 const weekLabel = k => fmtD(k) + ' – ' + fmtD(addDays(6, new Date(k + 'T12:00:00')));
@@ -5316,9 +5517,10 @@ function openTask(n) {
     answer: () => { App.form.replyTo = n.mid; go('project', { pid, tab: 'chat' }); },
     amc_visit: () => wiz('service', pid, { visit: n.visit }), amc_renew: () => wiz('renew', pid),
     assign_ticket: () => wiz('ticketAssign', pid, { tid: n.tid }), work_ticket: () => wiz('ticketUpdate', pid, { tid: n.tid }), confirm_ticket: () => wiz('ticketClose', pid, { tid: n.tid }),
-    escalated: () => go('project', { pid }), second_approval: () => wiz('approve2', null, { aid: n.aid }),
+    escalated: () => wiz('escalate', pid || null, { eid: n.eid, ref: n.ref, lvl: n.level, days: n.days, who: n.who, whoUids: n.whoUids, tid: n.tid, uid: n.uid, acks: n.acks }), second_approval: () => wiz('approve2', null, { aid: n.aid }),
     approve_pay: () => wiz('payApprove', null, { uid: n.uid, week: n.week }), pay_tech: () => wiz('payPaid', null, { uid: n.uid, week: n.week }),
-    pay_dispute: () => wiz('payAnswer', null, { uid: n.uid, week: n.week }), training: () => wiz('train', null, { module: n.module })
+    pay_dispute: () => wiz('payAnswer', null, { uid: n.uid, week: n.week }), training: () => wiz('train', null, { module: n.module }),
+    onb_profile: () => wiz('wprofile', null, { uid: n.uid }), check_docs: () => go('worker', { uid: n.uid })
   };
   (m[n.k] || (() => go('project', { pid })))();
 }
@@ -5578,7 +5780,7 @@ const ACT = {
     if (!name) { toast(t('err_fill'), true); return; }
     const salt = rid(10), uid = 'U' + rid(8), pin = f.nuPin;
     const r = await perform('USER_ADDED', null, { uid, name, role: f.nuRole, salt, pin: await pinHash(pin, salt) });
-    if (r.ok) { render(); sheet(`<h2>✅ ${t('user_added')}</h2><div class="card center"><b>${esc(name)}</b> · ${t('r_' + f.nuRole)}<div style="font-size:2.4rem;font-weight:800;letter-spacing:6px">${pin}</div>${t('pin_tell')}</div>`); }
+    if (r.ok) { render(); sheet(`<h2>✅ ${t('user_added')}</h2><div class="card center"><b>${esc(name)}</b> · ${t('r_' + f.nuRole)}<div style="font-size:2.4rem;font-weight:800;letter-spacing:6px">${pin}</div>${t('pin_tell')}</div>${onboarding(uid).total ? `<div class="note">🪪 ${t('onb_started', { n: onboarding(uid).total })}</div>` : ''}`); }
   },
   userOpen: v => userSheet(v),
   userRole: async v => { const [uid, role] = v.split('|'); const r = await perform('USER_UPDATED', null, { uid, role }); if (r.ok) { render(); userSheet(uid); toast(t('saved_item')); } },
@@ -5753,6 +5955,14 @@ async function seedPractice() {
   await SP('WORKER_PROFILE', null, { uid: U.field, phone: '9822000021', area: 'Kothrud, Karve Nagar', availability: 'available', skills: ['survey', 'driving'] }, 'admin');
   for (const d of ['id', 'address']) await SP('DOC_VERIFIED', null, { uid: U.tech, doc: d, status: 'verified' }, 'admin');
   await SP('TRAINING_PASSED', null, { module: 'app', answers: [0, 1, 2], score: 3 }, 'tech');
+  /* most of the team has finished onboarding; the technician and the second field worker are still in progress */
+  for (const k of ['admin', 'field', 'sales', 'finance', 'qc', 'supplier']) {
+    const uid = U[k], role = S.users[uid].role;
+    if (k !== 'field') await SP('WORKER_PROFILE', null, { uid, phone: '98220001' + String(10 + Object.keys(U).indexOf(k)), area: 'Pune', availability: 'available', skills: [{ admin: 'sales', sales: 'sales', finance: 'sales', qc: 'qc', supplier: 'driving' }[k]] }, k);
+    for (const d of (REQ_DOCS[role] || ['id', 'address'])) await SP('DOC_VERIFIED', null, { uid, doc: d, status: 'verified' }, k === 'admin' ? 'owner' : 'admin');
+    for (const m of modulesFor(role)) await SP('TRAINING_PASSED', null, { module: m, answers: TRAIN.find(x => x[0] === m)[2], score: 3 }, k);
+  }
+  await SP('WORKER_PROFILE', null, { uid: U.field2, phone: '9822000022', area: 'Wakad', availability: 'available', skills: ['survey'] }, 'field2');
   void sar;
   await saveAll();
 }
