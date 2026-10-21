@@ -1433,6 +1433,380 @@ const L = {
   scale_small: ['Very small screens are hard to read and tap. Press the red ↺ 100% button at any time to go back.', 'बहुत छोटी स्क्रीन पढ़ने और दबाने में कठिन है। वापस जाने के लिए कभी भी लाल ↺ 100% बटन दबाएँ।', 'खूप लहान स्क्रीन वाचायला आणि दाबायला कठीण असते. परत जाण्यासाठी कधीही लाल ↺ 100% बटण दाबा.'],
   scale_reset: ['Reset screen size to 100%', 'स्क्रीन आकार 100% करें', 'स्क्रीन आकार 100% करा'],
 
+  /* ---------- WhatsApp templates + message log ---------- */
+  templates: ['WhatsApp messages', 'व्हाट्सएप संदेश', 'व्हॉट्सॲप संदेश'],
+  s_templates: ['Ready messages for customers. The app fills the name, amount and date.', 'ग्राहकों के लिए तैयार संदेश। नाम, रकम और तारीख ऐप भरता है।', 'ग्राहकांसाठी तयार संदेश. नाव, रक्कम आणि तारीख ॲप भरते.'],
+  tpl_vars: ['Words in { } are filled automatically: {name} {company} {id} {total} {amount} {date}', '{ } वाले शब्द अपने आप भरते हैं: {name} {company} {id} {total} {amount} {date}', '{ } मधील शब्द आपोआप भरले जातात: {name} {company} {id} {total} {amount} {date}'],
+  tpl_custom: ['Changed by company', 'कंपनी ने बदला', 'कंपनीने बदलले'],
+  tpl_new: ['New message', 'नया संदेश', 'नवीन संदेश'],
+  tpl_name: ['Message name', 'संदेश का नाम', 'संदेशाचे नाव'],
+  edit: ['Change', 'बदलें', 'बदला'],
+  wa_send: ['Send WhatsApp', 'व्हाट्सएप भेजें', 'व्हॉट्सॲप पाठवा'],
+  wa_text: ['Message', 'संदेश', 'संदेश'],
+  wa_open: ['Open WhatsApp', 'व्हाट्सएप खोलें', 'व्हॉट्सॲप उघडा'],
+  wa_opened: ['WhatsApp was opened. Send the message there, then come back and save.', 'व्हाट्सएप खुल गया। वहाँ संदेश भेजें, फिर वापस आकर सेव करें।', 'व्हॉट्सॲप उघडले. तिथे संदेश पाठवा, मग परत येऊन जतन करा.'],
+  wa_api_note: ['Delivery and read receipts need the WhatsApp Business API on a company server; this app only records what you sent.', 'पहुँचने और पढ़ने की जानकारी के लिए कंपनी सर्वर पर WhatsApp Business API चाहिए; यह ऐप केवल यह दर्ज करता है कि आपने क्या भेजा।', 'पोहोचले/वाचले ही माहिती मिळण्यासाठी कंपनी सर्व्हरवर WhatsApp Business API लागते; हे ॲप फक्त तुम्ही काय पाठवले ते नोंदवते.'],
+  msg_log: ['Messages sent', 'भेजे गए संदेश', 'पाठवलेले संदेश'],
+  msg_log_save: ['Save that I sent it', 'भेजा — सेव करें', 'पाठवले — जतन करा'],
+  s_wa_tpl: ['Choose the message you want to send.', 'जो संदेश भेजना है उसे चुनें।', 'जो संदेश पाठवायचा आहे तो निवडा.'],
+  s_wa_send: ['Check the message. Tap Open WhatsApp, send it, then come back and save.', 'संदेश देखें। व्हाट्सएप खोलें दबाएँ, भेजें, फिर वापस आकर सेव करें।', 'संदेश तपासा. व्हॉट्सॲप उघडा दाबा, पाठवा, मग परत येऊन जतन करा.'],
+  err_wa_open: ['First tap Open WhatsApp and send the message.', 'पहले व्हाट्सएप खोलें दबाकर संदेश भेजें।', 'आधी व्हॉट्सॲप उघडा दाबून संदेश पाठवा.'],
+  what_msg_logged: ['The message is saved in the project record.', 'संदेश प्रोजेक्ट रिकॉर्ड में सेव हो गया।', 'संदेश प्रकल्पाच्या नोंदीत जतन झाला.'],
+  ms_opened: ['Sent — no reply yet', 'भेजा — जवाब नहीं आया', 'पाठवला — उत्तर नाही'],
+  ms_replied: ['Customer replied', 'ग्राहक ने जवाब दिया', 'ग्राहकाने उत्तर दिले'],
+  ms_no_reply: ['No reply', 'कोई जवाब नहीं', 'उत्तर नाही'],
+  ms_failed: ['Not sent', 'नहीं भेजा', 'पाठवला नाही'],
+  tplname_intro: ['Introduction', 'परिचय', 'ओळख'],
+  tplname_quote: ['Quotation sent', 'कोटेशन भेजा', 'कोटेशन पाठवले'],
+  tplname_followup: ['Follow-up', 'फॉलो-अप', 'फॉलो-अप'],
+  tplname_payment: ['Payment reminder', 'भुगतान याद दिलाना', 'पेमेंटची आठवण'],
+  tplname_prep: ['Site preparation', 'साइट तैयारी', 'साइट तयारी'],
+  tplname_visit: ['Service visit', 'सर्विस विज़िट', 'सर्व्हिस भेट'],
+  tplname_renewal: ['AMC renewal', 'AMC नवीनीकरण', 'AMC नूतनीकरण'],
+  tpl_intro: ['Namaste {name}, I am from {company}. Thank you for your interest in a lift. We will call you to understand your needs. Project number: {id}.', 'नमस्ते {name}, मैं {company} से हूँ। लिफ्ट में रुचि के लिए धन्यवाद। आपकी ज़रूरत समझने के लिए हम आपको कॉल करेंगे। प्रोजेक्ट नंबर: {id}।', 'नमस्कार {name}, मी {company} कडून बोलत आहे. लिफ्टमध्ये रस दाखवल्याबद्दल धन्यवाद. तुमची गरज समजून घेण्यासाठी आम्ही तुम्हाला फोन करू. प्रकल्प क्रमांक: {id}.'],
+  tpl_quote: ['Namaste {name}, your lift quotation from {company} is ready. Total: {total}. Project number: {id}. Please call us with any questions.', 'नमस्ते {name}, {company} की ओर से आपका लिफ्ट कोटेशन तैयार है। कुल: {total}। प्रोजेक्ट नंबर: {id}। कोई सवाल हो तो हमें कॉल करें।', 'नमस्कार {name}, {company} कडून तुमचे लिफ्ट कोटेशन तयार आहे. एकूण: {total}. प्रकल्प क्रमांक: {id}. काही प्रश्न असल्यास आम्हाला फोन करा.'],
+  tpl_followup: ['Namaste {name}, this is {company}. Did you get time to look at our quotation? We will call you on {date}.', 'नमस्ते {name}, {company} से बात कर रहे हैं। क्या आपने हमारा कोटेशन देखा? हम आपको {date} को कॉल करेंगे।', 'नमस्कार {name}, {company} कडून. तुम्ही आमचे कोटेशन पाहिले का? आम्ही तुम्हाला {date} रोजी फोन करू.'],
+  tpl_payment: ['Namaste {name}, payment of {amount} is due for project {id}. Please pay only to the {company} bank account. Do not pay cash to any person.', 'नमस्ते {name}, प्रोजेक्ट {id} के लिए {amount} का भुगतान बाकी है। कृपया केवल {company} के बैंक खाते में भुगतान करें। किसी व्यक्ति को नकद न दें।', 'नमस्कार {name}, प्रकल्प {id} साठी {amount} पेमेंट बाकी आहे. कृपया फक्त {company} च्या बँक खात्यात पैसे भरा. कोणत्याही व्यक्तीला रोख देऊ नका.'],
+  tpl_prep: ['Namaste {name}, please get the site ready: shaft, pit, 3-phase power, cleaning, light and barricades. Take a photo of each in the app. Project {id}.', 'नमस्ते {name}, कृपया साइट तैयार करें: शाफ्ट, पिट, 3-फ़ेज़ बिजली, सफ़ाई, रोशनी और बैरिकेड। हर चीज़ की फोटो ऐप में लें। प्रोजेक्ट {id}।', 'नमस्कार {name}, कृपया साइट तयार ठेवा: शाफ्ट, पिट, 3-फेज वीज, स्वच्छता, प्रकाश आणि बॅरिकेड. प्रत्येकाचा फोटो ॲपमध्ये घ्या. प्रकल्प {id}.'],
+  tpl_visit: ['Namaste {name}, our technician will come for the lift service visit on {date}. Project {id}. — {company}', 'नमस्ते {name}, हमारे तकनीशियन {date} को लिफ्ट सर्विस विज़िट के लिए आएँगे। प्रोजेक्ट {id}। — {company}', 'नमस्कार {name}, आमचे तंत्रज्ञ {date} रोजी लिफ्ट सर्व्हिस भेटीसाठी येतील. प्रकल्प {id}. — {company}'],
+  tpl_renewal: ['Namaste {name}, the maintenance contract (AMC) for your lift {id} is ending soon. Renew it to keep regular safety checks. — {company}', 'नमस्ते {name}, आपकी लिफ्ट {id} का रखरखाव अनुबंध (AMC) जल्द ख़त्म हो रहा है। नियमित सुरक्षा जाँच के लिए इसे नवीनीकृत करें। — {company}', 'नमस्कार {name}, तुमच्या लिफ्ट {id} चा देखभाल करार (AMC) लवकरच संपत आहे. नियमित सुरक्षा तपासणीसाठी त्याचे नूतनीकरण करा. — {company}'],
+
+  /* ---------- AMC: visits, tickets, renewal ---------- */
+  amc_title: ['Service and maintenance (AMC)', 'सर्विस और रखरखाव (AMC)', 'सर्व्हिस आणि देखभाल (AMC)'],
+  amc_until: ['Contract until', 'अनुबंध कब तक', 'करार कधीपर्यंत'],
+  amc_visit_n: ['Visit {n}', 'विज़िट {n}', 'भेट {n}'],
+  amc_do_visit: ['Do visit', 'विज़िट करें', 'भेट करा'],
+  amc_issues: ['problems found', 'समस्याएँ मिलीं', 'समस्या आढळल्या'],
+  amc_price_hint: ['Company price: {p} per year.', 'कंपनी की कीमत: {p} प्रति वर्ष।', 'कंपनीची किंमत: {p} प्रति वर्ष.'],
+  amc_ride: ['Smooth ride, no noise', 'सवारी आराम से, कोई आवाज़ नहीं', 'प्रवास सुरळीत, आवाज नाही'],
+  amc_doors: ['Doors open and close properly', 'दरवाज़े ठीक से खुलते-बंद होते हैं', 'दरवाजे नीट उघडतात-बंद होतात'],
+  amc_alarm: ['Alarm and emergency light work', 'अलार्म और इमरजेंसी लाइट चलती है', 'अलार्म आणि आपत्कालीन दिवा चालतो'],
+  amc_brake: ['Brake works', 'ब्रेक ठीक है', 'ब्रेक व्यवस्थित आहे'],
+  amc_ropes: ['Ropes and belts are good', 'रस्सी और बेल्ट ठीक हैं', 'दोर आणि बेल्ट चांगले आहेत'],
+  amc_oil: ['Oil and grease done', 'तेल और ग्रीस किया', 'तेल आणि ग्रीस केले'],
+  amc_pit: ['Pit clean and dry', 'पिट साफ़ और सूखा', 'पिट स्वच्छ आणि कोरडा'],
+  s_svc_checks: ['Check each item and mark Pass or Fail.', 'हर चीज़ जाँचें और सही या गलत चुनें।', 'प्रत्येक गोष्ट तपासा आणि बरोबर किंवा चूक निवडा.'],
+  s_svc_photos: ['Take at least one photo of the lift after service.', 'सर्विस के बाद लिफ्ट की कम से कम एक फोटो लें।', 'सर्व्हिसनंतर लिफ्टचा किमान एक फोटो घ्या.'],
+  s_svc_note: ['Who did you meet? Write any note for the office.', 'आप किससे मिले? ऑफ़िस के लिए कोई नोट लिखें।', 'तुम्ही कोणाला भेटलात? ऑफिससाठी काही टीप लिहा.'],
+  ph_service: ['Lift after service', 'सर्विस के बाद लिफ्ट', 'सर्व्हिसनंतर लिफ्ट'],
+  f_met: ['Person met at site', 'साइट पर मिले व्यक्ति', 'साइटवर भेटलेली व्यक्ती'],
+  svc_ticket_auto: ['A repair ticket will be created for the failed items.', 'गलत चीज़ों के लिए मरम्मत टिकट बनेगा।', 'चूक आलेल्या गोष्टींसाठी दुरुस्ती तिकीट तयार होईल.'],
+  svc_repair: ['Repair after service visit', 'सर्विस विज़िट के बाद मरम्मत', 'सर्व्हिस भेटीनंतर दुरुस्ती'],
+  what_service_done: ['The service visit is saved with photos.', 'सर्विस विज़िट फोटो के साथ सेव हो गई।', 'सर्व्हिस भेट फोटोसह जतन झाली.'],
+  tickets: ['Problems (tickets)', 'समस्याएँ (टिकट)', 'समस्या (तिकीट)'],
+  ticket_new: ['Report a problem', 'समस्या बताएँ', 'समस्या कळवा'],
+  history: ['History', 'इतिहास', 'इतिहास'],
+  tkind_breakdown: ['Lift stopped', 'लिफ्ट बंद पड़ी', 'लिफ्ट बंद पडली'],
+  tkind_breakdown_d: ['The lift is not working', 'लिफ्ट काम नहीं कर रही', 'लिफ्ट चालत नाही'],
+  tkind_complaint: ['Complaint', 'शिकायत', 'तक्रार'],
+  tkind_complaint_d: ['Not happy with work or a person', 'काम या व्यक्ति से नाखुश', 'काम किंवा व्यक्तीबद्दल नाराज'],
+  tkind_request: ['Request', 'अनुरोध', 'विनंती'],
+  tkind_request_d: ['Something needs to be done', 'कुछ काम करवाना है', 'काहीतरी काम करायचे आहे'],
+  ts_open: ['New', 'नया', 'नवीन'],
+  ts_assigned: ['Person assigned', 'व्यक्ति तय', 'व्यक्ती ठरली'],
+  ts_in_progress: ['Work going on', 'काम चल रहा है', 'काम सुरू आहे'],
+  ts_resolved: ['Fixed — check', 'ठीक किया — जाँचें', 'दुरुस्त — तपासा'],
+  ts_closed: ['Closed', 'बंद', 'बंद'],
+  ts_reopened: ['Opened again', 'फिर से खोला', 'पुन्हा उघडले'],
+  s_ticket_kind: ['What kind of problem is it?', 'किस तरह की समस्या है?', 'कोणत्या प्रकारची समस्या आहे?'],
+  s_ticket_text: ['Tell us the problem. You can speak with 🎤 and add a photo.', 'समस्या बताएँ। 🎤 से बोल सकते हैं और फोटो जोड़ सकते हैं।', 'समस्या सांगा. 🎤 ने बोलू शकता आणि फोटो जोडू शकता.'],
+  s_ticket_who: ['Who will fix this problem?', 'यह समस्या कौन ठीक करेगा?', 'ही समस्या कोण दुरुस्त करेल?'],
+  s_ticket_due: ['By which date must it be fixed?', 'किस तारीख तक ठीक करना है?', 'कोणत्या तारखेपर्यंत दुरुस्त करायचे?'],
+  s_ticket_close: ['Is the problem really fixed?', 'क्या समस्या सच में ठीक हो गई?', 'समस्या खरंच दुरुस्त झाली का?'],
+  ticket_fixed: ['Yes, fixed', 'हाँ, ठीक हो गई', 'हो, दुरुस्त झाली'],
+  ticket_not_fixed: ['No, still a problem', 'नहीं, अभी भी समस्या है', 'नाही, अजून समस्या आहे'],
+  what_ticket_opened: ['The problem is recorded. The office will assign a person.', 'समस्या दर्ज हो गई। ऑफ़िस एक व्यक्ति तय करेगा।', 'समस्या नोंदवली. ऑफिस एक व्यक्ती ठरवेल.'],
+  what_ticket_assigned: ['The person and date are saved. They will see it in their tasks.', 'व्यक्ति और तारीख सेव हो गए। उन्हें यह अपने कामों में दिखेगा।', 'व्यक्ती आणि तारीख जतन झाली. त्यांना हे त्यांच्या कामांत दिसेल.'],
+  what_ticket_updated: ['The work update is saved.', 'काम की जानकारी सेव हो गई।', 'कामाची माहिती जतन झाली.'],
+  what_ticket_closed: ['The problem is closed.', 'समस्या बंद हो गई।', 'समस्या बंद झाली.'],
+  what_ticket_reopened: ['The problem is opened again and sent back to the person fixing it.', 'समस्या फिर से खोली गई और ठीक करने वाले को वापस भेजी गई।', 'समस्या पुन्हा उघडली आणि दुरुस्त करणाऱ्याकडे परत पाठवली.'],
+  f_amc_amount: ['Contract amount, ₹', 'अनुबंध रकम, ₹', 'कराराची रक्कम, ₹'],
+  years: ['years', 'साल', 'वर्षे'],
+  years_1: ['1 year', '1 साल', '1 वर्ष'],
+  years_2: ['2 years', '2 साल', '2 वर्षे'],
+  years_3: ['3 years', '3 साल', '3 वर्षे'],
+  s_renew: ['For how many years is the contract renewed? Check the amount.', 'अनुबंध कितने साल के लिए नवीनीकृत हुआ? रकम जाँचें।', 'करार किती वर्षांसाठी नूतनीकृत झाला? रक्कम तपासा.'],
+  what_renewed: ['The contract is renewed. New service visits are planned.', 'अनुबंध नवीनीकृत हुआ। नई सर्विस विज़िट तय हो गईं।', 'कराराचे नूतनीकरण झाले. नवीन सर्व्हिस भेटी ठरल्या.'],
+
+  /* ---------- two-person approval ---------- */
+  requested_by: ['Asked by', 'किसने माँगा', 'कोणी मागितले'],
+  dual_note: ['A second person must agree before this important change happens. You cannot approve your own request.', 'इस ज़रूरी बदलाव से पहले दूसरे व्यक्ति की सहमति ज़रूरी है। आप अपना ही अनुरोध मंज़ूर नहीं कर सकते।', 'हा महत्त्वाचा बदल होण्यापूर्वी दुसऱ्या व्यक्तीची संमती आवश्यक आहे. तुम्ही स्वतःची विनंती मंजूर करू शकत नाही.'],
+  s_approve2: ['Read the change. Approve it only if it is correct.', 'बदलाव पढ़ें। सही हो तभी मंज़ूर करें।', 'बदल वाचा. बरोबर असेल तरच मंजूर करा.'],
+  what_sent_second: ['This needs a second person. It was sent to the Owner/Admin for approval.', 'इसके लिए दूसरे व्यक्ति की ज़रूरत है। मंज़ूरी के लिए मालिक/एडमिन को भेजा गया।', 'यासाठी दुसरी व्यक्ती लागते. मंजुरीसाठी मालक/ॲडमिनकडे पाठवले.'],
+  what_second_ok: ['Approved. The change is now done.', 'मंज़ूर। बदलाव अब हो गया।', 'मंजूर. बदल आता झाला.'],
+  what_second_no: ['Not approved. Nothing was changed.', 'मंज़ूर नहीं। कुछ नहीं बदला।', 'मंजूर नाही. काहीही बदलले नाही.'],
+  err_needs_second: ['A second person must approve this.', 'इसे दूसरे व्यक्ति की मंज़ूरी चाहिए।', 'याला दुसऱ्या व्यक्तीची मंजुरी लागते.'],
+
+  /* ---------- people: directory, profile, documents, training ---------- */
+  workers: ['Workers', 'कर्मचारी', 'कर्मचारी'],
+  s_workers: ['All workers with skills, documents and training. Tap a name to see details.', 'सभी कर्मचारी — कौशल, कागज़ात और ट्रेनिंग। विवरण के लिए नाम दबाएँ।', 'सर्व कर्मचारी — कौशल्य, कागदपत्रे आणि प्रशिक्षण. माहितीसाठी नाव दाबा.'],
+  w_search: ['Search name, area or skill', 'नाम, इलाका या कौशल खोजें', 'नाव, भाग किंवा कौशल्य शोधा'],
+  onb_incomplete: ['Not complete', 'अधूरा', 'अपूर्ण'],
+  s_worker: ['Profile, documents and training of this person.', 'इस व्यक्ति की प्रोफ़ाइल, कागज़ात और ट्रेनिंग।', 'या व्यक्तीची प्रोफाइल, कागदपत्रे आणि प्रशिक्षण.'],
+  my_profile: ['My profile', 'मेरी प्रोफ़ाइल', 'माझी प्रोफाइल'],
+  profile: ['Profile', 'प्रोफ़ाइल', 'प्रोफाइल'],
+  w_area: ['Work area', 'काम का इलाका', 'कामाचा भाग'],
+  w_avail: ['Available?', 'उपलब्ध?', 'उपलब्ध?'],
+  w_skills: ['Skills', 'कौशल', 'कौशल्ये'],
+  w_privacy: ['Only you, the Owner and Admin can see this.', 'इसे केवल आप, मालिक और एडमिन देख सकते हैं।', 'हे फक्त तुम्ही, मालक आणि ॲडमिन पाहू शकतात.'],
+  w_docs: ['Documents', 'कागज़ात', 'कागदपत्रे'],
+  w_docs_note: ['Show the original documents to the Admin. The app stores only "checked / not checked", not the document itself.', 'मूल कागज़ात एडमिन को दिखाएँ। ऐप केवल "जाँचा / नहीं जाँचा" रखता है, कागज़ नहीं।', 'मूळ कागदपत्रे ॲडमिनला दाखवा. ॲप फक्त "तपासले / नाही तपासले" ठेवते, कागद नाही.'],
+  doc_id: ['Identity card (Aadhaar)', 'पहचान पत्र (आधार)', 'ओळखपत्र (आधार)'],
+  doc_address: ['Address proof', 'पते का प्रमाण', 'पत्त्याचा पुरावा'],
+  doc_safety_cert: ['Safety training certificate', 'सुरक्षा ट्रेनिंग प्रमाणपत्र', 'सुरक्षा प्रशिक्षण प्रमाणपत्र'],
+  doc_license: ['Electrical / lift licence', 'बिजली / लिफ्ट लाइसेंस', 'वीज / लिफ्ट परवाना'],
+  ds_verified: ['Checked', 'जाँचा गया', 'तपासले'],
+  ds_rejected: ['Not accepted', 'स्वीकार नहीं', 'स्वीकारले नाही'],
+  ds_pending: ['Not checked yet', 'अभी नहीं जाँचा', 'अजून तपासले नाही'],
+  av_available: ['Available', 'उपलब्ध', 'उपलब्ध'],
+  av_busy: ['Busy', 'व्यस्त', 'व्यस्त'],
+  av_leave: ['On leave', 'छुट्टी पर', 'रजेवर'],
+  s_w_avail: ['Are you available for new work? Add your phone and work area.', 'क्या आप नए काम के लिए उपलब्ध हैं? अपना फ़ोन और काम का इलाका जोड़ें।', 'तुम्ही नवीन कामासाठी उपलब्ध आहात का? तुमचा फोन आणि कामाचा भाग जोडा.'],
+  s_w_skills: ['Tap every skill you have.', 'आपके पास जो भी कौशल हैं उन्हें दबाएँ।', 'तुमच्याकडे असलेले प्रत्येक कौशल्य दाबा.'],
+  skill_install: ['Lift installation', 'लिफ्ट इंस्टॉलेशन', 'लिफ्ट बसवणे'],
+  skill_wiring: ['Wiring', 'वायरिंग', 'वायरिंग'],
+  skill_welding: ['Welding', 'वेल्डिंग', 'वेल्डिंग'],
+  skill_service: ['Service and repair', 'सर्विस और मरम्मत', 'सर्व्हिस आणि दुरुस्ती'],
+  skill_qc: ['Inspection', 'जाँच', 'तपासणी'],
+  skill_driving: ['Driving', 'गाड़ी चलाना', 'गाडी चालवणे'],
+  skill_survey: ['Site survey', 'साइट सर्वे', 'साइट सर्व्हे'],
+  skill_sales: ['Selling', 'बिक्री', 'विक्री'],
+  authorised: ['Allowed to install', 'इंस्टॉल करने की अनुमति', 'बसवण्याची परवानगी'],
+  not_authorised: ['Training or documents missing', 'ट्रेनिंग या कागज़ात बाकी', 'प्रशिक्षण किंवा कागदपत्रे बाकी'],
+  auth_required: ['Company rule: only technicians who passed training and whose ID is checked can be given a job.', 'कंपनी नियम: केवल ट्रेनिंग पास और पहचान जाँचे गए तकनीशियन को ही काम दिया जा सकता है।', 'कंपनीचा नियम: प्रशिक्षण पास आणि ओळख तपासलेल्या तंत्रज्ञालाच काम देता येते.'],
+  err_not_authorised: ['This technician has not finished training or document checks.', 'इस तकनीशियन की ट्रेनिंग या कागज़ जाँच पूरी नहीं हुई।', 'या तंत्रज्ञाचे प्रशिक्षण किंवा कागदपत्र तपासणी पूर्ण नाही.'],
+  training: ['Training', 'ट्रेनिंग', 'प्रशिक्षण'],
+  s_training: ['Short lessons for your work. Listen, then answer 3 easy questions.', 'आपके काम के छोटे पाठ। सुनें, फिर 3 आसान सवालों के जवाब दें।', 'तुमच्या कामाचे छोटे धडे. ऐका, मग 3 सोप्या प्रश्नांची उत्तरे द्या.'],
+  train_parts: ['3 short lessons + 3 questions', '3 छोटे पाठ + 3 सवाल', '3 छोटे धडे + 3 प्रश्न'],
+  train_finish: ['Check my answers', 'मेरे जवाब जाँचें', 'माझी उत्तरे तपासा'],
+  lesson_n: ['Lesson {n} of {m}', 'पाठ {n} / {m}', 'धडा {n} / {m}'],
+  train_try_again: ['Try once more', 'एक बार और कोशिश करें', 'पुन्हा एकदा प्रयत्न करा'],
+  train_retry: ['Listen to the lessons again and answer the questions. You can try as many times as you need.', 'पाठ फिर से सुनें और जवाब दें। आप जितनी बार चाहें कोशिश कर सकते हैं।', 'धडे पुन्हा ऐका आणि उत्तरे द्या. तुम्हाला हवे तितक्या वेळा प्रयत्न करता येतो.'],
+  train_next: ['Do the next lesson from Me → Training.', 'अगला पाठ मैं → ट्रेनिंग से करें।', 'पुढचा धडा मी → प्रशिक्षण मधून करा.'],
+  what_train_pass: ['Well done! You got {n} of 3 right. "{m}" is passed.', 'शाबाश! 3 में से {n} सही। "{m}" पास हुआ।', 'छान! 3 पैकी {n} बरोबर. "{m}" पास झाले.'],
+  what_train_fail: ['You got {n} of 3 right. You need at least 2.', '3 में से {n} सही। कम से कम 2 चाहिए।', '3 पैकी {n} बरोबर. किमान 2 हवेत.'],
+  err_quiz: ['The training answers do not match.', 'ट्रेनिंग के जवाब मेल नहीं खाते।', 'प्रशिक्षणाची उत्तरे जुळत नाहीत.'],
+  pay_transparent: ['Technician pay is worked out from your saved work: steps with photos, inspections passed first time, and service visits.', 'तकनीशियन का भुगतान आपके सेव काम से बनता है: फोटो वाले चरण, पहली बार में पास जाँच और सर्विस विज़िट।', 'तंत्रज्ञाचे पैसे तुमच्या जतन कामावरून ठरतात: फोटोसह पायऱ्या, पहिल्याच वेळी पास तपासणी आणि सर्व्हिस भेटी.'],
+  tr_app_t: ['Using this app', 'यह ऐप कैसे चलाएँ', 'हे ॲप कसे वापरावे'],
+  tr_app_l1: ['Tap the big button "Start My Next Task". The app asks one question on each screen. Tap 🔊 to hear it.', 'बड़ा बटन "मेरा अगला काम शुरू करें" दबाएँ। ऐप हर स्क्रीन पर एक सवाल पूछता है। सुनने के लिए 🔊 दबाएँ।', 'मोठे बटण "माझे पुढचे काम सुरू करा" दाबा. ॲप प्रत्येक स्क्रीनवर एक प्रश्न विचारते. ऐकण्यासाठी 🔊 दाबा.'],
+  tr_app_l2: ['Your work is saved on the phone by itself. If you go back, nothing is lost. Photos are taken only with the camera inside the app.', 'आपका काम फ़ोन में अपने आप सेव होता है। पीछे जाने पर कुछ नहीं खोता। फोटो केवल ऐप के कैमरे से लिए जाते हैं।', 'तुमचे काम फोनवर आपोआप जतन होते. मागे गेलात तरी काही हरवत नाही. फोटो फक्त ॲपमधील कॅमेऱ्याने घेतले जातात.'],
+  tr_app_l3: ['After each action the app tells you what happened and who works next. If you are stuck, tap Help or ask in chat.', 'हर काम के बाद ऐप बताता है कि क्या हुआ और आगे कौन काम करेगा। अटकें तो मदद दबाएँ या चैट में पूछें।', 'प्रत्येक कामानंतर ॲप सांगते काय झाले आणि पुढे कोण काम करेल. अडकलात तर मदत दाबा किंवा चॅटमध्ये विचारा.'],
+  tr_app_q1: ['How do you start your work?', 'आप अपना काम कैसे शुरू करते हैं?', 'तुम्ही तुमचे काम कसे सुरू करता?'],
+  tr_app_q1_a: ['Tap "Start My Next Task"', '"मेरा अगला काम शुरू करें" दबाएँ', '"माझे पुढचे काम सुरू करा" दाबा'],
+  tr_app_q1_b: ['Call the office every time', 'हर बार ऑफ़िस को कॉल करें', 'प्रत्येक वेळी ऑफिसला फोन करा'],
+  tr_app_q1_c: ['Wait for a message', 'संदेश का इंतज़ार करें', 'संदेशाची वाट पाहा'],
+  tr_app_q2: ['How are photos added?', 'फोटो कैसे जोड़े जाते हैं?', 'फोटो कसे जोडले जातात?'],
+  tr_app_q2_a: ['From the phone gallery', 'फ़ोन गैलरी से', 'फोन गॅलरीतून'],
+  tr_app_q2_b: ['Only with the camera inside the app', 'केवल ऐप के कैमरे से', 'फक्त ॲपमधील कॅमेऱ्याने'],
+  tr_app_q2_c: ['Forwarded from WhatsApp', 'व्हाट्सएप से फ़ॉरवर्ड करके', 'व्हॉट्सॲपवरून फॉरवर्ड करून'],
+  tr_app_q3: ['You pressed Back by mistake. What happens?', 'गलती से पीछे दबा दिया। क्या होगा?', 'चुकून मागे दाबले. काय होईल?'],
+  tr_app_q3_a: ['All work is deleted', 'सारा काम मिट जाता है', 'सगळे काम पुसले जाते'],
+  tr_app_q3_b: ['The phone must be restarted', 'फ़ोन फिर से चालू करना पड़ता है', 'फोन पुन्हा सुरू करावा लागतो'],
+  tr_app_q3_c: ['The work is kept as a draft', 'काम ड्राफ़्ट में रहता है', 'काम ड्राफ्टमध्ये राहते'],
+  tr_safety_t: ['Safety first', 'सुरक्षा पहले', 'सुरक्षा प्रथम'],
+  tr_safety_l1: ['Stop your vehicle in a safe place before using the phone. Never use the app while riding.', 'फ़ोन चलाने से पहले गाड़ी सुरक्षित जगह रोकें। चलती गाड़ी पर कभी ऐप न चलाएँ।', 'फोन वापरण्यापूर्वी गाडी सुरक्षित जागी थांबवा. चालू गाडीवर कधीही ॲप वापरू नका.'],
+  tr_safety_l2: ['Wear a helmet and safety shoes, and a harness when working high. Barricade an open shaft before starting work.', 'हेलमेट और सुरक्षा जूते पहनें, ऊँचाई पर हार्नेस लगाएँ। काम से पहले खुले शाफ्ट पर बैरिकेड लगाएँ।', 'हेल्मेट आणि सुरक्षा बूट घाला, उंचीवर हार्नेस वापरा. काम सुरू करण्यापूर्वी उघड्या शाफ्टला बॅरिकेड लावा.'],
+  tr_safety_l3: ['Switch off and lock the power before touching wiring. If anything is unsafe, stop and tap "I can\'t do this step".', 'वायरिंग छूने से पहले बिजली बंद करके ताला लगाएँ। कुछ भी असुरक्षित लगे तो रुकें और "यह चरण नहीं कर सकता" दबाएँ।', 'वायरिंगला हात लावण्यापूर्वी वीज बंद करून कुलूप लावा. काही असुरक्षित वाटले तर थांबा आणि "ही पायरी करू शकत नाही" दाबा.'],
+  tr_safety_q1: ['When can you use the app while travelling?', 'सफ़र में ऐप कब चला सकते हैं?', 'प्रवासात ॲप कधी वापरू शकता?'],
+  tr_safety_q1_a: ['While riding slowly', 'धीरे चलाते समय', 'हळू चालवताना'],
+  tr_safety_q1_b: ['Only after stopping in a safe place', 'केवल सुरक्षित जगह रुकने के बाद', 'फक्त सुरक्षित जागी थांबल्यानंतर'],
+  tr_safety_q1_c: ['At a traffic signal', 'ट्रैफ़िक सिग्नल पर', 'ट्रॅफिक सिग्नलवर'],
+  tr_safety_q2: ['The shaft is open and has no barricade. What do you do?', 'शाफ्ट खुला है और बैरिकेड नहीं है। आप क्या करेंगे?', 'शाफ्ट उघडा आहे आणि बॅरिकेड नाही. तुम्ही काय कराल?'],
+  tr_safety_q2_a: ['Put a barricade before working', 'काम से पहले बैरिकेड लगाएँ', 'काम करण्यापूर्वी बॅरिकेड लावा'],
+  tr_safety_q2_b: ['Work quickly', 'जल्दी से काम करें', 'पटकन काम करा'],
+  tr_safety_q2_c: ['Ignore it', 'ध्यान न दें', 'दुर्लक्ष करा'],
+  tr_safety_q3: ['What must you do before touching wiring?', 'वायरिंग छूने से पहले क्या करना ज़रूरी है?', 'वायरिंगला हात लावण्यापूर्वी काय करणे आवश्यक आहे?'],
+  tr_safety_q3_a: ['Test it with a wet hand', 'गीले हाथ से जाँचें', 'ओल्या हाताने तपासा'],
+  tr_safety_q3_b: ['Ask the customer', 'ग्राहक से पूछें', 'ग्राहकाला विचारा'],
+  tr_safety_q3_c: ['Switch off and lock the power', 'बिजली बंद करके ताला लगाएँ', 'वीज बंद करून कुलूप लावा'],
+  tr_lead_t: ['Adding a good lead', 'अच्छी लीड कैसे जोड़ें', 'चांगली लीड कशी जोडावी'],
+  tr_lead_l1: ['Take photos of the building front and of the place where the lift will go. The app adds the GPS location.', 'इमारत के सामने और लिफ्ट की जगह की फोटो लें। ऐप GPS लोकेशन जोड़ता है।', 'इमारतीच्या समोरचा आणि लिफ्टच्या जागेचा फोटो घ्या. ॲप GPS ठिकाण जोडते.'],
+  tr_lead_l2: ['Write the name and phone number of the person who decides. Read the number back to them.', 'फ़ैसला लेने वाले व्यक्ति का नाम और फ़ोन नंबर लिखें। नंबर उन्हें पढ़कर सुनाएँ।', 'निर्णय घेणाऱ्या व्यक्तीचे नाव आणि फोन नंबर लिहा. नंबर त्यांना वाचून दाखवा.'],
+  tr_lead_l3: ['Do not add the same building twice. Sales checks every lead and only the first valid lead counts.', 'एक ही इमारत दो बार न जोड़ें। सेल्स हर लीड जाँचता है और केवल पहली सही लीड गिनी जाती है।', 'एकच इमारत दोनदा जोडू नका. सेल्स प्रत्येक लीड तपासते आणि फक्त पहिली योग्य लीड मोजली जाते.'],
+  tr_lead_q1: ['Which photos are needed for a lead?', 'लीड के लिए कौन सी फोटो चाहिए?', 'लीडसाठी कोणते फोटो लागतात?'],
+  tr_lead_q1_a: ['A selfie', 'सेल्फ़ी', 'सेल्फी'],
+  tr_lead_q1_b: ['The shop next door', 'पास की दुकान', 'शेजारचे दुकान'],
+  tr_lead_q1_c: ['Building front and the lift place', 'इमारत का सामना और लिफ्ट की जगह', 'इमारतीचा समोरचा भाग आणि लिफ्टची जागा'],
+  tr_lead_q2: ['Whose phone number should you write?', 'किसका फ़ोन नंबर लिखना चाहिए?', 'कोणाचा फोन नंबर लिहावा?'],
+  tr_lead_q2_a: ['The person who decides', 'फ़ैसला लेने वाले का', 'निर्णय घेणाऱ्याचा'],
+  tr_lead_q2_b: ['Only the watchman', 'केवल चौकीदार का', 'फक्त वॉचमनचा'],
+  tr_lead_q2_c: ['Any number', 'कोई भी नंबर', 'कोणताही नंबर'],
+  tr_lead_q3: ['Someone already added this building. What do you do?', 'यह इमारत किसी ने पहले ही जोड़ दी है। आप क्या करेंगे?', 'ही इमारत कोणीतरी आधीच जोडली आहे. तुम्ही काय कराल?'],
+  tr_lead_q3_a: ['Add it again', 'फिर से जोड़ें', 'पुन्हा जोडा'],
+  tr_lead_q3_b: ['Do not add it twice — the first valid lead counts', 'दो बार न जोड़ें — पहली सही लीड गिनी जाती है', 'दोनदा जोडू नका — पहिली योग्य लीड मोजली जाते'],
+  tr_lead_q3_c: ['Change the name and add it', 'नाम बदलकर जोड़ें', 'नाव बदलून जोडा'],
+  tr_install_t: ['Installation steps', 'इंस्टॉलेशन के चरण', 'बसवण्याच्या पायऱ्या'],
+  tr_install_l1: ['Do the 12 installation steps in order. Take a photo or video of each step as proof.', '12 इंस्टॉलेशन चरण क्रम से करें। हर चरण की फोटो या वीडियो सबूत के लिए लें।', '12 पायऱ्या क्रमाने करा. प्रत्येक पायरीचा फोटो किंवा व्हिडिओ पुरावा म्हणून घ्या.'],
+  tr_install_l2: ['Check plumb and rail alignment with measuring tools before fixing. Never skip the safety device test.', 'फ़िक्स करने से पहले नापने के औज़ार से प्लंब और रेल की सीध जाँचें। सुरक्षा उपकरण की जाँच कभी न छोड़ें।', 'बसवण्यापूर्वी मापाच्या साधनांनी प्लंब आणि रेलची सरळ रेषा तपासा. सुरक्षा उपकरणाची चाचणी कधीही सोडू नका.'],
+  tr_install_l3: ['If material is missing or the site is not ready, tap "I can\'t do this step". The right person gets the problem.', 'सामान कम हो या साइट तैयार न हो तो "यह चरण नहीं कर सकता" दबाएँ। सही व्यक्ति को समस्या पहुँचती है।', 'साहित्य कमी असेल किंवा साइट तयार नसेल तर "ही पायरी करू शकत नाही" दाबा. योग्य व्यक्तीकडे समस्या पोहोचते.'],
+  tr_install_q1: ['How must the 12 steps be done?', '12 चरण कैसे करने हैं?', '12 पायऱ्या कशा करायच्या?'],
+  tr_install_q1_a: ['In order, with a photo of each', 'क्रम से, हर चरण की फोटो के साथ', 'क्रमाने, प्रत्येकाच्या फोटोसह'],
+  tr_install_q1_b: ['In any order', 'किसी भी क्रम में', 'कोणत्याही क्रमाने'],
+  tr_install_q1_c: ['Photos only at the end', 'फोटो केवल आख़िर में', 'फोटो फक्त शेवटी'],
+  tr_install_q2: ['When can the safety device test be skipped?', 'सुरक्षा उपकरण की जाँच कब छोड़ सकते हैं?', 'सुरक्षा उपकरणाची चाचणी कधी सोडता येते?'],
+  tr_install_q2_a: ['When we are late', 'जब देर हो रही हो', 'उशीर होत असेल तेव्हा'],
+  tr_install_q2_b: ['When the customer says so', 'जब ग्राहक कहे', 'ग्राहक म्हणेल तेव्हा'],
+  tr_install_q2_c: ['Never', 'कभी नहीं', 'कधीच नाही'],
+  tr_install_q3: ['Some material is missing. What do you do?', 'कुछ सामान कम है। आप क्या करेंगे?', 'काही साहित्य कमी आहे. तुम्ही काय कराल?'],
+  tr_install_q3_a: ['Buy it from a local shop', 'पास की दुकान से ख़रीदें', 'जवळच्या दुकानातून विकत घ्या'],
+  tr_install_q3_b: ['Tap "I can\'t do this step"', '"यह चरण नहीं कर सकता" दबाएँ', '"ही पायरी करू शकत नाही" दाबा'],
+  tr_install_q3_c: ['Go home without telling anyone', 'किसी को बताए बिना घर चले जाएँ', 'कोणालाही न सांगता घरी जा'],
+  tr_customer_t: ['Working with customers', 'ग्राहकों के साथ काम', 'ग्राहकांसोबत काम'],
+  tr_customer_l1: ['Be polite. Say your name and that you are from AIEC. Explain the next step in simple words.', 'विनम्र रहें। अपना नाम बताएँ और कहें कि आप AIEC से हैं। अगला कदम आसान शब्दों में समझाएँ।', 'नम्र राहा. तुमचे नाव सांगा आणि तुम्ही AIEC कडून आहात हे सांगा. पुढची पायरी सोप्या शब्दांत समजावा.'],
+  tr_customer_l2: ['Never take cash for yourself. Customers pay only to the company bank account. Finance checks every payment.', 'कभी अपने लिए नकद न लें। ग्राहक केवल कंपनी के बैंक खाते में भुगतान करते हैं। अकाउंट्स हर भुगतान जाँचता है।', 'स्वतःसाठी कधीही रोख घेऊ नका. ग्राहक फक्त कंपनीच्या बँक खात्यात पैसे भरतात. हिशेब विभाग प्रत्येक पेमेंट तपासतो.'],
+  tr_customer_l3: ['If a customer complains, listen, record it as a problem ticket, and tell them who will call back and when.', 'ग्राहक शिकायत करे तो सुनें, समस्या टिकट बनाएँ, और बताएँ कि कौन और कब वापस कॉल करेगा।', 'ग्राहकाने तक्रार केली तर ऐका, समस्या तिकीट बनवा आणि कोण व कधी परत फोन करेल ते सांगा.'],
+  tr_customer_q1: ['What do you do first when you meet a customer?', 'ग्राहक से मिलते ही पहले क्या करें?', 'ग्राहकाला भेटल्यावर आधी काय करावे?'],
+  tr_customer_q1_a: ['Ask for money', 'पैसे माँगें', 'पैसे मागा'],
+  tr_customer_q1_b: ['Say your name and that you are from AIEC', 'अपना नाम बताएँ और कहें कि आप AIEC से हैं', 'तुमचे नाव सांगा आणि AIEC कडून आहात हे सांगा'],
+  tr_customer_q1_c: ['Start work without talking', 'बिना बात किए काम शुरू करें', 'न बोलता काम सुरू करा'],
+  tr_customer_q2: ['The customer wants to give you cash. What do you do?', 'ग्राहक आपको नकद देना चाहता है। आप क्या करेंगे?', 'ग्राहक तुम्हाला रोख देऊ इच्छितो. तुम्ही काय कराल?'],
+  tr_customer_q2_a: ['Take it and give a receipt later', 'ले लें और रसीद बाद में दें', 'घ्या आणि पावती नंतर द्या'],
+  tr_customer_q2_b: ['Take half of it', 'आधा ले लें', 'अर्धे घ्या'],
+  tr_customer_q2_c: ['Ask them to pay the company bank account', 'उन्हें कंपनी के बैंक खाते में भुगतान करने को कहें', 'त्यांना कंपनीच्या बँक खात्यात पैसे भरायला सांगा'],
+  tr_customer_q3: ['The customer is unhappy. What do you do?', 'ग्राहक नाखुश है। आप क्या करेंगे?', 'ग्राहक नाराज आहे. तुम्ही काय कराल?'],
+  tr_customer_q3_a: ['Listen, make a ticket, say who will call back', 'सुनें, टिकट बनाएँ, बताएँ कौन कॉल करेगा', 'ऐका, तिकीट बनवा, कोण फोन करेल ते सांगा'],
+  tr_customer_q3_b: ['Argue with them', 'उनसे बहस करें', 'त्यांच्याशी वाद घाला'],
+  tr_customer_q3_c: ['Ignore them', 'अनदेखा करें', 'दुर्लक्ष करा'],
+
+  /* ---------- technician weekly pay ---------- */
+  earnings: ['Earnings', 'कमाई', 'कमाई'],
+  s_earn: ['Your work and pay for each week. Each line comes from work saved in the app.', 'हर हफ़्ते का काम और भुगतान। हर लाइन ऐप में सेव काम से आती है।', 'प्रत्येक आठवड्याचे काम आणि पैसे. प्रत्येक ओळ ॲपमध्ये जतन केलेल्या कामातून येते.'],
+  pay_rules: ['How pay is worked out', 'भुगतान कैसे बनता है', 'पैसे कसे ठरतात'],
+  pay_rules_note: ['Only installation steps saved with a photo or video count. The Owner/Admin approves each week; Finance pays and records the bank reference.', 'केवल फोटो या वीडियो के साथ सेव चरण गिने जाते हैं। मालिक/एडमिन हर हफ़्ता मंज़ूर करते हैं; अकाउंट्स भुगतान करके बैंक रेफ़रेंस दर्ज करता है।', 'फक्त फोटो किंवा व्हिडिओसह जतन पायऱ्या मोजल्या जातात. मालक/ॲडमिन प्रत्येक आठवडा मंजूर करतात; हिशेब विभाग पैसे देऊन बँक संदर्भ नोंदवतो.'],
+  week: ['Week', 'हफ़्ता', 'आठवडा'],
+  earn_step: ['Each installation step', 'हर इंस्टॉलेशन चरण', 'प्रत्येक बसवण्याची पायरी'],
+  earn_qc_bonus: ['Final inspection passed first time', 'अंतिम जाँच पहली बार में पास', 'अंतिम तपासणी पहिल्याच वेळी पास'],
+  earn_amc_visit: ['Service visit', 'सर्विस विज़िट', 'सर्व्हिस भेट'],
+  earn_total: ['Worked out by the app', 'ऐप द्वारा गिना गया', 'ॲपने मोजलेले'],
+  earn_final: ['Amount to approve', 'मंज़ूर करने वाली रकम', 'मंजूर करायची रक्कम'],
+  earn_approved: ['Approved', 'मंज़ूर', 'मंजूर'],
+  earn_paid: ['Paid', 'भुगतान हुआ', 'पैसे दिले'],
+  earn_diff: ['Work changed after approval: {d} will be added in a later week.', 'मंज़ूरी के बाद काम बदला: {d} अगले हफ़्ते में जोड़ा जाएगा।', 'मंजुरीनंतर काम बदलले: {d} पुढच्या आठवड्यात जोडले जातील.'],
+  wp_running: ['This week — still running', 'यह हफ़्ता — चल रहा है', 'हा आठवडा — सुरू आहे'],
+  wp_waiting: ['Waiting for approval', 'मंज़ूरी बाकी', 'मंजुरी बाकी'],
+  wp_approved: ['Approved — to be paid', 'मंज़ूर — भुगतान बाकी', 'मंजूर — पैसे द्यायचे'],
+  wp_paid: ['Paid', 'भुगतान हुआ', 'पैसे दिले'],
+  pay_dispute: ['I have a question about this', 'इसके बारे में मेरा सवाल है', 'याबद्दल माझा प्रश्न आहे'],
+  s_pay_approve: ['Check the work lines. If you change the amount, write the reason.', 'काम की लाइनें जाँचें। रकम बदलें तो कारण लिखें।', 'कामाच्या ओळी तपासा. रक्कम बदलली तर कारण लिहा.'],
+  f_adjust: ['Add or take away, ₹ (use minus for less)', 'जोड़ें या घटाएँ, ₹ (कम के लिए माइनस)', 'वाढवा किंवा कमी करा, ₹ (कमीसाठी वजा)'],
+  pay_human_note: ['The app only adds up saved work. A person decides the final pay.', 'ऐप केवल सेव काम जोड़ता है। अंतिम भुगतान व्यक्ति तय करता है।', 'ॲप फक्त जतन काम मोजते. अंतिम पैसे व्यक्ती ठरवते.'],
+  what_pay_approved: ['The week is approved. Finance will pay it.', 'हफ़्ता मंज़ूर हो गया। अकाउंट्स भुगतान करेगा।', 'आठवडा मंजूर झाला. हिशेब विभाग पैसे देईल.'],
+  s_pay_paid: ['After paying from the bank, write the bank reference number.', 'बैंक से भुगतान के बाद बैंक रेफ़रेंस नंबर लिखें।', 'बँकेतून पैसे दिल्यानंतर बँक संदर्भ क्रमांक लिहा.'],
+  what_pay_paid: ['The payment is recorded. The technician can see it.', 'भुगतान दर्ज हो गया। तकनीशियन इसे देख सकता है।', 'पेमेंट नोंदवले. तंत्रज्ञाला ते दिसेल.'],
+  s_pay_dispute: ['Tell us what is wrong with this week\'s pay.', 'बताएँ कि इस हफ़्ते के भुगतान में क्या गलत है।', 'या आठवड्याच्या पैशांत काय चुकले ते सांगा.'],
+  what_pay_disputed: ['Your question is sent to the Owner/Admin.', 'आपका सवाल मालिक/एडमिन को भेजा गया।', 'तुमचा प्रश्न मालक/ॲडमिनकडे पाठवला.'],
+  f_answer: ['Answer', 'जवाब', 'उत्तर'],
+  pay_answer_note: ['The technician will see your answer. If pay must change, add it as an adjustment in a later week.', 'तकनीशियन आपका जवाब देखेगा। भुगतान बदलना हो तो अगले हफ़्ते में जोड़ें।', 'तंत्रज्ञाला तुमचे उत्तर दिसेल. पैसे बदलायचे असल्यास पुढच्या आठवड्यात जोडा.'],
+  what_pay_answered: ['Your answer is saved and the question is closed.', 'आपका जवाब सेव हुआ और सवाल बंद हो गया।', 'तुमचे उत्तर जतन झाले आणि प्रश्न बंद झाला.'],
+  err_week_open: ['This week is not finished yet.', 'यह हफ़्ता अभी पूरा नहीं हुआ।', 'हा आठवडा अजून पूर्ण झाला नाही.'],
+
+  /* ---------- leaderboard ---------- */
+  leaderboard: ['Good work board', 'अच्छे काम की सूची', 'चांगल्या कामाची यादी'],
+  s_leaders: ['Points for good quality work this month. Speed alone never gives points.', 'इस महीने अच्छे काम के अंक। केवल जल्दी करने से अंक नहीं मिलते।', 'या महिन्यातील चांगल्या कामाचे गुण. फक्त घाईने गुण मिळत नाहीत.'],
+  this_month: ['This month', 'इस महीने', 'या महिन्यात'],
+  last_month: ['Last month', 'पिछले महीने', 'मागच्या महिन्यात'],
+  lb_valid_lead: ['Valid lead', 'सही लीड', 'योग्य लीड'],
+  lb_deal_won: ['Deal won', 'सौदा पक्का', 'व्यवहार पक्का'],
+  lb_first_pass: ['Passed inspection first time', 'पहली बार में जाँच पास', 'पहिल्याच वेळी तपासणी पास'],
+  lb_on_target: ['Finished within target days', 'तय दिनों में पूरा', 'ठरलेल्या दिवसांत पूर्ण'],
+  lb_amc_visit: ['Service visit', 'सर्विस विज़िट', 'सर्व्हिस भेट'],
+  lb_rules: ['How points are given', 'अंक कैसे मिलते हैं', 'गुण कसे मिळतात'],
+  lb_r1: ['Lead accepted by Sales: 10 points', 'सेल्स ने लीड स्वीकारी: 10 अंक', 'सेल्सने लीड स्वीकारली: 10 गुण'],
+  lb_r2: ['Deal won: 20 points', 'सौदा पक्का: 20 अंक', 'व्यवहार पक्का: 20 गुण'],
+  lb_r3: ['Final inspection passed first time: 15 points', 'अंतिम जाँच पहली बार में पास: 15 अंक', 'अंतिम तपासणी पहिल्याच वेळी पास: 15 गुण'],
+  lb_r4: ['Installation within the target days and passed: 10 points', 'तय दिनों में इंस्टॉलेशन और पास: 10 अंक', 'ठरलेल्या दिवसांत बसवणे आणि पास: 10 गुण'],
+  lb_r5: ['Service visit with photos: 5 points', 'फोटो के साथ सर्विस विज़िट: 5 अंक', 'फोटोसह सर्व्हिस भेट: 5 गुण'],
+  lb_fair: ['Points come only from work checked by another person. This board is for encouragement, not punishment.', 'अंक केवल दूसरे व्यक्ति द्वारा जाँचे गए काम से मिलते हैं। यह सूची हौसला बढ़ाने के लिए है, सज़ा के लिए नहीं।', 'गुण फक्त दुसऱ्या व्यक्तीने तपासलेल्या कामातून मिळतात. ही यादी प्रोत्साहनासाठी आहे, शिक्षेसाठी नाही.'],
+
+  /* ---------- helper ---------- */
+  helper: ['Ask for help', 'मदद पूछें', 'मदत विचारा'],
+  s_helper: ['Type or speak your question. The app finds the answer in AIEC training and help notes.', 'अपना सवाल लिखें या बोलें। ऐप AIEC ट्रेनिंग और मदद नोट्स में जवाब ढूँढता है।', 'तुमचा प्रश्न लिहा किंवा बोला. ॲप AIEC प्रशिक्षण आणि मदत टिपांमध्ये उत्तर शोधते.'],
+  helper_ph: ['For example: how do I record a payment?', 'जैसे: भुगतान कैसे दर्ज करें?', 'उदा.: पेमेंट कसे नोंदवायचे?'],
+  helper_ask: ['Find answer', 'जवाब ढूँढें', 'उत्तर शोधा'],
+  helper_none: ['No answer found. Ask in chat — the office will reply.', 'जवाब नहीं मिला। चैट में पूछें — ऑफ़िस जवाब देगा।', 'उत्तर सापडले नाही. चॅटमध्ये विचारा — ऑफिस उत्तर देईल.'],
+  helper_note: ['This helper only searches AIEC\'s own training and help notes on this phone. It is not an AI chatbot and works without internet.', 'यह मदद केवल इस फ़ोन पर AIEC की अपनी ट्रेनिंग और मदद नोट्स खोजती है। यह AI चैटबॉट नहीं है और बिना इंटरनेट चलती है।', 'ही मदत फक्त या फोनवरील AIEC चे स्वतःचे प्रशिक्षण आणि मदत टिपा शोधते. हा AI चॅटबॉट नाही आणि इंटरनेटशिवाय चालतो.'],
+  src_training: ['Training', 'ट्रेनिंग', 'प्रशिक्षण'],
+  src_sop: ['Installation steps', 'इंस्टॉलेशन चरण', 'बसवण्याच्या पायऱ्या'],
+  src_prep: ['Site preparation', 'साइट तैयारी', 'साइट तयारी'],
+  src_faq: ['Common questions', 'आम सवाल', 'नेहमीचे प्रश्न'],
+  src_help: ['Help', 'मदद', 'मदत'],
+  src_about: ['About the app', 'ऐप के बारे में', 'ॲपबद्दल'],
+  src_rules: ['Business rules', 'व्यापार नियम', 'व्यवसाय नियम'],
+  faq_q1: ['How do I add a new site?', 'नई साइट कैसे जोड़ें?', 'नवीन साइट कशी जोडायची?'],
+  faq_a1: ['On the home screen tap New site. Stop in a safe place, take photos of the building, save the location and write the contact.', 'होम स्क्रीन पर नई साइट दबाएँ। सुरक्षित जगह रुकें, इमारत की फोटो लें, लोकेशन सेव करें और संपर्क लिखें।', 'होम स्क्रीनवर नवीन साइट दाबा. सुरक्षित जागी थांबा, इमारतीचे फोटो घ्या, ठिकाण जतन करा आणि संपर्क लिहा.'],
+  faq_q2: ['Where do I see my next work?', 'मेरा अगला काम कहाँ दिखेगा?', 'माझे पुढचे काम कुठे दिसेल?'],
+  faq_a2: ['On the home screen. Tap the big button Start My Next Task.', 'होम स्क्रीन पर। बड़ा बटन मेरा अगला काम शुरू करें दबाएँ।', 'होम स्क्रीनवर. मोठे बटण माझे पुढचे काम सुरू करा दाबा.'],
+  faq_q3: ['How do I record a payment?', 'भुगतान कैसे दर्ज करें?', 'पेमेंट कसे नोंदवायचे?'],
+  faq_a3: ['Sales records the payment with the bank reference. Finance checks the bank and confirms it. A screenshot is not proof.', 'सेल्स बैंक रेफ़रेंस के साथ भुगतान दर्ज करता है। अकाउंट्स बैंक में देखकर पक्का करता है। स्क्रीनशॉट सबूत नहीं है।', 'सेल्स बँक संदर्भासह पेमेंट नोंदवते. हिशेब विभाग बँकेत पाहून खात्री करतो. स्क्रीनशॉट पुरावा नाही.'],
+  faq_q4: ['What if I cannot finish a step?', 'अगर मैं कोई चरण पूरा न कर पाऊँ तो?', 'मी एखादी पायरी पूर्ण करू शकलो नाही तर?'],
+  faq_a4: ['Tap I can\'t do this step and choose the reason. The right person gets the problem as a task.', 'यह चरण नहीं कर सकता दबाएँ और कारण चुनें। सही व्यक्ति को समस्या काम के रूप में मिलती है।', 'ही पायरी करू शकत नाही दाबा आणि कारण निवडा. योग्य व्यक्तीला समस्या काम म्हणून मिळते.'],
+  faq_q5: ['How do I send a WhatsApp message to a customer?', 'ग्राहक को व्हाट्सएप संदेश कैसे भेजें?', 'ग्राहकाला व्हॉट्सॲप संदेश कसा पाठवायचा?'],
+  faq_a5: ['Open the project, tap WhatsApp, choose a ready message, tap Open WhatsApp and send it. Then come back and save.', 'प्रोजेक्ट खोलें, व्हाट्सएप दबाएँ, तैयार संदेश चुनें, व्हाट्सएप खोलें दबाकर भेजें। फिर वापस आकर सेव करें।', 'प्रकल्प उघडा, व्हॉट्सॲप दाबा, तयार संदेश निवडा, व्हॉट्सॲप उघडा दाबून पाठवा. मग परत येऊन जतन करा.'],
+  faq_q6: ['When does a technician get paid?', 'तकनीशियन को भुगतान कब मिलता है?', 'तंत्रज्ञाला पैसे कधी मिळतात?'],
+  faq_a6: ['After each week ends, the Owner/Admin checks the work saved in the app and approves it. Finance then pays and records the bank reference. See Me → Earnings.', 'हर हफ़्ते के बाद मालिक/एडमिन ऐप में सेव काम जाँचकर मंज़ूर करते हैं। फिर अकाउंट्स भुगतान करके बैंक रेफ़रेंस दर्ज करता है। मैं → कमाई देखें।', 'प्रत्येक आठवड्यानंतर मालक/ॲडमिन ॲपमधील जतन काम तपासून मंजूर करतात. मग हिशेब विभाग पैसे देऊन बँक संदर्भ नोंदवतो. मी → कमाई पाहा.'],
+  faq_q7: ['How does a customer report a lift problem?', 'ग्राहक लिफ्ट की समस्या कैसे बताए?', 'ग्राहकाने लिफ्टची समस्या कशी कळवावी?'],
+  faq_a7: ['On the home screen tap Report a problem, choose the kind of problem, and speak or type it. The office assigns a person.', 'होम स्क्रीन पर समस्या बताएँ दबाएँ, समस्या का प्रकार चुनें और बोलें या लिखें। ऑफ़िस एक व्यक्ति तय करता है।', 'होम स्क्रीनवर समस्या कळवा दाबा, समस्येचा प्रकार निवडा आणि बोला किंवा लिहा. ऑफिस एक व्यक्ती ठरवते.'],
+  faq_q8: ['What is the good work board?', 'अच्छे काम की सूची क्या है?', 'चांगल्या कामाची यादी म्हणजे काय?'],
+  faq_a8: ['It gives points for quality work checked by another person: valid leads, deals won, inspections passed first time and service visits. Never for speed alone.', 'यह दूसरे व्यक्ति द्वारा जाँचे गए अच्छे काम के अंक देती है: सही लीड, पक्के सौदे, पहली बार पास जाँच और सर्विस विज़िट। केवल जल्दी के लिए कभी नहीं।', 'ही दुसऱ्या व्यक्तीने तपासलेल्या चांगल्या कामासाठी गुण देते: योग्य लीड, पक्के व्यवहार, पहिल्याच वेळी पास तपासणी आणि सर्व्हिस भेटी. फक्त घाईसाठी कधीच नाही.'],
+
+  /* ---------- photos, address ---------- */
+  q_reused: ['This looks like a photo already used before ({id}). Take a new photo.', 'यह पहले इस्तेमाल हुई फोटो जैसी लगती है ({id})। नई फोटो लें।', 'हा आधी वापरलेल्या फोटोसारखा दिसतो ({id}). नवीन फोटो घ्या.'],
+  flag_reused: ['Same photo used before', 'यही फोटो पहले भी इस्तेमाल हुई', 'हाच फोटो आधीही वापरला'],
+  addr_found: ['Address from the map:', 'नक्शे से पता:', 'नकाशावरून पत्ता:'],
+  addr_use: ['Use this address', 'यह पता इस्तेमाल करें', 'हा पत्ता वापरा'],
+  addr_check: ['This address came from the map. Check it and correct it if needed.', 'यह पता नक्शे से आया है। जाँचें और ज़रूरत हो तो सुधारें।', 'हा पत्ता नकाशावरून आला आहे. तपासा आणि गरज असल्यास दुरुस्त करा.'],
+  address_hint_online: ['With internet the app suggests an address from the location. You can also type or speak it.', 'इंटरनेट हो तो ऐप लोकेशन से पता सुझाता है। आप लिख या बोल भी सकते हैं।', 'इंटरनेट असल्यास ॲप ठिकाणावरून पत्ता सुचवते. तुम्ही लिहू किंवा बोलूही शकता.'],
+
+  /* ---------- tasks ---------- */
+  tk_amc_visit: ['Do service visit', 'सर्विस विज़िट करें', 'सर्व्हिस भेट करा'],
+  tk_amc_renew: ['Renew maintenance contract', 'रखरखाव अनुबंध नवीनीकृत करें', 'देखभाल कराराचे नूतनीकरण करा'],
+  tk_assign_ticket: ['Choose who fixes the problem', 'तय करें समस्या कौन ठीक करेगा', 'समस्या कोण दुरुस्त करेल ते ठरवा'],
+  tk_work_ticket: ['Fix the problem', 'समस्या ठीक करें', 'समस्या दुरुस्त करा'],
+  tk_confirm_ticket: ['Check the problem is fixed', 'जाँचें कि समस्या ठीक हुई', 'समस्या दुरुस्त झाली ते तपासा'],
+  tk_escalated: ['Work is stuck — help needed', 'काम अटका है — मदद चाहिए', 'काम अडकले आहे — मदत हवी'],
+  tk_second_approval: ['Second approval needed', 'दूसरी मंज़ूरी चाहिए', 'दुसरी मंजुरी हवी'],
+  tk_approve_pay: ['Approve technician pay', 'तकनीशियन भुगतान मंज़ूर करें', 'तंत्रज्ञाचे पैसे मंजूर करा'],
+  tk_pay_tech: ['Pay technician', 'तकनीशियन को भुगतान करें', 'तंत्रज्ञाला पैसे द्या'],
+  tk_pay_dispute: ['Answer pay question', 'भुगतान सवाल का जवाब दें', 'पैशांच्या प्रश्नाचे उत्तर द्या'],
+  tk_training: ['Finish your training', 'अपनी ट्रेनिंग पूरी करें', 'तुमचे प्रशिक्षण पूर्ण करा'],
+  qu_escalated: ['Stuck — needs help', 'अटके — मदद चाहिए', 'अडकलेले — मदत हवी'],
+  qu_tickets: ['Open problems (tickets)', 'खुली समस्याएँ (टिकट)', 'उघड्या समस्या (तिकीट)'],
+
+  /* ---------- business rules ---------- */
+  rg_control: ['Control and checks', 'नियंत्रण और जाँच', 'नियंत्रण आणि तपासणी'],
+  rg_control_d: ['Days before stuck work goes to the Owner/Admin; two-person approval for risky changes (1 = on); only trained technicians get jobs (1 = on).', 'अटका काम कितने दिन बाद मालिक/एडमिन को जाए; जोखिम वाले बदलाव के लिए दो व्यक्तियों की मंज़ूरी (1 = चालू); केवल प्रशिक्षित तकनीशियन को काम (1 = चालू)।', 'अडकलेले काम किती दिवसांनी मालक/ॲडमिनकडे जावे; धोकादायक बदलासाठी दोन व्यक्तींची मंजुरी (1 = चालू); फक्त प्रशिक्षित तंत्रज्ञाला काम (1 = चालू).'],
+  rg_techpay: ['Technician pay', 'तकनीशियन भुगतान', 'तंत्रज्ञाचे पैसे'],
+  rg_techpay_d: ['Pay per installation step with proof, bonus for passing final inspection first time, and pay per service visit. Check with Finance and labour rules.', 'सबूत वाले हर इंस्टॉलेशन चरण का भुगतान, पहली बार अंतिम जाँच पास का बोनस और हर सर्विस विज़िट का भुगतान। अकाउंट्स और श्रम नियमों से जाँचें।', 'पुराव्यासह प्रत्येक बसवण्याच्या पायरीचे पैसे, पहिल्याच वेळी अंतिम तपासणी पासचा बोनस आणि प्रत्येक सर्व्हिस भेटीचे पैसे. हिशेब विभाग आणि कामगार नियमांशी तपासा.'],
+  rg_amc: ['Maintenance contract (AMC)', 'रखरखाव अनुबंध (AMC)', 'देखभाल करार (AMC)'],
+  rg_amc_d: ['Yearly price for the maintenance contract after the warranty.', 'वारंटी के बाद रखरखाव अनुबंध की सालाना कीमत।', 'वॉरंटीनंतर देखभाल कराराची वार्षिक किंमत.'],
+  cfg_escalateDays: ['Days before stuck work is sent up', 'अटका काम कितने दिन बाद ऊपर भेजें', 'अडकलेले काम किती दिवसांनी वर पाठवावे'],
+  cfg_dualControl: ['Two-person approval (1 = on, 0 = off)', 'दो व्यक्ति मंज़ूरी (1 = चालू, 0 = बंद)', 'दोन व्यक्ती मंजुरी (1 = चालू, 0 = बंद)'],
+  cfg_requireTraining: ['Only trained technicians get jobs (1 = on, 0 = off)', 'केवल प्रशिक्षित तकनीशियन को काम (1 = चालू, 0 = बंद)', 'फक्त प्रशिक्षित तंत्रज्ञाला काम (1 = चालू, 0 = बंद)'],
+  cfg_paySopStep: ['Pay per installation step, ₹', 'हर इंस्टॉलेशन चरण का भुगतान, ₹', 'प्रत्येक बसवण्याच्या पायरीचे पैसे, ₹'],
+  cfg_payQcBonus: ['Bonus: final inspection passed first time, ₹', 'बोनस: पहली बार अंतिम जाँच पास, ₹', 'बोनस: पहिल्याच वेळी अंतिम तपासणी पास, ₹'],
+  cfg_payAmcVisit: ['Pay per service visit, ₹', 'हर सर्विस विज़िट का भुगतान, ₹', 'प्रत्येक सर्व्हिस भेटीचे पैसे, ₹'],
+  cfg_amcPrice: ['Maintenance contract price per year, ₹', 'रखरखाव अनुबंध की सालाना कीमत, ₹', 'देखभाल कराराची वार्षिक किंमत, ₹'],
+
+  /* ---------- new event names ---------- */
+  ev_TEMPLATE_SET: ['Message template saved', 'संदेश टेम्पलेट सेव', 'संदेश नमुना जतन'],
+  ev_TEMPLATE_DELETED: ['Message template removed', 'संदेश टेम्पलेट हटाया', 'संदेश नमुना काढला'],
+  ev_MSG_LOGGED: ['WhatsApp message sent', 'व्हाट्सएप संदेश भेजा', 'व्हॉट्सॲप संदेश पाठवला'],
+  ev_MSG_STATUS: ['Message reply recorded', 'संदेश का जवाब दर्ज', 'संदेशाचे उत्तर नोंदवले'],
+  ev_SERVICE_DONE: ['Service visit done', 'सर्विस विज़िट हुई', 'सर्व्हिस भेट झाली'],
+  ev_TICKET_OPENED: ['Problem reported', 'समस्या बताई', 'समस्या कळवली'],
+  ev_TICKET_ASSIGNED: ['Problem given to a person', 'समस्या व्यक्ति को दी', 'समस्या व्यक्तीकडे दिली'],
+  ev_TICKET_UPDATED: ['Problem work update', 'समस्या पर काम की जानकारी', 'समस्येवरील कामाची माहिती'],
+  ev_TICKET_CLOSED: ['Problem checked', 'समस्या जाँची', 'समस्या तपासली'],
+  ev_AMC_RENEWED: ['Maintenance contract renewed', 'रखरखाव अनुबंध नवीनीकृत', 'देखभाल करार नूतनीकृत'],
+  ev_APPROVAL_REQUESTED: ['Second approval asked', 'दूसरी मंज़ूरी माँगी', 'दुसरी मंजुरी मागितली'],
+  ev_APPROVAL_DECIDED: ['Second approval decided', 'दूसरी मंज़ूरी का फ़ैसला', 'दुसऱ्या मंजुरीचा निर्णय'],
+  ev_WORKER_PROFILE: ['Worker profile saved', 'कर्मचारी प्रोफ़ाइल सेव', 'कर्मचारी प्रोफाइल जतन'],
+  ev_DOC_VERIFIED: ['Worker document checked', 'कर्मचारी कागज़ जाँचा', 'कर्मचारी कागदपत्र तपासले'],
+  ev_TRAINING_PASSED: ['Training passed', 'ट्रेनिंग पास', 'प्रशिक्षण पास'],
+  ev_PAY_APPROVED: ['Technician pay approved', 'तकनीशियन भुगतान मंज़ूर', 'तंत्रज्ञाचे पैसे मंजूर'],
+  ev_PAY_PAID: ['Technician paid', 'तकनीशियन को भुगतान', 'तंत्रज्ञाला पैसे दिले'],
+  ev_PAY_DISPUTED: ['Pay question asked', 'भुगतान पर सवाल', 'पैशांबद्दल प्रश्न'],
+  ev_PAY_DISPUTE_ANSWERED: ['Pay question answered', 'भुगतान सवाल का जवाब', 'पैशांच्या प्रश्नाचे उत्तर'],
   /* event names (timeline, permissions) */
   ev_ORG_CREATED: ['Company created', 'कंपनी बनी', 'कंपनी तयार झाली'],
   ev_USER_ADDED: ['Person added', 'व्यक्ति जोड़ा', 'व्यक्ती जोडली'],
@@ -1625,12 +1999,21 @@ const QC_SITE_MEAS = ['width', 'depth', 'pit', 'head'];
 const QC_FINAL_CHECKS = ['ride', 'level', 'doors', 'alarm', 'plate', 'safetydev', 'wiring'];
 const SLOTS = ['customer', 'tech', 'qc'];
 const BLOCK_REASONS = [['material', '📦', 'supplier'], ['site', '🏗️', 'sales'], ['power', '⚡', 'sales'], ['help', '🙋', 'admin'], ['safety', '⚠️', 'admin']];
+const AMC_CHECKS = ['ride', 'doors', 'alarm', 'brake', 'ropes', 'oil', 'pit'];
+const TICKET_KINDS = [['breakdown', '🚨'], ['complaint', '😟'], ['request', '🙋']];
+const SKILLS = ['install', 'wiring', 'welding', 'service', 'qc', 'driving', 'survey', 'sales'];
+const DOCS = ['id', 'address', 'safety_cert', 'license'];
+/* training modules: [module, roles who must pass it, correct option index for each of 3 questions] */
+const TRAIN = [['app', ['field', 'sales', 'finance', 'qc', 'supplier', 'tech', 'admin'], [0, 1, 2]], ['safety', ['field', 'qc', 'supplier', 'tech'], [1, 0, 2]],
+  ['lead', ['field', 'sales'], [2, 0, 1]], ['install', ['tech', 'qc'], [0, 2, 1]], ['customer', ['sales', 'tech', 'finance'], [1, 2, 0]]];
+const DEFAULT_TEMPLATES = ['intro', 'quote', 'followup', 'payment', 'prep', 'visit', 'renewal'];
 const DEFAULT_CONFIG = {
   costAuto: 300000, costManual: 220000, costPerStop: 40000, costSS: 50000,
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 30, minMargin: 20,
-  token: 10000, arrivalPct: 90, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, dupCommission: 10
+  token: 10000, arrivalPct: 90, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, dupCommission: 10,
+  escalateDays: 3, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
 const RULE_GROUPS = {
@@ -1640,7 +2023,10 @@ const RULE_GROUPS = {
   milestones: ['arrivalPct'],
   install: ['installDays'],
   service: ['warrantyMonths', 'amcVisits', 'validityDays'],
-  dup: ['dupCommission']
+  dup: ['dupCommission'],
+  control: ['escalateDays', 'dualControl', 'requireTraining'],
+  techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
+  amc: ['amcPrice']
 };
 const groupOf = key => Object.keys(RULE_GROUPS).find(g => RULE_GROUPS[g].includes(key));
 
@@ -1682,7 +2068,8 @@ function materialList(req) {
 
 /* ---------- state ---------- */
 function emptyState() {
-  return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [] };
+  return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
+    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {} };
 }
 let S = emptyState();
 let EVENTS = [];
@@ -1690,6 +2077,7 @@ let EVENTS = [];
 /* ---------- who can see what (project + field level) ---------- */
 function canSee(u, P) {
   if (!u || !P) return false;
+  if (u.role !== 'customer' && P.tickets && P.tickets.some(x => x.owner === u.uid)) return true;
   switch (u.role) {
     case 'owner': case 'admin': case 'finance': return true;
     case 'field': return P.createdBy === u.uid || P.contributors.includes(u.uid);
@@ -1721,6 +2109,50 @@ const openCorr = (P, scope) => P.corrections.filter(c => c.scope === scope && !c
 const sopNext = P => { let i = 0; while (i < SOP.length && P.sop[i]) i++; return i; };
 const prepDone = P => PREP_ITEMS.every(([k]) => P.prep[k]);
 const roleOf = uid => (S.users[uid] || {}).role;
+
+/* ---------- helpers for service, people and pay ---------- */
+const STAFF = ['owner', 'admin', 'field', 'sales', 'finance', 'qc', 'supplier', 'tech'];
+const wk = S => S.workers;
+function worker(uid) { return S.workers[uid] || (S.workers[uid] = { profile: {}, docs: {}, training: {} }); }
+function modulesFor(role) { return TRAIN.filter(m => m[1].includes(role)).map(m => m[0]); }
+function trainingDone(uid) { const u = S.users[uid]; if (!u) return 0; const w = S.workers[uid]; return modulesFor(u.role).filter(m => w && w.training[m]).length; }
+/* authorised to install: identity verified + safety and installation training passed */
+function isAuthorised(uid) { const w = S.workers[uid]; return !!(w && w.docs.id === 'verified' && w.training.safety && w.training.install); }
+const ticketOf = (P, tid) => P.tickets.find(x => x.id === tid);
+function weekKey(iso) { const d = new Date(iso); const z = new Date(d.getTime() - d.getTimezoneOffset() * 60000); const day = (z.getUTCDay() + 6) % 7; z.setUTCDate(z.getUTCDate() - day); return z.toISOString().slice(0, 10); }
+/* technician earnings, worked out from completed work and the approved pay rules */
+function earnings(uid) {
+  const c = S.config, out = [];
+  for (const P of Object.values(S.projects)) {
+    Object.entries(P.sop).forEach(([i, x]) => { if (x.by === uid) out.push({ t: x.t, pid: P.id, what: 'sop_' + SOP[i][0], amount: c.paySopStep }); });
+    const first = P.qcFinal[0];
+    if (first && first.outcome === 'pass' && P.tech === uid) out.push({ t: first.t, pid: P.id, what: 'earn_qc_bonus', amount: c.payQcBonus });
+    Object.values(P.service).forEach(x => { if (x.by === uid) out.push({ t: x.t, pid: P.id, what: 'earn_amc_visit', amount: c.payAmcVisit }); });
+  }
+  return out.sort((a, b) => a.t < b.t ? -1 : 1);
+}
+function weeksFor(uid) {
+  const g = {};
+  for (const e of earnings(uid)) { const k = weekKey(e.t); (g[k] = g[k] || { week: k, lines: [], total: 0 }).lines.push(e); g[k].total += e.amount; }
+  Object.values(S.pay).filter(p => p.uid === uid && !g[p.week]).forEach(p => { g[p.week] = { week: p.week, lines: [], total: 0 }; });
+  return Object.values(g).sort((a, b) => a.week < b.week ? 1 : -1).map(w => Object.assign(w, { pay: S.pay[uid + '|' + w.week] || null }));
+}
+/* high-risk actions that need a second Owner/Admin when two-person approval is switched on */
+function needsSecond(S, ev, P) {
+  if (!S.config.dualControl || ev.data._aid) return false;
+  const d = ev.data;
+  switch (ev.type) {
+    case 'QUOTE_DECISION': return d.decision === 'approve' && lastQuote(P) && lastQuote(P).margin < S.config.minMargin;
+    case 'PAYMENT_STATUS': return d.status === 'reversed';
+    case 'INCIDENT_RESOLVED': case 'DEAL_REOPENED': return true;
+    case 'USER_UPDATED': return ['owner', 'admin'].includes(d.role);
+    case 'PAY_APPROVED': return +d.adjust !== 0;
+  }
+  return false;
+}
+const HIGH_RISK = ['QUOTE_DECISION', 'PAYMENT_STATUS', 'INCIDENT_RESOLVED', 'DEAL_REOPENED', 'USER_UPDATED', 'PAY_APPROVED'];
+function innerEvent(req, ev) { return { id: ev.id + '~', n: ev.n, t: ev.t, by: req.by, type: req.action.type, pid: req.action.pid, data: Object.assign({}, req.action.data, { _aid: req.id }), dev: ev.dev }; }
+const PAY_KEYS = { approve: ['owner', 'admin'] };
 
 const RULES = {
   ORG_CREATED: { boot: true },
@@ -1900,6 +2332,7 @@ const RULES = {
       const d = ev.data;
       if (roleOf(d.supplier) !== 'supplier') return 'err_pick_supplier';
       if (roleOf(d.tech) !== 'tech') return 'err_pick_tech';
+      if (S.config.requireTraining && !isAuthorised(d.tech)) return 'err_not_authorised';
       if (!(d.drawings || '').trim()) return 'err_fill';
       return need((d.materials || []).length > 0, 'err_fill');
     }
@@ -2011,6 +2444,139 @@ const RULES = {
       if (ev.data.decision === 'reject' && !(ev.data.reason || '').trim()) return 'err_reason';
       return need(['approve', 'reject'].includes(ev.data.decision), 'err_choose');
     }
+  },
+  /* WhatsApp message templates and message log */
+  TEMPLATE_SET: { roles: ['owner', 'admin'], check: (S, ev) => need(ev.data.tid && LANGS.some(l => (ev.data.text || {})[l] && ev.data.text[l].trim()), 'err_fill') },
+  TEMPLATE_DELETED: { roles: ['owner', 'admin'], check: (S, ev) => need(S.templates[ev.data.tid], 'err_already') },
+  MSG_LOGGED: {
+    roles: ['owner', 'admin', 'sales', 'finance', 'tech'], project: true, check: (S, ev, u, P) =>
+      !P.contact.phone ? 'err_phone' : need(ev.data.mid && !P.msgs.some(m => m.id === ev.data.mid) && (ev.data.text || '').trim(), 'err_fill')
+  },
+  MSG_STATUS: { roles: ['owner', 'admin', 'sales', 'finance', 'tech'], project: true, check: (S, ev, u, P) => need(P.msgs.some(m => m.id === ev.data.mid) && ['replied', 'no_reply', 'failed'].includes(ev.data.status), 'err_choose') },
+  /* AMC service */
+  SERVICE_DONE: {
+    roles: ['tech'], project: true, stages: ['amc'], check: (S, ev, u, P) => {
+      const i = +ev.data.visit;
+      if (!P.done || !(i >= 0 && i < P.done.amc.visits.length)) return 'err_fill';
+      if (P.service[i]) return 'err_already';
+      if (P.tech !== u.uid) return 'err_access';
+      if (!AMC_CHECKS.every(k => ['pass', 'fail'].includes((ev.data.checks || {})[k]))) return 'err_checks';
+      return need(ev_(ev.data).length >= 1, 'err_photos', { n: 1 });
+    }
+  },
+  TICKET_OPENED: {
+    roles: ['customer', 'sales', 'admin', 'owner', 'tech'], project: true, check: (S, ev, u, P) => {
+      if (P.stage === 'lost') return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      if (!TICKET_KINDS.some(k => k[0] === ev.data.kind)) return 'err_choose';
+      if (ev.data.kind === 'breakdown' && P.stage !== 'amc') return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      return need(ev.data.tid && !ticketOf(P, ev.data.tid) && (ev.data.text || '').trim(), 'err_fill');
+    }
+  },
+  TICKET_ASSIGNED: {
+    roles: ['admin', 'owner', 'sales'], project: true, check: (S, ev, u, P) => {
+      const x = ticketOf(P, ev.data.tid);
+      if (!x || x.status === 'closed') return 'err_already';
+      if (!S.users[ev.data.uid] || !['tech', 'sales', 'admin', 'qc'].includes(roleOf(ev.data.uid))) return 'err_pick_person';
+      return need(/^\d{4}-\d\d-\d\d$/.test(ev.data.due || ''), 'err_date');
+    }
+  },
+  TICKET_UPDATED: {
+    roles: ['tech', 'sales', 'admin', 'owner', 'qc'], project: true, open: true, check: (S, ev, u, P) => {
+      const x = ticketOf(P, ev.data.tid);
+      if (!x || x.status === 'closed') return 'err_already';
+      if (x.owner !== u.uid && !['admin', 'owner'].includes(u.role)) return 'err_access';
+      if (!['in_progress', 'resolved'].includes(ev.data.status)) return 'err_choose';
+      return need((ev.data.note || '').trim(), 'err_fill');
+    }
+  },
+  TICKET_CLOSED: {
+    roles: ['customer', 'admin', 'owner'], project: true, check: (S, ev, u, P) => {
+      const x = ticketOf(P, ev.data.tid);
+      if (!x || x.status !== 'resolved') return 'err_already';
+      if (ev.data.ok === false && !(ev.data.note || '').trim()) return 'err_reason';
+      return null;
+    }
+  },
+  AMC_RENEWED: {
+    roles: ['sales', 'admin', 'owner'], project: true, stages: ['amc'], check: (S, ev) =>
+      need([1, 2, 3].includes(+ev.data.years) && +ev.data.amount >= 0 && ev.data.amount !== '', 'err_fill')
+  },
+  /* two-person approval */
+  APPROVAL_REQUESTED: {
+    roles: STAFF, check: (S, ev, u) => {
+      const a = ev.data.action || {};
+      if (!HIGH_RISK.includes(a.type) || !ev.data.aid || S.approvals[ev.data.aid]) return 'err_fill';
+      return validate(S, { id: ev.id + '~', n: ev.n, t: ev.t, by: ev.by, type: a.type, pid: a.pid, data: Object.assign({}, a.data, { _aid: 'check' }) });
+    }
+  },
+  APPROVAL_DECIDED: {
+    roles: ['owner', 'admin'], check: (S, ev, u) => {
+      const r = S.approvals[ev.data.aid];
+      if (!r || r.status !== 'pending') return 'err_already';
+      if (r.by === u.uid) return 'err_same_person';
+      if (!['approve', 'reject'].includes(ev.data.decision)) return 'err_choose';
+      if (ev.data.decision === 'reject') return need((ev.data.reason || '').trim(), 'err_reason');
+      return validate(S, innerEvent(r, ev));
+    }
+  },
+  /* people, training and pay */
+  WORKER_PROFILE: {
+    roles: STAFF, check: (S, ev, u) => {
+      const x = S.users[ev.data.uid];
+      if (!x || x.role === 'customer') return 'err_no_user';
+      if (x.uid !== u.uid && !['owner', 'admin'].includes(u.role)) return 'err_access';
+      if (ev.data.phone && !validPhone(ev.data.phone)) return 'err_phone';
+      return need(!ev.data.availability || ['available', 'busy', 'leave'].includes(ev.data.availability), 'err_choose');
+    }
+  },
+  DOC_VERIFIED: {
+    roles: ['owner', 'admin'], check: (S, ev, u) => {
+      if (!S.users[ev.data.uid] || ev.data.uid === u.uid) return ev.data.uid === u.uid ? 'err_same_person' : 'err_no_user';
+      return need(DOCS.includes(ev.data.doc) && ['verified', 'rejected'].includes(ev.data.status) && (ev.data.status === 'verified' || (ev.data.note || '').trim()), 'err_reason');
+    }
+  },
+  TRAINING_PASSED: {
+    roles: STAFF, check: (S, ev, u) => {
+      const m = TRAIN.find(x => x[0] === ev.data.module);
+      if (!m) return 'err_fill';
+      const ans = ev.data.answers || [];
+      const score = m[2].filter((c, i) => ans[i] === c).length;
+      return need(score >= 2 && +ev.data.score === score, 'err_quiz');
+    }
+  },
+  PAY_APPROVED: {
+    roles: ['owner', 'admin'], check: (S, ev) => {
+      const d = ev.data, w = weeksFor(d.uid).find(x => x.week === d.week);
+      if (roleOf(d.uid) !== 'tech' || !w) return 'err_fill';
+      if (w.pay) return 'err_already';
+      if (d.week >= weekKey(ev.t)) return 'err_week_open';
+      if (+d.adjust && !(d.reason || '').trim()) return 'err_reason';
+      /* the amount is a snapshot: work synced later shows as a difference, it never breaks the approval */
+      return need(+d.computed >= 0 && +d.amount === +d.computed + (+d.adjust || 0) && +d.amount >= 0, 'err_amount');
+    }
+  },
+  PAY_PAID: {
+    roles: ['finance'], check: (S, ev, u) => {
+      const p = S.pay[ev.data.uid + '|' + ev.data.week];
+      if (!p || p.status !== 'approved') return 'err_already';
+      if (p.approvedBy === u.uid) return 'err_same_person';
+      return need((ev.data.ref || '').trim(), 'err_ref');
+    }
+  },
+  PAY_DISPUTED: {
+    roles: ['tech'], check: (S, ev, u) => {
+      if (ev.data.uid !== u.uid) return 'err_access';
+      const w = weeksFor(u.uid).find(x => x.week === ev.data.week);
+      if (!w || (w.pay && w.pay.dispute && w.pay.dispute.open)) return 'err_already';
+      return need((ev.data.reason || '').trim(), 'err_reason');
+    }
+  },
+  PAY_DISPUTE_ANSWERED: {
+    roles: ['owner', 'admin'], check: (S, ev) => {
+      const p = S.pay[ev.data.uid + '|' + ev.data.week];
+      if (!p || !p.dispute || !p.dispute.open) return 'err_already';
+      return need((ev.data.note || '').trim(), 'err_fill');
+    }
   }
 };
 
@@ -2033,7 +2599,9 @@ function validate(S, ev) {
     if (!R.open && !canSee(u, P)) return 'err_access';
     if (R.stages && !R.stages.includes(P.stage)) return { k: 'err_stage', v: { stage: stName(P.stage) } };
   }
-  return R.check ? R.check(S, ev, u, P) : null;
+  const err = R.check ? R.check(S, ev, u, P) : null;
+  if (err) return err;
+  return needsSecond(S, ev, P) ? 'err_needs_second' : null;
 }
 
 /* ---------- reducer: event → state ---------- */
@@ -2048,7 +2616,7 @@ function newProject(ev) {
     contacts: [], followUp: null, req: null, quotes: [], schedule: null, agreement: null, payments: [],
     prep: {}, qcSite: [], corrections: [], drawings: null, materials: [], dispatch: null, arrival: null,
     incidents: [], mhand: null, sop: {}, blockers: [], qcFinal: [], hand: {}, done: null, chat: [],
-    log: [], evidence: [], lost: null, returned: null, corrected: []
+    log: [], evidence: [], lost: null, returned: null, corrected: [], msgs: [], service: {}, tickets: [], amcEnd: null, renewals: []
   };
 }
 function setStage(P, s, ev) {
@@ -2187,6 +2755,7 @@ function apply(S, ev) {
     case 'HANDOVER_COMPLETED': {
       const start = ev.t.slice(0, 10), n = Math.max(1, S.config.amcVisits), gap = Math.round(365 / n);
       P.done = { t: ev.t, by: ev.by, warrantyMonths: S.config.warrantyMonths, amc: { start, visits: Array.from({ length: n }, (_, i) => addDays(gap * (i + 1), new Date(ev.t))) } };
+      P.amcEnd = addDays(365, new Date(ev.t));
       setStage(P, 'amc', ev);
       break;
     }
@@ -2201,6 +2770,35 @@ function apply(S, ev) {
       break;
     }
     case 'CHAT_DECISION': { const m = P.chat.find(x => x.id === d.mid); m.open = false; m.decision = { decision: d.decision, reason: d.reason || '', by: ev.by, t: ev.t }; break; }
+    case 'TEMPLATE_SET': S.templates[d.tid] = { tid: d.tid, name: d.name || '', text: d.text, by: ev.by, t: ev.t }; break;
+    case 'TEMPLATE_DELETED': delete S.templates[d.tid]; break;
+    case 'MSG_LOGGED': P.msgs.push({ id: d.mid, t: ev.t, by: ev.by, template: d.template || '', text: d.text, lang: d.lang || '', status: 'opened', hist: [] }); break;
+    case 'MSG_STATUS': { const m = P.msgs.find(x => x.id === d.mid); m.status = d.status; m.hist.push({ status: d.status, t: ev.t, by: ev.by, note: d.note || '' }); break; }
+    case 'SERVICE_DONE': P.service[d.visit] = { t: ev.t, by: ev.by, checks: d.checks, note: d.note || '', met: d.met || '', ev: ev_(d).map(e => e.id) }; break;
+    case 'TICKET_OPENED': P.tickets.push({ id: d.tid, kind: d.kind, text: d.text, t: ev.t, by: ev.by, ev: ev_(d).map(e => e.id), status: 'open', owner: null, due: '', hist: [{ status: 'open', t: ev.t, by: ev.by, note: d.text }] }); break;
+    case 'TICKET_ASSIGNED': { const x = ticketOf(P, d.tid); x.owner = d.uid; x.due = d.due; if (x.status === 'open') x.status = 'assigned'; x.hist.push({ status: 'assigned', t: ev.t, by: ev.by, note: userName(d.uid) + ' · ' + d.due }); break; }
+    case 'TICKET_UPDATED': { const x = ticketOf(P, d.tid); x.status = d.status; x.hist.push({ status: d.status, t: ev.t, by: ev.by, note: d.note, ev: ev_(d).map(e => e.id) }); break; }
+    case 'TICKET_CLOSED': { const x = ticketOf(P, d.tid); x.status = d.ok === false ? 'in_progress' : 'closed'; x.hist.push({ status: d.ok === false ? 'reopened' : 'closed', t: ev.t, by: ev.by, note: d.note || '' }); break; }
+    case 'AMC_RENEWED': {
+      const from = P.amcEnd && P.amcEnd > ev.t.slice(0, 10) ? P.amcEnd : ev.t.slice(0, 10), n = Math.max(1, S.config.amcVisits) * +d.years, gap = Math.round(365 * +d.years / n);
+      const visits = Array.from({ length: n }, (_, i) => addDays(gap * (i + 1), new Date(from + 'T12:00:00')));
+      P.done.amc.visits.push(...visits); P.amcEnd = addDays(365 * +d.years, new Date(from + 'T12:00:00'));
+      P.renewals.push({ t: ev.t, by: ev.by, years: +d.years, amount: +d.amount, from, to: P.amcEnd, note: d.note || '' });
+      break;
+    }
+    case 'APPROVAL_REQUESTED': S.approvals[d.aid] = { id: d.aid, by: ev.by, t: ev.t, action: d.action, reason: d.reason || '', status: 'pending' }; S.approvalOrder.push(d.aid); break;
+    case 'APPROVAL_DECIDED': {
+      const r = S.approvals[d.aid]; r.status = d.decision === 'approve' ? 'approved' : 'rejected'; r.decidedBy = ev.by; r.decidedAt = ev.t; r.note = d.reason || '';
+      if (d.decision === 'approve') { const inner = innerEvent(r, ev); apply(S, inner); }
+      break;
+    }
+    case 'WORKER_PROFILE': { const w = worker(d.uid); ['phone', 'area', 'skills', 'availability'].forEach(k => { if (d[k] !== undefined) w.profile[k] = k === 'phone' ? phone10(d[k]) : d[k]; }); w.profile.t = ev.t; break; }
+    case 'DOC_VERIFIED': { const w = worker(d.uid); w.docs[d.doc] = d.status; (w.docLog = w.docLog || []).push({ doc: d.doc, status: d.status, note: d.note || '', by: ev.by, t: ev.t }); break; }
+    case 'TRAINING_PASSED': worker(ev.by).training[d.module] = { t: ev.t, score: +d.score }; break;
+    case 'PAY_APPROVED': S.pay[d.uid + '|' + d.week] = Object.assign(S.pay[d.uid + '|' + d.week] || {}, { uid: d.uid, week: d.week, status: 'approved', amount: +d.amount, computed: +d.computed, adjust: +d.adjust || 0, reason: d.reason || '', approvedBy: ev.by, approvedAt: ev.t }); break;
+    case 'PAY_PAID': Object.assign(S.pay[d.uid + '|' + d.week], { status: 'paid', ref: d.ref, paidBy: ev.by, paidAt: ev.t }); break;
+    case 'PAY_DISPUTED': { const k = d.uid + '|' + d.week; S.pay[k] = Object.assign(S.pay[k] || { uid: d.uid, week: d.week, status: 'open' }, { dispute: { open: true, reason: d.reason, t: ev.t } }); break; }
+    case 'PAY_DISPUTE_ANSWERED': { const x = S.pay[d.uid + '|' + d.week].dispute; x.open = false; x.answer = d.note; x.answeredBy = ev.by; x.answeredAt = ev.t; break; }
   }
   P = ev.pid ? S.projects[ev.pid] : null;
   if (P) {
@@ -2267,7 +2865,37 @@ function needs(P) {
   for (const i of P.incidents) if (i.open) add('resolve_incident', ['admin', 'owner'], { iid: i.id, urgent: true });
   if (P.followUp && SALES_TALK.includes(P.stage) && P.followUp.due <= todayStr()) add('follow_up', ['sales'], { uids: [P.sales], overdue: P.followUp.due < todayStr() });
   for (const m of P.chat) if (m.open && m.toRole) add('answer', m.kind === 'approval' ? ['owner', 'admin'] : uniq([m.toRole]), { mid: m.id, not: m.by });
+  /* AMC: service visits due within 7 days, renewal within 30 days of the end date */
+  if (P.stage === 'amc' && P.done) {
+    P.done.amc.visits.forEach((d, i) => { if (!P.service[i] && d <= addDays(7)) add('amc_visit', ['tech'], { uids: [P.tech], visit: i, overdue: d < todayStr() }); });
+    if (P.amcEnd && P.amcEnd <= addDays(30)) add('amc_renew', ['sales', 'admin'], { uids: [P.sales], overdue: P.amcEnd < todayStr() });
+  }
+  for (const x of P.tickets) {
+    if (x.status === 'open') add('assign_ticket', ['admin', 'owner', 'sales'], { tid: x.id, urgent: x.kind === 'breakdown', uids: [P.sales] });
+    else if (['assigned', 'in_progress'].includes(x.status)) add('work_ticket', [roleOf(x.owner) || 'admin'], { uids: [x.owner], tid: x.id, urgent: x.kind === 'breakdown', overdue: x.due && x.due < todayStr() });
+    else if (x.status === 'resolved') add('confirm_ticket', P.customer ? ['customer'] : ['admin', 'owner'], { uids: [P.customer], tid: x.id });
+    if (x.due && x.due < todayStr() && ['assigned', 'in_progress'].includes(x.status)) add('escalated', ['admin', 'owner'], { ref: 'work_ticket', days: daysSince(x.due + 'T12:00:00'), tid: x.id, urgent: true });
+  }
+  /* escalation: the main next step has waited too long */
+  const main = out.find(x => !['resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'escalated', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
+  if (main && OPEN_STAGES.includes(P.stage) && !main.roles.includes('admin') && daysSince(P.since) >= (S.config.escalateDays || 3)) add('escalated', ['admin', 'owner'], { ref: main.k, who: main.roles, days: daysSince(P.since) });
   return out;
+}
+/* work that is not tied to one project: second approvals, pay, training */
+function globalNeeds(u) {
+  const out = [], add = (k, roles, o = {}) => out.push(Object.assign({ k, roles, pid: null }, o));
+  for (const id of S.approvalOrder) { const r = S.approvals[id]; if (r.status === 'pending') add('second_approval', ['owner', 'admin'], { aid: id, not: r.by, urgent: true }); }
+  if (['owner', 'admin', 'finance', 'tech'].includes(u.role)) {
+    for (const x of Object.values(S.users).filter(y => y.role === 'tech' && y.active)) {
+      for (const w of weeksFor(x.uid)) {
+        if (!w.pay || w.pay.status === 'open') { if (w.week < weekKey(nowISO()) && w.total > 0) add('approve_pay', ['owner', 'admin'], { uid: x.uid, week: w.week }); }
+        else if (w.pay.status === 'approved') add('pay_tech', ['finance'], { uid: x.uid, week: w.week, not: w.pay.approvedBy });
+        if (w.pay && w.pay.dispute && w.pay.dispute.open) add('pay_dispute', ['owner', 'admin'], { uid: x.uid, week: w.week, urgent: true });
+      }
+    }
+  }
+  if (STAFF.includes(u.role) && !['owner'].includes(u.role)) { const w = S.workers[u.uid]; const left = modulesFor(u.role).filter(m => !(w && w.training[m])); if (left.length) add('training', [u.role], { uids: [u.uid], module: left[0] }); }
+  return out.filter(n => isMine(n, u));
 }
 function isMine(n, u) {
   if (!n.roles.includes(u.role)) return false;
@@ -2279,11 +2907,13 @@ function visibleProjects(u) { return S.order.map(id => S.projects[id]).filter(P 
 function myTasks(u) {
   const out = [];
   for (const P of visibleProjects(u)) for (const n of needs(P)) if (isMine(n, u)) out.push(n);
-  const w = n => (n.urgent ? 0 : 2) + (n.overdue ? -1 : 0);
-  return out.sort((a, b) => w(a) - w(b) || (S.projects[a.pid].since < S.projects[b.pid].since ? -1 : 1));
+  out.push(...globalNeeds(u));
+  const w = n => (n.urgent ? 0 : 2) + (n.overdue ? -1 : 0) + (n.k === 'training' ? 3 : 0);
+  const since = n => n.pid && S.projects[n.pid] ? S.projects[n.pid].since : '9';
+  return out.sort((a, b) => w(a) - w(b) || (since(a) < since(b) ? -1 : 1));
 }
 /* primary "who must act" for status lines */
-function mainNeed(P) { const n = needs(P); return n.find(x => !['resolve_blocker', 'resolve_incident', 'answer', 'follow_up'].includes(x.k)) || n[0] || null; }
+function mainNeed(P) { const n = needs(P); return n.find(x => !['resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'escalated'].includes(x.k)) || n[0] || null; }
 
 /* =====================================================================
    UI framework
@@ -2356,6 +2986,12 @@ async function perform(type, pid, data, opt = {}) {
   App.set.seq = (App.set.seq || 0) + 1;
   const ev = { id: App.set.dev + '-' + rid(6), n: App.set.seq, t: tt, by, type, pid: pid || null, data: data || {}, dev: App.set.dev };
   const err = validate(S, ev);
+  if (err === 'err_needs_second' && type !== 'APPROVAL_REQUESTED') {
+    App.set.seq--;
+    const r = await perform('APPROVAL_REQUESTED', null, { aid: 'A-' + rid(6), action: { type, pid: pid || null, data: data || {} }, reason: (data && (data.reason || data.note)) || '' }, opt);
+    if (r.ok) { App.sentSecond = true; toast(t('what_sent_second')); }
+    return r;
+  }
   if (err) { if (!opt.quiet) toast(errText(err), true); return { ok: false, err }; }
   apply(S, ev); EVENTS.push(ev);
   if (!opt.noSave) await saveAll();
@@ -2580,7 +3216,8 @@ const Cam = {
   },
   async preview(o, resolve, dataUrl, isVideo) {
     const q = isVideo ? {} : await photoQuality(dataUrl);
-    const warn = [q.dark ? t('q_dark') : '', q.blur ? t('q_blur') : ''].filter(Boolean).join(' ');
+    const hash0 = isVideo ? '' : await sha256(dataUrl), same = isVideo ? null : similarEvidence(hash0, q.ah);
+    const warn = [q.dark ? t('q_dark') : '', q.blur ? t('q_blur') : '', same ? t('q_reused', { id: same.pid || '' }) : ''].filter(Boolean).join(' ');
     $('#ov').innerHTML = `<div class="overlay" role="dialog" aria-modal="true"><div class="cam-top">${t('check_photo')}</div>
       ${isVideo ? `<video class="pv" controls src="${dataUrl}"></video>` : `<img class="pv" src="${dataUrl}" alt="">`}
       ${warn ? `<div class="warnbox" style="margin:0;border-radius:0">⚠️ ${esc(warn)}</div>` : ''}
@@ -2588,7 +3225,7 @@ const Cam = {
     $('#ov [data-x="again"]').onclick = () => this.start(o, resolve);
     $('#ov [data-x="use"]').onclick = async () => {
       const m = await putMedia(dataUrl);
-      const meta = { id: 'E' + rid(10), m, kind: isVideo ? 'video' : 'photo', label: o.tag || '', t: nowISO(), gps: Geo.fresh(), hash: await sha256(dataUrl), dev: devInfo(), q: { blur: !!q.blur, dark: !!q.dark } };
+      const meta = { id: 'E' + rid(10), m, kind: isVideo ? 'video' : 'photo', label: o.tag || '', t: nowISO(), gps: Geo.fresh(), hash: hash0 || await sha256(dataUrl), dev: devInfo(), q: { blur: !!q.blur, dark: !!q.dark, ah: q.ah || '', reused: !!same } };
       if (!meta.gps) { const g = await Promise.race([Geo.get(6000), new Promise(r => setTimeout(() => r(null), 6000))]); meta.gps = g; }
       this.close(resolve, meta);
     };
@@ -2612,7 +3249,11 @@ function photoQuality(dataUrl) {
         s += l; s2 += l * l; n++;
       }
       const vr = s2 / n - (s / n) ** 2;
-      res({ dark: mean < 45, blur: vr < 25, mean, vr });
+      /* 8x8 average hash, to spot the same or a near-identical photo used again */
+      const a = document.createElement('canvas'); a.width = 8; a.height = 8; const ax = a.getContext('2d'); ax.drawImage(img, 0, 0, 8, 8);
+      const px = ax.getImageData(0, 0, 8, 8).data, gs = []; for (let i = 0; i < 64; i++) gs.push(px[i * 4] + px[i * 4 + 1] + px[i * 4 + 2]);
+      const avg = sum(gs) / 64; let ah = ''; for (let i = 0; i < 64; i += 4) ah += (((gs[i] > avg) << 3) | ((gs[i + 1] > avg) << 2) | ((gs[i + 2] > avg) << 1) | (gs[i + 3] > avg)).toString(16);
+      res({ dark: mean < 45, blur: vr < 25, mean, vr, ah });
     };
     img.onerror = () => res({});
     img.src = dataUrl;
@@ -2720,15 +3361,21 @@ const TASK_ICON = {
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
-  final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓'
+  final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
+  amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓'
 };
 function projTitle(P) { return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
   const P = S.projects[n.pid];
-  const sub = n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : '';
+  const sub = n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
+  if (!P) {
+    const info = n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
+    return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
+    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent ? `<br><span class="chip c-bad">⚠️ ${t('urgent')}</span>` : ''}</span><span class="go" aria-hidden="true">▶</span></button>`;
+  }
   return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}${esc(sub)}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span><br>
-    ${n.urgent ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${n.overdue ? `<span class="chip c-bad">⏰ ${t('overdue')}</span> ` : ''}<span class="chip c-mute">🕒 ${t('days_n', { n: daysSince(P.since) })}</span></span><span class="go" aria-hidden="true">▶</span></button>`;
+    ${n.urgent ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${n.overdue ? `<span class="chip c-bad">⏰ ${t('overdue')}</span> ` : ''}<span class="chip c-mute">🕒 ${t('days_n', { n: n.days != null ? n.days : daysSince(P.since) })}</span>${n.k === 'escalated' && n.who ? ` <span class="chip c-warn">${esc(t('waiting_for', { who: rolesTxt(n.who) }))}</span>` : ''}</span><span class="go" aria-hidden="true">▶</span></button>`;
 }
 function projCard(P) {
   return `<button class="task" data-a="openProject" data-v="${P.id}"><span class="ti" aria-hidden="true">${STAGES[P.stage][1]}</span>
@@ -2895,11 +3542,12 @@ async function wizNext() {
   }
   wizBusy = true;
   try {
-    const res = await W.def.finish(W.ctx, P);
+    let res = await W.def.finish(W.ctx, P);
     if (!res || res.ok === false) { W.err = res && res.err ? errText(res.err) : t('err_generic', { x: '' }); render(); return; }
     const w = W; await clearDraft(w); W = null;
     if (res.toast) toast(t(res.toast));
     if (res.go) { App.route = App.stack.pop() || { name: 'home', p: {} }; res.go(); return; }
+    if (App.sentSecond) { App.sentSecond = false; res = Object.assign({}, res, { what: t('what_sent_second'), next: t('next_who', { who: rolesTxt(['owner', 'admin']), task: t('tk_second_approval') }) }); }
     go('done', res, { replace: true });
   } finally { wizBusy = false; }
 }
@@ -2941,8 +3589,13 @@ WIZ.lead = {
     { id: 'x', icon: '🏗️', say: 's_lead_x', body: () => photoSlot('x', 'ph_context', 0, { hint: 'ph_context_hint', tag: 'context', video: true }) },
     {
       id: 'loc', icon: '📍', say: 's_lead_loc',
-      enter: ctx => { if (!ctx.gps) Geo.get().then(gp => { if (gp) { ctx.gps = gp; saveDraft(); } if (W && W.sid === 'loc') render(); }); },
-      body: ctx => gpsCard(ctx) + inp('address', 'f_address', { area: true, mic: true }) + inp('landmark', 'f_landmark', { mic: true, opt: true }) + `<p class="small muted">${t('address_hint')}</p>`,
+      enter: ctx => {
+        const look = gp => { if (gp && !ctx.address && !ctx.addrSuggest && navigator.onLine) lookupAddress(gp).then(a => { if (a && W && W.ctx === ctx) { ctx.addrSuggest = a; saveDraft(); if (W.sid === 'loc') render(); } }); };
+        if (!ctx.gps) Geo.get().then(gp => { if (gp) { ctx.gps = gp; saveDraft(); } look(gp); if (W && W.sid === 'loc') render(); }); else look(ctx.gps);
+      },
+      body: ctx => gpsCard(ctx) + (ctx.addrSuggest && ctx.address !== ctx.addrSuggest ? `<div class="okbox">🗺️ <b>${t('addr_found')}</b><br>${esc(ctx.addrSuggest)}<br><button class="btn btn-sm" style="margin-top:6px" data-a="useAddr">✅ ${t('addr_use')}</button></div>` : '') +
+        (ctx.addrSrc === 'gps' && ctx.address === ctx.addrSuggest ? `<div class="note">🗺️ ${t('addr_check')}</div>` : '') +
+        inp('address', 'f_address', { area: true, mic: true }) + inp('landmark', 'f_landmark', { mic: true, opt: true }) + `<p class="small muted">${t(navigator.onLine ? 'address_hint_online' : 'address_hint')}</p>`,
       check: ctx => ctx.gps || ctx.address.trim() ? null : 'err_location_or_address'
     },
     {
@@ -2990,7 +3643,7 @@ WIZ.lead = {
     }
     let pid; do { pid = 'AIEC-' + todayStr().slice(2, 4) + todayStr().slice(5, 7) + '-' + rid(3); } while (S.projects[pid]);
     const r = await run([['LEAD_CREATED', pid, {
-      safe: true, ev, gps: ctx.gps, address: ctx.address.trim(), landmark: ctx.landmark.trim(), name: ctx.name.trim(), phone: ctx.noPhone ? '' : phone10(ctx.phone),
+      safe: true, ev, gps: ctx.gps, address: ctx.address.trim(), addressSource: ctx.addrSrc === 'gps' && ctx.address === ctx.addrSuggest ? 'gps_lookup' : 'typed', landmark: ctx.landmark.trim(), name: ctx.name.trim(), phone: ctx.noPhone ? '' : phone10(ctx.phone),
       noPhone: !!ctx.noPhone, shaft: ctx.shaft, floors: ctx.floorsUnknown ? null : ctx.floors, dupOf: ctx.dup === 'new' ? dups.map(P => P.id) : []
     }]]);
     return r.ok ? Object.assign(doneRes(pid, 'what_site_saved'), { more: [['addSite', '➕', 'add_site']] }) : r;
@@ -3013,6 +3666,7 @@ function evFlags(P, ids) {
     if (e.q && e.q.dark) out.push(t('flag_dark'));
     if (!e.gps) out.push(t('flag_nogps'));
     else if (P.site.gps) { const d = haversine(e.gps, P.site.gps); if (d > 300) out.push(t('flag_far', { n: d })); }
+    if (e.dev !== 'practice' && similarEvidence(e.hash, e.q && e.q.ah, e.evt)) out.push(t('flag_reused'));
   }
   return uniq(out);
 }
@@ -3066,17 +3720,13 @@ WIZ.fixlead = {
 };
 
 /* ---------- Sales: call / follow-up ---------- */
-function waText(P, kind) {
-  const q = lastQuote(P);
-  if (kind === 'quote' && q) return t('wa_quote', { name: P.contact.name || '', id: P.id, total: money(q.total), stops: q.req.stops, cap: q.req.capacity, valid: q.validity });
-  return t('wa_intro', { name: P.contact.name || '', company: S.org.name });
-}
+function waText(P, kind) { return fillTpl(tplRaw(kind === 'quote' && lastQuote(P) ? 'quote' : 'intro'), waVars(P)); }
 function contactButtons(P, kind) {
   const ph = P.contact.phone;
   if (!ph) return `<div class="warnbox">📵 ${t('i_no_phone')}</div>`;
   if (App.mode === 'practice') return `<div class="note">🎓 ${t('practice_no_send')}</div><div class="tiles"><button class="tile" data-a="pick" data-k="channel" data-v="call"><span class="i">📞</span>${t('ch_call')}</button><button class="tile" data-a="pick" data-k="channel" data-v="whatsapp"><span class="i">💬</span>${t('ch_whatsapp')}</button></div>`;
   return `<div class="tiles"><a class="tile" href="tel:+91${ph}" data-a="chan" data-v="call"><span class="i">📞</span>${t('ch_call')}<small>+91 ${esc(ph)}</small></a>
-    <a class="tile" href="https://wa.me/91${ph}?text=${encodeURIComponent(waText(P, kind))}" target="_blank" rel="noopener" data-a="chan" data-v="whatsapp"><span class="i">💬</span>${t('ch_whatsapp')}<small>${t('wa_template')}</small></a></div>
+    <a class="tile" href="https://wa.me/91${ph}?text=${encodeURIComponent(waText(P, kind))}" target="_blank" rel="noopener" data-a="chan" data-v="whatsapp" data-tpl="${kind === 'quote' ? 'quote' : 'intro'}"><span class="i">💬</span>${t('ch_whatsapp')}<small>${t('wa_template')}</small></a></div>
     <p class="small muted">ℹ️ ${t('wa_not_confirmed')}</p>`;
 }
 WIZ.call = {
@@ -3341,7 +3991,7 @@ const usersOf = role => Object.values(S.users).filter(u => u.role === role && u.
 function personTiles(key, role) {
   const list = usersOf(role);
   if (!list.length) return `<div class="warnbox">${t('no_person_role', { role: t('r_' + role) })}</div>${['owner', 'admin'].includes(App.me.role) ? `<button class="btn btn-p" data-a="nav" data-v="users">👥 ${t('users')}</button>` : ''}`;
-  return tiles(key, list.map(u => [u.uid, ROLE_ICON[role], u.name]), 'one');
+  return tiles(key, list.map(u => [u.uid, ROLE_ICON[role], u.name]), 'one') + (role === 'tech' ? `<div class="small">${list.map(u => `${esc(u.name)}: ${authChip(u.uid)}`).join('<br>')}</div>${S.config.requireTraining ? `<p class="small muted">${t('auth_required')}</p>` : ''}` : '');
 }
 WIZ.release = {
   title: 'tk_release', save: 'release_now', saveIcon: '📐',
@@ -3695,7 +4345,7 @@ function customerHome() {
     <div class="tiles" style="margin-top:12px">${q ? tile('openDocP', P.id + '|quote', '📄', 'doc_quote') : ''}${P.agreement ? tile('openDocP', P.id + '|agreement', '✍️', 'doc_agreement') : ''}
       ${tile('openProjectTab', P.id + '|money', '💰', 'tab_money')}${['site_prep', 'site_fix'].includes(P.stage) ? tile('openCl', P.id + '|' + (P.stage === 'site_prep' ? 'prep' : 'sitefix'), '🧱', 'site_checklist') : ''}
       ${tile('openProjectTab', P.id + '|chat', '❓', 'ask_question')}${tile('openProjectTab', P.id + '|chat', '😟', 'complaint')}${P.done ? tile('openDocP', P.id + '|handover', '🔑', 'doc_handover') : ''}</div>
-    ${P.done ? `<div class="card" style="margin-top:12px"><h3>🛠️ ${t('amc_visits')}</h3>${P.done.amc.visits.map(d => `<div class="list-item">📅 ${fmtD(d)}</div>`).join('')}</div>` : ''}</main>` + nav('home');
+    <div style="margin-top:12px">${amcCard(P)}</div>${!P.done && allowed('TICKET_OPENED', P) ? `<button class="btn" data-a="wizOpen" data-v="ticket|${P.id}">🎫 ${t('ticket_new')}</button>` : ''}</main>` + nav('home');
 }
 /* ---------- admin / owner queues and dashboard (all derived from the same project data) ---------- */
 const DRILL = {
@@ -3712,12 +4362,14 @@ const DRILL = {
   lost: P => P.stage === 'lost',
   pipeline: P => ['quote_approval', 'quote_ready', 'quoted'].includes(P.stage),
   done: P => P.stage === 'amc',
-  evidence: P => evFlags(P).length > 0
+  evidence: P => evFlags(P).length > 0,
+  escalated: P => needs(P).some(n => n.k === 'escalated'),
+  tickets: P => P.tickets.some(x => x.status !== 'closed')
 };
 function queuesCard() {
   const ps = Object.values(S.projects);
   const rows = [['approvals', '✅', 'qu_approvals'], ['payments', '🏦', 'qu_payments'], ['blockers', '⛔', 'qu_blockers'], ['incidents', '🚨', 'qu_incidents'], ['failed', '🛠️', 'qu_failed'],
-    ['followups', '⏰', 'qu_followups'], ['delayed', '🐢', 'qu_delayed'], ['evidence', '🤖', 'qu_evidence']];
+    ['followups', '⏰', 'qu_followups'], ['delayed', '🐢', 'qu_delayed'], ['evidence', '🤖', 'qu_evidence'], ['escalated', '⏫', 'qu_escalated'], ['tickets', '🎫', 'qu_tickets']];
   return `<h2 class="sec">${t('queues')}</h2><div class="card">${rows.map(([k, i, l]) => { const n = ps.filter(DRILL[k]).length; return `<button class="list-item" style="width:100%;background:none;border:0;border-bottom:1px solid var(--line);text-align:left" data-a="drill" data-v="${k}"><span style="font-size:1.4rem">${i}</span><span class="grow">${t(l)}</span><span class="chip ${n ? 'c-warn' : 'c-mute'}">${n}</span></button>`; }).join('')}
     ${S.rejected.length ? `<button class="list-item" style="width:100%;background:none;border:0;text-align:left" data-a="nav" data-v="problems"><span style="font-size:1.4rem">🧾</span><span class="grow">${t('problems')}</span><span class="chip c-bad">${S.rejected.length}</span></button>` : ''}</div>`;
 }
@@ -3794,6 +4446,8 @@ function projActions(P) {
   add('USER_ADDED', 'custAccess', '🔑', 'give_cust_access', !P.customer && stageIdx(P.stage) >= stageIdx('won') && P.stage !== 'lost' && (u.role !== 'sales' || P.sales === u.uid));
   add('BLOCKER_RAISED', 'blocker', '⛔', 'report_problem');
   add('INCIDENT_RAISED', 'incidentNew', '🚨', 'report_security');
+  add('MSG_LOGGED', 'wa', '💬', 'wa_send', !!P.contact.phone && (u.role !== 'sales' || P.sales === u.uid));
+  add('TICKET_OPENED', 'ticket', '🎫', 'ticket_new', P.stage !== 'lost' && u.role !== 'customer');
   add('DEAL_LOST', 'lost', '🙁', 'mark_lost', u.role !== 'sales' || P.sales === u.uid);
   add('DEAL_REOPENED', 'reopen', '♻️', 'reopen');
   return a.length ? `<h2 class="sec">${t('actions')}</h2><div class="stack">${a.join('')}</div>` : '';
@@ -3822,6 +4476,7 @@ function projInfo(P) {
       ${P.corrections.map(c => `<div class="small">${c.done ? '✅' : '🛠️'} ${esc(c.text)}</div>`).join('')}</div>` : ''}
     ${P.lost ? `<div class="err">❌ ${t('lr_' + P.lost.reason)} ${esc(P.lost.note || '')}</div>` : ''}
     ${P.done ? `<div class="okbox">🔑 ${t('handover_done', { d: fmtD(P.done.t) })}<br>${t('warranty_until', { d: fmtD(addDays(P.done.warrantyMonths * 30, new Date(P.done.t))) })}</div>` : ''}
+    ${amcCard(P)}${msgCard(P)}
     ${projActions(P)}`;
 }
 function evText(ev) {
@@ -3832,6 +4487,10 @@ function evText(ev) {
     QUOTE_DECISION: () => t('dec_' + d.decision) + (d.reason ? ': ' + d.reason : ''), PAYMENT_RECORDED: () => seeF(App.me, 'money') ? t('pay_' + d.purpose) + ' ' + money(d.amount) : '',
     PAYMENT_STATUS: () => t('ps_' + d.status), QC_SITE_RESULT: () => t('qo_' + d.outcome), QC_FINAL_RESULT: () => t('qo_' + d.outcome), SOP_STEP_DONE: () => t('sop_' + SOP[d.step][0]),
     PREP_ITEM_DONE: () => t('prep_' + d.item), BLOCKER_RAISED: () => t('br_' + d.reason), HANDOVER_SIGNED: () => t('slot_' + d.slot), ASSIGNED: () => t('r_' + d.role) + ': ' + userName(d.uid),
+    MSG_LOGGED: () => tplName(d.template), MSG_STATUS: () => t('ms_' + d.status), SERVICE_DONE: () => t('amc_visit_n', { n: +d.visit + 1 }),
+    TICKET_OPENED: () => t('tkind_' + d.kind) + ': ' + (d.text || '').slice(0, 50), TICKET_ASSIGNED: () => userName(d.uid) + ' · ' + d.due, TICKET_UPDATED: () => t('ts_' + d.status), TICKET_CLOSED: () => d.ok === false ? t('ts_reopened') : t('ts_closed'),
+    AMC_RENEWED: () => d.years + ' ' + t('years'), APPROVAL_DECIDED: () => t('dec_' + d.decision), APPROVAL_REQUESTED: () => t('ev_' + (d.action || {}).type),
+    PAY_APPROVED: () => userName(d.uid) + ' · ' + money(d.amount), PAY_PAID: () => userName(d.uid) + ' · ' + d.ref, TRAINING_PASSED: () => t('tr_' + d.module + '_t'), DOC_VERIFIED: () => userName(d.uid) + ' · ' + t('doc_' + d.doc),
     CONTACT_CORRECTED: () => d.field + ': ' + (d.reason || ''), CHAT_POSTED: () => (d.text || '').slice(0, 60), REQ_SAVED: () => d.req ? d.req.stops + ' ' + t('q_stops') : '',
     INCIDENT_RAISED: () => t('inc_' + (d.type || 'other')), USER_ADDED: () => d.name + ' · ' + t('r_' + d.role), USER_UPDATED: () => userName(d.uid), CONFIG_SET: () => d.approve ? t('rg_' + d.approve) + ' ✅' : d.key + ' = ' + d.value
   }[ev.type];
@@ -4141,6 +4800,12 @@ SCREENS.me = () => {
       ${'speechSynthesis' in window ? (Voice.has('mr') ? `<div class="okbox">✅ ${t('voice_mr_ok')}</div>` : `<div class="warnbox">⚠️ ${t('voice_mr_missing')}</div>`) : `<div class="warnbox">⚠️ ${t('no_tts')}</div>`}</div>
     <div class="stack">${row('nav', 'perm', '🔐', 'what_can_i_do')}${row('intro', '', '🎓', 'watch_intro')}${row('nav', 'data', '📤', 'share_data')}
       ${adm ? row('nav', 'users', '👥', 'users') : ''}${['owner', 'admin', 'sales', 'finance'].includes(u.role) ? row('nav', 'rules', '📏', 'business_rules') : ''}${adm ? row('nav', 'audit', '🧾', 'audit_log') : ''}${adm ? row('nav', 'problems', '⚠️', 'problems') : ''}
+      ${u.role !== 'customer' ? row('nav2', 'worker|' + u.uid, '🪪', 'my_profile') + row('nav', 'training', '🎓', 'training') : ''}
+      ${u.role === 'tech' ? row('nav2', 'earn|' + u.uid, '💰', 'earnings') : ''}
+      ${adm ? row('nav', 'workers', '👥', 'workers') : ''}
+      ${['owner', 'admin', 'sales', 'finance', 'tech'].includes(u.role) ? row('nav', 'templates', '💬', 'templates') : ''}
+      ${u.role !== 'customer' ? row('nav2', 'leaders|', '🏆', 'leaderboard') : ''}
+      ${row('nav', 'helper', '🙋', 'helper')}
       ${row('nav', 'about', 'ℹ️', 'about_privacy')}
       ${App.installEvt ? row('install', '', '📲', 'install_app') : standalone ? `<div class="okbox">📲 ${t('installed_ok')}</div>` : `<p class="small muted">📲 ${t('install_hint')}</p>`}
       ${App.mode === 'practice' ? row('resetPractice', '', '♻️', 'reset_practice') + row('exitPractice', '', '🚪', 'exit_practice') : ''}
@@ -4284,6 +4949,346 @@ async function importText(text) {
 }
 
 /* =====================================================================
+   Messages, AMC service, approvals, people, training, pay, leaderboard, helper
+   ===================================================================== */
+/* ---------- WhatsApp templates + message log ---------- */
+function tplIds() { return uniq([...DEFAULT_TEMPLATES, ...Object.keys(S.templates)]); }
+function tplName(id) { return (S.templates[id] && S.templates[id].name) || (L['tplname_' + id] ? t('tplname_' + id) : id); }
+function tplRaw(id) { const c = S.templates[id]; return (c && c.text && c.text[LANG]) || (L['tpl_' + id] ? t('tpl_' + id) : (c && (c.text.en || c.text.hi || c.text.mr)) || ''); }
+function waVars(P) {
+  const q = [...P.quotes].reverse().find(x => x.sent) || lastQuote(P), due = ['token', 'arrival', 'final'].map(x => P.schedule && !payConfirmed(P, x) ? P.schedule[x] : 0).find(x => x);
+  const visit = P.done ? P.done.amc.visits.find((d, i) => !P.service[i]) : '';
+  return { name: P.contact.name || '', company: S.org.name, id: P.id, total: q ? money(q.total) : '', amount: due ? money(due) : '', date: fmtD(visit || (P.followUp && P.followUp.due) || addDays(1)) };
+}
+const fillTpl = (text, v) => String(text).replace(/\{(\w+)\}/g, (m, k) => v[k] == null ? m : v[k]);
+function waUrl(P, text) { return `https://wa.me/91${P.contact.phone}?text=${encodeURIComponent(text)}`; }
+WIZ.wa = {
+  title: 'wa_send', save: 'msg_log_save', saveIcon: '💬', noDraft: true,
+  init: () => ({ tpl: '', text: '', opened: false }),
+  steps: [
+    { id: 'tpl', icon: '💬', say: 's_wa_tpl', body: () => tiles('tpl', tplIds().map(id => [id, '💬', tplName(id)]), 'one'), check: c => c.tpl ? null : 'err_choose' },
+    {
+      id: 'send', icon: '📤', say: 's_wa_send', enter: (c, P) => { if (c.textFor !== c.tpl) { c.text = fillTpl(tplRaw(c.tpl), waVars(P)); c.textFor = c.tpl; render(); } },
+      body: c => inp('text', 'wa_text', { area: true, mic: true }) + (App.mode === 'practice' ? `<div class="note">🎓 ${t('practice_no_send')}</div>` : '') +
+        `<button class="btn btn-p btn-big" data-a="waOpen">💬 ${t('wa_open')}</button>${c.opened ? `<div class="okbox">✅ ${t('wa_opened')}</div>` : ''}<p class="small muted">ℹ️ ${t('wa_not_confirmed')} ${t('wa_api_note')}</p>`,
+      check: c => !c.text.trim() ? 'err_fill' : c.opened ? null : 'err_wa_open'
+    }
+  ],
+  async finish(c, P) { const r = await run([['MSG_LOGGED', P.id, { mid: 'MSG-' + rid(6), template: c.tpl, text: c.text.trim(), lang: LANG }]]); return r.ok ? doneRes(P.id, 'what_msg_logged') : r; }
+};
+function msgCard(P) {
+  if (!P.msgs.length) return '';
+  const can = allowed('MSG_STATUS', P);
+  return `<div class="card"><h3>💬 ${t('msg_log')}</h3>${P.msgs.slice().reverse().map(m => `<div class="list-item" style="display:block"><b>${esc(tplName(m.template))}</b> <span class="chip ${m.status === 'replied' ? 'c-ok' : m.status === 'opened' ? 'c-mute' : 'c-warn'}">${t('ms_' + m.status)}</span>
+    <div class="small muted">${userTag(m.by)} · ${fmtD(m.t, true)}</div><div class="small">${esc(m.text.slice(0, 140))}</div>
+    ${can && m.status === 'opened' ? `<div class="row" style="margin-top:6px"><button class="btn btn-sm" data-a="msgStatus" data-v="${m.id}|replied">😊 ${t('ms_replied')}</button><button class="btn btn-sm" data-a="msgStatus" data-v="${m.id}|no_reply">🔇 ${t('ms_no_reply')}</button></div>` : ''}</div>`).join('')}
+    <p class="small muted">${t('wa_api_note')}</p></div>`;
+}
+SCREENS.templates = () => {
+  const edit = ['owner', 'admin'].includes(App.me.role);
+  App.pageSay = t('s_templates');
+  return topBar(t('templates'), { back: true }) + `<main class="wrap"><div class="note">💬 ${t('s_templates')} ${t('tpl_vars')}</div>
+    ${tplIds().map(id => `<div class="card"><div class="row"><b class="grow">${esc(tplName(id))}</b>${S.templates[id] ? `<span class="chip c-info">${t('tpl_custom')}</span>` : ''}</div>
+      <p class="small">${esc(tplRaw(id))}</p>${edit ? `<div class="row"><button class="btn btn-sm" data-a="tplEdit" data-v="${id}">✏️ ${t('edit')}</button>${S.templates[id] && !DEFAULT_TEMPLATES.includes(id) ? `<button class="btn btn-sm btn-bad" data-a="tplDelete" data-v="${id}">🗑️ ${t('remove')}</button>` : ''}</div>` : ''}</div>`).join('')}
+    ${edit ? `<button class="btn btn-p" data-a="tplEdit" data-v="">➕ ${t('tpl_new')}</button>` : ''}</main>` + nav('me');
+};
+function tplSheet(id) {
+  const f = App.form, c = S.templates[id];
+  f.tplId = id || ''; f.tplName = c ? c.name : (id ? tplName(id) : '');
+  LANGS.forEach(l => { const save = LANG; LANG = l; f['tpl_' + l] = c && c.text[l] ? c.text[l] : (id && L['tpl_' + id] ? t('tpl_' + id) : ''); LANG = save; });
+  sheet(`<h2>💬 ${t(id ? 'edit' : 'tpl_new')}</h2>${formInp('tplName', 'tpl_name')}
+    ${LANGS.map(l => `<div class="field"><label for="${fid('tpl_' + l)}"><b>${LANG_NAME[l]}</b></label><textarea class="in" id="${fid('tpl_' + l)}" data-f="tpl_${l}">${esc(f['tpl_' + l])}</textarea></div>`).join('')}
+    <p class="small muted">${t('tpl_vars')}</p><button class="btn btn-ok btn-big" data-a="tplSave">💾 ${t('save')}</button>`);
+}
+
+/* ---------- AMC: visits, tickets, renewal ---------- */
+function amcCard(P) {
+  if (!P.done) return '';
+  const u = App.me;
+  const visits = P.done.amc.visits.map((d, i) => {
+    const x = P.service[i], canDo = !x && u.role === 'tech' && P.tech === u.uid && d <= addDays(7) && P.stage === 'amc';
+    return `<div class="list-item"><span>${x ? '✅' : d < todayStr() ? '⏰' : '📅'}</span><span class="grow">${t('amc_visit_n', { n: i + 1 })} · ${fmtD(d)}${x ? `<br><span class="small muted">${userName(x.by)} · ${fmtD(x.t)}${Object.values(x.checks).includes('fail') ? ' · ⚠️ ' + t('amc_issues') : ''}</span>` : ''}</span>
+      ${canDo ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="service|${P.id}|visit|${i}">🔧 ${t('amc_do_visit')}</button>` : x ? `<button class="btn btn-sm" data-a="svcView" data-v="${P.id}|${i}">👁️</button>` : ''}</div>`;
+  }).join('');
+  const tk = P.tickets.map(x => {
+    const btns = [];
+    if (x.status === 'open' && allowed('TICKET_ASSIGNED', P)) btns.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="ticketAssign|${P.id}|tid|${x.id}">👤 ${t('tk_assign_ticket')}</button>`);
+    if (['assigned', 'in_progress'].includes(x.status) && (x.owner === u.uid || ['admin', 'owner'].includes(u.role))) btns.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="ticketUpdate|${P.id}|tid|${x.id}">🔧 ${t('tk_work_ticket')}</button>`);
+    if (x.status === 'resolved' && allowed('TICKET_CLOSED', P)) btns.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="ticketClose|${P.id}|tid|${x.id}">✅ ${t('tk_confirm_ticket')}</button>`);
+    return `<div class="list-item" style="display:block"><b>${TICKET_KINDS.find(k => k[0] === x.kind)[1]} ${t('tkind_' + x.kind)}</b> <span class="chip ${x.status === 'closed' ? 'c-ok' : x.status === 'resolved' ? 'c-info' : 'c-warn'}">${t('ts_' + x.status)}</span>
+      <div class="small">${esc(x.text)}</div><div class="small muted">${userName(x.by)} · ${fmtD(x.t, true)}${x.owner ? ' · 👤 ' + esc(userName(x.owner)) : ''}${x.due ? ' · 📅 ' + fmtD(x.due) : ''}${x.due && x.due < todayStr() && x.status !== 'closed' && x.status !== 'resolved' ? ' · <b style="color:var(--bad)">' + t('overdue') + '</b>' : ''}</div>
+      ${x.hist.length > 1 ? `<details class="small"><summary>${t('history')}</summary>${x.hist.map(h => `<div>${fmtD(h.t, true)} · ${t('ts_' + h.status)} · ${esc(userName(h.by))} ${esc(h.note || '')}</div>`).join('')}</details>` : ''}
+      ${btns.length ? `<div class="row wrapw" style="margin-top:6px">${btns.join('')}</div>` : ''}</div>`;
+  }).join('');
+  return `<div class="card"><h3>🛠️ ${t('amc_title')}</h3>${kv([['amc_until', P.amcEnd ? fmtD(P.amcEnd) : ''], ['warranty', t('months_n', { n: P.done.warrantyMonths })]])}
+    <h3 style="margin-top:10px">${t('amc_visits')}</h3>${visits}
+    ${P.renewals.length ? `<div class="small muted" style="margin-top:6px">${P.renewals.map(r => `♻️ ${fmtD(r.t)} · ${r.years} ${t('years')} · ${money(r.amount)} · ${esc(userName(r.by))}`).join('<br>')}</div>` : ''}
+    ${allowed('AMC_RENEWED', P) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="renew|${P.id}">♻️ ${t('tk_amc_renew')}</button>` : ''}
+    <h3 style="margin-top:12px">🎫 ${t('tickets')}</h3>${tk || `<p class="muted small">${t('nothing_here')}</p>`}
+    ${allowed('TICKET_OPENED', P) ? `<button class="btn" style="margin-top:8px" data-a="wizOpen" data-v="ticket|${P.id}">🚨 ${t('ticket_new')}</button>` : ''}</div>`;
+}
+WIZ.service = {
+  title: 'tk_amc_visit', save: 'save', saveIcon: '🔧', init: () => ({ checks: {}, ph: [], met: '', note: '' }),
+  steps: [
+    { id: 'checks', icon: '✔️', say: 's_svc_checks', body: () => `<div class="card">${AMC_CHECKS.map(k => ynRow('checks.' + k, 'amc_' + k, ['pass', 'fail'])).join('')}</div>`, check: c => AMC_CHECKS.every(k => c.checks[k]) ? null : 'err_checks' },
+    { id: 'photos', icon: '📷', say: 's_svc_photos', body: () => photoSlot('ph', 'ph_service', 1, { video: true, tag: 'amc' }), check: c => c.ph.length ? null : { k: 'err_photos', v: { n: 1 } } },
+    { id: 'note', icon: '📝', say: 's_svc_note', body: c => inp('met', 'f_met', { mic: true, opt: true }) + inp('note', 'f_note', { area: true, mic: true, opt: true }) + (AMC_CHECKS.some(k => c.checks[k] === 'fail') ? `<div class="warnbox">🎫 ${t('svc_ticket_auto')}</div>` : '') }
+  ],
+  async finish(c, P) {
+    const fails = AMC_CHECKS.filter(k => c.checks[k] === 'fail');
+    const list = [['SERVICE_DONE', P.id, { visit: W.opts.visit, checks: c.checks, met: c.met, note: c.note, ev: c.ph }]];
+    if (fails.length) list.push(['TICKET_OPENED', P.id, { tid: 'T-' + rid(5), kind: 'request', text: t('svc_repair') + ': ' + fails.map(k => t('amc_' + k)).join(', ') }]);
+    const r = await run(list); return r.ok ? doneRes(P.id, 'what_service_done') : r;
+  }
+};
+WIZ.ticket = {
+  title: 'ticket_new', save: 'send', saveIcon: '🎫', init: () => ({ kind: '', text: '', ph: [] }),
+  steps: [
+    { id: 'kind', icon: '🎫', say: 's_ticket_kind', body: (c, P) => tiles('kind', TICKET_KINDS.filter(k => k[0] !== 'breakdown' || P.stage === 'amc').map(([k, i]) => [k, i, 'tkind_' + k, 'tkind_' + k + '_d']), 'one'), check: c => c.kind ? null : 'err_choose' },
+    { id: 'text', icon: '📝', say: 's_ticket_text', body: () => inp('text', 'f_problem', { area: true, mic: true }) + photoSlot('ph', 'ph_problem', 0, { video: true, tag: 'ticket' }), check: c => c.text.trim() ? null : 'err_fill' }
+  ],
+  async finish(c, P) { const r = await run([['TICKET_OPENED', P.id, { tid: 'T-' + rid(5), kind: c.kind, text: c.text.trim(), ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_ticket_opened') : r; }
+};
+WIZ.ticketAssign = {
+  title: 'tk_assign_ticket', save: 'save', init: (P) => ({ uid: P.tech || '', due: addDays(2) }),
+  steps: [
+    { id: 'who', icon: '👤', say: 's_ticket_who', body: () => tiles('uid', Object.values(S.users).filter(u => u.active && ['tech', 'sales', 'qc', 'admin'].includes(u.role)).map(u => [u.uid, ROLE_ICON[u.role], u.name]), 'one'), check: c => S.users[c.uid] ? null : 'err_pick_person' },
+    { id: 'due', icon: '📅', say: 's_ticket_due', body: () => dateTiles('due'), check: c => /^\d{4}-\d\d-\d\d$/.test(c.due) ? null : 'err_date' }
+  ],
+  async finish(c, P) { const r = await run([['TICKET_ASSIGNED', P.id, { tid: W.opts.tid, uid: c.uid, due: c.due }]]); return r.ok ? doneRes(P.id, 'what_ticket_assigned') : r; }
+};
+WIZ.ticketUpdate = {
+  title: 'tk_work_ticket', save: 'save', init: () => ({ status: '', note: '', ph: [] }),
+  steps: [{
+    id: 'st', icon: '🔧', say: (c, P) => (ticketOf(P, W.opts.tid) || {}).text || '',
+    body: () => tiles('status', [['in_progress', '🔧', 'ts_in_progress'], ['resolved', '✅', 'ts_resolved']], 'one') + inp('note', 'f_note', { area: true, mic: true }) + photoSlot('ph', 'ph_after_fix', 0, { tag: 'ticket' }),
+    check: c => !c.status ? 'err_choose' : c.note.trim() ? null : 'err_fill'
+  }],
+  async finish(c, P) { const r = await run([['TICKET_UPDATED', P.id, { tid: W.opts.tid, status: c.status, note: c.note.trim(), ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_ticket_updated') : r; }
+};
+WIZ.ticketClose = {
+  title: 'tk_confirm_ticket', save: 'save', init: () => ({ ok: '', note: '' }),
+  steps: [{
+    id: 'ok', icon: '✅', say: 's_ticket_close',
+    body: (c, P) => `<div class="card">${esc((ticketOf(P, W.opts.tid) || {}).text || '')}</div>` + tiles('ok', [['yes', '😊', 'ticket_fixed'], ['no', '🙁', 'ticket_not_fixed']], 'one') + inp('note', 'f_note', { area: true, mic: true, opt: c.ok !== 'no' }),
+    check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null
+  }],
+  async finish(c, P) { const r = await run([['TICKET_CLOSED', P.id, { tid: W.opts.tid, ok: c.ok === 'yes', note: c.note }]]); return r.ok ? doneRes(P.id, c.ok === 'yes' ? 'what_ticket_closed' : 'what_ticket_reopened') : r; }
+};
+WIZ.renew = {
+  title: 'tk_amc_renew', save: 'save', init: () => ({ years: '1', amount: S.config.amcPrice, note: '' }),
+  steps: [{
+    id: 'y', icon: '♻️', say: 's_renew',
+    body: c => tiles('years', [['1', '1️⃣', 'years_1'], ['2', '2️⃣', 'years_2'], ['3', '3️⃣', 'years_3']], 'three') + inp('amount', 'f_amc_amount', { type: 'number', mode: 'numeric', big: true }) + `<p class="small muted">${t('amc_price_hint', { p: money(S.config.amcPrice) })} ${ruleChip('amc')}</p>` + inp('note', 'f_note', { opt: true }),
+    check: c => +c.amount >= 0 && c.amount !== '' ? null : 'err_number'
+  }],
+  async finish(c, P) { const r = await run([['AMC_RENEWED', P.id, { years: +c.years, amount: +c.amount, note: c.note }]]); return r.ok ? doneRes(P.id, 'what_renewed') : r; }
+};
+
+/* ---------- two-person approval ---------- */
+function approvalText(r) {
+  const fake = { type: r.action.type, pid: r.action.pid, data: r.action.data, by: r.by, t: r.t };
+  return `${t('ev_' + r.action.type)}${r.action.pid ? ' · ' + r.action.pid : ''}${evText(fake) ? ' · ' + evText(fake) : ''}${r.action.type === 'USER_UPDATED' ? ' → ' + t('r_' + r.action.data.role) : ''}`;
+}
+WIZ.approve2 = {
+  title: 'tk_second_approval', save: 'save_decision', saveIcon: '✅', noDraft: true, init: () => ({ decision: '', reason: '' }),
+  steps: [
+    {
+      id: 'look', icon: '👥', say: 's_approve2', body: () => {
+        const r = S.approvals[W.opts.aid];
+        return `<div class="card"><b>${esc(approvalText(r))}</b>${kv([['requested_by', userTag(r.by) + ' · ' + fmtD(r.t, true)], ['f_reason', esc(r.reason)]])}</div><div class="note">👥 ${t('dual_note')}</div>` +
+          tiles('decision', [['approve', '✅', 'dec_approve'], ['reject', '❌', 'dec_reject']], 'one');
+      }, check: c => c.decision ? null : 'err_choose'
+    },
+    { id: 'why', icon: '📝', say: 's_approve_why', body: c => inp('reason', 'f_decision_reason', { area: true, mic: true, opt: c.decision === 'approve' }), check: c => c.decision === 'reject' && !c.reason.trim() ? 'err_reason' : null }
+  ],
+  async finish(c) {
+    const r0 = S.approvals[W.opts.aid];
+    const r = await run([['APPROVAL_DECIDED', null, { aid: W.opts.aid, decision: c.decision, reason: c.reason }]]);
+    return r.ok ? Object.assign(doneRes(r0.action.pid, c.decision === 'approve' ? 'what_second_ok' : 'what_second_no'), { pid: r0.action.pid }) : r;
+  }
+};
+
+/* ---------- people: directory, profile, documents, training ---------- */
+const authChip = uid => roleOf(uid) !== 'tech' ? '' : isAuthorised(uid) ? `<span class="chip c-ok">✅ ${t('authorised')}</span>` : `<span class="chip c-warn">⚠️ ${t('not_authorised')}</span>`;
+SCREENS.workers = () => {
+  if (!['owner', 'admin'].includes(App.me.role)) return SCREENS.home();
+  App.pageSay = t('s_workers');
+  const f = App.form, q = (f.wq || '').toLowerCase(), r = f.wr || 'all', av = f.wa || 'all';
+  let list = Object.values(S.users).filter(u => u.role !== 'customer');
+  if (r !== 'all') list = list.filter(u => u.role === r);
+  if (av === 'incomplete') list = list.filter(u => trainingDone(u.uid) < modulesFor(u.role).length || DOCS.slice(0, 1).some(d => !(S.workers[u.uid] && S.workers[u.uid].docs[d] === 'verified')));
+  else if (av !== 'all') list = list.filter(u => ((S.workers[u.uid] || {}).profile || {}).availability === av);
+  if (q) list = list.filter(u => { const p = (S.workers[u.uid] || {}).profile || {}; return [u.name, p.area, (p.skills || []).map(x => t('skill_' + x)).join(' ')].join(' ').toLowerCase().includes(q); });
+  const chip = (k, v, l) => `<button class="${f[k] === v || (!f[k] && v === 'all') ? 'on' : ''}" data-a="wfilter" data-v="${k}|${v}">${l}</button>`;
+  return topBar(t('workers'), { back: true }) + `<main class="wrap">${formInp('wq', 'w_search')}
+    <div class="tabs" style="position:static;padding:0 0 6px">${chip('wr', 'all', t('all'))}${['field', 'sales', 'finance', 'qc', 'supplier', 'tech', 'admin'].map(x => chip('wr', x, ROLE_ICON[x] + ' ' + t('r_' + x))).join('')}</div>
+    <div class="tabs" style="position:static;padding:0 0 10px">${chip('wa', 'all', t('all'))}${['available', 'busy', 'leave'].map(x => chip('wa', x, t('av_' + x))).join('')}${chip('wa', 'incomplete', '⚠️ ' + t('onb_incomplete'))}</div>
+    ${list.map(u => { const w = S.workers[u.uid] || { profile: {}, docs: {}, training: {} }, p = w.profile;
+      return `<button class="task" data-a="nav2" data-v="worker|${u.uid}"><span class="ti">${ROLE_ICON[u.role]}</span><span style="flex:1"><b>${esc(u.name)}</b><span class="small muted">${t('r_' + u.role)}${p.area ? ' · 📍 ' + esc(p.area) : ''}</span><br>
+        ${p.availability ? `<span class="chip ${p.availability === 'available' ? 'c-ok' : 'c-mute'}">${t('av_' + p.availability)}</span> ` : ''}<span class="chip c-info">🎓 ${trainingDone(u.uid)}/${modulesFor(u.role).length}</span> <span class="chip c-mute">🪪 ${DOCS.filter(d => w.docs[d] === 'verified').length}/${DOCS.length}</span> ${authChip(u.uid)}
+        ${(p.skills || []).length ? `<br><span class="small">${p.skills.map(x => t('skill_' + x)).join(', ')}</span>` : ''}</span><span class="go">▶</span></button>`; }).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
+};
+SCREENS.worker = ({ uid }) => {
+  const u = S.users[uid], me = App.me;
+  if (!u || (uid !== me.uid && !['owner', 'admin'].includes(me.role))) return SCREENS.home();
+  const w = S.workers[uid] || { profile: {}, docs: {}, training: {} }, p = w.profile, adm = ['owner', 'admin'].includes(me.role) && uid !== me.uid;
+  App.pageSay = t('s_worker');
+  return topBar(uid === me.uid ? t('my_profile') : u.name, { back: true }) + `<main class="wrap">
+    <div class="hero"><div class="row"><span style="font-size:2.2rem">${ROLE_ICON[u.role]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + u.role)}</span></div></div><div style="margin-top:6px">${authChip(uid)}</div></div>
+    <div class="card"><h3>👤 ${t('profile')}</h3>${kv([['f_phone', esc(p.phone || '')], ['w_area', esc(p.area || '')], ['w_avail', p.availability ? t('av_' + p.availability) : ''], ['w_skills', (p.skills || []).map(x => t('skill_' + x)).join(', ')]])}
+      <button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="wprofile||uid|${uid}">✏️ ${t('edit')}</button><p class="small muted">${t('w_privacy')}</p></div>
+    <div class="card"><h3>🪪 ${t('w_docs')}</h3>${DOCS.map(d => `<div class="list-item"><span class="grow">${t('doc_' + d)}</span><span class="chip ${w.docs[d] === 'verified' ? 'c-ok' : w.docs[d] === 'rejected' ? 'c-bad' : 'c-mute'}">${t('ds_' + (w.docs[d] || 'pending'))}</span>
+      ${adm ? `<button class="btn btn-sm" data-a="docVerify" data-v="${uid}|${d}|verified">✅</button><button class="btn btn-sm" data-a="docVerify" data-v="${uid}|${d}|rejected">❌</button>` : ''}</div>`).join('')}<p class="small muted">${t('w_docs_note')}</p></div>
+    <div class="card"><h3>🎓 ${t('training')}</h3>${modulesFor(u.role).map(m => `<div class="list-item"><span>${w.training[m] ? '✅' : '⬜'}</span><span class="grow">${t('tr_' + m + '_t')}${w.training[m] ? `<br><span class="small muted">${fmtD(w.training[m].t)} · ${w.training[m].score}/3</span>` : ''}</span>${uid === me.uid && !w.training[m] ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="train||module|${m}">▶</button>` : ''}</div>`).join('') || `<p class="muted">${t('nothing_here')}</p>`}</div>
+    ${u.role === 'tech' ? `<button class="btn btn-big" data-a="nav2" data-v="earn|${uid}">💰 ${t('earnings')}</button>` : ''}</main>` + nav('me');
+};
+WIZ.wprofile = {
+  title: 'profile', save: 'save', noDraft: true,
+  init: (P, o) => { const p = ((S.workers[o.uid] || {}).profile) || {}; return { phone: p.phone || '', area: p.area || '', availability: p.availability || 'available', skills: (p.skills || []).slice() }; },
+  steps: [
+    { id: 'av', icon: '🟢', say: 's_w_avail', body: () => tiles('availability', [['available', '🟢', 'av_available'], ['busy', '🟠', 'av_busy'], ['leave', '🏖️', 'av_leave']], 'three') + inp('phone', 'f_phone', { type: 'tel', mode: 'numeric', opt: true }) + inp('area', 'w_area', { mic: true, opt: true }), check: c => c.phone && !validPhone(c.phone) ? 'err_phone' : null },
+    { id: 'skills', icon: '🧰', say: 's_w_skills', body: c => `<div class="tiles">${SKILLS.map(k => `<button class="tile ${c.skills.includes(k) ? 'on' : ''}" data-a="toggleIn" data-k="skills" data-v="${k}" style="min-height:70px">${t('skill_' + k)}</button>`).join('')}</div>` }
+  ],
+  async finish(c) { const uid = W.opts.uid; const r = await run([['WORKER_PROFILE', null, { uid, phone: c.phone ? phone10(c.phone) : '', area: c.area.trim(), availability: c.availability, skills: c.skills }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('worker', { uid }, { replace: true }) } : r; }
+};
+SCREENS.training = () => {
+  const u = App.me, w = S.workers[u.uid] || { training: {} };
+  App.pageSay = t('s_training');
+  return topBar(t('training'), { back: true }) + `<main class="wrap"><p class="say">🎓 ${t('s_training')}</p>${modulesFor(u.role).map(m => `<button class="cl-item ${w.training[m] ? 'done' : ''}" data-a="wizOpen" data-v="train||module|${m}"><span class="st">${w.training[m] ? '✅' : '▶️'}</span><span class="grow"><b>${t('tr_' + m + '_t')}</b><br><span class="small">${t('train_parts')}</span></span></button>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}
+    <div class="note">💰 ${t('pay_transparent')}</div></main>` + nav('me');
+};
+WIZ.train = {
+  title: 'training', save: 'train_finish', saveIcon: '🎓', noDraft: true, init: () => ({ a: [] }),
+  steps: [1, 2, 3].map(n => ({ id: 'l' + n, icon: '📘', say: () => t('tr_' + W.opts.module + '_l' + n), body: () => `<div class="note">${t('lesson_n', { n, m: 3 })} · ${t('tr_' + W.opts.module + '_t')}</div>` }))
+    .concat([0, 1, 2].map(n => ({
+      id: 'q' + n, icon: '❓', say: () => t('tr_' + W.opts.module + '_q' + (n + 1)),
+      body: () => tiles('a.' + n, [0, 1, 2].map(o => [o, ['🅰️', '🅱️', '©️'][o], 'tr_' + W.opts.module + '_q' + (n + 1) + '_' + 'abc'[o]]), 'one'),
+      check: c => c.a[n] == null ? 'err_choose' : null
+    }))),
+  async finish(c) {
+    const m = TRAIN.find(x => x[0] === W.opts.module), ans = [0, 1, 2].map(i => +c.a[i]), score = m[2].filter((v, i) => ans[i] === v).length;
+    if (score < 2) return { ok: true, title: t('train_try_again'), what: t('what_train_fail', { n: score }), next: t('train_retry') };
+    const r = await run([['TRAINING_PASSED', null, { module: m[0], answers: ans, score }]]);
+    return r.ok ? { ok: true, title: t('done_title'), what: t('what_train_pass', { n: score, m: t('tr_' + m[0] + '_t') }), next: t('train_next') } : r;
+  }
+};
+
+/* ---------- technician weekly pay ---------- */
+const weekLabel = k => fmtD(k) + ' – ' + fmtD(addDays(6, new Date(k + 'T12:00:00')));
+SCREENS.earn = ({ uid }) => {
+  const me = App.me, u = S.users[uid];
+  if (!u || !(uid === me.uid || ['owner', 'admin', 'finance'].includes(me.role))) return SCREENS.home();
+  App.pageSay = t('s_earn');
+  const c = S.config, now = weekKey(nowISO());
+  return topBar(t('earnings') + ' · ' + u.name, { back: true }) + `<main class="wrap"><div class="card"><h3>📏 ${t('pay_rules')}</h3>${kv([['earn_step', money(c.paySopStep)], ['earn_qc_bonus', money(c.payQcBonus)], ['earn_amc_visit', money(c.payAmcVisit)]])}<div style="margin-top:6px">${ruleChip('techpay')}</div><p class="small muted">${t('pay_rules_note')}</p></div>
+    ${weeksFor(uid).map(w => { const p = w.pay, diff = p && p.status !== 'open' && w.total !== p.computed ? w.total - p.computed : 0;
+      const btn = [];
+      if ((!p || p.status === 'open') && w.week < now && ['owner', 'admin'].includes(me.role) && w.total >= 0) btn.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="payApprove||uid|${uid}|week|${w.week}">✅ ${t('tk_approve_pay')}</button>`);
+      if (p && p.status === 'approved' && me.role === 'finance' && p.approvedBy !== me.uid) btn.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="payPaid||uid|${uid}|week|${w.week}">🏦 ${t('tk_pay_tech')}</button>`);
+      if (uid === me.uid && !(p && p.dispute && p.dispute.open)) btn.push(`<button class="btn btn-sm" data-a="wizOpen" data-v="payDispute||uid|${uid}|week|${w.week}">🙋 ${t('pay_dispute')}</button>`);
+      if (p && p.dispute && p.dispute.open && ['owner', 'admin'].includes(me.role)) btn.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="payAnswer||uid|${uid}|week|${w.week}">💬 ${t('tk_pay_dispute')}</button>`);
+      return `<div class="card"><div class="row"><b class="grow">${weekLabel(w.week)}</b><span class="chip ${!p || p.status === 'open' ? (w.week >= now ? 'c-mute' : 'c-warn') : p.status === 'paid' ? 'c-ok' : 'c-info'}">${t('wp_' + (!p || p.status === 'open' ? (w.week >= now ? 'running' : 'waiting') : p.status))}</span></div>
+        ${w.lines.map(l => `<div class="list-item small"><span class="grow">${fmtD(l.t)} · ${esc(l.pid)} · ${esc(t(l.what))}</span><b>${money(l.amount)}</b></div>`).join('')}
+        ${kv([['earn_total', money(w.total)], ['earn_approved', p && p.status !== 'open' ? money(p.amount) + (p.adjust ? ` (${p.adjust > 0 ? '+' : ''}${money(p.adjust)}: ${esc(p.reason)})` : '') : ''], ['earn_paid', p && p.status === 'paid' ? fmtD(p.paidAt) + ' · ' + esc(p.ref) : '']])}
+        ${diff ? `<div class="warnbox">${t('earn_diff', { d: money(diff) })}</div>` : ''}
+        ${p && p.dispute ? `<div class="${p.dispute.open ? 'warnbox' : 'note'}">🙋 ${esc(p.dispute.reason)}${p.dispute.answer ? '<br>💬 ' + esc(p.dispute.answer) : ''}</div>` : ''}
+        ${btn.length ? `<div class="row wrapw">${btn.join('')}</div>` : ''}</div>`; }).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
+};
+const payWeek = () => weeksFor(W.opts.uid).find(x => x.week === W.opts.week);
+WIZ.payApprove = {
+  title: 'tk_approve_pay', save: 'save', noDraft: true, init: () => ({ adjust: 0, reason: '' }),
+  steps: [{ id: 'a', icon: '💰', say: 's_pay_approve', body: c => `<div class="card">${kv([['r_tech', esc(userName(W.opts.uid))], ['week', weekLabel(W.opts.week)], ['earn_total', money(payWeek().total)], ['earn_final', money(payWeek().total + (+c.adjust || 0))]])}</div>` +
+      inp('adjust', 'f_adjust', { type: 'number', mode: 'numeric' }) + inp('reason', 'f_reason', { opt: true, mic: true }) + `<div class="note">${t('pay_human_note')}</div>`,
+    check: c => +c.adjust && !c.reason.trim() ? 'err_reason' : payWeek().total + (+c.adjust || 0) < 0 ? 'err_amount' : null }],
+  async finish(c) { const tot = payWeek().total, adj = +c.adjust || 0; const r = await run([['PAY_APPROVED', null, { uid: W.opts.uid, week: W.opts.week, computed: tot, adjust: adj, amount: tot + adj, reason: c.reason }]]); return r.ok ? { ok: true, title: t('done_title'), what: t(App.sentSecond ? 'what_sent_second' : 'what_pay_approved'), next: t('next_who', { who: t('r_finance'), task: t('tk_pay_tech') }) } : r; }
+};
+WIZ.payPaid = {
+  title: 'tk_pay_tech', save: 'save', noDraft: true, init: () => ({ ref: '' }),
+  steps: [{ id: 'p', icon: '🏦', say: 's_pay_paid', body: () => `<div class="card">${kv([['r_tech', esc(userName(W.opts.uid))], ['week', weekLabel(W.opts.week)], ['amount', money(S.pay[W.opts.uid + '|' + W.opts.week].amount)]])}</div>` + inp('ref', 'f_bank_ref', { mic: 'digits' }), check: c => c.ref.trim() ? null : 'err_ref' }],
+  async finish(c) { const r = await run([['PAY_PAID', null, { uid: W.opts.uid, week: W.opts.week, ref: c.ref.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_pay_paid'), next: t('next_none') } : r; }
+};
+WIZ.payDispute = {
+  title: 'pay_dispute', save: 'send', noDraft: true, init: () => ({ reason: '' }),
+  steps: [{ id: 'd', icon: '🙋', say: 's_pay_dispute', body: () => inp('reason', 'f_reason', { area: true, mic: true }), check: c => c.reason.trim() ? null : 'err_reason' }],
+  async finish(c) { const r = await run([['PAY_DISPUTED', null, { uid: W.opts.uid, week: W.opts.week, reason: c.reason.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_pay_disputed'), next: t('next_who', { who: rolesTxt(['admin', 'owner']), task: t('tk_pay_dispute') }) } : r; }
+};
+WIZ.payAnswer = {
+  title: 'tk_pay_dispute', save: 'save', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'd', icon: '💬', say: () => (S.pay[W.opts.uid + '|' + W.opts.week].dispute || {}).reason || '', body: () => inp('note', 'f_answer', { area: true, mic: true }) + `<p class="small muted">${t('pay_answer_note')}</p>`, check: c => c.note.trim() ? null : 'err_fill' }],
+  async finish(c) { const r = await run([['PAY_DISPUTE_ANSWERED', null, { uid: W.opts.uid, week: W.opts.week, note: c.note.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_pay_answered'), next: t('next_none') } : r; }
+};
+
+/* ---------- leaderboard (quality, never speed) ---------- */
+SCREENS.leaders = ({ m }) => {
+  m = m || todayStr().slice(0, 7);
+  const prev = new Date(m + '-15T12:00:00'); prev.setMonth(prev.getMonth() - 1); const pm = prev.toISOString().slice(0, 7);
+  const inM = iso => iso && iso.slice(0, 7) === m;
+  const score = {}, add = (uid, pts, what) => { if (!uid || !S.users[uid]) return; const s0 = score[uid] = score[uid] || { uid, pts: 0, items: {} }; s0.pts += pts; s0.items[what] = (s0.items[what] || 0) + 1; };
+  for (const P of Object.values(S.projects)) {
+    const acc = P.hist.find(h => h.s === 'accepted'); if (acc && inM(acc.t)) add(P.createdBy, 10, 'lb_valid_lead');
+    const won = P.hist.find(h => h.s === 'won'); if (won && inM(won.t)) add(P.sales, 20, 'lb_deal_won');
+    const pass = P.qcFinal.find(x => x.outcome === 'pass');
+    if (pass && inM(pass.t) && P.tech) { if (P.qcFinal[0].outcome === 'pass') add(P.tech, 15, 'lb_first_pass'); if (P.mhand && (new Date(pass.t) - new Date(P.mhand.t)) / 864e5 <= S.config.installDays) add(P.tech, 10, 'lb_on_target'); }
+    Object.values(P.service).forEach(x => { if (inM(x.t)) add(x.by, 5, 'lb_amc_visit'); });
+  }
+  const table = (role, icon) => { const rows = Object.values(score).filter(x => roleOf(x.uid) === role).sort((a, b) => b.pts - a.pts).slice(0, 10);
+    return `<div class="card"><h3>${icon} ${t('r_' + role)}</h3>${rows.map((x, i) => `<div class="list-item" style="${x.uid === App.me.uid ? 'background:var(--gold-l);border-radius:10px;padding-inline:6px' : ''}"><b style="width:28px">${['🥇', '🥈', '🥉'][i] || i + 1}</b><span class="grow">${esc(userName(x.uid))}<br><span class="small muted">${Object.entries(x.items).map(([k, n]) => t(k) + ' × ' + n).join(', ')}</span></span><b>${x.pts}</b></div>`).join('') || `<p class="muted small">${t('nothing_here')}</p>`}</div>`; };
+  App.pageSay = t('s_leaders');
+  return topBar(t('leaderboard'), { back: true }) + `<main class="wrap"><div class="tabs" style="position:static;padding:0 0 10px"><button class="${m === todayStr().slice(0, 7) ? 'on' : ''}" data-a="nav2" data-v="leaders|">${t('this_month')}</button><button class="${m === pm ? 'on' : ''}" data-a="nav2" data-v="leaders|${pm}">${t('last_month')}</button></div>
+    ${table('field', '🏍️')}${table('sales', '🤝')}${table('tech', '🔧')}
+    <div class="card"><h3>📏 ${t('lb_rules')}</h3><ul style="padding-left:20px;margin:0">${['lb_r1', 'lb_r2', 'lb_r3', 'lb_r4', 'lb_r5'].map(k => `<li>${t(k)}</li>`).join('')}</ul><p class="small muted">${t('lb_fair')}</p></div></main>` + nav('me');
+};
+
+/* ---------- helper: searches AIEC training material (not an AI chatbot) ---------- */
+function helperKB() {
+  const kbs = [];
+  TRAIN.forEach(([m]) => [1, 2, 3].forEach(n => kbs.push({ title: t('tr_' + m + '_t'), text: t('tr_' + m + '_l' + n), src: 'training' })));
+  SOP.forEach(([k]) => kbs.push({ title: t('sop_' + k), text: t('sop_' + k + '_d'), src: 'sop' }));
+  PREP_ITEMS.forEach(([k]) => kbs.push({ title: t('prep_' + k), text: t('prep_' + k + '_d'), src: 'prep' }));
+  for (let i = 1; i <= 10; i++) if (L['faq_q' + i]) kbs.push({ title: t('faq_q' + i), text: t('faq_a' + i), src: 'faq' });
+  ['help_tip1', 'help_tip2', 'help_tip3', 'help_tip4'].forEach(k => kbs.push({ title: t('help'), text: t(k), src: 'help' }));
+  ['ab_collect', 'ab_who', 'ab_where', 'ab_limits', 'ab_ai', 'ab_rules'].forEach(k => kbs.push({ title: t(k), text: t(k + '_d'), src: 'about' }));
+  Object.keys(RULE_GROUPS).forEach(g => kbs.push({ title: t('rg_' + g), text: t('rg_' + g + '_d'), src: 'rules' }));
+  return kbs;
+}
+const STOP = new Set(['the', 'is', 'a', 'an', 'to', 'of', 'and', 'or', 'in', 'on', 'for', 'how', 'what', 'do', 'i', 'my', 'can', 'है', 'का', 'की', 'के', 'में', 'को', 'और', 'क्या', 'कैसे', 'मैं', 'आहे', 'का?', 'कसे', 'काय', 'मी', 'ला', 'चा', 'ची', 'चे', 'व', 'आणि']);
+const toks = s => String(s).toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, ' ').split(/\s+/).filter(w => w.length > 1 && !STOP.has(w));
+function helperSearch(q) {
+  const qt = toks(q); if (!qt.length) return [];
+  const stem = w => w.slice(0, Math.max(3, w.length - 2));
+  return helperKB().map(e => { const body = toks(e.title + ' ' + e.title + ' ' + e.text); const bs = body.map(stem); const sc = qt.reduce((a, w) => a + (body.includes(w) ? 2 : bs.includes(stem(w)) ? 1 : 0), 0); return Object.assign({ score: sc }, e); })
+    .filter(e => e.score >= 2).sort((a, b) => b.score - a.score).slice(0, 3);
+}
+SCREENS.helper = () => {
+  const r = App.form.hres;
+  App.pageSay = r && r.length ? r[0].title + '. ' + r[0].text : t('s_helper');
+  return topBar(t('helper'), { back: true }) + `<main class="wrap"><p class="say">🙋 ${t('s_helper')}</p>
+    <div class="in-row"><input class="in" id="${fid('hq')}" data-f="hq" value="${esc(App.form.hq || '')}" placeholder="${esc(t('helper_ph'))}">${SR ? `<button class="mic" data-a="mic" data-k="hq" data-v="text">🎤</button>` : ''}</div>
+    <button class="btn btn-p btn-big" style="margin-top:10px" data-a="helperAsk">🔍 ${t('helper_ask')}</button>
+    ${r ? (r.length ? r.map((x, i) => `<div class="card" style="margin-top:12px"><h3>${i === 0 ? '⭐ ' : ''}${esc(x.title)}</h3><p>${esc(x.text)}</p><button class="btn btn-sm" data-a="helperSay" data-v="${i}">🔊 ${t('listen')}</button> <span class="chip c-mute">${t('src_' + x.src)}</span></div>`).join('')
+      : `<div class="warnbox" style="margin-top:12px">🤷 ${t('helper_none')}</div><button class="btn" data-a="nav" data-v="chat">💬 ${t('ask_in_chat')}</button>`) : ''}
+    <p class="small muted" style="margin-top:12px">${t('helper_note')}</p></main>` + nav('me');
+};
+
+/* ---------- smarter photo checks: same or near-identical photo used before ---------- */
+function hamming(a, b) { let d = 0; for (let i = 0; i < a.length; i++) { let x = parseInt(a[i], 16) ^ parseInt(b[i], 16); while (x) { d += x & 1; x >>= 1; } } return d; }
+function similarEvidence(hash, ah, exceptEvt) {
+  return Object.values(S.evidence).find(e => e.kind === 'photo' && e.dev !== 'practice' && e.evt !== exceptEvt && (e.hash === hash || (ah && e.q && e.q.ah && hamming(ah, e.q.ah) <= 4)));
+}
+
+/* ---------- address from GPS (needs internet) ---------- */
+async function lookupAddress(gp) {
+  if (!gp || !navigator.onLine) return '';
+  try {
+    const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), 7000);
+    const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${gp.lat}&lon=${gp.lng}&zoom=18&addressdetails=0&accept-language=${LANG}`, { signal: ctl.signal });
+    clearTimeout(to); if (!r.ok) return '';
+    const j = await r.json(); return (j.display_name || '').split(',').slice(0, 5).map(x => x.trim()).join(', ');
+  } catch (e) { return ''; }
+}
+
+/* =====================================================================
    Actions (all clicks go through here)
    ===================================================================== */
 const MAIN_TABS = ['home', 'projects', 'map', 'chat', 'me', 'docs'];
@@ -4308,7 +5313,12 @@ function openTask(n) {
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
     sign_handover: () => go('cl', { pid, kind: 'handover' }), complete_handover: () => go('cl', { pid, kind: 'handover' }),
     resolve_blocker: () => wiz('resolve', pid, { bid: n.bid }), resolve_incident: () => wiz('incident', pid, { iid: n.iid }),
-    answer: () => { App.form.replyTo = n.mid; go('project', { pid, tab: 'chat' }); }
+    answer: () => { App.form.replyTo = n.mid; go('project', { pid, tab: 'chat' }); },
+    amc_visit: () => wiz('service', pid, { visit: n.visit }), amc_renew: () => wiz('renew', pid),
+    assign_ticket: () => wiz('ticketAssign', pid, { tid: n.tid }), work_ticket: () => wiz('ticketUpdate', pid, { tid: n.tid }), confirm_ticket: () => wiz('ticketClose', pid, { tid: n.tid }),
+    escalated: () => go('project', { pid }), second_approval: () => wiz('approve2', null, { aid: n.aid }),
+    approve_pay: () => wiz('payApprove', null, { uid: n.uid, week: n.week }), pay_tech: () => wiz('payPaid', null, { uid: n.uid, week: n.week }),
+    pay_dispute: () => wiz('payAnswer', null, { uid: n.uid, week: n.week }), training: () => wiz('train', null, { module: n.module })
   };
   (m[n.k] || (() => go('project', { pid })))();
 }
@@ -4459,7 +5469,33 @@ const ACT = {
   gpsRefresh: async () => { if (!W) return; W.ctx.gps = null; render(); const gp = await Geo.get(); if (W) { W.ctx.gps = gp; saveDraft(); render(); } },
   itemAdd: (v, el) => { const arr = getPath(W.ctx, el.dataset.k) || []; arr.push({ text: '', due: addDays(7) }); setPath(W.ctx, el.dataset.k, arr); saveDraft(); render(); },
   itemDel: (v, el) => { getPath(W.ctx, el.dataset.k).splice(+v, 1); saveDraft(); render(); },
-  chan: v => { if (W) { W.ctx.channel = v; saveDraft(); setTimeout(render, 400); } },
+  chan: (v, el) => {
+    if (!W) return;
+    W.ctx.channel = v; saveDraft();
+    const P = S.projects[W.pid];
+    if (v === 'whatsapp' && P && allowed('MSG_LOGGED', P)) perform('MSG_LOGGED', P.id, { mid: 'MSG-' + rid(6), template: el.dataset.tpl || 'intro', text: waText(P, el.dataset.tpl), lang: LANG }, { quiet: true });
+    setTimeout(render, 400);
+  },
+  waOpen: () => { const P = S.projects[W.pid]; if (App.mode !== 'practice') window.open(waUrl(P, W.ctx.text), '_blank'); W.ctx.opened = true; W.err = null; render(); },
+  msgStatus: async v => { const [mid, status] = v.split('|'); const r = await perform('MSG_STATUS', pidHere(), { mid, status }); if (r.ok) { toast(t('saved_item')); render(); } },
+  tplEdit: v => tplSheet(v),
+  tplSave: async () => {
+    const f = App.form, id = f.tplId || ('custom_' + rid(4).toLowerCase()), text = {};
+    LANGS.forEach(l => { if ((f['tpl_' + l] || '').trim()) text[l] = f['tpl_' + l].trim(); });
+    const r = await perform('TEMPLATE_SET', null, { tid: id, name: (f.tplName || '').trim(), text });
+    if (r.ok) { closeSheet(); toast(t('saved_item')); render(); }
+  },
+  tplDelete: async v => { const r = await perform('TEMPLATE_DELETED', null, { tid: v }); if (r.ok) render(); },
+  /* "wizId|pid|key|value|key|value" opens a step-by-step screen with options */
+  wizOpen: v => { const [id, pid, ...kvs] = v.split('|'); const o = {}; for (let i = 0; i < kvs.length; i += 2) o[kvs[i]] = /^\d+$/.test(kvs[i + 1]) && kvs[i] !== 'week' ? +kvs[i + 1] : kvs[i + 1]; closeSheet(); wiz(id, pid || null, o); },
+  nav2: v => { const [screen, val] = v.split('|'); go(screen, screen === 'leaders' ? { m: val } : { uid: val }); },
+  svcView: v => { const [pid, i] = v.split('|'), x = S.projects[pid].service[i]; sheet(`<h2>🛠️ ${t('amc_visit_n', { n: +i + 1 })}</h2><p class="small">${userTag(x.by)} · ${fmtD(x.t, true)}${x.met ? ' · ' + esc(x.met) : ''}</p>${AMC_CHECKS.map(k => `<div>${x.checks[k] === 'pass' ? '✅' : '❌'} ${t('amc_' + k)}</div>`).join('')}${x.note ? `<p>${esc(x.note)}</p>` : ''}${evGrid(x.ev)}`); },
+  docVerify: v => { const [uid, doc, status] = v.split('|'); App.form.dvNote = ''; sheet(`<h2>🪪 ${t('doc_' + doc)} · ${t('ds_' + status)}</h2><p>${esc(userName(uid))}</p>${formInp('dvNote', status === 'rejected' ? 'f_reason' : 'f_note')}<p class="small muted">${t('w_docs_note')}</p><button class="btn btn-p btn-big" data-a="docVerifyGo" data-v="${v}">💾 ${t('save')}</button>`); },
+  docVerifyGo: async v => { const [uid, doc, status] = v.split('|'); const r = await perform('DOC_VERIFIED', null, { uid, doc, status, note: (App.form.dvNote || '').trim() }); if (r.ok) { closeSheet(); toast(t('saved_item')); render(); } },
+  wfilter: v => { const [k, val] = v.split('|'); App.form[k] = val; render(); },
+  helperAsk: () => { App.form.hres = helperSearch(App.form.hq || ''); render(); if (guideOn() || App.set.autoRead) Voice.say(App.form.hres.length ? App.form.hres[0].text : t('helper_none')); },
+  helperSay: v => { const x = (App.form.hres || [])[+v]; if (x) Voice.say(x.title + '. ' + x.text); },
+  useAddr: () => { if (!W) return; W.ctx.address = W.ctx.addrSuggest; W.ctx.addrSrc = 'gps'; saveDraft(); render(); },
   raiseBlocker: v => wiz('blocker', W.pid, { step: +v }),
   projAct: v => wiz(v, pidHere()),
   custAccess: v => wiz('custAccess', v),
@@ -4492,7 +5528,8 @@ const ACT = {
   clAction: async v => {
     const pid = App.route.p.pid;
     const r = await perform(v, pid, {});
-    if (r.ok) go('done', doneRes(pid, 'what_' + v.toLowerCase(), {}, v === 'HANDOVER_COMPLETED' ? { more: [['openDocP', '📄', 'doc_handover']] } : {}), { replace: true });
+    if (r.ok) go('done', doneRes(pid, App.sentSecond ? 'what_sent_second' : 'what_' + v.toLowerCase(), {}, v === 'HANDOVER_COMPLETED' ? { more: [['openDocP', '📄', 'doc_handover']] } : {}), { replace: true });
+    App.sentSecond = false;
   },
   openDoc: v => go('doc', { pid: pidHere(), kind: v }),
   openDocV: v => go('doc', { pid: pidHere(), kind: 'quote', v: +v }),
@@ -4709,7 +5746,14 @@ async function seedPractice() {
   await SP('BLOCKER_RAISED', hosp, { step: null, reason: 'help', role: 'admin', note: 'Need extra scaffolding for top floor' }, 'tech');
   await SP('DEAL_LOST', vishal, { reason: 'price', note: 'Chose another company' }, 'sales');
   await SP('LEAD_RETURNED', katraj, { reason: 'photo', note: 'Shaft photo not clear. Please take again.' }, 'sales');
-  void amc; void sar;
+  /* AMC, messages, people and training so each part has something to look at */
+  await SP('TICKET_OPENED', amc, { tid: 'T-' + rid(5), kind: 'complaint', text: 'Lift door makes noise when closing', ev: [] }, 'sales');
+  await SP('MSG_LOGGED', vishal, { mid: 'MSG-' + rid(6), template: 'quote', text: fillTpl(t('tpl_quote'), waVars(S.projects[vishal])), lang: LANG }, 'sales');
+  await SP('WORKER_PROFILE', null, { uid: U.tech, phone: '9822000020', area: 'Pune West', availability: 'available', skills: ['install', 'wiring', 'service'] }, 'admin');
+  await SP('WORKER_PROFILE', null, { uid: U.field, phone: '9822000021', area: 'Kothrud, Karve Nagar', availability: 'available', skills: ['survey', 'driving'] }, 'admin');
+  for (const d of ['id', 'address']) await SP('DOC_VERIFIED', null, { uid: U.tech, doc: d, status: 'verified' }, 'admin');
+  await SP('TRAINING_PASSED', null, { module: 'app', answers: [0, 1, 2], score: 3 }, 'tech');
+  void sar;
   await saveAll();
 }
 

@@ -56,6 +56,22 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 | | Signatures from customer, technician and QC | each person |
 | | Handover certificate, warranty end date, AMC visit schedule | Admin / Owner / QC |
 
+### After handover and around the workflow
+| Part | What it does |
+|---|---|
+| 💬 WhatsApp messages | 7 ready messages (introduction, quotation, follow-up, payment reminder, site preparation, service visit, AMC renewal) in Marathi / Hindi / English. The app fills in the name, project number, amount and date, then opens WhatsApp. Every sent message is logged on the project, and Sales records "replied" or "no reply". Owner/Admin can change or add messages (**Me → WhatsApp messages**). |
+| 🛠️ AMC service | Service visits are scheduled from the handover date. The technician does a 7-point check with a photo; any failed check creates a repair ticket automatically. The contract can be renewed for 1–3 years, which adds new visits. |
+| 🎫 Problem tickets | The customer, Sales, a technician or the office reports a breakdown, complaint or request → the office assigns a person and a date → that person fixes it with a note and photo → the customer or office confirms, or reopens it. Overdue tickets are sent up to the Owner/Admin. |
+| ⏫ Escalation | Work that waits longer than the set number of days (default 3) appears for the Owner/Admin as "Work is stuck". |
+| 👥 Two-person approval | When switched on (Business rules → Control), risky actions need a second Owner/Admin: approving a quote below the margin floor, reversing a payment, closing a security problem, reopening a lost deal, making someone Owner/Admin, and changing technician pay. The person who asks cannot approve it. |
+| 🪪 Worker onboarding | Directory with search and filters (role, availability, incomplete). Each person has a profile (phone, area, availability, skills), a document check (ID, address, safety certificate, licence; the app stores only checked/not checked, never the document) and training. |
+| 🎓 Training | 5 short modules (app, safety, leads, installation, customers). Each has 3 spoken lessons and 3 picture-answer questions, and needs 2 of 3 right to pass. Optional rule: only technicians who have passed training and whose ID is checked can be given a job. |
+| 💰 Technician weekly pay | Pay is worked out from saved work: each installation step with proof, a bonus when the final inspection passes first time, and each service visit (amounts are a business rule). Owner/Admin approves each finished week (any change needs a reason). Finance pays and records the bank reference; the approver cannot pay. The technician sees every line and can ask a question. |
+| 🏆 Good work board | Monthly points for quality work checked by another person: valid leads, deals won, inspections passed first time, installations within target days, and service visits. There are no points for speed alone. |
+| 🙋 Ask for help | Type or speak a question. The app searches AIEC's own training, installation steps, site-preparation notes and common questions on the phone and reads the answer aloud. It is not an AI chatbot and works offline. |
+| 🗺️ Address from GPS | With internet, the new-site screen suggests the address for the GPS point (OpenStreetMap Nominatim) in the chosen language. The person checks it before using it. |
+| 📷 Reused photo check | A photo that is the same as, or nearly the same as, one used before is flagged ("Same photo used before") for a person to review. |
+
 ### Enforced role permissions
 * Each event type has an allowed role list and allowed stages (see **Me → What can I do?**; Owner/Admin see the full matrix).
 * Project-level access: a field worker sees only their sites, a supplier only their orders (no customer phone, no prices), a technician only assigned jobs (no margins), a customer only their own lift (no internal notes, approvals or margins).
@@ -101,11 +117,12 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 
 ## Honest limits of this version
 * **Offline, single file.** Roles are enforced by the app on every action and on every imported file, but there is no company server: data files are not digitally signed, so share them only with trusted staff. A server with signed sync is the recommended next step for full security.
-* **Not connected:** payment gateway, bank/EMI partner, WhatsApp delivery reports, container GPS tracker, motion sensors, CCTV, digital locks. The app never claims they exist; it records what people did and asks Finance to verify money from the bank.
+* **Not connected:** payment gateway, bank/EMI partner, WhatsApp delivery and read reports (they need the WhatsApp Business API on a company server; the app opens WhatsApp and records what the person sent), container GPS tracker, motion sensors, CCTV, digital locks. The app never claims they exist; it records what people did and asks Finance to verify money from the bank.
 * **No AI decisions.** Automatic checks are simple rules and only warn.
 * **Templates:** QC checklists, the 12 installation steps, the agreement text and the handover/NOC text are templates. They must be approved by a qualified lift engineer (Maharashtra Lifts Act and rules) and a lawyer before real use. The app does not issue statutory licences.
-* Reverse geocoding (address from GPS) needs internet; offline the user types or speaks a landmark.
-* Not yet built (later phases of the spec): worker directory and training, technician weekly pay, EMI, leaderboards, AMC visit execution, server sync.
+* Address from GPS needs internet (OpenStreetMap Nominatim); offline the user types or speaks a landmark.
+* Not yet built (later phases of the spec): EMI, hardware (GPS trackers, sensors, CCTV, digital locks), server sync.
+* The training lessons, quiz answers and pay amounts are starting templates. The Owner must check them with a qualified lift engineer and with labour and accounting rules.
 * Personal data stays on the phone until deleted. The Owner must set a keep-and-delete policy that follows the Digital Personal Data Protection Act, 2023.
 
 ---
@@ -127,4 +144,4 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
   npx playwright install chromium
   npm test
   ```
-  The suite covers: practice data for all 10 sample users; a full real-mode lead-to-handover run through the UI with 9 roles, including rejected quotation, QC corrections, a blocker, a failed final inspection and three verified payments; permission refusals and forged imports; phone-to-phone file sharing; camera/location denied; and every screen at 320 px with Extra-large text in Marathi and Hindi (no overflow, no missing words, no errors).
+  The suite covers: practice data for all 10 sample users; a full real-mode lead-to-handover run through the UI with 9 roles, including rejected quotation, QC corrections, a blocker, a failed final inspection and three verified payments; permission refusals and forged imports; phone-to-phone file sharing; WhatsApp templates, AMC visits and tickets, two-person approval, training, weekly pay, helper, address lookup and reused photos; camera/location denied; and every screen at 320 px with Extra-large text in Marathi and Hindi (no overflow, no missing words, no errors).
