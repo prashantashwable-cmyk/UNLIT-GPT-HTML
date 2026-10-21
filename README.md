@@ -73,6 +73,47 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 | 🗺️ Address from GPS | With internet, the new-site screen suggests the address for the GPS point (OpenStreetMap Nominatim) in the chosen language. The person checks it before using it. |
 | 📷 Reused photo check | A photo that is the same as, or nearly the same as, one used before is flagged ("Same photo used before") for a person to review. |
 
+### Career ladder for installers (asset-light partners)
+**Trainee 🌱 → Helper 🧰 → Technician 🔧 → Senior Technician ⭐ → QC Inspector 🔍.** Workers move up by earning ratings and trust from satisfactory work.
+
+* **Ratings, shown as ★ 4.6 (23 reviews):**
+  * Customers rate each finished lift and each service visit. If the customer has no login, Sales hands them the phone.
+  * QC rates the workmanship at the final inspection. When work fails, QC chooses the cause; a material or site fault never counts against the installer.
+  * The team lead rates each crew member.
+  * There is one review per job per reviewer, nobody can review themself, and reviews can't be edited.
+  * With few reviews the rating stays near 3.5, so one or two reviews never put a new worker above a long good record.
+  * Every worker can see their own reviews, with a 5-to-1 star chart.
+* **Trust score (0–100):** worked out from QC, customer and team-lead stars plus facts (first-time QC pass, finishing on time), minus 10 per active strike. It shows "new" until there is enough work.
+* **Who may do which job:**
+  * Trainees and Helpers work only as crew.
+  * Technicians lead small and normal jobs.
+  * Seniors lead big jobs (hospital, commercial, 10+ floors or 13+ persons), add crew and rate them.
+  * QC Inspectors never inspect a job they worked on.
+  * People pickers show only eligible workers, best rated first.
+* **Promotion:**
+  * The app checks the targets (jobs, stars, number of reviews, trust, training, a practical test on site, days at the level, no strikes) and shows the Admin a "Promotion ready" task.
+  * The Admin approves promotions up to Senior. Only the Owner can make someone a QC Inspector; that needs the QC training module and a practical test.
+  * An installer can never become QC by a simple role change.
+* **Benefits of each level:**
+  * Pay rate: Trainee 60%, Helper 80%, Technician 100%, Senior 120%. QC is paid per inspection. Work keeps the rate of the day it was done.
+  * Bigger jobs.
+  * Fewer photo spot checks: 50% of photos for Trainees and Helpers, 20% for Technicians, 5% for Seniors. The sample is chosen fairly and is the same on every phone.
+* **Motivation:** a ladder card with a progress bar and "2 more to Technician", badges (first job, 5 first-time passes in a row, 10 five-star customers, 90 days without a strike, safety star, top crew member), and a cheer sound with a banner when someone moves up a level or earns a badge.
+* **Strikes:**
+  * Strikes come only from facts:
+    * a QC fail caused by workmanship;
+    * a 1–2 star rating;
+    * a confirmed complaint;
+    * work that sat until the Owner had to act;
+    * a failed spot check (counts as 2).
+  * Every strike can be appealed. Someone who did not give the strike decides, and a strike ends after 90 days.
+  * Effects build up:
+    * 2 strikes pause promotion;
+    * 3 mean crew work only and a meeting with the Admin;
+    * 4 go to the Owner to decide on suspension.
+  * Nothing happens to a person without a human decision.
+* All targets, pay rates and spot-check rates are Owner-approved business rules (**Me → Business rules → Career ladder**).
+
 ### Owner and Admin have separate to-do lists
 * **Owner** gets the decisions: quotations above the discount limit, technician weekly pay, approval requests in chat, and checking the Admin's own documents.
 * **Admin** gets the daily work: releasing drawings and assigning teams, work problems, security problems, tickets, new workers' documents, pay questions and completing handovers.
@@ -152,4 +193,4 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
   npx playwright install chromium
   npm test
   ```
-  The suite covers: practice data for all 10 sample users; a full real-mode lead-to-handover run through the UI with 9 roles, including rejected quotation, QC corrections, a blocker, a failed final inspection and three verified payments; permission refusals and forged imports; phone-to-phone file sharing; WhatsApp templates, AMC visits and tickets, automatic onboarding, the escalation ladder and office actions, notifications with sound (new work, escalation siren, quiet hours, background phone notifications), two-person approval, training, weekly pay, helper, address lookup and reused photos; camera/location denied; and every screen at 320 px with Extra-large text in Marathi and Hindi (no overflow, no missing words, no errors).
+  The suite covers: practice data for all 10 sample users; a full real-mode lead-to-handover run through the UI with 9 roles, including rejected quotation, QC corrections, a blocker, a failed final inspection and three verified payments; permission refusals and forged imports; phone-to-phone file sharing; WhatsApp templates, AMC visits and tickets, automatic onboarding, the escalation ladder and office actions, the career ladder (levels, job eligibility, stars and review counts, trust, promotion, pay by level, spot checks, strikes and appeals, celebrations), notifications with sound (new work, escalation siren, quiet hours, background phone notifications), two-person approval, training, weekly pay, helper, address lookup and reused photos; camera/location denied; and every screen at 320 px with Extra-large text in Marathi and Hindi (no overflow, no missing words, no errors).

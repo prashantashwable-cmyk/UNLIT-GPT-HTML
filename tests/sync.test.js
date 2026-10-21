@@ -7,7 +7,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await pa.evaluate(() => enterPractice()); await pa.waitForTimeout(3500);
   await pa.evaluate(() => { App.me = S.users.PADMIN; });
   const full = await pa.evaluate(() => JSON.stringify(exportPack('full')));
-  const forTech = await pa.evaluate(() => JSON.stringify(exportPack('person', 'PTECH')));
+  /* the lead of the job being installed (in practice data: the Senior on the hospital job) */
+  const LEAD = await pa.evaluate(() => Object.values(S.projects).find(x => x.stage === 'installing').tech);
+  const forTech = await pa.evaluate(uid => JSON.stringify(exportPack('person', uid)), LEAD);
   const stagesA = await pa.evaluate(() => Object.values(S.projects).map(P => P.id + ':' + P.stage).sort().join(','));
 
   /* new office phone joins with the full file */
@@ -19,21 +21,21 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* technician phone gets only their projects; other people cannot log in there */
   const C = await launch(); const pc = C.page;
   const rc = await pc.evaluate(async txt => { App.set.mode = 'practice'; await loadMode('practice'); return importText(txt); }, forTech);
-  const techView = await pc.evaluate(() => ({ all: Object.keys(S.projects).length, mine: Object.values(S.projects).filter(P => P.tech === 'PTECH').length, pins: Object.values(S.users).filter(u => u.pin).map(u => u.uid) }));
+  const techView = await pc.evaluate(uid => ({ all: Object.keys(S.projects).length, mine: Object.values(S.projects).filter(P => P.tech === uid || (P.crew || []).includes(uid)).length, pins: Object.values(S.users).filter(u => u.pin).map(u => u.uid) }), LEAD);
   console.log('tech file', JSON.stringify(rc), JSON.stringify(techView));
   assert(rc.ok && rc.rejected === 0, 'person file imports cleanly');
   assert(techView.all === techView.mine, 'technician file contains only the technician\'s projects');
-  assert(techView.pins.length === 1 && techView.pins[0] === 'PTECH', 'only the technician can log in on that phone');
+  assert(techView.pins.length === 1 && techView.pins[0] === LEAD, 'only the technician can log in on that phone');
 
   /* technician works offline, then sends updates; a forged finance entry is slipped in */
-  const upd = await pc.evaluate(async () => {
-    App.me = S.users.PTECH;
+  const upd = await pc.evaluate(async LEAD => {
+    App.me = S.users[LEAD];
     const P = Object.values(S.projects).find(x => x.stage === 'installing');
     const r = await perform('SOP_STEP_DONE', P.id, { step: sopNext(P), ev: [{ id: 'E-test', m: 'Mx', kind: 'photo', t: nowISO(), hash: 'x', q: {} }] }, { quiet: true });
-    const pack = exportPack('person', 'PTECH');
+    const pack = exportPack('person', LEAD);
     pack.events.push({ id: 'FORGE-FIN', n: 999, t: nowISO(), by: 'PFIN', type: 'PAYMENT_STATUS', pid: P.id, data: { payId: 'x', status: 'confirmed', ref: 'fake' }, dev: 'X' });
     return { ok: r.ok, pack: JSON.stringify(pack), pid: P.id };
-  });
+  }, LEAD);
   assert(upd.ok, 'technician completes an installation step offline');
   const before = await pa.evaluate(p => Object.keys(S.projects[p].sop).length, upd.pid);
   const ra = await pa.evaluate(txt => importText(txt), upd.pack);

@@ -59,6 +59,7 @@ h2.sec{font-size:1.05rem;margin:18px 2px 8px}
 .tile.on::after{content:"✓";position:absolute;top:6px;right:8px;background:var(--graph);color:#fff;border-radius:50%;width:24px;height:24px;font-size:.85rem;display:flex;align-items:center;justify-content:center}
 .tiles.one .tile{flex-direction:row;justify-content:flex-start;min-height:70px;text-align:left;padding:12px 40px 12px 14px;gap:14px}
 .tiles.one .tile .i{font-size:1.9rem}
+.kv dd{min-width:0}
 .chip{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 10px;font-size:.82rem;font-weight:700;border:1px solid transparent;white-space:nowrap;max-width:100%;overflow:hidden;text-overflow:ellipsis}
 .c-ok{background:var(--ok-bg);color:var(--ok);border-color:#b7dfc4}
 .c-warn{background:var(--warn-bg);color:var(--warn);border-color:#f0d39a}
@@ -137,6 +138,11 @@ textarea.in{min-height:96px;resize:vertical}
 .sig{background:#fff;border:2px dashed var(--graph);border-radius:12px;width:100%;height:240px;touch-action:none;display:block}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:118px;z-index:200;background:var(--graph);color:#fff;padding:12px 18px;border-radius:14px;max-width:92%;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.25)}
 .toast.bad{background:var(--bad)}
+.starrow{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:10px 0}
+.starrow button{display:flex;flex-direction:column;align-items:center;gap:2px;min-height:96px;padding:8px 2px;border-radius:14px;border:2px solid var(--line);background:#fff;color:#c58a00;font-weight:800;font-size:.8rem;min-width:0;overflow-wrap:anywhere}
+.starrow button .f{font-size:1.8rem}.starrow button small{color:var(--ink);font-weight:600;font-size:.72rem}.starrow button.on{border-color:var(--gold);background:var(--gold-l)}
+.ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:6px 0}.lstep{text-align:center;padding:6px 2px;border-radius:10px;background:#f4f4f4;font-size:1.3rem;min-width:0}
+.lstep small{display:block;font-size:.66rem;overflow-wrap:anywhere}.lstep.on{background:var(--gold-l);outline:2px solid var(--gold)}.lstep.done{background:#e8f6ec}
 details.fold{background:#fff;border:1px solid var(--line);border-radius:16px;margin-top:12px;overflow:hidden}
 details.fold>summary{list-style:none;display:flex;align-items:center;gap:10px;min-height:60px;padding:10px 14px;cursor:pointer;font-size:1.02rem}
 details.fold>summary::-webkit-details-marker{display:none}
@@ -144,7 +150,7 @@ details.fold>summary .i{font-size:1.6rem}details.fold>summary .grow{flex:1;min-w
 details.fold>summary .chev{font-size:1.2rem;transition:transform .2s}details.fold[open]>summary .chev{transform:rotate(180deg)}
 details.fold>.fold-in{padding:0 12px 12px}details.fold>.fold-in>.card:first-child,details.fold>.fold-in>.task:first-child{margin-top:0}
 .ntf{position:fixed;top:8px;left:8px;right:8px;max-width:560px;margin:0 auto;z-index:250;background:#fff;color:var(--ink);border-radius:16px;border-left:8px solid var(--gold);box-shadow:0 6px 24px rgba(0,0,0,.3);padding:12px 14px;display:flex;gap:10px;align-items:center;animation:ntfin .25s ease-out}
-.ntf.urgent{border-left-color:var(--warn,#d97706)}.ntf.alarm{border-left-color:var(--bad);animation:ntfin .25s ease-out,ntfshake .5s .25s 2}
+.ntf.urgent{border-left-color:var(--warn,#d97706)}.ntf.cheer{border-left-color:var(--ok)}.ntf.alarm{border-left-color:var(--bad);animation:ntfin .25s ease-out,ntfshake .5s .25s 2}
 .ntf .ib{color:var(--ink);background:#eee;border:0;flex:none}.ntf .btn{flex:none}
 .ntf .i{font-size:2rem}.ntf b{display:block}.ntf .grow{flex:1;min-width:0;overflow-wrap:anywhere}
 @keyframes ntfin{from{transform:translateY(-120%)}to{transform:none}}@keyframes ntfshake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
@@ -164,7 +170,8 @@ details.fold>.fold-in{padding:0 12px 12px}details.fold>.fold-in>.card:first-chil
 .doc table{width:100%;border-collapse:collapse;margin:8px 0}
 .doc td,.doc th{border-bottom:1px solid #e3ddd0;padding:6px 4px;text-align:left;vertical-align:top}
 .doc .r{text-align:right;white-space:nowrap}
-.doc .sigimg{height:70px;border-bottom:1px solid #999}
+.doc .sigimg{height:70px;max-width:100%;object-fit:contain;border-bottom:1px solid #999}
+.doc td{overflow-wrap:anywhere}
 .hero{background:var(--graph);color:#fff;border-radius:var(--r);padding:16px;margin-bottom:12px;box-shadow:inset 0 -5px 0 var(--gold)}
 .hero .muted{color:#cfd3dc}
 .logo{width:110px;height:110px;margin:0 auto;display:block}
@@ -1927,6 +1934,235 @@ const L = {
   me_settings_d: ['Language, screen size, voice, sound', 'भाषा, स्क्रीन आकार, आवाज़, घंटी', 'भाषा, स्क्रीन आकार, आवाज, घंटी'],
   esc_late: ['Late', 'देर हो गई', 'उशीर झाला'],
   show_less: ['Show less', 'कम दिखाएँ', 'कमी दाखवा'],
+  /* ---------- career ladder ---------- */
+  gr_trainee: ['Trainee', 'प्रशिक्षु', 'प्रशिक्षणार्थी'],
+  gr_helper: ['Helper', 'हेल्पर', 'हेल्पर'],
+  gr_technician: ['Technician', 'तकनीशियन', 'तंत्रज्ञ'],
+  gr_senior: ['Senior Technician', 'सीनियर तकनीशियन', 'वरिष्ठ तंत्रज्ञ'],
+  gr_qc: ['QC Inspector', 'QC निरीक्षक', 'QC निरीक्षक'],
+  gb_trainee: ['learns on the job as crew', 'टीम के साथ काम पर सीखता है', 'टीमसोबत कामावर शिकतो'],
+  gb_helper: ['works as crew, earns more', 'टीम में काम, ज़्यादा कमाई', 'टीममध्ये काम, जास्त कमाई'],
+  gb_technician: ['leads small and normal jobs', 'छोटे और सामान्य काम का लीडर', 'लहान व सामान्य कामांचा प्रमुख'],
+  gb_senior: ['leads big jobs, adds and rates crew, fewer checks', 'बड़े काम का लीडर, टीम जोड़ता और रेट करता है, कम जाँच', 'मोठ्या कामांचा प्रमुख, टीम जोडतो व रेट करतो, कमी तपासणी'],
+  gb_qc: ['inspects other people\'s work, paid per inspection', 'दूसरों के काम की जाँच, हर जाँच का भुगतान', 'इतरांच्या कामाची तपासणी, प्रत्येक तपासणीचे पैसे'],
+  ladder_title: ['My level', 'मेरा स्तर', 'माझा स्तर'],
+  my_ladder: ['My level and rating', 'मेरा स्तर और रेटिंग', 'माझा स्तर आणि रेटिंग'],
+  s_ladder: ['You are {g}.', 'आप {g} हैं।', 'तुम्ही {g} आहात.'],
+  ladder_next: ['{n} more to become {g}', '{g} बनने के लिए {n} बाकी', '{g} होण्यासाठी {n} बाकी'],
+  ladder_ready: ['Ready to become {g}! The office will confirm.', '{g} बनने के लिए तैयार! ऑफ़िस पक्का करेगा।', '{g} होण्यासाठी तयार! ऑफिस खात्री करेल.'],
+  ladder_ready_short: ['ready!', 'तैयार!', 'तयार!'],
+  ladder_left: ['{n} left', '{n} बाकी', '{n} बाकी'],
+  ladder_top: ['Top level reached. Well done!', 'सबसे ऊँचा स्तर। शाबाश!', 'सर्वोच्च स्तर. छान!'],
+  ladder_open: ['See my ladder', 'मेरी सीढ़ी देखें', 'माझी शिडी पाहा'],
+  ladder_benefits: ['What each level gets (pay rate)', 'हर स्तर को क्या मिलता है (भुगतान दर)', 'प्रत्येक स्तराला काय मिळते (पैसे दर)'],
+  star_1: ['Very bad', 'बहुत खराब', 'खूप वाईट'],
+  star_2: ['Bad', 'खराब', 'वाईट'],
+  star_3: ['OK', 'ठीक', 'ठीक'],
+  star_4: ['Good', 'अच्छा', 'चांगले'],
+  star_5: ['Excellent', 'बहुत बढ़िया', 'उत्तम'],
+  stars_new: ['New ({n} reviews)', 'नया ({n} रिव्यू)', 'नवीन ({n} रिव्ह्यू)'],
+  reviews_n: ['{n} reviews', '{n} रिव्यू', '{n} रिव्ह्यू'],
+  reviews: ['Ratings and reviews', 'रेटिंग और रिव्यू', 'रेटिंग आणि रिव्ह्यू'],
+  reviews_all: ['See all reviews', 'सब रिव्यू देखें', 'सर्व रिव्ह्यू पाहा'],
+  stars_fair_note: ['With few reviews the rating stays close to 3.5 (OK), so one or two reviews cannot put a new worker above someone with a long good record.', 'कम रिव्यू होने पर रेटिंग 3.5 (ठीक) के पास रहती है, ताकि एक-दो रिव्यू से नया कर्मचारी लंबे अच्छे रिकॉर्ड वाले से ऊपर न जाए।', 'कमी रिव्ह्यू असताना रेटिंग 3.5 (ठीक) जवळ राहते, त्यामुळे एक-दोन रिव्ह्यूने नवीन कर्मचारी दीर्घ चांगला रेकॉर्ड असलेल्यापेक्षा वर जात नाही.'],
+  rs_customer: ['Customer', 'ग्राहक', 'ग्राहक'],
+  rs_qc: ['QC', 'QC', 'QC'],
+  rs_lead: ['Team lead', 'टीम लीडर', 'टीम प्रमुख'],
+  trust: ['Trust score', 'भरोसा अंक', 'विश्वास गुण'],
+  trust_new: ['Trust: new', 'भरोसा: नया', 'विश्वास: नवीन'],
+  trust_n: ['Trust {n}', 'भरोसा {n}', 'विश्वास {n}'],
+  trust_note: ['Worked out from QC stars, customer stars, team-lead stars and facts (first-time pass, on time). Each strike takes 10 points off.', 'QC स्टार, ग्राहक स्टार, टीम लीडर स्टार और तथ्यों (पहली बार पास, समय पर) से बनता है। हर स्ट्राइक पर 10 अंक कम।', 'QC स्टार, ग्राहक स्टार, टीम प्रमुख स्टार आणि तथ्यांवरून (पहिल्याच वेळी पास, वेळेवर) ठरतो. प्रत्येक स्ट्राइकला 10 गुण कमी.'],
+  tp_qc: ['From QC', 'QC से', 'QC कडून'],
+  tp_customer: ['From customers', 'ग्राहकों से', 'ग्राहकांकडून'],
+  tp_lead: ['From team leads', 'टीम लीडर से', 'टीम प्रमुखांकडून'],
+  tp_facts: ['From facts', 'तथ्यों से', 'तथ्यांवरून'],
+  strikes: ['Strikes', 'स्ट्राइक', 'स्ट्राइक'],
+  strikes_n: ['{n} strikes', '{n} स्ट्राइक', '{n} स्ट्राइक'],
+  strikes_none: ['No strikes. Keep it up!', 'कोई स्ट्राइक नहीं। ऐसे ही रहें!', 'एकही स्ट्राइक नाही. असेच चालू ठेवा!'],
+  strike_rules: ['Strikes come only from facts and end after {d} days. 2 strikes pause promotion, 3 mean crew work only and a meeting, 4 go to the Owner. You can appeal any strike.', 'स्ट्राइक केवल तथ्यों से आती है और {d} दिन बाद ख़त्म होती है। 2 पर प्रमोशन रुकता है, 3 पर केवल टीम में काम और मीटिंग, 4 पर मालिक तक। आप हर स्ट्राइक पर अपील कर सकते हैं।', 'स्ट्राइक फक्त तथ्यांवरून येते आणि {d} दिवसांनी संपते. 2 वर बढती थांबते, 3 वर फक्त टीममध्ये काम आणि बैठक, 4 वर मालकाकडे. तुम्ही प्रत्येक स्ट्राइकवर अपील करू शकता.'],
+  sd_active: ['Counts now', 'अभी गिनी जा रही', 'सध्या मोजली जाते'],
+  sd_appealed: ['Appeal sent', 'अपील भेजी', 'अपील पाठवले'],
+  sd_expired: ['Ended', 'ख़त्म', 'संपली'],
+  sd_keep: ['Kept after appeal', 'अपील के बाद बनी रही', 'अपीलनंतर कायम'],
+  sd_remove: ['Removed after appeal', 'अपील के बाद हटाई', 'अपीलनंतर काढली'],
+  sd_remove_btn: ['Remove the strike', 'स्ट्राइक हटाएँ', 'स्ट्राइक काढा'],
+  sd_keep_btn: ['Keep the strike', 'स्ट्राइक रखें', 'स्ट्राइक ठेवा'],
+  appeal: ['Appeal', 'अपील करें', 'अपील करा'],
+  s_appeal: ['Tell the office why this strike is not fair.', 'ऑफ़िस को बताएँ कि यह स्ट्राइक सही क्यों नहीं है।', 'ही स्ट्राइक योग्य का नाही ते ऑफिसला सांगा.'],
+  what_appealed: ['Your appeal is sent. Someone who did not give the strike will decide.', 'आपकी अपील भेज दी गई। जिसने स्ट्राइक नहीं दी वह फ़ैसला करेगा।', 'तुमचे अपील पाठवले. ज्याने स्ट्राइक दिली नाही ती व्यक्ती निर्णय घेईल.'],
+  s_decide: ['Read the appeal. Decide fairly and write why.', 'अपील पढ़ें। ईमानदारी से फ़ैसला करें और कारण लिखें।', 'अपील वाचा. योग्य निर्णय घ्या आणि कारण लिहा.'],
+  what_decided_keep: ['The strike stays. The worker can see your reason.', 'स्ट्राइक बनी रही। कर्मचारी आपका कारण देख सकता है।', 'स्ट्राइक कायम. कर्मचाऱ्याला तुमचे कारण दिसेल.'],
+  what_decided_remove: ['The strike is removed.', 'स्ट्राइक हटा दी गई।', 'स्ट्राइक काढली.'],
+  sk_qc_fail: ['Final inspection failed because of the work', 'काम की वजह से अंतिम जाँच फेल', 'कामामुळे अंतिम तपासणी नापास'],
+  sk_complaint: ['Customer complaint confirmed', 'ग्राहक की शिकायत पक्की', 'ग्राहकाची तक्रार निश्चित'],
+  sk_spot: ['Spot check: photo or work not right', 'अचानक जाँच: फोटो या काम सही नहीं', 'अचानक तपासणी: फोटो किंवा काम योग्य नाही'],
+  sk_low_rating: ['Low rating (1–2 stars)', 'कम रेटिंग (1–2 स्टार)', 'कमी रेटिंग (1–2 स्टार)'],
+  sk_escalated: ['Work stuck until the Owner had to act', 'काम इतना अटका कि मालिक को कदम उठाना पड़ा', 'काम इतके अडकले की मालकाला कृती करावी लागली'],
+  badges: ['Badges', 'बैज', 'बॅज'],
+  badges_none: ['Do good work to earn your first badge.', 'पहला बैज पाने के लिए अच्छा काम करें।', 'पहिला बॅज मिळवण्यासाठी चांगले काम करा.'],
+  b_first_job: ['First job done', 'पहला काम पूरा', 'पहिले काम पूर्ण'],
+  b_streak5: ['5 first-time passes in a row', 'लगातार 5 बार पहली बार में पास', 'सलग 5 वेळा पहिल्याच वेळी पास'],
+  b_five_star10: ['10 five-star customers', '10 पाँच-स्टार ग्राहक', '10 पाच-स्टार ग्राहक'],
+  b_clean90: ['90 days without a strike', '90 दिन बिना स्ट्राइक', '90 दिवस स्ट्राइकशिवाय'],
+  b_safety: ['Safety star', 'सुरक्षा स्टार', 'सुरक्षा स्टार'],
+  b_top_crew: ['Top crew member', 'सबसे अच्छा टीम सदस्य', 'उत्कृष्ट टीम सदस्य'],
+  lc_training: ['Training passed', 'ट्रेनिंग पास', 'प्रशिक्षण पास'],
+  lc_crew_jobs: ['Jobs as crew', 'टीम में किए काम', 'टीममध्ये केलेली कामे'],
+  lc_lead_jobs: ['Jobs as team lead', 'लीडर बनकर किए काम', 'प्रमुख म्हणून केलेली कामे'],
+  lc_stars: ['Star rating', 'स्टार रेटिंग', 'स्टार रेटिंग'],
+  lc_reviews: ['Number of reviews', 'रिव्यू की संख्या', 'रिव्ह्यूची संख्या'],
+  lc_cust_stars: ['Customer stars', 'ग्राहक स्टार', 'ग्राहक स्टार'],
+  lc_cust_reviews: ['Customer reviews', 'ग्राहक रिव्यू', 'ग्राहक रिव्ह्यू'],
+  lc_trust: ['Trust score', 'भरोसा अंक', 'विश्वास गुण'],
+  lc_first_pass: ['First-time QC pass %', 'पहली बार QC पास %', 'पहिल्याच वेळी QC पास %'],
+  lc_skill: ['Practical test on site', 'साइट पर प्रैक्टिकल टेस्ट', 'साइटवर प्रात्यक्षिक चाचणी'],
+  lc_no_strikes: ['No active strikes', 'कोई चालू स्ट्राइक नहीं', 'चालू स्ट्राइक नाही'],
+  lc_paused: ['Fewer than 2 strikes', '2 से कम स्ट्राइक', '2 पेक्षा कमी स्ट्राइक'],
+  lc_days: ['Days at this level', 'इस स्तर पर दिन', 'या स्तरावर दिवस'],
+  tk_rate_work: ['Rate the work', 'काम को रेटिंग दें', 'कामाला रेटिंग द्या'],
+  tk_rate_crew: ['Rate your crew', 'अपनी टीम को रेटिंग दें', 'तुमच्या टीमला रेटिंग द्या'],
+  tk_promotion_ready: ['Promotion ready', 'प्रमोशन तैयार', 'बढती तयार'],
+  tk_strike_appeal: ['Decide a strike appeal', 'स्ट्राइक अपील पर फ़ैसला', 'स्ट्राइक अपीलवर निर्णय'],
+  tk_review_meeting: ['Meet the worker (3 strikes)', 'कर्मचारी से मिलें (3 स्ट्राइक)', 'कर्मचाऱ्याला भेटा (3 स्ट्राइक)'],
+  tk_suspend_review: ['Decide on suspension (4 strikes)', 'निलंबन पर फ़ैसला (4 स्ट्राइक)', 'निलंबनावर निर्णय (4 स्ट्राइक)'],
+  tk_spot_check: ['Spot-check a photo', 'फोटो की अचानक जाँच', 'फोटोची अचानक तपासणी'],
+  s_rate_handover: ['How happy are you with the lift work by {name}?', '{name} के लिफ्ट काम से आप कितने खुश हैं?', '{name} यांच्या लिफ्ट कामाने तुम्ही किती खूश आहात?'],
+  s_rate_visit: ['How was the service visit by {name}?', '{name} की सर्विस विज़िट कैसी थी?', '{name} यांची सर्व्हिस भेट कशी होती?'],
+  rate_handover: ['Lift installation', 'लिफ्ट इंस्टॉलेशन', 'लिफ्ट बसवणे'],
+  rate_visit: ['Service visit', 'सर्विस विज़िट', 'सर्व्हिस भेट'],
+  f_comment: ['Anything to say?', 'कुछ कहना है?', 'काही सांगायचे आहे?'],
+  rate_in_person: ['Hand the phone to the customer and let them choose. Do not choose for them.', 'फ़ोन ग्राहक को दें और उन्हें चुनने दें। उनके लिए आप न चुनें।', 'फोन ग्राहकाला द्या आणि त्यांना निवडू द्या. त्यांच्या वतीने निवडू नका.'],
+  what_rated: ['Thank you! The rating is saved.', 'धन्यवाद! रेटिंग सेव हो गई।', 'धन्यवाद! रेटिंग जतन झाली.'],
+  s_rate_crew: ['How well did {name} work with you?', '{name} ने आपके साथ कितना अच्छा काम किया?', '{name} यांनी तुमच्यासोबत किती चांगले काम केले?'],
+  promote_now: ['Promote', 'प्रमोशन दें', 'बढती द्या'],
+  promote_to: ['Promote to {g}', '{g} बनाएँ', '{g} करा'],
+  s_promote: ['{name} has met every target for {g}. Check and promote.', '{name} ने {g} के सारे लक्ष्य पूरे किए। जाँचें और प्रमोशन दें।', '{name} यांनी {g} ची सर्व लक्ष्ये पूर्ण केली. तपासा आणि बढती द्या.'],
+  promote_not_ready: ['Not every target is met yet.', 'अभी सारे लक्ष्य पूरे नहीं हुए।', 'अजून सर्व लक्ष्ये पूर्ण नाहीत.'],
+  promote_qc_note: ['Only the Owner can make someone a QC Inspector. Their role changes to QC and they will never inspect a job they worked on.', 'केवल मालिक किसी को QC निरीक्षक बना सकता है। उनकी भूमिका QC हो जाएगी और वे अपने किए काम की जाँच कभी नहीं करेंगे।', 'फक्त मालक एखाद्याला QC निरीक्षक करू शकतो. त्यांची भूमिका QC होईल आणि ते स्वतः केलेल्या कामाची तपासणी कधीही करणार नाहीत.'],
+  what_promoted: ['{name} is now {g}. Congratulations!', '{name} अब {g} हैं। बधाई!', '{name} आता {g} आहेत. अभिनंदन!'],
+  next_promoted: ['They will see the new level and pay rate in the app.', 'उन्हें ऐप में नया स्तर और भुगतान दर दिखेगी।', 'त्यांना ॲपमध्ये नवीन स्तर आणि पैसे दर दिसेल.'],
+  demote: ['Move down a level', 'स्तर घटाएँ', 'स्तर कमी करा'],
+  s_demote: ['Choose the new level and write the reason.', 'नया स्तर चुनें और कारण लिखें।', 'नवीन स्तर निवडा आणि कारण लिहा.'],
+  what_demoted: ['{name} is now {g}.', '{name} अब {g} हैं।', '{name} आता {g} आहेत.'],
+  skill_check: ['Practical test', 'प्रैक्टिकल टेस्ट', 'प्रात्यक्षिक चाचणी'],
+  skill_for_tech: ['Test to become Technician', 'तकनीशियन बनने का टेस्ट', 'तंत्रज्ञ होण्याची चाचणी'],
+  skill_for_qc: ['Test to become QC Inspector', 'QC निरीक्षक बनने का टेस्ट', 'QC निरीक्षक होण्याची चाचणी'],
+  s_skill: ['Which practical test did you watch?', 'आपने कौन सा प्रैक्टिकल टेस्ट देखा?', 'तुम्ही कोणती प्रात्यक्षिक चाचणी पाहिली?'],
+  s_skill_result: ['Did they pass? Take a photo or video and write what you saw.', 'क्या वे पास हुए? फोटो या वीडियो लें और जो देखा वह लिखें।', 'ते पास झाले का? फोटो किंवा व्हिडिओ घ्या आणि काय पाहिले ते लिहा.'],
+  ph_skill: ['Test work', 'टेस्ट का काम', 'चाचणीचे काम'],
+  what_skill_pass: ['Test passed and saved.', 'टेस्ट पास और सेव।', 'चाचणी पास आणि जतन.'],
+  what_skill_fail: ['Test not passed. They can try again later.', 'टेस्ट पास नहीं हुआ। वे बाद में फिर कोशिश कर सकते हैं।', 'चाचणी पास नाही. ते नंतर पुन्हा प्रयत्न करू शकतात.'],
+  s_spot: ['Look at the photo. Is the step done properly and is the photo real?', 'फोटो देखें। क्या काम ठीक से हुआ और फोटो असली है?', 'फोटो पाहा. काम नीट झाले आहे का आणि फोटो खरा आहे का?'],
+  spot_note: ['Spot checks are picked by the app: more for new workers, fewer for trusted ones.', 'अचानक जाँच ऐप चुनता है: नए कर्मचारियों की ज़्यादा, भरोसेमंद की कम।', 'अचानक तपासणी ॲप निवडते: नवीन कर्मचाऱ्यांची जास्त, विश्वासू लोकांची कमी.'],
+  spot_ok: ['Looks right', 'सही है', 'बरोबर आहे'],
+  spot_bad: ['Not right', 'सही नहीं', 'बरोबर नाही'],
+  what_spot_ok: ['Spot check saved.', 'अचानक जाँच सेव।', 'अचानक तपासणी जतन.'],
+  what_spot_bad: ['Saved. This counts as 2 strikes; the worker can appeal.', 'सेव हुआ। यह 2 स्ट्राइक गिनी जाएगी; कर्मचारी अपील कर सकता है।', 'जतन झाले. याला 2 स्ट्राइक मोजल्या जातील; कर्मचारी अपील करू शकतो.'],
+  s_review_meet: ['Meet the worker, talk about the strikes and write what you agreed.', 'कर्मचारी से मिलें, स्ट्राइक पर बात करें और जो तय हुआ वह लिखें।', 'कर्मचाऱ्याला भेटा, स्ट्राइकबद्दल बोला आणि काय ठरले ते लिहा.'],
+  review_meet_note: ['With 3 strikes this worker can only work as crew until the strikes end.', '3 स्ट्राइक पर यह कर्मचारी स्ट्राइक ख़त्म होने तक केवल टीम में काम कर सकता है।', '3 स्ट्राइकवर हा कर्मचारी स्ट्राइक संपेपर्यंत फक्त टीममध्ये काम करू शकतो.'],
+  suspend_note: ['4 strikes: decide whether to stop giving this person new jobs (Me → People and roles).', '4 स्ट्राइक: तय करें कि इस व्यक्ति को नया काम देना रोकें या नहीं (मैं → लोग और भूमिकाएँ)।', '4 स्ट्राइक: या व्यक्तीला नवीन काम देणे थांबवायचे का ते ठरवा (मी → लोक आणि भूमिका).'],
+  what_review_held: ['Meeting saved.', 'मीटिंग सेव हुई।', 'बैठक जतन झाली.'],
+  crew: ['Crew', 'टीम', 'टीम'],
+  crew_add: ['Add crew member', 'टीम सदस्य जोड़ें', 'टीम सदस्य जोडा'],
+  s_crew_add: ['Who will help on this job? Best rated are shown first.', 'इस काम में कौन मदद करेगा? सबसे अच्छी रेटिंग वाले पहले दिखते हैं।', 'या कामात कोण मदत करेल? सर्वोत्तम रेटिंग असलेले आधी दिसतात.'],
+  what_crew_added: ['{name} is added to the crew.', '{name} टीम में जुड़ गए।', '{name} टीममध्ये जोडले.'],
+  team_lead: ['Team lead', 'टीम लीडर', 'टीम प्रमुख'],
+  js_small: ['Small job', 'छोटा काम', 'लहान काम'],
+  js_normal: ['Normal job', 'सामान्य काम', 'सामान्य काम'],
+  js_big: ['Big job (hospital, commercial or tall)', 'बड़ा काम (अस्पताल, कमर्शियल या ऊँचा)', 'मोठे काम (रुग्णालय, व्यावसायिक किंवा उंच)'],
+  js_note: ['{size}: only people allowed to lead this size are shown, best rated first.', '{size}: केवल इस आकार के लीडर बन सकने वाले दिखते हैं, सबसे अच्छी रेटिंग पहले।', '{size}: फक्त या आकाराचे प्रमुख होऊ शकणारे दाखवले आहेत, सर्वोत्तम रेटिंग आधी.'],
+  no_leader: ['Nobody is allowed to lead a {size} yet. Promote a worker or add a Senior Technician.', 'अभी कोई {size} का लीडर नहीं बन सकता। किसी को प्रमोशन दें या सीनियर तकनीशियन जोड़ें।', 'अजून कोणीही {size} चा प्रमुख होऊ शकत नाही. बढती द्या किंवा वरिष्ठ तंत्रज्ञ जोडा.'],
+  not_eligible_n: ['{n} more installers are not allowed to lead this job (level or strikes).', '{n} और इंस्टॉलर इस काम के लीडर नहीं बन सकते (स्तर या स्ट्राइक)।', 'आणखी {n} इन्स्टॉलर या कामाचे प्रमुख होऊ शकत नाहीत (स्तर किंवा स्ट्राइक).'],
+  s_qcf_cause: ['What caused the failure?', 'फेल होने का कारण क्या है?', 'नापास होण्याचे कारण काय?'],
+  cause_work: ['Workmanship', 'काम की गलती', 'कामातील चूक'],
+  cause_work_d: ['Counts against the team lead', 'टीम लीडर के ख़िलाफ़ गिना जाएगा', 'टीम प्रमुखाविरुद्ध मोजले जाईल'],
+  cause_material: ['Faulty material', 'खराब सामान', 'खराब साहित्य'],
+  cause_material_d: ['Not the installer\'s fault', 'इंस्टॉलर की गलती नहीं', 'इन्स्टॉलरची चूक नाही'],
+  cause_site: ['Site problem', 'साइट की समस्या', 'साइटची समस्या'],
+  cause_site_d: ['Not the installer\'s fault', 'इंस्टॉलर की गलती नहीं', 'इन्स्टॉलरची चूक नाही'],
+  s_qcf_stars: ['Rate the workmanship of {name}.', '{name} के काम की गुणवत्ता को रेटिंग दें।', '{name} यांच्या कामाच्या गुणवत्तेला रेटिंग द्या.'],
+  qcf_stars_note: ['Rate only the quality of the work you saw, not the person.', 'केवल देखे गए काम की गुणवत्ता को रेटिंग दें, व्यक्ति को नहीं।', 'फक्त पाहिलेल्या कामाच्या गुणवत्तेला रेटिंग द्या, व्यक्तीला नाही.'],
+  s_ticket_fault: ['Was a worker at fault for this complaint?', 'क्या इस शिकायत में किसी कर्मचारी की गलती थी?', 'या तक्रारीत एखाद्या कर्मचाऱ्याची चूक होती का?'],
+  fault_none: ['Nobody at fault', 'किसी की गलती नहीं', 'कोणाचीही चूक नाही'],
+  fault_note: ['A confirmed fault counts as a strike. Write the reason; the worker can appeal.', 'पक्की गलती स्ट्राइक गिनी जाती है। कारण लिखें; कर्मचारी अपील कर सकता है।', 'निश्चित चूक स्ट्राइक म्हणून मोजली जाते. कारण लिहा; कर्मचारी अपील करू शकतो.'],
+  your_tech: ['Your technician', 'आपके तकनीशियन', 'तुमचे तंत्रज्ञ'],
+  start_level: ['Starting level', 'शुरुआती स्तर', 'सुरुवातीचा स्तर'],
+  start_level_note: ['New installers start as Trainee. Choose higher only for proven experience.', 'नए इंस्टॉलर प्रशिक्षु से शुरू करते हैं। अनुभव साबित हो तभी ऊँचा चुनें।', 'नवीन इन्स्टॉलर प्रशिक्षणार्थी म्हणून सुरू करतात. अनुभव सिद्ध असल्यासच वरचा निवडा.'],
+  err_grade: ['This level change is not allowed.', 'यह स्तर बदलाव मान्य नहीं है।', 'हा स्तर बदल मान्य नाही.'],
+  err_own_job: ['You cannot check a job you worked on.', 'आप अपने किए काम की जाँच नहीं कर सकते।', 'तुम्ही स्वतः केलेल्या कामाची तपासणी करू शकत नाही.'],
+  err_stars: ['Please choose the stars.', 'कृपया स्टार चुनें।', 'कृपया स्टार निवडा.'],
+  err_cant_lead: ['This person is not allowed to lead a job of this size (level or strikes).', 'यह व्यक्ति इस आकार के काम का लीडर नहीं बन सकता (स्तर या स्ट्राइक)।', 'ही व्यक्ती या आकाराच्या कामाची प्रमुख होऊ शकत नाही (स्तर किंवा स्ट्राइक).'],
+  err_targets: ['Not every target for the next level is met yet.', 'अगले स्तर के सारे लक्ष्य अभी पूरे नहीं हुए।', 'पुढच्या स्तराची सर्व लक्ष्ये अजून पूर्ण नाहीत.'],
+  err_use_ladder: ['An installer becomes QC only by promotion on the ladder.', 'इंस्टॉलर केवल सीढ़ी पर प्रमोशन से QC बनता है।', 'इन्स्टॉलर फक्त शिडीवरील बढतीने QC होतो.'],
+  cel_level: ['You are now {g}! 🎉', 'आप अब {g} हैं! 🎉', 'तुम्ही आता {g} आहात! 🎉'],
+  cel_level_d: ['Bigger jobs and a higher pay rate are now open to you.', 'अब आपके लिए बड़े काम और ज़्यादा भुगतान दर खुली है।', 'आता तुमच्यासाठी मोठी कामे आणि जास्त पैसे दर खुले आहेत.'],
+  cel_badge: ['New badge: {b}', 'नया बैज: {b}', 'नवीन बॅज: {b}'],
+  cel_badge_d: ['Great work! Keep going.', 'बढ़िया काम! ऐसे ही चलते रहें।', 'छान काम! असेच चालू ठेवा.'],
+  cel_strike: ['A strike was added', 'एक स्ट्राइक जुड़ी', 'एक स्ट्राइक जोडली'],
+  cel_strike_d: ['Open My level to see why. You can appeal.', 'कारण देखने के लिए मेरा स्तर खोलें। आप अपील कर सकते हैं।', 'कारण पाहण्यासाठी माझा स्तर उघडा. तुम्ही अपील करू शकता.'],
+  earn_crew_job: ['Job as crew', 'टीम में काम', 'टीममध्ये काम'],
+  earn_qc_insp: ['Inspection', 'जाँच', 'तपासणी'],
+  rg_ladder: ['Career ladder targets', 'करियर सीढ़ी के लक्ष्य', 'करिअर शिडीची लक्ष्ये'],
+  rg_ladder_d: ['Jobs, stars, reviews, trust and days needed for each level, and how long a strike lasts.', 'हर स्तर के लिए ज़रूरी काम, स्टार, रिव्यू, भरोसा और दिन, और स्ट्राइक कितने दिन रहती है।', 'प्रत्येक स्तरासाठी लागणारी कामे, स्टार, रिव्ह्यू, विश्वास आणि दिवस, आणि स्ट्राइक किती दिवस राहते.'],
+  rg_ladderpay: ['Pay by level and spot checks', 'स्तर अनुसार भुगतान और अचानक जाँच', 'स्तरानुसार पैसे आणि अचानक तपासणी'],
+  rg_ladderpay_d: ['Pay rate by level (% of normal), crew and inspection pay, and how many photos are spot-checked for each level (%).', 'स्तर अनुसार भुगतान दर (% सामान्य का), टीम और जाँच का भुगतान, और हर स्तर की कितनी फोटो अचानक जाँची जाएँ (%)।', 'स्तरानुसार पैसे दर (% सामान्याचा), टीम व तपासणीचे पैसे, आणि प्रत्येक स्तराचे किती फोटो अचानक तपासायचे (%).'],
+  cfg_lvHelperJobs: ['Helper: jobs as crew', 'हेल्पर: टीम में काम', 'हेल्पर: टीममधील कामे'],
+  cfg_lvHelperStars: ['Helper: stars', 'हेल्पर: स्टार', 'हेल्पर: स्टार'],
+  cfg_lvHelperReviews: ['Helper: reviews', 'हेल्पर: रिव्यू', 'हेल्पर: रिव्ह्यू'],
+  cfg_lvHelperDays: ['Helper: days as Trainee', 'हेल्पर: प्रशिक्षु के दिन', 'हेल्पर: प्रशिक्षणार्थी दिवस'],
+  cfg_lvTechJobs: ['Technician: jobs as crew', 'तकनीशियन: टीम में काम', 'तंत्रज्ञ: टीममधील कामे'],
+  cfg_lvTechStars: ['Technician: stars', 'तकनीशियन: स्टार', 'तंत्रज्ञ: स्टार'],
+  cfg_lvTechReviews: ['Technician: reviews', 'तकनीशियन: रिव्यू', 'तंत्रज्ञ: रिव्ह्यू'],
+  cfg_lvTechTrust: ['Technician: trust', 'तकनीशियन: भरोसा', 'तंत्रज्ञ: विश्वास'],
+  cfg_lvTechDays: ['Technician: days as Helper', 'तकनीशियन: हेल्पर के दिन', 'तंत्रज्ञ: हेल्पर दिवस'],
+  cfg_lvSeniorJobs: ['Senior: jobs as lead', 'सीनियर: लीडर बनकर काम', 'वरिष्ठ: प्रमुख म्हणून कामे'],
+  cfg_lvSeniorPass: ['Senior: first-time pass %', 'सीनियर: पहली बार पास %', 'वरिष्ठ: पहिल्याच वेळी पास %'],
+  cfg_lvSeniorStars: ['Senior: customer stars', 'सीनियर: ग्राहक स्टार', 'वरिष्ठ: ग्राहक स्टार'],
+  cfg_lvSeniorReviews: ['Senior: customer reviews', 'सीनियर: ग्राहक रिव्यू', 'वरिष्ठ: ग्राहक रिव्ह्यू'],
+  cfg_lvSeniorTrust: ['Senior: trust', 'सीनियर: भरोसा', 'वरिष्ठ: विश्वास'],
+  cfg_lvSeniorDays: ['Senior: days as Technician', 'सीनियर: तकनीशियन के दिन', 'वरिष्ठ: तंत्रज्ञ दिवस'],
+  cfg_lvQcJobs: ['QC: jobs as lead', 'QC: लीडर बनकर काम', 'QC: प्रमुख म्हणून कामे'],
+  cfg_lvQcPass: ['QC: first-time pass %', 'QC: पहली बार पास %', 'QC: पहिल्याच वेळी पास %'],
+  cfg_lvQcStars: ['QC: stars', 'QC: स्टार', 'QC: स्टार'],
+  cfg_lvQcReviews: ['QC: reviews', 'QC: रिव्यू', 'QC: रिव्ह्यू'],
+  cfg_lvQcTrust: ['QC: trust', 'QC: भरोसा', 'QC: विश्वास'],
+  cfg_strikeDays: ['Days a strike lasts', 'स्ट्राइक कितने दिन रहती है', 'स्ट्राइक किती दिवस राहते'],
+  cfg_rateTrainee: ['Trainee pay rate, %', 'प्रशिक्षु भुगतान दर, %', 'प्रशिक्षणार्थी पैसे दर, %'],
+  cfg_rateHelper: ['Helper pay rate, %', 'हेल्पर भुगतान दर, %', 'हेल्पर पैसे दर, %'],
+  cfg_rateTech: ['Technician pay rate, %', 'तकनीशियन भुगतान दर, %', 'तंत्रज्ञ पैसे दर, %'],
+  cfg_rateSenior: ['Senior pay rate, %', 'सीनियर भुगतान दर, %', 'वरिष्ठ पैसे दर, %'],
+  cfg_payCrewJob: ['Pay per job as crew, ₹', 'टीम में हर काम का भुगतान, ₹', 'टीममधील प्रत्येक कामाचे पैसे, ₹'],
+  cfg_payQcInspection: ['Pay per QC inspection, ₹', 'हर QC जाँच का भुगतान, ₹', 'प्रत्येक QC तपासणीचे पैसे, ₹'],
+  cfg_spotTrainee: ['Spot checks: Trainee/Helper, %', 'अचानक जाँच: प्रशिक्षु/हेल्पर, %', 'अचानक तपासणी: प्रशिक्षणार्थी/हेल्पर, %'],
+  cfg_spotTech: ['Spot checks: Technician, %', 'अचानक जाँच: तकनीशियन, %', 'अचानक तपासणी: तंत्रज्ञ, %'],
+  cfg_spotSenior: ['Spot checks: Senior, %', 'अचानक जाँच: सीनियर, %', 'अचानक तपासणी: वरिष्ठ, %'],
+  ev_CREW_ADDED: ['Crew member added', 'टीम सदस्य जुड़ा', 'टीम सदस्य जोडला'],
+  ev_CREW_REMOVED: ['Crew member removed', 'टीम सदस्य हटाया', 'टीम सदस्य काढला'],
+  ev_CUSTOMER_RATED: ['Customer rating', 'ग्राहक रेटिंग', 'ग्राहक रेटिंग'],
+  ev_CREW_RATED: ['Crew rating', 'टीम रेटिंग', 'टीम रेटिंग'],
+  ev_PROMOTED: ['Promoted', 'प्रमोशन', 'बढती'],
+  ev_DEMOTED: ['Level lowered', 'स्तर घटाया', 'स्तर कमी केला'],
+  ev_SKILL_CHECKED: ['Practical test', 'प्रैक्टिकल टेस्ट', 'प्रात्यक्षिक चाचणी'],
+  ev_STRIKE_APPEALED: ['Strike appeal', 'स्ट्राइक अपील', 'स्ट्राइक अपील'],
+  ev_STRIKE_DECIDED: ['Strike appeal decided', 'स्ट्राइक अपील पर फ़ैसला', 'स्ट्राइक अपीलवर निर्णय'],
+  ev_SPOT_CHECKED: ['Photo spot check', 'फोटो की अचानक जाँच', 'फोटोची अचानक तपासणी'],
+  ev_REVIEW_HELD: ['Worker review meeting', 'कर्मचारी समीक्षा मीटिंग', 'कर्मचारी आढावा बैठक'],
+  tr_qc_t: ['Becoming a QC Inspector', 'QC निरीक्षक बनना', 'QC निरीक्षक होणे'],
+  tr_qc_l1: ['A QC Inspector checks other people\'s work, never their own. If you worked on a job, the app will not let you inspect it.', 'QC निरीक्षक दूसरों के काम की जाँच करता है, अपने की कभी नहीं। आपने जिस काम पर काम किया उसकी जाँच ऐप नहीं करने देगा।', 'QC निरीक्षक इतरांच्या कामाची तपासणी करतो, स्वतःच्या कधीही नाही. तुम्ही ज्या कामावर काम केले त्याची तपासणी ॲप करू देणार नाही.'],
+  tr_qc_l2: ['Check every item, take clear photos, and give stars only for the quality you saw. When work fails, choose the real cause: workmanship, material or site.', 'हर चीज़ जाँचें, साफ़ फोटो लें, और केवल देखी गई गुणवत्ता के स्टार दें। काम फेल हो तो असली कारण चुनें: काम, सामान या साइट।', 'प्रत्येक गोष्ट तपासा, स्पष्ट फोटो घ्या आणि फक्त पाहिलेल्या गुणवत्तेसाठी स्टार द्या. काम नापास झाल्यास खरे कारण निवडा: काम, साहित्य किंवा साइट.'],
+  tr_qc_l3: ['Never accept money or favours. Be fair and explain each correction so the installer can learn.', 'कभी पैसे या एहसान न लें। निष्पक्ष रहें और हर सुधार समझाएँ ताकि इंस्टॉलर सीख सके।', 'कधीही पैसे किंवा उपकार घेऊ नका. निष्पक्ष राहा आणि प्रत्येक दुरुस्ती समजावून सांगा म्हणजे इन्स्टॉलर शिकू शकेल.'],
+  tr_qc_q1: ['Can you inspect a job you worked on?', 'क्या आप अपने किए काम की जाँच कर सकते हैं?', 'तुम्ही स्वतः केलेल्या कामाची तपासणी करू शकता का?'],
+  tr_qc_q1_a: ['Yes, I know it best', 'हाँ, मैं इसे सबसे अच्छा जानता हूँ', 'हो, मला ते सर्वात चांगले माहीत आहे'],
+  tr_qc_q1_b: ['Yes, if the Owner is busy', 'हाँ, अगर मालिक व्यस्त है', 'हो, मालक व्यस्त असल्यास'],
+  tr_qc_q1_c: ['No, never', 'नहीं, कभी नहीं', 'नाही, कधीच नाही'],
+  tr_qc_q2: ['The lift fails because a part from the factory was faulty. What cause do you choose?', 'फ़ैक्टरी का एक हिस्सा खराब होने से लिफ्ट फेल हुई। आप कौन सा कारण चुनेंगे?', 'कारखान्यातील एक भाग खराब असल्याने लिफ्ट नापास झाली. तुम्ही कोणते कारण निवडाल?'],
+  tr_qc_q2_a: ['Workmanship', 'काम की गलती', 'कामातील चूक'],
+  tr_qc_q2_b: ['Faulty material', 'खराब सामान', 'खराब साहित्य'],
+  tr_qc_q2_c: ['Site problem', 'साइट की समस्या', 'साइटची समस्या'],
+  tr_qc_q3: ['The installer offers you money to pass the job. What do you do?', 'इंस्टॉलर काम पास करने के लिए पैसे देता है। आप क्या करेंगे?', 'काम पास करण्यासाठी इन्स्टॉलर पैसे देतो. तुम्ही काय कराल?'],
+  tr_qc_q3_a: ['Refuse and report it to the Owner', 'मना करें और मालिक को बताएँ', 'नकार द्या आणि मालकाला कळवा'],
+  tr_qc_q3_b: ['Take it once', 'एक बार ले लें', 'एकदा घ्या'],
+  tr_qc_q3_c: ['Pass the job without checking', 'बिना जाँचे पास कर दें', 'न तपासता पास करा'],
   /* event names (timeline, permissions) */
   ev_ORG_CREATED: ['Company created', 'कंपनी बनी', 'कंपनी तयार झाली'],
   ev_USER_ADDED: ['Person added', 'व्यक्ति जोड़ा', 'व्यक्ती जोडली'],
@@ -2124,7 +2360,8 @@ const TICKET_KINDS = [['breakdown', '🚨'], ['complaint', '😟'], ['request', 
 const SKILLS = ['install', 'wiring', 'welding', 'service', 'qc', 'driving', 'survey', 'sales'];
 const DOCS = ['id', 'address', 'safety_cert', 'license'];
 /* training modules: [module, roles who must pass it, correct option index for each of 3 questions] */
-const TRAIN = [['app', ['field', 'sales', 'finance', 'qc', 'supplier', 'tech', 'admin'], [0, 1, 2]], ['safety', ['field', 'qc', 'supplier', 'tech'], [1, 0, 2]],
+/* 'qc' has no roles: it is not part of onboarding, only for Seniors who want to become QC Inspectors */
+const TRAIN = [['qc', [], [2, 1, 0]], ['app', ['field', 'sales', 'finance', 'qc', 'supplier', 'tech', 'admin'], [0, 1, 2]], ['safety', ['field', 'qc', 'supplier', 'tech'], [1, 0, 2]],
   ['lead', ['field', 'sales'], [2, 0, 1]], ['install', ['tech', 'qc'], [0, 2, 1]], ['customer', ['sales', 'tech', 'finance'], [1, 2, 0]]];
 const DEFAULT_TEMPLATES = ['intro', 'quote', 'followup', 'payment', 'prep', 'visit', 'renewal'];
 const DEFAULT_CONFIG = {
@@ -2133,6 +2370,11 @@ const DEFAULT_CONFIG = {
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 30, minMargin: 20,
   token: 10000, arrivalPct: 90, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, dupCommission: 10,
+  lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
+  lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
+  lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
+  lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
+  rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, spotTrainee: 50, spotTech: 20, spotSenior: 5,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -2145,6 +2387,9 @@ const RULE_GROUPS = {
   service: ['warrantyMonths', 'amcVisits', 'validityDays'],
   dup: ['dupCommission'],
   control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'dualControl', 'requireTraining'],
+  ladder: ['lvHelperJobs', 'lvHelperStars', 'lvHelperReviews', 'lvHelperDays', 'lvTechJobs', 'lvTechStars', 'lvTechReviews', 'lvTechTrust', 'lvTechDays',
+    'lvSeniorJobs', 'lvSeniorPass', 'lvSeniorStars', 'lvSeniorReviews', 'lvSeniorTrust', 'lvSeniorDays', 'lvQcJobs', 'lvQcPass', 'lvQcStars', 'lvQcReviews', 'lvQcTrust', 'strikeDays'],
+  ladderpay: ['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior', 'payCrewJob', 'payQcInspection', 'spotTrainee', 'spotTech', 'spotSenior'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
   amc: ['amcPrice']
 };
@@ -2189,7 +2434,7 @@ function materialList(req) {
 /* ---------- state ---------- */
 function emptyState() {
   return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
-    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [] };
+    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [] };
 }
 let S = emptyState();
 let EVENTS = [];
@@ -2204,7 +2449,7 @@ function canSee(u, P) {
     case 'sales': return !P.sales || P.sales === u.uid;
     case 'qc': return stageIdx(P.stage) >= stageIdx('site_prep') && P.stage !== 'lost';
     case 'supplier': return P.supplier === u.uid;
-    case 'tech': return P.tech === u.uid;
+    case 'tech': return P.tech === u.uid || (P.crew || []).includes(u.uid);
     case 'customer': return u.projectId === P.id;
   }
   return false;
@@ -2249,6 +2494,131 @@ function onboarding(uid) {
 }
 /* authorised to install: onboarding complete (profile, documents checked, all training passed) */
 function isAuthorised(uid) { return onboarding(uid).ready; }
+/* =====================================================================
+   Career ladder: Trainee → Helper → Technician → Senior → QC Inspector.
+   Levels are stored in events; stars, trust, strikes and badges are worked out from events.
+   ===================================================================== */
+const GRADES = ['trainee', 'helper', 'technician', 'senior', 'qc'];
+const GRADE_ICON = { trainee: '🌱', helper: '🧰', technician: '🔧', senior: '⭐', qc: '🔍' };
+const gIdx = g => GRADES.indexOf(g);
+/* level of a person; installers added before levels existed count as Technician */
+function gradeOf(uid) {
+  const u = S.users[uid]; if (!u) return null;
+  if (u.role === 'qc') return 'qc';
+  if (u.role !== 'tech') return null;
+  return (S.workers[uid] && S.workers[uid].grade) || 'technician';
+}
+function gradeAt(uid, iso) {
+  const log = (S.workers[uid] && S.workers[uid].gradeLog) || [];
+  let g = log.length ? log[0].g : gradeOf(uid);
+  for (const x of log) if (x.t <= iso) g = x.g;
+  return g || gradeOf(uid);
+}
+/* job size from the lift needs: small house lifts, normal, big (hospital, commercial, tall or large car) */
+function jobSize(P) {
+  const r = P.req || {}, use = r.use || P.lead.use || (P._use || '');
+  if (['hospital', 'commercial'].includes(use) || +r.stops >= 10 || +r.capacity >= 13) return 'big';
+  if (use === 'house' && (+r.stops || 0) <= 4) return 'small';
+  return 'normal';
+}
+/* who may lead a job: Technician small/normal, Senior any; never with 3+ active strikes */
+function canLead(uid, P, at) {
+  const g = gradeOf(uid);
+  if (!['technician', 'senior'].includes(g)) return false;
+  if (strikesOf(uid, at).filter(x => x.active).reduce((a, x) => a + x.n, 0) >= 3) return false;
+  return g === 'senior' || jobSize(P) !== 'big';
+}
+const passedQc = P => P.qcFinal.some(x => x.outcome === 'pass');
+const firstPass = P => !!P.qcFinal[0] && (P.qcFinal[0].outcome === 'pass' || (P.qcFinal[0].cause && P.qcFinal[0].cause !== 'work'));
+function jobsOf(uid) {
+  const ps = Object.values(S.projects).filter(passedQc);
+  return { lead: ps.filter(P => P.tech === uid), crew: ps.filter(P => (P.crew || []).includes(uid)) };
+}
+/* stars with review count; the fair average leans to 3.5 (or the company average if lower) until about 5 reviews */
+function starsOf(uid, src) {
+  const all = S.reviews.filter(r => !src || r.src === src), list = all.filter(r => r.uid === uid);
+  const sum = list.reduce((a, r) => a + r.stars, 0), m = Math.min(3.5, all.length ? all.reduce((a, r) => a + r.stars, 0) / all.length : 3.5), C = 5; /* new workers start near 3.5 (OK) so a few reviews never beat a long good record */
+  const dist = [1, 2, 3, 4, 5].map(n => list.filter(r => r.stars === n).length);
+  return { count: list.length, avg: list.length ? sum / list.length : 0, fair: (C * m + sum) / (C + list.length), dist, list: list.slice().sort((a, b) => a.t < b.t ? 1 : -1) };
+}
+const starTxt = v => (Math.round(v * 10) / 10).toFixed(1);
+function starChip(uid, src) {
+  const s = starsOf(uid, src);
+  return s.count < 3 ? `<span class="chip c-mute">⭐ ${t('stars_new', { n: s.count })}</span>` : `<span class="chip c-info">★ ${starTxt(s.fair)} (${t('reviews_n', { n: s.count })})</span>`;
+}
+/* strikes come only from facts; each can be appealed; they stop counting after the set days */
+function strikesOf(uid, at) {
+  const now = at ? new Date(at).getTime() : Date.now(), out = [], days = S.config.strikeDays || 90;
+  const add = (id, t0, reason, n, by, pid) => { const dec = S.strikeDecisions[id]; const removed = dec && dec.decision === 'remove';
+    out.push({ id, t: t0, reason, n, by, pid, appeal: S.strikeAppeals[id] || null, decision: dec || null, active: !removed && now - new Date(t0).getTime() < days * 864e5 }); };
+  for (const P of Object.values(S.projects)) {
+    P.qcFinal.forEach((x, i) => { if (x.outcome === 'fail' && x.cause === 'work' && P.tech === uid) add('qcf:' + P.id + ':' + i, x.t, 'sk_qc_fail', 1, x.by, P.id); });
+    for (const k of P.tickets) if (k.fault === uid) add('tk:' + P.id + ':' + k.id, k.faultT, 'sk_complaint', 1, k.faultBy, P.id);
+    Object.entries(S.spots).forEach(([key, x]) => { if (!x.ok && x.doer === uid && x.pid === P.id) add('spot:' + key, x.t, 'sk_spot', 2, x.by, P.id); });
+  }
+  for (const r of S.reviews) if (r.uid === uid && r.stars <= 2) add('rev:' + r.id, r.t, 'sk_low_rating', 1, r.by, r.pid);
+  for (const e of S.escLog) if (e.level >= 3 && (e.about || []).includes(uid)) add('esc:' + e.key + ':' + e.t, e.t, 'sk_escalated', 1, e.by, e.pid);
+  return out.sort((a, b) => a.t < b.t ? 1 : -1);
+}
+const activeStrikes = (uid, at) => strikesOf(uid, at).filter(x => x.active).reduce((a, x) => a + x.n, 0);
+/* trust 0–100 from four parts; parts with no data yet are left out instead of counting as zero */
+function trustOf(uid, at) {
+  const part = src => { const s = starsOf(uid, src); return s.count ? Math.round((s.fair - 1) / 4 * 100) : null; };
+  const { lead } = jobsOf(uid);
+  const ontime = lead.filter(P => { const pass = P.qcFinal.find(x => x.outcome === 'pass'); return P.mhand && pass && (new Date(pass.t) - new Date(P.mhand.t)) / 864e5 <= S.config.installDays; }).length;
+  const facts = lead.length ? Math.round(100 * (0.6 * lead.filter(firstPass).length / lead.length + 0.4 * ontime / lead.length)) : null;
+  const parts = { qc: part('qc'), customer: part('customer'), lead: part('lead'), facts }, W = { qc: 35, customer: 25, lead: 15, facts: 25 };
+  const keys = Object.keys(parts).filter(k => parts[k] != null);
+  if (starsOf(uid).count < 3 && !lead.length) return { score: null, parts };
+  const base = keys.reduce((a, k) => a + parts[k] * W[k], 0) / keys.reduce((a, k) => a + W[k], 0);
+  return { score: Math.max(0, Math.min(100, Math.round(base - 10 * activeStrikes(uid, at)))), parts };
+}
+/* promotion targets for the next level (Owner-approved business rules) */
+function ladderStatus(uid, at) {
+  const g = gradeOf(uid), c = S.config, u = S.users[uid];
+  if (!g || g === 'qc') return { grade: g, next: null, checks: [], ready: false };
+  const next = GRADES[gIdx(g) + 1], w = S.workers[uid] || { training: {} }, tr = w.training || {};
+  const days = Math.floor(((at ? new Date(at) : new Date()) - new Date((w.gradeLog && w.gradeLog.length ? w.gradeLog[w.gradeLog.length - 1].t : u.t))) / 864e5);
+  const { lead, crew } = jobsOf(uid), st = starsOf(uid), cu = starsOf(uid, 'customer'), tru = trustOf(uid, at).score || 0, strikes = activeStrikes(uid, at);
+  const fp = lead.length ? Math.round(100 * lead.filter(firstPass).length / lead.length) : 0;
+  const skill = lv => S.skillChecks.some(x => x.uid === uid && x.level === lv && x.pass);
+  const chk = (k, have, need, ok, vars) => ({ k, have, need, ok: ok != null ? ok : have >= need, vars });
+  const sv = x => x.count ? +starTxt(x.fair) : 0; /* no reviews yet: show 0, not the company average */
+  const checks = {
+    helper: [chk('lc_training', ['app', 'safety'].filter(m => tr[m]).length, 2), chk('lc_crew_jobs', crew.length, c.lvHelperJobs), chk('lc_stars', sv(st), c.lvHelperStars, st.count >= c.lvHelperReviews && st.fair >= c.lvHelperStars), chk('lc_reviews', st.count, c.lvHelperReviews), chk('lc_no_strikes', strikes, 0, strikes === 0), chk('lc_days', days, c.lvHelperDays)],
+    technician: [chk('lc_training', ['install'].filter(m => tr[m]).length, 1), chk('lc_crew_jobs', crew.length, c.lvTechJobs), chk('lc_stars', sv(st), c.lvTechStars, st.count >= c.lvTechReviews && st.fair >= c.lvTechStars), chk('lc_reviews', st.count, c.lvTechReviews), chk('lc_trust', tru, c.lvTechTrust), chk('lc_skill', skill('technician') ? 1 : 0, 1), chk('lc_paused', strikes, 1, strikes < 2), chk('lc_days', days, c.lvTechDays)],
+    senior: [chk('lc_lead_jobs', lead.length, c.lvSeniorJobs), chk('lc_first_pass', fp, c.lvSeniorPass), chk('lc_cust_stars', sv(cu), c.lvSeniorStars, cu.count >= c.lvSeniorReviews && cu.fair >= c.lvSeniorStars), chk('lc_cust_reviews', cu.count, c.lvSeniorReviews), chk('lc_trust', tru, c.lvSeniorTrust), chk('lc_no_strikes', strikes, 0, strikes === 0), chk('lc_days', days, c.lvSeniorDays)],
+    qc: [chk('lc_lead_jobs', lead.length, c.lvQcJobs), chk('lc_first_pass', fp, c.lvQcPass), chk('lc_stars', sv(st), c.lvQcStars, st.count >= c.lvQcReviews && st.fair >= c.lvQcStars), chk('lc_reviews', st.count, c.lvQcReviews), chk('lc_trust', tru, c.lvQcTrust), chk('lc_training', tr.qc ? 1 : 0, 1), chk('lc_skill', skill('qc') ? 1 : 0, 1), chk('lc_no_strikes', strikes, 0, strikes === 0)]
+  }[next];
+  return { grade: g, next, checks, ready: checks.every(x => x.ok), left: checks.filter(x => !x.ok).length };
+}
+/* badges: small wins worked out from facts */
+function badgesOf(uid) {
+  const out = [], { lead, crew } = jobsOf(uid), all = lead.concat(crew).sort((a, b) => a.qcFinal[0].t < b.qcFinal[0].t ? -1 : 1);
+  if (all.length) out.push('b_first_job');
+  let run = 0, best = 0; lead.sort((a, b) => a.qcFinal[0].t < b.qcFinal[0].t ? -1 : 1).forEach(P => { run = firstPass(P) ? run + 1 : 0; best = Math.max(best, run); });
+  if (best >= 5) out.push('b_streak5');
+  if (S.reviews.filter(r => r.uid === uid && r.src === 'customer' && r.stars === 5).length >= 10) out.push('b_five_star10');
+  const u = S.users[uid]; if (u && all.length && daysSince(u.t) >= 90 && !strikesOf(uid).length) out.push('b_clean90');
+  if (lead.length >= 3 && !lead.some(P => P.incidents.length)) out.push('b_safety');
+  const lr = S.reviews.filter(r => r.uid === uid && r.src === 'lead' && daysSince(r.t) <= 30);
+  if (lr.length >= 3 && lr.every(r => r.stars === 5)) out.push('b_top_crew');
+  return out;
+}
+/* pay rate by level (percent) */
+const gradeRate = g => ({ trainee: S.config.rateTrainee, helper: S.config.rateHelper, technician: S.config.rateTech, senior: S.config.rateSenior }[g] || 100);
+/* spot checks: a fair, repeatable sample of installation photos; fewer for trusted levels */
+function spotRate(g) { return { trainee: S.config.spotTrainee, helper: S.config.spotTrainee, technician: S.config.spotTech, senior: S.config.spotSenior }[g] || 0; }
+function hash100(s) { let h = 0; for (const ch of String(s)) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return h % 100; }
+function spotDue() {
+  const out = [];
+  for (const P of Object.values(S.projects)) Object.entries(P.sop).forEach(([i, x]) => {
+    const key = P.id + ':' + i;
+    if (S.spots[key] || daysSince(x.t) > 30) return;
+    if (hash100(key + x.t) < spotRate(gradeAt(x.by, x.t))) out.push({ pid: P.id, step: +i, by: x.by, t: x.t, key });
+  });
+  return out;
+}
 /* escalation ladder: 1 = reminder to the person, 2 = Admin, 3 = Owner (days are business rules) */
 function escLevel(days, k) {
   const c = S.config, o = k === 'onboarding' ? [Math.ceil(c.onbDays / 2), c.onbDays, c.onbDays * 2] : [c.remindDays, c.escalateDays, c.escOwnerDays];
@@ -2280,11 +2650,16 @@ function weekKey(iso) { const d = new Date(iso); const z = new Date(d.getTime() 
 /* technician earnings, worked out from completed work and the approved pay rules */
 function earnings(uid) {
   const c = S.config, out = [];
+  /* amounts follow the person's level on the day of the work (Owner-approved rates) */
+  const r = (amt, t0) => Math.round(amt * gradeRate(gradeAt(uid, t0)) / 100);
   for (const P of Object.values(S.projects)) {
-    Object.entries(P.sop).forEach(([i, x]) => { if (x.by === uid) out.push({ t: x.t, pid: P.id, what: 'sop_' + SOP[i][0], amount: c.paySopStep }); });
+    Object.entries(P.sop).forEach(([i, x]) => { if (x.by === uid) out.push({ t: x.t, pid: P.id, what: 'sop_' + SOP[i][0], amount: r(c.paySopStep, x.t) }); });
     const first = P.qcFinal[0];
-    if (first && first.outcome === 'pass' && P.tech === uid) out.push({ t: first.t, pid: P.id, what: 'earn_qc_bonus', amount: c.payQcBonus });
-    Object.values(P.service).forEach(x => { if (x.by === uid) out.push({ t: x.t, pid: P.id, what: 'earn_amc_visit', amount: c.payAmcVisit }); });
+    if (first && first.outcome === 'pass' && P.tech === uid) out.push({ t: first.t, pid: P.id, what: 'earn_qc_bonus', amount: r(c.payQcBonus, first.t) });
+    Object.values(P.service).forEach(x => { if (x.by === uid) out.push({ t: x.t, pid: P.id, what: 'earn_amc_visit', amount: r(c.payAmcVisit, x.t) }); });
+    const pass = P.qcFinal.find(x => x.outcome === 'pass');
+    if (pass && (P.crew || []).includes(uid)) out.push({ t: pass.t, pid: P.id, what: 'earn_crew_job', amount: r(c.payCrewJob, pass.t) });
+    P.qcFinal.concat(P.qcSite).forEach(x => { if (x.by === uid) out.push({ t: x.t, pid: P.id, what: 'earn_qc_insp', amount: c.payQcInspection }); });
   }
   return out.sort((a, b) => a.t < b.t ? -1 : 1);
 }
@@ -2326,6 +2701,8 @@ const RULES = {
       }
       if (u.role === 'admin' && d.role === 'owner') return { k: 'err_role', v: { roles: rolesTxt(['owner']) } };
       if (d.role === 'customer') { const P = S.projects[d.projectId]; if (!P) return 'err_no_project'; if (P.customer) return 'err_has_customer'; }
+      /* starting level for an installer: Admin up to Technician, Owner up to Senior (for experienced partners) */
+      if (d.grade != null && (d.role !== 'tech' || gIdx(d.grade) < 0 || gIdx(d.grade) > gIdx(u.role === 'owner' ? 'senior' : 'technician'))) return 'err_grade';
       return null;
     }
   },
@@ -2337,6 +2714,8 @@ const RULES = {
       if (x.uid === u.uid && (ev.data.role || ev.data.active === false)) return 'err_self_change';
       if (ev.data.role && (!ROLES.includes(ev.data.role) || ev.data.role === 'customer' || x.role === 'customer')) return 'err_role_bad';
       if (u.role === 'admin' && ev.data.role === 'owner') return { k: 'err_role', v: { roles: rolesTxt(['owner']) } };
+      /* an installer becomes a QC Inspector only by climbing the ladder (promotion), never by a role change */
+      if (ev.data.role && ev.data.role !== x.role && (x.role === 'tech' || x.role === 'qc') && (ev.data.role === 'tech' || ev.data.role === 'qc')) return 'err_use_ladder';
       return null;
     }
   },
@@ -2462,8 +2841,9 @@ const RULES = {
       P.stage === 'site_prep' ? need(prepDone(P), 'err_not_all') : need(!openCorr(P, 'site').length, 'err_not_all')
   },
   QC_SITE_RESULT: {
-    roles: ['qc'], project: true, stages: ['qc_site'], check: (S, ev) => {
+    roles: ['qc'], project: true, stages: ['qc_site'], check: (S, ev, u, P) => {
       const d = ev.data;
+      if (P.tech === u.uid || (P.crew || []).includes(u.uid)) return 'err_own_job';
       if (ev_(d, 'photo').length < 2) return { k: 'err_photos', v: { n: 2 } };
       if (!QC_SITE_MEAS.every(m => +(d.meas || {})[m] > 0)) return 'err_meas';
       if (!QC_SITE_CHECKS.every(c => ['yes', 'no'].includes((d.checks || {})[c]))) return 'err_checks';
@@ -2485,18 +2865,21 @@ const RULES = {
     }
   },
   RELEASED: {
-    roles: ['admin', 'owner'], project: true, stages: ['site_ok'], check: (S, ev) => {
+    roles: ['admin', 'owner'], project: true, stages: ['site_ok'], check: (S, ev, u, P) => {
       const d = ev.data;
       if (roleOf(d.supplier) !== 'supplier') return 'err_pick_supplier';
       if (roleOf(d.tech) !== 'tech') return 'err_pick_tech';
       if (S.config.requireTraining && !isAuthorised(d.tech)) return 'err_not_authorised';
+      if (!canLead(d.tech, P, ev.t)) return 'err_cant_lead';
       if (!(d.drawings || '').trim()) return 'err_fill';
       return need((d.materials || []).length > 0, 'err_fill');
     }
   },
   ASSIGNED: {
-    roles: ['admin', 'owner'], project: true, stages: OPEN_STAGES, check: (S, ev) =>
-      need(['sales', 'tech', 'supplier', 'qc'].includes(ev.data.role) && roleOf(ev.data.uid) === ev.data.role, 'err_pick_person')
+    roles: ['admin', 'owner'], project: true, stages: OPEN_STAGES, check: (S, ev, u, P) =>
+      ev.data.role === 'tech' && roleOf(ev.data.uid) === 'tech' && !canLead(ev.data.uid, P, ev.t) ? 'err_cant_lead'
+        : ev.data.role === 'qc' && (P.tech === ev.data.uid || (P.crew || []).includes(ev.data.uid)) ? 'err_own_job'
+        : need(['sales', 'tech', 'supplier', 'qc'].includes(ev.data.role) && roleOf(ev.data.uid) === ev.data.role, 'err_pick_person')
   },
   DISPATCHED: {
     roles: ['supplier'], project: true, stages: ['material_order'], check: (S, ev, u, P) => {
@@ -2560,8 +2943,11 @@ const RULES = {
     }
   },
   QC_FINAL_RESULT: {
-    roles: ['qc'], project: true, stages: ['qc_final'], check: (S, ev) => {
+    roles: ['qc'], project: true, stages: ['qc_final'], check: (S, ev, u, P) => {
       const d = ev.data;
+      if (P.tech === u.uid || (P.crew || []).includes(u.uid)) return 'err_own_job';
+      if (d.stars != null && ![1, 2, 3, 4, 5].includes(+d.stars)) return 'err_stars';
+      if (d.cause != null && !['work', 'material', 'site'].includes(d.cause)) return 'err_choose';
       if (ev_(d).length < 2) return { k: 'err_photos', v: { n: 2 } };
       if (!QC_FINAL_CHECKS.every(c => ['pass', 'fail'].includes((d.checks || {})[c]))) return 'err_checks';
       const anyFail = QC_FINAL_CHECKS.some(c => d.checks[c] === 'fail');
@@ -2651,6 +3037,7 @@ const RULES = {
       const x = ticketOf(P, ev.data.tid);
       if (!x || x.status !== 'resolved') return 'err_already';
       if (ev.data.ok === false && !(ev.data.note || '').trim()) return 'err_reason';
+      if (ev.data.fault && (u.role === 'customer' || ![P.tech, x.owner, ...(P.crew || [])].includes(ev.data.fault) || !(ev.data.note || '').trim())) return 'err_reason';
       return null;
     }
   },
@@ -2667,6 +3054,89 @@ const RULES = {
       return need((d.note || '').trim(), 'err_reason');
     }
   },
+  /* career ladder */
+  CREW_ADDED: {
+    roles: ['admin', 'owner', 'tech'], project: true, check: (S, ev, u, P) => {
+      if (u.role === 'tech' && !(P.tech === u.uid && gradeOf(u.uid) === 'senior')) return 'err_access';
+      if (!P.tech || ['lost', 'amc'].includes(P.stage) || stageIdx(P.stage) < stageIdx('material_order')) return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      const x = S.users[ev.data.uid];
+      if (!x || !x.active || x.role !== 'tech' || x.uid === P.tech) return 'err_pick_person';
+      return need(!(P.crew || []).includes(x.uid), 'err_already');
+    }
+  },
+  CREW_REMOVED: { roles: ['admin', 'owner', 'tech'], project: true, check: (S, ev, u, P) => u.role === 'tech' && !(P.tech === u.uid && gradeOf(u.uid) === 'senior') ? 'err_access' : need((P.crew || []).includes(ev.data.uid), 'err_already') },
+  CUSTOMER_RATED: {
+    roles: ['customer', 'sales'], project: true, check: (S, ev, u, P) => {
+      const d = ev.data, m = /^visit:(\d+)$/.exec(d.ref || '');
+      if (u.role === 'sales' && (P.customer || P.sales !== u.uid || !(d.name || '').trim())) return 'err_access';
+      const about = d.ref === 'handover' ? (P.done && P.tech) : m && P.service[m[1]] ? P.service[m[1]].by : null;
+      if (!about) return 'err_fill';
+      if (about === u.uid) return 'err_same_person';
+      if (S.reviews.some(r => r.src === 'customer' && r.pid === P.id && r.ref === d.ref)) return 'err_already';
+      return need([1, 2, 3, 4, 5].includes(+d.stars), 'err_stars');
+    }
+  },
+  CREW_RATED: {
+    roles: ['tech'], project: true, check: (S, ev, u, P) => {
+      const d = ev.data;
+      if (P.tech !== u.uid || !passedQc(P) || !(P.crew || []).includes(d.uid)) return 'err_access';
+      if (S.reviews.some(r => r.src === 'lead' && r.pid === P.id && r.uid === d.uid)) return 'err_already';
+      return need([1, 2, 3, 4, 5].includes(+d.stars), 'err_stars');
+    }
+  },
+  PROMOTED: {
+    roles: ['admin', 'owner'], check: (S, ev, u) => {
+      const d = ev.data, st = ladderStatus(d.uid, ev.t);
+      if (d.uid === u.uid) return 'err_same_person';
+      if (!st.next || d.to !== st.next) return 'err_grade';
+      if (d.to === 'qc' && u.role !== 'owner') return { k: 'err_role', v: { roles: rolesTxt(['owner']) } };
+      /* the phone that records a promotion checks every target live; other phones (which may hold only part of the data) check the saved results */
+      if (ev.dev === App.set.dev) return need(st.ready, 'err_targets');
+      return need(Array.isArray(d.checks) && d.checks.length && d.checks.every(c => c && c.ok), 'err_targets');
+    }
+  },
+  DEMOTED: {
+    roles: ['admin', 'owner'], check: (S, ev, u) => {
+      const d = ev.data, g = gradeOf(d.uid);
+      if (!g || d.uid === u.uid || gIdx(d.to) < 0 || d.to === 'qc' || gIdx(d.to) >= gIdx(g)) return 'err_grade';
+      if (g === 'qc' && u.role !== 'owner') return { k: 'err_role', v: { roles: rolesTxt(['owner']) } };
+      return need((d.reason || '').trim(), 'err_reason');
+    }
+  },
+  SKILL_CHECKED: {
+    roles: ['owner', 'qc', 'tech'], check: (S, ev, u) => {
+      const d = ev.data;
+      if (d.uid === u.uid || !S.users[d.uid]) return 'err_same_person';
+      if (!['technician', 'qc'].includes(d.level)) return 'err_choose';
+      if (u.role === 'tech' && !(gradeOf(u.uid) === 'senior' && d.level === 'technician')) return 'err_access';
+      if (ev_(d).length < 1) return { k: 'err_photos', v: { n: 1 } };
+      return need(typeof d.pass === 'boolean' && (d.note || '').trim(), 'err_reason');
+    }
+  },
+  STRIKE_APPEALED: {
+    roles: STAFF, check: (S, ev, u) => {
+      const x = strikesOf(u.uid, ev.t).find(k => k.id === ev.data.sid);
+      if (!x || S.strikeAppeals[x.id] || S.strikeDecisions[x.id]) return 'err_already';
+      return need((ev.data.reason || '').trim(), 'err_reason');
+    }
+  },
+  STRIKE_DECIDED: {
+    roles: ['admin', 'owner'], check: (S, ev, u) => {
+      const d = ev.data, x = strikesOf(d.uid, ev.t).find(k => k.id === d.sid);
+      if (!x || S.strikeDecisions[x.id]) return 'err_already';
+      if (u.uid === d.uid || u.uid === x.by) return 'err_same_person';
+      return need(['keep', 'remove'].includes(d.decision) && (d.reason || '').trim(), 'err_reason');
+    }
+  },
+  SPOT_CHECKED: {
+    roles: ['qc', 'admin', 'owner'], project: true, check: (S, ev, u, P) => {
+      const d = ev.data, x = P.sop[d.step], key = P.id + ':' + d.step;
+      if (!x || S.spots[key]) return 'err_already';
+      if (x.by === u.uid || P.tech === u.uid || (P.crew || []).includes(u.uid)) return 'err_own_job';
+      return need(typeof d.ok === 'boolean' && (d.ok || (d.note || '').trim()), 'err_reason');
+    }
+  },
+  REVIEW_HELD: { roles: ['admin', 'owner'], check: (S, ev, u) => ev.data.uid === u.uid ? 'err_same_person' : need(S.users[ev.data.uid] && (ev.data.note || '').trim(), 'err_reason') },
   /* two-person approval */
   APPROVAL_REQUESTED: {
     roles: STAFF, check: (S, ev, u) => {
@@ -2713,7 +3183,7 @@ const RULES = {
   PAY_APPROVED: {
     roles: ['owner', 'admin'], check: (S, ev) => {
       const d = ev.data, w = weeksFor(d.uid).find(x => x.week === d.week);
-      if (roleOf(d.uid) !== 'tech' || !w) return 'err_fill';
+      if (!['tech', 'qc'].includes(roleOf(d.uid)) || !w) return 'err_fill';
       if (w.pay) return 'err_already';
       if (d.week >= weekKey(ev.t)) return 'err_week_open';
       if (+d.adjust && !(d.reason || '').trim()) return 'err_reason';
@@ -2782,7 +3252,7 @@ function newProject(ev) {
     contacts: [], followUp: null, req: null, quotes: [], schedule: null, agreement: null, payments: [],
     prep: {}, qcSite: [], corrections: [], drawings: null, materials: [], dispatch: null, arrival: null,
     incidents: [], mhand: null, sop: {}, blockers: [], qcFinal: [], hand: {}, done: null, chat: [],
-    log: [], evidence: [], lost: null, returned: null, corrected: [], msgs: [], service: {}, tickets: [], amcEnd: null, renewals: []
+    log: [], evidence: [], lost: null, returned: null, corrected: [], msgs: [], service: {}, tickets: [], amcEnd: null, renewals: [], crew: []
   };
 }
 function setStage(P, s, ev) {
@@ -2797,6 +3267,7 @@ function apply(S, ev) {
     case 'ORG_CREATED': S.org = { id: d.orgId, name: d.name, t: ev.t }; break;
     case 'USER_ADDED':
       S.users[d.uid] = { uid: d.uid, name: d.name, role: d.role, pin: d.pin, salt: d.salt, active: true, projectId: d.projectId || null, t: ev.t, by: ev.by };
+      if (d.role === 'tech' && d.grade) { const w = worker(d.uid); w.grade = d.grade; w.gradeLog = [{ g: d.grade, t: ev.t, by: ev.by }]; }
       if (d.role === 'customer' && S.projects[d.projectId]) S.projects[d.projectId].customer = d.uid;
       break;
     case 'USER_UPDATED': {
@@ -2912,7 +3383,8 @@ function apply(S, ev) {
     case 'QC_FINAL_RESULT': {
       const items = (d.items || []).filter(x => (x.text || '').trim()).map((x, i) => ({ id: ev.id + '-' + i, scope: 'install', text: x.text, due: x.due || '', role: 'tech', done: null, t: ev.t }));
       P.qc = ev.by;
-      P.qcFinal.push({ t: ev.t, by: ev.by, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), note: d.note || '', ev: ev_(d).map(e => e.id) });
+      P.qcFinal.push({ t: ev.t, by: ev.by, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), note: d.note || '', ev: ev_(d).map(e => e.id), stars: d.stars ? +d.stars : null, cause: d.outcome === 'fail' ? (d.cause || 'work') : null });
+      if (d.stars && P.tech) S.reviews.push({ id: ev.id, uid: P.tech, by: ev.by, src: 'qc', stars: +d.stars, pid: P.id, ref: 'qcf' + (P.qcFinal.length - 1), note: d.note || '', t: ev.t });
       P.corrections.push(...items);
       setStage(P, d.outcome === 'pass' ? 'final_pay' : 'install_fix', ev);
       break;
@@ -2944,7 +3416,7 @@ function apply(S, ev) {
     case 'TICKET_OPENED': P.tickets.push({ id: d.tid, kind: d.kind, text: d.text, t: ev.t, by: ev.by, ev: ev_(d).map(e => e.id), status: 'open', owner: null, due: '', hist: [{ status: 'open', t: ev.t, by: ev.by, note: d.text }] }); break;
     case 'TICKET_ASSIGNED': { const x = ticketOf(P, d.tid); x.owner = d.uid; x.due = d.due; if (x.status === 'open') x.status = 'assigned'; x.hist.push({ status: 'assigned', t: ev.t, by: ev.by, note: userName(d.uid) + ' · ' + d.due }); break; }
     case 'TICKET_UPDATED': { const x = ticketOf(P, d.tid); x.status = d.status; x.hist.push({ status: d.status, t: ev.t, by: ev.by, note: d.note, ev: ev_(d).map(e => e.id) }); break; }
-    case 'TICKET_CLOSED': { const x = ticketOf(P, d.tid); x.status = d.ok === false ? 'in_progress' : 'closed'; x.hist.push({ status: d.ok === false ? 'reopened' : 'closed', t: ev.t, by: ev.by, note: d.note || '' }); break; }
+    case 'TICKET_CLOSED': { const x = ticketOf(P, d.tid); if (d.fault) Object.assign(x, { fault: d.fault, faultT: ev.t, faultBy: ev.by }); x.status = d.ok === false ? 'in_progress' : 'closed'; x.hist.push({ status: d.ok === false ? 'reopened' : 'closed', t: ev.t, by: ev.by, note: d.note || '' }); break; }
     case 'AMC_RENEWED': {
       const from = P.amcEnd && P.amcEnd > ev.t.slice(0, 10) ? P.amcEnd : ev.t.slice(0, 10), n = Math.max(1, S.config.amcVisits) * +d.years, gap = Math.round(365 * +d.years / n);
       const visits = Array.from({ length: n }, (_, i) => addDays(gap * (i + 1), new Date(from + 'T12:00:00')));
@@ -2955,9 +3427,26 @@ function apply(S, ev) {
     case 'ESC_ACTED': {
       const prev = S.escAck[d.key];
       S.escAck[d.key] = { until: d.until, by: ev.by, t: ev.t, action: d.action, note: d.note, uid: d.uid || '', n: d.action === 'reassign' ? 0 : (prev ? prev.n : 0) + 1, reset: d.action === 'reassign' ? ev.t : prev && prev.reset };
-      S.escLog.unshift({ key: d.key, pid: ev.pid, ref: d.ref, level: d.level, action: d.action, uid: d.uid || '', until: d.until, note: d.note, by: ev.by, t: ev.t });
+      S.escLog.unshift({ key: d.key, pid: ev.pid, ref: d.ref, level: d.level, action: d.action, uid: d.uid || '', until: d.until, note: d.note, by: ev.by, t: ev.t, about: (d.about || []).filter(x => typeof x === 'string') });
       break;
     }
+    case 'CREW_ADDED': P.crew = (P.crew || []).concat(d.uid); break;
+    case 'CREW_REMOVED': P.crew = (P.crew || []).filter(x => x !== d.uid); break;
+    case 'CUSTOMER_RATED': { const m = /^visit:(\d+)$/.exec(d.ref); S.reviews.push({ id: ev.id, uid: d.ref === 'handover' ? P.tech : P.service[m[1]].by, by: ev.by, src: 'customer', stars: +d.stars, pid: P.id, ref: d.ref, note: d.note || '', name: d.name || '', t: ev.t }); break; }
+    case 'CREW_RATED': S.reviews.push({ id: ev.id, uid: d.uid, by: ev.by, src: 'lead', stars: +d.stars, pid: P.id, ref: 'crew', note: d.note || '', t: ev.t }); break;
+    case 'PROMOTED': case 'DEMOTED': {
+      const w = worker(d.uid), from = gradeOf(d.uid);
+      if (!w.gradeLog) w.gradeLog = [{ g: from, t: S.users[d.uid].t }];
+      w.grade = d.to; w.gradeLog.push({ g: d.to, t: ev.t, by: ev.by, note: d.note || d.reason || '', type: ev.type });
+      if (d.to === 'qc') S.users[d.uid].role = 'qc';
+      else if (from === 'qc') S.users[d.uid].role = 'tech';
+      break;
+    }
+    case 'SKILL_CHECKED': S.skillChecks.push({ uid: d.uid, level: d.level, pass: d.pass, note: d.note, by: ev.by, t: ev.t, ev: ev_(d).map(e => e.id) }); break;
+    case 'STRIKE_APPEALED': S.strikeAppeals[d.sid] = { reason: d.reason, t: ev.t, by: ev.by }; break;
+    case 'STRIKE_DECIDED': S.strikeDecisions[d.sid] = { decision: d.decision, reason: d.reason, t: ev.t, by: ev.by }; break;
+    case 'SPOT_CHECKED': { const x = P.sop[d.step]; S.spots[P.id + ':' + d.step] = { ok: d.ok, note: d.note || '', by: ev.by, t: ev.t, doer: x.by, pid: P.id, step: d.step }; break; }
+    case 'REVIEW_HELD': S.reviewsHeld.push({ uid: d.uid, note: d.note, by: ev.by, t: ev.t }); break;
     case 'APPROVAL_REQUESTED': S.approvals[d.aid] = { id: d.aid, by: ev.by, t: ev.t, action: d.action, reason: d.reason || '', status: 'pending' }; S.approvalOrder.push(d.aid); break;
     case 'APPROVAL_DECIDED': {
       const r = S.approvals[d.aid]; r.status = d.decision === 'approve' ? 'approved' : 'rejected'; r.decidedBy = ev.by; r.decidedAt = ev.t; r.note = d.reason || '';
@@ -2993,7 +3482,7 @@ function rebuild(events) {
 
 /* Owner and Admin do not share the same to-do list: the Owner decides money and price, the Admin runs daily work.
    Both keep the permission to act; this only decides whose list a task appears on. The Owner sees Admin work again only when it is late (escalation). */
-const OWNER_TASKS = ['approve_quote', 'approve_pay', 'answer_approval'];
+const OWNER_TASKS = ['approve_quote', 'approve_pay', 'answer_approval', 'suspend_review'];
 const SHARED_TASKS = ['second_approval'];
 const activeOf = role => Object.values(S.users).some(u => u.active && u.role === role);
 function splitOA(n) {
@@ -3054,6 +3543,14 @@ function needs(P) {
     P.done.amc.visits.forEach((d, i) => { if (!P.service[i] && d <= addDays(7)) add('amc_visit', ['tech'], { uids: [P.tech], visit: i, overdue: d < todayStr(), since: d + 'T12:00:00' }); });
     if (P.amcEnd && P.amcEnd <= addDays(30)) add('amc_renew', ['sales', 'admin'], { uids: [P.sales], overdue: P.amcEnd < todayStr(), since: P.amcEnd + 'T12:00:00' });
   }
+  /* ratings: the customer rates the finished lift and each service visit; the lead rates the crew after QC passes */
+  if (P.done) {
+    const rated = ref => S.reviews.some(r => r.src === 'customer' && r.pid === P.id && r.ref === ref);
+    const who = P.customer ? ['customer'] : ['sales'], uids = [P.customer || P.sales];
+    if (P.tech && !rated('handover')) add('rate_work', who, { uids, ref: 'handover' });
+    Object.keys(P.service).forEach(i => { if (!rated('visit:' + i)) add('rate_work', who, { uids, ref: 'visit:' + i }); });
+  }
+  if (P.tech && passedQc(P)) (P.crew || []).filter(x => !S.reviews.some(r => r.src === 'lead' && r.pid === P.id && r.uid === x)).forEach(x => add('rate_crew', ['tech'], { uids: [P.tech], uid: x }));
   for (const x of P.tickets) {
     if (x.status === 'open') add('assign_ticket', ['admin', 'owner', 'sales'], { tid: x.id, urgent: x.kind === 'breakdown', uids: [P.sales], since: x.t });
     else if (['assigned', 'in_progress'].includes(x.status)) add('work_ticket', [roleOf(x.owner) || 'admin'], { uids: [x.owner], tid: x.id, urgent: x.kind === 'breakdown', overdue: x.due && x.due < todayStr(), since: x.due ? addDays(1, new Date(x.due + 'T12:00:00')) + 'T00:00:00' : null });
@@ -3071,7 +3568,7 @@ function globalNeeds(u, all) {
   const up = (n, from, id) => { const e = escFor(n, from, id); if (e) out.push(e); };
   for (const id of S.approvalOrder) { const r = S.approvals[id]; if (r.status === 'pending') add('second_approval', ['owner', 'admin'], { aid: id, not: r.by, urgent: true }); }
   if (all || ['owner', 'admin', 'finance', 'tech'].includes(u.role)) {
-    for (const x of Object.values(S.users).filter(y => y.role === 'tech' && y.active)) {
+    for (const x of Object.values(S.users).filter(y => ['tech', 'qc'].includes(y.role) && y.active)) {
       for (const w of weeksFor(x.uid)) {
         const id = x.uid + '|' + w.week;
         if (!w.pay || w.pay.status === 'open') { if (w.week < weekKey(nowISO()) && w.total > 0) up(add('approve_pay', ['owner', 'admin'], { uid: x.uid, week: w.week }), addDays(7, new Date(w.week + 'T12:00:00')) + 'T00:00:00', id); }
@@ -3088,6 +3585,16 @@ function globalNeeds(u, all) {
     if (ob.steps.some(st => st.who === 'office' && !st.done)) add('check_docs', x.role === 'admin' ? ['owner'] : ['admin', 'owner'], { uid: x.uid, not: x.uid });
     up({ k: 'onboarding', roles: [x.role], pid: null, uid: x.uid, uids: [x.uid] }, x.t, x.uid);
   }
+  /* career ladder: promotions ready, spot checks, strike appeals, review meetings */
+  for (const x of Object.values(S.users).filter(y => y.active && ['tech', 'qc'].includes(y.role))) {
+    const st = ladderStatus(x.uid);
+    if (st.ready) add('promotion_ready', st.next === 'qc' ? ['owner'] : ['admin', 'owner'], { uid: x.uid, to: st.next, not: x.uid });
+    const sk = strikesOf(x.uid), n = sk.filter(k => k.active).reduce((a, k) => a + k.n, 0);
+    sk.filter(k => k.appeal && !k.decision).forEach(k => add('strike_appeal', roleOf(k.by) === 'admin' && Object.values(S.users).filter(y => y.active && y.role === 'admin').length < 2 ? ['owner'] : ['admin', 'owner'], { uid: x.uid, sid: k.id, not: k.by }));
+    const last = sk.filter(k => k.active)[0], held = last && S.reviewsHeld.some(h => h.uid === x.uid && h.t > last.t);
+    if (n >= 3 && !held) add(n >= 4 ? 'suspend_review' : 'review_meeting', n >= 4 ? ['owner'] : ['admin', 'owner'], { uid: x.uid, not: x.uid, urgent: true });
+  }
+  for (const sp of spotDue()) add('spot_check', activeOf('qc') ? ['qc'] : ['admin'], { pid: sp.pid, step: sp.step, not: sp.by, key: sp.key, uid: sp.by });
   return all ? out : out.filter(n => isMine(n, u));
 }
 function isMine(n, u) {
@@ -3555,15 +4062,16 @@ const TASK_ICON = {
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
-  amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑'
+  amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎'
 };
 function projTitle(P) { return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
   const P = S.projects[n.pid];
-  const sub = n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
+  const sub = n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
   if (!P) {
     const info = n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
-      : ['onb_profile', 'check_docs'].includes(n.k) ? userName(n.uid) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
+      : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
     return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
@@ -3611,7 +4119,7 @@ const g = k => W ? getPath(W.ctx, k) : undefined;
 function tiles(key, opts, cls = '') {
   return `<div class="tiles ${cls}" role="group">` + opts.map(([v, i, l, s]) => {
     const on = g(key) === v;
-    return `<button class="tile ${on ? 'on' : ''}" data-a="pick" data-k="${key}" data-v="${esc(v)}" aria-pressed="${on}"><span class="i" aria-hidden="true">${i}</span><span>${esc(L[l] ? t(l) : l)}${s ? `<br><small>${esc(t(s))}</small>` : ''}</span></button>`;
+    return `<button class="tile ${on ? 'on' : ''}" data-a="pick" data-k="${key}" data-v="${esc(v)}" aria-pressed="${on}"><span class="i" aria-hidden="true">${i}</span><span>${esc(L[l] ? t(l) : l)}${s ? `<br><small>${esc(L[s] ? t(s) : s)}</small>` : ''}</span></button>`;
   }).join('') + '</div>';
 }
 function toggleTile(key, icon, label) {
@@ -4193,6 +4701,13 @@ WIZ.qcsite = {
 /* ---------- Admin: release drawings & assign team ---------- */
 const usersOf = role => Object.values(S.users).filter(u => u.role === role && u.active);
 function personTiles(key, role) {
+  if (role === 'tech' && W && W.pid) {
+    /* only people allowed to lead a job of this size; best fair stars first */
+    const P = S.projects[W.pid], all = usersOf('tech'), ok = rankWorkers(all.filter(u => canLead(u.uid, P)));
+    if (!ok.length) return `<div class="warnbox">${t('no_leader', { size: t('js_' + jobSize(P)) })}</div>`;
+    return `<div class="note">📏 ${t('js_note', { size: t('js_' + jobSize(P)) })}</div>` + tiles(key, ok.map(u => [u.uid, GRADE_ICON[gradeOf(u.uid)], u.name, workerSub(u.uid)]), 'one')
+      + (all.length > ok.length ? `<p class="small muted">${t('not_eligible_n', { n: all.length - ok.length })}</p>` : '') + (S.config.requireTraining ? `<p class="small muted">${t('auth_required')}</p>` : '');
+  }
   const list = usersOf(role);
   if (!list.length) return `<div class="warnbox">${t('no_person_role', { role: t('r_' + role) })}</div>${['owner', 'admin'].includes(App.me.role) ? `<button class="btn btn-p" data-a="nav" data-v="users">👥 ${t('users')}</button>` : ''}`;
   return tiles(key, list.map(u => [u.uid, ROLE_ICON[role], u.name]), 'one') + (role === 'tech' ? `<div class="small">${list.map(u => `${esc(u.name)}: ${authChip(u.uid)}`).join('<br>')}</div>${S.config.requireTraining ? `<p class="small muted">${t('auth_required')}</p>` : ''}` : '');
@@ -4327,7 +4842,7 @@ WIZ.incidentNew = {
 /* ---------- QC final inspection ---------- */
 WIZ.qcfinal = {
   title: 'tk_final_inspect', save: 'save_result', saveIcon: '🔍',
-  init: () => ({ checks: {}, ph: [], outcome: '', items: [], note: '' }),
+  init: () => ({ checks: {}, ph: [], outcome: '', items: [], note: '', cause: '', stars: '' }),
   steps: [
     { id: 'info', icon: '📋', say: 's_qcf_info', body: (c, P) => `<div class="card"><h3>${t('sop_evidence')}</h3>${SOP.map(([k, i], n) => `<div class="list-item"><span>${P.sop[n] ? '✅' : '⬜'} ${i}</span><span class="grow">${t('sop_' + k)}</span></div>${P.sop[n] ? evGrid(P.sop[n].ev) : ''}`).join('')}</div><div class="warnbox">📜 ${t('checklist_disclaimer')}</div>` },
     { id: 'checks', icon: '✔️', say: 's_qcf_checks', body: () => `<div class="card">${QC_FINAL_CHECKS.map(k => ynRow('checks.' + k, 'qcf_' + k, ['pass', 'fail'])).join('')}</div>`, check: c => QC_FINAL_CHECKS.every(k => c.checks[k]) ? null : 'err_checks' },
@@ -4338,9 +4853,11 @@ WIZ.qcfinal = {
       body: c => QC_FINAL_CHECKS.some(k => c.checks[k] === 'fail') ? `<div class="err">❌ ${t('qcf_must_fail')}</div>` : tiles('outcome', [['pass', '✅', 'qo_pass'], ['fail', '❌', 'qo_fail']], 'one'),
       check: c => c.outcome ? null : 'err_choose'
     },
-    { id: 'items', icon: '🛠️', say: 's_qcf_items', skip: c => c.outcome !== 'fail', body: () => itemsEditor('items'), check: c => c.items.some(x => (x.text || '').trim()) ? null : 'err_items' }
+    { id: 'cause', icon: '🔎', say: 's_qcf_cause', skip: c => c.outcome !== 'fail', body: () => tiles('cause', [['work', '🔧', 'cause_work', 'cause_work_d'], ['material', '📦', 'cause_material', 'cause_material_d'], ['site', '🏗️', 'cause_site', 'cause_site_d']], 'one'), check: c => c.cause ? null : 'err_choose' },
+    { id: 'items', icon: '🛠️', say: 's_qcf_items', skip: c => c.outcome !== 'fail', body: () => itemsEditor('items'), check: c => c.items.some(x => (x.text || '').trim()) ? null : 'err_items' },
+    { id: 'stars', icon: '⭐', say: (c, P) => t('s_qcf_stars', { name: userName(P.tech) }), body: (c, P) => `<div class="card center"><b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)}</div>` + starPicker('stars') + `<p class="small muted">${t('qcf_stars_note')}</p>`, check: c => c.stars ? null : 'err_stars' }
   ],
-  async finish(c, P) { const r = await run([['QC_FINAL_RESULT', P.id, { checks: c.checks, outcome: c.outcome, items: c.outcome === 'fail' ? c.items : [], note: c.note, ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_qcf_' + c.outcome) : r; }
+  async finish(c, P) { const r = await run([['QC_FINAL_RESULT', P.id, { checks: c.checks, outcome: c.outcome, items: c.outcome === 'fail' ? c.items : [], note: c.note, ev: c.ph, stars: +c.stars, cause: c.outcome === 'fail' ? c.cause : undefined }]]); return r.ok ? doneRes(P.id, 'what_qcf_' + c.outcome) : r; }
 };
 /* ---------- Handover signatures ---------- */
 WIZ.hsign = {
@@ -4533,6 +5050,8 @@ SCREENS.home = () => {
   if (adm) { const qn = queueRows().filter(r => r.n).length;
     h += fold('queues', t('queues'), queuesCard(true), { icon: '🗂️', count: qn, alert: qn > 0, sub: t('fold_tap') });
     h += fold('dash', t(u.role === 'owner' ? 'owner_dash' : 'admin_dash'), dashboard(true), { icon: '📊', sub: t('fold_tap') }); }
+  if (gradeOf(u.uid)) { const st = ladderStatus(u.uid);
+    h += fold('ladder', t('ladder_title'), ladderCard(u.uid, { short: true, bare: true }), { icon: GRADE_ICON[st.grade], sub: t('gr_' + st.grade) + (st.next ? ' → ' + t('gr_' + st.next) + ' · ' + t(st.ready ? 'ladder_ready_short' : 'ladder_left', { n: st.left }) : ''), open: st.left === 1 || st.ready, alert: st.ready }); }
   if (u.role === 'field') h += fold('score', t('my_score_t'), fieldScore(), { icon: '🏅' });
   return h + '</main>' + nav('home');
 };
@@ -4565,7 +5084,7 @@ function customerHome() {
   App.pageSay = t('cust_say', { stage: stName(P.stage), next: nextLine(P) });
   const q = [...P.quotes].reverse().find(x => x.sent);
   const tile = (a, v, i, l) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`;
-  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}<div class="card"><b>${esc(P.id)}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}</div>${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p></div>
+  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}<div class="card"><b>${esc(P.id)}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}</div>${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
     ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + tasks.map((n, i) => taskCard(n, i)).join('') : ''}
     ${P.done && allowed('TICKET_OPENED', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="ticket|${P.id}">🚨 ${t('ticket_new')}</button>` : ''}
     ${fold('cdocs', t('papers_help'), `<div class="tiles">${q ? tile('openDocP', P.id + '|quote', '📄', 'doc_quote') : ''}${P.agreement ? tile('openDocP', P.id + '|agreement', '✍️', 'doc_agreement') : ''}
@@ -4682,7 +5201,8 @@ function projActions(P) {
 }
 function projInfo(P) {
   const u = App.me, q = lastQuote(P);
-  const team = [['r_sales', P.sales], ['r_qc', P.qc], ['r_supplier', P.supplier], ['r_tech', P.tech], ['r_customer', P.customer], ['added_by', P.createdBy]].map(([l, id]) => [l, id ? userTag(id) : '']);
+  const team = [['r_sales', P.sales], ['r_qc', P.qc], ['r_supplier', P.supplier], ['team_lead', P.tech], ['r_customer', P.customer], ['added_by', P.createdBy]].map(([l, id]) => [l, id ? userTag(id) + (l === 'team_lead' && gradeOf(id) ? '<br>' + gradeChip(id) + ' ' + starChip(id) : '') : '']);
+  if ((P.crew || []).length) team.splice(4, 0, ['crew', P.crew.map(x => userTag(x) + ' ' + gradeChip(x) + (allowed('CREW_REMOVED', P) && (App.me.role !== 'tech' || P.tech === App.me.uid) ? ` <button class="btn btn-sm" data-a="crewRemove" data-v="${x}">✕</button>` : '')).join('<br>')]);
   const open = [...P.blockers.filter(b => b.open).map(b => `<div class="warnbox">⛔ ${t('br_' + b.reason)} → ${t('r_' + b.role)}${b.note ? ': ' + esc(b.note) : ''}</div>`),
     ...P.incidents.filter(i => i.open).map(i => `<div class="err">🚨 ${t('inc_' + i.type)}: ${esc(i.note)}</div>`)].join('');
   const sopN = Object.keys(P.sop).length;
@@ -4694,7 +5214,7 @@ function projInfo(P) {
     ${seeF(u, 'lead') ? `<details class="card"><summary><b>🏍️ ${t('lead_details')}</b></summary>${leadSummary(P)}</details>` : ''}
     ${P.req ? `<div class="card"><h3>📝 ${t('lift_needs')}</h3>${reqKv(P.req)}</div>` : ''}
     ${q && seeF(u, 'money') ? `<div class="card"><h3>📄 ${t('quote_v', { v: q.v })}</h3>${kv([['q_total', money(q.total)], ['status', t('qs_' + q.status)]])}${seeF(u, 'internal') ? `<span class="chip c-info">🔒 ${t('q_margin', { n: q.margin })}</span>` : ''}</div>` : ''}
-    <div class="card"><h3>👥 ${t('team')}</h3>${kv(team)}</div>
+    <div class="card"><h3>👥 ${t('team')}</h3>${kv(team)}${P.tech && !['lost', 'amc'].includes(P.stage) && stageIdx(P.stage) >= stageIdx('material_order') && allowed('CREW_ADDED', P) && (u.role !== 'tech' || (P.tech === u.uid && gradeOf(u.uid) === 'senior')) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="crewAdd|${P.id}">👷 ${t('crew_add')}</button>` : ''}<p class="small muted">📏 ${t('js_' + jobSize(P))}</p></div>
     ${P.materials.length && stageIdx(P.stage) >= stageIdx('material_order') && P.stage !== 'lost' ? `<div class="card"><h3>📦 ${t('material')}</h3>${kv([['f_drawings', esc(P.drawings && P.drawings.ref)], ['f_seal', P.dispatch ? esc(P.dispatch.seal) : ''], ['f_vehicle', P.dispatch ? esc(P.dispatch.vehicle) : ''],
       ['arrived', P.arrival ? fmtD(P.arrival.t, true) + (P.arrival.sealMatch ? ' · ✅ ' + t('seal_match') : ' · ❌ ' + t('seal_mismatch')) : ''], ['handed_over', P.mhand ? fmtD(P.mhand.t, true) : '']])}
       <div class="note">📡 ${t('no_tracker')}</div></div>` : ''}
@@ -5018,7 +5538,7 @@ SCREENS.me = () => {
   const tile = (a, v, i, l, on) => on === false ? '' : `<button class="tile" data-a="${a}" data-v="${v || ''}"><span class="i" aria-hidden="true">${i}</span>${t(l)}</button>`;
   const group = (icon, l, body) => !body.trim() ? '' : l === 'me_app' ? fold('me_app', t(l), `<div class="tiles">${body}</div>`, { icon, sub: t('fold_tap') }) : `<h2 class="sec">${icon} ${t(l)}</h2><div class="tiles">${body}</div>`;
   return topBar(t('me')) + `<main class="wrap"><div class="hero"><div class="row"><span style="font-size:2.4rem">${ROLE_ICON[r]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + r)}</span></div></div><p class="small muted" style="margin:8px 0 0">${t('role_note')}</p></div>
-    ${group('🧰', 'me_work', tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', r === 'tech')
+    ${group('🧰', 'me_work', tile('nav2', 'ladder|' + u.uid, '🪜', 'my_ladder', !!gradeOf(u.uid)) + tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', ['tech', 'qc'].includes(r))
       + tile('nav2', 'leaders|', '🏆', 'leaderboard', staff) + tile('nav', 'templates', '💬', 'templates', ['owner', 'admin', 'sales', 'finance', 'tech'].includes(r)) + tile('nav', 'helper', '🙋', 'helper'))}
     ${group('🏢', 'me_office', tile('nav', 'escalations', '⏫', 'esc_title', adm) + tile('nav', 'workers', '🪪', 'workers', adm) + tile('nav', 'users', '👥', 'users', adm)
       + tile('nav', 'rules', '📏', 'business_rules', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'audit', '🧾', 'audit_log', adm) + tile('nav', 'problems', '⚠️', 'problems', adm))}
@@ -5082,6 +5602,7 @@ function userAddSheet() {
   const roles = ROLES.filter(r => r !== 'customer' && (App.me.role === 'owner' || r !== 'owner'));
   sheet(`<h2>➕ ${t('add_person')}</h2>${formInp('nuName', 'person_name', { mic: true })}<div class="small" style="font-weight:800;margin-bottom:6px">${t('role')}</div>
     <div class="tiles">${roles.map(r => `<button class="tile ${f.nuRole === r ? 'on' : ''}" data-a="nuRole" data-v="${r}" style="min-height:80px"><span class="i">${ROLE_ICON[r]}</span>${t('r_' + r)}</button>`).join('')}</div>
+    ${f.nuRole === 'tech' ? `<div class="small" style="font-weight:800;margin:10px 0 6px">${t('start_level')}</div><div class="tiles three">${GRADES.slice(0, App.me.role === 'owner' ? 4 : 3).map(x => `<button class="tile ${(f.nuGrade || 'trainee') === x ? 'on' : ''}" data-a="nuGrade" data-v="${x}" style="min-height:72px"><span class="i">${GRADE_ICON[x]}</span>${t('gr_' + x)}</button>`).join('')}</div><p class="small muted">${t('start_level_note')}</p>` : ''}
     <div class="card center" style="margin-top:12px"><div class="small muted">${t('new_pin_is')}</div><div style="font-size:2.2rem;font-weight:800;letter-spacing:6px">${f.nuPin}</div><div class="small">${t('pin_tell')}</div></div>
     <button class="btn btn-ok btn-big" data-a="userSave">✅ ${t('save')}</button><div class="note">ℹ️ ${t('customer_add_note')}</div>`);
 }
@@ -5134,7 +5655,11 @@ function exportPack(kind, forUid) {
   const target = forUid ? S.users[forUid] : null;
   if (kind === 'person' && target) {
     const vis = new Set(Object.values(S.projects).filter(P => canSee(target, P)).map(P => P.id));
-    events = EVENTS.filter(ev => ev.pid ? vis.has(ev.pid) : ['ORG_CREATED', 'USER_ADDED', 'USER_UPDATED', 'CONFIG_SET'].includes(ev.type) || ev.by === forUid)
+    /* shared basics, everything about this person (level, documents, strikes, pay), never other jobs' customer logins */
+    const ABOUT = ['WORKER_PROFILE', 'DOC_VERIFIED', 'PROMOTED', 'DEMOTED', 'SKILL_CHECKED', 'STRIKE_DECIDED', 'REVIEW_HELD', 'PAY_APPROVED', 'PAY_PAID', 'PAY_DISPUTE_ANSWERED'];
+    events = EVENTS.filter(ev => ev.pid ? vis.has(ev.pid)
+      : ev.type === 'USER_ADDED' && ev.data.role === 'customer' ? vis.has(ev.data.projectId)
+      : ['ORG_CREATED', 'USER_ADDED', 'USER_UPDATED', 'CONFIG_SET'].includes(ev.type) || ev.by === forUid || (ABOUT.includes(ev.type) && ev.data.uid === forUid))
       .map(ev => (ev.type === 'USER_ADDED' || ev.type === 'USER_UPDATED') && ev.data.uid !== forUid && ev.data.pin ? Object.assign({}, ev, { data: Object.assign({}, ev.data, { pin: null, salt: null, stripped: true }) }) : ev);
   }
   return { format: 'aiec-elevator-os', v: 1, kind, mode: App.mode, org: S.org.id, orgName: S.org.name, at: nowISO(), by: App.me.uid, for: forUid || null, events, media };
@@ -5297,13 +5822,18 @@ WIZ.ticketUpdate = {
   async finish(c, P) { const r = await run([['TICKET_UPDATED', P.id, { tid: W.opts.tid, status: c.status, note: c.note.trim(), ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_ticket_updated') : r; }
 };
 WIZ.ticketClose = {
-  title: 'tk_confirm_ticket', save: 'save', init: () => ({ ok: '', note: '' }),
+  title: 'tk_confirm_ticket', save: 'save', init: () => ({ ok: '', note: '', fault: '' }),
   steps: [{
     id: 'ok', icon: '✅', say: 's_ticket_close',
     body: (c, P) => `<div class="card">${esc((ticketOf(P, W.opts.tid) || {}).text || '')}</div>` + tiles('ok', [['yes', '😊', 'ticket_fixed'], ['no', '🙁', 'ticket_not_fixed']], 'one') + inp('note', 'f_note', { area: true, mic: true, opt: c.ok !== 'no' }),
     check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null
+  }, {
+    /* office only: was a worker at fault? (a confirmed complaint is a strike, and can be appealed) */
+    id: 'fault', icon: '⚖️', say: 's_ticket_fault', skip: (c, P) => App.me.role === 'customer' || (ticketOf(P, W.opts.tid) || {}).kind !== 'complaint',
+    body: (c, P) => { const x = ticketOf(P, W.opts.tid) || {}; return tiles('fault', [['', '🤝', 'fault_none']].concat(uniq([P.tech, x.owner, ...(P.crew || [])].filter(Boolean)).map(u => [u, ROLE_ICON[roleOf(u)] || '👤', userName(u)])), 'one') + `<p class="small muted">${t('fault_note')}</p>`; },
+    check: c => c.fault && !c.note.trim() ? 'err_reason' : null
   }],
-  async finish(c, P) { const r = await run([['TICKET_CLOSED', P.id, { tid: W.opts.tid, ok: c.ok === 'yes', note: c.note }]]); return r.ok ? doneRes(P.id, c.ok === 'yes' ? 'what_ticket_closed' : 'what_ticket_reopened') : r; }
+  async finish(c, P) { const r = await run([['TICKET_CLOSED', P.id, Object.assign({ tid: W.opts.tid, ok: c.ok === 'yes', note: c.note }, c.fault ? { fault: c.fault } : {})]]); return r.ok ? doneRes(P.id, c.ok === 'yes' ? 'what_ticket_closed' : 'what_ticket_reopened') : r; }
 };
 WIZ.renew = {
   title: 'tk_amc_renew', save: 'save', init: () => ({ years: '1', amount: S.config.amcPrice, note: '' }),
@@ -5356,7 +5886,7 @@ SCREENS.workers = () => {
     <div class="tabs" style="position:static;padding:0 0 10px">${chip('wa', 'all', t('all'))}${['available', 'busy', 'leave'].map(x => chip('wa', x, t('av_' + x))).join('')}${chip('wa', 'incomplete', '⚠️ ' + t('onb_incomplete'))}</div>
     ${list.map(u => { const w = S.workers[u.uid] || { profile: {}, docs: {}, training: {} }, p = w.profile;
       return `<button class="task" data-a="nav2" data-v="worker|${u.uid}"><span class="ti">${ROLE_ICON[u.role]}</span><span style="flex:1"><b>${esc(u.name)}</b><span class="small muted">${t('r_' + u.role)}${p.area ? ' · 📍 ' + esc(p.area) : ''}</span><br>
-        ${p.availability ? `<span class="chip ${p.availability === 'available' ? 'c-ok' : 'c-mute'}">${t('av_' + p.availability)}</span> ` : ''}${(ob => !ob.total ? '' : ob.ready ? `<span class="chip c-ok">✅ ${t('onb_ready')}</span>` : `<span class="chip c-info">🪪 ${t('onb_progress', { n: ob.done, m: ob.total })}</span> ${escChip({ level: escLevel(daysSince(u.t), 'onboarding') })}`)(onboarding(u.uid))}
+        ${p.availability ? `<span class="chip ${p.availability === 'available' ? 'c-ok' : 'c-mute'}">${t('av_' + p.availability)}</span> ` : ''}${gradeOf(u.uid) ? gradeChip(u.uid) + ' ' + starChip(u.uid) + ' ' : ''}${(ob => !ob.total ? '' : ob.ready ? `<span class="chip c-ok">✅ ${t('onb_ready')}</span>` : `<span class="chip c-info">🪪 ${t('onb_progress', { n: ob.done, m: ob.total })}</span> ${escChip({ level: escLevel(daysSince(u.t), 'onboarding') })}`)(onboarding(u.uid))}
         ${(p.skills || []).length ? `<br><span class="small">${p.skills.map(x => t('skill_' + x)).join(', ')}</span>` : ''}</span><span class="go">▶</span></button>`; }).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
 };
 SCREENS.worker = ({ uid }) => {
@@ -5366,6 +5896,7 @@ SCREENS.worker = ({ uid }) => {
   App.pageSay = t('s_worker');
   return topBar(uid === me.uid ? t('my_profile') : u.name, { back: true }) + `<main class="wrap">
     <div class="hero"><div class="row"><span style="font-size:2.2rem">${ROLE_ICON[u.role]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + u.role)}</span></div></div><div style="margin-top:6px">${authChip(uid)}</div></div>${onbCard(uid)}
+    ${gradeOf(uid) ? ladderCard(uid, { short: true }) : ''}
     <div class="card"><h3>👤 ${t('profile')}</h3>${kv([['f_phone', esc(p.phone || '')], ['w_area', esc(p.area || '')], ['w_avail', p.availability ? t('av_' + p.availability) : ''], ['w_skills', (p.skills || []).map(x => t('skill_' + x)).join(', ')]])}
       <button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="wprofile||uid|${uid}">✏️ ${t('edit')}</button><p class="small muted">${t('w_privacy')}</p></div>
     <div class="card"><h3>🪪 ${t('w_docs')}</h3>${DOCS.map(d => `<div class="list-item"><span class="grow">${t('doc_' + d)}</span><span class="chip ${w.docs[d] === 'verified' ? 'c-ok' : w.docs[d] === 'rejected' ? 'c-bad' : 'c-mute'}">${t('ds_' + (w.docs[d] || 'pending'))}</span>
@@ -5385,7 +5916,7 @@ WIZ.wprofile = {
 SCREENS.training = () => {
   const u = App.me, w = S.workers[u.uid] || { training: {} };
   App.pageSay = t('s_training');
-  return topBar(t('training'), { back: true }) + `<main class="wrap"><p class="say">🎓 ${t('s_training')}</p>${modulesFor(u.role).map(m => `<button class="cl-item ${w.training[m] ? 'done' : ''}" data-a="wizOpen" data-v="train||module|${m}"><span class="st">${w.training[m] ? '✅' : '▶️'}</span><span class="grow"><b>${t('tr_' + m + '_t')}</b><br><span class="small">${t('train_parts')}</span></span></button>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}
+  return topBar(t('training'), { back: true }) + `<main class="wrap"><p class="say">🎓 ${t('s_training')}</p>${modulesFor(u.role).concat(['senior', 'qc'].includes(gradeOf(u.uid)) ? ['qc'] : []).map(m => `<button class="cl-item ${w.training[m] ? 'done' : ''}" data-a="wizOpen" data-v="train||module|${m}"><span class="st">${w.training[m] ? '✅' : '▶️'}</span><span class="grow"><b>${t('tr_' + m + '_t')}</b><br><span class="small">${t('train_parts')}</span></span></button>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}
     <div class="note">💰 ${t('pay_transparent')}</div></main>` + nav('me');
 };
 WIZ.train = {
@@ -5448,7 +5979,7 @@ WIZ.escalate = {
   async finish(c) {
     const o = W.opts, pid = W.pid || null, list = [];
     if (c.action === 'reassign') list.push(['work_ticket', 'assign_ticket'].includes(o.ref) ? ['TICKET_ASSIGNED', pid, { tid: o.tid, uid: c.uid, due: c.until }] : ['ASSIGNED', pid, { role: roleOf(c.uid), uid: c.uid }]);
-    list.push(['ESC_ACTED', pid, { key: o.eid, ref: o.ref, level: o.lvl, action: c.action, uid: c.action === 'reassign' ? c.uid : '', until: c.until, note: c.note.trim() }]);
+    list.push(['ESC_ACTED', pid, { key: o.eid, ref: o.ref, level: o.lvl, action: c.action, uid: c.action === 'reassign' ? c.uid : '', until: c.until, note: c.note.trim(), about: (o.whoUids || []).filter(x => ['tech', 'qc'].includes(roleOf(x))) }]);
     const r = await run(list);
     return r.ok ? { ok: true, title: t('done_title'), what: t('what_esc_acted', { d: fmtD(c.until) }), next: t('next_esc') } : r;
   }
@@ -5501,7 +6032,7 @@ const Notify = {
       if (!this.ctx && navigator.userActivation && !navigator.userActivation.hasBeenActive) return false;
       this.unlock(); const c = this.ctx; if (!c) return false;
       const vol = [0, 0.12, 0.3, 0.6][s.vol] || 0.3, t0 = c.currentTime + 0.03;
-      const pat = { task: [[880, 0, 0.18], [1320, 0.2, 0.35]], urgent: [[988, 0, 0.12], [988, 0.18, 0.12], [988, 0.36, 0.12], [1480, 0.56, 0.35]], alarm: [[1568, 0, 0.25], [1175, 0.28, 0.25], [1568, 0.56, 0.25], [1175, 0.84, 0.25], [1568, 1.12, 0.5]] }[kind] || [];
+      const pat = { cheer: [[523, 0, 0.15], [659, 0.15, 0.15], [784, 0.3, 0.15], [1047, 0.45, 0.45]], task: [[880, 0, 0.18], [1320, 0.2, 0.35]], urgent: [[988, 0, 0.12], [988, 0.18, 0.12], [988, 0.36, 0.12], [1480, 0.56, 0.35]], alarm: [[1568, 0, 0.25], [1175, 0.28, 0.25], [1568, 0.56, 0.25], [1175, 0.84, 0.25], [1568, 1.12, 0.5]] }[kind] || [];
       for (const [f, at, d] of pat) {
         const o = c.createOscillator(), g = c.createGain();
         o.type = kind === 'alarm' ? 'square' : 'sine'; o.frequency.value = f;
@@ -5511,7 +6042,7 @@ const Notify = {
       return true;
     } catch (e) { return false; }
   },
-  buzz(kind) { const s = this.set(); if (s.vibrate && navigator.vibrate) try { navigator.vibrate({ task: [200], urgent: [200, 100, 200, 100, 200], alarm: [400, 150, 400, 150, 800] }[kind]); } catch (e) { /* not supported */ } },
+  buzz(kind) { const s = this.set(); if (s.vibrate && navigator.vibrate) try { navigator.vibrate({ cheer: [80, 60, 80, 60, 200], task: [200], urgent: [200, 100, 200, 100, 200], alarm: [400, 150, 400, 150, 800] }[kind]); } catch (e) { /* not supported */ } },
   perm: () => !('Notification' in window) ? 'none' : Notification.permission,
   async ask() { if (this.perm() === 'default') { try { await Notification.requestPermission(); } catch (e) { /* old browser */ } } this.setupBackground(); return this.perm(); },
   async phone(title, body, kind, silent) {
@@ -5525,7 +6056,7 @@ const Notify = {
   },
   banner(title, body, kind) {
     let el = document.getElementById('ntf'); if (!el) { el = document.createElement('div'); el.id = 'ntf'; el.setAttribute('role', 'alert'); document.body.appendChild(el); }
-    el.innerHTML = `<div class="ntf ${kind}"><span class="i" aria-hidden="true">${{ task: '🔔', urgent: '⚠️', alarm: '🚨' }[kind]}</span><span class="grow"><b>${esc(title)}</b><span class="small">${esc(body)}</span></span><button class="btn btn-sm btn-p" data-a="ntfOpen">▶ ${t('ntf_open_btn')}</button><button class="ib" data-a="ntfClose" aria-label="${t('close')}">✕</button></div>`;
+    el.innerHTML = `<div class="ntf ${kind}"><span class="i" aria-hidden="true">${{ task: '🔔', urgent: '⚠️', alarm: '🚨', cheer: '🎉' }[kind]}</span><span class="grow"><b>${esc(title)}</b><span class="small">${esc(body)}</span></span><button class="btn btn-sm btn-p" data-a="ntfOpen">▶ ${t('ntf_open_btn')}</button><button class="ib" data-a="ntfClose" aria-label="${t('close')}">✕</button></div>`;
     clearTimeout(this.bt); this.bt = setTimeout(() => this.hide(), kind === 'alarm' ? 15000 : 8000); this.shownAt = Date.now();
   },
   hide() { const el = document.getElementById('ntf'); if (el) el.innerHTML = ''; },
@@ -5539,6 +6070,7 @@ const Notify = {
     const fresh = tasks.filter(n => !seen.has(this.sig(n)));
     App.set[key] = tasks.map(n => this.sig(n)).slice(0, 500);
     this.badge(tasks.length); this.schedule(u);
+    this.celebrate(u);
     if (opt.silent || !fresh.length) { saveSettings(); return []; }
     const rank = n => ['task', 'urgent', 'alarm'].indexOf(this.kind(n)), top = fresh.slice().sort((a, b) => rank(b) - rank(a))[0], kind = this.kind(top);
     const what = t('tk_' + (top.k === 'escalated' ? top.ref : top.k)), where = top.pid || (top.uid ? userName(top.uid) : '');
@@ -5551,6 +6083,22 @@ const Notify = {
     else { this.banner(title, body, kind); if (!quiet && this.set().speak) Voice.say(title + '. ' + body); }
     saveSettings();
     return fresh;
+  },
+  /* motivation: new level or badge → cheer; new strike → explain and offer an appeal. The first look only remembers. */
+  celebrate(u, silent) {
+    if (!gradeOf(u.uid)) return;
+    const key = 'cel_' + App.mode + '_' + u.uid, seen = App.set[key];
+    const now = ['g:' + gradeOf(u.uid)].concat(badgesOf(u.uid).map(b => 'b:' + b), strikesOf(u.uid).filter(k => k.active).map(k => 's:' + k.id));
+    App.set[key] = now;
+    if (!seen || silent) return;
+    const fresh = now.filter(x => !seen.includes(x)); if (!fresh.length) return;
+    const g = fresh.find(x => x[0] === 'g'), b = fresh.find(x => x[0] === 'b'), k = fresh.find(x => x[0] === 's');
+    const [kind, title, body] = g ? ['cheer', t('cel_level', { g: t('gr_' + g.slice(2)) }), t('cel_level_d')] : b ? ['cheer', t('cel_badge', { b: t(b.slice(2)) }), t('cel_badge_d')]
+      : ['urgent', t('cel_strike'), t((strikesOf(u.uid).find(x => 's:' + x.id === k) || {}).reason || 'sk_low_rating') + ' · ' + t('cel_strike_d')];
+    (App.notifyLog = App.notifyLog || []).push({ kind, title, body, n: 1, t: Date.now() });
+    if (!this.quietNow()) { this.tone(kind); this.buzz(kind); }
+    if (document.hidden) this.phone(title, body, kind === 'cheer' ? 'task' : kind, this.quietNow());
+    else { this.banner(title, body, kind); if (this.set().speak || kind === 'cheer') Voice.say(title); }
   },
   /* times when my waiting work will move up a level, kept for the background check of the installed app */
   schedule(u) {
@@ -5593,6 +6141,139 @@ SCREENS.notify = () => {
     <div class="card"><div class="tiles one">${tog('quiet', '🌙', 'ntf_quiet', 'ntf_quiet_d')}</div>${s.quiet ? `<div class="row" style="margin-top:8px"><label class="grow">${t('ntf_from')}<input class="in" type="time" id="ntf_qFrom" value="${s.qFrom}"></label><label class="grow">${t('ntf_to')}<input class="in" type="time" id="ntf_qTo" value="${s.qTo}"></label></div>` : ''}</div>
     <div class="note">ℹ️ ${t('ntf_limits')}</div></main>` + nav('me');
 };
+
+/* ---------- career ladder: screens and steps ---------- */
+const FACES = ['', '😞', '🙁', '😐', '🙂', '😄'];
+function starPicker(key) {
+  const v = +g(key) || 0;
+  return `<div class="starrow" role="group">${[1, 2, 3, 4, 5].map(n => `<button class="${v === n ? 'on' : ''}" data-a="pick" data-k="${key}" data-v="${n}" aria-pressed="${v === n}"><span class="f" aria-hidden="true">${FACES[n]}</span><span>${'★'.repeat(n)}</span><small>${t('star_' + n)}</small></button>`).join('')}</div>`;
+}
+const gradeChip = uid => { const g = gradeOf(uid); return g ? `<span class="chip c-info">${GRADE_ICON[g]} ${t('gr_' + g)}</span>` : ''; };
+function ladderSteps(g) {
+  return `<div class="ladder">${GRADES.map((x, i) => `<div class="lstep ${x === g ? 'on' : gIdx(g) > i ? 'done' : ''}"><span aria-hidden="true">${gIdx(g) > i ? '✅' : GRADE_ICON[x]}</span><small>${t('gr_' + x)}</small></div>`).join('')}</div>`;
+}
+function checkLine(x) {
+  const pct = x.k === 'lc_first_pass' || x.k === 'lc_trust' ? '' : '';
+  return `<div class="list-item small"><span>${x.ok ? '✅' : '⬜'}</span><span class="grow">${t(x.k)}${pct}</span><b>${x.k === 'lc_no_strikes' || x.k === 'lc_paused' ? (x.ok ? t('yes') : x.have) : x.have + ' / ' + x.need}</b></div>`;
+}
+/* the ladder card: level, stars, trust and what is left for the next level */
+function ladderCard(uid, opt = {}) {
+  const g = gradeOf(uid); if (!g) return '';
+  const st = ladderStatus(uid), tr = trustOf(uid), sk = activeStrikes(uid);
+  const pct = st.checks.length ? Math.round(st.checks.filter(x => x.ok).length / st.checks.length * 100) : 100;
+  return `<div class="card">${opt.bare ? '' : `<h3>🪜 ${t('ladder_title')}</h3>`}${ladderSteps(g)}
+    <div class="row wrapw" style="margin:8px 0">${gradeChip(uid)} ${starChip(uid)} <span class="chip ${tr.score == null ? 'c-mute' : tr.score >= 75 ? 'c-ok' : tr.score >= 50 ? 'c-info' : 'c-warn'}">🤝 ${tr.score == null ? t('trust_new') : t('trust_n', { n: tr.score })}</span>${sk ? ` <span class="chip c-bad">⚠️ ${t('strikes_n', { n: sk })}</span>` : ''}</div>
+    ${st.next ? `<p style="margin:6px 0"><b>${t(st.ready ? 'ladder_ready' : 'ladder_next', { g: t('gr_' + st.next), n: st.left })}</b></p><div class="bar"><span class="b"><i style="width:${pct}%"></i></span><b>${pct}%</b></div>` : `<p>🏁 ${t('ladder_top')}</p>`}
+    ${opt.short ? '' : st.checks.map(checkLine).join('')}
+    ${opt.open !== false ? `<button class="btn btn-sm" style="margin-top:8px" data-a="nav2" data-v="ladder|${uid}">🪜 ${t('ladder_open')}</button>` : ''}</div>`;
+}
+SCREENS.ladder = ({ uid }) => {
+  const me = App.me; uid = uid || me.uid;
+  const u = S.users[uid];
+  if (!u || !gradeOf(uid) || (uid !== me.uid && !['owner', 'admin'].includes(me.role))) return SCREENS.home();
+  const adm = ['owner', 'admin'].includes(me.role) && uid !== me.uid, st = ladderStatus(uid), tr = trustOf(uid), sk = strikesOf(uid), bd = badgesOf(uid);
+  App.pageSay = t('s_ladder', { g: t('gr_' + st.grade) }) + ' ' + (st.next ? t(st.ready ? 'ladder_ready' : 'ladder_next', { g: t('gr_' + st.next), n: st.left }) : '');
+  const { lead, crew } = jobsOf(uid);
+  return topBar(uid === me.uid ? t('my_ladder') : u.name, { back: true }) + `<main class="wrap">${ladderCard(uid, { open: false })}
+    <div class="card"><h3>⭐ ${t('reviews')}</h3>${starsBlock(uid)}<button class="btn btn-sm" data-a="nav2" data-v="reviews|${uid}">📝 ${t('reviews_all')}</button></div>
+    <div class="card"><h3>🤝 ${t('trust')}</h3>${kv([['tp_qc', tr.parts.qc == null ? '—' : tr.parts.qc], ['tp_customer', tr.parts.customer == null ? '—' : tr.parts.customer], ['tp_lead', tr.parts.lead == null ? '—' : tr.parts.lead], ['tp_facts', tr.parts.facts == null ? '—' : tr.parts.facts], ['lc_lead_jobs', lead.length], ['lc_crew_jobs', crew.length]])}<p class="small muted">${t('trust_note')}</p></div>
+    <div class="card"><h3>🏅 ${t('badges')}</h3>${bd.length ? `<div class="tiles three">${bd.map(b => `<div class="tile" style="min-height:84px"><span class="i">${BADGE_ICON[b]}</span><small>${t(b)}</small></div>`).join('')}</div>` : `<p class="muted small">${t('badges_none')}</p>`}</div>
+    <div class="card"><h3>⚠️ ${t('strikes')}</h3>${sk.length ? sk.map(k => `<div class="list-item" style="display:block"><b>${k.active ? '⚠️' : '✔️'} ${t(k.reason)}${k.n > 1 ? ' ×' + k.n : ''}</b> <span class="chip ${k.decision ? (k.decision.decision === 'remove' ? 'c-ok' : 'c-bad') : k.appeal ? 'c-info' : k.active ? 'c-warn' : 'c-mute'}">${t(k.decision ? 'sd_' + k.decision.decision : k.appeal ? 'sd_appealed' : k.active ? 'sd_active' : 'sd_expired')}</span>
+      <div class="small muted">${fmtD(k.t)}${k.pid ? ' · ' + esc(k.pid) : ''}${k.decision ? ' · ' + esc(k.decision.reason) : ''}</div>
+      ${uid === me.uid && k.active && !k.appeal && !k.decision ? `<button class="btn btn-sm" data-a="wizOpen" data-v="appeal||sid|${k.id}">🙋 ${t('appeal')}</button>` : ''}</div>`).join('') : `<p class="okbox">✅ ${t('strikes_none')}</p>`}
+      <p class="small muted">${t('strike_rules', { d: S.config.strikeDays })}</p></div>
+    <div class="card"><h3>💰 ${t('ladder_benefits')}</h3>${GRADES.slice(0, 4).map(x => `<div class="list-item small"><span>${GRADE_ICON[x]}</span><span class="grow"><b>${t('gr_' + x)}</b> · ${t('gb_' + x)}</span><b>${gradeRate(x)}%</b></div>`).join('')}<div class="list-item small"><span>${GRADE_ICON.qc}</span><span class="grow"><b>${t('gr_qc')}</b> · ${t('gb_qc')}</span></div>${ruleChip('ladderpay')}</div>
+    ${adm ? `<div class="stack">${st.next ? `<button class="btn ${st.ready ? 'btn-p' : ''}" data-a="wizOpen" data-v="promote||uid|${uid}">⬆️ ${t('promote_to', { g: t('gr_' + st.next) })}</button>` : ''}
+      ${gIdx(st.grade) > 0 ? `<button class="btn" data-a="wizOpen" data-v="demote||uid|${uid}">⬇️ ${t('demote')}</button>` : ''}</div>` : ''}
+    ${['owner', 'qc'].includes(me.role) || (gradeOf(me.uid) === 'senior' && uid !== me.uid) ? (uid !== me.uid ? `<button class="btn" style="margin-top:8px" data-a="wizOpen" data-v="skill||uid|${uid}">🧪 ${t('skill_check')}</button>` : '') : ''}
+  </main>` + nav('me');
+};
+const BADGE_ICON = { b_first_job: '🎉', b_streak5: '🔥', b_five_star10: '🌟', b_clean90: '🛡️', b_safety: '🦺', b_top_crew: '🤝' };
+function starsBlock(uid, src) {
+  const s = starsOf(uid, src), mx = Math.max(1, ...s.dist);
+  return `<div class="row" style="align-items:center;gap:14px"><div class="center"><div style="font-size:2rem;font-weight:800">${s.count ? starTxt(s.fair) : '—'}</div><div>${'★'.repeat(Math.round(s.fair || 0))}${'☆'.repeat(5 - Math.round(s.fair || 0))}</div><div class="small muted">${t('reviews_n', { n: s.count })}</div></div>
+    <div class="grow">${[5, 4, 3, 2, 1].map(n => `<div class="bar"><span class="lb">${n}★</span><span class="b"><i style="width:${s.dist[n - 1] / mx * 100}%"></i></span><b>${s.dist[n - 1]}</b></div>`).join('')}</div></div>
+    ${s.count && s.count < 5 ? `<p class="small muted">${t('stars_fair_note')}</p>` : ''}`;
+}
+SCREENS.reviews = ({ uid, src }) => {
+  const me = App.me; uid = uid || me.uid;
+  if (!S.users[uid] || (uid !== me.uid && !['owner', 'admin', 'qc'].includes(me.role) && gradeOf(me.uid) !== 'senior')) return SCREENS.home();
+  const s = starsOf(uid, src || null);
+  App.pageSay = t('reviews') + '. ' + (s.count ? starTxt(s.fair) + ' ' + t('reviews_n', { n: s.count }) : t('stars_new', { n: 0 }));
+  const tab = (v, l) => `<button class="${(src || '') === v ? 'on' : ''}" data-a="nav2" data-v="reviews|${uid}|${v}">${t(l)}</button>`;
+  return topBar(t('reviews') + ' · ' + S.users[uid].name, { back: true }) + `<main class="wrap"><div class="tabs" style="position:static;padding:0 0 10px">${tab('', 'all')}${tab('customer', 'rs_customer')}${tab('qc', 'rs_qc')}${tab('lead', 'rs_lead')}</div>
+    <div class="card">${starsBlock(uid, src || null)}</div>
+    ${s.list.map(r => `<div class="card"><div class="row"><b class="grow">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)} ${FACES[r.stars]}</b><span class="chip c-mute">${t('rs_' + r.src)}</span></div>
+      <div class="small muted">${fmtD(r.t)} · ${esc(r.pid)} · ${r.src === 'customer' ? esc(shortName(r.name || userName(r.by))) : esc(userName(r.by))}</div>${r.note ? `<p style="margin:6px 0 0">${esc(r.note)}</p>` : ''}</div>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
+};
+const shortName = n => { const p = String(n || '').trim().split(/\s+/); return p.length > 1 ? p[0] + ' ' + p[p.length - 1][0] + '.' : p[0] || ''; };
+
+/* customer (or Sales on their behalf) rates the work */
+WIZ.rate = {
+  title: 'tk_rate_work', save: 'send', saveIcon: '⭐', noDraft: true, init: () => ({ stars: '', note: '', name: '' }),
+  steps: [{
+    id: 's', icon: '⭐', say: () => t(W.opts.ref === 'handover' ? 's_rate_handover' : 's_rate_visit', { name: userName(W.opts.about) }),
+    body: (c, P) => `<div class="card center"><b>${esc(userName(W.opts.about))}</b> ${gradeChip(W.opts.about)}<div class="small muted">${t(W.opts.ref === 'handover' ? 'rate_handover' : 'rate_visit')} · ${esc(P.id)}</div></div>` + starPicker('stars')
+      + inp('note', 'f_comment', { area: true, mic: true, opt: true }) + (App.me.role === 'sales' ? inp('name', 'f_customer_name', { mic: true }) + `<div class="note">${t('rate_in_person')}</div>` : ''),
+    check: c => !c.stars ? 'err_stars' : App.me.role === 'sales' && !c.name.trim() ? 'err_fill' : null
+  }],
+  async finish(c, P) { const r = await run([['CUSTOMER_RATED', P.id, { ref: W.opts.ref, stars: +c.stars, note: c.note.trim(), name: c.name.trim() }]]); return r.ok ? doneRes(P.id, 'what_rated') : r; }
+};
+WIZ.rateCrew = {
+  title: 'tk_rate_crew', save: 'send', saveIcon: '⭐', noDraft: true, init: () => ({ stars: '', note: '' }),
+  steps: [{ id: 's', icon: '⭐', say: () => t('s_rate_crew', { name: userName(W.opts.uid) }), body: () => `<div class="card center"><b>${esc(userName(W.opts.uid))}</b> ${gradeChip(W.opts.uid)}</div>` + starPicker('stars') + inp('note', 'f_comment', { area: true, mic: true, opt: true }), check: c => c.stars ? null : 'err_stars' }],
+  async finish(c, P) { const r = await run([['CREW_RATED', P.id, { uid: W.opts.uid, stars: +c.stars, note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'what_rated') : r; }
+};
+WIZ.promote = {
+  title: 'tk_promotion_ready', save: 'promote_now', saveIcon: '⬆️', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'p', icon: '⬆️', say: () => t('s_promote', { name: userName(W.opts.uid), g: t('gr_' + (ladderStatus(W.opts.uid).next || '')) }),
+    body: () => { const st = ladderStatus(W.opts.uid); return ladderCard(W.opts.uid, { open: false }) + (st.ready ? '' : `<div class="warnbox">${t('promote_not_ready')}</div>`) + (st.next === 'qc' ? `<div class="note">🔍 ${t('promote_qc_note')}</div>` : '') + inp('note', 'f_note', { area: true, mic: true, opt: true }); },
+    check: () => ladderStatus(W.opts.uid).ready ? null : 'err_targets' }],
+  async finish(c) { const uid = W.opts.uid, to = ladderStatus(uid).next; const r = await run([['PROMOTED', null, { uid, to, note: c.note.trim(), checks: ladderStatus(uid).checks.map(x => ({ k: x.k, have: x.have, need: x.need, ok: x.ok })) }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_promoted', { name: userName(uid), g: t('gr_' + to) }), next: t('next_promoted') } : r; }
+};
+WIZ.demote = {
+  title: 'demote', save: 'save', noDraft: true, init: () => ({ to: '', reason: '' }),
+  steps: [{ id: 'd', icon: '⬇️', say: 's_demote', body: () => tiles('to', GRADES.slice(0, gIdx(gradeOf(W.opts.uid))).filter(x => x !== 'qc').map(x => [x, GRADE_ICON[x], 'gr_' + x]), 'one') + inp('reason', 'f_reason', { area: true, mic: true }), check: c => !c.to ? 'err_choose' : c.reason.trim() ? null : 'err_reason' }],
+  async finish(c) { const r = await run([['DEMOTED', null, { uid: W.opts.uid, to: c.to, reason: c.reason.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_demoted', { name: userName(W.opts.uid), g: t('gr_' + c.to) }), next: t('next_none') } : r; }
+};
+WIZ.skill = {
+  title: 'skill_check', save: 'save', noDraft: true, init: () => ({ level: '', pass: '', note: '', ph: [] }),
+  steps: [
+    { id: 'l', icon: '🧪', say: 's_skill', body: () => `<div class="card center"><b>${esc(userName(W.opts.uid))}</b> ${gradeChip(W.opts.uid)}</div>` + tiles('level', [['technician', GRADE_ICON.technician, 'skill_for_tech'], ['qc', GRADE_ICON.qc, 'skill_for_qc']].filter(([l]) => l === 'technician' || ['owner', 'qc'].includes(App.me.role)), 'one'), check: c => c.level ? null : 'err_choose' },
+    { id: 'r', icon: '✅', say: 's_skill_result', body: () => tiles('pass', [['yes', '✅', 'pass'], ['no', '❌', 'fail']], 'one') + photoSlot('ph', 'ph_skill', 1, { video: true, tag: 'skill' }) + inp('note', 'f_note', { area: true, mic: true }), check: c => !c.pass ? 'err_choose' : !c.ph.length ? { k: 'err_photos', v: { n: 1 } } : c.note.trim() ? null : 'err_fill' }
+  ],
+  async finish(c) { const r = await run([['SKILL_CHECKED', null, { uid: W.opts.uid, level: c.level, pass: c.pass === 'yes', note: c.note.trim(), ev: c.ph }]]); return r.ok ? { ok: true, title: t('done_title'), what: t(c.pass === 'yes' ? 'what_skill_pass' : 'what_skill_fail'), next: t('next_none') } : r; }
+};
+WIZ.appeal = {
+  title: 'appeal', save: 'send', noDraft: true, init: () => ({ reason: '' }),
+  steps: [{ id: 'a', icon: '🙋', say: 's_appeal', body: () => { const k = strikesOf(App.me.uid).find(x => x.id === W.opts.sid) || {}; return `<div class="card"><b>⚠️ ${k.reason ? t(k.reason) : ''}</b><div class="small muted">${k.t ? fmtD(k.t) : ''} ${esc(k.pid || '')}</div></div>` + inp('reason', 'f_reason', { area: true, mic: true }); }, check: c => c.reason.trim() ? null : 'err_reason' }],
+  async finish(c) { const r = await run([['STRIKE_APPEALED', null, { sid: W.opts.sid, reason: c.reason.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_appealed'), next: t('next_who', { who: rolesTxt(['admin']), task: t('tk_strike_appeal') }) } : r; }
+};
+WIZ.decide = {
+  title: 'tk_strike_appeal', save: 'save_decision', noDraft: true, init: () => ({ decision: '', reason: '' }),
+  steps: [{ id: 'd', icon: '⚖️', say: 's_decide', body: () => { const k = strikesOf(W.opts.uid).find(x => x.id === W.opts.sid) || {}; return `<div class="card"><b>${esc(userName(W.opts.uid))}</b> · ⚠️ ${k.reason ? t(k.reason) : ''}<div class="small muted">${k.t ? fmtD(k.t) : ''} · ${esc(k.pid || '')}</div><p>🙋 ${esc((k.appeal || {}).reason || '')}</p></div>`
+      + tiles('decision', [['remove', '✅', 'sd_remove_btn'], ['keep', '⚠️', 'sd_keep_btn']], 'one') + inp('reason', 'f_reason', { area: true, mic: true }); }, check: c => !c.decision ? 'err_choose' : c.reason.trim() ? null : 'err_reason' }],
+  async finish(c) { const r = await run([['STRIKE_DECIDED', null, { uid: W.opts.uid, sid: W.opts.sid, decision: c.decision, reason: c.reason.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_decided_' + c.decision), next: t('next_none') } : r; }
+};
+WIZ.spot = {
+  title: 'tk_spot_check', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
+  steps: [{ id: 's', icon: '🔎', say: 's_spot', body: (c, P) => { const x = P.sop[W.opts.step]; return `<div class="card"><b>${t('sop_' + SOP[W.opts.step][0])}</b> · ${esc(userName(x.by))} ${gradeChip(x.by)}<div class="small muted">${fmtD(x.t, true)}</div>${evGrid(x.ev)}</div><div class="note">${t('spot_note')}</div>`
+      + tiles('ok', [['yes', '✅', 'spot_ok'], ['no', '❌', 'spot_bad']], 'one') + inp('note', 'f_note', { area: true, mic: true, opt: c.ok !== 'no' }); }, check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }],
+  async finish(c, P) { const r = await run([['SPOT_CHECKED', P.id, { step: W.opts.step, ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? doneRes(P.id, c.ok === 'yes' ? 'what_spot_ok' : 'what_spot_bad') : r; }
+};
+WIZ.reviewMeet = {
+  title: 'tk_review_meeting', save: 'save', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'm', icon: '🗣️', say: 's_review_meet', body: () => ladderCard(W.opts.uid, { short: true, open: false }) + `<div class="note">${t(W.opts.k === 'suspend_review' ? 'suspend_note' : 'review_meet_note')}</div>` + inp('note', 'f_note', { area: true, mic: true }), check: c => c.note.trim() ? null : 'err_fill' }],
+  async finish(c) { const r = await run([['REVIEW_HELD', null, { uid: W.opts.uid, note: c.note.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_review_held'), next: t('next_none') } : r; }
+};
+WIZ.crewAdd = {
+  title: 'crew_add', save: 'save', noDraft: true, init: () => ({ uid: '' }),
+  steps: [{ id: 'w', icon: '👷', say: 's_crew_add', body: (c, P) => { const list = rankWorkers(usersOf('tech').filter(u => u.uid !== P.tech && !(P.crew || []).includes(u.uid))); return list.length ? tiles('uid', list.map(u => [u.uid, GRADE_ICON[gradeOf(u.uid)], u.name, workerSub(u.uid)]), 'one') : `<div class="warnbox">${t('no_person_role', { role: t('r_tech') })}</div>`; }, check: c => S.users[c.uid] ? null : 'err_pick_person' }],
+  async finish(c, P) { const r = await run([['CREW_ADDED', P.id, { uid: c.uid }]]); return r.ok ? doneRes(P.id, 'what_crew_added', { name: userName(c.uid) }) : r; }
+};
+/* workers listed best first: fair stars, then number of reviews */
+const rankWorkers = list => list.slice().sort((a, b) => { const x = starsOf(a.uid), y = starsOf(b.uid); return y.fair - x.fair || y.count - x.count; });
+const workerSub = uid => { const s = starsOf(uid), g = gradeOf(uid); return (g ? t('gr_' + g) + ' · ' : '') + (s.count < 3 ? t('stars_new', { n: s.count }) : '★ ' + starTxt(s.fair) + ' (' + t('reviews_n', { n: s.count }) + ')'); };
 
 /* ---------- technician weekly pay ---------- */
 const weekLabel = k => fmtD(k) + ' – ' + fmtD(addDays(6, new Date(k + 'T12:00:00')));
@@ -5653,7 +6334,7 @@ SCREENS.leaders = ({ m }) => {
     Object.values(P.service).forEach(x => { if (inM(x.t)) add(x.by, 5, 'lb_amc_visit'); });
   }
   const table = (role, icon) => { const rows = Object.values(score).filter(x => roleOf(x.uid) === role).sort((a, b) => b.pts - a.pts).slice(0, 10);
-    return `<div class="card"><h3>${icon} ${t('r_' + role)}</h3>${rows.map((x, i) => `<div class="list-item" style="${x.uid === App.me.uid ? 'background:var(--gold-l);border-radius:10px;padding-inline:6px' : ''}"><b style="width:28px">${['🥇', '🥈', '🥉'][i] || i + 1}</b><span class="grow">${esc(userName(x.uid))}<br><span class="small muted">${Object.entries(x.items).map(([k, n]) => t(k) + ' × ' + n).join(', ')}</span></span><b>${x.pts}</b></div>`).join('') || `<p class="muted small">${t('nothing_here')}</p>`}</div>`; };
+    return `<div class="card"><h3>${icon} ${t('r_' + role)}</h3>${rows.map((x, i) => `<div class="list-item" style="${x.uid === App.me.uid ? 'background:var(--gold-l);border-radius:10px;padding-inline:6px' : ''}"><b style="width:28px">${['🥇', '🥈', '🥉'][i] || i + 1}</b><span class="grow">${esc(userName(x.uid))} ${gradeChip(x.uid)} ${gradeOf(x.uid) ? starChip(x.uid) : ''}<br><span class="small muted">${Object.entries(x.items).map(([k, n]) => t(k) + ' × ' + n).join(', ')}</span></span><b>${x.pts}</b></div>`).join('') || `<p class="muted small">${t('nothing_here')}</p>`}</div>`; };
   App.pageSay = t('s_leaders');
   return topBar(t('leaderboard'), { back: true }) + `<main class="wrap"><div class="tabs" style="position:static;padding:0 0 10px"><button class="${m === todayStr().slice(0, 7) ? 'on' : ''}" data-a="nav2" data-v="leaders|">${t('this_month')}</button><button class="${m === pm ? 'on' : ''}" data-a="nav2" data-v="leaders|${pm}">${t('last_month')}</button></div>
     ${table('field', '🏍️')}${table('sales', '🤝')}${table('tech', '🔧')}
@@ -5739,7 +6420,10 @@ function openTask(n) {
     escalated: () => wiz('escalate', pid || null, { eid: n.eid, ref: n.ref, lvl: n.level, days: n.days, who: n.who, whoUids: n.whoUids, tid: n.tid, uid: n.uid, acks: n.acks }), second_approval: () => wiz('approve2', null, { aid: n.aid }),
     approve_pay: () => wiz('payApprove', null, { uid: n.uid, week: n.week }), pay_tech: () => wiz('payPaid', null, { uid: n.uid, week: n.week }),
     pay_dispute: () => wiz('payAnswer', null, { uid: n.uid, week: n.week }), training: () => wiz('train', null, { module: n.module }),
-    onb_profile: () => wiz('wprofile', null, { uid: n.uid }), check_docs: () => go('worker', { uid: n.uid })
+    onb_profile: () => wiz('wprofile', null, { uid: n.uid }), check_docs: () => go('worker', { uid: n.uid }),
+    rate_work: () => wiz('rate', pid, { ref: n.ref, about: n.ref === 'handover' ? P.tech : P.service[n.ref.split(':')[1]].by }), rate_crew: () => wiz('rateCrew', pid, { uid: n.uid }),
+    promotion_ready: () => wiz('promote', null, { uid: n.uid }), strike_appeal: () => wiz('decide', null, { uid: n.uid, sid: n.sid }),
+    review_meeting: () => wiz('reviewMeet', null, { uid: n.uid, k: n.k }), suspend_review: () => wiz('reviewMeet', null, { uid: n.uid, k: n.k }), spot_check: () => wiz('spot', pid, { step: n.step })
   };
   (m[n.k] || (() => go('project', { pid })))();
 }
@@ -5911,7 +6595,7 @@ const ACT = {
   tplDelete: async v => { const r = await perform('TEMPLATE_DELETED', null, { tid: v }); if (r.ok) render(); },
   /* "wizId|pid|key|value|key|value" opens a step-by-step screen with options */
   wizOpen: v => { const [id, pid, ...kvs] = v.split('|'); const o = {}; for (let i = 0; i < kvs.length; i += 2) o[kvs[i]] = /^\d+$/.test(kvs[i + 1]) && kvs[i] !== 'week' ? +kvs[i + 1] : kvs[i + 1]; closeSheet(); wiz(id, pid || null, o); },
-  nav2: v => { const [screen, val] = v.split('|'); go(screen, screen === 'leaders' ? { m: val } : { uid: val }); },
+  nav2: v => { const [screen, val, src] = v.split('|'); if (App.route.name === screen && screen === 'reviews') { App.route.p = { uid: val, src: src || '' }; render(); return; } go(screen, screen === 'leaders' ? { m: val } : { uid: val, src: src || '' }); },
   svcView: v => { const [pid, i] = v.split('|'), x = S.projects[pid].service[i]; sheet(`<h2>🛠️ ${t('amc_visit_n', { n: +i + 1 })}</h2><p class="small">${userTag(x.by)} · ${fmtD(x.t, true)}${x.met ? ' · ' + esc(x.met) : ''}</p>${AMC_CHECKS.map(k => `<div>${x.checks[k] === 'pass' ? '✅' : '❌'} ${t('amc_' + k)}</div>`).join('')}${x.note ? `<p>${esc(x.note)}</p>` : ''}${evGrid(x.ev)}`); },
   docVerify: v => { const [uid, doc, status] = v.split('|'); App.form.dvNote = ''; sheet(`<h2>🪪 ${t('doc_' + doc)} · ${t('ds_' + status)}</h2><p>${esc(userName(uid))}</p>${formInp('dvNote', status === 'rejected' ? 'f_reason' : 'f_note')}<p class="small muted">${t('w_docs_note')}</p><button class="btn btn-p btn-big" data-a="docVerifyGo" data-v="${v}">💾 ${t('save')}</button>`); },
   docVerifyGo: async v => { const [uid, doc, status] = v.split('|'); const r = await perform('DOC_VERIFIED', null, { uid, doc, status, note: (App.form.dvNote || '').trim() }); if (r.ok) { closeSheet(); toast(t('saved_item')); render(); } },
@@ -5994,13 +6678,15 @@ const ACT = {
   startShiftGo: async () => { if (Geo.moving()) { toast(t('err_moving'), true); return; } const r = await perform('SHIFT_STARTED', null, { safe: true, gps: Geo.fresh() }); closeSheet(); if (r.ok) { toast(t('shift_started')); render(); } },
   endShift: async () => { const r = await perform('SHIFT_ENDED', null, { gps: Geo.fresh() }); if (r.ok) go('report'); },
   /* users */
-  userAdd: () => { App.form.nuName = ''; App.form.nuRole = 'field'; App.form.nuPin = newPin(); App.sheetRe = userAddSheet; userAddSheet(); },
+  userAdd: () => { App.form.nuName = ''; App.form.nuRole = 'field'; App.form.nuGrade = 'trainee'; App.form.nuPin = newPin(); App.sheetRe = userAddSheet; userAddSheet(); },
   nuRole: v => { App.form.nuRole = v; userAddSheet(); },
+  nuGrade: v => { App.form.nuGrade = v; userAddSheet(); },
+  crewRemove: async v => { const r = await perform('CREW_REMOVED', pidHere(), { uid: v }); if (r.ok) { toast(t('saved_item')); render(); } },
   userSave: async () => {
     const f = App.form, name = (f.nuName || '').trim();
     if (!name) { toast(t('err_fill'), true); return; }
     const salt = rid(10), uid = 'U' + rid(8), pin = f.nuPin;
-    const r = await perform('USER_ADDED', null, { uid, name, role: f.nuRole, salt, pin: await pinHash(pin, salt) });
+    const r = await perform('USER_ADDED', null, Object.assign({ uid, name, role: f.nuRole, salt, pin: await pinHash(pin, salt) }, f.nuRole === 'tech' ? { grade: f.nuGrade || 'trainee' } : {}));
     if (r.ok) { render(); sheet(`<h2>✅ ${t('user_added')}</h2><div class="card center"><b>${esc(name)}</b> · ${t('r_' + f.nuRole)}<div style="font-size:2.4rem;font-weight:800;letter-spacing:6px">${pin}</div>${t('pin_tell')}</div>${onboarding(uid).total ? `<div class="note">🪪 ${t('onb_started', { n: onboarding(uid).total })}</div>` : ''}`); }
   },
   userOpen: v => userSheet(v),
@@ -6109,7 +6795,7 @@ function sampleSign() {
 }
 async function seedPractice() {
   const salt = 'practice', pin = await pinHash('1111', salt);
-  const U = { owner: 'POWNER', admin: 'PADMIN', field: 'PFIELD', field2: 'PFIELD2', sales: 'PSALES', finance: 'PFIN', qc: 'PQC', supplier: 'PSUP', tech: 'PTECH', customer: 'PCUST' };
+  const U = { owner: 'POWNER', admin: 'PADMIN', field: 'PFIELD', field2: 'PFIELD2', sales: 'PSALES', finance: 'PFIN', qc: 'PQC', supplier: 'PSUP', tech: 'PTECH', senior: 'PSENIOR', helper: 'PHELP', trainee: 'PTRAIN', customer: 'PCUST' };
   const T0 = Date.now() - 30 * 864e5; let tick = 0, cur = new Date(T0).toISOString();
   const at = () => { cur = new Date(Math.min(T0 + (tick++) * 2.4 * 3600e3, Date.now() - 3600e3 + tick * 1000)).toISOString(); return cur; };
   const SP = async (type, pid, data, who) => { const r = await perform(type, pid, data, { as: U[who] || who, t: at(), noSave: true, quiet: true }); if (!r.ok) console.warn('practice seed', type, pid, errText(r.err)); return r; };
@@ -6121,6 +6807,9 @@ async function seedPractice() {
   const people = [['owner', 'Anil Deshmukh', 'owner'], ['admin', 'Sunita Patil', 'admin'], ['field', 'Ramesh Jadhav', 'field'], ['field2', 'Sachin More', 'field'], ['sales', 'Priya Kulkarni', 'sales'],
     ['finance', 'Meena Joshi', 'finance'], ['qc', 'Vijay Shinde', 'qc'], ['supplier', 'Kaveri Lift Supply', 'supplier'], ['tech', 'Raju Pawar', 'tech']];
   for (const [k, name, role] of people) await SP('USER_ADDED', null, { uid: U[k], name, role, salt, pin }, k === 'owner' ? 'owner' : 'owner');
+  /* the installer ladder: an experienced Senior, a Helper and a Trainee (they work as crew with the lead) */
+  for (const [k, name, grade] of [['senior', 'Mahesh Shinde', 'senior'], ['helper', 'Sunil Gaikwad', 'helper'], ['trainee', 'Ganesh Kale', 'trainee']]) await SP('USER_ADDED', null, { uid: U[k], name, role: 'tech', grade, salt, pin }, 'owner');
+  const CREW = { 'AIEC-P001': ['helper', 'trainee'], 'AIEC-P002': ['trainee'], 'AIEC-P003': ['helper'] };
   const payStep = (P, purpose) => { const p = activePay(P, purpose); return !p ? ['sales', 'PAYMENT_RECORDED', { payId: 'PAY-' + rid(6), purpose, amount: P.schedule[purpose], method: 'upi', ref: 'UPI' + rid(8) }] : ['finance', 'PAYMENT_STATUS', { payId: p.id, status: 'confirmed', ref: 'BANK-' + rid(6) }]; };
   const AUTO = {
     new: () => ['sales', 'LEAD_ACCEPTED', {}],
@@ -6135,18 +6824,19 @@ async function seedPractice() {
     signed: P => payStep(P, 'token'),
     site_prep: P => { const k = PREP_ITEMS.find(([x]) => !P.prep[x]); return k ? ['sales', 'PREP_ITEM_DONE', { item: k[0], ev: [ph('site', P.site.gps)] }] : ['sales', 'QC_REQUESTED', {}]; },
     qc_site: P => ['qc', 'QC_SITE_RESULT', { meas: { width: 1800, depth: 1900, pit: 1500, head: 4200 }, checks: { plumb: 'yes', pit_dry: 'yes', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome: 'approved', ev: [ph('site', P.site.gps), ph('shaft', P.site.gps)] }],
-    site_ok: P => ['admin', 'RELEASED', { supplier: U.supplier, tech: U.tech, drawings: 'DWG-' + P.id + '-R1', materials: materialList(P.req) }],
+    site_ok: P => ['admin', 'RELEASED', { supplier: U.supplier, tech: jobSize(P) === 'big' ? U.senior : U.tech, drawings: 'DWG-' + P.id + '-R1', materials: materialList(P.req) }],
     material_order: P => ['supplier', 'DISPATCHED', { packed: P.materials.map(m => m.k), seal: 'SEAL-' + P.id.slice(-3), vehicle: 'MH12 AB 1234', ev: [ph('work'), ph('work')] }],
-    dispatched: P => ['tech', 'ARRIVED', { gps: P.site.gps, sealSeen: 'SEAL-' + P.id.slice(-3), sealIntact: 'yes', condition: 'good', ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
-    arrived: P => payConfirmed(P, 'arrival') ? ['tech', 'MATERIAL_HANDED', { items: P.materials.map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, ev: [ph('sign'), ph('sign')] }] : payStep(P, 'arrival'),
-    installing: P => sopNext(P) < SOP.length ? ['tech', 'SOP_STEP_DONE', { step: sopNext(P), ev: [ph('work', P.site.gps)] }] : ['tech', 'INSPECTION_REQUESTED', {}],
-    qc_final: P => ['qc', 'QC_FINAL_RESULT', { checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), outcome: 'pass', ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
+    dispatched: P => [P.tech, 'ARRIVED', { gps: P.site.gps, sealSeen: 'SEAL-' + P.id.slice(-3), sealIntact: 'yes', condition: 'good', ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
+    arrived: P => payConfirmed(P, 'arrival') ? [P.tech, 'MATERIAL_HANDED', { items: P.materials.map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, ev: [ph('sign'), ph('sign')] }] : payStep(P, 'arrival'),
+    installing: P => sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
+    qc_final: P => ['qc', 'QC_FINAL_RESULT', { checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
     final_pay: P => payStep(P, 'final'),
-    handover: P => { const s = SLOTS.find(x => !P.hand[x]); return s ? [s === 'customer' ? 'tech' : s, 'HANDOVER_SIGNED', { slot: s, consent: true, signer: s === 'customer' ? P.contact.name : userName(U[s]), ev: [ph('sign')] }] : ['admin', 'HANDOVER_COMPLETED', {}]; }
+    handover: P => { const s = SLOTS.find(x => !P.hand[x]); return s ? [s === 'qc' ? 'qc' : P.tech, 'HANDOVER_SIGNED', { slot: s, consent: true, signer: s === 'customer' ? P.contact.name : userName(U[s]), ev: [ph('sign')] }] : ['admin', 'HANDOVER_COMPLETED', {}]; }
   };
   const advance = async (pid, target) => {
     for (let i = 0; i < 90; i++) {
       const P = S.projects[pid]; if (!P || P.stage === target || !AUTO[P.stage]) return;
+      if (P.stage === 'material_order' && CREW[pid] && !P.crew.length) for (const k of CREW[pid]) await SP('CREW_ADDED', pid, { uid: U[k] }, 'admin');
       const [who, type, data] = AUTO[P.stage](P);
       if (!(await SP(type, pid, data, who)).ok) return;
     }
@@ -6179,12 +6869,23 @@ async function seedPractice() {
   for (const s of ['tech', 'qc']) await SP('HANDOVER_SIGNED', hand, { slot: s, consent: true, signer: userName(U[s]), ev: [ph('sign')] }, s);
   await SP('USER_ADDED', null, { uid: U.customer, name: 'Mrs. Kale', role: 'customer', projectId: hand, salt, pin }, 'admin');
   await SP('CHAT_POSTED', hand, { text: 'When will the lift start working for us?', kind: 'question', toRole: 'sales' }, 'customer');
-  for (let i = 0; i < 5; i++) await SP('SOP_STEP_DONE', hosp, { step: sopNext(S.projects[hosp]), ev: [ph('work', S.projects[hosp].site.gps)] }, 'tech');
-  await SP('BLOCKER_RAISED', hosp, { step: null, reason: 'help', role: 'admin', note: 'Need extra scaffolding for top floor' }, 'tech');
+  for (let i = 0; i < 5; i++) await SP('SOP_STEP_DONE', hosp, { step: sopNext(S.projects[hosp]), ev: [ph('work', S.projects[hosp].site.gps)] }, S.projects[hosp].tech);
+  await SP('BLOCKER_RAISED', hosp, { step: null, reason: 'help', role: 'admin', note: 'Need extra scaffolding for top floor' }, S.projects[hosp].tech);
   await SP('DEAL_LOST', vishal, { reason: 'price', note: 'Chose another company' }, 'sales');
   await SP('LEAD_RETURNED', katraj, { reason: 'photo', note: 'Shaft photo not clear. Please take again.' }, 'sales');
   /* AMC, messages, people and training so each part has something to look at */
   await SP('TICKET_OPENED', amc, { tid: 'T-' + rid(5), kind: 'complaint', text: 'Lift door makes noise when closing', ev: [] }, 'sales');
+  /* ratings: customer (recorded in person by Sales), crew ratings by the lead; one crew rating still to do */
+  await SP('CUSTOMER_RATED', amc, { ref: 'handover', stars: 5, note: 'Neat work, finished on time', name: 'Mr. Gokhale' }, 'sales');
+  await SP('CREW_RATED', amc, { uid: U.helper, stars: 5, note: 'Very careful with wiring' }, 'tech');
+  await SP('CREW_RATED', amc, { uid: U.trainee, stars: 4, note: 'Learning fast' }, 'tech');
+  /* a confirmed complaint (strike) that the helper has appealed */
+  const tid2 = 'T-' + rid(5);
+  await SP('TICKET_OPENED', amc, { tid: tid2, kind: 'complaint', text: 'Worker left packing waste in the lobby', ev: [] }, 'sales');
+  await SP('TICKET_ASSIGNED', amc, { tid: tid2, uid: U.helper, due: addDays(2) }, 'admin');
+  await SP('TICKET_UPDATED', amc, { tid: tid2, status: 'resolved', note: 'Cleaned the lobby', ev: [] }, 'helper');
+  await SP('TICKET_CLOSED', amc, { tid: tid2, ok: true, note: 'Waste was left; cleaned next day', fault: U.helper }, 'admin');
+  await SP('STRIKE_APPEALED', null, { sid: 'tk:' + amc + ':' + tid2, reason: 'The supplier\'s team left the waste, not me' }, 'helper');
   await SP('MSG_LOGGED', vishal, { mid: 'MSG-' + rid(6), template: 'quote', text: fillTpl(t('tpl_quote'), waVars(S.projects[vishal])), lang: LANG }, 'sales');
   await SP('WORKER_PROFILE', null, { uid: U.tech, phone: '9822000020', area: 'Pune West', availability: 'available', skills: ['install', 'wiring', 'service'] }, 'admin');
   await SP('WORKER_PROFILE', null, { uid: U.field, phone: '9822000021', area: 'Kothrud, Karve Nagar', availability: 'available', skills: ['survey', 'driving'] }, 'admin');
@@ -6196,6 +6897,12 @@ async function seedPractice() {
     if (k !== 'field') await SP('WORKER_PROFILE', null, { uid, phone: '98220001' + String(10 + Object.keys(U).indexOf(k)), area: 'Pune', availability: 'available', skills: [{ admin: 'sales', sales: 'sales', finance: 'sales', qc: 'qc', supplier: 'driving' }[k]] }, k);
     for (const d of (REQ_DOCS[role] || ['id', 'address'])) await SP('DOC_VERIFIED', null, { uid, doc: d, status: 'verified' }, k === 'admin' ? 'owner' : 'admin');
     for (const m of modulesFor(role)) await SP('TRAINING_PASSED', null, { module: m, answers: TRAIN.find(x => x[0] === m)[2], score: 3 }, k);
+  }
+  for (const [k, full] of [['senior', true], ['helper', false], ['trainee', false]]) {
+    const uid = U[k];
+    await SP('WORKER_PROFILE', null, { uid, phone: '98220003' + String(10 + ['senior', 'helper', 'trainee'].indexOf(k)), area: 'Pune', availability: 'available', skills: ['install', 'wiring'] }, k);
+    for (const d of (full ? REQ_DOCS.tech : ['id', 'address'])) await SP('DOC_VERIFIED', null, { uid, doc: d, status: 'verified' }, 'admin');
+    for (const m of (full ? modulesFor('tech') : k === 'helper' ? ['app', 'safety', 'install'] : ['app'])) await SP('TRAINING_PASSED', null, { module: m, answers: TRAIN.find(x => x[0] === m)[2], score: 3 }, k);
   }
   await SP('WORKER_PROFILE', null, { uid: U.field2, phone: '9822000022', area: 'Wakad', availability: 'available', skills: ['survey'] }, 'field2');
   void sar;

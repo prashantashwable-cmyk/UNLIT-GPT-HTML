@@ -22,7 +22,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* Owner and Admin have different lists */
   const oa = await page.evaluate(() => { const f = u => myTasks(S.users[u]).filter(n => n.k !== 'escalated').map(n => n.k + '|' + (n.pid || n.uid || '') + '|' + (n.week || '')); return { o: f('POWNER'), a: f('PADMIN') }; });
   assert(oa.o.length && oa.a.length && !oa.o.some(x => oa.a.includes(x)), 'Owner and Admin never get the same task: ' + oa.o.map(x => x.split('|')[0]).join(',') + ' / ' + oa.a.map(x => x.split('|')[0]).join(','));
-  assert(oa.o.every(x => /^(approve_quote|approve_pay|answer|second_approval|check_docs)/.test(x)), 'the Owner gets decisions about money, price and the Admin');
+  assert(oa.o.every(x => /^(approve_quote|approve_pay|answer|second_approval|check_docs|strike_appeal|promotion_ready|suspend_review)/.test(x)), 'the Owner gets decisions about money, price and the Admin');
   assert(await page.evaluate(() => { const P = S.projects['AIEC-P006']; P.since = new Date(Date.now() - 4 * 864e5).toISOString(); return myTasks(S.users.POWNER).some(n => n.k === 'escalated' && n.pid === 'AIEC-P006') === false && myTasks(S.users.PADMIN).some(n => n.k === 'escalated' && n.pid === 'AIEC-P006'); }), 'late field work goes to the Admin first');
   assert(await page.evaluate(() => { const P = S.projects['AIEC-P003']; const b = P.blockers.find(x => x.open); b.t = new Date(Date.now() - 4 * 864e5).toISOString(); return myTasks(S.users.POWNER).some(n => n.k === 'escalated' && n.ref === 'resolve_blocker'); }), "the Admin's own late work goes to the Owner");
   await page.evaluate(() => { loginAs(S.users.POWNER); ACT.permsDone(); Notify.hide(); });

@@ -64,6 +64,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
     await tap(page, '[data-a="userAdd"]');
     await page.fill('#f_nuName', name);
     await tap(page, `[data-a="nuRole"][data-v="${role}"]`);
+    /* an experienced installer: the Owner starts them as Technician so they may lead the job */
+    if (role === 'tech') await tap(page, '[data-a="nuGrade"][data-v="technician"]');
     await page.fill('#f_nuName', name);
     await tap(page, '[data-a="userSave"]', { wait: 300 });
     const txt = await page.innerText('#ov');
@@ -223,13 +225,14 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await login('Quinn QC');
   await startTask('final_inspect'); await next();
   for (const c of ['ride', 'level', 'doors', 'alarm', 'plate', 'safetydev']) await pick('checks.' + c, 'pass');
-  await pick('checks.wiring', 'fail'); await next(); await photo('ph'); await photo('ph'); await next(); await shot('qcf_fail'); await next(); await next(); await doneOk('qc final fail');
+  await pick('checks.wiring', 'fail'); await next(); await photo('ph'); await photo('ph'); await next(); await shot('qcf_fail'); await next();
+  await pick('cause', 'work'); await next(); await next(); await pick('stars', '2'); await next(); await doneOk('qc final fail');
   assert(await stage(pid) === 'install_fix', 'install_fix');
   await login('Tara Tech'); await startTask('fix_install'); await tap(page, '[data-a="clItem"]', { wait: 250 }); await photo('ph'); await next();
   await tap(page, '[data-a="clAction"][data-v="INSPECTION_REQUESTED"]', { wait: 300 });
   await login('Quinn QC'); await startTask('final_inspect'); await next();
   for (const c of ['ride', 'level', 'doors', 'alarm', 'plate', 'safetydev', 'wiring']) await pick('checks.' + c, 'pass');
-  await next(); await photo('ph'); await photo('ph'); await next(); await pick('outcome', 'pass'); await next(); await doneOk('qc final pass');
+  await next(); await photo('ph'); await photo('ph'); await next(); await pick('outcome', 'pass'); await next(); await pick('stars', '4'); await next(); await doneOk('qc final pass');
   assert(await stage(pid) === 'final_pay', 'final_pay');
 
   /* --- 11. final payment --- */

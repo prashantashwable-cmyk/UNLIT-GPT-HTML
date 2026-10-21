@@ -11,7 +11,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const act = (type, pid, data, as) => page.evaluate(([type, pid, data, as]) => perform(type, pid, data, { as, quiet: true }).then(r => ({ ok: r.ok, err: r.err })), [type, pid, data, as]);
 
   assert(await page.evaluate(() => S.rejected.length) === 0, 'practice data loads with no refused entries');
-  assert(await P('AIEC-P001', 'P.stage === "amc" && P.tickets.length === 1 && !!P.amcEnd'), 'practice AMC project has a contract end date and a ticket');
+  assert(await P('AIEC-P001', 'P.stage === "amc" && P.tickets.length >= 1 && !!P.amcEnd'), 'practice AMC project has a contract end date and a ticket');
   assert(await page.evaluate(() => S.workers.PTECH.profile.area === 'Pune West' && !!S.workers.PTECH.training.app), 'practice technician has a profile and training');
 
   /* 8. WhatsApp template through the wizard */
