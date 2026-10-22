@@ -114,6 +114,30 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Nothing happens to a person without a human decision.
 * All targets, pay rates and spot-check rates are Owner-approved business rules (**Me → Business rules → Career ladder**).
 
+### Job marketplace (workers apply by level, the office confirms)
+* **What can be posted:** a team lead for an installation, crew places (1–3), AMC service visits, repairs (tickets), and QC site or final inspections. The office posts from **Project → Post job to marketplace**, and a Senior lead can post crew places for their own job. A released job without a team lead creates a "Find a team lead" task.
+* **Who sees what:** only workers whose level allows the job.
+  * Team lead: Technicians for small and normal jobs, Seniors for big jobs.
+  * Crew: Trainee, Helper or Technician.
+  * Service and repairs: Technician or Senior.
+  * Inspections: QC Inspectors who did not work on the job.
+  * Nobody with 3+ strikes can lead, and nobody can take more jobs at once than the set limit.
+  * Jobs above a worker's level appear locked, with the reason and a link to their ladder.
+* **The job card:**
+  * shows the area (locality and city), job size, floors, start date, target days, distance from the worker's phone, and approximate pay at their level;
+  * never shows the building name, exact address or customer phone. Those appear only after the worker is given the job.
+* **Applying:** "I want this job", with an optional note and location. A worker can withdraw an application, and there is a limit on how many open applications one person can hold.
+* **Choosing:** applicants are listed best match first, by fair stars and number of reviews, then trust, distance, and fewer jobs in hand. The best one is marked "Suggested", and the office gives the job with one tap.
+* **What giving the job does:**
+  * Team lead: the person becomes the job's lead.
+  * Crew place: they join the crew.
+  * Service visit: they can do that visit.
+  * Repair: the ticket goes to them.
+  * Inspection: that QC Inspector gets the inspection task.
+  * The worker hears "You got the job!", and the post closes when every place is filled.
+* **Notifications and escalation:** eligible workers hear a "new job" ding. Applications waiting for a choice, and posts nobody applies to, go to the office and up the escalation ladder.
+* **Business rules (Owner-approved):** the limits are set under **Me → Business rules → Job marketplace**.
+
 ### Owner and Admin have separate to-do lists
 * **Owner** gets the decisions: quotations above the discount limit, technician weekly pay, approval requests in chat, and checking the Admin's own documents.
 * **Admin** gets the daily work: releasing drawings and assigning teams, work problems, security problems, tickets, new workers' documents, pay questions and completing handovers.
@@ -193,4 +217,4 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
   npx playwright install chromium
   npm test
   ```
-  The suite covers: practice data for all 10 sample users; a full real-mode lead-to-handover run through the UI with 9 roles, including rejected quotation, QC corrections, a blocker, a failed final inspection and three verified payments; permission refusals and forged imports; phone-to-phone file sharing; WhatsApp templates, AMC visits and tickets, automatic onboarding, the escalation ladder and office actions, the career ladder (levels, job eligibility, stars and review counts, trust, promotion, pay by level, spot checks, strikes and appeals, celebrations), notifications with sound (new work, escalation siren, quiet hours, background phone notifications), two-person approval, training, weekly pay, helper, address lookup and reused photos; camera/location denied; and every screen at 320 px with Extra-large text in Marathi and Hindi (no overflow, no missing words, no errors).
+  The suite covers: practice data for all 10 sample users; a full real-mode lead-to-handover run through the UI with 9 roles, including rejected quotation, QC corrections, a blocker, a failed final inspection and three verified payments; permission refusals and forged imports; phone-to-phone file sharing; WhatsApp templates, AMC visits and tickets, automatic onboarding, the escalation ladder and office actions, the job marketplace (eligibility by level, area-only cards, applying, ranking, giving each kind of job), the career ladder (levels, job eligibility, stars and review counts, trust, promotion, pay by level, spot checks, strikes and appeals, celebrations), notifications with sound (new work, escalation siren, quiet hours, background phone notifications), two-person approval, training, weekly pay, helper, address lookup and reused photos; camera/location denied; and every screen at 320 px with Extra-large text in Marathi and Hindi (no overflow, no missing words, no errors).

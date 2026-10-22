@@ -39,11 +39,11 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await setAge(0);
   assert(!(await tasksOf('PSUP')).find(n => n.pid === pid).level, 'fresh work has no escalation');
   await setAge(1);
-  assert((await tasksOf('PSUP')).find(n => n.pid === pid).level === 1 && !(await tasksOf('PADMIN')).some(n => n.k === 'escalated' && n.pid === pid), 'after 1 day: reminder shown to the supplier only');
+  assert((await tasksOf('PSUP')).find(n => n.pid === pid).level === 1 && !(await tasksOf('PADMIN')).some(n => n.k === 'escalated' && n.pid === pid && n.ref === 'dispatch'), 'after 1 day: reminder shown to the supplier only');
   await setAge(3);
-  assert((await tasksOf('PADMIN')).some(n => n.k === 'escalated' && n.pid === pid && n.level === 2) && !(await tasksOf('POWNER')).some(n => n.k === 'escalated' && n.pid === pid), 'after 3 days: Admin, not Owner');
+  assert((await tasksOf('PADMIN')).some(n => n.k === 'escalated' && n.pid === pid && n.ref === 'dispatch' && n.level === 2) && !(await tasksOf('POWNER')).some(n => n.k === 'escalated' && n.pid === pid && n.ref === 'dispatch'), 'after 3 days: Admin, not Owner');
   await setAge(7);
-  assert((await tasksOf('POWNER')).some(n => n.k === 'escalated' && n.pid === pid && n.level === 3), 'after 7 days: Owner');
+  assert((await tasksOf('POWNER')).some(n => n.k === 'escalated' && n.pid === pid && n.ref === 'dispatch' && n.level === 3), 'after 7 days: Owner');
 
   /* office acts through the wizard: reassign to another supplier */
   await page.evaluate(async () => { const salt = 'y'; await perform('USER_ADDED', null, { uid: 'PSUP2', name: 'Second Supplier', role: 'supplier', salt, pin: await pinHash('1111', salt) }, { as: 'PADMIN', quiet: true }); });
@@ -58,7 +58,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await ev('W && !!W.err'), 'a note is required');
   await page.fill('#f_note', 'Kaveri has no truck this week'); await page.click('[data-a="wizNext"]'); await page.waitForTimeout(500);
   assert(await ev(`S.projects["${pid}"].supplier === "PSUP2"`), 'the order moved to the second supplier');
-  assert(!(await tasksOf('POWNER')).some(n => n.k === 'escalated' && n.pid === pid) && (await tasksOf('PSUP2')).some(n => n.pid === pid && !n.level), 'escalation cleared and the clock restarts for the new supplier');
+  assert(!(await tasksOf('POWNER')).some(n => n.k === 'escalated' && n.pid === pid && n.ref === 'dispatch') && (await tasksOf('PSUP2')).some(n => n.pid === pid && !n.level), 'escalation cleared and the clock restarts for the new supplier');
 
   /* "I spoke to them" twice and still stuck → straight to the Owner */
   const pid2 = 'AIEC-P006'; /* qc_site: waiting for QC */
