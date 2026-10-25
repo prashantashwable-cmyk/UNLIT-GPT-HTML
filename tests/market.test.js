@@ -23,10 +23,10 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const leadSmall = await ev('Object.values(S.posts).find(p => p.kind === "lead" && p.status === "open").id');
   assert(await ev(`S.posts["${leadSmall}"].card.size`) !== 'big' && !(await why('PSENIOR', leadSmall)), 'a Senior may apply to lead a small/normal job');
   assert(await why('PTRAIN', leadSmall) === 'why_level' && await why('PHELP', leadSmall) === 'why_level', 'Trainee and Helper cannot apply to lead');
-  assert(await why('PTECH', leadSmall) === 'why_busy', 'a Technician already leading the most jobs allowed cannot take more');
-  await page.evaluate(() => { S.projects['AIEC-P004'].stage = 'amc'; }); /* frees one of the technician's lead jobs for the next checks */
+  await page.evaluate(() => { ['AIEC-P004', 'AIEC-P005'].forEach(id => { S.projects[id]._st = S.projects[id].stage; S.projects[id].stage = 'installing'; }); S.projects['AIEC-P002'].hand.tech = null; });
+  assert(await why('PTECH', leadSmall) === 'why_busy', 'a Technician already installing the most jobs allowed cannot take more');
+  await page.evaluate(() => { ['AIEC-P004', 'AIEC-P005'].forEach(id => { S.projects[id].stage = S.projects[id]._st; }); }); /* back to waiting for material: not busy */
   assert(!(await why('PTECH', leadSmall)), 'with fewer jobs in hand the Technician may apply');
-  await page.evaluate(() => { S.projects['AIEC-P004'].stage = 'arrived'; });
   const qcPost = await ev('Object.values(S.posts).find(p => p.kind === "qc").id');
   assert(!(await why('PQC', qcPost)) && await why('PTECH', qcPost) === 'why_qc_only', 'inspections are for QC Inspectors only');
 
