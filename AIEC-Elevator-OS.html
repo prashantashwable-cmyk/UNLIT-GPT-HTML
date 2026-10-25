@@ -577,7 +577,7 @@ const L = {
   err_role_bad: ['This role cannot be given here.', 'यह भूमिका यहाँ नहीं दी जा सकती।', 'ही भूमिका येथे देता येत नाही.'],
   err_self_change: ['You cannot change or block your own login.', 'आप अपना लॉगिन बदल या बंद नहीं कर सकते।', 'तुम्ही स्वतःचे लॉगिन बदलू किंवा बंद करू शकत नाही.'],
   err_has_customer: ['This project already has a customer login.', 'इस प्रोजेक्ट का ग्राहक लॉगिन पहले से है।', 'या प्रकल्पाचे ग्राहक लॉगिन आधीच आहे.'],
-  err_pin4: ['PIN must be exactly 4 digits.', 'PIN ठीक 4 अंकों का होना चाहिए।', 'PIN बरोबर 4 अंकी असावा.'],
+  err_pin4: ['PIN must be 4 or 6 digits.', 'PIN 4 या 6 अंकों का होना चाहिए।', 'PIN 4 किंवा 6 अंकी असावा.'],
   err_save_failed: ['Could not save on this phone. Free some space and try again.', 'इस फ़ोन पर सेव नहीं हुआ। जगह खाली करके फिर करें।', 'या फोनवर जतन झाले नाही. जागा मोकळी करून पुन्हा करा.'],
   err_storage_full: ['Phone storage is full.', 'फ़ोन की मेमोरी भर गई है।', 'फोनची मेमरी भरली आहे.'],
 
@@ -1345,6 +1345,37 @@ const L = {
   not_shared: ['Changes only on this phone', 'सिर्फ़ इस फ़ोन पर बदलाव', 'फक्त या फोनवरील बदल'],
   last_shared: ['Last shared', 'आख़िरी बार शेयर', 'शेवटचे शेअर'],
   data_local_note: ['Your work is saved on this phone. To give it to the office, send a file (WhatsApp / email). The office loads it on their phone.', 'आपका काम इस फ़ोन पर सेव है। ऑफिस को देने के लिए फ़ाइल भेजें (व्हाट्सएप / ईमेल)। ऑफिस उसे अपने फ़ोन पर लोड करेगा।', 'तुमचे काम या फोनवर जतन आहे. ऑफिसला देण्यासाठी फाइल पाठवा (व्हॉट्सॲप / ईमेल). ऑफिस ती त्यांच्या फोनवर लोड करेल.'],
+  exp_logins_office: ['Office logins only (safer)', 'केवल ऑफ़िस लॉगिन (ज़्यादा सुरक्षित)', 'फक्त ऑफिस लॉगिन (जास्त सुरक्षित)'],
+  exp_logins_office_d: ['For another Owner/Admin phone. Other people\'s PINs are removed.', 'दूसरे मालिक/एडमिन फ़ोन के लिए। बाकी लोगों के PIN हटाए जाते हैं।', 'दुसऱ्या मालक/ॲडमिन फोनसाठी. इतरांचे PIN काढले जातात.'],
+  exp_logins_all: ['Include everyone\'s logins', 'सबके लॉगिन शामिल करें', 'सर्वांचे लॉगिन समाविष्ट करा'],
+  exp_logins_all_d: ['Only for a full backup you keep safe.', 'केवल सुरक्षित रखी जाने वाली पूरी बैकअप फ़ाइल के लिए।', 'फक्त सुरक्षित ठेवायच्या पूर्ण बॅकअपसाठी.'],
+  exp_logins_note: ['PINs are stored scrambled, but anyone with the file can try to guess them. Never send a full file on a group chat.', 'PIN छिपे रूप में रखे जाते हैं, पर फ़ाइल वाला कोई भी उन्हें अनुमान लगाने की कोशिश कर सकता है। पूरी फ़ाइल कभी ग्रुप चैट पर न भेजें।', 'PIN लपवलेल्या स्वरूपात ठेवले जातात, पण फाइल असलेला कोणीही ते ओळखण्याचा प्रयत्न करू शकतो. पूर्ण फाइल कधीही ग्रुप चॅटवर पाठवू नका.'],
+  tk_backup_due: ['Save a backup of company data', 'कंपनी डेटा का बैकअप सेव करें', 'कंपनी डेटाचा बॅकअप जतन करा'],
+  backup_n: ['{n} records only on this phone', '{n} रिकॉर्ड केवल इसी फ़ोन पर', '{n} नोंदी फक्त याच फोनवर'],
+  ev_PIN_UPGRADED: ['PIN protection upgraded', 'PIN सुरक्षा बढ़ाई गई', 'PIN सुरक्षा वाढवली'],
+  ev_KEY_ADDED: ['New phone added for signing', 'हस्ताक्षर के लिए नया फ़ोन जुड़ा', 'स्वाक्षरीसाठी नवीन फोन जोडला'],
+  ev_KEY_APPROVED: ['New phone approved', 'नया फ़ोन मंज़ूर', 'नवीन फोन मंजूर'],
+  rg_security: ['Login security', 'लॉगिन सुरक्षा', 'लॉगिन सुरक्षा'],
+  rg_security_d: ['PIN length for new people: 4 or 6 digits. 6 digits is harder to guess.', 'नए लोगों के PIN की लंबाई: 4 या 6 अंक। 6 अंक का अनुमान लगाना कठिन है।', 'नवीन लोकांच्या PIN ची लांबी: 4 किंवा 6 अंक. 6 अंकी ओळखणे कठीण.'],
+  cfg_pinDigits: ['PIN digits (4 or 6)', 'PIN अंक (4 या 6)', 'PIN अंक (4 किंवा 6)'],
+  tk_approve_key: ['Approve a new phone', 'नया फ़ोन मंज़ूर करें', 'नवीन फोन मंजूर करा'],
+  err_dup_key: ['This phone is already added.', 'यह फ़ोन पहले से जुड़ा है।', 'हा फोन आधीच जोडला आहे.'],
+  key_title: ['New phone for a person', 'व्यक्ति का नया फ़ोन', 'व्यक्तीचा नवीन फोन'],
+  key_body: ['{name} started using a new phone ({dev}) on {date}. Records from it are not accepted until you approve.', '{name} ने {date} को नया फ़ोन ({dev}) शुरू किया। आपकी मंज़ूरी तक उससे आए रिकॉर्ड स्वीकार नहीं होंगे।', '{name} यांनी {date} रोजी नवीन फोन ({dev}) वापरायला सुरुवात केली. तुम्ही मंजूर करेपर्यंत त्यावरील नोंदी स्वीकारल्या जाणार नाहीत.'],
+  key_warn: ['Call the person first. Approve only if they really changed phone.', 'पहले उस व्यक्ति को फ़ोन करें। केवल तभी मंज़ूर करें जब उन्होंने सच में फ़ोन बदला हो।', 'आधी त्या व्यक्तीला फोन करा. त्यांनी खरंच फोन बदलला असेल तरच मंजूर करा.'],
+  key_approve: ['Yes, this is their phone', 'हाँ, यह उनका फ़ोन है', 'होय, हा त्यांचा फोन आहे'],
+  key_done: ['New phone approved. Ask them to send their file again.', 'नया फ़ोन मंज़ूर। उनसे अपनी फ़ाइल दोबारा भेजने को कहें।', 'नवीन फोन मंजूर. त्यांना त्यांची फाइल पुन्हा पाठवायला सांगा.'],
+  key_pending_me: ['This is a new phone. The office must approve it before your updates are accepted. Send your file, then send it again after approval.', 'यह नया फ़ोन है। आपकी जानकारी स्वीकार होने से पहले ऑफ़िस को इसे मंज़ूर करना होगा। अपनी फ़ाइल भेजें, फिर मंज़ूरी के बाद दोबारा भेजें।', 'हा नवीन फोन आहे. तुमची माहिती स्वीकारण्यापूर्वी ऑफिसने तो मंजूर करायला हवा. तुमची फाइल पाठवा, मंजुरीनंतर पुन्हा पाठवा.'],
+  imp_unsigned: ['{n} were not signed by the person who made them, or came from a phone not yet approved.', '{n} रिकॉर्ड बनाने वाले व्यक्ति के हस्ताक्षर के बिना थे, या ऐसे फ़ोन से आए जो अभी मंज़ूर नहीं।', '{n} नोंदी बनवणाऱ्या व्यक्तीच्या स्वाक्षरीशिवाय होत्या, किंवा अजून मंजूर नसलेल्या फोनवरून आल्या.'],
+  imp_photos: ['{n} photos loaded back on this phone.', '{n} फ़ोटो इस फ़ोन पर वापस लोड हुईं।', '{n} फोटो या फोनवर परत लोड झाले.'],
+  arch_title: ['Archive old photos', 'पुरानी फ़ोटो संग्रह करें', 'जुने फोटो संग्रहित करा'],
+  arch_d: ['Free phone space: photos of lifts handed over long ago are saved to a file and removed from this phone. Records stay.', 'फ़ोन में जगह बनाएँ: बहुत पहले सौंपी लिफ्ट की फ़ोटो फ़ाइल में सेव होकर इस फ़ोन से हटती हैं। रिकॉर्ड रहते हैं।', 'फोनमध्ये जागा करा: खूप आधी सुपूर्द केलेल्या लिफ्टचे फोटो फाइलमध्ये जतन होऊन या फोनवरून काढले जातात. नोंदी राहतात.'],
+  arch_body: ['Choose how old. The photos are saved to one file first; keep that file safe. Load it again any time to see the photos.', 'कितनी पुरानी चुनें। फ़ोटो पहले एक फ़ाइल में सेव होंगी; उसे सुरक्षित रखें। फ़ोटो देखने के लिए उसे कभी भी फिर लोड करें।', 'किती जुने ते निवडा. फोटो आधी एका फाइलमध्ये जतन होतील; ती सुरक्षित ठेवा. फोटो पाहण्यासाठी ती कधीही पुन्हा लोड करा.'],
+  arch_months: ['Handed over more than {n} months ago ({c} photos)', '{n} महीने से पहले सौंपी ({c} फ़ोटो)', '{n} महिन्यांपूर्वी सुपूर्द ({c} फोटो)'],
+  arch_warn: ['Photos are removed only from this phone. Other phones keep their copies.', 'फ़ोटो केवल इसी फ़ोन से हटती हैं। दूसरे फ़ोन में उनकी कॉपी रहती है।', 'फोटो फक्त याच फोनवरून काढले जातात. इतर फोनवर त्यांच्या प्रती राहतात.'],
+  arch_none: ['No old photos to archive.', 'संग्रह करने के लिए कोई पुरानी फ़ोटो नहीं।', 'संग्रहित करण्यासाठी जुने फोटो नाहीत.'],
+  arch_done: ['{n} photos saved to the file and removed from this phone.', '{n} फ़ोटो फ़ाइल में सेव होकर इस फ़ोन से हटीं।', '{n} फोटो फाइलमध्ये जतन होऊन या फोनवरून काढले.'],
+  photo_archived: ['Photo archived — load the photo file to see it', 'फ़ोटो संग्रहित — देखने के लिए फ़ोटो फ़ाइल लोड करें', 'फोटो संग्रहित — पाहण्यासाठी फोटो फाइल लोड करा'],
   export_full: ['Save full company file', 'पूरी कंपनी फ़ाइल सेव करें', 'पूर्ण कंपनी फाइल जतन करा'],
   export_full_d: ['For office phones only. Contains all projects and people.', 'सिर्फ़ ऑफिस फ़ोन के लिए। इसमें सारे प्रोजेक्ट और लोग हैं।', 'फक्त ऑफिस फोनसाठी. यात सर्व प्रकल्प आणि लोक आहेत.'],
   export_person: ['Make a file for one person', 'एक व्यक्ति के लिए फ़ाइल बनाएँ', 'एका व्यक्तीसाठी फाइल बनवा'],
@@ -2420,7 +2451,110 @@ async function sha256(str) {
   } catch (e) { /* fall through to JS */ }
   return SHA(str);
 }
-const pinHash = (pin, salt) => sha256('aiec-pin:' + salt + ':' + pin);
+const legacyPinHash = (pin, salt) => sha256('aiec-pin:' + salt + ':' + pin);
+/* PINs are hashed slowly (PBKDF2, 150,000 rounds) so a copied data file cannot be searched for PINs quickly */
+async function pinHash(pin, salt) {
+  try {
+    if (window.crypto && crypto.subtle) {
+      const k = await crypto.subtle.importKey('raw', new TextEncoder().encode(String(pin)), 'PBKDF2', false, ['deriveBits']);
+      const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: new TextEncoder().encode('aiec-pin2:' + salt), iterations: 150000 }, k, 256);
+      return 'p2$' + Array.from(new Uint8Array(bits), x => x.toString(16).padStart(2, '0')).join('');
+    }
+  } catch (e) { /* no WebCrypto: fall back */ }
+  return legacyPinHash(pin, salt);
+}
+/* ---------- signed records: each person's phone has its own key; every new record is signed (company data only, not practice) ---------- */
+const PRIVATE_KEYS = { USER_ADDED: ['pin', 'salt'], USER_UPDATED: ['pin', 'salt'], PIN_UPGRADED: ['pin', 'salt'], WORKER_PROFILE: ['phone', 'area'], JOB_APPLIED: '*' };
+const isPriv = (type, k) => { const p = PRIVATE_KEYS[type]; return !!p && (p === '*' ? k !== 'postId' : p.includes(k)); };
+const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
+const unb64 = str => Uint8Array.from(atob(str), c => c.charCodeAt(0));
+/* private details (PINs, phone numbers, application notes) are covered by a salted fingerprint, so they can be removed from a file without breaking the signature */
+async function sigPayload(ev, ph) {
+  const d = ev.data || {}, pub = {}, priv = {};
+  for (const k of Object.keys(d)) { if (k === 'stripped') continue; if (isPriv(ev.type, k)) priv[k] = d[k]; else pub[k] = d[k]; }
+  if (ph == null && PRIVATE_KEYS[ev.type]) ph = await sha256(((ev.sig && ev.sig.pn) || '') + JSON.stringify(priv));
+  return new TextEncoder().encode(JSON.stringify([ev.id, ev.n, ev.t, ev.by, ev.type, ev.pid, ev.dev, pub, ph || null]));
+}
+const ECDSA = { name: 'ECDSA', namedCurve: 'P-256' }, ECSIG = { name: 'ECDSA', hash: 'SHA-256' };
+const Sign = {
+  mine: {}, /* uid → { kid, priv } for keys kept on this phone */
+  ok: () => !!(window.crypto && crypto.subtle && App.mode === 'real'),
+  async load(uid) {
+    if (this.mine[uid] !== undefined) return this.mine[uid];
+    let k = null;
+    try { const v = await KV.get(App.ns + 'sk:' + uid); if (v) k = { kid: v.kid, priv: v.jwk ? await crypto.subtle.importKey('jwk', v.jwk, ECDSA, false, ['sign']) : v.priv }; } catch (e) { k = null; }
+    return (this.mine[uid] = k);
+  },
+  async sign(ev) {
+    const k = this.ok() && await this.load(ev.by); if (!k) return ev;
+    ev.sig = { kid: k.kid };
+    if (PRIVATE_KEYS[ev.type]) ev.sig.pn = rid(12);
+    ev.sig.s = b64(await crypto.subtle.sign(ECSIG, k.priv, await sigPayload(ev)));
+    return ev;
+  },
+  async verify(ev, pubJwk) {
+    try {
+      if (!ev.sig || !ev.sig.s) return false;
+      const key = await crypto.subtle.importKey('jwk', pubJwk, ECDSA, false, ['verify']);
+      return await crypto.subtle.verify(ECSIG, key, unb64(ev.sig.s), await sigPayload(ev, ev.cut ? ev.sig.ph : null));
+    } catch (e) { return false; }
+  },
+  /* first login on this phone (company data): make a key, publish it, and sign this person's own older records */
+  async ensure(uid) {
+    if (!this.ok() || !S.users[uid]) return;
+    const have = await this.load(uid), list = (S.keys && S.keys[uid]) || [];
+    if (have && list.some(x => x.kid === have.kid)) return;
+    const first = !list.some(x => x.ok);
+    let kid = have && have.kid, pub;
+    if (!have) {
+      const pair = await crypto.subtle.generateKey(ECDSA, KV.mode === 'ls', ['sign', 'verify']);
+      kid = 'K' + rid(10); pub = await crypto.subtle.exportKey('jwk', pair.publicKey);
+      await KV.set(App.ns + 'sk:' + uid, KV.mode === 'ls' ? { kid, jwk: await crypto.subtle.exportKey('jwk', pair.privateKey), pub } : { kid, priv: pair.privateKey, pub });
+      this.mine[uid] = { kid, priv: pair.privateKey };
+    } else pub = (await KV.get(App.ns + 'sk:' + uid)).pub;
+    if (first) { for (const ev of EVENTS) if (ev.by === uid && !ev.sig) await this.sign(ev); savedSig.sigs = []; }
+    await perform('KEY_ADDED', null, { kid, pub, devName: deviceName() }, { as: uid, quiet: true });
+  },
+  /* a file is signed by the phone that made it, so records the office copied for someone are vouched for */
+  async signPack(pack) {
+    const k = this.ok() && await this.load(pack.by); if (!k) return pack;
+    pack.sig = { kid: k.kid, s: b64(await crypto.subtle.sign(ECSIG, k.priv, await this.packBytes(pack))) };
+    return pack;
+  },
+  packBytes: async pack => new TextEncoder().encode(await sha256(JSON.stringify([pack.org, pack.by, pack.for, pack.at, pack.kind, pack.events]))),
+  /* check every record in a file: a person with a known key must have signed their own records */
+  async check(pack, fresh) {
+    if (!this.ok()) return { keep: fresh, bad: 0 };
+    /* phone keys first (each is self-signed), then everything else: older records may be signed later with a key added after them */
+    const isKey = e => e.type === 'KEY_ADDED' || e.type === 'KEY_APPROVED', byT = (a, b) => a.t < b.t ? -1 : a.t > b.t ? 1 : 0;
+    const K = clone((S && S.keys) || {}), order = fresh.filter(isKey).sort(byT).concat(fresh.filter(e => !isKey(e)).sort(byT));
+    const addKey = (K, ev) => { const l = K[ev.by] = K[ev.by] || []; if (!l.some(x => x.kid === ev.data.kid)) l.push({ kid: ev.data.kid, pub: ev.data.pub, ok: !l.some(x => x.ok) }); };
+    const approve = (K, ev) => { const x = (K[ev.data.uid] || []).find(y => y.kid === ev.data.kid); if (x) x.ok = true; };
+    const pre = clone(K); for (const ev of order) { if (ev.type === 'KEY_ADDED') addKey(pre, ev); if (ev.type === 'KEY_APPROVED') approve(pre, ev); }
+    let tmp = null; const roleIn = uid => (S.users[uid] && S.users[uid].role) || ((tmp = tmp || rebuild(EVENTS.concat(fresh))).users[uid] || {}).role;
+    const pk = pack.sig && (pre[pack.by] || []).find(x => x.ok && x.kid === pack.sig.kid);
+    let office = false;
+    if (pk && ['owner', 'admin'].includes(roleIn(pack.by))) { try { const key = await crypto.subtle.importKey('jwk', pk.pub, ECDSA, false, ['verify']); office = await crypto.subtle.verify(ECSIG, key, unb64(pack.sig.s), await this.packBytes(pack)); } catch (e) { office = false; } }
+    const keep = [], blank = v => v == null || v === '' || v === 'p2$' || v === 'x';
+    let bad = 0;
+    for (const ev of order) {
+      const list = K[ev.by] || [], active = list.filter(x => x.ok);
+      let good;
+      if (ev.cut && Object.keys(ev.data || {}).some(k => isPriv(ev.type, k) && !blank(ev.data[k]))) good = false;
+      else if (ev.sig && ev.sig.s) {
+        const key = list.find(x => x.kid === ev.sig.kid) || (ev.type === 'KEY_ADDED' && ev.data.kid === ev.sig.kid ? { pub: ev.data.pub, ok: true } : null);
+        good = !!key && (key.ok || ev.type === 'KEY_ADDED') && await this.verify(ev, key.pub);
+      } else good = !active.length || office;
+      if (!good) { bad++; continue; }
+      keep.push(ev);
+      if (ev.type === 'KEY_ADDED') addKey(K, ev);
+      if (ev.type === 'KEY_APPROVED') approve(K, ev);
+    }
+    return { keep, bad, office };
+  }
+};
+function deviceName() { const ua = navigator.userAgent || ''; const m = ua.match(/\(([^;)]+);\s*([^;)]+)/); return ((m && (/Android/.test(ua) ? m[2] : m[1])) || 'Phone').slice(0, 40); }
+const pinMatches = async (pin, u) => (String(u.pin || '').startsWith('p2$') ? await pinHash(pin, u.salt) : await legacyPinHash(pin, u.salt)) === u.pin;
 
 /* ---------- storage: IndexedDB → localStorage → memory ---------- */
 const KV = {
@@ -2513,7 +2647,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -2529,6 +2663,7 @@ const RULE_GROUPS = {
   ladder: ['lvHelperJobs', 'lvHelperStars', 'lvHelperReviews', 'lvHelperDays', 'lvTechJobs', 'lvTechStars', 'lvTechReviews', 'lvTechTrust', 'lvTechDays',
     'lvSeniorJobs', 'lvSeniorPass', 'lvSeniorStars', 'lvSeniorReviews', 'lvSeniorTrust', 'lvSeniorDays', 'lvQcJobs', 'lvQcPass', 'lvQcStars', 'lvQcReviews', 'lvQcTrust', 'strikeDays'],
   market: ['postWarnDays', 'maxOpenApps', 'maxActiveJobs'],
+  security: ['pinDigits'],
   ladderpay: ['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior', 'payCrewJob', 'payQcInspection', 'spotTrainee', 'spotTech', 'spotSenior'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
   amc: ['amcPrice']
@@ -2574,7 +2709,7 @@ function materialList(req) {
 /* ---------- state ---------- */
 function emptyState() {
   return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
-    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [] };
+    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {} };
 }
 let S = emptyState();
 let EVENTS = [];
@@ -2934,6 +3069,9 @@ const PAY_KEYS = { approve: ['owner', 'admin'] };
 
 const RULES = {
   ORG_CREATED: { boot: true },
+  KEY_ADDED: { roles: ROLES, check: (S, ev) => need(ev.data.kid && ev.data.pub && ev.data.pub.kty === 'EC', 'err_fill') || need(!((S.keys[ev.by] || []).some(x => x.kid === ev.data.kid)), 'err_dup_key') },
+  KEY_APPROVED: { roles: ['owner', 'admin'], check: (S, ev) => { const x = (S.keys[ev.data.uid] || []).find(y => y.kid === ev.data.kid); return need(x, 'err_fill') || need(!x.ok, 'err_dup_key'); } },
+  PIN_UPGRADED: { roles: ROLES, check: (S, ev) => need(String(ev.data.pin || '').startsWith('p2$') && ev.data.salt, 'err_fill') },
   USER_ADDED: {
     roles: ['owner', 'admin', 'sales'], check: (S, ev, u) => {
       const d = ev.data;
@@ -3567,13 +3705,16 @@ function apply(S, ev) {
   switch (ev.type) {
     case 'ORG_CREATED': S.org = { id: d.orgId, name: d.name, t: ev.t }; break;
     case 'USER_ADDED':
-      S.users[d.uid] = { uid: d.uid, name: d.name, role: d.role, pin: d.pin, salt: d.salt, active: true, projectId: d.projectId || null, t: ev.t, by: ev.by };
+      S.users[d.uid] = { uid: d.uid, name: d.name, role: d.role, pin: d.pin, salt: d.salt, pinLen: +d.pinLen || 4, active: true, projectId: d.projectId || null, t: ev.t, by: ev.by };
       if (d.role === 'tech' && d.grade) { const w = worker(d.uid); w.grade = d.grade; w.gradeLog = [{ g: d.grade, t: ev.t, by: ev.by }]; }
       if (d.role === 'customer' && S.projects[d.projectId]) S.projects[d.projectId].customer = d.uid;
       break;
+    case 'KEY_ADDED': { const l = S.keys[ev.by] = S.keys[ev.by] || []; l.push({ kid: d.kid, pub: d.pub, dev: ev.dev, devName: d.devName || '', t: ev.t, ok: !l.some(x => x.ok) }); break; }
+    case 'KEY_APPROVED': { const x = S.keys[d.uid].find(y => y.kid === d.kid); x.ok = true; x.okBy = ev.by; x.okT = ev.t; break; }
+    case 'PIN_UPGRADED': Object.assign(S.users[ev.by], { pin: d.stripped ? null : d.pin, salt: d.stripped ? null : d.salt, pinLen: +d.pinLen || S.users[ev.by].pinLen || 4 }); break;
     case 'USER_UPDATED': {
       const x = S.users[d.uid];
-      ['name', 'role', 'pin', 'salt', 'active'].forEach(k => { if (d[k] !== undefined) x[k] = d[k]; });
+      ['name', 'role', 'pin', 'salt', 'active', 'pinLen'].forEach(k => { if (d[k] !== undefined) x[k] = d[k]; });
       break;
     }
     case 'CONFIG_SET':
@@ -3919,6 +4060,13 @@ function globalNeeds(u, all) {
     if (ob.steps.some(st => st.who === 'office' && !st.done)) add('check_docs', x.role === 'admin' ? ['owner'] : ['admin', 'owner'], { uid: x.uid, not: x.uid });
     up({ k: 'onboarding', roles: [x.role], pid: null, uid: x.uid, uids: [x.uid] }, x.t, x.uid);
   }
+  /* backup: data on this phone that has not been shared for a week, or a lot of new records */
+  if (App.mode === 'real' && ['owner', 'admin'].includes(u.role)) {
+    const since = App.set.lastExport && App.set.lastExport[App.mode], mine = EVENTS.filter(e => e.dev === App.set.dev && (!since || e.t > since)).length;
+    if (mine >= 200 || (mine && (since ? daysSince(since) >= 7 : EVENTS.length && daysSince(EVENTS[0].t) >= 7))) add('backup_due', ['admin', 'owner'], { n: mine, urgent: mine >= 200 });
+  }
+  /* a person started using a new phone: the office confirms it before records from that phone are accepted */
+  for (const [uid, list] of Object.entries(S.keys)) for (const k of list) if (!k.ok && S.users[uid] && S.users[uid].active) add('approve_key', ['admin', 'owner'], { uid, kid: k.kid, not: uid, urgent: true });
   /* work held by someone who left, or by a lead whose level no longer allows this job */
   for (const P of Object.values(S.projects)) {
     if (P.stage === 'lost') continue;
@@ -4003,30 +4151,57 @@ const App = {
 let W = null; // active wizard
 const SCREENS = {};
 const MEDIA = new Map();
+App.archived = new Set();
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 /* ---------- persistence ---------- */
 async function saveSettings() { try { await KV.set('settings', App.set); } catch (e) { /* shown by KV */ } }
 let saveTimer = null;
+/* events are stored in chunks of 500; a save rewrites only chunks that changed (normally just the last one) */
+const EV_CHUNK = 500;
+let savedSig = { ns: null, sigs: [] };
 async function saveAll() {
-  try { await KV.set(App.ns + 'events', EVENTS); await saveSettings(); }
-  catch (e) { toast(t('err_save_failed'), true); }
+  try {
+    if (savedSig.ns !== App.ns) savedSig = { ns: App.ns, sigs: [] };
+    const n = Math.ceil(EVENTS.length / EV_CHUNK), sigs = [];
+    for (let i = 0; i < n; i++) {
+      const part = EVENTS.slice(i * EV_CHUNK, (i + 1) * EV_CHUNK), sig = part.length + ':' + part[0].id + ':' + part[part.length - 1].id;
+      sigs.push(sig);
+      if (savedSig.sigs[i] !== sig) await KV.set(App.ns + 'ev:' + i, part);
+    }
+    for (let i = n; i < savedSig.sigs.length; i++) await KV.del(App.ns + 'ev:' + i);
+    await KV.set(App.ns + 'evn', n);
+    savedSig.sigs = sigs;
+    await saveSettings();
+  } catch (e) { toast(t('err_save_failed'), true); }
+}
+async function loadEvents() {
+  const n = await KV.get(App.ns + 'evn');
+  if (n == null) { const old = (await KV.get(App.ns + 'events')) || []; return old; } /* older versions kept one big key */
+  let all = [];
+  for (let i = 0; i < n; i++) all = all.concat((await KV.get(App.ns + 'ev:' + i)) || []);
+  return all;
 }
 async function loadMode(mode) {
   App.mode = mode; App.ns = mode === 'practice' ? 'p:' : 'r:';
-  EVENTS = (await KV.get(App.ns + 'events')) || [];
+  EVENTS = await loadEvents();
   S = rebuild(EVENTS);
+  App.archived = new Set((await KV.get(App.ns + 'archived')) || []); Sign.mine = {};
+  savedSig = { ns: App.ns, sigs: [] };
+  if (await KV.get(App.ns + 'events')) { await saveAll(); await KV.del(App.ns + 'events'); }
 }
+const MEDIA_MAX = 150;
+const mediaKeep = (k, v) => { MEDIA.delete(k); MEDIA.set(k, v); while (MEDIA.size > MEDIA_MAX) MEDIA.delete(MEDIA.keys().next().value); };
 async function putMedia(dataUrl) {
   const key = 'M' + rid(12);
   await KV.set(App.ns + 'm:' + key, dataUrl);
-  MEDIA.set(key, dataUrl);
+  mediaKeep(key, dataUrl);
   return key;
 }
 async function getMedia(key) {
-  if (MEDIA.has(key)) return MEDIA.get(key);
+  if (MEDIA.has(key)) { const v = MEDIA.get(key); mediaKeep(key, v); return v; }
   const v = await KV.get(App.ns + 'm:' + key);
-  if (v) MEDIA.set(key, v);
+  if (v) mediaKeep(key, v);
   return v;
 }
 /* ---------- the only way to change data ---------- */
@@ -4037,6 +4212,7 @@ async function perform(type, pid, data, opt = {}) {
   if (!opt.t && last && tt <= last.t) tt = new Date(new Date(last.t).getTime() + 1).toISOString();
   App.set.seq = (App.set.seq || 0) + 1;
   const ev = { id: App.set.dev + '-' + rid(6), n: App.set.seq, t: tt, by, type, pid: pid || null, data: data || {}, dev: App.set.dev };
+  if (App.mode === 'real') await Sign.sign(ev);
   App.liveCheck = true; let err; try { err = validate(S, ev); } finally { App.liveCheck = false; }
   if (err === 'err_needs_second' && type !== 'APPROVAL_REQUESTED') {
     App.set.seq--;
@@ -4111,6 +4287,7 @@ function loadImages(root) {
   root.querySelectorAll('img[data-m]').forEach(async img => {
     const v = await getMedia(img.dataset.m);
     if (v && !v.startsWith('data:video')) img.src = v;
+    else if (!v && App.archived.has(img.dataset.m)) img.replaceWith(Object.assign(document.createElement('span'), { className: 'vid', textContent: '📦', title: t('photo_archived') }));
     else if (v) img.replaceWith(Object.assign(document.createElement('span'), { className: 'vid', textContent: '🎥' }));
   });
   root.querySelectorAll('video[data-m]').forEach(async vd => { const v = await getMedia(vd.dataset.m); if (v) vd.src = v; });
@@ -4415,7 +4592,7 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
@@ -4423,7 +4600,7 @@ function taskCard(n, i) {
   const sub = n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
   if (!P || n.k === 'job_open') {
     const info = n.k === 'job_open' && S.posts[n.postId] ? jobTitle(S.posts[n.postId]) + ' · 📍 ' + S.posts[n.postId].card.area : n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
-      : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
+      : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
     return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
@@ -5258,11 +5435,11 @@ WIZ.svcTech = {
 };
 WIZ.custAccess = {
   title: 'give_cust_access', save: 'create_login', saveIcon: '🔑', noDraft: true,
-  init: P => ({ name: P.contact.name, pin: String(1000 + (crypto.getRandomValues(new Uint16Array(1))[0] % 9000)) }),
+  init: P => ({ name: P.contact.name, pin: newPin() }),
   steps: [{ id: 'name', icon: '🔑', say: 's_cust_access', body: c => inp('name', 'f_customer_name', { mic: true }) + `<div class="card center"><div class="small muted">${t('new_pin_is')}</div><div style="font-size:2.4rem;font-weight:800;letter-spacing:6px">${c.pin}</div></div><div class="note">${t('cust_access_note')}</div>`, check: c => c.name.trim() ? null : 'err_fill' }],
   async finish(c, P) {
     const salt = rid(10), uid = 'U' + rid(8);
-    const r = await run([['USER_ADDED', null, { uid, name: c.name.trim(), role: 'customer', projectId: P.id, salt, pin: await pinHash(c.pin, salt) }]]);
+    const r = await run([['USER_ADDED', null, { uid, name: c.name.trim(), role: 'customer', projectId: P.id, salt, pin: await pinHash(c.pin, salt), pinLen: c.pin.length }]]);
     return r.ok ? doneRes(P.id, 'what_cust_access', { pin: c.pin, name: c.name }) : r;
   }
 };
@@ -5348,7 +5525,7 @@ SCREENS.newOrg = () => {
   if (App.form.org == null) App.form.org = 'ALL INDIA ELEVATORS COMPANY';
   App.pageSay = t('s_new_org');
   return topBar(t('setup_new'), { back: true }) + `<main class="wrap"><div class="big-i">👑</div><p class="say">${t('s_new_org')}</p>
-    ${formInp('org', 'company_name')}${formInp('name', 'your_name', { mic: true })}${formInp('pin1', 'new_pin', { type: 'password', mode: 'numeric', max: 4, big: true })}${formInp('pin2', 'repeat_pin', { type: 'password', mode: 'numeric', max: 4, big: true })}
+    ${formInp('org', 'company_name')}${formInp('name', 'your_name', { mic: true })}${formInp('pin1', 'new_pin', { type: 'password', mode: 'numeric', max: 6, big: true })}${formInp('pin2', 'repeat_pin', { type: 'password', mode: 'numeric', max: 4, big: true })}
     <div class="note">🔒 ${t('pin_note')}</div><div id="ferr"></div></main>
     <div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="createOrg">✅ ${t('create_company')}</button></div></div>`;
 };
@@ -5371,11 +5548,11 @@ SCREENS.login = () => {
 };
 SCREENS.pin = ({ uid }) => {
   const u = S.users[uid]; if (!u) return SCREENS.login();
-  const n = (App.form.pin || '').length;
+  const n = (App.form.pin || '').length, len = u.pinLen || 4;
   App.pageSay = t('enter_pin');
   const lock = (App.set.lock || {})[uid], wait = lock && lock.until > Date.now() ? Math.ceil((lock.until - Date.now()) / 1000) : 0;
   return topBar(App.locked ? t('locked_idle') : t('enter_pin'), { back: !App.locked }) + `<main class="wrap center"><div class="big-i">${ROLE_ICON[u.role]}</div><h2 style="margin:0">${esc(u.name)}</h2><p class="muted">${t('r_' + u.role)}</p>
-    <p class="say">🔢 ${t('enter_pin')}</p><div class="dots" aria-label="${n}/4">${[0, 1, 2, 3].map(i => `<i class="${i < n ? 'f' : ''}"></i>`).join('')}</div>
+    <p class="say">🔢 ${t('enter_pin')}</p><div class="dots" aria-label="${n}/${len}">${Array.from({ length: len }, (_, i) => i).map(i => `<i class="${i < n ? 'f' : ''}"></i>`).join('')}</div>
     ${wait ? `<div class="err">${t('locked', { n: wait })}</div>` : App.form.pinErr ? `<div class="err">${esc(App.form.pinErr)}</div>` : ''}
     <div class="pinpad">${['1', '2', '3', '4', '5', '6', '7', '8', '9', '⌫', '0', '✓'].map(k => `<button data-a="pinKey" data-v="${k}" ${wait ? 'disabled' : ''} aria-label="${k === '⌫' ? t('remove') : k === '✓' ? t('ok') : k}">${k}</button>`).join('')}</div>
     ${App.locked ? `<button class="btn" style="margin-top:14px" data-a="logout">🚪 ${t('not_me')}</button>` : ''}</main>`;
@@ -6018,6 +6195,7 @@ SCREENS.data = () => {
   const u = App.me, adm = ['owner', 'admin'].includes(u.role);
   const since = App.set.lastExport && App.set.lastExport[App.mode];
   const unshared = EVENTS.filter(e => e.dev === App.set.dev && (!since || e.t > since)).length;
+  const myKey = (S.keys[u.uid] || []).find(k => k.dev === App.set.dev);
   App.pageSay = t('s_data');
   return topBar(t('share_data'), { back: true }) + `<main class="wrap"><div class="card">${kv([['storage', storageLabel()], ['records', EVENTS.length], ['not_shared', unshared ? `<span class="chip c-warn">📱 ${unshared}</span>` : `<span class="chip c-ok">✅ 0</span>`], ['last_shared', since ? fmtD(since, true) : '—']])}</div>
     <div class="note">📱 ${t('data_local_note')}</div>
@@ -6026,10 +6204,24 @@ SCREENS.data = () => {
     : `<button class="btn btn-p btn-big" data-a="exportMine">📤 ${t('export_mine')}</button><p class="small muted">${t('export_mine_d')}</p>`}
     ${u.role === 'sales' ? `<button class="btn btn-big" data-a="exportPerson">👤 ${t('export_person')}</button><p class="small muted">${t('export_person_d')}</p>` : ''}
     <label class="btn btn-big" for="impFile">📥 ${t('import_file')}</label><input id="impFile" type="file" accept=".json,application/json" style="display:none" data-a-change="import">
+    ${u.role === 'owner' ? `<button class="btn btn-big" data-a="archive">📦 ${t('arch_title')}</button><p class="small muted">${t('arch_d')}</p>` : ''}
+    ${myKey && !myKey.ok ? `<div class="warnbox">🔑 ${t('key_pending_me')}</div>` : ''}
     <div class="warnbox">🔐 ${t('share_warning')}</div></main>` + nav('me');
 };
-function exportPack(kind, forUid) {
+/* a copy of a record with private details removed; the signature still checks because those details are covered by a fingerprint */
+function cutEv(ev, data) {
+  const out = Object.assign({}, ev, { data, cut: 1 });
+  if (ev.sig && ev.sig.s && !ev.cut) { const priv = {}; for (const k of Object.keys(ev.data)) if (k !== 'stripped' && isPriv(ev.type, k)) priv[k] = ev.data[k]; out.sig = { kid: ev.sig.kid, s: ev.sig.s, phOf: (ev.sig.pn || '') + JSON.stringify(priv) }; }
+  return out;
+}
+async function finishPack(pack) {
+  for (const ev of pack.events) if (ev.sig && ev.sig.phOf != null) ev.sig = { kid: ev.sig.kid, s: ev.sig.s, ph: await sha256(ev.sig.phOf) };
+  return Sign.signPack(pack);
+}
+function exportPack(kind, forUid, opts = {}) {
   let events = EVENTS, media = {};
+  /* full file for another office phone: only Owner/Admin logins travel unless all were chosen */
+  if (kind === 'full' && opts.logins === 'office') events = EVENTS.map(ev => ['USER_ADDED', 'USER_UPDATED', 'PIN_UPGRADED'].includes(ev.type) && ev.data.pin && !['owner', 'admin'].includes(roleOf(ev.type === 'PIN_UPGRADED' ? ev.by : ev.data.uid)) ? cutEv(ev, Object.assign({}, ev.data, ev.type === 'PIN_UPGRADED' ? { pin: 'p2$', salt: 'x', stripped: true } : { pin: null, salt: null, stripped: true })) : ev);
   const target = forUid ? S.users[forUid] : null;
   if (kind === 'person' && target) {
     /* projects the person can see now, plus any they worked on before (so their own work and pay stay complete) */
@@ -6042,29 +6234,45 @@ function exportPack(kind, forUid) {
     const staff = target.role !== 'customer', market = ['tech', 'qc', 'owner', 'admin'].includes(target.role);
     events = EVENTS.filter(ev => ev.type.startsWith('JOB_') ? market : ev.pid ? vis.has(ev.pid)
       : ev.type === 'USER_ADDED' && ev.data.role === 'customer' ? vis.has(ev.data.projectId)
-      : ['ORG_CREATED', 'USER_ADDED', 'USER_UPDATED', 'CONFIG_SET'].includes(ev.type) || ev.by === forUid || (staff && LADDER.includes(ev.type)) || (ABOUT.includes(ev.type) && ev.data.uid === forUid))
+      : ['ORG_CREATED', 'USER_ADDED', 'USER_UPDATED', 'CONFIG_SET', 'KEY_ADDED', 'KEY_APPROVED'].includes(ev.type) || ev.by === forUid || (staff && LADDER.includes(ev.type)) || (ABOUT.includes(ev.type) && ev.data.uid === forUid))
       .map(ev => {
-        if ((ev.type === 'USER_ADDED' || ev.type === 'USER_UPDATED') && ev.data.uid !== forUid && ev.data.pin) return Object.assign({}, ev, { data: Object.assign({}, ev.data, { pin: null, salt: null, stripped: true }) });
-        if (ev.type === 'WORKER_PROFILE' && ev.data.uid !== forUid) return Object.assign({}, ev, { data: Object.assign({}, ev.data, { phone: '', area: '', stripped: !!(ev.data.phone && ev.data.area) }) });
-        if (ev.type === 'JOB_APPLIED' && ev.by !== forUid && !['owner', 'admin'].includes(target.role)) return Object.assign({}, ev, { data: { postId: ev.data.postId } });
+        if (ev.type === 'PIN_UPGRADED' && ev.by !== forUid) return cutEv(ev, Object.assign({}, ev.data, { pin: 'p2$', salt: 'x', stripped: true }));
+        if ((ev.type === 'USER_ADDED' || ev.type === 'USER_UPDATED') && ev.data.uid !== forUid && ev.data.pin) return cutEv(ev, Object.assign({}, ev.data, { pin: null, salt: null, stripped: true }));
+        if (ev.type === 'WORKER_PROFILE' && ev.data.uid !== forUid) return cutEv(ev, Object.assign({}, ev.data, { phone: '', area: '', stripped: !!(ev.data.phone && ev.data.area) }));
+        if (ev.type === 'JOB_APPLIED' && ev.by !== forUid && !['owner', 'admin'].includes(target.role)) return cutEv(ev, { postId: ev.data.postId });
         return ev;
       });
   }
   return { format: 'aiec-elevator-os', v: 1, kind, mode: App.mode, org: S.org.id, orgName: S.org.name, at: nowISO(), by: App.me.uid, for: forUid || null, events, media };
 }
-async function exportFile(kind, forUid) {
-  const pack = exportPack(kind, forUid);
-  const keys = new Set();
-  pack.events.forEach(ev => (ev.data && ev.data.ev || []).forEach(e => keys.add(e.m)));
-  for (const k of keys) { const v = await getMedia(k); if (v) pack.media[k] = v; }
-  const name = `AIEC-${kind}-${(forUid ? userName(forUid) : S.org.name).replace(/[^\w]+/g, '_').slice(0, 24)}-${todayStr()}.json`;
+/* share the file (or download it); false when the person cancelled */
+async function saveFile(name, pack) {
   const blob = new Blob([JSON.stringify(pack)], { type: 'application/json' });
   let shared = false;
   try {
     const file = new File([blob], name, { type: 'application/json' });
     if (navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: 'AIEC data' }); shared = true; }
-  } catch (e) { if (e && e.name === 'AbortError') return; }
+  } catch (e) { if (e && e.name === 'AbortError') return false; }
   if (!shared) { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000); }
+  return true;
+}
+/* photos of lifts handed over more than N months ago that are still on this phone */
+function archiveKeys(months) {
+  const keys = [];
+  for (const P of Object.values(S.projects)) {
+    if (!P.done || daysSince(P.done.t) < months * 30) continue;
+    for (const id of P.evidence) { const e = S.evidence[id]; if (e && e.m && !App.archived.has(e.m)) keys.push(e.m); }
+  }
+  return uniq(keys);
+}
+async function saveArchived() { try { await KV.set(App.ns + 'archived', [...App.archived]); } catch (e) { /* not critical */ } }
+async function exportFile(kind, forUid, opts) {
+  const pack = await finishPack(exportPack(kind, forUid, opts));
+  const keys = new Set();
+  pack.events.forEach(ev => (ev.data && ev.data.ev || []).forEach(e => keys.add(e.m)));
+  for (const k of keys) { const v = await getMedia(k); if (v) pack.media[k] = v; }
+  const name = `AIEC-${kind}-${(forUid ? userName(forUid) : S.org.name).replace(/[^\w]+/g, '_').slice(0, 24)}-${todayStr()}.json`;
+  if (!await saveFile(name, pack)) return;
   App.set.lastExport = Object.assign({}, App.set.lastExport, { [App.mode]: nowISO() });
   await saveSettings();
   toast(t('export_done', { n: pack.events.length }));
@@ -6081,14 +6289,18 @@ async function importText(text) {
   let refused = 0;
   /* a "send my updates" file (made by a person for themself) may only add that person's own work */
   if (S.org && pack.kind === 'person' && pack.for && pack.for === pack.by) { const ok = fresh.filter(e => e.by === pack.by); refused = fresh.length - ok.length; fresh = ok; }
-  for (const [k, v] of Object.entries(pack.media || {})) { if (typeof v === 'string' && v.startsWith('data:')) { await KV.set(App.ns + 'm:' + k, v); MEDIA.set(k, v); } }
+  /* records must carry a valid signature from the person who made them (or be vouched for by an Owner/Admin file) */
+  const chk = await Sign.check(pack, fresh); refused += chk.bad; fresh = chk.keep;
+  for (const ev of fresh) if (ev.sig && ev.sig.phOf != null) delete ev.sig.phOf;
+  for (const [k, v] of Object.entries(pack.media || {})) { if (typeof v === 'string' && v.startsWith('data:')) { await KV.set(App.ns + 'm:' + k, v); mediaKeep(k, v); App.archived.delete(k); } }
+  await saveArchived();
   const before = S.rejected.length;
   const all = EVENTS.concat(fresh);
   S = rebuild(all); EVENTS = all;
   await saveAll();
   const rej = S.rejected.filter(r => fresh.some(f => f.id === r.ev.id)).length;
   if (App.me) Notify.check();
-  return { ok: true, added: fresh.length - rej, rejected: rej + refused, before };
+  return { ok: true, added: fresh.length - rej, rejected: rej + refused, unsigned: chk.bad, photos: Object.keys(pack.media || {}).length, before };
 }
 
 /* =====================================================================
@@ -6457,7 +6669,7 @@ const Notify = {
     const u = App.me; if (!u || App.locked || !S.org) return [];
     const tasks = myTasks(u), key = 'seen_' + App.mode + '_' + u.uid, seen = new Set(App.set[key] || []);
     const fresh = tasks.filter(n => !seen.has(this.sig(n)));
-    App.set[key] = tasks.map(n => this.sig(n)).slice(0, 500);
+    App.set[key] = tasks.map(n => this.sig(n));
     this.badge(tasks.length); this.schedule(u);
     this.celebrate(u);
     if (opt.silent || !fresh.length) { saveSettings(); return []; }
@@ -6917,7 +7129,7 @@ function openTask(n) {
     onb_profile: () => wiz('wprofile', null, { uid: n.uid }), check_docs: () => go('worker', { uid: n.uid }),
     rate_work: () => wiz('rate', pid, { ref: n.ref, about: n.ref === 'handover' ? doneLead(P) : P.service[n.ref.split(':')[1]].by }), rate_crew: () => wiz('rateCrew', pid, { uid: n.uid }),
     promotion_ready: () => wiz('promote', null, { uid: n.uid }), strike_appeal: () => wiz('decide', null, { uid: n.uid, sid: n.sid }),
-    reassign_work: () => go('project', { pid, tab: 'info' }), job_open: () => go('jobs', {}), pick_applicant: () => wiz('pick', pid, { postId: n.postId }), post_nobody: () => go('posts'), post_job: () => wiz('post', pid, { kind: n.kind || 'lead' }),
+    reassign_work: () => go('project', { pid, tab: 'info' }), backup_due: () => go('data'), approve_key: () => ACT.keySheet(n.uid + '|' + n.kid), job_open: () => go('jobs', {}), pick_applicant: () => wiz('pick', pid, { postId: n.postId }), post_nobody: () => go('posts'), post_job: () => wiz('post', pid, { kind: n.kind || 'lead' }),
     review_meeting: () => wiz('reviewMeet', null, { uid: n.uid, k: n.k }), suspend_review: () => wiz('reviewMeet', null, { uid: n.uid, k: n.k }), spot_check: () => wiz('spot', pid, { step: n.step })
   };
   (m[n.k] || (() => go('project', { pid })))();
@@ -6949,13 +7161,18 @@ function loginAs(u) {
   App.stack = []; W = null;
   go(App.set.permsSeen && App.set.permsSeen[App.mode + u.uid] ? 'home' : 'perms', {}, { replace: true });
   setTimeout(() => Notify.check(), 900);
+  if (App.mode === 'real') Sign.ensure(u.uid).catch(() => {});
 }
 async function tryPin(uid) {
   const u = S.users[uid]; App.set.lock = App.set.lock || {};
   const L0 = App.set.lock[uid] || { fails: 0, until: 0 };
   if (L0.until > Date.now()) { App.form.pin = ''; render(); return; }
-  const h = await pinHash(App.form.pin, u.salt); App.form.pin = '';
-  if (u.pin && h === u.pin && u.active) { App.set.lock[uid] = { fails: 0, until: 0 }; App.form.pinErr = ''; loginAs(u); return; }
+  const pin = App.form.pin, ok = u.pin && await pinMatches(pin, u); App.form.pin = '';
+  if (ok && u.active) {
+    App.set.lock[uid] = { fails: 0, until: 0 }; App.form.pinErr = '';
+    if (!String(u.pin).startsWith('p2$') && window.crypto && crypto.subtle) { const salt = rid(10); await perform('PIN_UPGRADED', null, { pin: await pinHash(pin, salt), salt, pinLen: pin.length }, { as: uid, quiet: true }); }
+    loginAs(S.users[uid]); return;
+  }
   L0.fails++;
   App.form.pinErr = t('wrong_pin', { n: Math.max(0, 5 - L0.fails) });
   if (L0.fails >= 5) { L0.until = Date.now() + 60000; L0.fails = 0; setTimeout(render, 61000); }
@@ -6969,7 +7186,7 @@ async function doImport(file) {
   const r = await importText(text);
   if (!r.ok) { toast(r.msg, true); return; }
   if (App.me) App.me = S.users[App.me.uid] || null;
-  sheet(`<h2>📥 ${t('imp_title')}</h2><div class="okbox">✅ ${t('imp_added', { n: r.added })}</div>${r.rejected ? `<div class="warnbox">⚠️ ${t('imp_rejected', { n: r.rejected })}</div>` : ''}<p class="small muted">${t('imp_note')}</p>`);
+  sheet(`<h2>📥 ${t('imp_title')}</h2><div class="okbox">✅ ${t('imp_added', { n: r.added })}</div>${r.rejected ? `<div class="warnbox">⚠️ ${t('imp_rejected', { n: r.rejected })}${r.unsigned ? ' ' + t('imp_unsigned', { n: r.unsigned }) : ''}</div>` : ''}${r.photos && !r.added ? `<div class="okbox">🖼️ ${t('imp_photos', { n: r.photos })}</div>` : ''}<p class="small muted">${t('imp_note')}</p>`);
   if (!had && S.org) { App.stack = []; go('login', {}, { replace: true }); } else render();
 }
 async function enterPractice() {
@@ -6984,8 +7201,8 @@ async function exitPractice() {
   await loadMode('real'); App.me = null; App.stack = []; App.form = {}; W = null;
   go(S.org ? 'login' : 'setup', {}, { replace: true });
 }
-async function wipeNamespace(ns) { for (const k of await KV.keys(ns)) await KV.del(k); MEDIA.clear(); }
-function newPin() { return String(1000 + (crypto.getRandomValues(new Uint16Array(1))[0] % 9000)); }
+async function wipeNamespace(ns) { for (const k of await KV.keys(ns)) await KV.del(k); MEDIA.clear(); savedSig = { ns: null, sigs: [] }; Sign.mine = {}; App.archived = new Set(); }
+function newPin() { const six = +S.config.pinDigits === 6, r = crypto.getRandomValues(new Uint32Array(1))[0]; return six ? String(100000 + (r % 900000)) : String(1000 + (r % 9000)); }
 
 const ACT = {
   nav: v => { Voice.stop(); if (MAIN_TABS.includes(v) && App.me) { App.stack = []; W = null; App.route = { name: 'home', p: {} }; if (v === 'home') { render(); window.scrollTo(0, 0); } else go(v); } else go(v); },
@@ -7007,21 +7224,21 @@ const ACT = {
   wipeGo: async () => { closeSheet(); await wipeNamespace(App.ns); await loadMode(App.mode); App.me = null; App.stack = []; W = null; go(App.mode === 'practice' ? 'login' : 'setup', {}, { replace: true }); if (App.mode === 'practice') enterPractice(); },
   createOrg: async () => {
     const f = App.form;
-    const err = !(f.org || '').trim() || !(f.name || '').trim() ? t('err_fill') : !/^\d{4}$/.test(f.pin1 || '') ? t('err_pin4') : f.pin1 !== f.pin2 ? t('pin_mismatch') : null;
+    const err = !(f.org || '').trim() || !(f.name || '').trim() ? t('err_fill') : !/^(\d{4}|\d{6})$/.test(f.pin1 || '') ? t('err_pin4') : f.pin1 !== f.pin2 ? t('pin_mismatch') : null;
     if (err) { $('#ferr').innerHTML = `<div class="err">⚠️ ${esc(err)}</div>`; Voice.say(err); return; }
     const uid = 'U' + rid(8), salt = rid(10);
     let r = await perform('ORG_CREATED', null, { orgId: 'ORG-' + rid(10), name: f.org.trim() }, { as: uid }); if (!r.ok) return;
-    r = await perform('USER_ADDED', null, { uid, name: f.name.trim(), role: 'owner', salt, pin: await pinHash(f.pin1, salt) }, { as: uid }); if (!r.ok) return;
+    r = await perform('USER_ADDED', null, { uid, name: f.name.trim(), role: 'owner', salt, pin: await pinHash(f.pin1, salt), pinLen: f.pin1.length }, { as: uid }); if (!r.ok) return;
     App.form = {}; loginAs(S.users[uid]);
   },
   loginUser: v => { App.form.pin = ''; App.form.pinErr = ''; go('pin', { uid: v }); },
   pinKey: async v => {
-    const uid = App.route.p.uid, f = App.form; f.pin = f.pin || '';
+    const uid = App.route.p.uid, f = App.form, len = (S.users[uid] && S.users[uid].pinLen) || 4; f.pin = f.pin || '';
     if (v === '⌫') { f.pin = f.pin.slice(0, -1); render(); return; }
-    if (v === '✓') { if (f.pin.length === 4) await tryPin(uid); return; }
-    if (f.pin.length < 4) f.pin += v;
+    if (v === '✓') { if (f.pin.length === len) await tryPin(uid); return; }
+    if (f.pin.length < len) f.pin += v;
     render();
-    if (f.pin.length === 4) await tryPin(uid);
+    if (f.pin.length === len) await tryPin(uid);
   },
   logout: () => { Voice.stop(); Notify.hide(); App.me = null; App.locked = false; W = null; App.stack = []; App.form = {}; go('login', {}, { replace: true }); },
   permsDone: () => { App.set.permsSeen = Object.assign({}, App.set.permsSeen, { [App.mode + App.me.uid]: true }); saveSettings(); App.stack = []; go('home', {}, { replace: true }); },
@@ -7183,7 +7400,7 @@ const ACT = {
     const f = App.form, name = (f.nuName || '').trim();
     if (!name) { toast(t('err_fill'), true); return; }
     const salt = rid(10), uid = 'U' + rid(8), pin = f.nuPin;
-    const r = await perform('USER_ADDED', null, Object.assign({ uid, name, role: f.nuRole, salt, pin: await pinHash(pin, salt) }, f.nuRole === 'tech' ? { grade: f.nuGrade || 'trainee' } : {}));
+    const r = await perform('USER_ADDED', null, Object.assign({ uid, name, role: f.nuRole, salt, pin: await pinHash(pin, salt), pinLen: pin.length }, f.nuRole === 'tech' ? { grade: f.nuGrade || 'trainee' } : {}));
     if (r.ok) { render(); sheet(`<h2>✅ ${t('user_added')}</h2><div class="card center"><b>${esc(name)}</b> · ${t('r_' + f.nuRole)}<div style="font-size:2.4rem;font-weight:800;letter-spacing:6px">${pin}</div>${t('pin_tell')}</div>${onboarding(uid).total ? `<div class="note">🪪 ${t('onb_started', { n: onboarding(uid).total })}</div>` : ''}`); }
   },
   userOpen: v => userSheet(v),
@@ -7191,7 +7408,7 @@ const ACT = {
   userActive: async v => { const x = S.users[v]; const r = await perform('USER_UPDATED', null, { uid: v, active: !x.active }); if (r.ok) { render(); userSheet(v); } },
   userPin: async v => {
     const pin = newPin(), salt = rid(10);
-    const r = await perform('USER_UPDATED', null, { uid: v, pin: await pinHash(pin, salt), salt });
+    const r = await perform('USER_UPDATED', null, { uid: v, pin: await pinHash(pin, salt), salt, pinLen: pin.length });
     if (r.ok) sheet(`<h2>🔢 ${t('reset_pin')}</h2><div class="card center"><b>${esc(S.users[v].name)}</b><div style="font-size:2.4rem;font-weight:800;letter-spacing:6px">${pin}</div>${t('pin_tell')}</div>`);
   },
   /* business rules */
@@ -7206,7 +7423,26 @@ const ACT = {
   },
   cfgApprove: async gk => { const r = await perform('CONFIG_SET', null, { approve: gk }); if (r.ok) { toast(t('rule_approved')); render(); } },
   /* data */
-  exportFull: () => exportFile('full'),
+  exportFull: () => sheet(`<h2>📤 ${t('export_full')}</h2><div class="tiles one"><button class="tile" data-a="exportFullGo" data-v="office"><span class="i">🛡️</span><span>${t('exp_logins_office')}<br><small>${t('exp_logins_office_d')}</small></span></button><button class="tile" data-a="exportFullGo" data-v="all"><span class="i">👥</span><span>${t('exp_logins_all')}<br><small>${t('exp_logins_all_d')}</small></span></button></div><p class="small muted">${t('exp_logins_note')}</p>`),
+  keySheet: v => {
+    const [uid, kid] = v.split('|'), k = (S.keys[uid] || []).find(x => x.kid === kid); if (!k) return;
+    sheet(`<h2>🔑 ${t('key_title')}</h2><p>${t('key_body', { name: esc(userName(uid)), dev: esc(k.devName || k.dev || ''), date: fmtD(k.t, true) })}</p><div class="warnbox">⚠️ ${t('key_warn')}</div>
+      <button class="btn btn-p btn-big" data-a="keyApprove" data-v="${esc(v)}">✅ ${t('key_approve')}</button><button class="btn btn-big" data-a="closeSheet">⏳ ${t('close')}</button>`);
+  },
+  keyApprove: async v => { const [uid, kid] = v.split('|'); closeSheet(); const r = await perform('KEY_APPROVED', null, { uid, kid }); if (r.ok) toast(t('key_done')); render(); },
+  archive: () => sheet(`<h2>📦 ${t('arch_title')}</h2><p>${t('arch_body')}</p><div class="tiles one">${[6, 12, 24].map(m => `<button class="tile" data-a="archiveGo" data-v="${m}"><span class="i">📦</span><span>${t('arch_months', { n: m, c: archiveKeys(m).length })}</span></button>`).join('')}</div><div class="warnbox">⚠️ ${t('arch_warn')}</div>`),
+  archiveGo: async v => {
+    const keys = archiveKeys(+v); closeSheet();
+    if (!keys.length) { toast(t('arch_none')); return; }
+    const media = {};
+    for (const k of keys) { const d = await getMedia(k); if (d) media[k] = d; }
+    const pack = { format: 'aiec-elevator-os', v: 1, kind: 'photos', mode: App.mode, org: S.org.id, orgName: S.org.name, at: nowISO(), by: App.me.uid, for: null, events: [], media };
+    if (!await saveFile(`AIEC-photos-${todayStr()}.json`, pack)) return;
+    for (const k of Object.keys(media)) { await KV.del(App.ns + 'm:' + k); MEDIA.delete(k); App.archived.add(k); }
+    await saveArchived();
+    toast(t('arch_done', { n: Object.keys(media).length })); render();
+  },
+  exportFullGo: v => { closeSheet(); exportFile('full', null, { logins: v }); },
   exportMine: () => exportFile('person', App.me.uid),
   exportPerson: () => {
     const list = Object.values(S.users).filter(x => x.active && x.uid !== App.me.uid && (App.me.role !== 'sales' || (x.role === 'customer' && S.projects[x.projectId] && S.projects[x.projectId].sales === App.me.uid)));

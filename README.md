@@ -188,7 +188,19 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 | Duplicate-lead commission | 10% |
 
 ## Honest limits of this version
-* **Offline, single file.** Roles are enforced by the app on every action and on every imported file, but there is no company server: data files are not digitally signed, so share them only with trusted staff. A server with signed sync is the recommended next step for full security.
+* **Offline, single file.** Roles are enforced by the app on every action and on every imported file. There is no company server.
+* **Signed records (company data only, not practice).**
+  * Each person's phone makes its own signing key at first login, and every new record is signed with it. Files are also signed by the phone that made them.
+  * When a file is loaded, a record from a person with a known key must carry that person's valid signature. Changed or forged records are refused.
+  * A person's second phone must be approved by an Owner or Admin (task "Approve a new phone"). Records from that phone are held back until then; after approval the person sends their file again.
+  * Private details (PINs, other people's phone numbers, application notes) can be removed from a file without breaking signatures.
+  * Limits:
+    * A brand-new phone trusts the first file it loads.
+    * Records made before signing started are accepted only from an Owner/Admin file.
+    * If the Owner's only phone is lost, an Admin must approve the Owner's new phone.
+    * A company server with signed sync is still the recommended next step.
+* **PINs** are stored with slow hashing (PBKDF2, 150,000 rounds); older PINs are upgraded at the next login. The Owner can make new PINs 6 digits (**Business rules → Login security**). A full file for another office phone carries only Owner/Admin logins unless "include everyone's logins" is chosen.
+* **Backups:** the Owner/Admin is reminded to save a file after 7 days or 200 records that are only on their phone. Records are stored in chunks, so large companies stay fast. **Archive old photos** (Owner, **Share data**) saves the photos of lifts handed over long ago to a file and removes them from that phone; loading the file brings them back.
 * **Notifications** come from the app itself. The installed app checks every minute while it is open or recently used, and Chrome may also wake it about once an hour for escalations (periodic background sync, decided by the phone). Instant alerts when the phone has fully closed the app need a push server or a native Android app.
 * **Not connected:** payment gateway, bank/EMI partner, WhatsApp delivery and read reports (they need the WhatsApp Business API on a company server; the app opens WhatsApp and records what the person sent), container GPS tracker, motion sensors, CCTV, digital locks. The app never claims they exist; it records what people did and asks Finance to verify money from the bank.
 * **No AI decisions.** Automatic checks are simple rules and only warn.
