@@ -31,6 +31,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const upd = await pc.evaluate(async LEAD => {
     App.me = S.users[LEAD];
     const P = Object.values(S.projects).find(x => x.stage === 'installing');
+    await perform('SAFETY_CHECKED', P.id, { ev: SAFETY_ITEMS.map(([k]) => ({ id: 'E-s' + k, m: 'Mx', kind: 'photo', label: 'safe_' + k, t: nowISO(), hash: 'x', q: {} })) }, { quiet: true });
     const r = await perform('SOP_STEP_DONE', P.id, { step: sopNext(P), ev: [{ id: 'E-test', m: 'Mx', kind: 'photo', t: nowISO(), hash: 'x', q: {} }] }, { quiet: true });
     const pack = exportPack('person', LEAD);
     pack.events.push({ id: 'FORGE-FIN', n: 999, t: nowISO(), by: 'PFIN', type: 'PAYMENT_STATUS', pid: P.id, data: { payId: 'x', status: 'confirmed', ref: 'fake' }, dev: 'X' });
@@ -41,7 +42,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const ra = await pa.evaluate(txt => importText(txt), upd.pack);
   const after = await pa.evaluate(p => Object.keys(S.projects[p].sop).length, upd.pid);
   console.log('office import', JSON.stringify(ra), before, '->', after);
-  assert(ra.added === 1 && after === before + 1, 'office accepts the technician\'s own step');
+  assert(ra.added === 2 && after === before + 1, 'office accepts the technician\'s own safety check and step');
   assert(ra.rejected === 1, 'office refuses the forged finance entry inside the technician\'s file');
 
   /* practice and real files never mix */

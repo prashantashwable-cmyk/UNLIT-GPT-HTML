@@ -216,7 +216,10 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await startTask('material_handover'); await shot('material_handover'); await next(); await sign('csig'); await next(); await sign('tsig'); await next(); await doneOk('material handed');
   assert(await stage(pid) === 'installing', 'installing');
 
-  /* --- 9. installation SOP, one blocker on the way --- */
+  /* --- 9. daily safety check (4 photos), then installation SOP, one blocker on the way --- */
+  await startTask('safety_check');
+  for (const k of ['ppe', 'scaffold', 'barricade', 'earthing']) await photo('s_' + k);
+  await next(); await tap(page, '[data-a="toggle"][data-k="ok"]'); await next(); await doneOk('safety check');
   await startTask('install'); await shot('sop_list');
   for (let i = 0; i < 12; i++) {
     if (i === 3) {
@@ -234,14 +237,14 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await login('Quinn QC');
   await startTask('final_inspect'); await next();
   for (const c of ['ride', 'level', 'doors', 'alarm', 'plate', 'safetydev']) await pick('checks.' + c, 'pass');
-  await pick('checks.wiring', 'fail'); await next(); await photo('ph'); await photo('ph'); await next(); await shot('qcf_fail'); await next();
+  await pick('checks.wiring', 'fail'); await next(); for (const k of ['earthing', 'brakes', 'governor', 'interlocks']) { await pick('crit.' + k, 'pass'); await photo('critPh.' + k); } await next(); await photo('ph'); await photo('ph'); await next(); await shot('qcf_fail'); await next();
   await pick('cause', 'work'); await next(); await next(); await pick('stars', '2'); await next(); await doneOk('qc final fail');
   assert(await stage(pid) === 'install_fix', 'install_fix');
   await login('Tara Tech'); await startTask('fix_install'); await tap(page, '[data-a="clItem"]', { wait: 250 }); await photo('ph'); await next();
   await tap(page, '[data-a="clAction"][data-v="INSPECTION_REQUESTED"]', { wait: 300 });
   await login('Quinn QC'); await startTask('final_inspect'); await next();
   for (const c of ['ride', 'level', 'doors', 'alarm', 'plate', 'safetydev', 'wiring']) await pick('checks.' + c, 'pass');
-  await next(); await photo('ph'); await photo('ph'); await next(); await pick('outcome', 'pass'); await next(); await pick('stars', '4'); await next(); await doneOk('qc final pass');
+  await next(); for (const k of ['earthing', 'brakes', 'governor', 'interlocks']) { await pick('crit.' + k, 'pass'); await photo('critPh.' + k); } await next(); await photo('ph'); await photo('ph'); await next(); await pick('outcome', 'pass'); await next(); await pick('stars', '4'); await next(); await doneOk('qc final pass');
   assert(await stage(pid) === 'final_pay', 'final_pay');
 
   /* --- 11. final payment --- */

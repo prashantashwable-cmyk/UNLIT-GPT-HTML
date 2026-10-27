@@ -114,6 +114,20 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Nothing happens to a person without a human decision.
 * All targets, pay rates and spot-check rates are Owner-approved business rules (**Me → Business rules → Career ladder**).
 
+### Site safety
+* **SOS 🆘:** a red button on every screen for technicians, QC Inspectors, field workers and partner companies.
+  * Press and hold it for 1 second; a short tap only explains how.
+  * It saves an SOS with the phone's GPS and the job the person is on (the one open on screen, or the nearest job within 300 m), and stops work on that site.
+  * It shows big buttons: call the **company rescue number** (set by the Owner in **Business rules → Site safety**), then 112, and "send my location by SMS".
+  * The office and the person's partner company get an alarm task (siren, even in quiet hours) until the office confirms the person is safe.
+* **Daily safety check:** before installation work each day (India time), the team lead takes 4 photos: helmets and harness, scaffolding, barricade, earthing. They then confirm everyone wears safety gear.
+  * Work starts at once. The partner company is asked to look at the photos; the company, QC or the office can mark the day "not safe", which stops work until a new check is sent.
+  * Installation steps and fixes are refused without that day's check. The Owner can switch this off.
+* **Hazard stops work:** anyone on the job can report a hazard. A hazard, an injury or an SOS stops installation steps, fixes, inspection requests and service visits on that site until the office closes it.
+* **Incident form:** the report records the type (hazard, someone hurt, near miss, equipment damaged, other), what happened, what was done straight away, witnesses and photos. Closing needs the root cause, what was fixed and the office's decision; a stop-work incident also needs a photo of the place made safe.
+* **Safety-critical QC items:** final inspection checks earthing (with the measured value), brakes, overspeed governor and safety gear, and door interlocks one by one, each with its own photo. If any one fails, the whole inspection fails.
+* **Safety log:** each job has a day-by-day safety log (checks, reviews, hazards and how they were closed, steps done, critical QC results). It can be printed or saved as a PDF for the builder; customers see it without internal notes.
+
 ### Licensed Partner Companies (technicians work under a licensed company)
 * **Role:** a **Licensed Partner Company** 🏢 holds the lift licence. Technicians are members of a company. AIEC gives jobs to the company and pays the company; the company pays its technicians.
 * **Licence:**
@@ -196,6 +210,7 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 
 ## Honest limits of this version
 * **Offline, single file.** Roles are enforced by the app on every action and on every imported file. There is no company server.
+* **Safety:** the SOS reaches the office's phone only when files are shared, so the phone call and SMS are the real alert. Safety photos are checked by people, not by a computer. The daily check is confirmed by the team lead (an Owner decision); it does not replace the statutory inspection or a qualified engineer.
 * **Signed records (company data only, not practice).**
   * Each person's phone makes its own signing key at first login, and every new record is signed with it. Files are also signed by the phone that made them.
   * When a file is loaded, a record from a person with a known key must carry that person's valid signature. Changed or forged records are refused.

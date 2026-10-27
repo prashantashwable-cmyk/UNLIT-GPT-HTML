@@ -207,6 +207,8 @@ table.mx td:first-child{text-align:left}
 .illus{display:block;margin:0 auto 6px;max-width:220px;width:70%}
 @media (prefers-reduced-motion:no-preference){.btn,.tile,.task,.cl-item{transition:transform .08s}.btn:active,.tile:active,.task:active,.cl-item:active{transform:scale(.98)}}
 @media (max-width:360px){.tiles.three{grid-template-columns:1fr 1fr}.tile{min-height:92px}}
+.sos{position:fixed;right:12px;bottom:84px;z-index:40;width:66px;height:66px;border-radius:50%;border:3px solid #fff;background:#c62828;color:#fff;font-size:1.5rem;font-weight:800;box-shadow:0 3px 10px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;touch-action:none;user-select:none;-webkit-user-select:none}
+.sos small{font-size:.55rem;margin-top:2px}.sos.hold{transform:scale(1.15);background:#8e0000}
 @media print{.top,.nav,.foot,.tabs,.practice,.noprint{display:none!important}body{background:#fff}#app{max-width:none;padding:0}.doc{border:0;padding:0}}
 .scale-reset{position:fixed;left:max(10px,env(safe-area-inset-left,0px));bottom:calc(80px + env(safe-area-inset-bottom,0px));z-index:300;zoom:calc(1 / var(--z));background:var(--bad);color:#fff;border:3px solid #fff;border-radius:999px;font-size:17px;font-weight:800;padding:12px 18px;min-height:56px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
 .scale-out{font-size:2.4rem;font-weight:800;min-width:110px;text-align:center}
@@ -1146,6 +1148,93 @@ const L = {
   f_decision_note: ['Decision and reason', 'फ़ैसला और कारण', 'निर्णय आणि कारण'],
   report_security: ['Report security problem', 'सुरक्षा समस्या बताएँ', 'सुरक्षा समस्या कळवा'],
   s_incident_new: ['What happened? (theft, missing material, damaged seal, unsafe access)', 'क्या हुआ? (चोरी, सामान गायब, सील टूटा, असुरक्षित पहुँच)', 'काय झाले? (चोरी, साहित्य गहाळ, सील तुटलेला, असुरक्षित प्रवेश)'],
+  inc_hazard: ['Hazard on site — stop work', 'साइट पर खतरा — काम रोकें', 'साइटवर धोका — काम थांबवा'],
+  inc_hazard_d: ['Something could hurt someone: open shaft, loose scaffold, live wire, falling objects.', 'कुछ ऐसा जिससे चोट लग सकती है: खुला शाफ्ट, ढीला मचान, चालू तार, गिरती चीज़ें।', 'ज्यामुळे इजा होऊ शकते: उघडा शाफ्ट, सैल पाड, चालू तार, पडणाऱ्या वस्तू.'],
+  inc_injury: ['Someone was hurt', 'किसी को चोट लगी', 'कोणाला तरी इजा झाली'],
+  inc_injury_d: ['A person was injured on site. Give first aid and call for help first.', 'साइट पर कोई घायल हुआ। पहले प्राथमिक उपचार दें और मदद बुलाएँ।', 'साइटवर कोणी जखमी झाले. आधी प्रथमोपचार द्या आणि मदत बोलवा.'],
+  inc_near_miss: ['Near miss (nobody hurt)', 'बाल-बाल बचे (कोई घायल नहीं)', 'थोडक्यात वाचलो (कोणी जखमी नाही)'],
+  inc_near_miss_d: ['Something almost went wrong. Reporting it helps stop it next time.', 'कुछ गलत होते-होते बचा। बताने से अगली बार रोका जा सकता है।', 'काहीतरी चुकता-चुकता वाचले. कळवल्याने पुढच्या वेळी टाळता येते.'],
+  inc_equipment: ['Equipment damaged', 'उपकरण खराब', 'उपकरण खराब'],
+  inc_equipment_d: ['A tool, machine or lift part was damaged.', 'कोई औज़ार, मशीन या लिफ्ट का हिस्सा खराब हुआ।', 'एखादे हत्यार, मशीन किंवा लिफ्टचा भाग खराब झाला.'],
+  inc_other_d: ['Theft, security or anything else the office must know.', 'चोरी, सुरक्षा या कुछ और जो ऑफ़िस को पता होना चाहिए।', 'चोरी, सुरक्षा किंवा ऑफिसला कळायला हवे असे काहीही.'],
+  inc_sos: ['SOS — emergency', 'SOS — आपातकाल', 'SOS — आणीबाणी'],
+  inc_stops_work: ['This stops all work on this site until the office closes it.', 'इससे ऑफ़िस के बंद करने तक इस साइट का सारा काम रुक जाएगा।', 'ऑफिस बंद करेपर्यंत या साइटवरील सर्व काम थांबेल.'],
+  inc_closed: ['closed', 'बंद', 'बंद'],
+  err_work_stopped: ['Work is stopped on this site because of a hazard, injury or SOS. The office must close it first.', 'खतरे, चोट या SOS के कारण इस साइट पर काम रुका है। पहले ऑफ़िस इसे बंद करे।', 'धोका, इजा किंवा SOS मुळे या साइटवरील काम थांबले आहे. आधी ऑफिसने ते बंद करावे.'],
+  err_safety_check: ['Do today\'s safety check first (4 photos).', 'पहले आज की सुरक्षा जाँच करें (4 फ़ोटो)।', 'आधी आजची सुरक्षा तपासणी करा (4 फोटो).'],
+  err_safety_photos: ['Take all 4 safety photos.', 'सभी 4 सुरक्षा फ़ोटो लें।', 'सर्व 4 सुरक्षा फोटो घ्या.'],
+  err_safety_confirm: ['Confirm that everyone is wearing safety gear.', 'पुष्टि करें कि सबने सुरक्षा सामान पहना है।', 'सर्वांनी सुरक्षा साहित्य घातले आहे याची खात्री करा.'],
+  err_inc_close: ['Write the cause, what was fixed and your decision.', 'कारण, क्या ठीक किया और अपना फ़ैसला लिखें।', 'कारण, काय दुरुस्त केले आणि तुमचा निर्णय लिहा.'],
+  err_crit: ['Mark each safety-critical item pass or fail.', 'हर सुरक्षा-ज़रूरी चीज़ को पास या फ़ेल करें।', 'प्रत्येक सुरक्षा-महत्त्वाचा मुद्दा पास किंवा नापास करा.'],
+  err_crit_photos: ['Take one photo for each safety-critical item.', 'हर सुरक्षा-ज़रूरी चीज़ की एक फ़ोटो लें।', 'प्रत्येक सुरक्षा-महत्त्वाच्या मुद्द्याचा एक फोटो घ्या.'],
+  ev_SAFETY_CHECKED: ['Daily safety check', 'दैनिक सुरक्षा जाँच', 'रोजची सुरक्षा तपासणी'],
+  ev_SAFETY_REVIEWED: ['Safety check reviewed', 'सुरक्षा जाँच देखी', 'सुरक्षा तपासणी पाहिली'],
+  ev_SOS_RAISED: ['SOS raised', 'SOS दबाया', 'SOS दाबले'],
+  ev_SOS_CLOSED: ['SOS closed — person safe', 'SOS बंद — व्यक्ति सुरक्षित', 'SOS बंद — व्यक्ती सुरक्षित'],
+  rg_safety: ['Site safety', 'साइट सुरक्षा', 'साइट सुरक्षा'],
+  rg_safety_d: ['Daily safety check before installation work (1 = on) and the company rescue number the SOS button calls first.', 'इंस्टॉलेशन से पहले दैनिक सुरक्षा जाँच (1 = चालू) और कंपनी बचाव नंबर जिसे SOS बटन पहले कॉल करता है।', 'बसवण्याच्या कामाआधी रोजची सुरक्षा तपासणी (1 = चालू) आणि SOS बटण आधी ज्याला फोन करते तो कंपनी बचाव क्रमांक.'],
+  cfg_dailySafety: ['Daily safety check needed (1 = on)', 'दैनिक सुरक्षा जाँच ज़रूरी (1 = चालू)', 'रोजची सुरक्षा तपासणी आवश्यक (1 = चालू)'],
+  cfg_sosNumber: ['Company rescue number', 'कंपनी बचाव नंबर', 'कंपनी बचाव क्रमांक'],
+  tk_safety_check: ['Daily safety check', 'दैनिक सुरक्षा जाँच', 'रोजची सुरक्षा तपासणी'],
+  tk_review_safety: ['Look at today\'s safety photos', 'आज की सुरक्षा फ़ोटो देखें', 'आजचे सुरक्षा फोटो पहा'],
+  tk_sos: ['SOS — check the person is safe', 'SOS — जाँचें कि व्यक्ति सुरक्षित है', 'SOS — व्यक्ती सुरक्षित आहे का ते तपासा'],
+  work_stopped: ['Work stopped on this site', 'इस साइट पर काम रुका है', 'या साइटवरील काम थांबले आहे'],
+  report_hazard: ['Report hazard (stop work)', 'खतरा बताएँ (काम रोकें)', 'धोका कळवा (काम थांबवा)'],
+  report_incident: ['Report an incident', 'घटना बताएँ', 'घटना कळवा'],
+  safety_log: ['Safety log', 'सुरक्षा रजिस्टर', 'सुरक्षा नोंदवही'],
+  s_safety_log: ['Day-by-day safety record for this lift. Use Print to save a PDF for the builder.', 'इस लिफ्ट का दिन-ब-दिन सुरक्षा रिकॉर्ड। बिल्डर के लिए PDF सेव करने हेतु प्रिंट दबाएँ।', 'या लिफ्टची दिवसवार सुरक्षा नोंद. बिल्डरसाठी PDF जतन करायला प्रिंट दाबा.'],
+  safety_log_note: ['Photos are taken in the app with time and place. They are not checked by a computer; people check them.', 'फ़ोटो ऐप में समय और जगह के साथ ली जाती हैं। इन्हें कंप्यूटर नहीं, लोग जाँचते हैं।', 'फोटो ॲपमध्ये वेळ आणि ठिकाणासह घेतले जातात. ते संगणक नाही, माणसे तपासतात.'],
+  safety_done: ['Safety check done', 'सुरक्षा जाँच हुई', 'सुरक्षा तपासणी झाली'],
+  safety_rejected: ['Safety check not accepted — work stopped for the day', 'सुरक्षा जाँच स्वीकार नहीं — दिन का काम रुका', 'सुरक्षा तपासणी स्वीकारली नाही — दिवसाचे काम थांबले'],
+  safety_none: ['Work done without a safety check', 'सुरक्षा जाँच के बिना काम हुआ', 'सुरक्षा तपासणीशिवाय काम झाले'],
+  s_qcf_crit: ['Check each safety-critical item yourself and take a photo of each.', 'हर सुरक्षा-ज़रूरी चीज़ खुद जाँचें और हर एक की फ़ोटो लें।', 'प्रत्येक सुरक्षा-महत्त्वाचा मुद्दा स्वतः तपासा आणि प्रत्येकाचा फोटो घ्या.'],
+  qcc_note: ['If any of these fails, the whole inspection fails.', 'इनमें से कोई भी फ़ेल हुआ तो पूरी जाँच फ़ेल।', 'यापैकी कोणताही नापास झाला तर संपूर्ण तपासणी नापास.'],
+  qcc_earthing: ['Earthing', 'अर्थिंग', 'अर्थिंग'],
+  qcc_brakes: ['Brakes', 'ब्रेक', 'ब्रेक'],
+  qcc_governor: ['Overspeed governor and safety gear', 'ओवरस्पीड गवर्नर और सेफ़्टी गियर', 'ओव्हरस्पीड गव्हर्नर आणि सेफ्टी गियर'],
+  qcc_interlocks: ['Door interlocks', 'दरवाज़े के इंटरलॉक', 'दरवाजाचे इंटरलॉक'],
+  qcc_earth_val: ['Earth resistance measured (Ω)', 'मापा गया अर्थ रेज़िस्टेंस (Ω)', 'मोजलेला अर्थ रेझिस्टन्स (Ω)'],
+  s_inc_type: ['What happened? Choose one.', 'क्या हुआ? एक चुनें।', 'काय झाले? एक निवडा.'],
+  s_inc_photo: ['Take a photo if it is safe to do so.', 'सुरक्षित हो तो फ़ोटो लें।', 'सुरक्षित असेल तर फोटो घ्या.'],
+  f_inc_action: ['What was done straight away', 'तुरंत क्या किया गया', 'लगेच काय केले'],
+  f_inc_witness: ['Who saw it (names)', 'किसने देखा (नाम)', 'कोणी पाहिले (नावे)'],
+  f_inc_cause: ['Root cause', 'मूल कारण', 'मूळ कारण'],
+  f_inc_fix: ['What was fixed so it does not happen again', 'क्या ठीक किया ताकि दोबारा न हो', 'पुन्हा होऊ नये म्हणून काय दुरुस्त केले'],
+  ph_incident: ['Photo of the problem', 'समस्या की फ़ोटो', 'समस्येचा फोटो'],
+  ph_made_safe: ['Photo of the place made safe', 'सुरक्षित की गई जगह की फ़ोटो', 'सुरक्षित केलेल्या जागेचा फोटो'],
+  what_work_stopped: ['Work is stopped on this site. The office has been told.', 'इस साइट पर काम रोक दिया गया। ऑफ़िस को बताया गया।', 'या साइटवरील काम थांबवले. ऑफिसला कळवले.'],
+  safety_send: ['Start work safely', 'सुरक्षित काम शुरू करें', 'सुरक्षितपणे काम सुरू करा'],
+  s_safety: ['Before work today: take 4 photos — helmets and harness, scaffolding, barricade, earthing.', 'आज काम से पहले: 4 फ़ोटो लें — हेलमेट और हार्नेस, मचान, बैरिकेड, अर्थिंग।', 'आज काम सुरू करण्यापूर्वी: 4 फोटो घ्या — हेल्मेट आणि हार्नेस, पाड, बॅरिकेड, अर्थिंग.'],
+  safe_ppe: ['Everyone in helmet and harness', 'सबने हेलमेट और हार्नेस पहना', 'सर्वांनी हेल्मेट आणि हार्नेस घातले'],
+  safe_ppe_d: ['One photo of the team wearing helmets, shoes and harness.', 'हेलमेट, जूते और हार्नेस पहने टीम की एक फ़ोटो।', 'हेल्मेट, बूट आणि हार्नेस घातलेल्या टीमचा एक फोटो.'],
+  safe_scaffold: ['Scaffolding fixed and safe', 'मचान मज़बूत और सुरक्षित', 'पाड मजबूत आणि सुरक्षित'],
+  safe_scaffold_d: ['Planks tied, ladder fixed, nothing loose.', 'तख्ते बँधे, सीढ़ी पक्की, कुछ ढीला नहीं।', 'फळ्या बांधलेल्या, शिडी पक्की, काहीही सैल नाही.'],
+  safe_barricade: ['Barricade at every open door', 'हर खुले दरवाज़े पर बैरिकेड', 'प्रत्येक उघड्या दरवाजाला बॅरिकेड'],
+  safe_barricade_d: ['No one can fall into the shaft.', 'कोई शाफ्ट में गिर न सके।', 'कोणीही शाफ्टमध्ये पडू शकणार नाही.'],
+  safe_earthing: ['Power board earthed and covered', 'बिजली बोर्ड अर्थ और ढका', 'वीज बोर्ड अर्थ केलेला आणि झाकलेला'],
+  safe_earthing_d: ['Earth wire connected, no open wires.', 'अर्थ तार जुड़ा, कोई खुला तार नहीं।', 'अर्थ तार जोडलेली, उघड्या तारा नाहीत.'],
+  s_safety_ok: ['Confirm everyone on site is wearing safety gear.', 'पुष्टि करें कि साइट पर सबने सुरक्षा सामान पहना है।', 'साइटवरील सर्वांनी सुरक्षा साहित्य घातले आहे याची खात्री करा.'],
+  safety_confirm: ['Yes, the site is safe and everyone wears safety gear', 'हाँ, साइट सुरक्षित है और सबने सुरक्षा सामान पहना है', 'होय, साइट सुरक्षित आहे आणि सर्वांनी सुरक्षा साहित्य घातले आहे'],
+  safety_who_note: ['You, the team lead, confirm this. Your company and AIEC see the photos and can stop work if something is not safe.', 'टीम लीड के रूप में आप यह पुष्टि करते हैं। आपकी कंपनी और AIEC फ़ोटो देखते हैं और असुरक्षित होने पर काम रोक सकते हैं।', 'टीम लीड म्हणून तुम्ही याची खात्री करता. तुमची कंपनी आणि AIEC फोटो पाहतात आणि असुरक्षित असल्यास काम थांबवू शकतात.'],
+  what_safety_ok: ['Safety check saved. You can start today\'s work.', 'सुरक्षा जाँच सेव। आप आज का काम शुरू कर सकते हैं।', 'सुरक्षा तपासणी जतन. तुम्ही आजचे काम सुरू करू शकता.'],
+  s_safety_review: ['Look at the photos. Is the site safe to work today?', 'फ़ोटो देखें। क्या आज साइट पर काम करना सुरक्षित है?', 'फोटो पहा. आज साइटवर काम करणे सुरक्षित आहे का?'],
+  safety_ok_yes: ['Safe — work can go on', 'सुरक्षित — काम चल सकता है', 'सुरक्षित — काम चालू राहू शकते'],
+  safety_ok_no: ['Not safe — stop work today', 'असुरक्षित — आज काम रोकें', 'असुरक्षित — आज काम थांबवा'],
+  sos_safe: ['Person is safe', 'व्यक्ति सुरक्षित है', 'व्यक्ती सुरक्षित आहे'],
+  s_sos_close: ['{name} pressed SOS. Call them. Close this only when they are safe.', '{name} ने SOS दबाया। उन्हें कॉल करें। सुरक्षित होने पर ही इसे बंद करें।', '{name} यांनी SOS दाबले. त्यांना फोन करा. ते सुरक्षित असतील तेव्हाच हे बंद करा.'],
+  f_sos_note: ['What happened and who helped', 'क्या हुआ और किसने मदद की', 'काय झाले आणि कोणी मदत केली'],
+  sos_close_note: ['If work was stopped on the site, close that incident separately with the cause and fix.', 'अगर साइट पर काम रुका था, तो उस घटना को कारण और सुधार के साथ अलग से बंद करें।', 'साइटवरील काम थांबले असेल तर ती घटना कारण आणि दुरुस्तीसह वेगळी बंद करा.'],
+  what_sos_closed: ['SOS closed. The person is safe.', 'SOS बंद। व्यक्ति सुरक्षित है।', 'SOS बंद. व्यक्ती सुरक्षित आहे.'],
+  sos_title: ['SOS — emergency', 'SOS — आपातकाल', 'SOS — आणीबाणी'],
+  sos_said: ['SOS saved. Call for help now.', 'SOS सेव हुआ। अभी मदद के लिए कॉल करें।', 'SOS जतन झाले. आता मदतीसाठी फोन करा.'],
+  sos_saved: ['SOS saved with your location. Now call for help.', 'आपकी जगह के साथ SOS सेव हुआ। अब मदद के लिए कॉल करें।', 'तुमच्या ठिकाणासह SOS जतन झाले. आता मदतीसाठी फोन करा.'],
+  sos_call_company: ['Call company rescue', 'कंपनी बचाव को कॉल करें', 'कंपनी बचावला फोन करा'],
+  sos_call_112: ['Emergency', 'आपातकाल', 'आणीबाणी'],
+  sos_no_number: ['The Owner has not set a company rescue number yet (Business rules → Site safety). Call 112.', 'मालिक ने अभी कंपनी बचाव नंबर नहीं डाला (व्यवसाय नियम → साइट सुरक्षा)। 112 पर कॉल करें।', 'मालकाने अजून कंपनी बचाव क्रमांक टाकलेला नाही (व्यवसाय नियम → साइट सुरक्षा). 112 ला फोन करा.'],
+  sos_sms: ['Send my location by SMS', 'मेरी जगह SMS से भेजें', 'माझे ठिकाण SMS ने पाठवा'],
+  sos_limit: ['The office sees this SOS on their phone only after files are shared. Always call.', 'ऑफ़िस यह SOS अपने फ़ोन पर फ़ाइल शेयर होने के बाद ही देखता है। हमेशा कॉल करें।', 'फाइल शेअर झाल्यावरच ऑफिसला हे SOS त्यांच्या फोनवर दिसते. नेहमी फोन करा.'],
+  sos_hold: ['Press and hold the SOS button for 1 second.', 'SOS बटन 1 सेकंड दबाकर रखें।', 'SOS बटण 1 सेकंद दाबून ठेवा.'],
+  sos_hold_short: ['hold', 'दबाएँ', 'दाबा'],
   inc_seal_mismatch: ['Seal number does not match', 'सील नंबर मेल नहीं खाता', 'सील नंबर जुळत नाही'],
   inc_seal_broken: ['Seal broken', 'सील टूटा', 'सील तुटलेला'],
   inc_damage: ['Material damaged', 'सामान खराब', 'साहित्य खराब'],
@@ -2699,6 +2788,11 @@ const SOP = [['sitesafe', '🦺'], ['plumb', '📏'], ['brackets', '🔩'], ['ra
 const QC_SITE_CHECKS = ['plumb', 'pit_dry', 'power3', 'barricade', 'access'];
 const QC_SITE_MEAS = ['width', 'depth', 'pit', 'head'];
 const QC_FINAL_CHECKS = ['ride', 'level', 'doors', 'alarm', 'plate', 'safetydev', 'wiring'];
+/* safety: photos each work day, items QC must check one by one, kinds of incident, and the ones that stop all work on site */
+const SAFETY_ITEMS = [['ppe', '⛑️'], ['scaffold', '🪜'], ['barricade', '🚧'], ['earthing', '⚡']];
+const QC_CRITICAL = ['earthing', 'brakes', 'governor', 'interlocks'];
+const INC_TYPES = [['hazard', '⚠️'], ['injury', '🩹'], ['near_miss', '😮'], ['equipment', '🔧'], ['other', '🚨']];
+const STOP_TYPES = ['hazard', 'sos', 'injury'];
 const SLOTS = ['customer', 'tech', 'qc'];
 const BLOCK_REASONS = [['material', '📦', 'supplier'], ['site', '🏗️', 'sales'], ['power', '⚡', 'sales'], ['help', '🙋', 'admin'], ['safety', '⚠️', 'admin']];
 const AMC_CHECKS = ['ride', 'doors', 'alarm', 'brake', 'ropes', 'oil', 'pit'];
@@ -2721,7 +2815,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '',
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -2739,6 +2833,7 @@ const RULE_GROUPS = {
   market: ['postWarnDays', 'maxOpenApps', 'maxActiveJobs'],
   partner: ['partnerBigJobs', 'partnerBigStars', 'partnerMaxStrikes', 'licWarnDays'],
   security: ['pinDigits'],
+  safety: ['dailySafety', 'sosNumber'],
   ladderpay: ['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior', 'payCrewJob', 'payQcInspection', 'spotTrainee', 'spotTech', 'spotSenior'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
   amc: ['amcPrice']
@@ -2784,7 +2879,7 @@ function materialList(req) {
 /* ---------- state ---------- */
 function emptyState() {
   return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
-    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {} };
+    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [] };
 }
 let S = emptyState();
 let EVENTS = [];
@@ -2821,6 +2916,14 @@ const lastQuote = P => P.quotes[P.quotes.length - 1];
 const activePay = (P, purpose) => [...P.payments].reverse().find(p => p.purpose === purpose && p.status !== 'failed');
 const payConfirmed = (P, purpose) => { const p = activePay(P, purpose); return !!p && p.status === 'confirmed'; };
 const openIncidents = P => P.incidents.filter(i => i.open);
+/* safety: a hazard, SOS or injury stops all work on site until the office closes it; each work day starts with a safety check (India day) */
+const stopIncidents = P => P.incidents.filter(i => i.open && STOP_TYPES.includes(i.type));
+const safeDay = iso => coDay(new Date(iso || nowISO()).getTime());
+const safetyOn = (P, day) => { const x = (P.safety || {})[day]; return !!x && x.status !== 'rejected'; };
+function safetyWhyNot(P, at) {
+  if (stopIncidents(P).length) return 'err_work_stopped';
+  return S.config.dailySafety && !safetyOn(P, safeDay(at)) ? 'err_safety_check' : null;
+}
 const openCorr = (P, scope) => P.corrections.filter(c => c.scope === scope && !c.done);
 const sopNext = P => { let i = 0; while (i < SOP.length && P.sop[i]) i++; return i; };
 const prepDone = P => PREP_ITEMS.every(([k]) => P.prep[k]);
@@ -3269,6 +3372,7 @@ const RULES = {
       const d = ev.data;
       if (d.approve) return RULE_GROUPS[d.approve] ? null : 'err_fill';
       if (!(d.key in DEFAULT_CONFIG)) return 'err_fill';
+      if (d.key === 'sosNumber') return /^(\+?\d{3,15})?$/.test(String(d.value)) ? null : 'err_phone';
       return (typeof d.value === 'number' && isFinite(d.value) && d.value >= 0) ? null : 'err_number';
     }
   },
@@ -3410,6 +3514,7 @@ const RULES = {
       if (c.scope === 'site' && u.role === 'tech') return { k: 'err_role', v: { roles: rolesTxt(['customer', 'sales']) } };
       if (c.scope === 'install' && u.role !== 'tech') return { k: 'err_role', v: { roles: rolesTxt(['tech']) } };
       if (u.role === 'tech' && P.tech !== u.uid) return 'err_access';
+      if (c.scope === 'install') { const sw = safetyWhyNot(P, ev.t); if (sw) return sw; }
       return need(ev_(ev.data, 'photo').length >= 1, 'err_photos', { n: 1 });
     }
   },
@@ -3448,12 +3553,21 @@ const RULES = {
       return need(ev_(ev.data, 'photo').length >= 2, 'err_photos', { n: 2 });
     }
   },
-  INCIDENT_RAISED: { roles: ['owner', 'admin', 'sales', 'finance', 'qc', 'supplier', 'tech'], project: true, stages: OPEN_STAGES, check: (S, ev) => need((ev.data.note || '').trim(), 'err_fill') },
+  INCIDENT_RAISED: {
+    roles: ['owner', 'admin', 'sales', 'finance', 'qc', 'supplier', 'tech', 'partner'], project: true, check: (S, ev, u, P) => {
+      const ty = ev.data.type || 'other';
+      if (!INC_TYPES.some(x => x[0] === ty)) return 'err_choose';
+      if (!OPEN_STAGES.includes(P.stage) && !(P.stage === 'amc' && STOP_TYPES.includes(ty))) return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      return need((ev.data.note || '').trim(), 'err_fill');
+    }
+  },
   INCIDENT_RESOLVED: {
     roles: ['admin', 'owner'], project: true, check: (S, ev, u, P) => {
-      const i = P.incidents.find(x => x.id === ev.data.iid);
+      const i = P.incidents.find(x => x.id === ev.data.iid), d = ev.data;
       if (!i || !i.open) return 'err_already';
-      return need((ev.data.note || '').trim(), 'err_fill');
+      if (!(d.note || '').trim() || !(d.cause || '').trim() || !(d.fix || '').trim()) return 'err_inc_close';
+      /* a stop-work incident reopens work only with a photo of the place made safe */
+      return STOP_TYPES.includes(i.type) ? need(ev_(d).length >= 1, 'err_photos', { n: 1 }) : null;
     }
   },
   MATERIAL_HANDED: {
@@ -3473,9 +3587,33 @@ const RULES = {
       if (ev.data.step !== sopNext(P)) return 'err_order';
       if (P.blockers.some(b => b.open && b.step === ev.data.step)) return 'err_blocker';
       if (openIncidents(P).length) return 'err_incident';
+      const sw = safetyWhyNot(P, ev.t); if (sw) return sw;
       return need(ev_(ev.data).length >= 1, 'err_photos', { n: 1 });
     }
   },
+  /* the lead's safety check at the start of each work day: 4 photos (helmet/harness, scaffolding, barricade, earthing) */
+  SAFETY_CHECKED: {
+    roles: ['tech'], project: true, stages: ['installing', 'install_fix'], check: (S, ev, u, P) => {
+      if (P.tech !== u.uid) return 'err_access';
+      if (stopIncidents(P).length) return 'err_work_stopped';
+      if (safetyOn(P, safeDay(ev.t))) return 'err_already';
+      const labels = ev_(ev.data).map(e => e.label);
+      return need(SAFETY_ITEMS.every(([k]) => labels.includes('safe_' + k)), 'err_safety_photos');
+    }
+  },
+  /* the partner company, QC or office looks at the photos; "not safe" stops work for that day until a new check */
+  SAFETY_REVIEWED: {
+    roles: ['partner', 'qc', 'admin', 'owner'], project: true, check: (S, ev, u, P) => {
+      const x = (P.safety || {})[ev.data.day];
+      if (!x || x.status === 'rejected') return 'err_already';
+      if (u.role === 'partner' && P.partner !== u.uid) return 'err_access';
+      if (x.reviews.some(r => r.by === u.uid)) return 'err_already';
+      return ev.data.ok === false ? need((ev.data.note || '').trim(), 'err_reason') : need(ev.data.ok === true, 'err_choose');
+    }
+  },
+  /* SOS: saved at once; with a project it also stops work there */
+  SOS_RAISED: { roles: ROLES.filter(r => r !== 'customer'), check: (S, ev) => need(ev.data.sid && !S.sos[ev.data.sid], 'err_already') },
+  SOS_CLOSED: { roles: ['owner', 'admin'], check: (S, ev) => { const x = S.sos[ev.data.sid]; return !x || !x.open ? 'err_already' : need((ev.data.note || '').trim(), 'err_fill'); } },
   BLOCKER_RAISED: {
     roles: ['tech', 'qc', 'sales', 'supplier', 'admin', 'owner'], project: true, stages: OPEN_STAGES, check: (S, ev) =>
       need(BLOCK_REASONS.some(b => b[0] === ev.data.reason) && ['admin', 'sales', 'supplier', 'qc', 'tech'].includes(ev.data.role), 'err_choose')
@@ -3491,6 +3629,7 @@ const RULES = {
   INSPECTION_REQUESTED: {
     roles: ['tech'], project: true, stages: ['installing', 'install_fix'], check: (S, ev, u, P) => {
       if (P.tech !== u.uid) return 'err_access';
+      if (stopIncidents(P).length) return 'err_work_stopped';
       return P.stage === 'installing' ? need(sopNext(P) >= SOP.length, 'err_not_all') : need(!openCorr(P, 'install').length, 'err_not_all');
     }
   },
@@ -3503,7 +3642,10 @@ const RULES = {
       if (d.cause != null && !['work', 'material', 'site'].includes(d.cause)) return 'err_choose';
       if (ev_(d).length < 2) return { k: 'err_photos', v: { n: 2 } };
       if (!QC_FINAL_CHECKS.every(c => ['pass', 'fail'].includes((d.checks || {})[c]))) return 'err_checks';
-      const anyFail = QC_FINAL_CHECKS.some(c => d.checks[c] === 'fail');
+      if (!QC_CRITICAL.every(c => ['pass', 'fail'].includes((d.crit || {})[c]))) return 'err_crit';
+      const labels = ev_(d).map(e => e.label);
+      if (!QC_CRITICAL.every(c => labels.includes('crit_' + c))) return 'err_crit_photos';
+      const anyFail = QC_FINAL_CHECKS.some(c => d.checks[c] === 'fail') || QC_CRITICAL.some(c => d.crit[c] === 'fail');
       if (d.outcome === 'pass' && anyFail) return 'err_approve_fail';
       if (d.outcome === 'fail' && !(d.items || []).filter(x => (x.text || '').trim()).length) return 'err_items';
       return need(['pass', 'fail'].includes(d.outcome), 'err_choose');
@@ -3557,6 +3699,7 @@ const RULES = {
       if (!P.done || !(i >= 0 && i < P.done.amc.visits.length)) return 'err_fill';
       if (P.service[i]) return 'err_already';
       if (P.tech !== u.uid && (P.svcOwner || {})[i] !== u.uid) return 'err_access';
+      if (stopIncidents(P).length) return 'err_work_stopped';
       if (!AMC_CHECKS.every(k => ['pass', 'fail'].includes((ev.data.checks || {})[k]))) return 'err_checks';
       return need(ev_(ev.data).length >= 1, 'err_photos', { n: 1 });
     }
@@ -3989,8 +4132,19 @@ function apply(S, ev) {
       setStage(P, 'arrived', ev);
       break;
     }
-    case 'INCIDENT_RAISED': P.incidents.push({ id: 'I' + ev.id, type: d.type || 'other', t: ev.t, by: ev.by, note: d.note, open: true }); break;
-    case 'INCIDENT_RESOLVED': { const i = P.incidents.find(x => x.id === d.iid); i.open = false; i.resolution = { t: ev.t, by: ev.by, note: d.note }; break; }
+    case 'INCIDENT_RAISED': P.incidents.push({ id: 'I' + ev.id, type: d.type || 'other', t: ev.t, by: ev.by, note: d.note, witnesses: d.witnesses || '', action: d.action || '', ev: ev_(d).map(e => e.id), open: true }); break;
+    case 'INCIDENT_RESOLVED': { const i = P.incidents.find(x => x.id === d.iid); i.open = false; i.resolution = { t: ev.t, by: ev.by, note: d.note, cause: d.cause || '', fix: d.fix || '', ev: ev_(d).map(e => e.id) }; if (i.sid && S.sos[i.sid] && S.sos[i.sid].open) Object.assign(S.sos[i.sid], { open: false, closed: { t: ev.t, by: ev.by, note: d.note } }); break; }
+    case 'SAFETY_CHECKED': { const sf = P.safety = P.safety || {}, day = safeDay(ev.t), old = sf[day];
+      /* a check sent again after "not safe" keeps the earlier one in the record */
+      sf[day] = { by: ev.by, t: ev.t, ev: ev_(d).map(e => e.id), status: 'ok', reviews: [], prev: old ? (old.prev || []).concat(Object.assign({}, old, { prev: undefined })) : [] }; break; }
+    case 'SAFETY_REVIEWED': { const x = P.safety[d.day]; x.reviews.push({ by: ev.by, t: ev.t, ok: d.ok, note: d.note || '' }); if (d.ok === false) x.status = 'rejected'; break; }
+    case 'SOS_RAISED': {
+      S.sos[d.sid] = { id: d.sid, by: ev.by, t: ev.t, pid: ev.pid || null, gps: d.gps || null, note: d.note || '', open: true };
+      S.sosOrder.unshift(d.sid);
+      if (P) P.incidents.push({ id: 'I' + ev.id, type: 'sos', t: ev.t, by: ev.by, note: userName(ev.by) + (d.note ? ': ' + d.note : ''), sid: d.sid, ev: [], open: true });
+      break;
+    }
+    case 'SOS_CLOSED': Object.assign(S.sos[d.sid], { open: false, closed: { t: ev.t, by: ev.by, note: d.note } }); break;
     case 'MATERIAL_HANDED': {
       const sg = ev_(d, 'sign');
       P.mhand = { t: ev.t, by: ev.by, items: d.items, custName: d.custName, custSig: sg[0].id, techSig: sg[1].id, note: d.note || '' };
@@ -4006,7 +4160,7 @@ function apply(S, ev) {
     case 'QC_FINAL_RESULT': {
       const items = (d.items || []).filter(x => (x.text || '').trim()).map((x, i) => ({ id: ev.id + '-' + i, scope: 'install', text: x.text, due: x.due || '', role: 'tech', done: null, t: ev.t }));
       P.qc = ev.by;
-      P.qcFinal.push({ t: ev.t, by: ev.by, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), note: d.note || '', ev: ev_(d).map(e => e.id), stars: d.stars ? +d.stars : null, cause: d.outcome === 'fail' ? (d.cause || 'work') : null, lead: P.tech || null, crew: (P.crew || []).slice(), partner: P.partner || null });
+      P.qcFinal.push({ t: ev.t, by: ev.by, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), note: d.note || '', ev: ev_(d).map(e => e.id), stars: d.stars ? +d.stars : null, cause: d.outcome === 'fail' ? (d.cause || 'work') : null, crit: d.crit || null, earthVal: d.earthVal || '', lead: P.tech || null, crew: (P.crew || []).slice(), partner: P.partner || null });
       if (d.stars && P.tech) S.reviews.push({ id: ev.id, uid: P.tech, by: ev.by, src: 'qc', stars: +d.stars, pid: P.id, ref: 'qcf' + (P.qcFinal.length - 1), note: d.note || '', t: ev.t });
       P.corrections.push(...items);
       setStage(P, d.outcome === 'pass' ? 'final_pay' : 'install_fix', ev);
@@ -4170,9 +4324,9 @@ function needs(P) {
     case 'material_order': add('dispatch', ['supplier'], { uids: [P.supplier] }); break;
     case 'dispatched': add('arrival', ['tech', 'supplier'], { uids: [P.tech, P.supplier] }); break;
     case 'arrived': if (payNeed('arrival') && !openIncidents(P).length) add('material_handover', ['tech'], { uids: [P.tech] }); break;
-    case 'installing': add(sopNext(P) < SOP.length ? 'install' : 'request_inspection', ['tech'], { uids: [P.tech] }); break;
+    case 'installing': add(sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' ? 'safety_check' : sopNext(P) < SOP.length ? 'install' : 'request_inspection', ['tech'], { uids: [P.tech], urgent: sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' }); break;
     case 'qc_final': add('final_inspect', ['qc'], { uids: [P.qc] }); break;
-    case 'install_fix': add(openCorr(P, 'install').length ? 'fix_install' : 'request_inspection', ['tech'], { uids: [P.tech] }); break;
+    case 'install_fix': add(openCorr(P, 'install').length ? (safetyWhyNot(P) === 'err_safety_check' ? 'safety_check' : 'fix_install') : 'request_inspection', ['tech'], { uids: [P.tech] }); break;
     case 'final_pay': payNeed('final'); break;
     case 'handover':
       if (SLOTS.every(s => P.hand[s])) add('complete_handover', ['admin', 'owner', 'qc']);
@@ -4185,6 +4339,8 @@ function needs(P) {
   }
   for (const b of P.blockers) if (b.open) add('resolve_blocker', uniq([b.role, 'admin']), { bid: b.id, urgent: true, since: b.t });
   for (const i of P.incidents) if (i.open) add('resolve_incident', ['admin', 'owner'], { iid: i.id, urgent: true, since: i.t });
+  /* the partner company looks at today's safety photos of its job */
+  { const day = safeDay(), x = (P.safety || {})[day]; if (x && x.status === 'ok' && P.partner && !x.reviews.some(r => r.by === P.partner)) add('review_safety', ['partner'], { uids: [P.partner], day }); }
   if (P.followUp && SALES_TALK.includes(P.stage) && P.followUp.due <= todayStr()) add('follow_up', ['sales'], { uids: [P.sales], overdue: P.followUp.due < todayStr(), since: P.followUp.due + 'T12:00:00' });
   for (const m of P.chat) if (m.open && m.toRole) add('answer', m.kind === 'approval' ? ['owner', 'admin'] : uniq([m.toRole]), { mid: m.id, not: m.by, since: m.t, approval: m.kind === 'approval' });
   /* AMC: service visits due within 7 days, renewal within 30 days of the end date */
@@ -4217,6 +4373,8 @@ function needs(P) {
 /* work that is not tied to one project: second approvals, pay, training */
 function globalNeeds(u, all) {
   const out = [], add = (k, roles, o = {}) => { const n = splitOA(Object.assign({ k, roles, pid: null }, o)); out.push(n); return n; };
+  /* SOS: an alarm for the office and for the person's company until someone confirms they are safe */
+  for (const id of S.sosOrder) { const x = S.sos[id]; if (x.open) add('sos', ['admin', 'owner', 'partner'], { sid: id, uid: x.by, uids: [companyOf(x.by)], not: x.by, urgent: true, pid: null, sosPid: x.pid }); }
   const up = (n, from, id) => { const e = escFor(n, from, id); if (e) out.push(e); };
   for (const id of S.approvalOrder) { const r = S.approvals[id]; if (r.status === 'pending') add('second_approval', ['owner', 'admin'], { aid: id, not: r.by, urgent: true }); }
   if (all || ['owner', 'admin', 'finance', 'tech'].includes(u.role)) {
@@ -4467,7 +4625,9 @@ function render() {
   try { h = gated ? SCREENS.install() : (SCREENS[r.name] || SCREENS.home)(r.p || {}); }
   catch (e) { console.error(e); h = `<main class="wrap"><div class="err">⚠️ ${esc(e.message)}</div><button class="btn btn-p" data-a="nav" data-v="home">🏠 ${t('nav_home')}</button></main>`; }
   const banner = App.mode === 'practice' ? `<div class="practice">🎓 ${t('practice_banner')}</div>` : '';
-  $('#app').innerHTML = banner + h;
+  const sos = App.me && SOS_ROLES.includes(App.me.role) && !App.locked && !gated && S.org ? `<button id="sosBtn" class="sos noprint" aria-label="SOS">🆘<small>${t('sos_hold_short')}</small></button>` : '';
+  $('#app').innerHTML = banner + h + sos;
+  if (sos) bindSos();
   document.documentElement.lang = LANG;
   loadImages($('#app'));
   const after = AFTER[r.name]; if (after) after(r.p || {});
@@ -4782,7 +4942,7 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
@@ -4790,7 +4950,7 @@ function taskCard(n, i) {
   const sub = n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
   if (!P || n.k === 'job_open') {
     const info = n.k === 'job_open' && S.posts[n.postId] ? jobTitle(S.posts[n.postId]) + ' · 📍 ' + S.posts[n.postId].card.area : n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
-      : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
+      : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'sos' ? userName(n.uid) + ' · ' + fmtD(S.sos[n.sid].t, true) + (n.sosPid ? ' · ' + n.sosPid : '') : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
     return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
@@ -5544,40 +5704,128 @@ WIZ.resolve = {
   async finish(c) { const r = await run([['BLOCKER_RESOLVED', W.pid, { bid: W.opts.bid, note: c.note }]]); return r.ok ? doneRes(W.pid, 'what_blocker_solved') : r; }
 };
 WIZ.incident = {
-  title: 'tk_resolve_incident', save: 'mark_solved', saveIcon: '✅', init: () => ({ note: '' }),
+  title: 'tk_resolve_incident', save: 'mark_solved', saveIcon: '✅', init: () => ({ note: '', cause: '', fix: '', ph: [] }),
   steps: [{
     id: 'look', icon: '🚨', say: 's_incident',
     body: (c, P) => { const i = P.incidents.find(x => x.id === W.opts.iid); return `<div class="err">🚨 ${t('inc_' + i.type)}<br><span style="font-weight:500">${esc(i.note)}</span><br><small>${userTag(i.by)} · ${fmtD(i.t, true)}</small></div>
       ${P.arrival ? `<div class="card">${kv([['f_seal', esc(P.dispatch && P.dispatch.seal)], ['f_seal_seen', esc(P.arrival.sealSeen)], ['q_seal_ok', t(P.arrival.sealIntact === 'yes' ? 'yes' : 'seal_broken')], ['cond', t('cond_' + P.arrival.condition)]])}${evGrid(P.arrival.ev)}</div>` : ''}
-      <div class="note">🧾 ${t('incident_steps')}</div>` + inp('note', 'f_decision_note', { area: true, mic: true }); },
-    check: c => c.note.trim() ? null : 'err_fill'
+      ${i.action ? `<div class="note">🧯 ${t('f_inc_action')}: ${esc(i.action)}</div>` : ''}${i.witnesses ? `<div class="note">👀 ${t('f_inc_witness')}: ${esc(i.witnesses)}</div>` : ''}${evGrid(i.ev || [])}
+      <div class="note">🧾 ${t('incident_steps')}</div>` + inp('cause', 'f_inc_cause', { area: true, mic: true }) + inp('fix', 'f_inc_fix', { area: true, mic: true }) + inp('note', 'f_decision_note', { area: true, mic: true })
+      + (STOP_TYPES.includes(i.type) ? photoSlot('ph', 'ph_made_safe', 1, { tag: 'made_safe' }) : ''); },
+    check: (c, P) => { const i = P.incidents.find(x => x.id === W.opts.iid); return !c.note.trim() || !c.cause.trim() || !c.fix.trim() ? 'err_inc_close' : STOP_TYPES.includes(i.type) && !c.ph.length ? { k: 'err_photos', v: { n: 1 } } : null; }
   }],
-  async finish(c) { const r = await run([['INCIDENT_RESOLVED', W.pid, { iid: W.opts.iid, note: c.note }]]); return r.ok ? doneRes(W.pid, 'what_incident_solved') : r; }
+  async finish(c) { const r = await run([['INCIDENT_RESOLVED', W.pid, { iid: W.opts.iid, note: c.note.trim(), cause: c.cause.trim(), fix: c.fix.trim(), ev: c.ph }]]); return r.ok ? doneRes(W.pid, 'what_incident_solved') : r; }
 };
 WIZ.incidentNew = {
-  title: 'report_security', save: 'send_problem', saveIcon: '🚨', init: () => ({ note: '' }),
-  steps: [{ id: 'why', icon: '🚨', say: 's_incident_new', body: () => inp('note', 'f_problem', { area: true, mic: true }), check: c => c.note.trim() ? null : 'err_fill' }],
-  async finish(c) { const r = await run([['INCIDENT_RAISED', W.pid, { type: 'other', note: c.note }]]); return r.ok ? doneRes(W.pid, 'what_incident_raised') : r; }
+  title: 'report_incident', save: 'send_problem', saveIcon: '🚨', init: (P, o) => ({ type: o.type || '', note: '', witnesses: '', action: '', ph: [] }),
+  steps: [
+    { id: 'type', icon: '🚨', say: 's_inc_type', body: c => tiles('type', INC_TYPES.map(([k, i]) => [k, i, 'inc_' + k, 'inc_' + k + '_d']), 'one') + (STOP_TYPES.includes(c.type) ? `<div class="err" style="font-size:1.1rem">🛑 ${t('inc_stops_work')}</div>` : ''), check: c => c.type ? null : 'err_choose' },
+    { id: 'what', icon: '📝', say: 's_incident_new', body: () => inp('note', 'f_problem', { area: true, mic: true }) + inp('action', 'f_inc_action', { area: true, mic: true, opt: true }) + inp('witnesses', 'f_inc_witness', { mic: true, opt: true }), check: c => c.note.trim() ? null : 'err_fill' },
+    { id: 'ph', icon: '📷', say: 's_inc_photo', body: () => photoSlot('ph', 'ph_incident', 0, { video: true, tag: 'incident' }) }
+  ],
+  async finish(c) { const r = await run([['INCIDENT_RAISED', W.pid, { type: c.type, note: c.note.trim(), witnesses: c.witnesses.trim(), action: c.action.trim(), ev: c.ph }]]); return r.ok ? doneRes(W.pid, STOP_TYPES.includes(c.type) ? 'what_work_stopped' : 'what_incident_raised') : r; }
 };
+/* ---------- daily safety check, review, SOS ---------- */
+WIZ.safety = {
+  title: 'tk_safety_check', save: 'safety_send', saveIcon: '🦺', init: () => Object.assign({ ok: false }, Object.fromEntries(SAFETY_ITEMS.map(([k]) => ['s_' + k, []]))),
+  steps: [
+    { id: 'ph', icon: '🦺', say: 's_safety', body: () => SAFETY_ITEMS.map(([k, i]) => photoSlot('s_' + k, 'safe_' + k, 1, { tag: 'safe_' + k, hint: 'safe_' + k + '_d' })).join(''), check: c => SAFETY_ITEMS.every(([k]) => (c['s_' + k] || []).length) ? null : 'err_safety_photos' },
+    { id: 'ok', icon: '✅', say: 's_safety_ok', body: () => toggleTile('ok', '⛑️', 'safety_confirm') + `<div class="note">${t('safety_who_note')}</div>`, check: c => c.ok ? null : 'err_safety_confirm' }
+  ],
+  async finish(c, P) { const r = await run([['SAFETY_CHECKED', P.id, { ev: [].concat(...SAFETY_ITEMS.map(([k]) => c['s_' + k].map(e => Object.assign({}, e, { label: 'safe_' + k })))) }]]); return r.ok ? doneRes(P.id, 'what_safety_ok') : r; }
+};
+WIZ.safetyReview = {
+  title: 'tk_review_safety', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
+  steps: [{ id: 'r', icon: '🦺', say: 's_safety_review', body: (c, P) => { const x = P.safety[W.opts.day]; return `<div class="card"><b>${fmtD(W.opts.day)}</b> · ${userTag(x.by)}${evGrid(x.ev)}</div>` + tiles('ok', [['yes', '✅', 'safety_ok_yes'], ['no', '🛑', 'safety_ok_no']], 'one') + (c.ok === 'no' ? inp('note', 'f_reason', { area: true, mic: true }) : ''); },
+    check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }],
+  async finish(c, P) { const r = await run([['SAFETY_REVIEWED', P.id, { day: W.opts.day, ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('safetylog', { pid: P.id }, { replace: true }) } : r; }
+};
+WIZ.sosClose = {
+  title: 'tk_sos', save: 'sos_safe', saveIcon: '✅', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 's', icon: '🆘', say: () => t('s_sos_close', { name: userName((S.sos[W.opts.sid] || {}).by) }), body: () => { const x = S.sos[W.opts.sid]; return `<div class="err">🆘 ${esc(userName(x.by))} · ${fmtD(x.t, true)}${x.pid ? ' · ' + esc(x.pid) : ''}${x.gps ? `<br><a href="${mapsLink(x.gps)}" target="_blank" rel="noopener">📍 ${t('open_map')}</a>` : ''}</div>`
+      + (sosNumbers().length ? `<div class="row wrapw">${S.users[x.by] && ((S.workers[x.by] || {}).profile || {}).phone ? `<a class="btn btn-p" href="tel:+91${S.workers[x.by].profile.phone}">📞 ${esc(userName(x.by))}</a>` : ''}</div>` : '') + inp('note', 'f_sos_note', { area: true, mic: true }) + `<p class="small muted">${t('sos_close_note')}</p>`; },
+    check: c => c.note.trim() ? null : 'err_fill' }],
+  async finish(c) { const r = await run([['SOS_CLOSED', null, { sid: W.opts.sid, note: c.note.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_sos_closed'), next: t('next_none') } : r; }
+};
+const sosNumbers = () => [S.config.sosNumber, '112'].filter(Boolean);
+const SOS_ROLES = ['tech', 'qc', 'field', 'partner'];
+/* the project the person is working on: the one open on screen, or the nearest one they can see within 300 m */
+function sosProject(gps) {
+  const r = App.route, cur = r && r.p && r.p.pid && S.projects[r.p.pid];
+  if (cur && canSee(App.me, cur)) return cur.id;
+  if (!gps) return null;
+  const near = visibleProjects(App.me).filter(P => P.site.gps && P.stage !== 'lost').map(P => [P.id, distKm(gps, P.site.gps)]).filter(x => x[1] != null && x[1] <= 0.3).sort((a, b) => a[1] - b[1])[0];
+  return near ? near[0] : null;
+}
+async function sosNow() {
+  const gps = await Promise.race([Geo.get(5000), new Promise(r => setTimeout(() => r(Geo.last || null), 5000))]).catch(() => null);
+  const g = gps ? { lat: gps.lat, lng: gps.lng, acc: gps.acc } : null, sid = 'SOS-' + rid(6), pid = sosProject(g);
+  await perform('SOS_RAISED', pid, Object.assign({ sid }, g ? { gps: g } : {}), { quiet: true });
+  const msg = encodeURIComponent('SOS ' + userName(App.me.uid) + ' (' + S.org.name + ')' + (pid ? ' ' + pid : '') + (g ? ' ' + mapsLink(g) : ''));
+  const nums = sosNumbers();
+  Voice.say(t('sos_said'));
+  sheet(`<h2>🆘 ${t('sos_title')}</h2><div class="err" style="font-size:1.1rem">${t('sos_saved')}</div>
+    ${S.config.sosNumber ? `<a class="btn btn-bad btn-big" href="tel:${esc(S.config.sosNumber)}">📞 ${t('sos_call_company')} · ${esc(S.config.sosNumber)}</a>` : `<div class="warnbox">${t('sos_no_number')}</div>`}
+    <a class="btn btn-bad btn-big" style="margin-top:8px" href="tel:112">📞 112 · ${t('sos_call_112')}</a>
+    <a class="btn btn-big" style="margin-top:8px" href="sms:${esc(nums[0])}?body=${msg}">💬 ${t('sos_sms')}</a>
+    <p class="small muted">${g ? '📍 ' + g.lat + ', ' + g.lng : t('gps_fail')}${pid ? ' · ' + esc(pid) + ' · 🛑 ' + t('work_stopped') : ''}</p><p class="small muted">${t('sos_limit')}</p>`);
+  if (pid || App.route.name === 'home') render();
+}
+/* hold the red button for one second; a short tap only explains */
+function bindSos() {
+  const b = $('#sosBtn'); if (!b) return;
+  let tm = null;
+  const stop = () => { if (tm) { clearTimeout(tm); tm = null; b.classList.remove('hold'); } };
+  b.addEventListener('pointerdown', e => { e.preventDefault(); b.classList.add('hold'); tm = setTimeout(() => { tm = null; b.classList.remove('hold'); if (navigator.vibrate) navigator.vibrate([200, 100, 200]); sosNow(); }, 1000); });
+  ['pointerup', 'pointerleave', 'pointercancel'].forEach(x => b.addEventListener(x, () => { if (tm) { stop(); toast(t('sos_hold')); } }));
+}
+/* daily safety log for one job: what was checked, what went wrong and what was done, day by day (printable for the builder) */
+SCREENS.safetylog = ({ pid }) => {
+  const P = S.projects[pid], u = App.me;
+  if (!P || !canSee(u, P)) return SCREENS.home();
+  const cust = u.role === 'customer', day = iso => safeDay(iso), days = {};
+  const at = d => (days[d] = days[d] || { sop: [], inc: [], closed: [] });
+  Object.keys(P.safety || {}).forEach(d => at(d));
+  Object.entries(P.sop).forEach(([n, x]) => at(day(x.t)).sop.push(+n));
+  P.incidents.forEach(i => { at(day(i.t)).inc.push(i); if (i.resolution) at(day(i.resolution.t)).closed.push(i); });
+  P.qcFinal.forEach(x => { at(day(x.t)).qc = x; });
+  App.pageSay = t('s_safety_log');
+  const canReview = d => { const x = (P.safety || {})[d]; return x && x.status === 'ok' && allowed('SAFETY_REVIEWED', P) && (u.role !== 'partner' || P.partner === u.uid) && !x.reviews.some(r => r.by === u.uid); };
+  const cards = Object.keys(days).sort().reverse().map(d => { const x = (P.safety || {})[d], y = days[d];
+    return `<div class="card"><h3>📅 ${fmtD(d)}</h3>
+      ${x ? (x.prev || []).map(o => `<div class="err">🦺 ${t('safety_rejected')} · ${userTag(o.by)} · ${fmtD(o.t, true)}${o.reviews.filter(r => !r.ok).map(r => `<br><span class="small">🛑 ${userTag(r.by)}${cust ? '' : ' · ' + esc(r.note)}</span>`).join('')}</div>`).join('') : ''}
+      ${x ? `<div class="${x.status === 'rejected' ? 'err' : 'okbox'}">🦺 ${t(x.status === 'rejected' ? 'safety_rejected' : 'safety_done')} · ${userTag(x.by)} · ${fmtD(x.t, true)}</div>${evGrid(x.ev)}${x.reviews.map(r => `<div class="small">${r.ok ? '✅' : '🛑'} ${userTag(r.by)} · ${fmtD(r.t, true)}${r.note && !cust ? ' · ' + esc(r.note) : ''}</div>`).join('')}${canReview(d) ? `<button class="btn btn-sm noprint" style="margin-top:6px" data-a="wizOpen" data-v="safetyReview|${P.id}|day|${d}">🦺 ${t('tk_review_safety')}</button>` : ''}`
+        : y.sop.length ? `<div class="warnbox">🦺 ${t('safety_none')}</div>` : ''}
+      ${y.sop.length ? `<div class="small">🔧 ${y.sop.map(n => (n + 1) + '. ' + t('sop_' + SOP[n][0])).join(', ')}</div>` : ''}
+      ${y.inc.map(i => `<div class="err">${(INC_TYPES.find(z => z[0] === i.type) || ['', '🆘'])[1]} ${t('inc_' + i.type)} · ${fmtD(i.t, true)}${cust ? '' : '<br>' + esc(i.note) + (i.action ? '<br>🧯 ' + esc(i.action) : '')}</div>`).join('')}
+      ${y.closed.map(i => `<div class="okbox">✅ ${t('inc_' + i.type)} · ${t('inc_closed')}${cust ? '' : '<br>' + t('f_inc_cause') + ': ' + esc(i.resolution.cause || '') + '<br>' + t('f_inc_fix') + ': ' + esc(i.resolution.fix || '')}</div>${evGrid(i.resolution.ev || [])}`).join('')}
+      ${y.qc ? `<div class="${y.qc.outcome === 'pass' ? 'okbox' : 'err'}">🔍 ${t('qo_' + y.qc.outcome)}${y.qc.crit ? '<br>' + QC_CRITICAL.map(k => (y.qc.crit[k] === 'pass' ? '✅ ' : '❌ ') + t('qcc_' + k)).join(' · ') + (y.qc.earthVal ? ' · ⚡ ' + esc(y.qc.earthVal) : '') : ''}</div>` : ''}</div>`; });
+  return topBar(t('safety_log'), { back: true }) + `<main class="wrap"><div class="row noprint" style="margin-bottom:10px"><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button></div>
+    <div class="card"><b>${esc(S.org.name)}</b> · ${esc(P.id)} · ${esc(projTitle(P))}<br><span class="small muted">📍 ${esc(areaOf(P))}${P.partner ? ' · 🏢 ' + esc(userName(P.partner)) : ''}${P.tech ? ' · 🔧 ' + esc(userName(P.tech)) : ''}</span>${stopIncidents(P).length ? `<div class="err" style="margin-top:6px">🛑 ${t('work_stopped')}</div>` : ''}</div>
+    ${cards.join('') || `<div class="card center">${t('nothing_here')}</div>`}<p class="small muted">${t('safety_log_note')}</p></main>` + nav('projects');
+};
+
 /* ---------- QC final inspection ---------- */
 WIZ.qcfinal = {
   title: 'tk_final_inspect', save: 'save_result', saveIcon: '🔍',
-  init: () => ({ checks: {}, ph: [], outcome: '', items: [], note: '', cause: '', stars: '' }),
+  init: () => ({ checks: {}, crit: {}, critPh: Object.fromEntries(QC_CRITICAL.map(k => [k, []])), earthVal: '', ph: [], outcome: '', items: [], note: '', cause: '', stars: '' }),
   steps: [
     { id: 'info', icon: '📋', say: 's_qcf_info', body: (c, P) => `<div class="card"><h3>${t('sop_evidence')}</h3>${SOP.map(([k, i], n) => `<div class="list-item"><span>${P.sop[n] ? '✅' : '⬜'} ${i}</span><span class="grow">${t('sop_' + k)}</span></div>${P.sop[n] ? evGrid(P.sop[n].ev) : ''}`).join('')}</div><div class="warnbox">📜 ${t('checklist_disclaimer')}</div>` },
     { id: 'checks', icon: '✔️', say: 's_qcf_checks', body: () => `<div class="card">${QC_FINAL_CHECKS.map(k => ynRow('checks.' + k, 'qcf_' + k, ['pass', 'fail'])).join('')}</div>`, check: c => QC_FINAL_CHECKS.every(k => c.checks[k]) ? null : 'err_checks' },
+    { id: 'crit', icon: '🛡️', say: 's_qcf_crit', body: () => `<div class="warnbox">🛡️ ${t('qcc_note')}</div>` + QC_CRITICAL.map(k => `<div class="card"><h3>${t('qcc_' + k)}</h3>${ynRow('crit.' + k, 'qcc_' + k, ['pass', 'fail'])}${k === 'earthing' ? inp('earthVal', 'qcc_earth_val', { opt: true }) : ''}${photoSlot('critPh.' + k, 'qcc_' + k, 1, { tag: 'crit_' + k })}</div>`).join(''),
+      check: c => !QC_CRITICAL.every(k => c.crit[k]) ? 'err_crit' : !QC_CRITICAL.every(k => (c.critPh[k] || []).length) ? 'err_crit_photos' : null },
     { id: 'photos', icon: '📷', say: 's_qc_photos', body: () => photoSlot('ph', 'ph_final_qc', 2, { video: true, tag: 'qc_final' }), check: c => c.ph.length >= 2 ? null : { k: 'err_photos', v: { n: 2 } } },
     {
       id: 'out', icon: '⚖️', say: 's_qcf_out',
-      enter: c => { if (!c.items.length) { c.items = QC_FINAL_CHECKS.filter(k => c.checks[k] === 'fail').map(k => ({ text: t('qcf_' + k) + ' — ' + t('fix_needed'), due: addDays(3) })); } if (QC_FINAL_CHECKS.some(k => c.checks[k] === 'fail')) c.outcome = 'fail'; saveDraft(); render(); },
-      body: c => QC_FINAL_CHECKS.some(k => c.checks[k] === 'fail') ? `<div class="err">❌ ${t('qcf_must_fail')}</div>` : tiles('outcome', [['pass', '✅', 'qo_pass'], ['fail', '❌', 'qo_fail']], 'one'),
+      enter: c => { if (!c.items.length) { c.items = QC_FINAL_CHECKS.filter(k => c.checks[k] === 'fail').map(k => ({ text: t('qcf_' + k) + ' — ' + t('fix_needed'), due: addDays(3) })).concat(QC_CRITICAL.filter(k => c.crit[k] === 'fail').map(k => ({ text: '🛡️ ' + t('qcc_' + k) + ' — ' + t('fix_needed'), due: addDays(2) }))); } if (QC_FINAL_CHECKS.some(k => c.checks[k] === 'fail') || QC_CRITICAL.some(k => c.crit[k] === 'fail')) c.outcome = 'fail'; saveDraft(); render(); },
+      body: c => QC_FINAL_CHECKS.some(k => c.checks[k] === 'fail') || QC_CRITICAL.some(k => c.crit[k] === 'fail') ? `<div class="err">❌ ${t('qcf_must_fail')}</div>` : tiles('outcome', [['pass', '✅', 'qo_pass'], ['fail', '❌', 'qo_fail']], 'one'),
       check: c => c.outcome ? null : 'err_choose'
     },
     { id: 'cause', icon: '🔎', say: 's_qcf_cause', skip: c => c.outcome !== 'fail', body: () => tiles('cause', [['work', '🔧', 'cause_work', 'cause_work_d'], ['material', '📦', 'cause_material', 'cause_material_d'], ['site', '🏗️', 'cause_site', 'cause_site_d']], 'one'), check: c => c.cause ? null : 'err_choose' },
     { id: 'items', icon: '🛠️', say: 's_qcf_items', skip: c => c.outcome !== 'fail', body: () => itemsEditor('items'), check: c => c.items.some(x => (x.text || '').trim()) ? null : 'err_items' },
     { id: 'stars', icon: '⭐', say: (c, P) => t('s_qcf_stars', { name: userName(P.tech) }), body: (c, P) => `<div class="card center"><b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)}</div>` + starPicker('stars') + `<p class="small muted">${t('qcf_stars_note')}</p>`, check: c => c.stars ? null : 'err_stars' }
   ],
-  async finish(c, P) { const r = await run([['QC_FINAL_RESULT', P.id, { checks: c.checks, outcome: c.outcome, items: c.outcome === 'fail' ? c.items : [], note: c.note, ev: c.ph, stars: +c.stars, cause: c.outcome === 'fail' ? c.cause : undefined }]]); return r.ok ? doneRes(P.id, 'what_qcf_' + c.outcome) : r; }
+  async finish(c, P) { const r = await run([['QC_FINAL_RESULT', P.id, { checks: c.checks, crit: c.crit, earthVal: (c.earthVal || '').trim(), outcome: c.outcome, items: c.outcome === 'fail' ? c.items : [], note: c.note, ev: c.ph.concat(...QC_CRITICAL.map(k => (c.critPh[k] || []).map(e => Object.assign({}, e, { label: 'crit_' + k })))), stars: +c.stars, cause: c.outcome === 'fail' ? c.cause : undefined }]]); return r.ok ? doneRes(P.id, 'what_qcf_' + c.outcome) : r; }
 };
 /* ---------- Handover signatures ---------- */
 WIZ.hsign = {
@@ -5931,7 +6179,10 @@ function projActions(P) {
   add('TEAM_SET', 'team', '👷', 'team_set', P.partner && (u.role !== 'partner' || P.partner === u.uid) && stageIdx(P.stage) >= stageIdx('signed') && !passedQc(P) && !['lost', 'amc'].includes(P.stage));
   add('USER_ADDED', 'custAccess', '🔑', 'give_cust_access', !P.customer && stageIdx(P.stage) >= stageIdx('won') && P.stage !== 'lost' && (u.role !== 'sales' || P.sales === u.uid));
   add('BLOCKER_RAISED', 'blocker', '⛔', 'report_problem');
-  add('INCIDENT_RAISED', 'incidentNew', '🚨', 'report_security');
+  if (allowed('INCIDENT_RAISED', P) && (OPEN_STAGES.includes(P.stage) || P.stage === 'amc') && ['tech', 'partner', 'qc', 'admin', 'owner'].includes(u.role)) a.push(`<button class="btn btn-bad" data-a="wizOpen" data-v="incidentNew|${P.id}|type|hazard">⚠️ ${t('report_hazard')}</button>`);
+  add('INCIDENT_RAISED', 'incidentNew', '🚨', 'report_incident', OPEN_STAGES.includes(P.stage));
+  if (u.role === 'tech' && P.tech === u.uid && allowed('SAFETY_CHECKED', P) && safetyWhyNot(P) === 'err_safety_check') a.push(`<button class="btn btn-p" data-a="wizOpen" data-v="safety|${P.id}">🦺 ${t('tk_safety_check')}</button>`);
+  if (stageIdx(P.stage) >= stageIdx('arrived') && P.stage !== 'lost') a.push(`<button class="btn" data-a="safetyLog" data-v="${P.id}">🦺 ${t('safety_log')}</button>`);
   add('MSG_LOGGED', 'wa', '💬', 'wa_send', !!P.contact.phone && (u.role !== 'sales' || P.sales === u.uid));
   add('TICKET_OPENED', 'ticket', '🎫', 'ticket_new', P.stage !== 'lost' && u.role !== 'customer');
   add('DEAL_LOST', 'lost', '🙁', 'mark_lost', u.role !== 'sales' || P.sales === u.uid);
@@ -5946,7 +6197,8 @@ function projInfo(P) {
   const team = [['r_sales', P.sales], ['r_qc', P.qc], ['r_supplier', P.supplier], ['r_partner', P.partner], ['team_lead', P.tech], ['r_customer', P.customer], ['added_by', P.createdBy]].map(([l, id]) => [l, id ? userTag(id) + (l === 'team_lead' && gradeOf(id) ? '<br>' + gradeChip(id) + ' ' + starChip(id) : '') : '']);
   if ((P.crew || []).length) team.splice(4, 0, ['crew', P.crew.map(x => userTag(x) + ' ' + gradeChip(x) + (allowed('CREW_REMOVED', P) && (App.me.role !== 'tech' || P.tech === App.me.uid) ? ` <button class="btn btn-sm" data-a="crewRemove" data-v="${x}">✕</button>` : '')).join('<br>')]);
   const open = [...P.blockers.filter(b => b.open).map(b => `<div class="warnbox">⛔ ${t('br_' + b.reason)} → ${t('r_' + b.role)}${b.note ? ': ' + esc(b.note) : ''}</div>`),
-    ...P.incidents.filter(i => i.open).map(i => `<div class="err">🚨 ${t('inc_' + i.type)}: ${esc(i.note)}</div>`)].join('');
+    ...(stopIncidents(P).length ? [`<div class="err" style="font-size:1.15rem">🛑 ${t('work_stopped')}</div>`] : []),
+    ...P.incidents.filter(i => i.open).map(i => `<div class="err">${(INC_TYPES.find(x => x[0] === i.type) || ['', '🚨'])[1]} ${t('inc_' + i.type)}: ${esc(i.note)}</div>`)].join('');
   const sopN = Object.keys(P.sop).length;
   const target = P.mhand ? daysSince(P.mhand.t) : null;
   const cancelled = P.lost && P.lost.reason === 'cancelled' ? `<div class="err">⛔ ${t('cancelled_on', { d: fmtD(P.lost.t) })}: ${esc(P.lost.note)}${P.payments.some(x => x.status === 'confirmed') ? '<br>🏦 ' + t('refund_note') : ''}</div>` : '';
@@ -6090,7 +6342,7 @@ SCREENS.cl = ({ pid, kind }) => {
     const nx = sopNext(P), done = Object.keys(P.sop).length;
     App.pageSay = nx < SOP.length ? t('s_sop_next', { n: nx + 1, step: t('sop_' + SOP[nx][0]) }) : t('s_sop_all');
     body = `<div class="stepline"><span>${done} / ${SOP.length} ${t('done_word')}</span>${P.mhand ? `<span class="chip ${daysSince(P.mhand.t) > S.config.installDays ? 'c-bad' : 'c-info'}">🎯 ${t('target_days', { n: daysSince(P.mhand.t), m: S.config.installDays })}</span>` : ''}</div><div class="prog"><i style="width:${done / SOP.length * 100}%"></i></div>
-      <div class="note">📜 ${t('sop_disclaimer')}</div>` +
+      <div class="note">📜 ${t('sop_disclaimer')}</div>` + (nx < SOP.length && safetyWhyNot(P) ? `<div class="err">${safetyWhyNot(P) === 'err_work_stopped' ? '🛑 ' + t('work_stopped') : `🦺 ${t('err_safety_check')}${P.tech === u.uid ? `<br><button class="btn btn-p" style="margin-top:8px" data-a="wizOpen" data-v="safety|${P.id}">🦺 ${t('tk_safety_check')}</button>` : ''}`}</div>` : '') +
       SOP.map(([k, i], n) => { const blk = P.blockers.find(b => b.open && b.step === n); const st = P.sop[n] ? 'done' : n === nx ? 'cur' : 'lock';
         return `<button class="cl-item ${st}" data-a="clItem" data-v="sop|${n}" ${st === 'lock' ? 'aria-disabled="true"' : ''}><span class="st">${P.sop[n] ? '✅' : blk ? '⛔' : n === nx ? '▶️' : '🔒'}</span><span class="grow"><b>${n + 1}. ${i} ${t('sop_' + k)}</b>${blk ? `<br><span class="small" style="color:var(--bad)">⛔ ${t('br_' + blk.reason)} → ${t('r_' + blk.role)}</span>` : ''}</span></button>`; }).join('');
     if (nx >= SOP.length && P.stage === 'installing' && allowed('INSPECTION_REQUESTED', P)) action = `<button class="btn btn-ok btn-big" data-a="clAction" data-v="INSPECTION_REQUESTED">🔍 ${t('tk_request_inspection')}</button>`;
@@ -6368,7 +6620,7 @@ SCREENS.rules = () => {
   App.pageSay = t('s_rules');
   return topBar(t('business_rules'), { back: true }) + `<main class="wrap"><div class="note">📏 ${t('s_rules')}</div>${Object.entries(RULE_GROUPS).map(([gk, keys]) => `<div class="card"><div class="row"><h3 class="grow" style="margin:0">${t('rg_' + gk)}</h3>${ruleChip(gk)}</div>
     <p class="small muted">${t('rg_' + gk + '_d')}</p>${S.config.approved[gk] ? `<p class="small">✅ ${userName(S.config.approved[gk].by)} · ${fmtD(S.config.approved[gk].t, true)}</p>` : ''}
-    ${keys.map(k => own ? `<div class="field"><label for="${fid('cfg.' + k)}"><b>${t('cfg_' + k)}</b></label><input class="in" type="number" min="0" inputmode="decimal" id="${fid('cfg.' + k)}" data-f="cfg.${k}" value="${S.config[k]}"></div>` : `<div class="list-item"><span class="grow">${t('cfg_' + k)}</span><b>${S.config[k]}</b></div>`).join('')}
+    ${keys.map(k => own ? `<div class="field"><label for="${fid('cfg.' + k)}"><b>${t('cfg_' + k)}</b></label><input class="in" ${k === 'sosNumber' ? 'type="tel" inputmode="tel"' : 'type="number" min="0" inputmode="decimal"'} id="${fid('cfg.' + k)}" data-f="cfg.${k}" value="${S.config[k]}"></div>` : `<div class="list-item"><span class="grow">${t('cfg_' + k)}</span><b>${S.config[k]}</b></div>`).join('')}
     ${own ? `<div class="row"><button class="btn" data-a="cfgSave" data-v="${gk}">💾 ${t('save')}</button>${S.config.approved[gk] ? '' : `<button class="btn btn-ok" data-a="cfgApprove" data-v="${gk}">✅ ${t('approve_rule')}</button>`}</div>` : ''}</div>`).join('')}
     ${!own ? `<p class="small muted">${t('rules_owner_only')}</p>` : ''}</main>` + nav('me');
 };
@@ -6816,7 +7068,7 @@ const Notify = {
   set() { return Object.assign({ sound: true, vol: 2, vibrate: true, speak: false, phone: true, quiet: false, qFrom: '21:00', qTo: '07:00' }, App.set.notify || {}); },
   save(k, v) { App.set.notify = Object.assign(this.set(), { [k]: v }); saveSettings(); },
   sig: n => [n.k, n.pid || '', n.ref || '', n.level || 0, n.tid || n.bid || n.iid || n.mid || n.payId || n.aid || n.uid || '', n.week || '', n.module || '', n.slot || '', n.visit == null ? '' : n.visit].join('|'),
-  kind: n => (n.level || 0) >= 3 ? 'alarm' : n.urgent || n.overdue || (n.level || 0) >= 2 ? 'urgent' : 'task',
+  kind: n => n.k === 'sos' || (n.level || 0) >= 3 ? 'alarm' : n.urgent || n.overdue || (n.level || 0) >= 2 ? 'urgent' : 'task',
   quietNow() { const s = this.set(); if (!s.quiet) return false; const hm = new Date().toTimeString().slice(0, 5); return s.qFrom > s.qTo ? (hm >= s.qFrom || hm < s.qTo) : (hm >= s.qFrom && hm < s.qTo); },
   /* the phone only allows sound after the person has touched the screen once */
   unlock() { if (!this.ctx && navigator.userActivation && !navigator.userActivation.hasBeenActive) return; try { const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; this.ctx = this.ctx || new AC(); if (this.ctx.state === 'suspended') this.ctx.resume(); } catch (e) { /* no audio */ } },
@@ -7376,7 +7628,7 @@ function openTask(n) {
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid),
-    install: () => go('cl', { pid, kind: 'sop' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
+    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
     sign_handover: () => go('cl', { pid, kind: 'handover' }), complete_handover: () => go('cl', { pid, kind: 'handover' }),
     resolve_blocker: () => wiz('resolve', pid, { bid: n.bid }), resolve_incident: () => wiz('incident', pid, { iid: n.iid }),
@@ -7654,6 +7906,7 @@ const ACT = {
   nuRole: v => { App.form.nuRole = v; userAddSheet(); },
   nuGrade: v => { App.form.nuGrade = v; userAddSheet(); },
   nuCo: v => { App.form.nuCo = v; userAddSheet(); },
+  safetyLog: v => go('safetylog', { pid: v }),
   memberAdd: () => { Object.assign(App.form, { nuName: '', nuRole: 'tech', nuGrade: 'trainee', nuPin: newPin() }); App.sheetRe = userAddSheet; userAddSheet(); },
   memberOk: async v => { const r = await perform('MEMBER_APPROVED', null, { uid: v }); if (r.ok) { toast(t('member_approved')); render(); } },
   userCo: async v => { const [uid, co] = v.split('|'); const r = await perform('USER_UPDATED', null, { uid, company: co || null }); if (r.ok) { render(); userSheet(uid); toast(t('saved_item')); } },
@@ -7680,7 +7933,7 @@ const ACT = {
     let n = 0;
     for (const k of RULE_GROUPS[gk]) {
       const raw = App.form['cfg.' + k]; if (raw == null || raw === '') continue;
-      const val = +raw; if (val === S.config[k]) continue;
+      const val = k === 'sosNumber' ? String(raw).replace(/[^\d+]/g, '') : +raw; if (val === S.config[k]) continue;
       const r = await perform('CONFIG_SET', null, { key: k, value: val }); if (!r.ok) return; n++;
     }
     toast(n ? t('rules_saved', { n }) : t('no_change')); render();
@@ -7795,11 +8048,13 @@ async function seedPractice() {
   const U = { owner: 'POWNER', admin: 'PADMIN', field: 'PFIELD', field2: 'PFIELD2', sales: 'PSALES', finance: 'PFIN', qc: 'PQC', supplier: 'PSUP', partner: 'PPART1', partner2: 'PPART2', tech: 'PTECH', senior: 'PSENIOR', helper: 'PHELP', trainee: 'PTRAIN', customer: 'PCUST' };
   const T0 = Date.now() - 30 * 864e5; let tick = 0, cur = new Date(T0).toISOString();
   const at = () => { cur = new Date(Math.min(T0 + (tick++) * 2.4 * 3600e3, Date.now() - 3600e3 + tick * 1000)).toISOString(); return cur; };
+  const nextAt = () => new Date(Math.min(T0 + tick * 2.4 * 3600e3, Date.now() - 3600e3 + (tick + 1) * 1000)).toISOString();
   const SP = async (type, pid, data, who) => { const r = await perform(type, pid, data, { as: U[who] || who, t: at(), noSave: true, quiet: true }); if (!r.ok) console.warn('practice seed', type, pid, errText(r.err)); return r; };
   const media = {}, hash = {};
   for (const k of ['building', 'shaft', 'context', 'site', 'work']) { const d = samplePhoto(k); media[k] = await putMedia(d); hash[k] = await sha256(d); }
   { const d = sampleSign(); media.sign = await putMedia(d); hash.sign = await sha256(d); }
   const ph = (k, gps) => ({ id: 'E' + rid(10), m: media[k], kind: k === 'sign' ? 'sign' : 'photo', label: k, t: cur, gps: gps || null, hash: hash[k], dev: 'practice', q: {} });
+  const safePh = P => SAFETY_ITEMS.map(([k]) => Object.assign(ph('work', P.site.gps), { label: 'safe_' + k }));
   await SP('ORG_CREATED', null, { orgId: 'ORG-PRACTICE', name: 'AIEC (Practice)' }, 'owner');
   const people = [['owner', 'Anil Deshmukh', 'owner'], ['admin', 'Sunita Patil', 'admin'], ['field', 'Ramesh Jadhav', 'field'], ['field2', 'Sachin More', 'field'], ['sales', 'Priya Kulkarni', 'sales'],
     ['finance', 'Meena Joshi', 'finance'], ['qc', 'Vijay Shinde', 'qc'], ['supplier', 'Kaveri Lift Supply', 'supplier'], ['partner', 'Shree Lift Works', 'partner'], ['partner2', 'Om Elevator Services', 'partner'], ['tech', 'Raju Pawar', 'tech']];
@@ -7829,8 +8084,8 @@ async function seedPractice() {
     material_order: P => ['supplier', 'DISPATCHED', { packed: P.materials.map(m => m.k), seal: 'SEAL-' + P.id.slice(-3), vehicle: 'MH12 AB 1234', ev: [ph('work'), ph('work')] }],
     dispatched: P => [P.tech, 'ARRIVED', { gps: P.site.gps, sealSeen: 'SEAL-' + P.id.slice(-3), sealIntact: 'yes', condition: 'good', ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
     arrived: P => payConfirmed(P, 'arrival') ? [P.tech, 'MATERIAL_HANDED', { items: P.materials.map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, ev: [ph('sign'), ph('sign')] }] : payStep(P, 'arrival'),
-    installing: P => sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
-    qc_final: P => ['qc', 'QC_FINAL_RESULT', { checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
+    installing: P => sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }] : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
+    qc_final: P => ['qc', 'QC_FINAL_RESULT', { checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), crit: Object.fromEntries(QC_CRITICAL.map(k => [k, 'pass'])), earthVal: '0.8 Ω', outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)].concat(QC_CRITICAL.map(k => Object.assign(ph('work', P.site.gps), { label: 'crit_' + k }))) }],
     final_pay: P => payStep(P, 'final'),
     handover: P => { const s = SLOTS.find(x => !P.hand[x]); return s ? [s === 'qc' ? 'qc' : P.tech, 'HANDOVER_SIGNED', { slot: s, consent: true, signer: s === 'customer' ? P.contact.name : userName(U[s]), ev: [ph('sign')] }] : ['admin', 'HANDOVER_COMPLETED', {}]; }
   };
@@ -7870,7 +8125,10 @@ async function seedPractice() {
   for (const s of ['tech', 'qc']) await SP('HANDOVER_SIGNED', hand, { slot: s, consent: true, signer: userName(U[s]), ev: [ph('sign')] }, s);
   await SP('USER_ADDED', null, { uid: U.customer, name: 'Mrs. Kale', role: 'customer', projectId: hand, salt, pin }, 'admin');
   await SP('CHAT_POSTED', hand, { text: 'When will the lift start working for us?', kind: 'question', toRole: 'sales' }, 'customer');
-  for (let i = 0; i < 5; i++) await SP('SOP_STEP_DONE', hosp, { step: sopNext(S.projects[hosp]), ev: [ph('work', S.projects[hosp].site.gps)] }, S.projects[hosp].tech);
+  for (let i = 0; i < 5; i++) {
+    if (!safetyOn(S.projects[hosp], safeDay(nextAt()))) await SP('SAFETY_CHECKED', hosp, { ev: safePh(S.projects[hosp]) }, S.projects[hosp].tech);
+    await SP('SOP_STEP_DONE', hosp, { step: sopNext(S.projects[hosp]), ev: [ph('work', S.projects[hosp].site.gps)] }, S.projects[hosp].tech);
+  }
   await SP('BLOCKER_RAISED', hosp, { step: null, reason: 'help', role: 'admin', note: 'Need extra scaffolding for top floor' }, S.projects[hosp].tech);
   await SP('DEAL_LOST', vishal, { reason: 'price', note: 'Chose another company' }, 'sales');
   await SP('LEAD_RETURNED', katraj, { reason: 'photo', note: 'Shaft photo not clear. Please take again.' }, 'sales');
