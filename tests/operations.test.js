@@ -77,19 +77,19 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await page.evaluate(() => !isAuthorised('PTECH') || S.workers.PTECH.training.safety), 'technician without safety training is not authorised');
   await act('CONFIG_SET', null, { key: 'requireTraining', value: 0 }, 'POWNER');
 
-  /* 12. technician weekly pay */
-  const wk = await page.evaluate(() => { const now = weekKey(nowISO()); const w = weeksFor('PTECH').find(x => x.week < now && x.total > 0); return w && { week: w.week, total: w.total }; });
-  assert(wk && wk.total > 0, 'technician earnings are worked out from saved steps (' + (wk && wk.total) + ')');
+  /* 12. weekly pay: AIEC pays the technicians' company (Licensed Partner Company) */
+  const wk = await page.evaluate(() => { const now = weekKey(nowISO()); const w = weeksFor('PPART1').find(x => x.week < now && x.total > 0); return w && { week: w.week, total: w.total }; });
+  assert(wk && wk.total > 0, 'the company bill is worked out from its technicians\' saved steps (' + (wk && wk.total) + ')');
   const nowWk = await page.evaluate(() => weekKey(nowISO()));
-  assert((await act('PAY_APPROVED', null, { uid: 'PTECH', week: nowWk, computed: 0, adjust: 0, amount: 0 }, 'POWNER')).err === 'err_week_open', 'the running week cannot be approved');
-  assert(!(await act('PAY_APPROVED', null, { uid: 'PTECH', week: wk.week, computed: 1, adjust: 0, amount: 999999 }, 'POWNER')).ok, 'approved amount must match the worked-out amount');
-  assert((await act('PAY_APPROVED', null, { uid: 'PTECH', week: wk.week, computed: wk.total, adjust: 0, amount: wk.total }, 'POWNER')).ok, 'owner approves the week');
-  assert(!(await act('PAY_PAID', null, { uid: 'PTECH', week: wk.week, ref: 'B1' }, 'POWNER')).ok, 'only Finance can pay');
-  assert((await act('PAY_PAID', null, { uid: 'PTECH', week: wk.week, ref: 'NEFT-123' }, 'PFIN')).ok, 'Finance records the payment with a bank reference');
-  assert((await act('PAY_DISPUTED', null, { uid: 'PTECH', week: wk.week, reason: 'One step missing' }, 'PTECH')).ok, 'technician can ask a question about pay');
+  assert((await act('PAY_APPROVED', null, { uid: 'PPART1', week: nowWk, computed: 0, adjust: 0, amount: 0 }, 'POWNER')).err === 'err_week_open', 'the running week cannot be approved');
+  assert(!(await act('PAY_APPROVED', null, { uid: 'PPART1', week: wk.week, computed: 1, adjust: 0, amount: 999999 }, 'POWNER')).ok, 'approved amount must match the worked-out amount');
+  assert((await act('PAY_APPROVED', null, { uid: 'PPART1', week: wk.week, computed: wk.total, adjust: 0, amount: wk.total }, 'POWNER')).ok, 'owner approves the week');
+  assert(!(await act('PAY_PAID', null, { uid: 'PPART1', week: wk.week, ref: 'B1' }, 'POWNER')).ok, 'only Finance can pay');
+  assert((await act('PAY_PAID', null, { uid: 'PPART1', week: wk.week, ref: 'NEFT-123' }, 'PFIN')).ok, 'Finance records the payment with a bank reference');
+  assert((await act('PAY_DISPUTED', null, { uid: 'PPART1', week: wk.week, reason: 'One step missing' }, 'PPART1')).ok, 'the company can ask a question about its bill');
   await page.evaluate(() => loginAs(S.users.PADMIN));
   assert(await page.evaluate(() => myTasks(App.me).some(n => n.k === 'pay_dispute')), 'admin gets the pay question task');
-  assert((await act('PAY_DISPUTE_ANSWERED', null, { uid: 'PTECH', week: wk.week, note: 'Checked: all steps counted' }, 'PADMIN')).ok, 'admin answers it');
+  assert((await act('PAY_DISPUTE_ANSWERED', null, { uid: 'PPART1', week: wk.week, note: 'Checked: all steps counted' }, 'PADMIN')).ok, 'admin answers it');
 
   /* 14. helper and 16. address */
   const hs = await page.evaluate(() => helperSearch('how do I record a payment').map(x => x.title));
@@ -103,7 +103,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(dupe, 'a photo already used elsewhere is recognised');
 
   /* every new screen renders in all three languages for the right roles, with no missing words */
-  const screens = [['PADMIN', 'templates', {}], ['PADMIN', 'workers', {}], ['PADMIN', 'worker', { uid: 'PTECH' }], ['PTECH', 'earn', { uid: 'PTECH' }], ['PFIN', 'earn', { uid: 'PTECH' }],
+  const screens = [['PADMIN', 'templates', {}], ['PADMIN', 'workers', {}], ['PADMIN', 'worker', { uid: 'PTECH' }], ['PTECH', 'earn', { uid: 'PTECH' }], ['PFIN', 'earn', { uid: 'PPART1' }], ['PPART1', 'earn', { uid: 'PPART1' }],
     ['PFIELD', 'training', {}], ['PSALES', 'leaders', {}], ['PTECH', 'helper', {}], ['PTECH', 'project', { pid: 'AIEC-P001' }], ['PSALES', 'project', { pid: 'AIEC-P007' }], ['POWNER', 'rules', {}], ['PADMIN', 'home', {}], ['PTECH', 'home', {}], ['PFIN', 'home', {}], ['PADMIN', 'me', {}]];
   for (const lang of ['en', 'hi', 'mr']) for (const [uid, name, p] of screens) {
     await page.evaluate(([lang, uid, name, p]) => { LANG = lang; App.set.lang = lang; loginAs(S.users[uid]); go(name, p); }, [lang, uid, name, p]); await page.waitForTimeout(60);

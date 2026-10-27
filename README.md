@@ -66,7 +66,7 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 | 👥 Two-person approval | When switched on (Business rules → Control), risky actions need a second Owner/Admin: approving a quote below the margin floor, reversing a payment, closing a security problem, reopening a lost deal, making someone Owner/Admin, and changing technician pay. The person who asks cannot approve it. |
 | 🪪 Automatic onboarding | When a person is added, onboarding starts by itself. Their checklist has the profile (phone, area, skills), the documents the office must check (ID and address, plus safety certificate for technicians and QC) and the training for their role. The person sees their steps and a progress bar on the home screen; the office gets a "Check new worker's documents" task. If a person is not ready after 7 days, it goes to the Admin; after 14 days, to the Owner. When every step is done they show as ✅ Ready for work. Directory with search and filters (role, availability, not complete). The app stores only checked / not checked for documents, never the document. |
 | 🎓 Training | 5 short modules (app, safety, leads, installation, customers). Each has 3 spoken lessons and 3 picture-answer questions, and needs 2 of 3 right to pass. Optional rule: only technicians who have finished onboarding can be given a job. |
-| 💰 Technician weekly pay | Pay is worked out from saved work: each installation step with proof, a bonus when the final inspection passes first time, and each service visit (amounts are a business rule). Owner/Admin approves each finished week (any change needs a reason). Finance pays and records the bank reference; the approver cannot pay. The technician sees every line and can ask a question. |
+| 💰 Weekly pay | Pay is worked out from saved work: each installation step with proof, a bonus when the final inspection passes first time, and each service visit (amounts are a business rule). Technicians' work is billed to their partner company; QC Inspectors are paid directly. Owner/Admin approves each finished week (any change needs a reason). Finance pays and records the bank reference; the approver cannot pay. The company (or QC Inspector) sees every line and can ask a question. |
 | 🏆 Good work board | Monthly points for quality work checked by another person: valid leads, deals won, inspections passed first time, installations within target days, and service visits. There are no points for speed alone. |
 | 🔔 Notifications with sound | New work and escalations ring as soon as they reach a person: a **ding** for a new task, **beeps** for urgent or Admin-level work, and a **siren** (with a shaking banner) when work reaches the Owner. The phone also vibrates, can speak the task aloud, and shows a banner with an **Open** button. If the app is in the background, a phone notification appears instead, and tapping it opens the app. The icon shows a count of waiting tasks. Each piece of work rings only once per level, and your own actions never ring. **Me → Notifications and sound** has settings for sound, volume, vibration, speaking, phone notifications, quiet hours (Owner-level escalations still ring) and test buttons. The sounds are made by the app itself, so they work offline. |
 | 🙋 Ask for help | Type or speak a question. The app searches AIEC's own training, installation steps, site-preparation notes and common questions on the phone and reads the answer aloud. It is not an AI chatbot and works offline. |
@@ -114,28 +114,35 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Nothing happens to a person without a human decision.
 * All targets, pay rates and spot-check rates are Owner-approved business rules (**Me → Business rules → Career ladder**).
 
-### Job marketplace (workers apply by level, the office confirms)
-* **What can be posted:** a team lead for an installation, crew places (1–3), AMC service visits, repairs (tickets), and QC site or final inspections. The office posts from **Project → Post job to marketplace**, and a Senior lead can post crew places for their own job. A released job without a team lead creates a "Find a team lead" task.
-* **Who sees what:** only workers whose level allows the job.
-  * Team lead: Technicians for small and normal jobs, Seniors for big jobs.
-  * Crew: Trainee, Helper or Technician.
-  * Service and repairs: Technician or Senior.
-  * Inspections: QC Inspectors who did not work on the job.
-  * Nobody with 3+ strikes can lead, and nobody can take more jobs at once than the set limit.
-  * Jobs above a worker's level appear locked, with the reason and a link to their ladder.
+### Licensed Partner Companies (technicians work under a licensed company)
+* **Role:** a **Licensed Partner Company** 🏢 holds the lift licence. Technicians are members of a company. AIEC gives jobs to the company and pays the company; the company pays its technicians.
+* **Licence:**
+  * The company (or the office) types the licence number, holder, issuing office and the date it is valid until. The office checks the licence copy (document "Electrical / lift licence").
+  * Jobs are given only while the licence is saved, checked and not expired. The company and the office are reminded 60 days before it ends; when the company changes the number or date, the office must check the copy again.
+* **Technicians:**
+  * The company adds its own technicians (starting as Trainee or Helper). An AIEC Admin approves each one ("Approve a company's technician"); the usual onboarding (documents, training) still applies.
+  * The office can add a technician directly into a company, or move one to another company. A technician without a company gets a "Link technician to a company" task for the office.
+  * A technician can be placed on work only when they are an approved member of a company with a valid licence. Only people of the company holding a job can be its lead or crew.
+* **Ratings:** each technician keeps their own level, stars and strikes. The company has its own record: finished jobs, fair stars from its technicians' reviews, strikes earned on its jobs, and trust. A company needs a record (set by the Owner) before it can take big jobs.
+* **Weekly bill:** the company is paid its technicians' work done while they were with it, at each person's level rate. The Owner/Admin approves the bill, Finance pays it, and the company can question it. A technician sees the value of their work, marked "paid to my company". When a technician leaves, earlier work stays on the old company's bill.
+
+### Job marketplace (companies apply with their team, the office confirms)
+* **What can be posted:** a team lead for an installation, AMC service visits, repairs (tickets), and QC site or final inspections. The office posts from **Project → Post job to marketplace**. There are no crew posts: the company brings its own crew. A released job without a team lead creates a "Find a team lead" task.
+* **Who applies:**
+  * Installation, service and repair jobs: licensed partner companies. Each application names who the company sends: a lead whose level allows the job (Technician for small and normal jobs, Senior for big jobs) and crew from the same company.
+  * Inspections: AIEC QC Inspectors who did not work on the job — never the installing company.
+  * A company cannot apply when its licence is not valid, when it has too many strikes, when it has no approved technician for the job, or when all its leads already have the most jobs allowed. Locked jobs show the reason.
 * **The job card:**
-  * shows the area (locality and city), job size, floors, start date, target days, distance from the worker's phone, and approximate pay at their level;
-  * never shows the building name, exact address or customer phone. Those appear only after the worker is given the job.
-* **Applying:** "I want this job", with an optional note and location. A worker can withdraw an application, and there is a limit on how many open applications one person can hold.
-* **Choosing:** applicants are listed best match first, by fair stars and number of reviews, then trust, distance, and fewer jobs in hand. The best one is marked "Suggested", and the office gives the job with one tap.
+  * shows the area (locality and city), job size, floors, start date, target days, distance, and what AIEC pays the company;
+  * never shows the building name, exact address or customer phone. Those appear only after the company is given the job.
+* **Applying:** the company chooses its team, adds an optional note and location. It can withdraw, and there is a limit on open applications.
+* **Choosing:** companies are listed best match first, by the company's fair stars and number of reviews, then trust, distance, and jobs in hand. Each application shows the team. The best one is marked "Suggested".
 * **What giving the job does:**
-  * Team lead: the person becomes the job's lead.
-  * Crew place: they join the crew.
-  * Service visit: they can do that visit.
-  * Repair: the ticket goes to them.
+  * Team lead: the company holds the job; its lead and crew go on it. The company can later change its own team ("Change the team").
+  * Service visit or repair: the company's named technician gets it.
   * Inspection: that QC Inspector gets the inspection task.
-  * The worker hears "You got the job!", and the post closes when every place is filled.
-* **Notifications and escalation:** eligible workers hear a "new job" ding. Applications waiting for a choice, and posts nobody applies to, go to the office and up the escalation ladder.
+  * The company and its team hear "You got the job!", and the post closes.
+* **Notifications and escalation:** eligible companies hear a "new job" ding. Applications waiting for a choice, and posts nobody applies to, go to the office and up the escalation ladder.
 * **Business rules (Owner-approved):** the limits are set under **Me → Business rules → Job marketplace**.
 
 ### Owner and Admin have separate to-do lists
@@ -229,4 +236,4 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
   npx playwright install chromium
   npm test
   ```
-  The suite covers: practice data for all 10 sample users; a full real-mode lead-to-handover run through the UI with 9 roles, including rejected quotation, QC corrections, a blocker, a failed final inspection and three verified payments; permission refusals and forged imports; phone-to-phone file sharing; WhatsApp templates, AMC visits and tickets, automatic onboarding, the escalation ladder and office actions, the job marketplace (eligibility by level, area-only cards, applying, ranking, giving each kind of job), the career ladder (levels, job eligibility, stars and review counts, trust, promotion, pay by level, spot checks, strikes and appeals, celebrations), notifications with sound (new work, escalation siren, quiet hours, background phone notifications), two-person approval, training, weekly pay, helper, address lookup and reused photos; camera/location denied; and every screen at 320 px with Extra-large text in Marathi and Hindi (no overflow, no missing words, no errors).
+  The suite covers: practice data for all 15 sample users; a full real-mode lead-to-handover run through the UI with 10 roles, including rejected quotation, QC corrections, a blocker, a failed final inspection and three verified payments; permission refusals and forged imports; phone-to-phone file sharing; WhatsApp templates, AMC visits and tickets, automatic onboarding, the escalation ladder and office actions, licensed partner companies (licence, member approval, team on a job, company bill and record), the job marketplace (company applications with a team, area-only cards, applying, ranking, giving each kind of job), the career ladder (levels, job eligibility, stars and review counts, trust, promotion, pay by level, spot checks, strikes and appeals, celebrations), notifications with sound (new work, escalation siren, quiet hours, background phone notifications), two-person approval, training, weekly pay, helper, address lookup and reused photos; camera/location denied; and every screen at 320 px with Extra-large text in Marathi and Hindi (no overflow, no missing words, no errors).

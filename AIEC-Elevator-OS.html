@@ -354,6 +354,80 @@ const L = {
   r_qc: ['QC Inspector', 'QC निरीक्षक', 'QC तपासणीस'],
   r_supplier: ['Supplier', 'सप्लायर', 'पुरवठादार'],
   r_tech: ['Technician', 'टेक्नीशियन', 'तंत्रज्ञ'],
+  r_partner: ['Licensed Partner Company', 'लाइसेंसधारी पार्टनर कंपनी', 'परवानाधारक भागीदार कंपनी'],
+  see_partner: ['Jobs your company holds and your own technicians. Not prices or margins.', 'आपकी कंपनी के काम और आपके तकनीशियन। कीमत या मार्जिन नहीं।', 'तुमच्या कंपनीची कामे आणि तुमचे तंत्रज्ञ. किंमत किंवा मार्जिन नाही.'],
+  err_pick_company: ['Choose a Licensed Partner Company.', 'लाइसेंसधारी पार्टनर कंपनी चुनें।', 'परवानाधारक भागीदार कंपनी निवडा.'],
+  err_no_company: ['This technician does not belong to a licensed partner company yet.', 'यह तकनीशियन अभी किसी लाइसेंसधारी पार्टनर कंपनी में नहीं है।', 'हा तंत्रज्ञ अजून कोणत्याही परवानाधारक भागीदार कंपनीत नाही.'],
+  err_member_pending: ['AIEC has not yet approved this technician for their company.', 'AIEC ने अभी इस तकनीशियन को उनकी कंपनी के लिए मंज़ूर नहीं किया है।', 'AIEC ने अजून या तंत्रज्ञाला त्यांच्या कंपनीसाठी मंजूर केलेले नाही.'],
+  err_licence: ['The company\'s lift licence is missing, not checked or expired.', 'कंपनी का लिफ्ट लाइसेंस नहीं है, जाँचा नहीं गया या खत्म हो गया।', 'कंपनीचा लिफ्ट परवाना नाही, तपासलेला नाही किंवा संपला आहे.'],
+  err_team_lead: ['Choose who will lead the work.', 'चुनें कि काम कौन संभालेगा।', 'काम कोण सांभाळेल ते निवडा.'],
+  err_team_bad: ['Check the team: each person once, at most 4 crew.', 'टीम जाँचें: हर व्यक्ति एक बार, ज़्यादा से ज़्यादा 4 सहायक।', 'टीम तपासा: प्रत्येक व्यक्ती एकदाच, जास्तीत जास्त 4 सहाय्यक.'],
+  err_other_company: ['Only technicians of the company holding this job can work on it.', 'इस काम पर केवल उसी कंपनी के तकनीशियन काम कर सकते हैं जिसके पास यह काम है।', 'या कामावर फक्त हे काम असलेल्या कंपनीचेच तंत्रज्ञ काम करू शकतात.'],
+  err_crew_company: ['The company that holds the job brings its own crew.', 'जिस कंपनी के पास काम है वही अपने सहायक लाती है।', 'ज्या कंपनीकडे काम आहे तीच स्वतःचे सहाय्यक आणते.'],
+  why_company: ['Jobs are given to licensed partner companies. Your company applies for you.', 'काम लाइसेंसधारी पार्टनर कंपनियों को दिए जाते हैं। आपकी कंपनी आपके लिए आवेदन करती है।', 'कामे परवानाधारक भागीदार कंपन्यांना दिली जातात. तुमची कंपनी तुमच्यासाठी अर्ज करते.'],
+  why_licence: ['Your lift licence is missing, not checked or expired. Renew it to get jobs.', 'आपका लिफ्ट लाइसेंस नहीं है, जाँचा नहीं गया या खत्म हो गया। काम पाने के लिए नवीनीकरण करें।', 'तुमचा लिफ्ट परवाना नाही, तपासलेला नाही किंवा संपला आहे. कामे मिळवण्यासाठी नूतनीकरण करा.'],
+  why_no_team: ['No approved technician in your company can take this job.', 'आपकी कंपनी का कोई मंज़ूर तकनीशियन यह काम नहीं ले सकता।', 'तुमच्या कंपनीतील कोणताही मंजूर तंत्रज्ञ हे काम घेऊ शकत नाही.'],
+  why_company_big: ['Big jobs need a company with more finished jobs and good ratings.', 'बड़े काम के लिए ज़्यादा पूरे काम और अच्छी रेटिंग वाली कंपनी चाहिए।', 'मोठ्या कामासाठी जास्त पूर्ण कामे आणि चांगले रेटिंग असलेली कंपनी हवी.'],
+  err_why_company: ['Only a licensed partner company can apply for this job.', 'केवल लाइसेंसधारी पार्टनर कंपनी इस काम के लिए आवेदन कर सकती है।', 'फक्त परवानाधारक भागीदार कंपनी या कामासाठी अर्ज करू शकते.'],
+  err_why_licence: ['The company\'s lift licence is not valid.', 'कंपनी का लिफ्ट लाइसेंस मान्य नहीं है।', 'कंपनीचा लिफ्ट परवाना वैध नाही.'],
+  err_why_no_team: ['The company has no approved technician for this job.', 'कंपनी के पास इस काम के लिए कोई मंज़ूर तकनीशियन नहीं।', 'कंपनीकडे या कामासाठी मंजूर तंत्रज्ञ नाही.'],
+  err_why_company_big: ['This company cannot take big jobs yet.', 'यह कंपनी अभी बड़े काम नहीं ले सकती।', 'ही कंपनी अजून मोठी कामे घेऊ शकत नाही.'],
+  ev_PARTNER_PROFILE: ['Company licence details saved', 'कंपनी लाइसेंस विवरण सेव', 'कंपनी परवाना तपशील जतन'],
+  ev_MEMBER_APPROVED: ['Technician approved for the company', 'तकनीशियन कंपनी के लिए मंज़ूर', 'तंत्रज्ञ कंपनीसाठी मंजूर'],
+  ev_MEMBER_REMOVED: ['Technician left the company', 'तकनीशियन ने कंपनी छोड़ी', 'तंत्रज्ञाने कंपनी सोडली'],
+  ev_TEAM_SET: ['Company changed the team', 'कंपनी ने टीम बदली', 'कंपनीने टीम बदलली'],
+  rg_partner: ['Partner companies', 'पार्टनर कंपनियाँ', 'भागीदार कंपन्या'],
+  rg_partner_d: ['Finished jobs and stars a company needs for big jobs, strikes that stop new jobs, and days of warning before a licence ends.', 'बड़े काम के लिए कंपनी के पूरे काम और स्टार, नए काम रोकने वाले स्ट्राइक, और लाइसेंस खत्म होने से पहले चेतावनी के दिन।', 'मोठ्या कामासाठी कंपनीची पूर्ण कामे आणि स्टार, नवीन कामे थांबवणारे स्ट्राइक, आणि परवाना संपण्यापूर्वी सूचनेचे दिवस.'],
+  cfg_partnerBigJobs: ['Finished jobs a company needs for big jobs', 'बड़े काम के लिए कंपनी के पूरे काम', 'मोठ्या कामासाठी कंपनीची पूर्ण कामे'],
+  cfg_partnerBigStars: ['Stars a company needs for big jobs', 'बड़े काम के लिए कंपनी के स्टार', 'मोठ्या कामासाठी कंपनीचे स्टार'],
+  cfg_partnerMaxStrikes: ['Company strikes that stop new jobs', 'नए काम रोकने वाले कंपनी स्ट्राइक', 'नवीन कामे थांबवणारे कंपनी स्ट्राइक'],
+  cfg_licWarnDays: ['Days of warning before a licence ends', 'लाइसेंस खत्म होने से पहले चेतावनी के दिन', 'परवाना संपण्यापूर्वी सूचनेचे दिवस'],
+  tk_approve_member: ['Approve a company\'s technician', 'कंपनी के तकनीशियन को मंज़ूर करें', 'कंपनीच्या तंत्रज्ञाला मंजूर करा'],
+  tk_link_company: ['Link technician to a company', 'तकनीशियन को कंपनी से जोड़ें', 'तंत्रज्ञाला कंपनीशी जोडा'],
+  tk_licence_renew: ['Renew the lift licence', 'लिफ्ट लाइसेंस नवीनीकृत करें', 'लिफ्ट परवान्याचे नूतनीकरण करा'],
+  tk_fill_team: ['Put your team on this job', 'इस काम पर अपनी टीम लगाएँ', 'या कामावर तुमची टीम लावा'],
+  lic_expired: ['Licence expired', 'लाइसेंस खत्म', 'परवाना संपला'],
+  lic_days: ['Licence ends in {n} days', 'लाइसेंस {n} दिन में खत्म', 'परवाना {n} दिवसांत संपेल'],
+  lic_ok: ['Licence valid', 'लाइसेंस मान्य', 'परवाना वैध'],
+  lic_bad: ['Licence not valid', 'लाइसेंस मान्य नहीं', 'परवाना वैध नाही'],
+  lic_title: ['Lift licence', 'लिफ्ट लाइसेंस', 'लिफ्ट परवाना'],
+  lic_no: ['Licence number', 'लाइसेंस नंबर', 'परवाना क्रमांक'],
+  lic_holder: ['Licence holder', 'लाइसेंस धारक', 'परवानाधारक'],
+  lic_authority: ['Issued by', 'जारीकर्ता', 'देणारे कार्यालय'],
+  lic_expiry: ['Valid until', 'मान्य तिथि तक', 'वैध दिनांकापर्यंत'],
+  lic_gst: ['GST number', 'GST नंबर', 'GST क्रमांक'],
+  lic_needed: ['Jobs are given only when the licence details are saved, the licence copy is checked by AIEC and the date has not passed.', 'काम तभी मिलेगा जब लाइसेंस विवरण सेव हो, AIEC लाइसेंस की कॉपी जाँचे और तारीख न निकली हो।', 'परवाना तपशील जतन असतील, AIEC ने परवान्याची प्रत तपासली असेल आणि तारीख संपली नसेल तरच कामे मिळतील.'],
+  lic_note: ['Changing the number or date needs AIEC to check the licence copy again.', 'नंबर या तारीख बदलने पर AIEC फिर से लाइसेंस की कॉपी जाँचेगा।', 'क्रमांक किंवा तारीख बदलल्यास AIEC परवान्याची प्रत पुन्हा तपासेल.'],
+  s_lic: ['Type the lift licence details exactly as on the licence.', 'लाइसेंस पर लिखे अनुसार लिफ्ट लाइसेंस विवरण भरें।', 'परवान्यावर लिहिल्याप्रमाणे लिफ्ट परवाना तपशील भरा.'],
+  my_company: ['My company', 'मेरी कंपनी', 'माझी कंपनी'],
+  company_bill: ['Company bill', 'कंपनी बिल', 'कंपनी बिल'],
+  pay_company_note: ['AIEC pays your company for the work of your team, at each person\'s level rate.', 'AIEC आपकी टीम के काम का भुगतान आपकी कंपनी को, हर व्यक्ति की स्तर दर पर करता है।', 'AIEC तुमच्या टीमच्या कामाचे पैसे तुमच्या कंपनीला, प्रत्येकाच्या स्तर दराने देते.'],
+  s_apply_team: ['Choose who your company will send.', 'चुनें कि आपकी कंपनी किसे भेजेगी।', 'तुमची कंपनी कोणाला पाठवेल ते निवडा.'],
+  team_crew: ['Crew (helpers)', 'सहायक', 'सहाय्यक'],
+  team_set: ['Change the team', 'टीम बदलें', 'टीम बदला'],
+  s_team_set: ['Choose the lead and crew from your company.', 'अपनी कंपनी से लीड और सहायक चुनें।', 'तुमच्या कंपनीतून लीड आणि सहाय्यक निवडा.'],
+  what_team_set: ['{name} now leads this job.', '{name} अब इस काम के लीड हैं।', '{name} आता या कामाचे लीड आहेत.'],
+  no_company: ['No company', 'कोई कंपनी नहीं', 'कंपनी नाही'],
+  member_add: ['Add a technician', 'तकनीशियन जोड़ें', 'तंत्रज्ञ जोडा'],
+  member_add_note: ['Technicians you add start as Trainee or Helper. AIEC checks their documents and training before they can be sent to a site.', 'आपके जोड़े तकनीशियन ट्रेनी या हेल्पर से शुरू करते हैं। साइट पर भेजने से पहले AIEC उनके दस्तावेज़ और ट्रेनिंग जाँचता है।', 'तुम्ही जोडलेले तंत्रज्ञ प्रशिक्षणार्थी किंवा मदतनीस म्हणून सुरू होतात. साइटवर पाठवण्यापूर्वी AIEC त्यांची कागदपत्रे आणि प्रशिक्षण तपासते.'],
+  member_approved: ['Technician approved for the company.', 'तकनीशियन कंपनी के लिए मंज़ूर।', 'तंत्रज्ञ कंपनीसाठी मंजूर.'],
+  member_wait: ['Waiting for AIEC approval', 'AIEC मंज़ूरी का इंतज़ार', 'AIEC मंजुरीची प्रतीक्षा'],
+  member_ready: ['Can be sent to sites', 'साइट पर भेजा जा सकता है', 'साइटवर पाठवता येईल'],
+  member_approve: ['Approve for this company', 'इस कंपनी के लिए मंज़ूर करें', 'या कंपनीसाठी मंजूर करा'],
+  member_change: ['Change company', 'कंपनी बदलें', 'कंपनी बदला'],
+  member_remove: ['Remove from company', 'कंपनी से हटाएँ', 'कंपनीतून काढा'],
+  member_remove_note: ['Pay for work already done stays with the company the person worked for.', 'पहले किए काम का भुगतान उसी कंपनी को रहेगा जिसके लिए काम किया।', 'आधी केलेल्या कामाचे पैसे ज्या कंपनीसाठी काम केले तिच्याकडेच राहतील.'],
+  member_pay_note: ['AIEC pays the company; the company pays its technicians.', 'AIEC कंपनी को भुगतान करता है; कंपनी अपने तकनीशियनों को।', 'AIEC कंपनीला पैसे देते; कंपनी तिच्या तंत्रज्ञांना देते.'],
+  co_jobs_n: ['{n} jobs done', '{n} काम पूरे', '{n} कामे पूर्ण'],
+  co_record: ['Company record', 'कंपनी रिकॉर्ड', 'कंपनी नोंद'],
+  co_jobs: ['Finished jobs', 'पूरे काम', 'पूर्ण कामे'],
+  co_trust: ['Trust (0–100)', 'भरोसा (0–100)', 'विश्वास (0–100)'],
+  co_strikes: ['Active strikes of its technicians', 'इसके तकनीशियनों के सक्रिय स्ट्राइक', 'तिच्या तंत्रज्ञांचे सक्रिय स्ट्राइक'],
+  co_big: ['Can take big jobs', 'बड़े काम ले सकती है', 'मोठी कामे घेऊ शकते'],
+  co_record_note: ['Worked out from its technicians\' finished jobs, reviews and strikes on its jobs. A better record gets bigger jobs.', 'इसके तकनीशियनों के पूरे काम, रिव्यू और इसके कामों पर स्ट्राइक से निकाला गया। बेहतर रिकॉर्ड पर बड़े काम मिलते हैं।', 'तिच्या तंत्रज्ञांची पूर्ण कामे, रिव्ह्यू आणि तिच्या कामांवरील स्ट्राइकवरून काढले. चांगल्या नोंदीला मोठी कामे मिळतात.'],
+  co_members: ['Technicians', 'तकनीशियन', 'तंत्रज्ञ'],
+  work_value: ['Value of my work (paid to my company)', 'मेरे काम का मूल्य (मेरी कंपनी को भुगतान)', 'माझ्या कामाचे मूल्य (माझ्या कंपनीला पैसे)'],
+  work_value_note: ['AIEC pays your company for this work. Your pay comes from your company.', 'इस काम का भुगतान AIEC आपकी कंपनी को करता है। आपका वेतन आपकी कंपनी से आता है।', 'या कामाचे पैसे AIEC तुमच्या कंपनीला देते. तुमचा पगार तुमच्या कंपनीकडून येतो.'],
   r_customer: ['Customer', 'ग्राहक', 'ग्राहक'],
   customer: ['Customer', 'ग्राहक', 'ग्राहक'],
 
@@ -2465,7 +2539,7 @@ async function pinHash(pin, salt) {
 }
 /* ---------- signed records: each person's phone has its own key; every new record is signed (company data only, not practice) ---------- */
 const PRIVATE_KEYS = { USER_ADDED: ['pin', 'salt'], USER_UPDATED: ['pin', 'salt'], PIN_UPGRADED: ['pin', 'salt'], WORKER_PROFILE: ['phone', 'area'], JOB_APPLIED: '*' };
-const isPriv = (type, k) => { const p = PRIVATE_KEYS[type]; return !!p && (p === '*' ? k !== 'postId' : p.includes(k)); };
+const isPriv = (type, k) => { const p = PRIVATE_KEYS[type]; return !!p && (p === '*' ? !['postId', 'team'].includes(k) : p.includes(k)); };
 const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
 const unb64 = str => Uint8Array.from(atob(str), c => c.charCodeAt(0));
 /* private details (PINs, phone numbers, application notes) are covered by a salted fingerprint, so they can be removed from a file without breaking the signature */
@@ -2604,8 +2678,8 @@ const KV = {
 };
 
 /* ---------- domain constants ---------- */
-const ROLES = ['owner', 'admin', 'field', 'sales', 'finance', 'qc', 'supplier', 'tech', 'customer'];
-const ROLE_ICON = { owner: '👑', admin: '🛡️', field: '🏍️', sales: '🤝', finance: '💰', qc: '🔍', supplier: '🏭', tech: '🔧', customer: '🏠', system: '⚙️' };
+const ROLES = ['owner', 'admin', 'field', 'sales', 'finance', 'qc', 'supplier', 'partner', 'tech', 'customer'];
+const ROLE_ICON = { owner: '👑', admin: '🛡️', field: '🏍️', sales: '🤝', finance: '💰', qc: '🔍', supplier: '🏭', partner: '🏢', tech: '🔧', customer: '🏠', system: '⚙️' };
 const PHASES = [['lead', '📍'], ['sales', '🤝'], ['agree', '✍️'], ['site', '🏗️'], ['material', '🚚'], ['install', '🔧'], ['handover', '🔑']];
 const STAGES = {
   new: [0, '🆕'], returned: [0, '↩️'], accepted: [1, '✅'], contacted: [1, '📞'], requirements: [1, '📝'],
@@ -2633,7 +2707,7 @@ const SKILLS = ['install', 'wiring', 'welding', 'service', 'qc', 'driving', 'sur
 const DOCS = ['id', 'address', 'safety_cert', 'license'];
 /* training modules: [module, roles who must pass it, correct option index for each of 3 questions] */
 /* 'qc' has no roles: it is not part of onboarding, only for Seniors who want to become QC Inspectors */
-const TRAIN = [['qc', [], [2, 1, 0]], ['app', ['field', 'sales', 'finance', 'qc', 'supplier', 'tech', 'admin'], [0, 1, 2]], ['safety', ['field', 'qc', 'supplier', 'tech'], [1, 0, 2]],
+const TRAIN = [['qc', [], [2, 1, 0]], ['app', ['field', 'sales', 'finance', 'qc', 'supplier', 'partner', 'tech', 'admin'], [0, 1, 2]], ['safety', ['field', 'qc', 'supplier', 'tech'], [1, 0, 2]],
   ['lead', ['field', 'sales'], [2, 0, 1]], ['install', ['tech', 'qc'], [0, 2, 1]], ['customer', ['sales', 'tech', 'finance'], [1, 2, 0]]];
 const DEFAULT_TEMPLATES = ['intro', 'quote', 'followup', 'payment', 'prep', 'visit', 'renewal'];
 const DEFAULT_CONFIG = {
@@ -2647,7 +2721,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -2663,6 +2737,7 @@ const RULE_GROUPS = {
   ladder: ['lvHelperJobs', 'lvHelperStars', 'lvHelperReviews', 'lvHelperDays', 'lvTechJobs', 'lvTechStars', 'lvTechReviews', 'lvTechTrust', 'lvTechDays',
     'lvSeniorJobs', 'lvSeniorPass', 'lvSeniorStars', 'lvSeniorReviews', 'lvSeniorTrust', 'lvSeniorDays', 'lvQcJobs', 'lvQcPass', 'lvQcStars', 'lvQcReviews', 'lvQcTrust', 'strikeDays'],
   market: ['postWarnDays', 'maxOpenApps', 'maxActiveJobs'],
+  partner: ['partnerBigJobs', 'partnerBigStars', 'partnerMaxStrikes', 'licWarnDays'],
   security: ['pinDigits'],
   ladderpay: ['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior', 'payCrewJob', 'payQcInspection', 'spotTrainee', 'spotTech', 'spotSenior'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
@@ -2725,16 +2800,17 @@ function canSee(u, P) {
     case 'qc': return stageIdx(P.stage) >= stageIdx('site_prep') && P.stage !== 'lost';
     case 'supplier': return P.supplier === u.uid;
     case 'tech': return P.tech === u.uid || (P.crew || []).includes(u.uid) || Object.values(P.svcOwner || {}).includes(u.uid);
+    case 'partner': return P.partner === u.uid || [P.tech].concat(P.crew || [], Object.values(P.svcOwner || {}), P.tickets.map(x => x.owner)).some(x => x && companyOf(x) === u.uid);
     case 'customer': return u.projectId === P.id;
   }
   return false;
 }
 const FIELD_ACCESS = {
-  phone: ['owner', 'admin', 'sales', 'finance', 'qc', 'tech', 'field', 'customer'],
+  phone: ['owner', 'admin', 'sales', 'finance', 'qc', 'partner', 'tech', 'field', 'customer'],
   internal: ['owner', 'admin', 'sales'],
   money: ['owner', 'admin', 'sales', 'finance', 'customer'],
   lead: ['owner', 'admin', 'sales', 'field', 'qc'],
-  team: ['owner', 'admin', 'sales', 'finance', 'qc', 'tech', 'supplier', 'customer', 'field']
+  team: ['owner', 'admin', 'sales', 'finance', 'qc', 'partner', 'tech', 'supplier', 'customer', 'field']
 };
 const seeF = (u, f) => !!u && FIELD_ACCESS[f].includes(u.role);
 
@@ -2751,13 +2827,13 @@ const prepDone = P => PREP_ITEMS.every(([k]) => P.prep[k]);
 const roleOf = uid => (S.users[uid] || {}).role;
 
 /* ---------- helpers for service, people and pay ---------- */
-const STAFF = ['owner', 'admin', 'field', 'sales', 'finance', 'qc', 'supplier', 'tech'];
+const STAFF = ['owner', 'admin', 'field', 'sales', 'finance', 'qc', 'supplier', 'partner', 'tech'];
 const wk = S => S.workers;
 function worker(uid) { return S.workers[uid] || (S.workers[uid] = { profile: {}, docs: {}, training: {} }); }
 function modulesFor(role) { return TRAIN.filter(m => m[1].includes(role)).map(m => m[0]); }
 function trainingDone(uid) { const u = S.users[uid]; if (!u) return 0; const w = S.workers[uid]; return modulesFor(u.role).filter(m => w && w.training[m]).length; }
 /* onboarding checklist, worked out from saved events: profile, documents checked by the office, training */
-const REQ_DOCS = { tech: ['id', 'address', 'safety_cert'], qc: ['id', 'address', 'safety_cert'] };
+const REQ_DOCS = { tech: ['id', 'address', 'safety_cert'], qc: ['id', 'address', 'safety_cert'], partner: ['id', 'address', 'license'] };
 function onboarding(uid) {
   const u = S.users[uid], w = S.workers[uid] || { profile: {}, docs: {}, training: {} }, p = w.profile;
   if (!u || !STAFF.includes(u.role) || u.role === 'owner') return { steps: [], done: 0, total: 0, ready: true };
@@ -2790,6 +2866,55 @@ function distKm(a, b) {
   return Math.round(2 * R * Math.asin(Math.sqrt(h)) * 10) / 10;
 }
 const isActive = uid => !!(S.users[uid] && S.users[uid].active);
+/* Licensed Partner Companies: technicians work under a company that holds the lift licence; AIEC gives jobs to the company and pays the company */
+const companyOf = uid => (S.users[uid] || {}).company || null;
+/* the company a technician belonged to on a given day (pay and credit follow the company at the time of the work) */
+function companyAt(uid, iso) { let c = null; for (const x of (S.users[uid] || {}).coLog || []) if (x.t <= iso) c = x.co; return c; }
+const membersOf = (p, ever) => Object.values(S.users).filter(u => u.role === 'tech' && (ever ? (u.coLog || []).some(x => x.co === p) : u.company === p)).map(u => u.uid);
+const licOf = p => (S.workers[p] && S.workers[p].lic) || null;
+function licenceOk(p, at) {
+  const l = licOf(p), w = S.workers[p];
+  return !!(l && l.licNo && l.licExpiry && w && w.docs.license === 'verified' && l.licExpiry >= (at ? coDay(new Date(at).getTime()) : todayStr()));
+}
+const licDays = p => { const l = licOf(p); return l && l.licExpiry ? Math.round((new Date(l.licExpiry + 'T12:00:00') - new Date(todayStr() + 'T12:00:00')) / 864e5) : null; };
+/* why a technician may not be placed on work now (null = may): approved member of a company with a valid licence */
+function techWhyNot(uid, at) {
+  const u = S.users[uid];
+  if (!u || u.role !== 'tech' || !u.active) return 'err_pick_tech';
+  if (!u.company) return 'err_no_company';
+  if (!u.memberOk) return 'err_member_pending';
+  if (!isActive(u.company) || !licenceOk(u.company, at)) return 'err_licence';
+  if (S.config.requireTraining && !isAuthorised(uid)) return 'err_not_authorised';
+  return null;
+}
+/* level allows leading this job size and fewer than 3 active strikes */
+const leadOk = (uid, size, at) => { const g = gradeOf(uid); return (g === 'senior' || (g === 'technician' && size !== 'big')) && activeStrikes(uid, at) < 3; };
+/* a company's proposed team for a job: own approved members, a lead who may lead it */
+function teamWhyNot(p, post, team, at) {
+  const P = S.projects[post.pid], size = P ? jobSize(P) : (post.card || {}).size;
+  if (!team || (!team.lead && post.kind !== 'crew')) return 'err_team_lead';
+  const all = [team.lead].concat(team.crew || []).filter(Boolean);
+  if (!all.length) return 'err_team_lead';
+  if (new Set(all).size !== all.length || (team.crew || []).length > 4) return 'err_team_bad';
+  for (const m of all) { if (companyOf(m) !== p) return 'err_other_company'; const w = techWhyNot(m, at); if (w) return w; }
+  if (post.kind === 'lead' && !leadOk(team.lead, size, at)) return 'err_cant_lead';
+  if (['service', 'repair'].includes(post.kind) && !(['technician', 'senior'].includes(gradeOf(team.lead)) && activeStrikes(team.lead, at) < 3)) return 'err_cant_lead';
+  return null;
+}
+/* company record: finished jobs, fair stars from its members' reviews, strikes earned on its jobs, trust */
+function companyJobs(p) { return Object.values(S.projects).filter(P => { const x = passEntry(P); return x && (x.partner !== undefined ? x.partner : P.partner) === p; }); }
+const companyStars = (p, src) => starsCalc(S.reviews.filter(r => (!src || r.src === src) && (r.co !== undefined ? r.co : companyAt(r.uid, r.t)) === p), S.reviews.filter(r => !src || r.src === src));
+function companyStrikes(p, at) { return membersOf(p, true).reduce((a, m) => a + strikesOf(m, at).filter(x => x.active && companyAt(m, x.t) === p).reduce((b, x) => b + x.n, 0), 0); }
+function companyTrust(p, at) {
+  const jobs = companyJobs(p), st = companyStars(p);
+  if (!jobs.length && st.count < 3) return null;
+  const ontime = jobs.filter(P => { const x = passEntry(P); return P.mhand && x && (new Date(x.t) - new Date(P.mhand.t)) / 864e5 <= S.config.installDays; }).length;
+  const parts = [st.count ? (st.fair - 1) / 4 * 100 : null, jobs.length ? 100 * (0.6 * jobs.filter(firstPass).length + 0.4 * ontime) / jobs.length : null].filter(x => x != null);
+  return Math.max(0, Math.min(100, Math.round(parts.reduce((a, x) => a + x, 0) / parts.length - 5 * companyStrikes(p, at))));
+}
+/* big jobs (hospital, commercial, tall) only for companies with a record */
+const companyBig = p => { const st = companyStars(p); return companyJobs(p).length >= (S.config.partnerBigJobs || 0) && st.count >= 3 && st.fair >= (S.config.partnerBigStars || 0); };
+const companyLoad = p => Object.values(S.projects).filter(P => P.partner === p && (BUSY.includes(P.stage) || (P.stage === 'handover' && !P.hand.tech))).length;
 /* jobs that keep a person busy: from material arrival until final QC passes (and the lead's own handover signature) */
 const BUSY = ['arrived', 'installing', 'qc_final', 'install_fix'];
 function activeJobs(uid) {
@@ -2816,22 +2941,19 @@ const postLive = p => p.status === 'open' && !postStale(p);
 /* why a person may not take this post (null = may apply); one place for all rules */
 function jobWhyNot(uid, post, at) {
   const u = S.users[uid]; if (!u || !u.active) return 'why_inactive';
-  const P = S.projects[post.pid], c = post.card || {}, tech = P ? P.tech : c.tech, crew = P ? (P.crew || []) : (c.crew || []);
-  const g = gradeOf(uid), strikes = activeStrikes(uid, at), busy = activeJobs(uid), max = S.config.maxActiveJobs || 3;
-  if (tech === uid || crew.includes(uid)) return 'why_own';
+  if (post.kind === 'qc') return u.role === 'qc' ? null : 'why_qc_only';
+  if (u.role !== 'partner') return 'why_company';
+  const P = S.projects[post.pid], c = post.card || {}, size = P ? jobSize(P) : c.size, max = S.config.maxActiveJobs || 3;
+  if (post.kind === 'lead' && P && P.partner === uid && P.tech && companyOf(P.tech) === uid) return 'why_own';
+  if (!licenceOk(uid, at)) return 'why_licence';
+  if (companyStrikes(uid, at) >= (S.config.partnerMaxStrikes || 5)) return 'why_strikes';
+  if (post.kind === 'lead' && size === 'big' && !companyBig(uid)) return 'why_company_big';
+  const ms = membersOf(uid).filter(m => !techWhyNot(m, at));
+  if (!ms.length) return 'why_no_team';
   switch (post.kind) {
-    case 'lead':
-      if (u.role !== 'tech' || !['technician', 'senior'].includes(g)) return 'why_level';
-      if ((P ? jobSize(P) : c.size) === 'big' && g !== 'senior') return 'why_level_big';
-      if (strikes >= 3) return 'why_strikes';
-      return busy.lead >= max ? 'why_busy' : null;
-    case 'crew':
-      if (u.role !== 'tech' || !['trainee', 'helper', 'technician'].includes(g)) return u.role === 'tech' ? 'why_senior_crew' : 'why_level';
-      return busy.crew >= Math.max(1, max - 1) ? 'why_busy' : null;
-    case 'service': case 'repair':
-      if (u.role !== 'tech' || !['technician', 'senior'].includes(g)) return 'why_level';
-      return strikes >= 3 ? 'why_strikes' : null;
-    case 'qc': return u.role === 'qc' ? null : 'why_qc_only';
+    case 'lead': { const can = ms.filter(m => leadOk(m, size, at)); return !can.length ? (size === 'big' ? 'why_level_big' : 'why_level') : can.some(m => activeJobs(m).lead < max) ? null : 'why_busy'; }
+    case 'crew': return ms.some(m => ['trainee', 'helper', 'technician'].includes(gradeOf(m)) && activeJobs(m).crew < Math.max(1, max - 1)) ? null : 'why_busy';
+    case 'service': case 'repair': return ms.some(m => ['technician', 'senior'].includes(gradeOf(m)) && activeStrikes(m, at) < 3) ? null : 'why_level';
   }
   return 'why_level';
 }
@@ -2840,11 +2962,11 @@ const openApps = uid => Object.values(S.posts).filter(p => p.status === 'open' &
 function rankApplicants(post) {
   const card = post.card || {};
   return Object.entries(post.apps).filter(([uid, a]) => !a.out && !post.picked.includes(uid)).map(([uid, a]) => {
-    const s = starsOf(uid), tr = trustOf(uid).score, d = distKm(a.gps, card), j = activeJobs(uid);
-    return { uid, a, fair: s.fair, count: s.count, trust: tr == null ? 50 : tr, dist: d, load: j.lead + j.crew, why: jobWhyNot(uid, post) };
+    const co = roleOf(uid) === 'partner', s = co ? companyStars(uid) : starsOf(uid), tr = co ? companyTrust(uid) : trustOf(uid).score, d = distKm(a.gps, card), j = activeJobs(uid);
+    return { uid, a, fair: s.fair, count: s.count, trust: tr == null ? 50 : tr, dist: d, load: co ? companyLoad(uid) : j.lead + j.crew, why: jobWhyNot(uid, post) || (co ? teamWhyNot(uid, post, a.team) : null) };
   }).sort((x, y) => (!!x.why - !!y.why) || y.fair - x.fair || y.count - x.count || y.trust - x.trust || (x.dist == null ? 999 : x.dist) - (y.dist == null ? 999 : y.dist) || x.load - y.load);
 }
-const postPayFor = (post, uid) => post.kind === 'qc' ? post.pay : Math.round(post.pay * gradeRate(gradeOf(uid)) / 100);
+const postPayFor = (post, uid) => post.kind === 'qc' || roleOf(uid) === 'partner' ? post.pay : Math.round(post.pay * gradeRate(gradeOf(uid)) / 100);
 /* =====================================================================
    Career ladder: Trainee → Helper → Technician → Senior → QC Inspector.
    Levels are stored in events; stars, trust, strikes and badges are worked out from events.
@@ -2891,8 +3013,8 @@ function jobsOf(uid) {
   return { lead: ps.filter(P => leadAt(P, passEntry(P)) === uid), crew: ps.filter(P => crewAt(P, passEntry(P)).includes(uid)) };
 }
 /* stars with review count; the fair average leans to 3.5 (or the company average if lower) until about 5 reviews */
-function starsOf(uid, src) {
-  const all = S.reviews.filter(r => !src || r.src === src), list = all.filter(r => r.uid === uid);
+function starsOf(uid, src) { const all = S.reviews.filter(r => !src || r.src === src); return starsCalc(all.filter(r => r.uid === uid), all); }
+function starsCalc(list, all) {
   /* a rating typed in by Sales for a customer without a login counts half */
   const wt = r => (r.salesRecorded ? 0.5 : 1), sum = list.reduce((a, r) => a + r.stars * wt(r), 0), wsum = list.reduce((a, r) => a + wt(r), 0);
   const m = Math.min(3.5, all.length ? all.reduce((a, r) => a + r.stars, 0) / all.length : 3.5), C = 5; /* new workers start near 3.5 (OK) so a few reviews never beat a long good record */
@@ -3044,9 +3166,15 @@ function earnings(uid) {
   }
   return out.sort((a, b) => a.t < b.t ? -1 : 1);
 }
+/* what AIEC pays this person: a company is paid its members' work done while they were with it; a technician only work done without a company */
+function payLines(uid) {
+  const u = S.users[uid]; if (!u) return [];
+  if (u.role === 'partner') return membersOf(uid, true).flatMap(m => earnings(m).filter(e => companyAt(m, e.t) === uid).map(e => Object.assign({ who: m }, e))).sort((a, b) => a.t < b.t ? -1 : 1);
+  return earnings(uid).filter(e => u.role !== 'tech' || !companyAt(uid, e.t));
+}
 function weeksFor(uid) {
   const g = {};
-  for (const e of earnings(uid)) { const k = weekKey(e.t); (g[k] = g[k] || { week: k, lines: [], total: 0 }).lines.push(e); g[k].total += e.amount; }
+  for (const e of payLines(uid)) { const k = weekKey(e.t); (g[k] = g[k] || { week: k, lines: [], total: 0 }).lines.push(e); g[k].total += e.amount; }
   Object.values(S.pay).filter(p => p.uid === uid && !g[p.week]).forEach(p => { g[p.week] = { week: p.week, lines: [], total: 0 }; });
   return Object.values(g).sort((a, b) => a.week < b.week ? 1 : -1).map(w => Object.assign(w, { pay: S.pay[uid + '|' + w.week] || null }));
 }
@@ -3073,8 +3201,11 @@ const RULES = {
   KEY_APPROVED: { roles: ['owner', 'admin'], check: (S, ev) => { const x = (S.keys[ev.data.uid] || []).find(y => y.kid === ev.data.kid); return need(x, 'err_fill') || need(!x.ok, 'err_dup_key'); } },
   PIN_UPGRADED: { roles: ROLES, check: (S, ev) => need(String(ev.data.pin || '').startsWith('p2$') && ev.data.salt, 'err_fill') },
   USER_ADDED: {
-    roles: ['owner', 'admin', 'sales'], check: (S, ev, u) => {
+    roles: ['owner', 'admin', 'sales', 'partner'], check: (S, ev, u) => {
       const d = ev.data;
+      /* a partner company adds its own technicians (starting levels only); AIEC approves them */
+      if (u.role === 'partner' && (d.role !== 'tech' || (d.company && d.company !== u.uid) || (d.grade && gIdx(d.grade) > gIdx('helper')))) return d.role !== 'tech' ? { k: 'err_role', v: { roles: rolesTxt(['owner', 'admin']) } } : 'err_grade';
+      if (d.company && (roleOf(d.company) !== 'partner' || d.role !== 'tech')) return 'err_pick_company';
       if (!d.name || (!d.stripped && (!d.pin || !d.salt))) return 'err_fill';
       if (!ROLES.includes(d.role)) return 'err_role_bad';
       if (S.users[d.uid]) return 'err_dup_user';
@@ -3100,7 +3231,37 @@ const RULES = {
       if (u.role === 'admin' && ev.data.role === 'owner') return { k: 'err_role', v: { roles: rolesTxt(['owner']) } };
       /* an installer becomes a QC Inspector only by climbing the ladder (promotion), never by a role change */
       if (ev.data.role && ev.data.role !== x.role && (x.role === 'tech' || x.role === 'qc') && (ev.data.role === 'tech' || ev.data.role === 'qc')) return 'err_use_ladder';
+      if (ev.data.company !== undefined && (x.role !== 'tech' || (ev.data.company && roleOf(ev.data.company) !== 'partner'))) return 'err_pick_company';
       return null;
+    }
+  },
+  /* Licensed Partner Company: licence details; the licence document is checked by the office (DOC_VERIFIED 'license') */
+  PARTNER_PROFILE: {
+    roles: ['owner', 'admin', 'partner'], check: (S, ev, u) => {
+      const d = ev.data;
+      if (roleOf(d.uid) !== 'partner') return 'err_no_user';
+      if (u.role === 'partner' && d.uid !== u.uid) return 'err_access';
+      if (!(d.licNo || '').trim() || !(d.licHolder || '').trim()) return 'err_fill';
+      return need(/^\d{4}-\d\d-\d\d$/.test(d.licExpiry || ''), 'err_date');
+    }
+  },
+  MEMBER_APPROVED: { roles: ['owner', 'admin'], check: (S, ev) => { const x = S.users[ev.data.uid]; return !x || x.role !== 'tech' || !x.company ? 'err_no_user' : need(!x.memberOk, 'err_already'); } },
+  MEMBER_REMOVED: {
+    roles: ['owner', 'admin', 'partner'], check: (S, ev, u) => {
+      const x = S.users[ev.data.uid];
+      if (!x || x.role !== 'tech' || !x.company) return 'err_no_user';
+      if (u.role === 'partner' && x.company !== u.uid) return 'err_access';
+      return need((ev.data.reason || '').trim(), 'err_reason');
+    }
+  },
+  /* the company chooses its own lead and crew on a job it holds */
+  TEAM_SET: {
+    roles: ['owner', 'admin', 'partner'], project: true, check: (S, ev, u, P) => {
+      const d = ev.data, co = u.role === 'partner' ? u.uid : companyOf(d.lead);
+      if (u.role === 'partner' && P.partner !== u.uid) return 'err_access';
+      if (P.stage === 'lost' || P.stage === 'amc' || stageIdx(P.stage) < stageIdx('signed') || passedQc(P)) return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      const why = teamWhyNot(co, { kind: 'lead', pid: P.id }, { lead: d.lead, crew: d.crew || [] }, ev.t);
+      return why || need(canLead(d.lead, P, ev.t), 'err_cant_lead');
     }
   },
   CONFIG_SET: {
@@ -3256,8 +3417,7 @@ const RULES = {
     roles: ['admin', 'owner'], project: true, stages: ['site_ok'], check: (S, ev, u, P) => {
       const d = ev.data;
       if (roleOf(d.supplier) !== 'supplier' || !isActive(d.supplier)) return 'err_pick_supplier';
-      if (roleOf(d.tech) !== 'tech' || !isActive(d.tech)) return 'err_pick_tech';
-      if (S.config.requireTraining && !isAuthorised(d.tech)) return 'err_not_authorised';
+      const tw = techWhyNot(d.tech, ev.t); if (tw) return tw;
       if (!canLead(d.tech, P, ev.t)) return 'err_cant_lead';
       if (!(d.drawings || '').trim()) return 'err_fill';
       return need((d.materials || []).length > 0, 'err_fill');
@@ -3266,6 +3426,7 @@ const RULES = {
   ASSIGNED: {
     roles: ['admin', 'owner'], project: true, stages: OPEN_STAGES.concat('amc'), check: (S, ev, u, P) =>
       !isActive(ev.data.uid) ? 'err_inactive'
+        : ev.data.role === 'tech' && techWhyNot(ev.data.uid, ev.t) ? techWhyNot(ev.data.uid, ev.t)
         : P.stage === 'amc' ? (ev.data.role === 'tech' && roleOf(ev.data.uid) === 'tech' && ['technician', 'senior'].includes(gradeOf(ev.data.uid)) ? null : 'err_cant_lead')
         : ev.data.role === 'tech' && roleOf(ev.data.uid) === 'tech' && !canLead(ev.data.uid, P, ev.t) ? 'err_cant_lead'
         : ev.data.role === 'qc' && (P.tech === ev.data.uid || (P.crew || []).includes(ev.data.uid)) ? 'err_own_job'
@@ -3413,6 +3574,7 @@ const RULES = {
       const x = ticketOf(P, ev.data.tid);
       if (!x || x.status === 'closed') return 'err_already';
       if (!isActive(ev.data.uid) || !['tech', 'sales', 'admin', 'qc'].includes(roleOf(ev.data.uid))) return 'err_pick_person';
+      if (roleOf(ev.data.uid) === 'tech' && techWhyNot(ev.data.uid, ev.t)) return techWhyNot(ev.data.uid, ev.t);
       return need(/^\d{4}-\d\d-\d\d$/.test(ev.data.due || ''), 'err_date');
     }
   },
@@ -3450,12 +3612,12 @@ const RULES = {
   },
   /* job marketplace (project details are checked on the phone that has the project; others trust the card from the office) */
   JOB_POSTED: {
-    roles: ['admin', 'owner', 'tech'], check: (S, ev, u) => {
+    roles: ['admin', 'owner'], check: (S, ev, u) => {
       const d = ev.data, P = S.projects[ev.pid];
       if (!JOB_KINDS[d.kind] || !d.postId || S.posts[d.postId]) return 'err_fill';
+      if (d.kind === 'crew') return 'err_crew_company';
       if (!d.card || !d.card.area) return 'err_fill';
       if (Object.values(S.posts).some(p => p.status === 'open' && p.pid === ev.pid && p.kind === d.kind && String(p.ref) === String(d.ref))) return 'err_post_open';
-      if (u.role === 'tech' && !(d.kind === 'crew' && (P ? P.tech : d.card.tech) === u.uid && gradeOf(u.uid) === 'senior')) return 'err_access';
       if (!(+d.slots >= 1 && +d.slots <= (d.kind === 'crew' ? 4 : 1))) return 'err_number';
       if (!P) return App.liveCheck ? 'err_no_project' : null;
       const st = stageIdx(P.stage);
@@ -3469,40 +3631,41 @@ const RULES = {
     }
   },
   JOB_APPLIED: {
-    roles: ['tech', 'qc'], check: (S, ev, u) => {
+    roles: ['partner', 'qc'], check: (S, ev, u) => {
       const p = S.posts[ev.data.postId];
       if (!p || !postLive(p)) return 'err_post_closed';
       if (p.apps[u.uid] && !p.apps[u.uid].out) return 'err_already';
       if (openApps(u.uid) >= (S.config.maxOpenApps || 5)) return 'err_too_many_apps';
       const why = jobWhyNot(u.uid, p, ev.t);
-      return why ? 'err_' + why : null;
+      return why ? 'err_' + why : u.role === 'partner' ? teamWhyNot(u.uid, p, ev.data.team, ev.t) : null;
     }
   },
-  JOB_WITHDRAWN: { roles: ['tech', 'qc'], check: (S, ev, u) => { const p = S.posts[ev.data.postId]; return p && p.apps[u.uid] && !p.apps[u.uid].out && !p.picked.includes(u.uid) ? null : 'err_already'; } },
+  JOB_WITHDRAWN: { roles: ['partner', 'qc'], check: (S, ev, u) => { const p = S.posts[ev.data.postId]; return p && p.apps[u.uid] && !p.apps[u.uid].out && !p.picked.includes(u.uid) ? null : 'err_already'; } },
   JOB_CONFIRMED: {
-    roles: ['admin', 'owner', 'tech'], check: (S, ev, u) => {
+    roles: ['admin', 'owner'], check: (S, ev, u) => {
       const d = ev.data, p = S.posts[d.postId];
       if (!p || !postLive(p)) return 'err_post_closed';
-      if (u.role === 'tech' && !(p.kind === 'crew' && p.by === u.uid)) return 'err_access';
-      if (S.config.requireTraining && ['lead', 'crew', 'service', 'repair'].includes(p.kind) && !isAuthorised(d.uid)) return 'err_not_authorised';
       if (!p.apps[d.uid] || p.apps[d.uid].out || p.picked.includes(d.uid)) return 'err_not_applied';
       if (d.uid === u.uid) return 'err_same_person';
       const why = jobWhyNot(d.uid, p, ev.t);
-      return why ? 'err_' + why : null;
+      return why ? 'err_' + why : roleOf(d.uid) === 'partner' ? teamWhyNot(d.uid, p, p.apps[d.uid].team, ev.t) : null;
     }
   },
-  JOB_CLOSED: { roles: ['admin', 'owner', 'tech'], check: (S, ev, u) => { const p = S.posts[ev.data.postId]; if (!p || p.status !== 'open') return 'err_already'; if (u.role === 'tech' && p.by !== u.uid) return 'err_access'; return need((ev.data.reason || '').trim(), 'err_reason'); } },
+  JOB_CLOSED: { roles: ['admin', 'owner'], check: (S, ev, u) => { const p = S.posts[ev.data.postId]; if (!p || p.status !== 'open') return 'err_already'; return need((ev.data.reason || '').trim(), 'err_reason'); } },
   /* career ladder */
   CREW_ADDED: {
-    roles: ['admin', 'owner', 'tech'], project: true, check: (S, ev, u, P) => {
+    roles: ['admin', 'owner', 'tech', 'partner'], project: true, check: (S, ev, u, P) => {
       if (u.role === 'tech' && !(P.tech === u.uid && gradeOf(u.uid) === 'senior')) return 'err_access';
+      if (u.role === 'partner' && P.partner !== u.uid) return 'err_access';
       if (!P.tech || ['lost', 'amc'].includes(P.stage) || stageIdx(P.stage) < stageIdx('material_order') || stageIdx(P.stage) >= stageIdx('final_pay')) return { k: 'err_stage', v: { stage: stName(P.stage) } };
       const x = S.users[ev.data.uid];
       if (!x || !x.active || x.role !== 'tech' || x.uid === P.tech) return 'err_pick_person';
+      const tw = techWhyNot(x.uid, ev.t); if (tw) return tw;
+      if (P.partner && x.company !== P.partner) return 'err_other_company';
       return need(!(P.crew || []).includes(x.uid), 'err_already');
     }
   },
-  CREW_REMOVED: { roles: ['admin', 'owner', 'tech'], project: true, check: (S, ev, u, P) => u.role === 'tech' && !(P.tech === u.uid && gradeOf(u.uid) === 'senior') ? 'err_access' : passedQc(P) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : need((P.crew || []).includes(ev.data.uid), 'err_already') },
+  CREW_REMOVED: { roles: ['admin', 'owner', 'tech', 'partner'], project: true, check: (S, ev, u, P) => (u.role === 'tech' && !(P.tech === u.uid && gradeOf(u.uid) === 'senior')) || (u.role === 'partner' && P.partner !== u.uid) ? 'err_access' : passedQc(P) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : need((P.crew || []).includes(ev.data.uid), 'err_already') },
   CUSTOMER_RATED: {
     roles: ['customer', 'sales'], project: true, check: (S, ev, u, P) => {
       const d = ev.data, m = /^visit:(\d+)$/.exec(d.ref || '');
@@ -3622,7 +3785,7 @@ const RULES = {
   PAY_APPROVED: {
     roles: ['owner', 'admin'], check: (S, ev) => {
       const d = ev.data, w = weeksFor(d.uid).find(x => x.week === d.week);
-      if (!['tech', 'qc'].includes(roleOf(d.uid)) || !w) return 'err_fill';
+      if (!['tech', 'qc', 'partner'].includes(roleOf(d.uid)) || !w) return 'err_fill';
       if (w.pay) return 'err_already';
       if (d.week >= weekKey(ev.t)) return 'err_week_open';
       if (+d.adjust && !(d.reason || '').trim()) return 'err_reason';
@@ -3639,7 +3802,7 @@ const RULES = {
     }
   },
   PAY_DISPUTED: {
-    roles: ['tech', 'qc'], check: (S, ev, u) => {
+    roles: ['tech', 'qc', 'partner'], check: (S, ev, u) => {
       if (ev.data.uid !== u.uid) return 'err_access';
       const w = weeksFor(u.uid).find(x => x.week === ev.data.week);
       if (!w || (w.pay && w.pay.dispute && w.pay.dispute.open)) return 'err_already';
@@ -3706,6 +3869,7 @@ function apply(S, ev) {
     case 'ORG_CREATED': S.org = { id: d.orgId, name: d.name, t: ev.t }; break;
     case 'USER_ADDED':
       S.users[d.uid] = { uid: d.uid, name: d.name, role: d.role, pin: d.pin, salt: d.salt, pinLen: +d.pinLen || 4, active: true, projectId: d.projectId || null, t: ev.t, by: ev.by };
+      if (d.role === 'tech') { const co = roleOf(ev.by) === 'partner' ? ev.by : d.company || null; Object.assign(S.users[d.uid], { company: co, memberOk: !!co && roleOf(ev.by) !== 'partner', coLog: co ? [{ co, t: ev.t }] : [] }); }
       if (d.role === 'tech' && d.grade) { const w = worker(d.uid); w.grade = d.grade; w.gradeLog = [{ g: d.grade, t: ev.t, by: ev.by }]; }
       if (d.role === 'customer' && S.projects[d.projectId]) S.projects[d.projectId].customer = d.uid;
       break;
@@ -3715,8 +3879,19 @@ function apply(S, ev) {
     case 'USER_UPDATED': {
       const x = S.users[d.uid];
       ['name', 'role', 'pin', 'salt', 'active', 'pinLen'].forEach(k => { if (d[k] !== undefined) x[k] = d[k]; });
+      if (d.company !== undefined) { x.company = d.company || null; x.memberOk = !!d.company; (x.coLog = x.coLog || []).push({ co: x.company, t: ev.t }); }
       break;
     }
+    case 'PARTNER_PROFILE': {
+      const w = worker(d.uid), old = w.lic || {};
+      w.lic = { licNo: d.licNo.trim(), licHolder: d.licHolder.trim(), licAuthority: (d.licAuthority || '').trim(), licExpiry: d.licExpiry, gst: (d.gst || '').trim(), t: ev.t, by: ev.by };
+      /* a new licence number or date made by the company must be checked again by the office */
+      if (roleOf(ev.by) === 'partner' && (old.licNo !== w.lic.licNo || old.licExpiry !== w.lic.licExpiry)) delete w.docs.license;
+      break;
+    }
+    case 'MEMBER_APPROVED': Object.assign(S.users[d.uid], { memberOk: true, memberOkBy: ev.by, memberOkT: ev.t }); break;
+    case 'MEMBER_REMOVED': { const x = S.users[d.uid]; x.company = null; x.memberOk = false; (x.coLog = x.coLog || []).push({ co: null, t: ev.t, reason: d.reason }); break; }
+    case 'TEAM_SET': P.tech = d.lead; P.crew = (d.crew || []).slice(); P.partner = companyOf(d.lead); break;
     case 'CONFIG_SET':
       if (d.approve) S.config.approved[d.approve] = { by: ev.by, t: ev.t };
       else { S.config[d.key] = d.value; delete S.config.approved[groupOf(d.key)]; }
@@ -3802,8 +3977,8 @@ function apply(S, ev) {
       break;
     }
     case 'CORRECTION_DONE': { const c = P.corrections.find(x => x.id === d.cid); c.done = { t: ev.t, by: ev.by, note: d.note || '', ev: ev_(d).map(e => e.id) }; break; }
-    case 'RELEASED': P.supplier = d.supplier; P.tech = d.tech; P.drawings = { ref: d.drawings, t: ev.t, by: ev.by }; P.materials = d.materials; setStage(P, 'material_order', ev); break;
-    case 'ASSIGNED': P[d.role] = d.uid; break;
+    case 'RELEASED': P.supplier = d.supplier; P.tech = d.tech; P.partner = companyOf(d.tech); P.drawings = { ref: d.drawings, t: ev.t, by: ev.by }; P.materials = d.materials; setStage(P, 'material_order', ev); break;
+    case 'ASSIGNED': P[d.role] = d.uid; if (d.role === 'tech') P.partner = companyOf(d.uid); break;
     case 'DISPATCHED': P.dispatch = { t: ev.t, by: ev.by, seal: d.seal.trim(), vehicle: d.vehicle || '', serials: d.serials || '', ev: ev_(d).map(e => e.id) }; setStage(P, 'dispatched', ev); break;
     case 'ARRIVED': {
       const match = (d.sealSeen || '').trim().toUpperCase() === (P.dispatch.seal || '').toUpperCase();
@@ -3831,7 +4006,7 @@ function apply(S, ev) {
     case 'QC_FINAL_RESULT': {
       const items = (d.items || []).filter(x => (x.text || '').trim()).map((x, i) => ({ id: ev.id + '-' + i, scope: 'install', text: x.text, due: x.due || '', role: 'tech', done: null, t: ev.t }));
       P.qc = ev.by;
-      P.qcFinal.push({ t: ev.t, by: ev.by, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), note: d.note || '', ev: ev_(d).map(e => e.id), stars: d.stars ? +d.stars : null, cause: d.outcome === 'fail' ? (d.cause || 'work') : null, lead: P.tech || null, crew: (P.crew || []).slice() });
+      P.qcFinal.push({ t: ev.t, by: ev.by, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), note: d.note || '', ev: ev_(d).map(e => e.id), stars: d.stars ? +d.stars : null, cause: d.outcome === 'fail' ? (d.cause || 'work') : null, lead: P.tech || null, crew: (P.crew || []).slice(), partner: P.partner || null });
       if (d.stars && P.tech) S.reviews.push({ id: ev.id, uid: P.tech, by: ev.by, src: 'qc', stars: +d.stars, pid: P.id, ref: 'qcf' + (P.qcFinal.length - 1), note: d.note || '', t: ev.t });
       P.corrections.push(...items);
       setStage(P, d.outcome === 'pass' ? 'final_pay' : 'install_fix', ev);
@@ -3840,7 +4015,7 @@ function apply(S, ev) {
     case 'HANDOVER_SIGNED': P.hand[d.slot] = { t: ev.t, by: ev.by, signer: d.signer, sig: ev_(d, 'sign')[0].id, inPerson: d.slot === 'customer' && roleOf(ev.by) !== 'customer' }; break;
     case 'HANDOVER_COMPLETED': {
       const start = ev.t.slice(0, 10), n = Math.max(1, S.config.amcVisits), gap = Math.round(365 / n);
-      P.done = { team: { lead: leadAt(P, passEntry(P)), crew: crewAt(P, passEntry(P)).slice() }, t: ev.t, by: ev.by, warrantyMonths: S.config.warrantyMonths, amc: { start, visits: Array.from({ length: n }, (_, i) => addDays(gap * (i + 1), new Date(ev.t))) } };
+      P.done = { team: { lead: leadAt(P, passEntry(P)), crew: crewAt(P, passEntry(P)).slice(), partner: (passEntry(P) || {}).partner || P.partner || null }, t: ev.t, by: ev.by, warrantyMonths: S.config.warrantyMonths, amc: { start, visits: Array.from({ length: n }, (_, i) => addDays(gap * (i + 1), new Date(ev.t))) } };
       P.amcEnd = addDays(365, new Date(ev.t));
       setStage(P, 'amc', ev);
       break;
@@ -3885,7 +4060,7 @@ function apply(S, ev) {
       S.postOrder.unshift(d.postId);
       break;
     }
-    case 'JOB_APPLIED': S.posts[d.postId].apps[ev.by] = { t: ev.t, note: d.note || '', gps: d.gps && d.gps.lat != null ? { lat: +d.gps.lat, lng: +d.gps.lng } : null }; break;
+    case 'JOB_APPLIED': S.posts[d.postId].apps[ev.by] = { t: ev.t, note: d.note || '', gps: d.gps && d.gps.lat != null ? { lat: +d.gps.lat, lng: +d.gps.lng } : null, team: d.team ? { lead: d.team.lead || null, crew: (d.team.crew || []).slice() } : null }; break;
     case 'JOB_WITHDRAWN': S.posts[d.postId].apps[ev.by].out = ev.t; break;
     case 'JOB_CLOSED': Object.assign(S.posts[d.postId], { status: 'closed', closedT: ev.t, closedBy: ev.by, reason: d.reason }); break;
     case 'JOB_CONFIRMED': {
@@ -3893,12 +4068,14 @@ function apply(S, ev) {
       p.picked.push(d.uid); p.apps[d.uid].picked = ev.t;
       if (p.picked.length >= p.slots) Object.assign(p, { status: 'filled', closedT: ev.t });
       /* the confirmation itself gives the work to the person (the project may be missing on a worker's phone) */
+      /* a company's application names the people it sends: its lead (and crew) get the work, the company holds the job */
+      const team = p.apps[d.uid].team, who = team ? team.lead : d.uid;
       if (Q) {
-        if (p.kind === 'lead') Q.tech = d.uid;
-        else if (p.kind === 'crew') Q.crew = (Q.crew || []).concat(d.uid);
-        else if (p.kind === 'service') (Q.svcOwner = Q.svcOwner || {})[p.ref] = d.uid;
+        if (p.kind === 'lead') { Q.tech = who; if (team) { Q.crew = team.crew.slice(); Q.partner = d.uid; } }
+        else if (p.kind === 'crew') Q.crew = (Q.crew || []).concat(team ? team.crew : [d.uid]);
+        else if (p.kind === 'service') { (Q.svcOwner = Q.svcOwner || {})[p.ref] = who; }
         else if (p.kind === 'qc') Q.qc = d.uid;
-        else if (p.kind === 'repair') { const x = ticketOf(Q, p.ref); if (x) { x.owner = d.uid; x.due = p.start || addDays(2, new Date(ev.t)); if (x.status === 'open') x.status = 'assigned'; x.hist.push({ status: 'assigned', t: ev.t, by: ev.by, note: userName(d.uid) + ' · ' + x.due }); } }
+        else if (p.kind === 'repair') { const x = ticketOf(Q, p.ref); if (x) { x.owner = who; x.due = p.start || addDays(2, new Date(ev.t)); if (x.status === 'open') x.status = 'assigned'; x.hist.push({ status: 'assigned', t: ev.t, by: ev.by, note: userName(who) + ' · ' + x.due }); } }
       }
       break;
     }
@@ -4043,7 +4220,7 @@ function globalNeeds(u, all) {
   const up = (n, from, id) => { const e = escFor(n, from, id); if (e) out.push(e); };
   for (const id of S.approvalOrder) { const r = S.approvals[id]; if (r.status === 'pending') add('second_approval', ['owner', 'admin'], { aid: id, not: r.by, urgent: true }); }
   if (all || ['owner', 'admin', 'finance', 'tech'].includes(u.role)) {
-    for (const x of Object.values(S.users).filter(y => ['tech', 'qc'].includes(y.role) && (y.active || weeksFor(y.uid).some(w => !w.pay || w.pay.status !== 'paid')))) {
+    for (const x of Object.values(S.users).filter(y => ['tech', 'qc', 'partner'].includes(y.role) && (y.active || weeksFor(y.uid).some(w => !w.pay || w.pay.status !== 'paid')))) {
       for (const w of weeksFor(x.uid)) {
         const id = x.uid + '|' + w.week;
         if (!w.pay || w.pay.status === 'open') { if (w.week < weekKey(nowISO()) && w.total > 0) up(add('approve_pay', ['owner', 'admin'], { uid: x.uid, week: w.week }), addDays(7, new Date(w.week + 'T12:00:00')) + 'T00:00:00', id); }
@@ -4067,6 +4244,15 @@ function globalNeeds(u, all) {
   }
   /* a person started using a new phone: the office confirms it before records from that phone are accepted */
   for (const [uid, list] of Object.entries(S.keys)) for (const k of list) if (!k.ok && S.users[uid] && S.users[uid].active) add('approve_key', ['admin', 'owner'], { uid, kid: k.kid, not: uid, urgent: true });
+  /* partner companies: technicians waiting for AIEC approval, technicians with no company, licences running out */
+  for (const x of Object.values(S.users).filter(y => y.active && y.role === 'tech')) {
+    if (!x.company) add('link_company', ['admin', 'owner'], { uid: x.uid });
+    else if (!x.memberOk) add('approve_member', ['admin', 'owner'], { uid: x.uid, not: x.company });
+  }
+  for (const x of Object.values(S.users).filter(y => y.active && y.role === 'partner')) {
+    const d = licDays(x.uid);
+    if (d != null && d <= (S.config.licWarnDays || 60)) { const o = { uid: x.uid, n: d, urgent: d <= 7 }; add('licence_renew', ['partner'], Object.assign({ uids: [x.uid] }, o)); add('licence_renew', ['admin', 'owner'], o); }
+  }
   /* work held by someone who left, or by a lead whose level no longer allows this job */
   for (const P of Object.values(S.projects)) {
     if (P.stage === 'lost') continue;
@@ -4076,7 +4262,11 @@ function globalNeeds(u, all) {
     if (P.stage === 'amc' && P.tech && !isActive(P.tech) && !P.amcEnded) held.push(P.tech);
     P.tickets.forEach(x => { if (x.owner && !isActive(x.owner) && ['assigned', 'in_progress'].includes(x.status)) held.push(x.owner); });
     if (P.tech && isActive(P.tech) && ['arrived', 'installing', 'install_fix'].includes(P.stage) && !gradeMayLead(P.tech, P)) held.push(P.tech);
+    if (P.partner && OPEN_STAGES.includes(P.stage) && !passedQc(P)) [P.tech].concat(P.crew || []).forEach(x => { if (x && isActive(x) && companyOf(x) !== P.partner) held.push(x); });
     uniq(held).forEach(x => add('reassign_work', ['admin', 'owner'], { pid: P.id, uid: x, urgent: true, since: P.updated || P.since }));
+    /* the company that holds the job puts its own people on it */
+    if (P.partner && isActive(P.partner) && OPEN_STAGES.includes(P.stage) && stageIdx(P.stage) >= stageIdx('signed') && !passedQc(P) && (!P.tech || companyOf(P.tech) !== P.partner || !isActive(P.tech)))
+      add('fill_team', ['partner'], { pid: P.id, uids: [P.partner], urgent: true });
   }
   /* career ladder: promotions ready, spot checks, strike appeals, review meetings */
   for (const x of Object.values(S.users).filter(y => y.active && ['tech', 'qc'].includes(y.role))) {
@@ -4093,7 +4283,7 @@ function globalNeeds(u, all) {
     if (apps.length) up(add('pick_applicant', p.kind === 'crew' && roleOf(p.by) === 'tech' ? ['tech'] : ['admin', 'owner'], { pid: p.pid, postId: p.id, uids: p.kind === 'crew' && roleOf(p.by) === 'tech' ? [p.by] : [] }), apps.map(([, a]) => a.t).sort()[0], p.id);
     else if (daysSince(p.t) >= (S.config.postWarnDays || 2)) up(add('post_nobody', ['admin', 'owner'], { pid: p.pid, postId: p.id }), p.t, p.id);
   }
-  for (const x of Object.values(S.users).filter(y => y.active && ['tech', 'qc'].includes(y.role))) myOpenJobs(x.uid).slice(0, 3).forEach(p => add('job_open', [x.role], { uids: [x.uid], pid: p.pid, postId: p.id, kind: p.kind }));
+  for (const x of Object.values(S.users).filter(y => y.active && ['partner', 'qc'].includes(y.role))) myOpenJobs(x.uid).slice(0, 3).forEach(p => add('job_open', [x.role], { uids: [x.uid], pid: p.pid, postId: p.id, kind: p.kind }));
   for (const sp of spotDue()) add('spot_check', activeOf('qc') ? ['qc'] : ['admin'], { pid: sp.pid, step: sp.step, not: sp.by, key: sp.key, uid: sp.by });
   return all ? out : out.filter(n => isMine(n, u));
 }
@@ -4592,7 +4782,7 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
@@ -4600,7 +4790,7 @@ function taskCard(n, i) {
   const sub = n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
   if (!P || n.k === 'job_open') {
     const info = n.k === 'job_open' && S.posts[n.postId] ? jobTitle(S.posts[n.postId]) + ' · 📍 ' + S.posts[n.postId].card.area : n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
-      : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
+      : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
     return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
@@ -5232,7 +5422,7 @@ const usersOf = role => Object.values(S.users).filter(u => u.role === role && u.
 function personTiles(key, role) {
   if (role === 'tech' && W && W.pid) {
     /* only people allowed to lead a job of this size; best fair stars first */
-    const P = S.projects[W.pid], all = usersOf('tech'), ok = rankWorkers(all.filter(u => canLead(u.uid, P)));
+    const P = S.projects[W.pid], all = usersOf('tech'), ok = rankWorkers(all.filter(u => canLead(u.uid, P) && !techWhyNot(u.uid)));
     const mk = ['owner', 'admin'].includes(App.me.role) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="post|${P.id}|kind|lead">📣 ${t('post_instead')}</button>` : '';
     if (!ok.length) return `<div class="warnbox">${t('no_leader', { size: t('js_' + jobSize(P)) })}</div>` + mk;
     return `<div class="note">📏 ${t('js_note', { size: t('js_' + jobSize(P)) })}</div>` + tiles(key, ok.map(u => [u.uid, GRADE_ICON[gradeOf(u.uid)], u.name, workerSub(u.uid)]), 'one')
@@ -5570,7 +5760,7 @@ SCREENS.perms = () => {
 
 /* ---------- home ---------- */
 function hero(u) {
-  return `<div class="hero"><div class="row"><span style="font-size:2.2rem" aria-hidden="true">${ROLE_ICON[u.role]}</span><div class="grow"><b style="font-size:1.15rem">${esc(t('hello', { name: u.name }))}</b><br><span class="muted">${t('r_' + u.role)} · ${esc(S.org.name)}</span></div></div></div>`;
+  return `<div class="hero"><div class="row"><span style="font-size:2.2rem" aria-hidden="true">${ROLE_ICON[u.role]}</span><div class="grow"><b style="font-size:1.15rem">${esc(t('hello', { name: u.name }))}</b><br><span class="muted">${t('r_' + u.role)} · ${esc(S.org.name)}</span></div></div>${u.role === 'tech' ? `<div style="margin-top:6px">${memberChip(u.uid)}</div>` : ''}</div>`;
 }
 SCREENS.home = () => {
   const u = App.me;
@@ -5596,7 +5786,7 @@ SCREENS.home = () => {
   if (adm) { const qn = queueRows().filter(r => r.n).length;
     h += fold('queues', t('queues'), queuesCard(true), { icon: '🗂️', count: qn, alert: qn > 0, sub: t('fold_tap') });
     h += fold('dash', t(u.role === 'owner' ? 'owner_dash' : 'admin_dash'), dashboard(true), { icon: '📊', sub: t('fold_tap') }); }
-  if (['tech', 'qc'].includes(u.role)) { const n = myOpenJobs(u.uid).length; h += `<button class="task" style="margin-top:12px" data-a="nav" data-v="jobs"><span class="ti">🧰</span><span class="grow" style="flex:1;min-width:0"><b>${t('jobs_title')}</b><span class="small muted">${t(n ? 'jobs_n' : 'jobs_none_short', { n })}</span></span>${n ? `<span class="chip c-info">${n}</span>` : ''}<span class="go">▶</span></button>`; }
+  if (['partner', 'qc'].includes(u.role)) { const n = myOpenJobs(u.uid).length; h += `<button class="task" style="margin-top:12px" data-a="nav" data-v="jobs"><span class="ti">🧰</span><span class="grow" style="flex:1;min-width:0"><b>${t('jobs_title')}</b><span class="small muted">${t(n ? 'jobs_n' : 'jobs_none_short', { n })}</span></span>${n ? `<span class="chip c-info">${n}</span>` : ''}<span class="go">▶</span></button>`; }
   if (gradeOf(u.uid)) { const st = ladderStatus(u.uid);
     h += fold('ladder', t('ladder_title'), ladderCard(u.uid, { short: true, bare: true }), { icon: GRADE_ICON[st.grade], sub: t('gr_' + st.grade) + (st.next ? ' → ' + t('gr_' + st.next) + ' · ' + t(st.ready ? 'ladder_ready_short' : 'ladder_left', { n: st.left }) : ''), open: st.left === 1 || st.ready, alert: st.ready }); }
   if (u.role === 'field') h += fold('score', t('my_score_t'), fieldScore(), { icon: '🏅' });
@@ -5738,7 +5928,7 @@ function projActions(P) {
   add('FOLLOWUP_SET', 'followup', '📅', 'set_followup');
   add('ASSIGNED', 'assign', '👥', 'change_team', P.stage !== 'amc');
   if (['owner', 'admin'].includes(u.role) && postOptions(P).length) a.push(`<button class="btn" data-a="projAct" data-v="post">📣 ${t('post_job_btn')}</button>`);
-  if (u.role === 'tech' && P.tech === u.uid && gradeOf(u.uid) === 'senior' && postOptions(P).some(o => o[0] === 'crew|')) a.push(`<button class="btn" data-a="wizOpen" data-v="post|${P.id}|kind|crew">📣 ${t('post_crew_btn')}</button>`);
+  add('TEAM_SET', 'team', '👷', 'team_set', P.partner && (u.role !== 'partner' || P.partner === u.uid) && stageIdx(P.stage) >= stageIdx('signed') && !passedQc(P) && !['lost', 'amc'].includes(P.stage));
   add('USER_ADDED', 'custAccess', '🔑', 'give_cust_access', !P.customer && stageIdx(P.stage) >= stageIdx('won') && P.stage !== 'lost' && (u.role !== 'sales' || P.sales === u.uid));
   add('BLOCKER_RAISED', 'blocker', '⛔', 'report_problem');
   add('INCIDENT_RAISED', 'incidentNew', '🚨', 'report_security');
@@ -5753,7 +5943,7 @@ function projActions(P) {
 }
 function projInfo(P) {
   const u = App.me, q = lastQuote(P);
-  const team = [['r_sales', P.sales], ['r_qc', P.qc], ['r_supplier', P.supplier], ['team_lead', P.tech], ['r_customer', P.customer], ['added_by', P.createdBy]].map(([l, id]) => [l, id ? userTag(id) + (l === 'team_lead' && gradeOf(id) ? '<br>' + gradeChip(id) + ' ' + starChip(id) : '') : '']);
+  const team = [['r_sales', P.sales], ['r_qc', P.qc], ['r_supplier', P.supplier], ['r_partner', P.partner], ['team_lead', P.tech], ['r_customer', P.customer], ['added_by', P.createdBy]].map(([l, id]) => [l, id ? userTag(id) + (l === 'team_lead' && gradeOf(id) ? '<br>' + gradeChip(id) + ' ' + starChip(id) : '') : '']);
   if ((P.crew || []).length) team.splice(4, 0, ['crew', P.crew.map(x => userTag(x) + ' ' + gradeChip(x) + (allowed('CREW_REMOVED', P) && (App.me.role !== 'tech' || P.tech === App.me.uid) ? ` <button class="btn btn-sm" data-a="crewRemove" data-v="${x}">✕</button>` : '')).join('<br>')]);
   const open = [...P.blockers.filter(b => b.open).map(b => `<div class="warnbox">⛔ ${t('br_' + b.reason)} → ${t('r_' + b.role)}${b.note ? ': ' + esc(b.note) : ''}</div>`),
     ...P.incidents.filter(i => i.open).map(i => `<div class="err">🚨 ${t('inc_' + i.type)}: ${esc(i.note)}</div>`)].join('');
@@ -5767,7 +5957,7 @@ function projInfo(P) {
     ${seeF(u, 'lead') ? `<details class="card"><summary><b>🏍️ ${t('lead_details')}</b></summary>${leadSummary(P)}</details>` : ''}
     ${P.req ? `<div class="card"><h3>📝 ${t('lift_needs')}</h3>${reqKv(P.req)}</div>` : ''}
     ${q && seeF(u, 'money') ? `<div class="card"><h3>📄 ${t('quote_v', { v: q.v })}</h3>${kv([['q_total', money(q.total)], ['status', t('qs_' + q.status)]])}${seeF(u, 'internal') ? `<span class="chip c-info">🔒 ${t('q_margin', { n: q.margin })}</span>` : ''}</div>` : ''}
-    <div class="card"><h3>👥 ${t('team')}</h3>${kv(team)}${P.tech && !['lost', 'amc'].includes(P.stage) && stageIdx(P.stage) >= stageIdx('material_order') && allowed('CREW_ADDED', P) && (u.role !== 'tech' || (P.tech === u.uid && gradeOf(u.uid) === 'senior')) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="crewAdd|${P.id}">👷 ${t('crew_add')}</button>` : ''}<p class="small muted">📏 ${t('js_' + jobSize(P))}</p></div>
+    <div class="card"><h3>👥 ${t('team')}</h3>${kv(team)}${P.tech && !['lost', 'amc'].includes(P.stage) && stageIdx(P.stage) >= stageIdx('material_order') && allowed('CREW_ADDED', P) && (u.role !== 'tech' || (P.tech === u.uid && gradeOf(u.uid) === 'senior')) && (u.role !== 'partner' || P.partner === u.uid) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="crewAdd|${P.id}">👷 ${t('crew_add')}</button>` : ''}<p class="small muted">📏 ${t('js_' + jobSize(P))}</p></div>
     ${P.materials.length && stageIdx(P.stage) >= stageIdx('material_order') && P.stage !== 'lost' ? `<div class="card"><h3>📦 ${t('material')}</h3>${kv([['f_drawings', esc(P.drawings && P.drawings.ref)], ['f_seal', P.dispatch ? esc(P.dispatch.seal) : ''], ['f_vehicle', P.dispatch ? esc(P.dispatch.vehicle) : ''],
       ['arrived', P.arrival ? fmtD(P.arrival.t, true) + (P.arrival.sealMatch ? ' · ✅ ' + t('seal_match') : ' · ❌ ' + t('seal_mismatch')) : ''], ['handed_over', P.mhand ? fmtD(P.mhand.t, true) : '']])}
       <div class="note">📡 ${t('no_tracker')}</div></div>` : ''}
@@ -6093,7 +6283,7 @@ SCREENS.me = () => {
   const tile = (a, v, i, l, on) => on === false ? '' : `<button class="tile" data-a="${a}" data-v="${v || ''}"><span class="i" aria-hidden="true">${i}</span>${t(l)}</button>`;
   const group = (icon, l, body) => !body.trim() ? '' : l === 'me_app' ? fold('me_app', t(l), `<div class="tiles">${body}</div>`, { icon, sub: t('fold_tap') }) : `<h2 class="sec">${icon} ${t(l)}</h2><div class="tiles">${body}</div>`;
   return topBar(t('me')) + `<main class="wrap"><div class="hero"><div class="row"><span style="font-size:2.4rem">${ROLE_ICON[r]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + r)}</span></div></div><p class="small muted" style="margin:8px 0 0">${t('role_note')}</p></div>
-    ${group('🧰', 'me_work', tile('nav', 'jobs', '🧰', 'jobs_title', ['tech', 'qc'].includes(r)) + tile('nav2', 'ladder|' + u.uid, '🪜', 'my_ladder', !!gradeOf(u.uid)) + tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', ['tech', 'qc'].includes(r))
+    ${group('🧰', 'me_work', tile('nav', 'jobs', '🧰', 'jobs_title', ['partner', 'qc'].includes(r)) + tile('nav2', 'worker|' + u.uid, '🏢', 'my_company', r === 'partner') + tile('nav2', 'ladder|' + u.uid, '🪜', 'my_ladder', !!gradeOf(u.uid)) + tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', ['tech', 'qc', 'partner'].includes(r))
       + tile('nav2', 'leaders|', '🏆', 'leaderboard', staff) + tile('nav', 'templates', '💬', 'templates', ['owner', 'admin', 'sales', 'finance', 'tech'].includes(r)) + tile('nav', 'helper', '🙋', 'helper'))}
     ${group('🏢', 'me_office', tile('nav', 'posts', '📣', 'posts_title', adm) + tile('nav', 'escalations', '⏫', 'esc_title', adm) + tile('nav', 'workers', '🪪', 'workers', adm) + tile('nav', 'users', '👥', 'users', adm)
       + tile('nav', 'rules', '📏', 'business_rules', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'audit', '🧾', 'audit_log', adm) + tile('nav', 'problems', '⚠️', 'problems', adm))}
@@ -6153,11 +6343,13 @@ SCREENS.users = () => {
     ${us.map(x => `<button class="task" data-a="userOpen" data-v="${x.uid}"><span class="ti">${ROLE_ICON[x.role]}</span><span style="flex:1"><b>${esc(x.name)}</b><span class="small muted">${t('r_' + x.role)}${x.projectId ? ' · ' + esc(x.projectId) : ''}</span><br>${x.active ? `<span class="chip c-ok">${t('active')}</span>` : `<span class="chip c-bad">${t('blocked')}</span>`}</span><span class="go">▶</span></button>`).join('')}</main>` + nav('me');
 };
 function userAddSheet() {
-  const f = App.form; f.nuRole = f.nuRole || 'field'; f.nuPin = f.nuPin || String(1000 + (crypto.getRandomValues(new Uint16Array(1))[0] % 9000));
-  const roles = ROLES.filter(r => r !== 'customer' && (App.me.role === 'owner' || r !== 'owner'));
+  const f = App.form, co = App.me.role === 'partner'; f.nuRole = co ? 'tech' : f.nuRole || 'field'; f.nuPin = f.nuPin || String(1000 + (crypto.getRandomValues(new Uint16Array(1))[0] % 9000));
+  const roles = co ? ['tech'] : ROLES.filter(r => r !== 'customer' && (App.me.role === 'owner' || r !== 'owner'));
   sheet(`<h2>➕ ${t('add_person')}</h2>${formInp('nuName', 'person_name', { mic: true })}<div class="small" style="font-weight:800;margin-bottom:6px">${t('role')}</div>
     <div class="tiles">${roles.map(r => `<button class="tile ${f.nuRole === r ? 'on' : ''}" data-a="nuRole" data-v="${r}" style="min-height:80px"><span class="i">${ROLE_ICON[r]}</span>${t('r_' + r)}</button>`).join('')}</div>
-    ${f.nuRole === 'tech' ? `<div class="small" style="font-weight:800;margin:10px 0 6px">${t('start_level')}</div><div class="tiles three">${GRADES.slice(0, App.me.role === 'owner' ? 4 : 3).map(x => `<button class="tile ${(f.nuGrade || 'trainee') === x ? 'on' : ''}" data-a="nuGrade" data-v="${x}" style="min-height:72px"><span class="i">${GRADE_ICON[x]}</span>${t('gr_' + x)}</button>`).join('')}</div><p class="small muted">${t('start_level_note')}</p>` : ''}
+    ${f.nuRole === 'tech' ? `<div class="small" style="font-weight:800;margin:10px 0 6px">${t('start_level')}</div><div class="tiles three">${GRADES.slice(0, App.me.role === 'owner' ? 4 : co ? 2 : 3).map(x => `<button class="tile ${(f.nuGrade || 'trainee') === x ? 'on' : ''}" data-a="nuGrade" data-v="${x}" style="min-height:72px"><span class="i">${GRADE_ICON[x]}</span>${t('gr_' + x)}</button>`).join('')}</div><p class="small muted">${t('start_level_note')}</p>` : ''}
+    ${f.nuRole === 'tech' && !co ? `<div class="small" style="font-weight:800;margin:10px 0 6px">🏢 ${t('r_partner')}</div><div class="tiles one">${usersOf('partner').map(x => `<button class="tile ${f.nuCo === x.uid ? 'on' : ''}" data-a="nuCo" data-v="${x.uid}" style="min-height:60px"><span class="i">🏢</span>${esc(x.name)}</button>`).join('')}<button class="tile ${!f.nuCo ? 'on' : ''}" data-a="nuCo" data-v="" style="min-height:60px"><span class="i">➖</span>${t('no_company')}</button></div>` : ''}
+    ${co ? `<div class="note">🏢 ${t('member_add_note')}</div>` : ''}
     <div class="card center" style="margin-top:12px"><div class="small muted">${t('new_pin_is')}</div><div style="font-size:2.2rem;font-weight:800;letter-spacing:6px">${f.nuPin}</div><div class="small">${t('pin_tell')}</div></div>
     <button class="btn btn-ok btn-big" data-a="userSave">✅ ${t('save')}</button><div class="note">ℹ️ ${t('customer_add_note')}</div>`);
 }
@@ -6167,6 +6359,7 @@ function userSheet(uid) {
   const self = uid === App.me.uid, locked = (App.me.role === 'admin' && x.role === 'owner');
   sheet(`<h2>${ROLE_ICON[x.role]} ${esc(x.name)}</h2><p class="muted">${t('r_' + x.role)} · ${x.active ? t('active') : t('blocked')}</p>
     ${!self && !locked && x.role !== 'customer' ? `<div class="small" style="font-weight:800;margin-bottom:6px">${t('change_role')}</div><div class="tiles">${roles.map(r => `<button class="tile ${x.role === r ? 'on' : ''}" data-a="userRole" data-v="${uid}|${r}" style="min-height:76px"><span class="i">${ROLE_ICON[r]}</span>${t('r_' + r)}</button>`).join('')}</div>` : ''}
+    ${x.role === 'tech' && !self ? `<div class="small" style="font-weight:800;margin:10px 0 6px">🏢 ${t('r_partner')}</div><div class="tiles one">${usersOf('partner').map(c => `<button class="tile ${x.company === c.uid ? 'on' : ''}" data-a="userCo" data-v="${uid}|${c.uid}" style="min-height:60px"><span class="i">🏢</span>${esc(c.name)}</button>`).join('')}</div>` : ''}
     ${!locked ? `<div class="stack" style="margin-top:12px"><button class="btn" data-a="userPin" data-v="${uid}">🔢 ${t('reset_pin')}</button>${!self ? `<button class="btn ${x.active ? 'btn-bad' : 'btn-ok'}" data-a="userActive" data-v="${uid}">${x.active ? '⛔ ' + t('block_user') : '✅ ' + t('unblock_user')}</button>` : ''}</div>` : `<div class="note">${t('err_role', { roles: t('r_owner') })}</div>`}`);
 }
 /* ---------- owner: business rules ---------- */
@@ -6231,15 +6424,15 @@ function exportPack(kind, forUid, opts = {}) {
     /* everyone's level, documents and training travel to every staff phone, so level rules agree on all phones; private details are removed */
     const LADDER = ['PROMOTED', 'DEMOTED', 'DOC_VERIFIED', 'TRAINING_PASSED', 'SKILL_CHECKED', 'WORKER_PROFILE'];
     const ABOUT = ['STRIKE_DECIDED', 'REVIEW_HELD', 'PAY_APPROVED', 'PAY_PAID', 'PAY_DISPUTE_ANSWERED'];
-    const staff = target.role !== 'customer', market = ['tech', 'qc', 'owner', 'admin'].includes(target.role);
+    const staff = target.role !== 'customer', market = ['partner', 'tech', 'qc', 'owner', 'admin'].includes(target.role);
     events = EVENTS.filter(ev => ev.type.startsWith('JOB_') ? market : ev.pid ? vis.has(ev.pid)
       : ev.type === 'USER_ADDED' && ev.data.role === 'customer' ? vis.has(ev.data.projectId)
-      : ['ORG_CREATED', 'USER_ADDED', 'USER_UPDATED', 'CONFIG_SET', 'KEY_ADDED', 'KEY_APPROVED'].includes(ev.type) || ev.by === forUid || (staff && LADDER.includes(ev.type)) || (ABOUT.includes(ev.type) && ev.data.uid === forUid))
+      : ['ORG_CREATED', 'USER_ADDED', 'USER_UPDATED', 'CONFIG_SET', 'KEY_ADDED', 'KEY_APPROVED', 'PARTNER_PROFILE', 'MEMBER_APPROVED', 'MEMBER_REMOVED'].includes(ev.type) || (ev.type === 'DOC_VERIFIED' && roleOf(ev.data.uid) === 'partner') || ev.by === forUid || (staff && LADDER.includes(ev.type)) || (ABOUT.includes(ev.type) && ev.data.uid === forUid))
       .map(ev => {
         if (ev.type === 'PIN_UPGRADED' && ev.by !== forUid) return cutEv(ev, Object.assign({}, ev.data, { pin: 'p2$', salt: 'x', stripped: true }));
         if ((ev.type === 'USER_ADDED' || ev.type === 'USER_UPDATED') && ev.data.uid !== forUid && ev.data.pin) return cutEv(ev, Object.assign({}, ev.data, { pin: null, salt: null, stripped: true }));
         if (ev.type === 'WORKER_PROFILE' && ev.data.uid !== forUid) return cutEv(ev, Object.assign({}, ev.data, { phone: '', area: '', stripped: !!(ev.data.phone && ev.data.area) }));
-        if (ev.type === 'JOB_APPLIED' && ev.by !== forUid && !['owner', 'admin'].includes(target.role)) return cutEv(ev, { postId: ev.data.postId });
+        if (ev.type === 'JOB_APPLIED' && ev.by !== forUid && !['owner', 'admin'].includes(target.role)) return cutEv(ev, Object.assign({ postId: ev.data.postId }, ev.data.team ? { team: ev.data.team } : {}));
         return ev;
       });
   }
@@ -6483,27 +6676,28 @@ SCREENS.workers = () => {
   if (q) list = list.filter(u => { const p = (S.workers[u.uid] || {}).profile || {}; return [u.name, p.area, (p.skills || []).map(x => t('skill_' + x)).join(' ')].join(' ').toLowerCase().includes(q); });
   const chip = (k, v, l) => `<button class="${f[k] === v || (!f[k] && v === 'all') ? 'on' : ''}" data-a="wfilter" data-v="${k}|${v}">${l}</button>`;
   return topBar(t('workers'), { back: true }) + `<main class="wrap">${formInp('wq', 'w_search')}
-    <div class="tabs" style="position:static;padding:0 0 6px">${chip('wr', 'all', t('all'))}${['field', 'sales', 'finance', 'qc', 'supplier', 'tech', 'admin'].map(x => chip('wr', x, ROLE_ICON[x] + ' ' + t('r_' + x))).join('')}</div>
+    <div class="tabs" style="position:static;padding:0 0 6px">${chip('wr', 'all', t('all'))}${['partner', 'tech', 'qc', 'field', 'sales', 'finance', 'supplier', 'admin'].map(x => chip('wr', x, ROLE_ICON[x] + ' ' + t('r_' + x))).join('')}</div>
     <div class="tabs" style="position:static;padding:0 0 10px">${chip('wa', 'all', t('all'))}${['available', 'busy', 'leave'].map(x => chip('wa', x, t('av_' + x))).join('')}${chip('wa', 'incomplete', '⚠️ ' + t('onb_incomplete'))}</div>
     ${list.map(u => { const w = S.workers[u.uid] || { profile: {}, docs: {}, training: {} }, p = w.profile;
       return `<button class="task" data-a="nav2" data-v="worker|${u.uid}"><span class="ti">${ROLE_ICON[u.role]}</span><span style="flex:1"><b>${esc(u.name)}</b><span class="small muted">${t('r_' + u.role)}${p.area ? ' · 📍 ' + esc(p.area) : ''}</span><br>
-        ${p.availability ? `<span class="chip ${p.availability === 'available' ? 'c-ok' : 'c-mute'}">${t('av_' + p.availability)}</span> ` : ''}${gradeOf(u.uid) ? gradeChip(u.uid) + ' ' + starChip(u.uid) + ' ' : ''}${(ob => !ob.total ? '' : ob.ready ? `<span class="chip c-ok">✅ ${t('onb_ready')}</span>` : `<span class="chip c-info">🪪 ${t('onb_progress', { n: ob.done, m: ob.total })}</span> ${escChip({ level: escLevel(daysSince(u.t), 'onboarding') })}`)(onboarding(u.uid))}
+        ${p.availability ? `<span class="chip ${p.availability === 'available' ? 'c-ok' : 'c-mute'}">${t('av_' + p.availability)}</span> ` : ''}${u.role === 'partner' ? companyChips(u.uid) + ' ' : ''}${u.role === 'tech' ? memberChip(u.uid) + ' ' : ''}${gradeOf(u.uid) ? gradeChip(u.uid) + ' ' + starChip(u.uid) + ' ' : ''}${(ob => !ob.total ? '' : ob.ready ? `<span class="chip c-ok">✅ ${t('onb_ready')}</span>` : `<span class="chip c-info">🪪 ${t('onb_progress', { n: ob.done, m: ob.total })}</span> ${escChip({ level: escLevel(daysSince(u.t), 'onboarding') })}`)(onboarding(u.uid))}
         ${(p.skills || []).length ? `<br><span class="small">${p.skills.map(x => t('skill_' + x)).join(', ')}</span>` : ''}</span><span class="go">▶</span></button>`; }).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
 };
 SCREENS.worker = ({ uid }) => {
   const u = S.users[uid], me = App.me;
-  if (!u || (uid !== me.uid && !['owner', 'admin'].includes(me.role))) return SCREENS.home();
+  if (!u || (uid !== me.uid && !['owner', 'admin'].includes(me.role) && !(me.role === 'partner' && companyOf(uid) === me.uid))) return SCREENS.home();
   const w = S.workers[uid] || { profile: {}, docs: {}, training: {} }, p = w.profile, adm = ['owner', 'admin'].includes(me.role) && uid !== me.uid;
   App.pageSay = t('s_worker');
   return topBar(uid === me.uid ? t('my_profile') : u.name, { back: true }) + `<main class="wrap">
     <div class="hero"><div class="row"><span style="font-size:2.2rem">${ROLE_ICON[u.role]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + u.role)}</span></div></div><div style="margin-top:6px">${authChip(uid)}</div></div>${onbCard(uid)}
+    ${u.role === 'partner' ? companyCard(uid) : ''}${u.role === 'tech' ? memberCard(uid) : ''}
     ${gradeOf(uid) ? ladderCard(uid, { short: true }) : ''}
     <div class="card"><h3>👤 ${t('profile')}</h3>${kv([['f_phone', esc(p.phone || '')], ['w_area', esc(p.area || '')], ['w_avail', p.availability ? t('av_' + p.availability) : ''], ['w_skills', (p.skills || []).map(x => t('skill_' + x)).join(', ')]])}
       ${u.role === 'customer' ? '' : `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="wprofile||uid|${uid}">✏️ ${t('edit')}</button>`}<p class="small muted">${t('w_privacy')}</p></div>
     <div class="card"><h3>🪪 ${t('w_docs')}</h3>${DOCS.map(d => `<div class="list-item"><span class="grow">${t('doc_' + d)}</span><span class="chip ${w.docs[d] === 'verified' ? 'c-ok' : w.docs[d] === 'rejected' ? 'c-bad' : 'c-mute'}">${t('ds_' + (w.docs[d] || 'pending'))}</span>
       ${adm ? `<button class="btn btn-sm" data-a="docVerify" data-v="${uid}|${d}|verified">✅</button><button class="btn btn-sm" data-a="docVerify" data-v="${uid}|${d}|rejected">❌</button>` : ''}</div>`).join('')}<p class="small muted">${t('w_docs_note')}</p></div>
     <div class="card"><h3>🎓 ${t('training')}</h3>${modulesFor(u.role).map(m => `<div class="list-item"><span>${w.training[m] ? '✅' : '⬜'}</span><span class="grow">${t('tr_' + m + '_t')}${w.training[m] ? `<br><span class="small muted">${fmtD(w.training[m].t)} · ${w.training[m].score}/3</span>` : ''}</span>${uid === me.uid && !w.training[m] ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="train||module|${m}">▶</button>` : ''}</div>`).join('') || `<p class="muted">${t('nothing_here')}</p>`}</div>
-    ${u.role === 'tech' ? `<button class="btn btn-big" data-a="nav2" data-v="earn|${uid}">💰 ${t('earnings')}</button>` : ''}</main>` + nav('me');
+    ${['tech', 'partner'].includes(u.role) && (me.role !== 'partner' || uid === me.uid) ? `<button class="btn btn-big" data-a="nav2" data-v="earn|${uid}">💰 ${t(u.role === 'partner' ? 'company_bill' : 'earnings')}</button>` : ''}</main>` + nav('me');
 };
 WIZ.wprofile = {
   title: 'profile', save: 'save', noDraft: true,
@@ -6687,9 +6881,11 @@ const Notify = {
   },
   /* motivation: new level or badge → cheer; new strike → explain and offer an appeal. The first look only remembers. */
   celebrate(u, silent) {
-    if (!gradeOf(u.uid)) return;
+    if (!gradeOf(u.uid) && u.role !== 'partner') return;
     const key = 'cel_' + App.mode + '_' + u.uid, seen = App.set[key];
-    const now = ['g:' + gradeOf(u.uid)].concat(Object.values(S.posts).filter(p => p.picked.includes(u.uid)).map(p => 'j:' + p.id),badgesOf(u.uid).map(b => 'b:' + b), strikesOf(u.uid).filter(k => k.active).map(k => 's:' + k.id));
+    /* a job won by me, or by my company with me in its team */
+    const won = p => p.picked.some(c => c === u.uid || ((p.apps[c] || {}).team && [p.apps[c].team.lead].concat(p.apps[c].team.crew || []).includes(u.uid)));
+    const now = ['g:' + gradeOf(u.uid)].concat(Object.values(S.posts).filter(won).map(p => 'j:' + p.id),badgesOf(u.uid).map(b => 'b:' + b), strikesOf(u.uid).filter(k => k.active).map(k => 's:' + k.id));
     App.set[key] = now;
     if (!seen || silent) return;
     const fresh = now.filter(x => !seen.includes(x)); if (!fresh.length) return;
@@ -6869,12 +7065,75 @@ WIZ.reviewMeet = {
 };
 WIZ.crewAdd = {
   title: 'crew_add', save: 'save', noDraft: true, init: () => ({ uid: '' }),
-  steps: [{ id: 'w', icon: '👷', say: 's_crew_add', body: (c, P) => { const list = rankWorkers(usersOf('tech').filter(u => u.uid !== P.tech && !(P.crew || []).includes(u.uid))); return list.length ? tiles('uid', list.map(u => [u.uid, GRADE_ICON[gradeOf(u.uid)], u.name, workerSub(u.uid)]), 'one') : `<div class="warnbox">${t('no_person_role', { role: t('r_tech') })}</div>`; }, check: c => S.users[c.uid] ? null : 'err_pick_person' }],
+  steps: [{ id: 'w', icon: '👷', say: 's_crew_add', body: (c, P) => { const list = rankWorkers(usersOf('tech').filter(u => u.uid !== P.tech && !(P.crew || []).includes(u.uid) && !techWhyNot(u.uid) && (!P.partner || u.company === P.partner))); return list.length ? tiles('uid', list.map(u => [u.uid, GRADE_ICON[gradeOf(u.uid)], u.name, workerSub(u.uid)]), 'one') : `<div class="warnbox">${t('no_person_role', { role: t('r_tech') })}</div>`; }, check: c => S.users[c.uid] ? null : 'err_pick_person' }],
   async finish(c, P) { const r = await run([['CREW_ADDED', P.id, { uid: c.uid }]]); return r.ok ? doneRes(P.id, 'what_crew_added', { name: userName(c.uid) }) : r; }
 };
 /* workers listed best first: fair stars, then number of reviews */
 const rankWorkers = list => list.slice().sort((a, b) => { const x = starsOf(a.uid), y = starsOf(b.uid); return y.fair - x.fair || y.count - x.count; });
-const workerSub = uid => { const s = starsOf(uid), g = gradeOf(uid); return (g ? t('gr_' + g) + ' · ' : '') + (s.count < 3 ? t('stars_new', { n: s.count }) : '★ ' + starTxt(s.fair) + ' (' + t('reviews_n', { n: s.count }) + ')'); };
+const workerSub = uid => { const s = starsOf(uid), g = gradeOf(uid), co = companyOf(uid); return (co ? '🏢 ' + userName(co) + ' · ' : '') + (g ? t('gr_' + g) + ' · ' : '') + (s.count < 3 ? t('stars_new', { n: s.count }) : '★ ' + starTxt(s.fair) + ' (' + t('reviews_n', { n: s.count }) + ')'); };
+
+/* ---------- Licensed Partner Companies: company card, members, team on a job ---------- */
+const teamText = tm => [tm.lead ? userName(tm.lead) : ''].concat((tm.crew || []).map(userName)).filter(Boolean).join(', ');
+function companySub(p) { const st = companyStars(p), n = companyJobs(p).length; return (st.count < 3 ? t('stars_new', { n: st.count }) : '★ ' + starTxt(st.fair) + ' (' + t('reviews_n', { n: st.count }) + ')') + ' · ' + t('co_jobs_n', { n }) + ' · ' + t(licenceOk(p) ? 'lic_ok' : 'lic_bad'); }
+function companyChips(p) {
+  const st = companyStars(p), d = licDays(p);
+  return `<span class="chip ${licenceOk(p) ? (d != null && d <= (S.config.licWarnDays || 60) ? 'c-warn' : 'c-ok') : 'c-bad'}">📜 ${licenceOk(p) ? (d != null && d <= (S.config.licWarnDays || 60) ? t('lic_days', { n: d }) : t('lic_ok')) : t('lic_bad')}</span> `
+    + (st.count < 3 ? `<span class="chip c-mute">⭐ ${t('stars_new', { n: st.count })}</span>` : `<span class="chip c-info">★ ${starTxt(st.fair)} (${t('reviews_n', { n: st.count })})</span>`);
+}
+function memberChip(uid) {
+  const u = S.users[uid]; if (!u || u.role !== 'tech') return '';
+  return !u.company ? `<span class="chip c-warn">🏢 ${t('no_company')}</span>` : `<span class="chip ${u.memberOk ? 'c-ok' : 'c-warn'}">🏢 ${esc(userName(u.company))}${u.memberOk ? '' : ' · ' + t('member_wait')}</span>`;
+}
+function memberCard(uid) {
+  const u = S.users[uid], me = App.me, adm = ['owner', 'admin'].includes(me.role);
+  const why = techWhyNot(uid);
+  return `<div class="card"><h3>🏢 ${t('r_partner')}</h3><p>${memberChip(uid)}</p>${why ? `<div class="note">🔒 ${t(why)}</div>` : `<div class="okbox">✅ ${t('member_ready')}</div>`}
+    <div class="row wrapw">${adm && u.company && !u.memberOk ? `<button class="btn btn-sm btn-p" data-a="memberOk" data-v="${uid}">✅ ${t('member_approve')}</button>` : ''}${adm ? `<button class="btn btn-sm" data-a="userOpen" data-v="${uid}">🏢 ${t('member_change')}</button>` : ''}
+    ${u.company && (adm || (me.role === 'partner' && u.company === me.uid)) ? `<button class="btn btn-sm" data-a="wizOpen" data-v="memberRemove||uid|${uid}">➖ ${t('member_remove')}</button>` : ''}</div>
+    <p class="small muted">${t('member_pay_note')}</p></div>`;
+}
+function companyCard(p) {
+  const me = App.me, l = licOf(p) || {}, own = me.uid === p, adm = ['owner', 'admin'].includes(me.role);
+  const ms = membersOf(p), jobs = companyJobs(p), tr = companyTrust(p), sk = companyStrikes(p);
+  return `<div class="card"><h3>📜 ${t('lic_title')}</h3>${kv([['lic_no', esc(l.licNo || '')], ['lic_holder', esc(l.licHolder || '')], ['lic_authority', esc(l.licAuthority || '')], ['lic_expiry', l.licExpiry ? fmtD(l.licExpiry) : ''], ['lic_gst', esc(l.gst || '')]])}
+      <div style="margin-top:6px">${companyChips(p)}</div>${licenceOk(p) ? '' : `<div class="warnbox">⚠️ ${t('lic_needed')}</div>`}
+      ${own || adm ? `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="partnerLic||uid|${p}">✏️ ${t('edit')}</button>` : ''}</div>
+    <div class="card"><h3>📊 ${t('co_record')}</h3>${kv([['co_jobs', jobs.length], ['co_trust', tr == null ? t('trust_new') : tr], ['co_strikes', sk], ['co_big', t(companyBig(p) ? 'yes' : 'no')]])}<p class="small muted">${t('co_record_note')}</p></div>
+    <div class="card"><h3>👷 ${t('co_members')} (${ms.length})</h3>${ms.map(m => `<button class="task" data-a="nav2" data-v="worker|${m}"><span class="ti">${GRADE_ICON[gradeOf(m)] || '🔧'}</span><span style="flex:1"><b>${esc(userName(m))}</b><span class="small muted">${esc(workerSub(m))}</span><br>${S.users[m].memberOk ? '' : `<span class="chip c-warn">${t('member_wait')}</span> `}${(why => why ? `<span class="chip c-mute">🔒 ${t(why)}</span>` : `<span class="chip c-ok">✅ ${t('member_ready')}</span>`)(techWhyNot(m))}</span><span class="go">▶</span></button>`).join('') || `<p class="muted">${t('nothing_here')}</p>`}
+      ${own ? `<button class="btn btn-p" style="margin-top:8px" data-a="memberAdd">➕ ${t('member_add')}</button>` : ''}<p class="small muted">${t('member_add_note')}</p></div>`;
+}
+/* choose who the company sends: a lead allowed for this job size, plus crew */
+function teamPicker(c, post) {
+  const P = S.projects[post.pid], size = P ? jobSize(P) : post.card.size, ms = membersOf(App.me.uid).filter(m => !techWhyNot(m));
+  const leads = post.kind === 'crew' ? [] : ms.filter(m => post.kind === 'lead' ? leadOk(m, size) : ['technician', 'senior'].includes(gradeOf(m)));
+  if (!ms.length) return `<div class="warnbox">${t('why_no_team')}</div>`;
+  return (post.kind === 'crew' ? '' : `<div class="small" style="font-weight:800;margin-bottom:6px">${t('team_lead')}</div>` + (leads.length ? tiles('lead', leads.map(m => [m, GRADE_ICON[gradeOf(m)], userName(m), workerSub(m) + ' · ' + t('load_n', { n: activeJobs(m).lead })]), 'one') : `<div class="warnbox">${t('no_leader', { size: t('js_' + size) })}</div>`))
+    + `<div class="small" style="font-weight:800;margin:10px 0 6px">${t('team_crew')}</div><div class="tiles">${ms.filter(m => m !== c.lead).map(m => `<button class="tile ${c.crew.includes(m) ? 'on' : ''}" data-a="toggleIn" data-k="crew" data-v="${m}" style="min-height:70px"><span class="i">${GRADE_ICON[gradeOf(m)]}</span>${esc(userName(m))}</button>`).join('')}</div>`;
+}
+WIZ.team = {
+  title: 'team_set', save: 'save', noDraft: true, init: P => ({ lead: P.tech && companyOf(P.tech) === P.partner ? P.tech : '', crew: (P.crew || []).filter(x => companyOf(x) === P.partner) }),
+  steps: [{ id: 't', icon: '👷', say: 's_team_set', body: (c, P) => { const me = App.me; if (me.role !== 'partner') { const saved = me; App.me = S.users[P.partner]; try { return teamPicker(c, { kind: 'lead', pid: P.id, card: postCard(P) }); } finally { App.me = saved; } } return teamPicker(c, { kind: 'lead', pid: P.id, card: postCard(P) }); },
+    check: (c, P) => teamWhyNot(P.partner, { kind: 'lead', pid: P.id }, { lead: c.lead, crew: c.crew.filter(x => x !== c.lead) }) }],
+  async finish(c, P) { const r = await run([['TEAM_SET', P.id, { lead: c.lead, crew: c.crew.filter(x => x !== c.lead) }]]); return r.ok ? doneRes(P.id, 'what_team_set', { name: userName(c.lead) }) : r; }
+};
+WIZ.partnerLic = {
+  title: 'lic_title', save: 'save', noDraft: true,
+  init: (P, o) => { const l = licOf(o.uid) || {}; return { licNo: l.licNo || '', licHolder: l.licHolder || userName(o.uid), licAuthority: l.licAuthority || '', licExpiry: l.licExpiry || '', gst: l.gst || '' }; },
+  steps: [{ id: 'l', icon: '📜', say: 's_lic', body: () => inp('licNo', 'lic_no') + inp('licHolder', 'lic_holder', { mic: true }) + inp('licAuthority', 'lic_authority', { mic: true, opt: true }) + inp('licExpiry', 'lic_expiry', { type: 'date' }) + inp('gst', 'lic_gst', { opt: true }) + `<div class="note">📜 ${t('lic_note')}</div>`,
+    check: c => !c.licNo.trim() || !c.licHolder.trim() ? 'err_fill' : /^\d{4}-\d\d-\d\d$/.test(c.licExpiry) ? null : 'err_date' }],
+  async finish(c) { const uid = W.opts.uid; const r = await run([['PARTNER_PROFILE', null, { uid, licNo: c.licNo.trim(), licHolder: c.licHolder.trim(), licAuthority: c.licAuthority.trim(), licExpiry: c.licExpiry, gst: c.gst.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('worker', { uid }, { replace: true }) } : r; }
+};
+WIZ.memberRemove = {
+  title: 'member_remove', save: 'save', noDraft: true, init: () => ({ reason: '' }),
+  steps: [{ id: 'r', icon: '➖', say: () => userName(W.opts.uid), body: () => inp('reason', 'f_reason', { area: true, mic: true }) + `<div class="note">${t('member_remove_note')}</div>`, check: c => c.reason.trim() ? null : 'err_reason' }],
+  async finish(c) { const uid = W.opts.uid; const r = await run([['MEMBER_REMOVED', null, { uid, reason: c.reason.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
+/* a technician in a company: the value of their work is shown, the company is paid */
+function companyWorkCard(uid) {
+  const lines = earnings(uid).filter(e => companyAt(uid, e.t)).slice(-20).reverse();
+  if (!lines.length) return '';
+  return `<div class="card"><h3>🏢 ${t('work_value')}</h3><p class="small muted">${t('work_value_note')}</p>${lines.map(l => `<div class="list-item small"><span class="grow">${fmtD(l.t)} · ${esc(l.pid)} · ${esc(t(l.what))} · 🏢 ${esc(userName(companyAt(uid, l.t)))}</span><b>${money(l.amount)}</b></div>`).join('')}</div>`;
+}
 
 /* ---------- job marketplace: worker and office screens ---------- */
 function jobTitle(p) {
@@ -6887,40 +7146,42 @@ function jobCard(p, uid, o = {}) {
   const left = p.slots - p.picked.length;
   return `<div class="card ${why ? 'dim' : ''}"><div class="row"><span style="font-size:1.8rem">${JOB_KINDS[p.kind]}</span><b class="grow">${esc(jobTitle(p))}</b>${p.kind === 'qc' ? '' : `<span class="chip c-info">≈ ${money(postPayFor(p, uid))}</span>`}</div>
     ${kv([['jc_area', '📍 ' + esc(c.area || '')], ['jc_size', t('js_' + (c.size || 'normal'))], ['jc_floors', c.stops || ''], ['jc_start', p.start ? fmtD(p.start) : t('jc_asap')], ['jc_days', p.kind === 'lead' ? t('days_n', { n: S.config.installDays }) : ''], ['jc_dist', d == null ? '' : t('km_n', { n: d })], ['jc_places', p.kind === 'crew' ? t('places_left', { n: left, m: p.slots }) : '']])}
-    ${p.kind === 'qc' ? `<p class="small muted">${t('pay_qc_note', { p: money(p.pay) })}</p>` : `<p class="small muted">${t('pay_level_note', { g: t('gr_' + (gradeOf(uid) || 'technician')) })}</p>`}
+    ${p.kind === 'qc' ? `<p class="small muted">${t('pay_qc_note', { p: money(p.pay) })}</p>` : roleOf(uid) === 'partner' ? `<p class="small muted">${t('pay_company_note')}</p>` : `<p class="small muted">${t('pay_level_note', { g: t('gr_' + (gradeOf(uid) || 'technician')) })}</p>`}
     ${p.note ? `<p class="small">📝 ${esc(p.note)}</p>` : ''}
-    ${why ? `<div class="note">🔒 ${t(why)}${['why_level', 'why_level_big'].includes(why) && gradeOf(uid) ? ` <button class="btn btn-sm" data-a="nav2" data-v="ladder|${uid}">🪜 ${t('ladder_open')}</button>` : ''}</div>`
+    ${why ? `<div class="note">🔒 ${t(why)}${why === 'why_licence' && roleOf(uid) === 'partner' ? ` <button class="btn btn-sm" data-a="nav2" data-v="worker|${uid}">📜 ${t('lic_title')}</button>` : ''}${['why_level', 'why_level_big'].includes(why) && gradeOf(uid) ? ` <button class="btn btn-sm" data-a="nav2" data-v="ladder|${uid}">🪜 ${t('ladder_open')}</button>` : ''}</div>`
       : won ? `<div class="okbox">🎉 ${t('job_won')}</div>${p.pid && S.projects[p.pid] && canSee(App.me, S.projects[p.pid]) ? `<button class="btn btn-p" data-a="openProject" data-v="${p.pid}">📂 ${t('esc_open_project')}</button>` : ''}`
-      : mine && !mine.out ? (p.status === 'open' ? `<div class="note">⏳ ${t('job_applied', { d: fmtD(mine.t, true) })}</div><button class="btn btn-sm" data-a="jobWithdraw" data-v="${p.id}">↩️ ${t('job_withdraw')}</button>` : `<div class="note">${t('job_not_picked')}</div>`)
+      : mine && !mine.out ? (p.status === 'open' ? `<div class="note">⏳ ${t('job_applied', { d: fmtD(mine.t, true) })}${mine.team ? '<br>👷 ' + esc(teamText(mine.team)) : ''}</div><button class="btn btn-sm" data-a="jobWithdraw" data-v="${p.id}">↩️ ${t('job_withdraw')}</button>` : `<div class="note">${t('job_not_picked')}</div>`)
       : p.status === 'open' ? `<button class="btn btn-p btn-big" data-a="wizOpen" data-v="apply||postId|${p.id}">✋ ${t('job_apply')}</button>` : ''}
     <p class="small muted" style="margin:6px 0 0">🔒 ${t('job_privacy')}</p></div>`;
 }
 function myOpenJobs(uid) { return S.postOrder.map(id => S.posts[id]).filter(p => postLive(p) && !(p.apps[uid] && !p.apps[uid].out) && !jobWhyNot(uid, p)); }
 SCREENS.jobs = ({ uid, src }) => {
   const u = App.me, tab = src || 'open';
-  if (!['tech', 'qc'].includes(u.role)) return SCREENS.home();
+  if (!['partner', 'qc'].includes(u.role)) return SCREENS.home();
   const posts = S.postOrder.map(id => S.posts[id]);
-  const open = myOpenJobs(u.uid), locked = posts.filter(p => p.status === 'open' && !(p.apps[u.uid] && !p.apps[u.uid].out) && ['why_level', 'why_level_big', 'why_strikes', 'why_busy'].includes(jobWhyNot(u.uid, p))).slice(0, 4);
+  const open = myOpenJobs(u.uid), locked = posts.filter(p => p.status === 'open' && !(p.apps[u.uid] && !p.apps[u.uid].out) && ['why_level', 'why_level_big', 'why_strikes', 'why_busy', 'why_licence', 'why_no_team', 'why_company_big'].includes(jobWhyNot(u.uid, p))).slice(0, 4);
   const mine = posts.filter(p => p.apps[u.uid] && !p.apps[u.uid].out);
   if (App.myGps) open.sort((a, b) => (distKm(App.myGps, a.card) || 999) - (distKm(App.myGps, b.card) || 999));
   App.pageSay = t('s_jobs', { n: open.length });
   const tb = (v, l, n) => `<button class="${tab === v ? 'on' : ''}" data-a="nav2" data-v="jobs||${v}">${t(l)} (${n})</button>`;
   return topBar(t('jobs_title'), { back: true }) + `<main class="wrap"><p class="say">🧰 ${t('s_jobs', { n: open.length })}</p>
-    <div class="row wrapw">${gradeChip(u.uid)} ${gradeOf(u.uid) ? starChip(u.uid) : ''}</div>
+    <div class="row wrapw">${u.role === 'partner' ? companyChips(u.uid) : gradeChip(u.uid) + ' ' + (gradeOf(u.uid) ? starChip(u.uid) : '')}</div>
     ${App.myGps ? '' : `<button class="btn btn-sm" style="margin:8px 0" data-a="jobGps">📍 ${t('job_show_dist')}</button>`}
     <div class="tabs" style="position:static;padding:6px 0 10px">${tb('open', 'jobs_open', open.length)}${tb('mine', 'jobs_mine', mine.length)}</div>
     ${tab === 'open' ? (open.map(p => jobCard(p, u.uid)).join('') || `<div class="card center">☕ ${t('jobs_none')}</div>`) + (locked.length ? `<h2 class="sec">🔒 ${t('jobs_locked')}</h2>` + locked.map(p => jobCard(p, u.uid, { why: jobWhyNot(u.uid, p) })).join('') : '')
       : mine.map(p => jobCard(p, u.uid)).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
 };
 WIZ.apply = {
-  title: 'job_apply', save: 'job_apply_send', saveIcon: '✋', noDraft: true, init: () => ({ note: '', share: !!App.myGps }),
-  steps: [{ id: 'a', icon: '✋', say: () => t('s_apply', { j: jobTitle(S.posts[W.opts.postId]) }),
+  title: 'job_apply', save: 'job_apply_send', saveIcon: '✋', noDraft: true, init: () => ({ note: '', share: !!App.myGps, lead: '', crew: [] }),
+  steps: [{ id: 'team', icon: '👷', say: 's_apply_team', skip: () => App.me.role !== 'partner', body: c => teamPicker(c, S.posts[W.opts.postId]),
+    check: c => { const p = S.posts[W.opts.postId], w = teamWhyNot(App.me.uid, p, p.kind === 'crew' ? { lead: null, crew: c.crew } : { lead: c.lead, crew: c.crew }); return w; } }, { id: 'a', icon: '✋', say: () => t('s_apply', { j: jobTitle(S.posts[W.opts.postId]) }),
     body: c => { const p = S.posts[W.opts.postId]; return (p ? jobCard(Object.assign({}, p, { status: 'preview' }), App.me.uid) : '') + inp('note', 'f_job_note', { area: true, mic: true, opt: true }) + toggleTile('share', '📍', 'job_share_gps') + `<p class="small muted">${t('job_apply_note')}</p>`; } }],
   async finish(c) {
     let gps = null;
     if (c.share) { gps = App.myGps || await new Promise(res => { try { navigator.geolocation.getCurrentPosition(x => res({ lat: x.coords.latitude, lng: x.coords.longitude }), () => res(null), { timeout: 8000 }); } catch (e) { res(null); } }); if (gps) App.myGps = gps; }
     const p = S.posts[W.opts.postId];
-    const r = await run([['JOB_APPLIED', p.pid, Object.assign({ postId: p.id, note: c.note.trim() }, gps ? { gps: { lat: Math.round(gps.lat * 1000) / 1000, lng: Math.round(gps.lng * 1000) / 1000 } } : {})]]);
+    const team = App.me.role === 'partner' ? (p.kind === 'crew' ? { lead: null, crew: c.crew } : { lead: c.lead, crew: c.crew }) : null;
+    const r = await run([['JOB_APPLIED', p.pid, Object.assign({ postId: p.id, note: c.note.trim() }, team ? { team } : {}, gps ? { gps: { lat: Math.round(gps.lat * 1000) / 1000, lng: Math.round(gps.lng * 1000) / 1000 } } : {})]]);
     return r.ok ? { ok: true, title: t('done_title'), what: t('what_applied'), next: t('next_applied') } : r;
   }
 };
@@ -6930,7 +7191,6 @@ const qcPostOk = (P, r) => { const st = stageIdx(P.stage); return r === 'site' ?
 function postOptions(P) {
   const out = [], st = stageIdx(P.stage), open = (k, ref) => Object.values(S.posts).some(p => p.status === 'open' && p.pid === P.id && p.kind === k && String(p.ref) === String(ref));
   if (st >= stageIdx('signed') && st <= stageIdx('install_fix') && !open('lead', '')) out.push(['lead|', JOB_KINDS.lead, 'jk_lead', P.tech ? 'jk_lead_replace' : 'jk_lead_d']);
-  if (st >= stageIdx('site_ok') && OPEN_STAGES.includes(P.stage) && !open('crew', '')) out.push(['crew|', JOB_KINDS.crew, 'jk_crew', 'jk_crew_d']);
   ['site', 'final'].filter(r => qcPostOk(P, r) && !open('qc', r)).forEach(r => out.push(['qc|' + r, JOB_KINDS.qc, 'jq_' + r, 'jk_qc_d']));
   if (P.stage === 'amc' && P.done) P.done.amc.visits.forEach((d, i) => { if (!P.service[i] && !open('service', i) && d <= addDays(60)) out.push(['service|' + i, JOB_KINDS.service, t('amc_visit_n', { n: i + 1 }) + ' · ' + fmtD(d), 'jk_service_d']); });
   P.tickets.filter(x => !['resolved', 'closed'].includes(x.status) && !open('repair', x.id)).forEach(x => out.push(['repair|' + x.id, JOB_KINDS.repair, t('tkind_' + x.kind) + ': ' + x.text.slice(0, 40), 'jk_repair_d']));
@@ -6958,7 +7218,7 @@ WIZ.pick = {
   steps: [{ id: 'p', icon: '👥', say: () => t('s_pick', { n: rankApplicants(S.posts[W.opts.postId]).length }),
     body: () => { const p = S.posts[W.opts.postId], list = rankApplicants(p);
       return `<div class="card"><b>${JOB_KINDS[p.kind]} ${esc(jobTitle(p))}</b> · ${esc(p.pid)}<div class="small muted">📍 ${esc(p.card.area)} · ${t('js_' + p.card.size)}${p.kind === 'crew' ? ' · ' + t('places_left', { n: p.slots - p.picked.length, m: p.slots }) : ''}</div></div>`
-        + (list.length ? `<div class="tiles one">${list.map((x, i) => `<button class="tile ${W.ctx.uid === x.uid ? 'on' : ''}" data-a="pick" data-k="uid" data-v="${x.uid}" ${x.why ? 'disabled' : ''}><span class="i">${GRADE_ICON[gradeOf(x.uid)] || ROLE_ICON[roleOf(x.uid)]}</span><span><b>${esc(userName(x.uid))}</b>${i === 0 && !x.why ? ` <span class="chip c-ok">⭐ ${t('suggested')}</span>` : ''}<br><small>${esc(workerSub(x.uid))} · 🤝 ${x.trust} · ${t('load_n', { n: x.load })}${x.dist != null ? ' · ' + t('km_n', { n: x.dist }) : ''}</small>${x.a.note ? `<br><small>📝 ${esc(x.a.note)}</small>` : ''}${x.why ? `<br><small>🔒 ${t(x.why)}</small>` : ''}</span></button>`).join('')}</div>` : `<div class="card center">${t('no_applicants')}</div>`)
+        + (list.length ? `<div class="tiles one">${list.map((x, i) => `<button class="tile ${W.ctx.uid === x.uid ? 'on' : ''}" data-a="pick" data-k="uid" data-v="${x.uid}" ${x.why ? 'disabled' : ''}><span class="i">${GRADE_ICON[gradeOf(x.uid)] || ROLE_ICON[roleOf(x.uid)]}</span><span><b>${esc(userName(x.uid))}</b>${i === 0 && !x.why ? ` <span class="chip c-ok">⭐ ${t('suggested')}</span>` : ''}<br><small>${esc(roleOf(x.uid) === 'partner' ? companySub(x.uid) : workerSub(x.uid))}${x.a.team ? '<br>👷 ' + esc(teamText(x.a.team)) : ''} · 🤝 ${x.trust} · ${t('load_n', { n: x.load })}${x.dist != null ? ' · ' + t('km_n', { n: x.dist }) : ''}</small>${x.a.note ? `<br><small>📝 ${esc(x.a.note)}</small>` : ''}${x.why ? `<br><small>🔒 ${t(x.why)}</small>` : ''}</span></button>`).join('')}</div>` : `<div class="card center">${t('no_applicants')}</div>`)
         + `<p class="small muted">${t('pick_note')}</p>`; },
     check: c => c.uid ? null : 'err_pick_person' }],
   async finish(c) { const p = S.posts[W.opts.postId]; const r = await run([['JOB_CONFIRMED', p.pid, { postId: p.id, uid: c.uid }]]); return r.ok ? doneRes(p.pid, 'what_job_confirmed', { name: userName(c.uid) }) : r; }
@@ -6988,7 +7248,7 @@ SCREENS.earn = ({ uid }) => {
   if (!u || !(uid === me.uid || ['owner', 'admin', 'finance'].includes(me.role))) return SCREENS.home();
   App.pageSay = t('s_earn');
   const c = S.config, now = weekKey(nowISO());
-  return topBar(t('earnings') + ' · ' + u.name, { back: true }) + `<main class="wrap"><div class="card"><h3>📏 ${t('pay_rules')}</h3>${kv([['earn_step', money(c.paySopStep)], ['earn_qc_bonus', money(c.payQcBonus)], ['earn_amc_visit', money(c.payAmcVisit)]])}<div style="margin-top:6px">${ruleChip('techpay')}</div><p class="small muted">${t('pay_rules_note')}</p></div>
+  return topBar(t('earnings') + ' · ' + u.name, { back: true }) + `<main class="wrap"><div class="card"><h3>📏 ${t('pay_rules')}</h3>${kv([['earn_step', money(c.paySopStep)], ['earn_qc_bonus', money(c.payQcBonus)], ['earn_amc_visit', money(c.payAmcVisit)]])}<div style="margin-top:6px">${ruleChip('techpay')}</div><p class="small muted">${t('pay_rules_note')}</p></div>${u.role === 'tech' ? companyWorkCard(uid) : ''}
     ${weeksFor(uid).map(w => { const p = w.pay, diff = p && p.status !== 'open' && w.total !== p.computed ? w.total - p.computed : 0;
       const btn = [];
       if ((!p || p.status === 'open') && w.week < now && ['owner', 'admin'].includes(me.role) && w.total >= 0) btn.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="payApprove||uid|${uid}|week|${w.week}">✅ ${t('tk_approve_pay')}</button>`);
@@ -6996,7 +7256,7 @@ SCREENS.earn = ({ uid }) => {
       if (uid === me.uid && !(p && p.dispute && p.dispute.open)) btn.push(`<button class="btn btn-sm" data-a="wizOpen" data-v="payDispute||uid|${uid}|week|${w.week}">🙋 ${t('pay_dispute')}</button>`);
       if (p && p.dispute && p.dispute.open && ['owner', 'admin'].includes(me.role)) btn.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="payAnswer||uid|${uid}|week|${w.week}">💬 ${t('tk_pay_dispute')}</button>`);
       return `<div class="card"><div class="row"><b class="grow">${weekLabel(w.week)}</b><span class="chip ${!p || p.status === 'open' ? (w.week >= now ? 'c-mute' : 'c-warn') : p.status === 'paid' ? 'c-ok' : 'c-info'}">${t('wp_' + (!p || p.status === 'open' ? (w.week >= now ? 'running' : 'waiting') : p.status))}</span></div>
-        ${w.lines.map(l => `<div class="list-item small"><span class="grow">${fmtD(l.t)} · ${esc(l.pid)} · ${esc(t(l.what))}</span><b>${money(l.amount)}</b></div>`).join('')}
+        ${w.lines.map(l => `<div class="list-item small"><span class="grow">${fmtD(l.t)} · ${esc(l.pid)} · ${esc(t(l.what))}${l.who ? ' · 👷 ' + esc(userName(l.who)) : ''}</span><b>${money(l.amount)}</b></div>`).join('')}
         ${kv([['earn_total', money(w.total)], ['earn_approved', p && p.status !== 'open' ? money(p.amount) + (p.adjust ? ` (${p.adjust > 0 ? '+' : ''}${money(p.adjust)}: ${esc(p.reason)})` : '') : ''], ['earn_paid', p && p.status === 'paid' ? fmtD(p.paidAt) + ' · ' + esc(p.ref) : '']])}
         ${diff ? `<div class="warnbox">${t('earn_diff', { d: money(diff) })}</div>` : ''}
         ${p && p.dispute ? `<div class="${p.dispute.open ? 'warnbox' : 'note'}">🙋 ${esc(p.dispute.reason)}${p.dispute.answer ? '<br>💬 ' + esc(p.dispute.answer) : ''}</div>` : ''}
@@ -7005,14 +7265,14 @@ SCREENS.earn = ({ uid }) => {
 const payWeek = () => weeksFor(W.opts.uid).find(x => x.week === W.opts.week);
 WIZ.payApprove = {
   title: 'tk_approve_pay', save: 'save', noDraft: true, init: () => ({ adjust: 0, reason: '' }),
-  steps: [{ id: 'a', icon: '💰', say: 's_pay_approve', body: c => `<div class="card">${kv([['r_tech', esc(userName(W.opts.uid))], ['week', weekLabel(W.opts.week)], ['earn_total', money(payWeek().total)], ['earn_final', money(payWeek().total + (+c.adjust || 0))]])}</div>` +
+  steps: [{ id: 'a', icon: '💰', say: 's_pay_approve', body: c => `<div class="card">${kv([['r_' + roleOf(W.opts.uid), esc(userName(W.opts.uid))], ['week', weekLabel(W.opts.week)], ['earn_total', money(payWeek().total)], ['earn_final', money(payWeek().total + (+c.adjust || 0))]])}</div>` +
       inp('adjust', 'f_adjust', { type: 'number', mode: 'numeric' }) + inp('reason', 'f_reason', { opt: true, mic: true }) + `<div class="note">${t('pay_human_note')}</div>`,
     check: c => +c.adjust && !c.reason.trim() ? 'err_reason' : payWeek().total + (+c.adjust || 0) < 0 ? 'err_amount' : null }],
   async finish(c) { const tot = payWeek().total, adj = +c.adjust || 0; const r = await run([['PAY_APPROVED', null, { uid: W.opts.uid, week: W.opts.week, computed: tot, adjust: adj, amount: tot + adj, reason: c.reason }]]); return r.ok ? { ok: true, title: t('done_title'), what: t(App.sentSecond ? 'what_sent_second' : 'what_pay_approved'), next: t('next_who', { who: t('r_finance'), task: t('tk_pay_tech') }) } : r; }
 };
 WIZ.payPaid = {
   title: 'tk_pay_tech', save: 'save', noDraft: true, init: () => ({ ref: '' }),
-  steps: [{ id: 'p', icon: '🏦', say: 's_pay_paid', body: () => `<div class="card">${kv([['r_tech', esc(userName(W.opts.uid))], ['week', weekLabel(W.opts.week)], ['amount', money(S.pay[W.opts.uid + '|' + W.opts.week].amount)]])}</div>` + inp('ref', 'f_bank_ref', { mic: 'digits' }), check: c => c.ref.trim() ? null : 'err_ref' }],
+  steps: [{ id: 'p', icon: '🏦', say: 's_pay_paid', body: () => `<div class="card">${kv([['r_' + roleOf(W.opts.uid), esc(userName(W.opts.uid))], ['week', weekLabel(W.opts.week)], ['amount', money(S.pay[W.opts.uid + '|' + W.opts.week].amount)]])}</div>` + inp('ref', 'f_bank_ref', { mic: 'digits' }), check: c => c.ref.trim() ? null : 'err_ref' }],
   async finish(c) { const r = await run([['PAY_PAID', null, { uid: W.opts.uid, week: W.opts.week, ref: c.ref.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_pay_paid'), next: t('next_none') } : r; }
 };
 WIZ.payDispute = {
@@ -7129,7 +7389,7 @@ function openTask(n) {
     onb_profile: () => wiz('wprofile', null, { uid: n.uid }), check_docs: () => go('worker', { uid: n.uid }),
     rate_work: () => wiz('rate', pid, { ref: n.ref, about: n.ref === 'handover' ? doneLead(P) : P.service[n.ref.split(':')[1]].by }), rate_crew: () => wiz('rateCrew', pid, { uid: n.uid }),
     promotion_ready: () => wiz('promote', null, { uid: n.uid }), strike_appeal: () => wiz('decide', null, { uid: n.uid, sid: n.sid }),
-    reassign_work: () => go('project', { pid, tab: 'info' }), backup_due: () => go('data'), approve_key: () => ACT.keySheet(n.uid + '|' + n.kid), job_open: () => go('jobs', {}), pick_applicant: () => wiz('pick', pid, { postId: n.postId }), post_nobody: () => go('posts'), post_job: () => wiz('post', pid, { kind: n.kind || 'lead' }),
+    reassign_work: () => go('project', { pid, tab: 'info' }), backup_due: () => go('data'), approve_member: () => go('worker', { uid: n.uid }), link_company: () => ACT.userOpen(n.uid), licence_renew: () => go('worker', { uid: n.uid }), fill_team: () => wiz('team', pid), approve_key: () => ACT.keySheet(n.uid + '|' + n.kid), job_open: () => go('jobs', {}), pick_applicant: () => wiz('pick', pid, { postId: n.postId }), post_nobody: () => go('posts'), post_job: () => wiz('post', pid, { kind: n.kind || 'lead' }),
     review_meeting: () => wiz('reviewMeet', null, { uid: n.uid, k: n.k }), suspend_review: () => wiz('reviewMeet', null, { uid: n.uid, k: n.k }), spot_check: () => wiz('spot', pid, { step: n.step })
   };
   (m[n.k] || (() => go('project', { pid })))();
@@ -7393,6 +7653,10 @@ const ACT = {
   userAdd: () => { App.form.nuName = ''; App.form.nuRole = 'field'; App.form.nuGrade = 'trainee'; App.form.nuPin = newPin(); App.sheetRe = userAddSheet; userAddSheet(); },
   nuRole: v => { App.form.nuRole = v; userAddSheet(); },
   nuGrade: v => { App.form.nuGrade = v; userAddSheet(); },
+  nuCo: v => { App.form.nuCo = v; userAddSheet(); },
+  memberAdd: () => { Object.assign(App.form, { nuName: '', nuRole: 'tech', nuGrade: 'trainee', nuPin: newPin() }); App.sheetRe = userAddSheet; userAddSheet(); },
+  memberOk: async v => { const r = await perform('MEMBER_APPROVED', null, { uid: v }); if (r.ok) { toast(t('member_approved')); render(); } },
+  userCo: async v => { const [uid, co] = v.split('|'); const r = await perform('USER_UPDATED', null, { uid, company: co || null }); if (r.ok) { render(); userSheet(uid); toast(t('saved_item')); } },
   jobWithdraw: async v => { const p = S.posts[v]; const r = await perform('JOB_WITHDRAWN', p.pid, { postId: v }); if (r.ok) { toast(t('saved_item')); render(); } },
   jobGps: () => { try { navigator.geolocation.getCurrentPosition(x => { App.myGps = { lat: x.coords.latitude, lng: x.coords.longitude }; render(); }, () => toast(t('gps_fail'), true), { timeout: 8000 }); } catch (e) { toast(t('gps_fail'), true); } },
   crewRemove: async v => { const r = await perform('CREW_REMOVED', pidHere(), { uid: v }); if (r.ok) { toast(t('saved_item')); render(); } },
@@ -7400,7 +7664,7 @@ const ACT = {
     const f = App.form, name = (f.nuName || '').trim();
     if (!name) { toast(t('err_fill'), true); return; }
     const salt = rid(10), uid = 'U' + rid(8), pin = f.nuPin;
-    const r = await perform('USER_ADDED', null, Object.assign({ uid, name, role: f.nuRole, salt, pin: await pinHash(pin, salt), pinLen: pin.length }, f.nuRole === 'tech' ? { grade: f.nuGrade || 'trainee' } : {}));
+    const r = await perform('USER_ADDED', null, Object.assign({ uid, name, role: f.nuRole, salt, pin: await pinHash(pin, salt), pinLen: pin.length }, f.nuRole === 'tech' ? { grade: f.nuGrade || 'trainee' } : {}, f.nuRole === 'tech' && f.nuCo && App.me.role !== 'partner' ? { company: f.nuCo } : {}));
     if (r.ok) { render(); sheet(`<h2>✅ ${t('user_added')}</h2><div class="card center"><b>${esc(name)}</b> · ${t('r_' + f.nuRole)}<div style="font-size:2.4rem;font-weight:800;letter-spacing:6px">${pin}</div>${t('pin_tell')}</div>${onboarding(uid).total ? `<div class="note">🪪 ${t('onb_started', { n: onboarding(uid).total })}</div>` : ''}`); }
   },
   userOpen: v => userSheet(v),
@@ -7528,7 +7792,7 @@ function sampleSign() {
 }
 async function seedPractice() {
   const salt = 'practice', pin = await pinHash('1111', salt);
-  const U = { owner: 'POWNER', admin: 'PADMIN', field: 'PFIELD', field2: 'PFIELD2', sales: 'PSALES', finance: 'PFIN', qc: 'PQC', supplier: 'PSUP', tech: 'PTECH', senior: 'PSENIOR', helper: 'PHELP', trainee: 'PTRAIN', customer: 'PCUST' };
+  const U = { owner: 'POWNER', admin: 'PADMIN', field: 'PFIELD', field2: 'PFIELD2', sales: 'PSALES', finance: 'PFIN', qc: 'PQC', supplier: 'PSUP', partner: 'PPART1', partner2: 'PPART2', tech: 'PTECH', senior: 'PSENIOR', helper: 'PHELP', trainee: 'PTRAIN', customer: 'PCUST' };
   const T0 = Date.now() - 30 * 864e5; let tick = 0, cur = new Date(T0).toISOString();
   const at = () => { cur = new Date(Math.min(T0 + (tick++) * 2.4 * 3600e3, Date.now() - 3600e3 + tick * 1000)).toISOString(); return cur; };
   const SP = async (type, pid, data, who) => { const r = await perform(type, pid, data, { as: U[who] || who, t: at(), noSave: true, quiet: true }); if (!r.ok) console.warn('practice seed', type, pid, errText(r.err)); return r; };
@@ -7538,10 +7802,14 @@ async function seedPractice() {
   const ph = (k, gps) => ({ id: 'E' + rid(10), m: media[k], kind: k === 'sign' ? 'sign' : 'photo', label: k, t: cur, gps: gps || null, hash: hash[k], dev: 'practice', q: {} });
   await SP('ORG_CREATED', null, { orgId: 'ORG-PRACTICE', name: 'AIEC (Practice)' }, 'owner');
   const people = [['owner', 'Anil Deshmukh', 'owner'], ['admin', 'Sunita Patil', 'admin'], ['field', 'Ramesh Jadhav', 'field'], ['field2', 'Sachin More', 'field'], ['sales', 'Priya Kulkarni', 'sales'],
-    ['finance', 'Meena Joshi', 'finance'], ['qc', 'Vijay Shinde', 'qc'], ['supplier', 'Kaveri Lift Supply', 'supplier'], ['tech', 'Raju Pawar', 'tech']];
-  for (const [k, name, role] of people) await SP('USER_ADDED', null, { uid: U[k], name, role, salt, pin }, k === 'owner' ? 'owner' : 'owner');
+    ['finance', 'Meena Joshi', 'finance'], ['qc', 'Vijay Shinde', 'qc'], ['supplier', 'Kaveri Lift Supply', 'supplier'], ['partner', 'Shree Lift Works', 'partner'], ['partner2', 'Om Elevator Services', 'partner'], ['tech', 'Raju Pawar', 'tech']];
+  for (const [k, name, role] of people) await SP('USER_ADDED', null, Object.assign({ uid: U[k], name, role, salt, pin }, role === 'tech' ? { company: U.partner } : {}), 'owner');
+  /* licensed partner companies: Shree Lift Works (licence valid, the installers work for it); Om Elevator Services (licence ends soon, no approved team yet) */
+  await SP('PARTNER_PROFILE', null, { uid: U.partner, licNo: 'MH/LIFT/2024/1187', licHolder: 'Dattatray Kulkarni (Shree Lift Works)', licAuthority: 'Electrical Inspector, Pune', licExpiry: addDays(400), gst: '27ABCDE1234F1Z5' }, 'admin');
+  await SP('PARTNER_PROFILE', null, { uid: U.partner2, licNo: 'MH/LIFT/2021/0642', licHolder: 'Om Elevator Services', licAuthority: 'Electrical Inspector, Pune', licExpiry: addDays(20) }, 'admin');
+  for (const k of ['partner', 'partner2']) for (const d of REQ_DOCS.partner) await SP('DOC_VERIFIED', null, { uid: U[k], doc: d, status: 'verified' }, 'admin');
   /* the installer ladder: an experienced Senior, a Helper and a Trainee (they work as crew with the lead) */
-  for (const [k, name, grade] of [['senior', 'Mahesh Shinde', 'senior'], ['helper', 'Sunil Gaikwad', 'helper'], ['trainee', 'Ganesh Kale', 'trainee']]) await SP('USER_ADDED', null, { uid: U[k], name, role: 'tech', grade, salt, pin }, 'owner');
+  for (const [k, name, grade] of [['senior', 'Mahesh Shinde', 'senior'], ['helper', 'Sunil Gaikwad', 'helper'], ['trainee', 'Ganesh Kale', 'trainee']]) await SP('USER_ADDED', null, { uid: U[k], name, role: 'tech', grade, company: U.partner, salt, pin }, 'owner');
   const CREW = { 'AIEC-P001': ['helper', 'trainee'], 'AIEC-P002': ['trainee'], 'AIEC-P003': ['helper'] };
   const payStep = (P, purpose) => { const p = activePay(P, purpose); return !p ? ['sales', 'PAYMENT_RECORDED', { payId: 'PAY-' + rid(6), purpose, amount: P.schedule[purpose], method: 'upi', ref: 'UPI' + rid(8) }] : ['finance', 'PAYMENT_STATUS', { payId: p.id, status: 'confirmed', ref: 'BANK-' + rid(6) }]; };
   const AUTO = {
@@ -7621,10 +7889,7 @@ async function seedPractice() {
   /* job marketplace: open posts of each kind, some with applicants */
   const post = async (pid, kind, ref, slots, by) => { const id = 'J-' + rid(6); await SP('JOB_POSTED', pid, { postId: id, kind, ref, slots, start: addDays(3), note: '', card: postCard(S.projects[pid]) }, by || 'admin'); return id; };
   const pLead = await post(omsai, 'lead', '', 1);
-  await SP('JOB_APPLIED', omsai, { postId: pLead, note: 'Free from next week', gps: { lat: 18.53, lng: 73.84 } }, 'senior');
-  const pCrew = await post(ids[4], 'crew', '', 2);
-  await SP('JOB_APPLIED', ids[4], { postId: pCrew, note: 'Can start tomorrow', gps: { lat: 18.6, lng: 73.78 } }, 'helper');
-  await SP('JOB_APPLIED', ids[4], { postId: pCrew, note: '' }, 'trainee');
+  await SP('JOB_APPLIED', omsai, { postId: pLead, note: 'Mahesh can start next week', team: { lead: U.senior, crew: [U.trainee] }, gps: { lat: 18.53, lng: 73.84 } }, 'partner');
   await post(amc, 'service', 0, 1);
   await post(hosp, 'qc', 'final', 1);
   await SP('STRIKE_APPEALED', null, { sid: 'tk:' + amc + ':' + tid2, reason: 'The supplier\'s team left the waste, not me' }, 'helper');
@@ -7634,10 +7899,10 @@ async function seedPractice() {
   for (const d of ['id', 'address']) await SP('DOC_VERIFIED', null, { uid: U.tech, doc: d, status: 'verified' }, 'admin');
   await SP('TRAINING_PASSED', null, { module: 'app', answers: [0, 1, 2], score: 3 }, 'tech');
   /* most of the team has finished onboarding; the technician and the second field worker are still in progress */
-  for (const k of ['admin', 'field', 'sales', 'finance', 'qc', 'supplier']) {
+  for (const k of ['admin', 'field', 'sales', 'finance', 'qc', 'supplier', 'partner']) {
     const uid = U[k], role = S.users[uid].role;
-    if (k !== 'field') await SP('WORKER_PROFILE', null, { uid, phone: '98220001' + String(10 + Object.keys(U).indexOf(k)), area: 'Pune', availability: 'available', skills: [{ admin: 'sales', sales: 'sales', finance: 'sales', qc: 'qc', supplier: 'driving' }[k]] }, k);
-    for (const d of (REQ_DOCS[role] || ['id', 'address'])) await SP('DOC_VERIFIED', null, { uid, doc: d, status: 'verified' }, k === 'admin' ? 'owner' : 'admin');
+    if (k !== 'field') await SP('WORKER_PROFILE', null, { uid, phone: '98220001' + String(10 + Object.keys(U).indexOf(k)), area: 'Pune', availability: 'available', skills: [{ admin: 'sales', sales: 'sales', finance: 'sales', qc: 'qc', supplier: 'driving', partner: 'install' }[k]] }, k);
+    if (role !== 'partner') for (const d of (REQ_DOCS[role] || ['id', 'address'])) await SP('DOC_VERIFIED', null, { uid, doc: d, status: 'verified' }, k === 'admin' ? 'owner' : 'admin');
     for (const m of modulesFor(role)) await SP('TRAINING_PASSED', null, { module: m, answers: TRAIN.find(x => x[0] === m)[2], score: 3 }, k);
   }
   for (const [k, full] of [['senior', true], ['helper', false], ['trainee', false]]) {

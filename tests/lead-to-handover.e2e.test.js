@@ -58,7 +58,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await shot('owner_home_empty');
 
   /* --- owner adds the team (PINs come from the screen) --- */
-  const team = [['Adam Admin', 'admin'], ['Ravi Field', 'field'], ['Sam Sales', 'sales'], ['Fiona Finance', 'finance'], ['Quinn QC', 'qc'], ['Supa Supplier', 'supplier'], ['Tara Tech', 'tech']];
+  const team = [['Adam Admin', 'admin'], ['Ravi Field', 'field'], ['Sam Sales', 'sales'], ['Fiona Finance', 'finance'], ['Quinn QC', 'qc'], ['Supa Supplier', 'supplier'], ['Lift Partner Co', 'partner'], ['Tara Tech', 'tech']];
   await page.evaluate(() => ACT.nav('users')); await W8(150);
   for (const [name, role] of team) {
     await tap(page, '[data-a="userAdd"]');
@@ -66,6 +66,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
     await tap(page, `[data-a="nuRole"][data-v="${role}"]`);
     /* an experienced installer: the Owner starts them as Technician so they may lead the job */
     if (role === 'tech') await tap(page, '[data-a="nuGrade"][data-v="technician"]');
+    /* installers work for a licensed partner company */
+    if (role === 'tech') await tap(page, `[data-a="nuCo"][data-v="${await page.evaluate(() => Object.values(S.users).find(u => u.role === 'partner').uid)}"]`);
     await page.fill('#f_nuName', name);
     await tap(page, '[data-a="userSave"]', { wait: 300 });
     const txt = await page.innerText('#ov');
@@ -73,6 +75,13 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
     await page.evaluate(() => closeSheet());
   }
   console.log('team PINs', JSON.stringify(PINS));
+  /* the partner company's lift licence: details typed in, licence copy checked by the office */
+  const co = await page.evaluate(() => Object.values(S.users).find(u => u.role === 'partner').uid);
+  await page.evaluate(uid => go('worker', { uid }), co); await W8(150);
+  await tap(page, `[data-a="wizOpen"][data-v="partnerLic||uid|${co}"]`, { wait: 250 });
+  await fill('licNo', 'MH/LIFT/2026/0099'); await fill('licExpiry', '2030-03-31'); await next();
+  await tap(page, `[data-a="docVerify"][data-v="${co}|license|verified"]`, { wait: 200 }); await tap(page, '[data-a="docVerifyGo"]', { wait: 300 });
+  assert(await page.evaluate(uid => licenceOk(uid) && !techWhyNot(Object.values(S.users).find(u => u.role === 'tech').uid), co), 'the partner company has a valid licence and its technician can be sent to sites');
 
   /* --- 1. field worker adds a site --- */
   await login('Ravi Field');

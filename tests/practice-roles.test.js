@@ -39,7 +39,7 @@ const { launch, tap, miss, pin, OUT } = require('./lib');
   console.log('MISSING', (await miss(page)).join(', '));
   console.log('ERRORS', errors.join('\n') || 'none');
   const missing = await miss(page);
-  if (rej.length || missing.length || errors.length || users.length !== 13) { console.error('FAILED'); process.exit(1); }
+  if (rej.length || missing.length || errors.length || users.length !== 15) { console.error('FAILED'); process.exit(1); }
   console.log('PRACTICE PASSED');
   await browser.close();
 })().catch(e => { console.error('FAILED', e.message); process.exit(1); });

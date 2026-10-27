@@ -47,16 +47,18 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await act('TICKET_UPDATED', 'AIEC-P001', { tid, status: 'resolved', note: 'Fixed door roller', ev: [] }, 'PTECH');
   await act('TICKET_CLOSED', 'AIEC-P001', { tid, ok: true, note: '' }, 'PADMIN');
   assert(await sum('PTECH', 'earn_repair') > 0, 'a confirmed repair is paid to the person who fixed it');
-  await act('USER_UPDATED', null, { uid: 'PTRAIN', active: false }, 'POWNER');
-  assert(await ev('globalNeeds(S.users.POWNER, true).some(n => n.k === "approve_pay" && n.uid === "PTRAIN")'), 'a worker who left still appears for pay approval while weeks are unpaid');
+  await act('USER_UPDATED', null, { uid: 'PPART1', active: false }, 'POWNER');
+  assert(await ev('globalNeeds(S.users.POWNER, true).some(n => n.k === "approve_pay" && n.uid === "PPART1")'), 'a company that stopped working with AIEC still appears for pay approval while bills are unpaid');
+  await act('USER_UPDATED', null, { uid: 'PPART1', active: true }, 'POWNER');
   const notSampled = await ev('(() => { const P = S.projects["AIEC-P003"]; return Object.keys(P.sop).map(Number).find(i => !spotDue().some(x => x.key === P.id + ":" + i)); })()');
   if (notSampled != null) assert((await act('SPOT_CHECKED', 'AIEC-P003', { step: notSampled, ok: false, note: 'x' }, 'PQC')).err === 'err_not_sampled', 'a spot check can only be done on steps the app picked');
 
   /* --- Phase 2 --- */
   assert(await ev('activeJobs("PTECH").lead') === 1, 'a technician waiting only for material or payment is not counted as busy (only the job at handover with his signature due)');
-  assert(!(await ev('jobWhyNot("PTECH", Object.values(S.posts).find(p => p.kind === "lead" && postLive(p)) || { kind: "lead", pid: "AIEC-P007", card: { size: "normal" } })')), 'so he can apply for a new lead job');
+  assert(await ev('leadOk("PTECH", "normal") && activeJobs("PTECH").lead < S.config.maxActiveJobs') && !(await ev('jobWhyNot("PPART1", Object.values(S.posts).find(p => p.kind === "lead" && postLive(p)) || { kind: "lead", pid: "AIEC-P007", card: { size: "normal" } })')), 'so his company can apply for a new lead job with him');
   assert((await act('PROJECT_CANCELLED', 'AIEC-P007', { reason: 'Customer backed out' }, 'PADMIN')).err === 'err_role', 'only the Owner can cancel a won project');
   assert((await act('PROJECT_CANCELLED', 'AIEC-P007', { reason: 'Customer backed out after signing' }, 'POWNER')).ok && await ev('S.projects["AIEC-P007"].stage') === 'lost' && await ev('Object.values(S.posts).filter(p => p.pid === "AIEC-P007").every(p => p.status !== "open")') && !(await ev('globalNeeds(S.users.POWNER, true).some(n => n.pid === "AIEC-P007")')), 'cancelling a signed project closes its posts and stops its tasks');
+  await act('USER_UPDATED', null, { uid: 'PTRAIN', active: false }, 'POWNER');
   assert((await act('ASSIGNED', 'AIEC-P005', { role: 'tech', uid: 'PTRAIN' }, 'PADMIN')).err === 'err_inactive', 'work cannot be given to someone who left');
   await act('USER_UPDATED', null, { uid: 'PSUP', active: false }, 'POWNER');
   assert(await ev('myTasks(S.users.PADMIN).some(n => n.k === "reassign_work" && n.uid === "PSUP")'), 'when someone leaves, the office gets "give this work to someone else" for each job they held');
