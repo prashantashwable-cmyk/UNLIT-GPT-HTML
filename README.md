@@ -114,6 +114,22 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Nothing happens to a person without a human decision.
 * All targets, pay rates and spot-check rates are Owner-approved business rules (**Me → Business rules → Career ladder**).
 
+### Data protection against poaching (partner companies, technicians, suppliers)
+* **Each phone gets only its own share (the offline version of row-level security):**
+  * A partner company, technician or supplier receives only the jobs they hold or work on.
+  * Their file never contains customer phone numbers, names or notes, prices and cost settings, discounts, payment amounts or references, WhatsApp messages, the agreement signer, other companies' licence details, or the names of other companies, their technicians, customers and suppliers. Those fields are removed before the file is made.
+  * Each removed field has its own fingerprint in the signature, so the rest of the record can still be checked. Jobs still reach the same stage on their phone as at the office.
+  * Only a file made by the office (Owner, Admin or Sales) may carry records with removed fields. Such records from anyone else are refused.
+  * Each phone lists only the people who can log in on it.
+* **Contact masking:** partner companies and technicians never see customer phone numbers. They talk to the customer through the project chat, or call the AIEC office number (set by the Owner in **Business rules → Data protection**). Phone numbers and e-mails typed in chat by customers or outside companies are hidden. Technicians cannot send WhatsApp messages to customers.
+* **No export:** outside companies can only send their own work to the office. There is no export of project lists, customers or prices, the agreement and quotation are not shown to them, and printing is refused.
+* **Field technicians:** no money screens, prices, margins, customer names or phone numbers. They see their tasks, the daily safety check and the step-by-step installation with photo proof. The partner company owner sees the company's jobs, team, licence and weekly bill.
+* **Screenshots:** every page for an outside company carries a faint watermark with the viewer's name, code and date. Copying text is switched off, and the screen is blurred when the app goes to the background (the app-switcher picture).
+* **Access log and alerts:** opening jobs, documents, safety logs, other people's profiles and pay, and trying pages they may not see, are recorded on the phone and sent with the person's file. The office's **Who looked at what** page shows each person's last 7 days. The office gets an urgent "Unusual looking at data" task when someone:
+  * tries pages they may not see 3 times;
+  * opens more than the set number of different jobs in one day;
+  * saves many data files.
+
 ### Site safety
 * **SOS 🆘:** a red button on every screen for technicians, QC Inspectors, field workers and partner companies.
   * Press and hold it for 1 second; a short tap only explains how.
@@ -211,6 +227,12 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 ## Honest limits of this version
 * **Offline, single file.** Roles are enforced by the app on every action and on every imported file. There is no company server.
 * **Safety:** the SOS reaches the office's phone only when files are shared, so the phone call and SMS are the real alert. Safety photos are checked by people, not by a computer. The daily check is confirmed by the team lead (an Owner decision); it does not replace the statutory inspection or a qualified engineer.
+* **Data protection limits:**
+  * There is no server, so prices and rules are checked by the same rules on every phone and on every file loaded, not on a server.
+  * A web app cannot block screenshots (Android FLAG_SECURE needs the native Android app); the watermark makes leaked pictures traceable.
+  * The access log reaches the office only when the person's file is shared.
+  * A person can still photograph the screen with another phone.
+  * Masked calling (a virtual number) needs a telephone provider; until then calls go through the AIEC office.
 * **Signed records (company data only, not practice).**
   * Each person's phone makes its own signing key at first login, and every new record is signed with it. Files are also signed by the phone that made them.
   * When a file is loaded, a record from a person with a known key must carry that person's valid signature. Changed or forged records are refused.

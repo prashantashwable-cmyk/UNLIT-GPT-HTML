@@ -28,7 +28,7 @@ const imp = (page, pack) => page.evaluate(async txt => importText(txt), JSON.str
   /* office file for another office phone: only office logins travel */
   const full = await pa.evaluate(() => finishPack(exportPack('full', null, { logins: 'office' })));
   const techAdd = full.events.find(e => e.type === 'USER_ADDED' && e.data.uid === tech), techUp = full.events.find(e => e.type === 'PIN_UPGRADED' && e.by === tech);
-  assert(!techAdd.data.pin && techAdd.cut && techUp.data.pin === 'p2$' && full.sig, 'an office-only full file removes the technician\'s PIN and is signed by the Owner');
+  assert(!techAdd.data.pin && techAdd.cut && techUp.data.pin === null && full.sig, 'an office-only full file removes the technician\'s PIN and is signed by the Owner');
   assert(!JSON.stringify(full).includes('phOf'), 'no private details hide inside the signatures');
   const R = await setup();
   const rr = await imp(R.page, full);

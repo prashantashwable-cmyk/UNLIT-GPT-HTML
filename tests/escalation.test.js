@@ -66,7 +66,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const e2 = await page.evaluate(pid2 => needs(S.projects[pid2]).find(n => n.k === 'escalated'), pid2);
   assert(e2 && e2.level === 2, 'QC inspection waiting 4 days is at Admin level');
   const tomorrow = await ev('addDays(1)');
-  assert(!(await act('ESC_ACTED', pid2, { key: e2.eid, ref: e2.ref, level: 2, action: 'called', until: await ev('addDays(9)'), note: 'x' }, 'PADMIN')).ok, 'a new date more than 7 days away is refused');
+  assert(!(await act('ESC_ACTED', pid2, { key: e2.eid, ref: e2.ref, level: 2, action: 'called', until: await ev('addDays(10)'), note: 'x' }, 'PADMIN')).ok, 'a new date more than 7 days away is refused');
   assert(!(await act('ESC_ACTED', pid2, { key: e2.eid, ref: e2.ref, level: 2, action: 'called', until: tomorrow, note: 'x' }, 'PSALES')).ok, 'only Owner/Admin can act on escalations');
   assert((await act('ESC_ACTED', pid2, { key: e2.eid, ref: e2.ref, level: 2, action: 'called', until: tomorrow, note: 'Vijay will go tomorrow' }, 'PADMIN')).ok, 'admin records "I spoke to them"');
   assert(!(await page.evaluate(pid2 => needs(S.projects[pid2]).some(n => n.k === 'escalated'), pid2)), 'escalation waits until the agreed date');

@@ -31,6 +31,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(!(await ev('needs(S.projects["AIEC-P003"]).some(n => n.k === "escalated" && n.ref === "install")')), 'the installation timer pauses while a blocker is open');
   await act('BLOCKER_RESOLVED', 'AIEC-P003', { bid: await ev('S.projects["AIEC-P003"].blockers.find(b => b.open).id'), note: 'Scaffolding delivered' }, 'PADMIN');
   if (await ev('S.projects["AIEC-P003"].blockers.some(b => b.open)')) await page.evaluate(() => { S.projects['AIEC-P003'].blockers.forEach(b => { b.open = false; }); });
+  /* today's safety check is done, so the waiting step is the installation itself */
+  await page.evaluate(() => perform('SAFETY_CHECKED', 'AIEC-P003', { ev: SAFETY_ITEMS.map(([k]) => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'safe_' + k, t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} })) }, { as: 'PSENIOR', quiet: true }));
   await page.evaluate(() => { const P = S.projects['AIEC-P003']; P.since = new Date(Date.now() - 20 * 864e5).toISOString(); });
   await act('ESC_ACTED', 'AIEC-P003', { key: k3, ref: 'install', level: 3, action: 'called', until: await ev('addDays(1)'), note: 'Called the lead' }, 'POWNER');
   await act('ESC_ACTED', 'AIEC-P003', { key: k3, ref: 'install', level: 3, action: 'new_date', until: await ev('addDays(1)'), note: 'Called again' }, 'POWNER');
