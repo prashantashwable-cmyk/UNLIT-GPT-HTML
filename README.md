@@ -150,6 +150,17 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * A different amount needs a reason. The Owner approves or refuses; Finance pays with the bank reference, and a second Finance person pays when there is one.
 * **Receipt:** each confirmed payment has a 🧾 receipt (number, date, customer, purpose, amount, method, bank reference, who checked it) that can be printed or saved as PDF.
 
+### Purchase order, serial numbers, safe keeping, part claims
+* **Purchase order:** releasing the material makes a numbered purchase order (parts list, quantities, drawings, needed-by date from the Owner's "days to dispatch").
+  * The supplier accepts it with a dispatch date, or declines with a reason; the office then picks a supplier again (a new order number).
+  * After the promised date the dispatch task turns urgent and the office sees "supplier is late". The office and the supplier can open and print the order; it has no customer phone.
+* **Dispatch:** the supplier writes the serial numbers of the machine, controller and governor and the delivery challan number, besides the seal and photos.
+* **Representative:** the customer, Sales or the office can name a person who receives the material (family member, society secretary, site manager, watchman), with a photo of the letter or ID. The name and phone never go to partner companies, technicians or suppliers.
+* **Safe keeping at delivery:** the material handover needs a photo of the storage place, and the customer or representative accepts to keep the material safe until installation, then signs.
+* **Part claims:** a line marked damaged or missing at the handover becomes a claim at once; later the team can report damaged, missing or extra parts with a photo and the serial seen.
+  * Only parts on the job's list can be claimed. A claim does not stop the work; a "safety emergency" claim rings the office alarm.
+  * The office approves or refuses with a reason, the supplier sends the part with a challan number, and the technician confirms with a photo.
+
 ### Shaft limits, variation, co-worker check, surprise QC
 * **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).
   * A shaft below the minimum cannot simply be approved: QC asks for corrections, or approves "with a variation quote".

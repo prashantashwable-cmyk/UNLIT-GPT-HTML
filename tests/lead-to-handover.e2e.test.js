@@ -202,10 +202,14 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   /* --- 7. supplier dispatches --- */
   await login('Supa Supplier');
   assert(await page.evaluate(p => !seeF(App.me, 'phone'), pid), 'supplier cannot see phone');
+  await startTask('accept_po'); await shot('purchase_order'); await pick('ok', 'yes'); await next(); await next(); await doneOk('order accepted');
+  assert(await page.evaluate(p => !!S.projects[p].po.accepted, pid), 'the supplier accepted the purchase order with a dispatch date');
   await startTask('dispatch');
   const mats = await page.evaluate(p => S.projects[p].materials.map(m => m.k), pid);
   for (const k of mats) await tap(page, `[data-a="toggleIn"][data-v="${k}"]`, { wait: 40 });
-  await next(); await fill('seal', 'SEAL-7781'); await fill('vehicle', 'MH12 XY 4455'); await next(); await photo('ph'); await photo('ph'); await next(); await next(); await doneOk('dispatched');
+  await next(); await next(); assert((await err()).length > 0, 'serial numbers are required');
+  for (const k of ['m_machine', 'm_controller', 'm_governor']) if (mats.includes(k)) await fill('serialMap.' + k, k.slice(2, 5).toUpperCase() + '-7781');
+  await fill('challan', 'DC/7781'); await shot('dispatch_serials'); await next(); await fill('seal', 'SEAL-7781'); await fill('vehicle', 'MH12 XY 4455'); await next(); await photo('ph'); await photo('ph'); await next(); await next(); await doneOk('dispatched');
 
   /* --- 8. technician records arrival; handover blocked until arrival payment confirmed --- */
   await login('Tara Tech');
@@ -216,7 +220,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await login('Sam Sales'); await startTask('record_payment'); await pick('method', 'bank'); await next(); await fill('ref', 'NEFT778'); await next(); await next();
   await login('Fiona Finance'); await startTask('verify_payment'); await pick('status', 'confirmed'); await next(); await fill('ref', 'STMT-1002'); await next();
   await login('Tara Tech');
-  await startTask('material_handover'); await shot('material_handover'); await next(); await sign('csig'); await next(); await sign('tsig'); await next(); await doneOk('material handed');
+  await startTask('material_handover'); await shot('material_handover'); await next(); await photo('store'); await next();
+  await sign('csig'); await next(); assert((await err()).length > 0, 'the customer must accept to keep the material safe');
+  await tap(page, '[data-a="toggle"][data-k="custody"]'); await shot('material_custody'); await next(); await sign('tsig'); await next(); await doneOk('material handed');
   assert(await stage(pid) === 'installing', 'installing');
 
   /* --- 9. daily safety check (4 photos), then installation SOP, one blocker on the way --- */
