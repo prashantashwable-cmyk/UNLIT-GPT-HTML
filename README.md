@@ -29,6 +29,8 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
 ### One project record, one state machine
 Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a photo, a call, a quotation, a payment check, a signature — is saved as an **event** (who, role, when, what, reason, evidence). The project status is **rebuilt from those events**, so the home screen, task list, map, chat, timeline, documents and dashboards always show the same status. Nothing is silently edited: corrections create a new event and keep the old value.
 
+**History tab as a tree:** each stage opens to show the steps done in it (newest stage open; what you open is remembered). Tap a step to see when, who, what, the reason (office only) and its photos and signatures. Customers see only their own job's customer-facing steps (payments, site checks, delivery, installation steps, inspections, handover, service), never office decisions or internal reasons.
+
 ### The complete lead-to-handover workflow
 | Phase | Stage | Who acts |
 |---|---|---|

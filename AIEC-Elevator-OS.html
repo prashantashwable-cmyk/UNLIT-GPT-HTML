@@ -133,6 +133,11 @@ textarea.in{min-height:96px;resize:vertical}
 .tl{border-left:3px solid var(--line);margin-left:10px;padding-left:14px}
 .tl-i{position:relative;margin-bottom:14px}
 .tl-i::before{content:"";position:absolute;left:-22px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--gold);border:2px solid #fff}
+details.tl-i>summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;min-height:32px}details.tl-i>summary::-webkit-details-marker{display:none}
+details.tl-i>summary .chev{margin-left:auto;transition:transform .2s}details.tl-i[open]>summary .chev{transform:rotate(180deg)}
+.tl-sub{margin:6px 0 0 2px;border-left:2px dashed var(--line);padding-left:10px}
+.tl-step{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:6px 2px;font:inherit;color:inherit;cursor:pointer}
+.tl-step .grow{min-width:0;overflow-wrap:anywhere}.tl-step::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--muted)}
 .bubble{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 12px;margin:0 0 8px;max-width:90%}
 .bubble.mine{margin-left:auto;background:var(--gold-l)}
 .sysmsg{text-align:center;font-size:.8rem;color:var(--muted);margin:8px 0}
@@ -2116,6 +2121,13 @@ const L = {
   tab_photos: ['Photos', 'फोटो', 'फोटो'],
   tab_money: ['Money', 'पैसा', 'पैसे'],
   tab_docs: ['Papers', 'कागज़ात', 'कागदपत्रे'],
+  tl_steps: ['{n} steps', '{n} काम', '{n} कामे'],
+  tl_open_hint: ['Tap a stage to see what was done; tap a step for details.', 'क्या हुआ देखने के लिए चरण दबाएँ; पूरी जानकारी के लिए काम दबाएँ।', 'काय झाले ते पाहण्यासाठी टप्पा दाबा; तपशिलासाठी काम दाबा.'],
+  tl_by: ['Done by', 'किसने किया', 'कोणी केले'],
+  tl_photos: ['Photos and signatures', 'फ़ोटो और साइन', 'फोटो आणि सह्या'],
+  tl_when: ['When', 'कब', 'केव्हा'],
+  tl_what: ['What', 'क्या', 'काय'],
+  tl_reason: ['Reason', 'कारण', 'कारण'],
   timeline_note: ['Every change is saved with who did it and when. Nothing is silently changed.', 'हर बदलाव किसने और कब किया, के साथ सेव होता है। चुपचाप कुछ नहीं बदलता।', 'प्रत्येक बदल कोणी आणि केव्हा केला यासह जतन होतो. काहीही गुपचूप बदलत नाही.'],
   no_docs_yet: ['Papers will appear here as the work moves ahead.', 'काम आगे बढ़ने पर कागज़ात यहाँ दिखेंगे।', 'काम पुढे गेल्यावर कागदपत्रे येथे दिसतील.'],
 
@@ -8317,14 +8329,38 @@ function evText(ev) {
   }[ev.type];
   return bits ? bits() : '';
 }
+/* history as a tree: each stage opens into the steps done in it; each step opens its details */
+const CUST_TL = ['QUOTE_SENT', 'AGREEMENT_SIGNED', 'PAYMENT_RECORDED', 'PAYMENT_STATUS', 'PREP_ITEM_DONE', 'QC_SITE_RESULT', 'DISPATCHED', 'ARRIVED', 'MATERIAL_HANDED', 'MATERIAL_RECEIPT_SIGNED',
+  'SAFETY_CHECKED', 'SOP_STEP_DONE', 'INSPECTION_REQUESTED', 'QC_FINAL_RESULT', 'HANDOVER_SIGNED', 'HANDOVER_COMPLETED', 'SERVICE_DONE', 'TICKET_OPENED', 'TICKET_CLOSED', 'AMC_RENEWED'];
+const tlShow = (ev, u) => u.role !== 'customer' || CUST_TL.includes(ev.type) || (ev.by === u.uid && ev.type !== 'CHAT_POSTED');
+function histTree(P) {
+  const u = App.me, hs = P.hist.length ? P.hist : [{ s: P.stage, t: P.t }];
+  const groups = hs.map(h => ({ h, evs: [] }));
+  for (const ev of P.log.map(id => S.byId[id]).filter(Boolean)) {
+    if (!tlShow(ev, u)) continue;
+    let k = 0; for (let i = 0; i < hs.length; i++) if (hs[i].t <= ev.t) k = i;
+    groups[k].evs.push(ev);
+  }
+  return groups;
+}
+const tlShowReason = ev => App.me.role !== 'customer' && ev.data && ev.data.reason && !['LEAD_RETURNED', 'DEAL_LOST', 'QUOTE_DECISION', 'CONTACT_CORRECTED'].includes(ev.type) && (seeF(App.me, 'internal') || !/^QUOTE_/.test(ev.type));
 function projTimeline(P) {
-  /* customers see stage changes only — never internal notes, reasons or approvals */
-  if (App.me.role === 'customer') return `<div class="tl">${[...P.hist].reverse().map(h => `<div class="tl-i"><b>${STAGES[h.s][1]} ${esc(stName(h.s))}</b> <span class="small muted">${fmtD(h.t, true)}</span></div>`).join('')}</div>`;
-  const showReason = ev => ev.data && ev.data.reason && !['LEAD_RETURNED', 'DEAL_LOST', 'QUOTE_DECISION', 'CONTACT_CORRECTED'].includes(ev.type) && (seeF(App.me, 'internal') || !/^QUOTE_/.test(ev.type));
-  const evs = P.log.map(id => S.byId[id]).filter(Boolean).reverse();
-  return `<div class="note">🧾 ${t('timeline_note')}</div><div class="tl">${evs.map(ev => `<div class="tl-i"><b>${esc(t('ev_' + ev.type))}</b> <span class="small muted">${fmtD(ev.t, true)}</span><br>
-    <span class="small">${userTag(ev.by)}${showReason(ev) ? ' · ' + esc(ev.data.reason) : ''}${evText(ev) ? ' · ' + esc(evText(ev)) : ''}</span>
-    ${(ev.data && ev.data.ev || []).length ? `<span class="chip c-mute">📷 ${(ev.data.ev || []).length}</span>` : ''}</div>`).join('')}</div>`;
+  const u = App.me, cust = u.role === 'customer', groups = histTree(P), last = groups.length - 1;
+  return `<div class="note">🧾 ${t(cust ? 'tl_open_hint' : 'timeline_note')}</div><div class="tl">${groups.map((g, i) => [g, i]).reverse().map(([{ h, evs }, i]) => {
+    const key = 'tl:' + P.id + ':' + i, f = App.set.fold || {}, open = f[key] != null ? f[key] : i === last;
+    const head = `<b>${STAGES[h.s] ? STAGES[h.s][1] : ''} ${esc(stName(h.s))}</b> <span class="small muted">${fmtD(h.t, true)}</span>`;
+    if (!evs.length) return `<div class="tl-i">${head}</div>`;
+    return `<details class="tl-i" data-fold="${key}" ${open ? 'open' : ''}><summary>${head}<span class="chip c-mute">${t('tl_steps', { n: evs.length })}</span><span class="chev" aria-hidden="true">▾</span></summary>
+      <div class="tl-sub">${evs.map(ev => { const x = evText(ev), n = (ev.data && ev.data.ev || []).length;
+        return `<button class="tl-step" data-a="tlEv" data-v="${esc(ev.id)}"><span class="grow"><b>${esc(t('ev_' + ev.type))}</b>${x ? ' · ' + esc(x) : ''}<br><span class="small muted">${fmtD(ev.t, true)} · ${userTag(ev.by)}</span></span>${n ? `<span class="chip c-mute">📷 ${n}</span>` : ''}<span aria-hidden="true">›</span></button>`; }).join('')}</div></details>`;
+  }).join('')}</div>`;
+}
+function tlDetail(ev) {
+  const u = App.me, P = S.projects[ev.pid];
+  if (!P || !canSee(u, P) || !tlShow(ev, u)) return '';
+  const x = evText(ev), ids = (ev.data && ev.data.ev || []).map(e => typeof e === 'string' ? e : e.id);
+  return `<h2>${esc(t('ev_' + ev.type))}</h2>${kv([['tl_when', fmtD(ev.t, true)], ['tl_by', userTag(ev.by)], ['tl_what', x ? esc(x) : ''], ['tl_reason', tlShowReason(ev) ? esc(ev.data.reason) : '']])}
+    ${ids.length ? `<h3>${t('tl_photos')}</h3>${evGrid(ids)}` : ''}`;
 }
 function chatVisible(m) { const u = App.me; return u.role !== 'customer' || m.by === u.uid || m.toRole === 'customer'; }
 function projChat(P) {
@@ -10309,6 +10345,7 @@ const ACT = {
   addSite: () => wiz('lead', null),
   openProject: v => { closeSheet(); go('project', { pid: v }); },
   openDrawings: v => go('drawings', { pid: v }),
+  tlEv: v => { const ev = S.byId[v], h = ev && tlDetail(ev); if (h) sheet(h); },
   statF: v => go('stattracker', { f: v }, { replace: true }),
   openProjectTab: v => { const [pid, tab] = v.split('|'); go('project', { pid, tab }); },
   tab: v => { App.route.p.tab = v; render(); },
