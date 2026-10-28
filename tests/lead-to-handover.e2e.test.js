@@ -31,6 +31,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   const login = async name => {
     await page.evaluate(() => ACT.logout()); await W8(150);
     const uid = await page.evaluate(n => Object.values(S.users).find(u => u.name === n).uid, name);
+    /* after logging out the phone shows the three doors: customers use the customer door, everyone else the staff door */
+    await tap(page, `[data-a="door"][data-v="${await page.evaluate(id => S.users[id].role === 'customer' ? 'cust' : 'staff', uid)}"]`);
     await tap(page, `[data-a="loginUser"][data-v="${uid}"]`);
     for (const d of PINS[name]) await tap(page, `.pinpad button[data-v="${d}"]`, { wait: 40 });
     await W8(300);
