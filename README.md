@@ -208,6 +208,19 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * **Voice notes in chat:** up to 60 seconds, recorded in the app and kept on the phone like photos. A voice note can be sent alone. Spoken phone numbers cannot be hidden the way typed ones are.
 * **Critical alerts:** SOS, person trapped, unsafe lift and emergency part claims show a red bar on every screen. They ring the siren at every check (every minute), even in quiet hours, until the person taps "I am on it". Others who have not answered keep getting it. "I am on it" is kept on that phone only.
 
+### Colours, sync status, day summary, safety test, trial job, privacy notice
+* **Colours (Me → Settings):** like the phone, light, dark (night work) or strong contrast (bright sun, weak eyes).
+* **Sync status (Me → Share data):** when this phone last sent and loaded a file, which phones' records are here with how many and how new (a phone not heard from for 3 days or more is marked ⏰), and the last files loaded.
+* **Field worker's day:** the day report adds today's estimated earnings (by the Owner's field pay rules) and "Send my day to the office", which prepares a WhatsApp summary (sites added, accepted, to fix, GPS points, shift times, earnings).
+* **Safety test every year:** the safety training must be passed again every 12 months (Owner rule; 0 = never). Until then the person's onboarding is not complete and the training screen says "time to take this test again".
+* **Trial job:** a technician the office adds directly at Technician or Senior level (not grown through the ladder) has a trial pending.
+  * They can work in teams and lead small and medium jobs at once, so a new partner company can start work. Big jobs wait for the trial.
+  * Their first lead job that passes final inspection counts as the trial. A QC Inspector, the office, or the Senior lead of a job where the person was in the team can also record one. "Needs another trial" needs a reason.
+  * People added before this version, or who grew through the ladder, need no trial.
+* **Privacy notice:** the first-login screen explains what is kept, why, who sees it, where and how long, and the person's rights, with the office number.
+  * In real use, tapping Next records a signed "privacy notice read" (version 1). It can be read again any time in Me → Privacy notice.
+  * The text follows India's Digital Personal Data Protection Act, 2023; a lawyer must confirm it.
+
 ### Shaft limits, variation, co-worker check, surprise QC
 * **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).
   * A shaft below the minimum cannot simply be approved: QC asks for corrections, or approves "with a variation quote".

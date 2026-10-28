@@ -14,6 +14,19 @@
   --ok:#16703a;--ok-bg:#e2f3e7;--warn:#8a5300;--warn-bg:#fff0d2;--bad:#a3241c;--bad-bg:#fde6e3;--info:#1c5596;--info-bg:#e4eefa;
   --r:16px;--shadow:0 1px 2px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.05);
 }
+/* colour themes (Me → Settings): dark for night work, high contrast for bright sun or weak eyes */
+:root[data-theme="dark"]{--ink:#eceff4;--muted:#aab2bf;--bg:#14161b;--card:#1f232b;--line:#3a404c;--gold-l:#3a3220;--gold-d:#e6c35a;
+  --ok:#7fd99b;--ok-bg:#15301f;--warn:#f2bd63;--warn-bg:#3a2b0d;--bad:#ff8f86;--bad-bg:#3d1714;--info:#93bff2;--info-bg:#152740;--shadow:none}
+:root[data-theme="contrast"]{--ink:#000;--muted:#1d1d1d;--bg:#fff;--card:#fff;--line:#000;--gold:#8a6a00;--gold-l:#fff3c4;--gold-d:#4d3b00;
+  --ok:#004d1a;--ok-bg:#d8f5e0;--warn:#5c3700;--warn-bg:#ffe7b3;--bad:#8b0000;--bad-bg:#ffd6d1;--info:#00336e;--info-bg:#d6e6ff;--shadow:none}
+:root[data-theme="contrast"] .card,:root[data-theme="contrast"] .tile,:root[data-theme="contrast"] .btn{border-width:2px}
+:root[data-theme="dark"] .in{background:#15181e;color:var(--ink)}
+:root[data-theme="dark"] :is(.btn:not(.btn-p):not(.btn-ok),.task,.tile,.nav,.mic,.stepper button,.bubble,.tabs button:not(.on),details.fold,.ntf,.starrow button){background:var(--card);color:var(--ink)}
+:root[data-theme="dark"] .btn-bad{color:var(--bad)}
+:root[data-theme="dark"] .note{color:var(--info)}:root[data-theme="dark"] .warnbox{color:var(--warn);border-color:#6b5320}:root[data-theme="dark"] .okbox{color:var(--ok);border-color:#2d5a3c}
+:root[data-theme="dark"] :is(.c-mute,.ph,.prog,.lstep,.ntf .ib){background:#2a2e37;color:#c8ccd4}:root[data-theme="dark"] .c-mute{border-color:#3a404c}
+:root[data-theme="dark"] .c-ok{border-color:#2d5a3c}:root[data-theme="dark"] .c-warn{border-color:#6b5320}:root[data-theme="dark"] .c-bad{border-color:#6b2a25}:root[data-theme="dark"] .c-info{border-color:#2a4a72}
+:root[data-theme="dark"] .task.urgent{border-color:#9c4a43}
 html{font-size:17px}
 /* screen scale (Me → Screen size): the whole page is zoomed, widths divided back so it still fills the phone */
 :root{--z:1}
@@ -1228,6 +1241,55 @@ const L = {
   ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
   ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
   ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
+  ev_TRIAL_RESULT: ['Trial job result', 'ट्रायल काम का परिणाम', 'चाचणी कामाचा निकाल'],
+  ev_PRIVACY_ACCEPTED: ['Privacy notice read', 'गोपनीयता सूचना पढ़ी', 'गोपनीयता सूचना वाचली'],
+  cfg_safetyRetest: ['Safety test again every … months (0 = never)', 'सुरक्षा टेस्ट हर … महीने में दोबारा (0 = कभी नहीं)', 'सुरक्षा चाचणी दर … महिन्यांनी पुन्हा (0 = कधीच नाही)'],
+  err_trial_crew: ['The person did not work in the team of this job.', 'इस व्यक्ति ने इस काम की टीम में काम नहीं किया।', 'या व्यक्तीने या कामाच्या टीममध्ये काम केले नाही.'],
+  theme: ['Colours', 'रंग', 'रंग'],
+  th_auto: ['Like the phone', 'फ़ोन जैसा', 'फोनप्रमाणे'],
+  th_light: ['Light', 'हल्का', 'फिकट'],
+  th_dark: ['Dark (night)', 'गहरा (रात)', 'गडद (रात्र)'],
+  th_contrast: ['Strong contrast (sun)', 'तेज़ कंट्रास्ट (धूप)', 'ठळक कॉन्ट्रास्ट (ऊन)'],
+  sync_title: ['Sync status', 'सिंक स्थिति', 'सिंक स्थिती'],
+  sync_last_share: ['Last file sent from here', 'यहाँ से आखिरी फ़ाइल भेजी', 'येथून शेवटची फाइल पाठवली'],
+  sync_last_load: ['Last file loaded here', 'यहाँ आखिरी फ़ाइल लोड', 'येथे शेवटची फाइल लोड'],
+  sync_never: ['never', 'कभी नहीं', 'कधीच नाही'],
+  sync_phones: ['Phones whose records are here', 'फ़ोन जिनके रिकॉर्ड यहाँ हैं', 'फोन ज्यांच्या नोंदी येथे आहेत'],
+  sync_this: ['This phone', 'यह फ़ोन', 'हा फोन'],
+  sync_n: ['{n} records', '{n} रिकॉर्ड', '{n} नोंदी'],
+  sync_newest: ['newest {t}', 'नवीनतम {t}', 'नवीनतम {t}'],
+  sync_loads: ['Files loaded lately', 'हाल में लोड फ़ाइलें', 'अलीकडे लोड केलेल्या फाइल'],
+  sync_note: ['There is no server: phones are in step only when files are shared. A phone not heard from for 3 days or more is marked ⏰.', 'कोई सर्वर नहीं: फ़ाइल शेयर होने पर ही फ़ोन एक जैसे होते हैं। 3 या ज़्यादा दिन से जिस फ़ोन की खबर नहीं, उस पर ⏰।', 'सर्व्हर नाही: फाइल शेअर केल्यावरच फोन सारखे होतात. 3 किंवा अधिक दिवस ज्या फोनची खबर नाही त्यावर ⏰.'],
+  trial_title: ['Trial job', 'ट्रायल काम', 'चाचणी काम'],
+  trial_needed: ['Added at Technician level or above: trial pending. Can lead small and medium jobs; the first lead job that passes final inspection counts as the trial. Big jobs only after the trial.', 'तकनीशियन स्तर या ऊपर जोड़ा गया: ट्रायल बाकी। छोटे और मध्यम काम का नेतृत्व कर सकते हैं; पहला काम जो अंतिम जाँच में पास हो वही ट्रायल। बड़े काम ट्रायल के बाद ही।', 'तंत्रज्ञ स्तर किंवा वर जोडले: चाचणी बाकी. लहान आणि मध्यम कामांचे नेतृत्व करू शकतात; अंतिम तपासणीत पास होणारे पहिले काम हीच चाचणी. मोठी कामे चाचणीनंतरच.'],
+  trial_ok: ['Trial job passed: can lead jobs.', 'ट्रायल काम पास: काम का नेतृत्व कर सकते हैं।', 'चाचणी काम पास: कामाचे नेतृत्व करू शकतात.'],
+  trial_record: ['Record trial', 'ट्रायल दर्ज करें', 'चाचणी नोंदवा'],
+  trial_no_job: ['First give this person a place in a job\'s team.', 'पहले इस व्यक्ति को किसी काम की टीम में जगह दें।', 'आधी या व्यक्तीला एखाद्या कामाच्या टीममध्ये जागा द्या.'],
+  s_trial: ['How did this person work in the team?', 'इस व्यक्ति ने टीम में कैसा काम किया?', 'या व्यक्तीने टीममध्ये कसे काम केले?'],
+  trial_pass: ['Passed: safe and careful, can lead', 'पास: सुरक्षित और सावधान, नेतृत्व कर सकते हैं', 'पास: सुरक्षित आणि काळजीपूर्वक, नेतृत्व करू शकतात'],
+  trial_again: ['Needs another trial', 'एक और ट्रायल चाहिए', 'अजून एक चाचणी हवी'],
+  train_renew: ['Time to take this test again', 'यह टेस्ट फिर से देने का समय', 'ही चाचणी पुन्हा देण्याची वेळ'],
+  train_valid: ['Valid until {d}', '{d} तक मान्य', '{d} पर्यंत वैध'],
+  pn_title: ['Privacy notice', 'गोपनीयता सूचना', 'गोपनीयता सूचना'],
+  pn_what_t: ['What is kept:', 'क्या रखा जाता है:', 'काय ठेवले जाते:'],
+  pn_what: ['your name, phone, role and work records; photos and videos with time and place; your location only when you take a photo or start or end a shift; voice notes and chat you send.', 'आपका नाम, फ़ोन, भूमिका और काम के रिकॉर्ड; समय और जगह के साथ फ़ोटो-वीडियो; आपकी जगह सिर्फ़ फ़ोटो लेते या शिफ़्ट शुरू/खत्म करते समय; आपके आवाज़ संदेश और चैट।', 'तुमचे नाव, फोन, भूमिका आणि कामाच्या नोंदी; वेळ आणि ठिकाणासह फोटो-व्हिडिओ; तुमचे ठिकाण फक्त फोटो घेताना किंवा शिफ्ट सुरू/संपवताना; तुमचे आवाज संदेश आणि चॅट.'],
+  pn_why_t: ['Why:', 'क्यों:', 'का:'],
+  pn_why: ['to run lift jobs safely, prove the work done, pay people fairly and meet the law.', 'लिफ्ट के काम सुरक्षित चलाने, किए काम का सबूत रखने, लोगों को सही भुगतान और कानून मानने के लिए।', 'लिफ्टची कामे सुरक्षित चालवण्यासाठी, केलेल्या कामाचा पुरावा, लोकांना योग्य पैसे आणि कायदा पाळण्यासाठी.'],
+  pn_who_t: ['Who sees it:', 'कौन देखता है:', 'कोण पाहते:'],
+  pn_who: ['only the people whose role needs it. Partner companies, technicians and suppliers never get customer phone numbers or prices.', 'सिर्फ़ वे लोग जिनकी भूमिका को ज़रूरत है। पार्टनर कंपनियों, तकनीशियनों और सप्लायरों को ग्राहक फ़ोन या कीमतें कभी नहीं मिलतीं।', 'फक्त ज्यांच्या भूमिकेला गरज आहे ते लोक. भागीदार कंपन्या, तंत्रज्ञ आणि पुरवठादारांना ग्राहकांचे फोन किंवा किमती कधीही मिळत नाहीत.'],
+  pn_keep_t: ['Where and how long:', 'कहाँ और कितने समय:', 'कुठे आणि किती काळ:'],
+  pn_keep: ['on the company\'s phones and the files they share, as long as the law and the agreement need; old photos can be moved to an archive file.', 'कंपनी के फ़ोन और शेयर की फ़ाइलों में, जितना कानून और करार को चाहिए; पुराने फ़ोटो आर्काइव फ़ाइल में जा सकते हैं।', 'कंपनीच्या फोनवर आणि शेअर केलेल्या फाइलमध्ये, कायदा आणि करार लागेल तितका काळ; जुने फोटो संग्रह फाइलमध्ये जाऊ शकतात.'],
+  pn_rights_t: ['Your rights:', 'आपके अधिकार:', 'तुमचे अधिकार:'],
+  pn_rights: ['you can ask to see or correct your details, or to remove what the law allows, by calling the office ({office}).', 'आप ऑफ़िस ({office}) को कॉल करके अपनी जानकारी देखने, सुधारने, या कानून जितना हटाने की अनुमति दे उतना हटाने को कह सकते हैं।', 'तुम्ही ऑफिसला ({office}) फोन करून तुमची माहिती पाहणे, दुरुस्त करणे, किंवा कायदा परवानगी देईल तितकी काढून टाकायला सांगू शकता.'],
+  pn_office: ['ask your Admin', 'अपने एडमिन से पूछें', 'तुमच्या ॲडमिनला विचारा'],
+  pn_law: ['This notice follows India\'s Digital Personal Data Protection Act, 2023. A lawyer must confirm the final text.', 'यह सूचना भारत के डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 के अनुसार है। अंतिम पाठ वकील पक्का करें।', 'ही सूचना भारताच्या डिजिटल वैयक्तिक डेटा संरक्षण कायदा, 2023 नुसार आहे. अंतिम मजकूर वकिलाने निश्चित करावा.'],
+  pn_next: ['Tapping Next records that you have read this notice.', '"आगे" दबाने से दर्ज होता है कि आपने यह सूचना पढ़ी।', '"पुढे" दाबल्यावर तुम्ही ही सूचना वाचली असे नोंदवले जाते.'],
+  pn_accepted: ['Read on {t}', '{t} को पढ़ा', '{t} रोजी वाचली'],
+  pn_ok: ['I have read this', 'मैंने पढ़ लिया', 'मी वाचले'],
+  day_sum_title: ['{name} — day summary {d}', '{name} — दिन का सारांश {d}', '{name} — दिवसाचा सारांश {d}'],
+  day_earn: ['Earned today (estimate)', 'आज की कमाई (अनुमान)', 'आजची कमाई (अंदाज)'],
+  day_earn_note: ['By the Owner\'s field pay rules; the office confirms pay each week.', 'मालिक के फ़ील्ड भुगतान नियमों से; ऑफ़िस हर सप्ताह भुगतान पक्का करता है।', 'मालकाच्या फील्ड पगार नियमांनुसार; ऑफिस दर आठवड्याला पगार निश्चित करते.'],
+  day_send: ['Send my day to the office (WhatsApp)', 'मेरा दिन ऑफ़िस को भेजें (WhatsApp)', 'माझा दिवस ऑफिसला पाठवा (WhatsApp)'],
   ev_UNDONE: ['Taken back', 'वापस लिया', 'मागे घेतले'],
   err_undo_own: ['Only the person who made a record can take it back.', 'सिर्फ़ रिकॉर्ड बनाने वाला ही उसे वापस ले सकता है।', 'नोंद करणारी व्यक्तीच ती मागे घेऊ शकते.'],
   err_undo_type: ['This kind of record cannot be taken back (money, signatures, approvals and safety records stay).', 'इस तरह का रिकॉर्ड वापस नहीं लिया जा सकता (पैसा, हस्ताक्षर, मंज़ूरी और सुरक्षा रिकॉर्ड रहते हैं)।', 'अशी नोंद मागे घेता येत नाही (पैसे, सह्या, मंजुरी आणि सुरक्षा नोंदी राहतात).'],
@@ -3436,7 +3498,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15, poDays: 7, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15, poDays: 7, safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -3455,7 +3517,7 @@ const RULE_GROUPS = {
   market: ['postWarnDays', 'maxOpenApps', 'maxActiveJobs'],
   partner: ['partnerBigJobs', 'partnerBigStars', 'partnerMaxStrikes', 'licWarnDays'],
   security: ['pinDigits'],
-  safety: ['dailySafety', 'sosNumber'],
+  safety: ['dailySafety', 'sosNumber', 'safetyRetest'],
   statutory: ['licenceGate'],
   quality: ['tolWidth', 'tolDepth', 'tolPit', 'tolHead', 'peerCheck'],
   privacy: ['officeNumber', 'accessAlert'],
@@ -3607,12 +3669,15 @@ function modulesFor(role) { return TRAIN.filter(m => m[1].includes(role)).map(m 
 function trainingDone(uid) { const u = S.users[uid]; if (!u) return 0; const w = S.workers[uid]; return modulesFor(u.role).filter(m => w && w.training[m]).length; }
 /* onboarding checklist, worked out from saved events: profile, documents checked by the office, training */
 const REQ_DOCS = { tech: ['id', 'address', 'safety_cert'], qc: ['id', 'address', 'safety_cert'], partner: ['id', 'address', 'license'] };
+/* a passed module counts; the safety test must be passed again every N months (Owner rule, 0 = never) */
+const trainExpired = (w, m) => m === 'safety' && +S.config.safetyRetest > 0 && !!w.training[m] && Date.now() - Date.parse(w.training[m].t) > +S.config.safetyRetest * 30.4 * 864e5;
+const trainOk = (w, m) => !!w.training[m] && !trainExpired(w, m);
 function onboarding(uid) {
   const u = S.users[uid], w = S.workers[uid] || { profile: {}, docs: {}, training: {} }, p = w.profile;
   if (!u || !STAFF.includes(u.role) || u.role === 'owner') return { steps: [], done: 0, total: 0, ready: true };
   const steps = [{ k: 'profile', who: 'self', done: !!(((p.phone && p.area) || p.filled) && (p.skills || []).length) }]
     .concat((REQ_DOCS[u.role] || ['id', 'address']).map(d => ({ k: 'doc', doc: d, who: 'office', done: w.docs[d] === 'verified', bad: w.docs[d] === 'rejected' })))
-    .concat(modulesFor(u.role).map(m => ({ k: 'train', module: m, who: 'self', done: !!w.training[m] })));
+    .concat(modulesFor(u.role).map(m => ({ k: 'train', module: m, who: 'self', done: trainOk(w, m), expired: trainExpired(w, m) })));
   const done = steps.filter(x => x.done).length;
   return { steps, done, total: steps.length, ready: done === steps.length };
 }
@@ -3768,9 +3833,14 @@ function jobSize(P) {
   return 'normal';
 }
 /* who may lead a job: Technician small/normal, Senior any; never with 3+ active strikes */
+/* people added at Technician level or above (not grown through the ladder) have a trial: they may lead small and medium jobs,
+   their first lead job that passes final inspection counts as the trial (or QC / office / a Senior lead records one), and big jobs wait for it */
+const trialNeeded = uid => !!(S.users[uid] && S.users[uid].trial) && !(((S.workers[uid] || {}).trials) || []).some(x => x.ok);
+const workedOn = (uid, P) => [].concat(P.crew || [], P.done && P.done.team ? P.done.team.crew || [] : [], ...P.qcFinal.map(x => x.crew || [])).includes(uid);
 function canLead(uid, P, at) {
   const g = gradeOf(uid);
   if (!['technician', 'senior'].includes(g)) return false;
+  if (trialNeeded(uid) && jobSize(P) === 'big') return false;
   if (strikesOf(uid, at).filter(x => x.active).reduce((a, x) => a + x.n, 0) >= 3) return false;
   return g === 'senior' || jobSize(P) !== 'big';
 }
@@ -4017,6 +4087,7 @@ const openClockGaps = () => clockGaps().filter(g => !S.clockReviews[g.id]);
 /* undo: a person can take back their own simple record for 5 minutes, if nothing else happened on that job since; money, signatures, approvals and safety records are never undone */
 const UNDOABLE = ['CONTACT_LOGGED', 'FOLLOWUP_SET', 'CHAT_POSTED', 'LEAD_INFO_ADDED', 'REQ_SAVED', 'PREP_ITEM_DONE', 'SOP_STEP_DONE', 'BLOCKER_RAISED', 'TICKET_UPDATED', 'CLAIM_RAISED', 'REP_SET', 'WORKER_PROFILE', 'MSG_STATUS', 'CREW_RATED'];
 const UNDO_MIN = 5;
+const PRIVACY_V = 1;
 function undoWhyNot(S, id, by, t) {
   const x = S.byId[id];
   if (!x || S.undone[id]) return 'err_already';
@@ -4826,6 +4897,18 @@ const RULES = {
   },
   /* a record whose phone clock jumped: the office accepts the time or marks it as not trusted, with a reason */
   CLOCK_REVIEWED: { roles: ['owner', 'admin'], check: (S, ev) => S.clockReviews[ev.data.eid] ? 'err_already' : typeof ev.data.ok !== 'boolean' ? 'err_choose' : need((ev.data.note || '').trim(), 'err_reason') },
+  /* trial job: a QC Inspector, the office, or the Senior lead of that job says how a newly added technician worked in the crew */
+  TRIAL_RESULT: {
+    roles: ['qc', 'admin', 'owner', 'tech'], project: true, check: (S, ev, u, P) => {
+      const d = ev.data;
+      if (!S.users[d.uid] || !S.users[d.uid].trial) return 'err_pick_person';
+      if (!workedOn(d.uid, P)) return 'err_trial_crew';
+      if (u.role === 'tech' && !(P.tech === u.uid && gradeOf(u.uid) === 'senior')) return 'err_access';
+      if (u.uid === d.uid) return 'err_own_job';
+      return d.ok === false ? need((d.note || '').trim(), 'err_reason') : need(d.ok === true, 'err_choose');
+    }
+  },
+  PRIVACY_ACCEPTED: { roles: ROLES, check: (S, ev) => need(+ev.data.v === PRIVACY_V, 'err_fill') },
   /* people, training and pay */
   WORKER_PROFILE: {
     roles: STAFF, check: (S, ev, u) => {
@@ -4943,6 +5026,7 @@ function apply(S, ev) {
       S.users[d.uid] = { uid: d.uid, name: d.name || '#' + d.uid.slice(-4), hidden: !d.name, role: d.role, pin: d.pin, salt: d.salt, pinLen: +d.pinLen || 4, active: true, projectId: d.projectId || null, t: ev.t, by: ev.by };
       if (d.role === 'tech') { const co = roleOf(ev.by) === 'partner' ? ev.by : d.company || null; Object.assign(S.users[d.uid], { company: co, memberOk: !!co && roleOf(ev.by) !== 'partner', coLog: co ? [{ co, t: ev.t }] : [] }); }
       if (d.role === 'tech' && d.grade) { const w = worker(d.uid); w.grade = d.grade; w.gradeLog = [{ g: d.grade, t: ev.t, by: ev.by }]; }
+      if (d.role === 'tech' && d.trial && ['technician', 'senior'].includes(d.grade)) S.users[d.uid].trial = true;
       if (d.role === 'customer' && S.projects[d.projectId]) S.projects[d.projectId].customer = d.uid;
       break;
     case 'KEY_ADDED': { const l = S.keys[ev.by] = S.keys[ev.by] || []; l.push({ kid: d.kid, pub: d.pub, dev: ev.dev, devName: d.devName || '', t: ev.t, ok: !l.some(x => x.ok) }); break; }
@@ -5148,6 +5232,7 @@ function apply(S, ev) {
       P.qc = ev.by;
       P.qcFinal.push({ t: ev.t, by: ev.by, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), note: d.note || '', ev: ev_(d).map(e => e.id), stars: d.stars ? +d.stars : null, cause: d.outcome === 'fail' ? (d.cause || 'work') : null, crit: d.crit || null, earthVal: d.earthVal || '', lead: P.tech || null, crew: (P.crew || []).slice(), partner: P.partner || null });
       if (d.stars && P.tech) S.reviews.push({ id: ev.id, uid: P.tech, by: ev.by, src: 'qc', stars: +d.stars, pid: P.id, ref: 'qcf' + (P.qcFinal.length - 1), note: d.note || '', t: ev.t });
+      if (d.outcome === 'pass' && P.tech && trialNeeded(P.tech)) { const w = worker(P.tech); (w.trials = w.trials || []).push({ pid: P.id, ok: true, note: '', by: ev.by, t: ev.t, auto: true }); }
       P.corrections.push(...items);
       setStage(P, d.outcome === 'pass' ? 'final_pay' : 'install_fix', ev);
       break;
@@ -5261,6 +5346,8 @@ function apply(S, ev) {
     }
     case 'WORKER_PROFILE': { const w = worker(d.uid); if (d.stripped) w.profile.filled = true; ['phone', 'area', 'skills', 'availability'].forEach(k => { if (d[k] !== undefined) w.profile[k] = k === 'phone' ? phone10(d[k]) : d[k]; }); w.profile.t = ev.t; break; }
     case 'DOC_VERIFIED': { const w = worker(d.uid); w.docs[d.doc] = d.status; (w.docLog = w.docLog || []).push({ doc: d.doc, status: d.status, note: d.note || '', by: ev.by, t: ev.t }); break; }
+    case 'TRIAL_RESULT': { const w = worker(d.uid); (w.trials = w.trials || []).push({ pid: ev.pid, ok: d.ok, note: d.note || '', by: ev.by, t: ev.t }); break; }
+    case 'PRIVACY_ACCEPTED': (S.privacy = S.privacy || {})[ev.by] = { v: +d.v, t: ev.t }; break;
     case 'TRAINING_PASSED': worker(ev.by).training[d.module] = { t: ev.t, score: +d.score }; break;
     case 'PAY_APPROVED': S.pay[d.uid + '|' + d.week] = Object.assign(S.pay[d.uid + '|' + d.week] || {}, { uid: d.uid, week: d.week, status: 'approved', amount: +d.amount, computed: +d.computed, adjust: +d.adjust || 0, reason: d.reason || '', approvedBy: ev.by, approvedAt: ev.t }); break;
     case 'PAY_PAID': Object.assign(S.pay[d.uid + '|' + d.week], { status: 'paid', ref: d.ref, paidBy: ev.by, paidAt: ev.t }); break;
@@ -5664,6 +5751,12 @@ function isInstalled() {
 const installGate = () => App.mode === 'real' && !isInstalled() && !App.set.devNoInstallGate;
 /* screen scale 20%–150%: zooms the whole page; below 60% a normal-size reset button stays on screen */
 const getScale = () => Math.max(20, Math.min(150, Math.round(+App.set.scale || 100)));
+const THEMES = [['auto', '🌗'], ['light', '☀️'], ['dark', '🌙'], ['contrast', '🔲']];
+function applyTheme() {
+  const th = App.set.theme || 'auto', dark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.dataset.theme = th === 'auto' ? (dark ? 'dark' : 'light') : th;
+  const m = document.querySelector('meta[name="theme-color"]'); if (m) m.content = document.documentElement.dataset.theme === 'dark' ? '#14161b' : '#23262f';
+}
 function applyScale() {
   const z = getScale(), root = document.documentElement;
   root.style.zoom = z / 100; root.style.setProperty('--z', z / 100);
@@ -7407,6 +7500,13 @@ SCREENS.pin = ({ uid }) => {
     <div class="pinpad">${['1', '2', '3', '4', '5', '6', '7', '8', '9', '⌫', '0', '✓'].map(k => `<button data-a="pinKey" data-v="${k}" ${wait ? 'disabled' : ''} aria-label="${k === '⌫' ? t('remove') : k === '✓' ? t('ok') : k}">${k}</button>`).join('')}</div>
     ${App.locked ? `<button class="btn" style="margin-top:14px" data-a="logout">🚪 ${t('not_me')}</button>` : ''}</main>`;
 };
+/* privacy notice: what is kept about the person, why, who sees it, for how long, and whom to ask */
+function privacyCard(full) {
+  const acc = S.privacy && App.me && S.privacy[App.me.uid];
+  return `<div class="card"><h3>🔐 ${t('pn_title')}</h3>${['pn_what', 'pn_why', 'pn_who', 'pn_keep', 'pn_rights'].map(k => `<p class="small"><b>${t(k + '_t')}</b> ${t(k, { office: S.config.officeNumber || t('pn_office') })}</p>`).join('')}
+    <p class="small muted">${t('pn_law')}</p>${acc ? `<div class="okbox">✅ ${t('pn_accepted', { t: fmtD(acc.t, true) })}</div>` : full ? '' : `<p class="small"><b>${t('pn_next')}</b></p>`}</div>`;
+}
+SCREENS.privacy = () => topBar(t('pn_title'), { back: true }) + `<main class="wrap">${privacyCard(true)}${App.me && !(S.privacy && S.privacy[App.me.uid]) && App.mode === 'real' ? `<button class="btn btn-p btn-big" data-a="privacyOk">✅ ${t('pn_ok')}</button>` : ''}</main>` + nav('me');
 SCREENS.perms = () => {
   App.pageSay = t('s_perms');
   const needCam = ['field', 'sales', 'qc', 'supplier', 'tech', 'customer'].includes(App.me.role);
@@ -7414,6 +7514,7 @@ SCREENS.perms = () => {
     <div class="card"><h3>📍 ${t('perm_loc')}</h3><p class="small">${t('perm_loc_d')}</p><button class="btn" data-a="askGps">📍 ${t('allow_now')}</button></div>
     ${needCam ? `<div class="card"><h3>📷 ${t('perm_cam')}</h3><p class="small">${t('perm_cam_d')}</p><button class="btn" data-a="askCam">📷 ${t('allow_now')}</button></div>` : ''}
     <div class="card"><h3>🎤 ${t('perm_mic')}</h3><p class="small">${t('perm_mic_d')}</p></div>
+    ${privacyCard()}
     <div class="card"><h3>🔔 ${t('perm_notify')}</h3><p class="small">${t('perm_notify_d')}</p>${Notify.perm() === 'default' ? `<button class="btn" data-a="ntfAllow">🔔 ${t('allow_now')}</button>` : Notify.perm() === 'granted' ? `<div class="okbox">✅ ${t('ntf_perm_ok')}</div>` : ''}</div></main>
     <div class="foot"><div class="foot-in"><button class="btn btn-p btn-big" data-a="permsDone">${t('next')} →</button></div></div>`;
 };
@@ -7977,18 +8078,32 @@ SCREENS.me = () => {
       <div class="row small muted" style="justify-content:space-between"><span>20%</span><span>100%</span><span>150%</span></div>
       <div class="tiles three" style="margin-top:8px">${[[80, 'size_s'], [100, 'size_n'], [130, 'size_xl']].map(([z, l]) => `<button class="tile ${getScale() === z ? 'on' : ''}" data-a="scaleSet" data-v="${z}" style="min-height:64px">${t(l)}<small>${z}%</small></button>`).join('')}</div>
       ${getScale() < 60 ? `<div class="warnbox">⚠️ ${t('scale_small')}</div>` : ''}</div>
+    <div class="card"><h3>🎨 ${t('theme')}</h3><div class="tiles">${THEMES.map(([k, i]) => `<button class="tile ${(App.set.theme || 'auto') === k ? 'on' : ''}" data-a="setTheme" data-v="${k}" style="min-height:64px"><span class="i">${i}</span>${t('th_' + k)}</button>`).join('')}</div></div>
     <div class="card"><h3>🔊 ${t('me_voice')}</h3><div class="tiles one"><button class="tile ${guideOn() ? 'on' : ''}" data-a="toggleGuide"><span class="i">🗣️</span><span>${t('voice_guide')}<br><small>${t('voice_guide_d')}</small></span></button>
       <button class="tile ${App.set.autoRead ? 'on' : ''}" data-a="toggleAuto"><span class="i">🔊</span>${t('auto_read')}</button></div>
       <button class="btn" style="margin-top:10px" data-a="testVoice">▶ ${t('voice_test')}</button>
       ${'speechSynthesis' in window ? (Voice.has('mr') ? `<div class="okbox">✅ ${t('voice_mr_ok')}</div>` : `<div class="warnbox">⚠️ ${t('voice_mr_missing')}</div>`) : `<div class="warnbox">⚠️ ${t('no_tts')}</div>`}</div>
     <div class="tiles one">${`<button class="tile" data-a="nav" data-v="notify"><span class="i">🔔</span><span>${t('ntf_title')}<br><small>${t(Notify.set().sound ? 'ntf_sound_on' : 'ntf_sound_off')}</small></span></button>`}</div>`, { icon: '⚙️', sub: t('me_settings_d') })}
-    ${group('📱', 'me_app', tile('nav', 'data', '📤', 'share_data') + tile('nav', 'perm', '🔐', 'what_can_i_do') + tile('intro', '', '🎬', 'watch_intro') + tile('nav', 'about', 'ℹ️', 'about_privacy')
+    ${group('📱', 'me_app', tile('nav', 'data', '📤', 'share_data') + tile('nav', 'perm', '🔐', 'what_can_i_do') + tile('nav', 'privacy', '🔏', 'pn_title') + tile('intro', '', '🎬', 'watch_intro') + tile('nav', 'about', 'ℹ️', 'about_privacy')
       + (App.installEvt ? tile('install', '', '📲', 'install_app') : '') + (App.mode === 'practice' ? tile('resetPractice', '', '♻️', 'reset_practice') + tile('exitPractice', '', '🚪', 'exit_practice') : ''))}
     ${!App.installEvt ? (standalone ? `<div class="okbox" style="margin-top:10px">📲 ${t('installed_ok')}</div>` : `<p class="small muted">📲 ${t('install_hint')}</p>`) : ''}
     <button class="btn btn-bad" style="margin-top:14px" data-a="logout">🚪 ${t('logout')}</button>
     <p class="small muted center">${storageLabel()} · ${EVENTS.length} ${t('records')}</p></main>` + nav('me');
 };
 const storageLabel = () => ({ idb: '💾 ' + t('storage_ok'), ls: '💾 ' + t('storage_ls_short'), mem: '⚠️ ' + t('storage_mem_short') })[KV.mode];
+function dayStats(u, d) {
+  d = d || todayStr();
+  const mine = Object.values(S.projects).filter(P => P.createdBy === u.uid);
+  const sh = S.shiftLog.filter(x => x.uid === u.uid && x.t.slice(0, 10) === d);
+  return { d, added: mine.filter(P => P.t.slice(0, 10) === d).length, valid: mine.filter(P => P.hist.some(h => h.s === 'accepted' && h.t.slice(0, 10) === d)).length, fix: mine.filter(P => P.stage === 'returned').length,
+    pts: Object.values(S.evidence).filter(e => e.by === u.uid && e.gps && e.t.slice(0, 10) === d).length, start: (sh.find(x => x.kind === 'start') || {}).t, end: ([...sh].reverse().find(x => x.kind !== 'start') || {}).t,
+    earn: sum(earnings(u.uid).filter(x => x.t.slice(0, 10) === d).map(x => x.amount)) };
+}
+function dayText(u) {
+  const s = dayStats(u);
+  return [t('day_sum_title', { name: u.name, d: fmtD(s.d) }), '• ' + t('sites_added') + ': ' + s.added, '• ' + t('valid_leads') + ': ' + s.valid, '• ' + t('to_fix') + ': ' + s.fix, '• ' + t('gps_points') + ': ' + s.pts,
+    '• ' + t('shift') + ': ' + (s.start ? fmtD(s.start, true) : '—') + ' → ' + (s.end ? fmtD(s.end, true) : '—'), '• ' + t('day_earn') + ': ' + money(s.earn)].join('\n');
+}
 SCREENS.report = () => {
   const u = App.me, d = todayStr();
   const mine = Object.values(S.projects).filter(P => P.createdBy === u.uid);
@@ -8002,6 +8117,8 @@ SCREENS.report = () => {
     <div class="card" style="margin-top:12px"><h3>🕒 ${t('shift')}</h3>${sh.map(x => `<div>${x.kind === 'start' ? '▶' : '🏁'} ${fmtD(x.t, true)}</div>`).join('') || '—'}</div>
     ${fix.length ? `<h2 class="sec">${t('to_fix')}</h2>` + fix.map(projCard).join('') : ''}
     ${today.length ? `<h2 class="sec">${t('sites_added')}</h2>` + today.map(projCard).join('') : ''}
+    <div class="card"><h3>💰 ${t('day_earn')}</h3><b style="font-size:1.4rem">${money(dayStats(u).earn)}</b><p class="small muted">${t('day_earn_note')}</p></div>
+    <button class="btn btn-ok btn-big" data-a="sendDay">📤 ${t('day_send')}</button>
     <button class="btn" data-a="nav" data-v="map">🗺️ ${t('map')}</button><p class="small muted">${t('no_background_tracking')}</p></main>` + nav('home');
 };
 SCREENS.perm = () => {
@@ -8074,7 +8191,7 @@ SCREENS.data = () => {
   const myKey = (S.keys[u.uid] || []).find(k => k.dev === App.set.dev);
   App.pageSay = t('s_data');
   return topBar(t('share_data'), { back: true }) + `<main class="wrap"><div class="card">${kv([['storage', storageLabel()], ['records', EVENTS.length], ['not_shared', unshared ? `<span class="chip c-warn">📱 ${unshared}</span>` : `<span class="chip c-ok">✅ 0</span>`], ['last_shared', since ? fmtD(since, true) : '—']])}</div>
-    <div class="note">📱 ${t('data_local_note')}</div>
+    <div class="note">📱 ${t('data_local_note')}</div>${syncCard()}
     ${adm ? `<button class="btn btn-p btn-big" data-a="exportFull">📤 ${t('export_full')}</button><p class="small muted">${t('export_full_d')}</p>
       <button class="btn btn-big" data-a="exportPerson">👤 ${t('export_person')}</button><p class="small muted">${t('export_person_d')}</p>`
     : `<button class="btn btn-p btn-big" data-a="exportMine">📤 ${t('export_mine')}</button><p class="small muted">${t('export_mine_d')}</p>`}
@@ -8084,6 +8201,19 @@ SCREENS.data = () => {
     ${myKey && !myKey.ok ? `<div class="warnbox">🔑 ${t('key_pending_me')}</div>` : ''}
     <div class="warnbox">🔐 ${t('share_warning')}</div></main>` + nav('me');
 };
+/* sync status: which phones' records are on this phone, how new they are, and the files loaded lately */
+function syncRows() {
+  const byDev = {};
+  for (const e of EVENTS) { if (!e.dev) continue; const x = byDev[e.dev] = byDev[e.dev] || { dev: e.dev, n: 0, last: '', who: new Set() }; x.n++; if (e.t > x.last) x.last = e.t; if (e.by) x.who.add(e.by); }
+  return Object.values(byDev).sort((a, b) => (a.dev === App.set.dev ? -1 : b.dev === App.set.dev ? 1 : a.last < b.last ? 1 : -1));
+}
+function syncCard() {
+  const rows = syncRows(), imp = (App.set.imports || []).filter(x => x), since = App.set.lastExport && App.set.lastExport[App.mode];
+  return `<div class="card"><h3>🔄 ${t('sync_title')}</h3>${kv([['sync_last_share', since ? fmtD(since, true) : t('sync_never')], ['sync_last_load', imp[0] ? fmtD(imp[0].t, true) : t('sync_never')]])}
+    <h3 style="margin-top:10px">📱 ${t('sync_phones')}</h3>${rows.map(x => { const d = daysSince(x.last); return `<div class="list-item small"><span>${x.dev === App.set.dev ? '📍' : '📱'}</span><span class="grow"><b>${x.dev === App.set.dev ? t('sync_this') : esc([...x.who].map(userName).slice(0, 2).join(', '))}</b><br><span class="muted">${t('sync_n', { n: x.n })} · ${t('sync_newest', { t: fmtD(x.last, true) })}</span></span>${x.dev !== App.set.dev ? `<span class="chip ${d >= 3 ? 'c-warn' : 'c-ok'}">${d >= 3 ? '⏰ ' + t('days_n', { n: d }) : '✅'}</span>` : ''}</div>`; }).join('')}
+    ${imp.length ? `<h3 style="margin-top:10px">📥 ${t('sync_loads')}</h3>${imp.slice(0, 5).map(x => `<div class="small">${fmtD(x.t, true)} · ${esc(userName(x.by) || '—')} · +${x.added}${x.rejected ? ' · ⚠️ ' + x.rejected : ''}</div>`).join('')}` : ''}
+    <p class="small muted">${t('sync_note')}</p></div>`;
+}
 /* a copy of a record with private details removed; the signature still checks because those details are covered by a fingerprint */
 function cutEv(ev, data) {
   const out = Object.assign({}, ev, { data, cut: 1 });
@@ -8276,6 +8406,7 @@ async function importText(text) {
   await saveAll();
   const rej = S.rejected.filter(r => fresh.some(f => f.id === r.ev.id)).length;
   if (App.me) Notify.check();
+  App.set.imports = [{ t: nowISO(), by: pack.by || '', kind: pack.kind || '', added: fresh.length - rej, rejected: rej + refused }].concat(App.set.imports || []).slice(0, 20); saveSettings();
   return { ok: true, added: fresh.length - rej, rejected: rej + refused, unsigned: chk.bad, photos: Object.keys(pack.media || {}).length, before };
 }
 
@@ -8589,6 +8720,21 @@ SCREENS.workers = () => {
         ${p.availability ? `<span class="chip ${p.availability === 'available' ? 'c-ok' : 'c-mute'}">${t('av_' + p.availability)}</span> ` : ''}${u.role === 'partner' ? companyChips(u.uid) + ' ' : ''}${u.role === 'tech' ? memberChip(u.uid) + ' ' : ''}${gradeOf(u.uid) ? gradeChip(u.uid) + ' ' + starChip(u.uid) + ' ' : ''}${(ob => !ob.total ? '' : ob.ready ? `<span class="chip c-ok">✅ ${t('onb_ready')}</span>` : `<span class="chip c-info">🪪 ${t('onb_progress', { n: ob.done, m: ob.total })}</span> ${escChip({ level: escLevel(daysSince(u.t), 'onboarding') })}`)(onboarding(u.uid))}
         ${(p.skills || []).length ? `<br><span class="small">${p.skills.map(x => t('skill_' + x)).join(', ')}</span>` : ''}</span><span class="go">▶</span></button>`; }).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
 };
+function trialCard(uid) {
+  const u = S.users[uid]; if (!u || !u.trial) return '';
+  const tr = (S.workers[uid] || {}).trials || [], ok = tr.some(x => x.ok), me = App.me;
+  const jobs = Object.values(S.projects).filter(P => workedOn(uid, P) && canSee(me, P));
+  const can = ['qc', 'admin', 'owner'].includes(me.role) || (me.role === 'tech' && gradeOf(me.uid) === 'senior');
+  return `<div class="card"><h3>🧪 ${t('trial_title')}</h3><div class="${ok ? 'okbox' : 'warnbox'}">${t(ok ? 'trial_ok' : 'trial_needed')}</div>
+    ${tr.map(x => `<div class="small">${x.ok ? '✅' : '❌'} ${esc(x.pid)} · ${esc(userName(x.by))} · ${fmtD(x.t)}${x.note ? ' · ' + esc(x.note) : ''}</div>`).join('')}
+    ${can && !ok && me.uid !== uid ? (jobs.length ? jobs.slice(0, 5).map(P => `<button class="btn btn-sm" style="margin-top:6px" data-a="wizOpen" data-v="trial|${P.id}|uid|${uid}">🧪 ${t('trial_record')} · ${esc(P.id)}</button>`).join(' ') : `<p class="small muted">${t('trial_no_job')}</p>`) : ''}</div>`;
+}
+WIZ.trial = {
+  title: 'trial_title', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
+  steps: [{ id: 't', icon: '🧪', say: 's_trial', body: (c, P) => `<div class="card"><b>${esc(userName(W.opts.uid))}</b> · ${esc(P.id)}</div>` + tiles('ok', [['yes', '✅', 'trial_pass'], ['no', '🔁', 'trial_again']], 'one') + inp('note', 'f_note', { area: true, mic: true, opt: c.ok !== 'no' }),
+    check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }],
+  async finish(c, P) { const r = await run([['TRIAL_RESULT', P.id, { uid: W.opts.uid, ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? { ok: true, go: () => go('worker', { uid: W.opts.uid }, { replace: true }) } : r; }
+};
 SCREENS.worker = ({ uid }) => {
   const u = S.users[uid], me = App.me;
   if (!u || (uid !== me.uid && !['owner', 'admin'].includes(me.role) && !(me.role === 'partner' && companyOf(uid) === me.uid))) return SCREENS.home();
@@ -8597,7 +8743,7 @@ SCREENS.worker = ({ uid }) => {
   return topBar(uid === me.uid ? t('my_profile') : u.name, { back: true }) + `<main class="wrap">
     <div class="hero"><div class="row"><span style="font-size:2.2rem">${ROLE_ICON[u.role]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + u.role)}</span></div></div><div style="margin-top:6px">${authChip(uid)}</div></div>${onbCard(uid)}
     ${u.role === 'partner' ? companyCard(uid) : ''}${u.role === 'tech' ? memberCard(uid) : ''}
-    ${gradeOf(uid) ? ladderCard(uid, { short: true }) : ''}
+    ${gradeOf(uid) ? ladderCard(uid, { short: true }) : ''}${trialCard(uid)}
     <div class="card"><h3>👤 ${t('profile')}</h3>${kv([['f_phone', esc(p.phone || '')], ['w_area', esc(p.area || '')], ['w_avail', p.availability ? t('av_' + p.availability) : ''], ['w_skills', (p.skills || []).map(x => t('skill_' + x)).join(', ')]])}
       ${u.role === 'customer' ? '' : `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="wprofile||uid|${uid}">✏️ ${t('edit')}</button>`}<p class="small muted">${t('w_privacy')}</p></div>
     <div class="card"><h3>🪪 ${t('w_docs')}</h3>${DOCS.map(d => `<div class="list-item"><span class="grow">${t('doc_' + d)}</span><span class="chip ${w.docs[d] === 'verified' ? 'c-ok' : w.docs[d] === 'rejected' ? 'c-bad' : 'c-mute'}">${t('ds_' + (w.docs[d] || 'pending'))}</span>
@@ -8617,7 +8763,7 @@ WIZ.wprofile = {
 SCREENS.training = () => {
   const u = App.me, w = S.workers[u.uid] || { training: {} };
   App.pageSay = t('s_training');
-  return topBar(t('training'), { back: true }) + `<main class="wrap"><p class="say">🎓 ${t('s_training')}</p>${modulesFor(u.role).concat(['senior', 'qc'].includes(gradeOf(u.uid)) ? ['qc'] : []).map(m => `<button class="cl-item ${w.training[m] ? 'done' : ''}" data-a="wizOpen" data-v="train||module|${m}"><span class="st">${w.training[m] ? '✅' : '▶️'}</span><span class="grow"><b>${t('tr_' + m + '_t')}</b><br><span class="small">${t('train_parts')}</span></span></button>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}
+  return topBar(t('training'), { back: true }) + `<main class="wrap"><p class="say">🎓 ${t('s_training')}</p>${modulesFor(u.role).concat(['senior', 'qc'].includes(gradeOf(u.uid)) ? ['qc'] : []).map(m => `<button class="cl-item ${trainOk(w, m) ? 'done' : ''}" data-a="wizOpen" data-v="train||module|${m}"><span class="st">${trainOk(w, m) ? '✅' : trainExpired(w, m) ? '⏰' : '▶️'}</span><span class="grow"><b>${t('tr_' + m + '_t')}</b><br><span class="small">${trainExpired(w, m) ? t('train_renew') : m === 'safety' && w.training[m] && +S.config.safetyRetest ? t('train_valid', { d: fmtD(addDays(Math.round(+S.config.safetyRetest * 30.4), new Date(w.training[m].t))) }) : t('train_parts')}</span></span></button>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}
     <div class="note">💰 ${t('pay_transparent')}</div></main>` + nav('me');
 };
 WIZ.train = {
@@ -9597,7 +9743,10 @@ const ACT = {
     if (f.pin.length === len) await tryPin(uid);
   },
   logout: () => { flushAccess(); Voice.stop(); Notify.hide(); App.me = null; App.locked = false; W = null; App.stack = []; App.form = {}; go('login', {}, { replace: true }); },
-  permsDone: () => { App.set.permsSeen = Object.assign({}, App.set.permsSeen, { [App.mode + App.me.uid]: true }); saveSettings(); App.stack = []; go('home', {}, { replace: true }); },
+  privacyOk: async () => { const r = await perform('PRIVACY_ACCEPTED', null, { v: PRIVACY_V }); if (r.ok) { toast(t('saved_item')); render(); } },
+  setTheme: v => { App.set.theme = v; saveSettings(); applyTheme(); render(); },
+  sendDay: () => { const txt = dayText(App.me), o = (S.config.officeNumber || '').replace(/\D/g, '').replace(/^0/, ''); App.lastShare = txt; window.open(o ? `https://wa.me/${o.length === 10 ? '91' + o : o}?text=${encodeURIComponent(txt)}` : 'https://wa.me/?text=' + encodeURIComponent(txt), '_blank'); },
+  permsDone: () => { if (App.mode === 'real' && App.me && !(S.privacy && S.privacy[App.me.uid] && S.privacy[App.me.uid].v === PRIVACY_V)) perform('PRIVACY_ACCEPTED', null, { v: PRIVACY_V }, { quiet: true }); App.set.permsSeen = Object.assign({}, App.set.permsSeen, { [App.mode + App.me.uid]: true }); saveSettings(); App.stack = []; go('home', {}, { replace: true }); },
   askGps: async () => { const gp = await Geo.get(); toast(gp ? t('gps_ok', { acc: gp.acc }) : t('gps_denied'), !gp); },
   askCam: async () => {
     try { const s = await navigator.mediaDevices.getUserMedia({ video: true }); s.getTracks().forEach(x => x.stop()); toast(t('cam_ok')); }
@@ -9783,7 +9932,7 @@ const ACT = {
     const f = App.form, name = (f.nuName || '').trim();
     if (!name) { toast(t('err_fill'), true); return; }
     const salt = rid(10), uid = 'U' + rid(8), pin = f.nuPin;
-    const r = await perform('USER_ADDED', null, Object.assign({ uid, name, role: f.nuRole, salt, pin: await pinHash(pin, salt), pinLen: pin.length }, f.nuRole === 'tech' ? { grade: f.nuGrade || 'trainee' } : {}, f.nuRole === 'tech' && f.nuCo && App.me.role !== 'partner' ? { company: f.nuCo } : {}));
+    const r = await perform('USER_ADDED', null, Object.assign({ uid, name, role: f.nuRole, salt, pin: await pinHash(pin, salt), pinLen: pin.length }, f.nuRole === 'tech' ? { grade: f.nuGrade || 'trainee', trial: ['technician', 'senior'].includes(f.nuGrade) } : {}, f.nuRole === 'tech' && f.nuCo && App.me.role !== 'partner' ? { company: f.nuCo } : {}));
     if (r.ok) { render(); sheet(`<h2>✅ ${t('user_added')}</h2><div class="card center"><b>${esc(name)}</b> · ${t('r_' + f.nuRole)}<div style="font-size:2.4rem;font-weight:800;letter-spacing:6px">${pin}</div>${t('pin_tell')}</div>${onboarding(uid).total ? `<div class="note">🪪 ${t('onb_started', { n: onboarding(uid).total })}</div>` : ''}`); }
   },
   userOpen: v => userSheet(v),
@@ -10056,7 +10205,8 @@ async function boot() {
   if (!App.set.dev) App.set.dev = 'D' + rid(5);
   LANG = App.set.lang || 'mr';
   if (App.set.scale == null && App.set.size) App.set.scale = { n: 100, l: 115, xl: 130 }[App.set.size] || 100;
-  applyScale();
+  applyScale(); applyTheme();
+  if (window.matchMedia) try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme); } catch (e) { /* old browser */ }
   Voice.init();
   history.replaceState({ aiec: 0 }, ''); history.pushState({ aiec: 1 }, '');
   await loadMode(App.set.mode === 'practice' ? 'practice' : 'real');
