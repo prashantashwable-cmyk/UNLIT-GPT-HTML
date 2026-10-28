@@ -16,7 +16,7 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
 | **हिंदी** | `AIEC-Elevator-OS.html` फ़ाइल फ़ोन पर डाउनलोड करें → Chrome में खोलें → भाषा चुनें → **अभ्यास मोड** दबाएँ (सभी PIN `1111`) या **नई कंपनी सेटअप** करें। बड़ा बटन "मेरा अगला काम शुरू करें" दबाएँ। 🔊 दबाकर सुनें। |
 | **English** | Download `AIEC-Elevator-OS.html` → open it in Chrome → choose a language → tap **Practice mode** (every PIN is `1111`) or **New company setup**. Tap the big **Start My Next Task** button. Tap 🔊 to listen. |
 
-**Real company use:** the Owner creates the company, then adds each person under **Me → People & roles**. Every person gets a role and a 4-digit PIN from the Owner/Admin — nobody can choose their own role.
+**Real company use:** the Head Quarter creates the company, then adds each person under **Me → People & roles**. Every person gets a role and a 4-digit PIN from the Head Quarter/Admin — nobody can choose their own role.
 
 **Install as an app (required for real use):** real company work only opens inside the installed app; opening the link in a normal browser tab shows an install screen (Practice mode still works there for demos). The installed app also asks the phone to keep its data permanently.
 
@@ -37,7 +37,7 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 | 🤝 Sales | Call / WhatsApp, record outcome and follow-up date | Sales |
 | | Lift needs (floors, capacity, door type, SS/MS, power) | Sales |
 | | Quotation from pricing rules, versioned | Sales |
-| | Approval when discount > limit or margin < floor | Owner / Admin (not the author) |
+| | Approval when discount > limit or margin < floor | Head Quarter / Admin (not the author) |
 | | Send quotation, get decision (yes / lower price / later / no) | Sales |
 | ✍️ Deal | Agreement prepared from approved quotation | Sales |
 | | Agreement signed (customer, or in person with Sales as witness) | Customer / Sales |
@@ -45,7 +45,7 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 | 🏗️ Site | Illustrated checklist: shaft, pit, 3-phase power, cleaning, light, barricades — photo for each | Customer / Sales |
 | | Site inspection: measurements, checks, photos → Approved / Corrections / Visit again | QC |
 | | Corrections with photo proof → re-inspection | Customer / Sales → QC |
-| | Release drawings, assign supplier and technician | Admin / Owner |
+| | Release drawings, assign supplier and technician | Admin / Head Quarter |
 | 🚚 Material | Packing checklist, seal number, vehicle, photos | Supplier |
 | | Arrival: GPS, seal number seen, seal intact, condition, photos (mismatch = incident) | Technician / Supplier |
 | | Arrival payment recorded → **verified by Finance** | Sales → Finance |
@@ -54,21 +54,21 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 | | Final inspection: pass/fail checks; any fail → correction tasks → re-inspection | QC / Technician |
 | 🔑 Handover | Final payment recorded → **verified by Finance** | Sales → Finance |
 | | Signatures from customer, technician and QC | each person |
-| | Handover certificate, warranty end date, AMC visit schedule | Admin / Owner / QC |
+| | Handover certificate, warranty end date, AMC visit schedule | Admin / Head Quarter / QC |
 
 ### After handover and around the workflow
 | Part | What it does |
 |---|---|
-| 💬 WhatsApp messages | 7 ready messages (introduction, quotation, follow-up, payment reminder, site preparation, service visit, AMC renewal) in Marathi / Hindi / English. The app fills in the name, project number, amount and date, then opens WhatsApp. Every sent message is logged on the project, and Sales records "replied" or "no reply". Owner/Admin can change or add messages (**Me → WhatsApp messages**). |
+| 💬 WhatsApp messages | 7 ready messages (introduction, quotation, follow-up, payment reminder, site preparation, service visit, AMC renewal) in Marathi / Hindi / English. The app fills in the name, project number, amount and date, then opens WhatsApp. Every sent message is logged on the project, and Sales records "replied" or "no reply". Head Quarter/Admin can change or add messages (**Me → WhatsApp messages**). |
 | 🛠️ AMC service | Service visits are scheduled from the handover date. The technician does a 7-point check with a photo; any failed check creates a repair ticket automatically. The contract can be renewed for 1–3 years, which adds new visits. |
-| 🎫 Problem tickets | The customer, Sales, a technician or the office reports a breakdown, complaint or request → the office assigns a person and a date → that person fixes it with a note and photo → the customer or office confirms, or reopens it. Overdue tickets are sent up to the Owner/Admin. |
-| ⏫ Escalation ladder | Every waiting task is measured from the day it started. **Level 1** (after 1 day): the person sees ⏰ Reminder. **Level 2** (after 3 days): it goes to the Admin as "Work is stuck". **Level 3** (after 7 days, or when the office already acted twice and it is still stuck): it goes to the Owner. The ladder covers every stage, payments to check, work problems, security problems, unanswered questions, overdue follow-ups, tickets, service visits, renewals, technician pay and onboarding. **Me → Escalations** lists everything by level. The Owner/Admin records what they did: *I spoke to them*, *New date agreed* (up to 7 days), or *Give to another person* (the job or ticket moves and the clock restarts). Each action is saved in the record. All days are business rules. |
-| 👥 Two-person approval | When switched on (Business rules → Control), risky actions need a second Owner/Admin: approving a quote below the margin floor, reversing a payment, closing a security problem, reopening a lost deal, making someone Owner/Admin, and changing technician pay. The person who asks cannot approve it. |
-| 🪪 Automatic onboarding | When a person is added, onboarding starts by itself. Their checklist has the profile (phone, area, skills), the documents the office must check (ID and address, plus safety certificate for technicians and QC) and the training for their role. The person sees their steps and a progress bar on the home screen; the office gets a "Check new worker's documents" task. If a person is not ready after 7 days, it goes to the Admin; after 14 days, to the Owner. When every step is done they show as ✅ Ready for work. Directory with search and filters (role, availability, not complete). The app stores only checked / not checked for documents, never the document. |
+| 🎫 Problem tickets | The customer, Sales, a technician or the office reports a breakdown, complaint or request → the office assigns a person and a date → that person fixes it with a note and photo → the customer or office confirms, or reopens it. Overdue tickets are sent up to the Head Quarter/Admin. |
+| ⏫ Escalation ladder | Every waiting task is measured from the day it started. **Level 1** (after 1 day): the person sees ⏰ Reminder. **Level 2** (after 3 days): it goes to the Admin as "Work is stuck". **Level 3** (after 7 days, or when the office already acted twice and it is still stuck): it goes to the Head Quarter. The ladder covers every stage, payments to check, work problems, security problems, unanswered questions, overdue follow-ups, tickets, service visits, renewals, technician pay and onboarding. **Me → Escalations** lists everything by level. The Head Quarter/Admin records what they did: *I spoke to them*, *New date agreed* (up to 7 days), or *Give to another person* (the job or ticket moves and the clock restarts). Each action is saved in the record. All days are business rules. |
+| 👥 Two-person approval | When switched on (Business rules → Control), risky actions need a second Head Quarter/Admin: approving a quote below the margin floor, reversing a payment, closing a security problem, reopening a lost deal, making someone Head Quarter/Admin, and changing technician pay. The person who asks cannot approve it. |
+| 🪪 Automatic onboarding | When a person is added, onboarding starts by itself. Their checklist has the profile (phone, area, skills), the documents the office must check (ID and address, plus safety certificate for technicians and QC) and the training for their role. The person sees their steps and a progress bar on the home screen; the office gets a "Check new worker's documents" task. If a person is not ready after 7 days, it goes to the Admin; after 14 days, to the Head Quarter. When every step is done they show as ✅ Ready for work. Directory with search and filters (role, availability, not complete). The app stores only checked / not checked for documents, never the document. |
 | 🎓 Training | 5 short modules (app, safety, leads, installation, customers). Each has 3 spoken lessons and 3 picture-answer questions, and needs 2 of 3 right to pass. Optional rule: only technicians who have finished onboarding can be given a job. |
-| 💰 Weekly pay | Pay is worked out from saved work: each installation step with proof, a bonus when the final inspection passes first time, and each service visit (amounts are a business rule). Technicians' work is billed to their partner company; QC Inspectors are paid directly. Owner/Admin approves each finished week (any change needs a reason). Finance pays and records the bank reference; the approver cannot pay. The company (or QC Inspector) sees every line and can ask a question. |
+| 💰 Weekly pay | Pay is worked out from saved work: each installation step with proof, a bonus when the final inspection passes first time, and each service visit (amounts are a business rule). Technicians' work is billed to their partner company; QC Inspectors are paid directly. Head Quarter/Admin approves each finished week (any change needs a reason). Finance pays and records the bank reference; the approver cannot pay. The company (or QC Inspector) sees every line and can ask a question. |
 | 🏆 Good work board | Monthly points for quality work checked by another person: valid leads, deals won, inspections passed first time, installations within target days, and service visits. There are no points for speed alone. |
-| 🔔 Notifications with sound | New work and escalations ring as soon as they reach a person: a **ding** for a new task, **beeps** for urgent or Admin-level work, and a **siren** (with a shaking banner) when work reaches the Owner. The phone also vibrates, can speak the task aloud, and shows a banner with an **Open** button. If the app is in the background, a phone notification appears instead, and tapping it opens the app. The icon shows a count of waiting tasks. Each piece of work rings only once per level, and your own actions never ring. **Me → Notifications and sound** has settings for sound, volume, vibration, speaking, phone notifications, quiet hours (Owner-level escalations still ring) and test buttons. The sounds are made by the app itself, so they work offline. |
+| 🔔 Notifications with sound | New work and escalations ring as soon as they reach a person: a **ding** for a new task, **beeps** for urgent or Admin-level work, and a **siren** (with a shaking banner) when work reaches the Head Quarter. The phone also vibrates, can speak the task aloud, and shows a banner with an **Open** button. If the app is in the background, a phone notification appears instead, and tapping it opens the app. The icon shows a count of waiting tasks. Each piece of work rings only once per level, and your own actions never ring. **Me → Notifications and sound** has settings for sound, volume, vibration, speaking, phone notifications, quiet hours (Head Quarter-level escalations still ring) and test buttons. The sounds are made by the app itself, so they work offline. |
 | 🙋 Ask for help | Type or speak a question. The app searches AIEC's own training, installation steps, site-preparation notes and common questions on the phone and reads the answer aloud. It is not an AI chatbot and works offline. |
 | 🗺️ Address from GPS | With internet, the new-site screen suggests the address for the GPS point (OpenStreetMap Nominatim) in the chosen language. The person checks it before using it. |
 | 📷 Reused photo check | A photo that is the same as, or nearly the same as, one used before is flagged ("Same photo used before") for a person to review. |
@@ -92,7 +92,7 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * People pickers show only eligible workers, best rated first.
 * **Promotion:**
   * The app checks the targets (jobs, stars, number of reviews, trust, training, a practical test on site, days at the level, no strikes) and shows the Admin a "Promotion ready" task.
-  * The Admin approves promotions up to Senior. Only the Owner can make someone a QC Inspector; that needs the QC training module and a practical test.
+  * The Admin approves promotions up to Senior. Only the Head Quarter can make someone a QC Inspector; that needs the QC training module and a practical test.
   * An installer can never become QC by a simple role change.
 * **Benefits of each level:**
   * Pay rate: Trainee 60%, Helper 80%, Technician 100%, Senior 120%. QC is paid per inspection. Work keeps the rate of the day it was done.
@@ -104,54 +104,54 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
     * a QC fail caused by workmanship;
     * a 1–2 star rating;
     * a confirmed complaint;
-    * work that sat until the Owner had to act;
+    * work that sat until the Head Quarter had to act;
     * a failed spot check (counts as 2).
   * Every strike can be appealed. Someone who did not give the strike decides, and a strike ends after 90 days.
   * Effects build up:
     * 2 strikes pause promotion;
     * 3 mean crew work only and a meeting with the Admin;
-    * 4 go to the Owner to decide on suspension.
+    * 4 go to the Head Quarter to decide on suspension.
   * Nothing happens to a person without a human decision.
-* All targets, pay rates and spot-check rates are Owner-approved business rules (**Me → Business rules → Career ladder**).
+* All targets, pay rates and spot-check rates are Head Quarter-approved business rules (**Me → Business rules → Career ladder**).
 
 ### Permits, Lift Inspector and lift licence; hold; stage back; disputes
 * **Statutory records per lift:** the office records the erection permit, the Lift Inspector's visit (passed, or not passed with the list of fixes) and the lift licence (number, holder, valid-until date, photo of the paper).
   * The licence can be recorded only after a passed inspection.
-  * Handover is refused until a valid licence is recorded, and service visits stop if the licence has expired (Owner rule **Statutory records**).
+  * Handover is refused until a valid licence is recorded, and service visits stop if the licence has expired (Head Quarter rule **Statutory records**).
   * The office is reminded 60 days before the licence ends.
-  * The app keeps records of the papers; it does not issue permits or licences. Who holds the licence is an Owner decision with a lawyer.
+  * The app keeps records of the papers; it does not issue permits or licences. Who holds the licence is an Head Quarter decision with a lawyer.
 * **On hold:** the team lead, the partner company, Sales or the supplier can ask to put a job on hold, with a reason (customer, supplier, weather, permission, defect, payment) and a note. The office approves or refuses, and can also hold a job directly.
   * While on hold, there are no escalations or strikes for the waiting step.
   * Approved hold days are not counted in the 14-day installation target or in on-time records. The office ends the hold when work can restart.
 * **Move back a stage:** the office can move a job one step back with a reason (site approved → site inspection, order → site approved, dispatched → order, final inspection → installing), for example to release again with corrected drawings.
-* **Disputes:** Sales or the office can mark a dispute with the customer; the Owner/Admin see it until it is settled. Workers' confirmed pay is not affected.
+* **Disputes:** Sales or the office can mark a dispute with the customer; the Head Quarter/Admin see it until it is settled. Workers' confirmed pay is not affected.
 
 ### Price talks, rate card, quotation validity, profit
-* **Rate card with versions:** the Owner can change costs and margins from a future date (**Business rules → Pricing / Margins → New rates start from**).
+* **Rate card with versions:** the Head Quarter can change costs and margins from a future date (**Business rules → Pricing / Margins → New rates start from**).
   * Quotations use the rates in force on their day and keep the rate card version. The rules page shows the version, waiting changes and the earlier rates.
 * **Price talks:** the quotation screen shows earlier quotations and the customer's offers (recorded by Sales).
-  * It shows the discount the offer needs, and discount steps (set by the Owner) up to the Sales limit. Beyond the limit, the quotation goes for approval.
-* **Below the margin floor:** only the Owner may approve, and a second Owner/Admin must agree, even when two-person approval is off.
+  * It shows the discount the offer needs, and discount steps (set by the Head Quarter) up to the Sales limit. Beyond the limit, the quotation goes for approval.
+* **Below the margin floor:** only the Head Quarter may approve, and a second Head Quarter/Admin must agree, even when two-person approval is off.
 * **Quotation validity:** a sent quotation is valid for the set days. After that it cannot be won, and Sales gets "make a new quotation".
-* **Profit per job (Owner/Admin):** price before tax, estimated cost from the quotation's rate card, labour paid so far, margin and markup.
+* **Profit per job (Head Quarter/Admin):** price before tax, estimated cost from the quotation's rate card, labour paid so far, margin and markup.
 
 ### Consent, field pay, payment plan, refunds, receipts
 * **Call and WhatsApp consent:** when a site has a phone number, the field worker asks the person "may we call?" and "may we send WhatsApp?" and records who they are (owner, builder, manager, watchman).
   * A "no" turns that button off, and WhatsApp messages are refused. Sales or the office can record "asked us to stop" (calls, WhatsApp or both) at any time.
 * **Towers:** a lead in another tower of the same building is not counted as a duplicate. When attaching to an existing lead, the field worker can mark "I added new useful information".
-* **Field worker pay (Owner rules, off until set):** a fixed amount for each lead Sales accepts, and a % of the price before tax when the deal is won. A worker who added new information to another person's lead shares that % (duplicate-lead share). Field workers see their own pay.
-* **Payment plan:** the token can be part of the price or paid on top. The Owner can add a **cabin payment** (a % of the price): the cabin step of installation waits until Finance confirms it.
+* **Field worker pay (Head Quarter rules, off until set):** a fixed amount for each lead Sales accepts, and a % of the price before tax when the deal is won. A worker who added new information to another person's lead shares that % (duplicate-lead share). Field workers see their own pay.
+* **Payment plan:** the token can be part of the price or paid on top. The Head Quarter can add a **cabin payment** (a % of the price): the cabin step of installation waits until Finance confirms it.
 * **Refund after cancellation:** Finance works out the refund from the stage reached:
   * before ordering: everything paid, less costs (all of it if the site was rejected);
   * after ordering: less the token and the supplier's charge;
   * after dispatch: less freight;
   * after the cabin payment: less the cabin payment and material;
   * after installation started: nothing by default.
-  * A different amount needs a reason. The Owner approves or refuses; Finance pays with the bank reference, and a second Finance person pays when there is one.
+  * A different amount needs a reason. The Head Quarter approves or refuses; Finance pays with the bank reference, and a second Finance person pays when there is one.
 * **Receipt:** each confirmed payment has a 🧾 receipt (number, date, customer, purpose, amount, method, bank reference, who checked it) that can be printed or saved as PDF.
 
 ### Purchase order, serial numbers, safe keeping, part claims
-* **Purchase order:** releasing the material makes a numbered purchase order (parts list, quantities, drawings, needed-by date from the Owner's "days to dispatch").
+* **Purchase order:** releasing the material makes a numbered purchase order (parts list, quantities, drawings, needed-by date from the Head Quarter's "days to dispatch").
   * The supplier accepts it with a dispatch date, or declines with a reason; the office then picks a supplier again (a new order number).
   * After the promised date the dispatch task turns urgent and the office sees "supplier is late". The office and the supplier can open and print the order; it has no customer phone.
 * **Dispatch:** the supplier writes the serial numbers of the machine, controller and governor and the delivery challan number, besides the seal and photos.
@@ -166,7 +166,7 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * "Fault came back" is set by the app when a problem arrives within 30 days of an earlier breakdown on the same lift. The office can change urgency with a reason.
   * Person trapped and unsafe ring the alarm. Choosing "person trapped" shows buttons to call the rescue number and 112, because a ticket alone reaches nobody in time.
   * The office records where a ticket came from (phone call, lift QR, WhatsApp, the app). Open tickets are listed most serious first.
-* **Time limits (Owner rules, sample numbers):** hours to fix for unsafe, stopped, repeat and ordinary tickets.
+* **Time limits (Head Quarter rules, sample numbers):** hours to fix for unsafe, stopped, repeat and ordinary tickets.
   * Each ticket shows the hours left or how late it is. After the limit, the worker's task turns urgent and the office sees "a ticket passed its time limit". A fixed ticket stays recorded as fixed in time or late.
   * There is no published target for a person trapped (the rescue line comes first).
 * **Lift QR sticker:** every handed-over lift gets a lift code. The office prints a sticker with the QR, the lift's name (for example building and wing), and the rescue number and 112 printed as text.
@@ -177,27 +177,27 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Staff who log in from the page land on that lift.
 
 ### Office queue, closing the day, backup approver, phone clock checks
-* **Needs the office (Owner/Admin):** one list of everything waiting for the office, in four levels (critical, high, medium, low), most serious first, then oldest.
+* **Needs the office (Head Quarter/Admin):** one list of everything waiting for the office, in four levels (critical, high, medium, low), most serious first, then oldest.
   * Critical: SOS, person trapped, unsafe lift, emergency part claims.
-  * High: tickets past their time limit, licences and permits, declined orders, payment disputes, unusual data access, stuck work at Owner level.
+  * High: tickets past their time limit, licences and permits, declined orders, payment disputes, unusual data access, stuck work at Head Quarter level.
   * Medium: approvals, late suppliers, part claims, appeals, holds, disputes, problems.
   * Low: onboarding papers, phone clock checks, unassigned leads.
   * There are counts at the top, filters by level and a search by project number. Items close only when the work behind them is done.
-* **Close the day:** after 6 pm the office is asked to close the day. Each open item rolls to tomorrow with a named person (the person it belongs to, else the Admin, else the Owner). Open red items need a note. Next day those items show "from yesterday → name". One close per day.
-* **Backup approver:** the Owner names a trusted person (Admin, Sales, Finance or QC) for up to 31 days. That person sees the office queue, gets second approvals and can close the day. They can never approve their own request. The Owner can end it early.
+* **Close the day:** after 6 pm the office is asked to close the day. Each open item rolls to tomorrow with a named person (the person it belongs to, else the Admin, else the Head Quarter). Open red items need a note. Next day those items show "from yesterday → name". One close per day.
+* **Backup approver:** the Head Quarter names a trusted person (Admin, Sales, Finance or QC) for up to 31 days. That person sees the office queue, gets second approvals and can close the day. They can never approve their own request. The Head Quarter can end it early.
 * **Phone clock checks:** a record from a phone whose clock went back more than 6 hours, or that is dated more than 6 hours in the future, goes to the office as one low item. The Admin accepts the time or marks it as not trusted, with a reason. A wrong clock on one phone no longer pushes new records into the future.
 
 ### Weekly summary, key numbers, spreadsheets, what the app does by itself
-* **Weekly summary (Owner/Admin):** the last 7 days, with earlier weeks one tap away.
+* **Weekly summary (Head Quarter/Admin):** the last 7 days, with earlier weeks one tap away.
   * Sales: leads, quotations, deals won with value, lost. Money: payments found in the bank, refunds.
   * Installation: started, handed over, inspections passed. Service: tickets opened, closed, in time, late now.
   * Safety: incidents, SOS, daily checks. Control: second approvals, stage moves back, disputes, holds, days closed, clock checks. Plus what is open in the office queue.
   * "Send the summary" prepares it as a WhatsApp message; it can also be printed or saved as PDF.
 * **Key numbers (all jobs):** passed final inspection the first time, installed on time (hold days not counted), tickets fixed in time, days from lead to deal, and money collected. Each says how it is counted.
-* **Spreadsheets (Owner only):** jobs, payments and tickets as CSV files that open in Excel or Google Sheets.
+* **Spreadsheets (Head Quarter only):** jobs, payments and tickets as CSV files that open in Excel or Google Sheets.
   * Every save is recorded with who and how many rows. Customer phone numbers are left out.
   * Cells that look like formulas are saved as plain text.
-* **What the app does by itself:** one page listing every automatic rule with today's numbers and whether the Owner approved it: reminders and escalation, quotation expiry, supplier dispatch, ticket time limits, daily safety check, co-worker check, payment gates, licence reminders, data-access alerts, AMC visits and QR, clock checks, closing the day, backup reminders.
+* **What the app does by itself:** one page listing every automatic rule with today's numbers and whether the Head Quarter approved it: reminders and escalation, quotation expiry, supplier dispatch, ticket time limits, daily safety check, co-worker check, payment gates, licence reminders, data-access alerts, AMC visits and QR, clock checks, closing the day, backup reminders.
 
 ### Undo, photo stamp, voice notes, critical alerts
 * **Undo:** for 5 minutes a person can take back their own simple record (a call note, chat message, follow-up date, site information, needs, SOP step, problem report, ticket update, part claim, representative, profile, rating), if nothing else happened on that job since.
@@ -211,8 +211,8 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 ### Colours, sync status, day summary, safety test, trial job, privacy notice
 * **Colours (Me → Settings):** like the phone, light, dark (night work) or strong contrast (bright sun, weak eyes).
 * **Sync status (Me → Share data):** when this phone last sent and loaded a file, which phones' records are here with how many and how new (a phone not heard from for 3 days or more is marked ⏰), and the last files loaded.
-* **Field worker's day:** the day report adds today's estimated earnings (by the Owner's field pay rules) and "Send my day to the office", which prepares a WhatsApp summary (sites added, accepted, to fix, GPS points, shift times, earnings).
-* **Safety test every year:** the safety training must be passed again every 12 months (Owner rule; 0 = never). Until then the person's onboarding is not complete and the training screen says "time to take this test again".
+* **Field worker's day:** the day report adds today's estimated earnings (by the Head Quarter's field pay rules) and "Send my day to the office", which prepares a WhatsApp summary (sites added, accepted, to fix, GPS points, shift times, earnings).
+* **Safety test every year:** the safety training must be passed again every 12 months (Head Quarter rule; 0 = never). Until then the person's onboarding is not complete and the training screen says "time to take this test again".
 * **Trial job:** a technician the office adds directly at Technician or Senior level (not grown through the ladder) has a trial pending.
   * They can work in teams and lead small and medium jobs at once, so a new partner company can start work. Big jobs wait for the trial.
   * Their first lead job that passes final inspection counts as the trial. A QC Inspector, the office, or the Senior lead of a job where the person was in the team can also record one. "Needs another trial" needs a reason.
@@ -229,13 +229,13 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * **How to pay:** when a payment is due, the customer's home shows the amount and a "Pay the next amount" task.
   * The pay screen has a "Pay with a UPI app" button with the company UPI ID and the exact amount filled in, a UPI QR code to scan from another phone, and the company bank account with IFSC and the job number to write in remarks.
   * It warns to pay only into the company account.
-  * The Owner sets the details in Business rules → How customers pay.
+  * The Head Quarter sets the details in Business rules → How customers pay.
   * Sales can open the same screen for the customer right after the agreement is signed.
-* **"I have paid":** the customer reports the payment with the UPI or bank reference (and a screenshot if they like). Finance, or the Owner when there is no other Finance person, checks it in the bank and confirms. The one who reported or recorded a payment never confirms it.
-* **Small teams:** when nobody else in the team holds the Sales, Finance or QC role a step needs, the Owner gets that task and may do it. When the team has such a person, the usual separation stays.
+* **"I have paid":** the customer reports the payment with the UPI or bank reference (and a screenshot if they like). Finance, or the Head Quarter when there is no other Finance person, checks it in the bank and confirms. The one who reported or recorded a payment never confirms it.
+* **Small teams:** when nobody else in the team holds the Sales, Finance or QC role a step needs, the Head Quarter gets that task and may do it. When the team has such a person, the usual separation stays.
   * Examples: confirming a payment, inspecting the site, final inspection, signing the handover as QC.
   * Physical work (technician, supplier, partner, field) is never covered this way.
-  * A test runs a whole job from lead to handover with only the Owner, a field worker, a partner company, a supplier and the customer. At every step it checks that the person acting has the task.
+  * A test runs a whole job from lead to handover with only the Head Quarter, a field worker, a partner company, a supplier and the customer. At every step it checks that the person acting has the task.
   * A second test walks the side branches with the same small team, checks that each task opens its screen, and finally that no task anywhere is left without someone who can do it:
     * a lead sent back and fixed;
     * a quotation below the margin floor;
@@ -243,8 +243,8 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
     * a payment not found in the bank;
     * a failed final inspection;
     * a breakdown ticket and a service visit.
-* **Quotation by the Owner:** the Owner's own discount needs no approval unless it goes below the margin floor. Below the floor a second Owner/Admin (or the backup approver) must agree. If there is nobody, the Owner gets "withdraw it and make a new quotation" instead of a stuck job.
-* **Lead sent back:** it returns to whoever added it (field worker, Sales or the Owner).
+* **Quotation by the Head Quarter:** the Head Quarter's own discount needs no approval unless it goes below the margin floor. Below the floor a second Head Quarter/Admin (or the backup approver) must agree. If there is nobody, the Head Quarter gets "withdraw it and make a new quotation" instead of a stuck job.
+* **Lead sent back:** it returns to whoever added it (field worker, Sales or the Head Quarter).
 * **Payment not found in the bank:** the customer's pay screen says so, with the reason, and the customer can report the payment again.
 
 ### Shaft limits, variation, co-worker check, surprise QC
@@ -262,9 +262,9 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * A partner company, technician or supplier receives only the jobs they hold or work on.
   * Their file never contains customer phone numbers, names or notes, prices and cost settings, discounts, payment amounts or references, WhatsApp messages, the agreement signer, other companies' licence details, or the names of other companies, their technicians, customers and suppliers. Those fields are removed before the file is made.
   * Each removed field has its own fingerprint in the signature, so the rest of the record can still be checked. Jobs still reach the same stage on their phone as at the office.
-  * Only a file made by the office (Owner, Admin or Sales) may carry records with removed fields. Such records from anyone else are refused.
+  * Only a file made by the office (Head Quarter, Admin or Sales) may carry records with removed fields. Such records from anyone else are refused.
   * Each phone lists only the people who can log in on it.
-* **Contact masking:** partner companies and technicians never see customer phone numbers. They talk to the customer through the project chat, or call the AIEC office number (set by the Owner in **Business rules → Data protection**). Phone numbers and e-mails typed in chat by customers or outside companies are hidden. Technicians cannot send WhatsApp messages to customers.
+* **Contact masking:** partner companies and technicians never see customer phone numbers. They talk to the customer through the project chat, or call the AIEC office number (set by the Head Quarter in **Business rules → Data protection**). Phone numbers and e-mails typed in chat by customers or outside companies are hidden. Technicians cannot send WhatsApp messages to customers.
 * **No export:** outside companies can only send their own work to the office. There is no export of project lists, customers or prices, the agreement and quotation are not shown to them, and printing is refused.
 * **Field technicians:** no money screens, prices, margins, customer names or phone numbers. They see their tasks, the daily safety check and the step-by-step installation with photo proof. The partner company owner sees the company's jobs, team, licence and weekly bill.
 * **Screenshots:** every page for an outside company carries a faint watermark with the viewer's name, code and date. Copying text is switched off, and the screen is blurred when the app goes to the background (the app-switcher picture).
@@ -277,11 +277,11 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * **SOS 🆘:** a red button on every screen for technicians, QC Inspectors, field workers and partner companies.
   * Press and hold it for 1 second; a short tap only explains how.
   * It saves an SOS with the phone's GPS and the job the person is on (the one open on screen, or the nearest job within 300 m), and stops work on that site.
-  * It shows big buttons: call the **company rescue number** (set by the Owner in **Business rules → Site safety**), then 112, and "send my location by SMS".
+  * It shows big buttons: call the **company rescue number** (set by the Head Quarter in **Business rules → Site safety**), then 112, and "send my location by SMS".
   * The office and the person's partner company get an alarm task (siren, even in quiet hours) until the office confirms the person is safe.
 * **Daily safety check:** before installation work each day (India time), the team lead takes 4 photos: helmets and harness, scaffolding, barricade, earthing. They then confirm everyone wears safety gear.
   * Work starts at once. The partner company is asked to look at the photos; the company, QC or the office can mark the day "not safe", which stops work until a new check is sent.
-  * Installation steps and fixes are refused without that day's check. The Owner can switch this off.
+  * Installation steps and fixes are refused without that day's check. The Head Quarter can switch this off.
 * **Hazard stops work:** anyone on the job can report a hazard. A hazard, an injury or an SOS stops installation steps, fixes, inspection requests and service visits on that site until the office closes it.
 * **Incident form:** the report records the type (hazard, someone hurt, near miss, equipment damaged, other), what happened, what was done straight away, witnesses and photos. Closing needs the root cause, what was fixed and the office's decision; a stop-work incident also needs a photo of the place made safe.
 * **Safety-critical QC items:** final inspection checks earthing (with the measured value), brakes, overspeed governor and safety gear, and door interlocks one by one, each with its own photo. If any one fails, the whole inspection fails.
@@ -296,8 +296,8 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * The company adds its own technicians (starting as Trainee or Helper). An AIEC Admin approves each one ("Approve a company's technician"); the usual onboarding (documents, training) still applies.
   * The office can add a technician directly into a company, or move one to another company. A technician without a company gets a "Link technician to a company" task for the office.
   * A technician can be placed on work only when they are an approved member of a company with a valid licence. Only people of the company holding a job can be its lead or crew.
-* **Ratings:** each technician keeps their own level, stars and strikes. The company has its own record: finished jobs, fair stars from its technicians' reviews, strikes earned on its jobs, and trust. A company needs a record (set by the Owner) before it can take big jobs.
-* **Weekly bill:** the company is paid its technicians' work done while they were with it, at each person's level rate. The Owner/Admin approves the bill, Finance pays it, and the company can question it. A technician sees the value of their work, marked "paid to my company". When a technician leaves, earlier work stays on the old company's bill.
+* **Ratings:** each technician keeps their own level, stars and strikes. The company has its own record: finished jobs, fair stars from its technicians' reviews, strikes earned on its jobs, and trust. A company needs a record (set by the Head Quarter) before it can take big jobs.
+* **Weekly bill:** the company is paid its technicians' work done while they were with it, at each person's level rate. The Head Quarter/Admin approves the bill, Finance pays it, and the company can question it. A technician sees the value of their work, marked "paid to my company". When a technician leaves, earlier work stays on the old company's bill.
 
 ### Job marketplace (companies apply with their team, the office confirms)
 * **What can be posted:** a team lead for an installation, AMC service visits, repairs (tickets), and QC site or final inspections. The office posts from **Project → Post job to marketplace**. There are no crew posts: the company brings its own crew. A released job without a team lead creates a "Find a team lead" task.
@@ -316,15 +316,15 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Inspection: that QC Inspector gets the inspection task.
   * The company and its team hear "You got the job!", and the post closes.
 * **Notifications and escalation:** eligible companies hear a "new job" ding. Applications waiting for a choice, and posts nobody applies to, go to the office and up the escalation ladder.
-* **Business rules (Owner-approved):** the limits are set under **Me → Business rules → Job marketplace**.
+* **Business rules (Head Quarter-approved):** the limits are set under **Me → Business rules → Job marketplace**.
 
-### Owner and Admin have separate to-do lists
-* **Owner** gets the decisions: quotations above the discount limit, technician weekly pay, approval requests in chat, and checking the Admin's own documents.
+### Head Quarter and Admin have separate to-do lists
+* **Head Quarter** gets the decisions: quotations above the discount limit, technician weekly pay, approval requests in chat, and checking the Admin's own documents.
 * **Admin** gets the daily work: releasing drawings and assigning teams, work problems, security problems, tickets, new workers' documents, pay questions and completing handovers.
-* When the Admin's work is late, it goes up the ladder to the Owner. If the company has no Admin, the Owner gets everything. Two-person approvals go to whichever of the two did not ask. Both keep full permission to act on any project.
+* When the Admin's work is late, it goes up the ladder to the Head Quarter. If the company has no Admin, the Head Quarter gets everything. Two-person approvals go to whichever of the two did not ask. Both keep full permission to act on any project.
 
 ### Enforced role permissions
-* Each event type has an allowed role list and allowed stages (see **Me → What can I do?**; Owner/Admin see the full matrix).
+* Each event type has an allowed role list and allowed stages (see **Me → What can I do?**; Head Quarter/Admin see the full matrix).
 * Project-level access: a field worker sees only their sites, a supplier only their orders (no customer phone, no prices), a technician only assigned jobs (no margins), a customer only their own lift (no internal notes, approvals or margins).
 * Separation of duties: the person who records a payment cannot confirm it; the author of a quotation cannot approve it.
 * Payment gates: stages only move forward when **Finance** confirms a payment with a bank reference. A screenshot is never treated as proof.
@@ -347,15 +347,15 @@ Photos and 10-second videos are taken **only with the in-app camera** (no galler
 
 ### Sharing between phones (no server needed)
 **Me → Share data with other phones**
-* **Full company file** — for office phones (Owner/Admin).
+* **Full company file** — for office phones (Head Quarter/Admin).
 * **File for one person** — only that person's projects; other people's PINs are removed so nobody else can log in on that phone.
 * **Send my updates to office** — the office accepts only the work that person did themself.
 Files can be sent by WhatsApp or email. Practice files and real files can never be mixed.
 
 ---
 
-## Business rules that need Owner approval
-These numbers come from the original brainstorm and are marked **"Proposed — not approved"** everywhere they appear until the Owner approves them in **Me → Business rules** (changing a number requires approval again):
+## Business rules that need Head Quarter approval
+These numbers come from the original brainstorm and are marked **"Proposed — not approved"** everywhere they appear until the Head Quarter approves them in **Me → Business rules** (changing a number requires approval again):
 
 | Rule | Default |
 |---|---|
@@ -373,7 +373,7 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 * **Lift QR:** the QR points to the address the office's app runs from, so print stickers from the installed app or the website, not from a file copy. The resident page does not send anything by itself: the phone call, WhatsApp or SMS does, and a ticket is opened by the office. There is no 24×7 rescue staffing in the app; the company must run the rescue line before printing stickers.
 * **Weekly summary:** the app prepares the message; a person sends it (there is no server to send it automatically).
 * **Background:** a web app cannot run while the phone is locked or the app is closed. Keeping the screen on helps only while the app is open; phone notifications for due tasks come at most about once an hour on installed Android apps (periodic background check), and not at all on some phones. A separate Android app would be needed for always-on alerts and for blocking screenshots.
-* **Safety:** the SOS reaches the office's phone only when files are shared, so the phone call and SMS are the real alert. Safety photos are checked by people, not by a computer. The daily check is confirmed by the team lead (an Owner decision); it does not replace the statutory inspection or a qualified engineer.
+* **Safety:** the SOS reaches the office's phone only when files are shared, so the phone call and SMS are the real alert. Safety photos are checked by people, not by a computer. The daily check is confirmed by the team lead (an Head Quarter decision); it does not replace the statutory inspection or a qualified engineer.
 * **Data protection limits:**
   * There is no server, so prices and rules are checked by the same rules on every phone and on every file loaded, not on a server.
   * A web app cannot block screenshots (Android FLAG_SECURE needs the native Android app); the watermark makes leaked pictures traceable.
@@ -383,23 +383,23 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 * **Signed records (company data only, not practice).**
   * Each person's phone makes its own signing key at first login, and every new record is signed with it. Files are also signed by the phone that made them.
   * When a file is loaded, a record from a person with a known key must carry that person's valid signature. Changed or forged records are refused.
-  * A person's second phone must be approved by an Owner or Admin (task "Approve a new phone"). Records from that phone are held back until then; after approval the person sends their file again.
+  * A person's second phone must be approved by an Head Quarter or Admin (task "Approve a new phone"). Records from that phone are held back until then; after approval the person sends their file again.
   * Private details (PINs, other people's phone numbers, application notes) can be removed from a file without breaking signatures.
   * Limits:
     * A brand-new phone trusts the first file it loads.
-    * Records made before signing started are accepted only from an Owner/Admin file.
-    * If the Owner's only phone is lost, an Admin must approve the Owner's new phone.
+    * Records made before signing started are accepted only from an Head Quarter/Admin file.
+    * If the Head Quarter's only phone is lost, an Admin must approve the Head Quarter's new phone.
     * A company server with signed sync is still the recommended next step.
-* **PINs** are stored with slow hashing (PBKDF2, 150,000 rounds); older PINs are upgraded at the next login. The Owner can make new PINs 6 digits (**Business rules → Login security**). A full file for another office phone carries only Owner/Admin logins unless "include everyone's logins" is chosen.
-* **Backups:** the Owner/Admin is reminded to save a file after 7 days or 200 records that are only on their phone. Records are stored in chunks, so large companies stay fast. **Archive old photos** (Owner, **Share data**) saves the photos of lifts handed over long ago to a file and removes them from that phone; loading the file brings them back.
+* **PINs** are stored with slow hashing (PBKDF2, 150,000 rounds); older PINs are upgraded at the next login. The Head Quarter can make new PINs 6 digits (**Business rules → Login security**). A full file for another office phone carries only Head Quarter/Admin logins unless "include everyone's logins" is chosen.
+* **Backups:** the Head Quarter/Admin is reminded to save a file after 7 days or 200 records that are only on their phone. Records are stored in chunks, so large companies stay fast. **Archive old photos** (Head Quarter, **Share data**) saves the photos of lifts handed over long ago to a file and removes them from that phone; loading the file brings them back.
 * **Notifications** come from the app itself. The installed app checks every minute while it is open or recently used, and Chrome may also wake it about once an hour for escalations (periodic background sync, decided by the phone). Instant alerts when the phone has fully closed the app need a push server or a native Android app.
 * **Not connected:** payment gateway, bank/EMI partner, WhatsApp delivery and read reports (they need the WhatsApp Business API on a company server; the app opens WhatsApp and records what the person sent), container GPS tracker, motion sensors, CCTV, digital locks. The app never claims they exist; it records what people did and asks Finance to verify money from the bank.
 * **No AI decisions.** Automatic checks are simple rules and only warn.
 * **Templates:** QC checklists, the 12 installation steps, the agreement text and the handover/NOC text are templates. They must be approved by a qualified lift engineer (Maharashtra Lifts Act and rules) and a lawyer before real use. The app does not issue statutory licences.
 * Address from GPS needs internet (OpenStreetMap Nominatim); offline the user types or speaks a landmark.
 * Not yet built (later phases of the spec): EMI, hardware (GPS trackers, sensors, CCTV, digital locks), server sync.
-* The training lessons, quiz answers and pay amounts are starting templates. The Owner must check them with a qualified lift engineer and with labour and accounting rules.
-* Personal data stays on the phone until deleted. The Owner must set a keep-and-delete policy that follows the Digital Personal Data Protection Act, 2023.
+* The training lessons, quiz answers and pay amounts are starting templates. The Head Quarter must check them with a qualified lift engineer and with labour and accounting rules.
+* Personal data stays on the phone until deleted. The Head Quarter must set a keep-and-delete policy that follows the Digital Personal Data Protection Act, 2023.
 
 ---
 

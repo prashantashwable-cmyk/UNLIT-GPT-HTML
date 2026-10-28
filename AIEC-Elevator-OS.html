@@ -319,8 +319,8 @@ const L = {
 
   /* setup and login */
   setup_title: ['How do you want to start?', 'आप कैसे शुरू करना चाहते हैं?', 'तुम्हाला कसे सुरू करायचे आहे?'],
-  setup_new: ['New company setup (Owner)', 'नई कंपनी सेटअप (मालिक)', 'नवीन कंपनी सेटअप (मालक)'],
-  setup_new_d: ['First time. You will be the Owner.', 'पहली बार। आप मालिक होंगे।', 'पहिल्यांदा. तुम्ही मालक असाल.'],
+  setup_new: ['New company setup (Head Quarter)', 'नई कंपनी सेटअप (हेड क्वार्टर)', 'नवीन कंपनी सेटअप (हेड क्वार्टर)'],
+  setup_new_d: ['First time. You will be the Head Quarter.', 'पहली बार। आप हेड क्वार्टर होंगे।', 'पहिल्यांदा. तुम्ही हेड क्वार्टर असाल.'],
   setup_join: ['Join with company file', 'कंपनी फ़ाइल से जुड़ें', 'कंपनी फाइलने जोडा'],
   setup_join_d: ['Your office sent you a data file.', 'आपके ऑफिस ने डेटा फ़ाइल भेजी है।', 'तुमच्या ऑफिसने डेटा फाइल पाठवली आहे.'],
   setup_practice: ['Practice mode', 'अभ्यास मोड', 'सराव मोड'],
@@ -352,7 +352,7 @@ const L = {
   locked_idle: ['Locked for safety', 'सुरक्षा के लिए लॉक', 'सुरक्षेसाठी लॉक'],
   not_me: ['This is not me', 'यह मैं नहीं हूँ', 'हा मी नाही'],
   logout: ['Log out', 'लॉग आउट', 'लॉग आउट'],
-  role_note: ['Your role is given by the Owner or Admin. You cannot change it yourself.', 'आपकी भूमिका मालिक या एडमिन तय करते हैं। आप खुद नहीं बदल सकते।', 'तुमची भूमिका मालक किंवा प्रशासक ठरवतात. तुम्ही स्वतः बदलू शकत नाही.'],
+  role_note: ['Your role is given by the Head Quarter or Admin. You cannot change it yourself.', 'आपकी भूमिका हेड क्वार्टर या एडमिन तय करते हैं। आप खुद नहीं बदल सकते।', 'तुमची भूमिका हेड क्वार्टर किंवा प्रशासक ठरवतात. तुम्ही स्वतः बदलू शकत नाही.'],
   perms_title: ['Phone permissions', 'फ़ोन अनुमतियाँ', 'फोन परवानग्या'],
   s_perms: ['The app asks for these only when you need them.', 'ऐप ये अनुमतियाँ सिर्फ़ ज़रूरत पड़ने पर माँगता है।', 'ॲप या परवानग्या फक्त गरज असेल तेव्हाच मागते.'],
   perm_loc: ['Location', 'लोकेशन', 'ठिकाण'],
@@ -367,7 +367,7 @@ const L = {
   cam_ok: ['Camera is ready', 'कैमरा तैयार है', 'कॅमेरा तयार आहे'],
 
   /* roles */
-  r_owner: ['Owner', 'मालिक', 'मालक'],
+  r_owner: ['HEAD QUARTER', 'हेड क्वार्टर (मुख्यालय)', 'हेड क्वार्टर (मुख्यालय)'],
   r_admin: ['Admin', 'एडमिन', 'प्रशासक'],
   r_field: ['Field worker', 'फील्ड वर्कर', 'फील्ड कर्मचारी'],
   r_sales: ['Sales', 'सेल्स', 'विक्री'],
@@ -586,7 +586,7 @@ const L = {
   what_resubmitted: ['Lead {id} was sent to Sales again.', 'लीड {id} फिर से सेल्स को भेजी गई।', 'लीड {id} पुन्हा विक्रीकडे पाठवली.'],
   what_call_logged: ['The call result is saved in {id}.', 'कॉल का नतीजा {id} में सेव हो गया।', 'कॉलचा निकाल {id} मध्ये जतन झाला.'],
   what_needs_saved: ['Lift needs saved for {id}.', '{id} के लिए लिफ्ट की ज़रूरत सेव हो गई।', '{id} साठी लिफ्टची गरज जतन झाली.'],
-  what_quote_pending: ['Quotation version {v} needs approval. It was sent to the Owner/Admin.', 'कोटेशन वर्ज़न {v} को मंज़ूरी चाहिए। मालिक/एडमिन को भेजा गया।', 'कोटेशन आवृत्ती {v} ला मंजुरी हवी. मालक/प्रशासकाकडे पाठवले.'],
+  what_quote_pending: ['Quotation version {v} needs approval. It was sent to the Head Quarter/Admin.', 'कोटेशन वर्ज़न {v} को मंज़ूरी चाहिए। हेड क्वार्टर/एडमिन को भेजा गया।', 'कोटेशन आवृत्ती {v} ला मंजुरी हवी. हेड क्वार्टर/प्रशासकाकडे पाठवले.'],
   what_quote_ready: ['Quotation version {v} is ready.', 'कोटेशन वर्ज़न {v} तैयार है।', 'कोटेशन आवृत्ती {v} तयार आहे.'],
   what_quote_approved: ['Quotation approved. Sales can send it now.', 'कोटेशन मंज़ूर। सेल्स अब भेज सकता है।', 'कोटेशन मंजूर. विक्री विभाग आता पाठवू शकतो.'],
   what_quote_rejected: ['Quotation rejected. Sales must make a new one.', 'कोटेशन नामंज़ूर। सेल्स को नया बनाना होगा।', 'कोटेशन नाकारले. विक्रीला नवीन बनवावे लागेल.'],
@@ -631,7 +631,7 @@ const L = {
   err_no_project: ['Project not found.', 'प्रोजेक्ट नहीं मिला।', 'प्रकल्प सापडला नाही.'],
   err_no_org: ['Company is not set up yet.', 'कंपनी अभी सेटअप नहीं हुई।', 'कंपनी अजून सेटअप झालेली नाही.'],
   err_org_exists: ['Company already exists on this phone.', 'इस फ़ोन पर कंपनी पहले से है।', 'या फोनवर कंपनी आधीच आहे.'],
-  err_boot: ['Only the first Owner can start the company.', 'सिर्फ़ पहले मालिक कंपनी शुरू कर सकते हैं।', 'फक्त पहिले मालक कंपनी सुरू करू शकतात.'],
+  err_boot: ['Only the first Head Quarter can start the company.', 'सिर्फ़ पहले हेड क्वार्टर कंपनी शुरू कर सकते हैं।', 'फक्त पहिले हेड क्वार्टर कंपनी सुरू करू शकतात.'],
   err_unknown: ['Unknown action.', 'अनजान काम।', 'अनोळखी काम.'],
   err_photos: ['Take at least {n} photo(s).', 'कम से कम {n} फोटो लें।', 'किमान {n} फोटो घ्या.'],
   err_reason: ['Please give a reason.', 'कृपया कारण बताएँ।', 'कृपया कारण सांगा.'],
@@ -906,11 +906,11 @@ const L = {
   q_gst: ['GST {n}%', 'GST {n}%', 'GST {n}%'],
   q_total: ['Total', 'कुल', 'एकूण'],
   q_margin: ['Margin {n}% (internal)', 'मार्जिन {n}% (अंदरूनी)', 'मार्जिन {n}% (अंतर्गत)'],
-  q_needs_approval: ['Needs Owner approval', 'मालिक की मंज़ूरी चाहिए', 'मालकाची मंजुरी हवी'],
+  q_needs_approval: ['Needs Head Quarter approval', 'हेड क्वार्टर की मंज़ूरी चाहिए', 'हेड क्वार्टरची मंजुरी हवी'],
   q_within_rules: ['Within your limit', 'आपकी सीमा में', 'तुमच्या मर्यादेत'],
   why_over_limit: ['discount above {lim}%', 'छूट {lim}% से ज़्यादा', 'सवलत {lim}% पेक्षा जास्त'],
   why_below_floor: ['margin below {min}%', 'मार्जिन {min}% से कम', 'मार्जिन {min}% पेक्षा कमी'],
-  q_will_need_approval: ['This quotation will go to the Owner/Admin for approval before you can send it.', 'भेजने से पहले यह कोटेशन मालिक/एडमिन की मंज़ूरी के लिए जाएगा।', 'पाठवण्याआधी हे कोटेशन मालक/प्रशासकाच्या मंजुरीसाठी जाईल.'],
+  q_will_need_approval: ['This quotation will go to the Head Quarter/Admin for approval before you can send it.', 'भेजने से पहले यह कोटेशन हेड क्वार्टर/एडमिन की मंज़ूरी के लिए जाएगा।', 'पाठवण्याआधी हे कोटेशन हेड क्वार्टर/प्रशासकाच्या मंजुरीसाठी जाईल.'],
   q_version_note: ['This will be saved as version {v}. Older versions are kept.', 'यह वर्ज़न {v} के रूप में सेव होगा। पुराने वर्ज़न रखे जाते हैं।', 'हे आवृत्ती {v} म्हणून जतन होईल. जुन्या आवृत्त्या ठेवल्या जातात.'],
   f_discount_reason: ['Reason for discount', 'छूट का कारण', 'सवलतीचे कारण'],
   margin_def: ['Margin = (price before tax − cost) ÷ price before tax. Discount = % off the list price.', 'मार्जिन = (टैक्स से पहले कीमत − लागत) ÷ टैक्स से पहले कीमत। छूट = सूची कीमत पर %।', 'मार्जिन = (करापूर्वी किंमत − खर्च) ÷ करापूर्वी किंमत. सवलत = यादी किमतीवर %.'],
@@ -1163,7 +1163,7 @@ const L = {
   f_solution: ['What was done to solve it', 'हल करने के लिए क्या किया', 'सोडवण्यासाठी काय केले'],
   mark_solved: ['Mark solved', 'हल हुआ दर्ज करें', 'सुटले नोंदवा'],
   s_incident: ['Check the evidence and decide.', 'सबूत देखें और फ़ैसला करें।', 'पुरावा पाहा आणि निर्णय घ्या.'],
-  incident_steps: ['Keep all photos. Inform the Owner. Do not hand over material until checked. Write your decision.', 'सारे फोटो रखें। मालिक को बताएँ। जाँच तक सामान न सौंपें। अपना फ़ैसला लिखें।', 'सर्व फोटो ठेवा. मालकाला कळवा. तपासेपर्यंत साहित्य सुपूर्द करू नका. तुमचा निर्णय लिहा.'],
+  incident_steps: ['Keep all photos. Inform the Head Quarter. Do not hand over material until checked. Write your decision.', 'सारे फोटो रखें। हेड क्वार्टर को बताएँ। जाँच तक सामान न सौंपें। अपना फ़ैसला लिखें।', 'सर्व फोटो ठेवा. हेड क्वार्टरला कळवा. तपासेपर्यंत साहित्य सुपूर्द करू नका. तुमचा निर्णय लिहा.'],
   f_decision_note: ['Decision and reason', 'फ़ैसला और कारण', 'निर्णय आणि कारण'],
   report_security: ['Report security problem', 'सुरक्षा समस्या बताएँ', 'सुरक्षा समस्या कळवा'],
   s_incident_new: ['What happened? (theft, missing material, damaged seal, unsafe access)', 'क्या हुआ? (चोरी, सामान गायब, सील टूटा, असुरक्षित पहुँच)', 'काय झाले? (चोरी, साहित्य गहाळ, सील तुटलेला, असुरक्षित प्रवेश)'],
@@ -1184,7 +1184,7 @@ const L = {
   earn_lead_won: ['Deal won from my lead', 'मेरी लीड से सौदा हुआ', 'माझ्या लीडमधून सौदा झाला'],
   earn_lead_info: ['Share for useful new information', 'काम की नई जानकारी का हिस्सा', 'उपयोगी नवीन माहितीचा वाटा'],
   field_pay: ['How field workers are paid', 'फ़ील्ड कर्मचारियों को भुगतान कैसे', 'फील्ड कामगारांना पैसे कसे'],
-  amount_not_set: ['Amount not set yet (Owner decision)', 'रकम अभी तय नहीं (मालिक का फ़ैसला)', 'रक्कम अजून ठरलेली नाही (मालकाचा निर्णय)'],
+  amount_not_set: ['Amount not set yet (Head Quarter decision)', 'रकम अभी तय नहीं (हेड क्वार्टर का फ़ैसला)', 'रक्कम अजून ठरलेली नाही (हेड क्वार्टरचा निर्णय)'],
   rg_fieldpay: ['Field worker pay', 'फ़ील्ड कर्मचारी भुगतान', 'फील्ड कामगार पैसे'],
   rg_fieldpay_d: ['Amount for a lead accepted by Sales, and % of the price (before tax) when the deal is won. A helper who added new information shares the won amount (duplicate-lead %). 0 = not decided yet.', 'सेल्स द्वारा स्वीकारी गई लीड की रकम, और सौदा होने पर कीमत (टैक्स से पहले) का %। नई जानकारी जोड़ने वाले को जीत की रकम में हिस्सा (दोहरी लीड %)। 0 = अभी तय नहीं।', 'विक्री विभागाने स्वीकारलेल्या लीडची रक्कम, आणि सौदा झाल्यावर किंमतीचे (करापूर्वी) %. नवीन माहिती जोडणाऱ्याला वाटा (दुहेरी लीड %). 0 = अजून ठरले नाही.'],
   cfg_payLeadValid: ['Pay for a lead accepted by Sales (₹)', 'सेल्स द्वारा स्वीकारी लीड का भुगतान (₹)', 'विक्रीने स्वीकारलेल्या लीडचे पैसे (₹)'],
@@ -1214,9 +1214,9 @@ const L = {
   rd_supplier: ['Proven supplier cost for custom items (₹)', 'कस्टम सामान की सिद्ध सप्लायर लागत (₹)', 'कस्टम साहित्याचा सिद्ध पुरवठादार खर्च (₹)'],
   rd_freight: ['Return freight and handling (₹)', 'वापसी भाड़ा और हैंडलिंग (₹)', 'परतीचे भाडे आणि हाताळणी (₹)'],
   rd_material: ['Opened or non-returnable material (₹)', 'खोला गया या न लौटने वाला सामान (₹)', 'उघडलेले किंवा परत न होणारे साहित्य (₹)'],
-  rfs_proposed: ['waiting for the Owner', 'मालिक का इंतज़ार', 'मालकाची प्रतीक्षा'], rfs_approved: ['approved, to be paid', 'मंज़ूर, भुगतान बाकी', 'मंजूर, देणे बाकी'], rfs_rejected: ['not approved', 'मंज़ूर नहीं', 'मंजूर नाही'], rfs_paid: ['paid', 'भुगतान हुआ', 'दिले'],
+  rfs_proposed: ['waiting for the Head Quarter', 'हेड क्वार्टर का इंतज़ार', 'हेड क्वार्टरची प्रतीक्षा'], rfs_approved: ['approved, to be paid', 'मंज़ूर, भुगतान बाकी', 'मंजूर, देणे बाकी'], rfs_rejected: ['not approved', 'मंज़ूर नहीं', 'मंजूर नाही'], rfs_paid: ['paid', 'भुगतान हुआ', 'दिले'],
   s_refund: ['Enter the costs for this case. The app works out the refund by the rule; if you change it, write why.', 'इस मामले की लागत लिखें। ऐप नियम से रिफ़ंड निकालता है; बदलें तो कारण लिखें।', 'या प्रकरणाचा खर्च लिहा. ॲप नियमानुसार परतावा काढते; बदलल्यास कारण लिहा.'],
-  what_refund_sent: ['Refund sent to the Owner for a decision.', 'रिफ़ंड मालिक के फ़ैसले के लिए भेजा।', 'परतावा मालकाच्या निर्णयासाठी पाठवला.'],
+  what_refund_sent: ['Refund sent to the Head Quarter for a decision.', 'रिफ़ंड हेड क्वार्टर के फ़ैसले के लिए भेजा।', 'परतावा हेड क्वार्टरच्या निर्णयासाठी पाठवला.'],
   tk_refund_calc: ['Work out the refund', 'रिफ़ंड निकालें', 'परतावा काढा'],
   tk_refund_decide: ['Approve the refund', 'रिफ़ंड मंज़ूर करें', 'परतावा मंजूर करा'],
   tk_refund_pay: ['Pay the refund', 'रिफ़ंड का भुगतान करें', 'परतावा द्या'],
@@ -1241,6 +1241,8 @@ const L = {
   ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
   ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
   ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
+  hq_note: ['Head Quarter of AIEC Elevator OS. Business rules, prices and people are decided here.', 'AIEC Elevator OS का हेड क्वार्टर। कारोबार नियम, कीमतें और लोग यहीं तय होते हैं।', 'AIEC Elevator OS चे हेड क्वार्टर. व्यवसाय नियम, किमती आणि लोक येथे ठरतात.'],
+  copyright: ['© {name}. All rights reserved. Copying, reselling or reusing this app or its code is not allowed without written permission.', '© {name}. सर्वाधिकार सुरक्षित। लिखित अनुमति के बिना इस ऐप या इसके कोड की नकल, बिक्री या दोबारा उपयोग मना है।', '© {name}. सर्व हक्क राखीव. लेखी परवानगीशिवाय या ॲपची किंवा त्याच्या कोडची नक्कल, विक्री किंवा पुनर्वापर करण्यास मनाई आहे.'],
   tk_withdraw_quote: ['Nobody else can approve this price: withdraw it and make a new quotation', 'यह कीमत कोई और मंज़ूर नहीं कर सकता: वापस लेकर नया कोटेशन बनाएँ', 'ही किंमत दुसरे कोणी मंजूर करू शकत नाही: मागे घेऊन नवीन कोटेशन करा'],
   err_pay_detail: ['Check this payment detail (UPI ID like name@bank, IFSC like HDFC0001234, account number in digits).', 'यह भुगतान जानकारी जाँचें (UPI ID जैसे name@bank, IFSC जैसे HDFC0001234, खाता नंबर अंकों में)।', 'ही पैसे भरण्याची माहिती तपासा (UPI ID जसे name@bank, IFSC जसे HDFC0001234, खाते क्रमांक अंकांत).'],
   rg_paydetails: ['How customers pay', 'ग्राहक कैसे भुगतान करें', 'ग्राहकांनी पैसे कसे भरावे'],
@@ -1330,7 +1332,7 @@ const L = {
   pn_ok: ['I have read this', 'मैंने पढ़ लिया', 'मी वाचले'],
   day_sum_title: ['{name} — day summary {d}', '{name} — दिन का सारांश {d}', '{name} — दिवसाचा सारांश {d}'],
   day_earn: ['Earned today (estimate)', 'आज की कमाई (अनुमान)', 'आजची कमाई (अंदाज)'],
-  day_earn_note: ['By the Owner\'s field pay rules; the office confirms pay each week.', 'मालिक के फ़ील्ड भुगतान नियमों से; ऑफ़िस हर सप्ताह भुगतान पक्का करता है।', 'मालकाच्या फील्ड पगार नियमांनुसार; ऑफिस दर आठवड्याला पगार निश्चित करते.'],
+  day_earn_note: ['By the Head Quarter\'s field pay rules; the office confirms pay each week.', 'हेड क्वार्टर के फ़ील्ड भुगतान नियमों से; ऑफ़िस हर सप्ताह भुगतान पक्का करता है।', 'हेड क्वार्टरच्या फील्ड पगार नियमांनुसार; ऑफिस दर आठवड्याला पगार निश्चित करते.'],
   day_send: ['Send my day to the office (WhatsApp)', 'मेरा दिन ऑफ़िस को भेजें (WhatsApp)', 'माझा दिवस ऑफिसला पाठवा (WhatsApp)'],
   ev_UNDONE: ['Taken back', 'वापस लिया', 'मागे घेतले'],
   err_undo_own: ['Only the person who made a record can take it back.', 'सिर्फ़ रिकॉर्ड बनाने वाला ही उसे वापस ले सकता है।', 'नोंद करणारी व्यक्तीच ती मागे घेऊ शकते.'],
@@ -1387,14 +1389,14 @@ const L = {
   kn_collected: ['Money collected', 'वसूला पैसा', 'वसूल झालेले पैसे'],
   kn_collected_d: ['Payments found in the bank, out of the agreed price of won jobs.', 'जीते कामों की तय कीमत में से बैंक में मिले भुगतान।', 'जिंकलेल्या कामांच्या ठरलेल्या किमतीपैकी बँकेत आढळलेले पैसे.'],
   csv_title: ['Spreadsheets', 'स्प्रेडशीट', 'स्प्रेडशीट'],
-  csv_note: ['Only the Owner can save these. Each save is recorded. Customer phone numbers are not included.', 'सिर्फ़ मालिक इन्हें सेव कर सकते हैं। हर सेव दर्ज होता है। ग्राहक फ़ोन नंबर शामिल नहीं।', 'फक्त मालक हे जतन करू शकतात. प्रत्येक जतन नोंदवले जाते. ग्राहकांचे फोन क्रमांक नाहीत.'],
+  csv_note: ['Only the Head Quarter can save these. Each save is recorded. Customer phone numbers are not included.', 'सिर्फ़ हेड क्वार्टर इन्हें सेव कर सकते हैं। हर सेव दर्ज होता है। ग्राहक फ़ोन नंबर शामिल नहीं।', 'फक्त हेड क्वार्टर हे जतन करू शकतात. प्रत्येक जतन नोंदवले जाते. ग्राहकांचे फोन क्रमांक नाहीत.'],
   csv_projects: ['Jobs', 'काम', 'कामे'],
   csv_payments: ['Payments', 'भुगतान', 'पैसे'],
   csv_tickets: ['Tickets', 'टिकट', 'तिकिटे'],
   auto_title: ['What the app does by itself', 'ऐप अपने आप क्या करता है', 'ॲप आपोआप काय करते'],
   auto_note: ['These run on every phone from the records; nothing is sent by itself. Numbers come from the Business rules.', 'ये हर फ़ोन पर रिकॉर्ड से चलते हैं; अपने आप कुछ नहीं भेजा जाता। संख्याएँ कारोबार नियमों से हैं।', 'हे प्रत्येक फोनवर नोंदींवरून चालतात; आपोआप काहीही पाठवले जात नाही. आकडे व्यवसाय नियमांतून.'],
   auto_esc_t: ['Reminders and escalation', 'याद दिलाना और ऊपर भेजना', 'आठवण आणि वर पाठवणे'],
-  auto_esc: ['Work not done: reminder after {a} days, Admin after {b} days, Owner after {c} days.', 'काम नहीं हुआ: {a} दिन बाद याद, {b} दिन बाद एडमिन, {c} दिन बाद मालिक।', 'काम झाले नाही: {a} दिवसांनी आठवण, {b} दिवसांनी ॲडमिन, {c} दिवसांनी मालक.'],
+  auto_esc: ['Work not done: reminder after {a} days, Admin after {b} days, Head Quarter after {c} days.', 'काम नहीं हुआ: {a} दिन बाद याद, {b} दिन बाद एडमिन, {c} दिन बाद हेड क्वार्टर।', 'काम झाले नाही: {a} दिवसांनी आठवण, {b} दिवसांनी ॲडमिन, {c} दिवसांनी हेड क्वार्टर.'],
   auto_quote_t: ['Quotation expiry', 'कोटेशन समाप्ति', 'कोटेशन मुदत'],
   auto_quote: ['A sent quotation is valid for {n} days; after that Sales is asked to make a new one.', 'भेजा कोटेशन {n} दिन मान्य; उसके बाद सेल्स से नया बनाने को कहा जाता है।', 'पाठवलेले कोटेशन {n} दिवस वैध; त्यानंतर सेल्सला नवीन करायला सांगितले जाते.'],
   auto_po_t: ['Supplier dispatch', 'सप्लायर से भेजना', 'पुरवठादाराकडून पाठवणे'],
@@ -1452,7 +1454,7 @@ const L = {
   what_day_closed: ['The day is closed. {n} items go to tomorrow.', 'दिन बंद हुआ। {n} काम कल पर गए।', 'दिवस बंद झाला. {n} कामे उद्यावर गेली.'],
   day_closed_by: ['Closed by {who} at {t} · {n} items rolled', '{who} ने {t} पर बंद किया · {n} काम आगे', '{who} यांनी {t} ला बंद केला · {n} कामे पुढे'],
   backup_title: ['Backup approver', 'बैकअप मंज़ूरीकर्ता', 'बॅकअप मंजूरकर्ता'],
-  s_backup_who: ['Who approves when the Owner or Admin is away?', 'मालिक या एडमिन न हों तो कौन मंज़ूरी देगा?', 'मालक किंवा ॲडमिन नसताना कोण मंजुरी देईल?'],
+  s_backup_who: ['Who approves when the Head Quarter or Admin is away?', 'हेड क्वार्टर या एडमिन न हों तो कौन मंज़ूरी देगा?', 'हेड क्वार्टर किंवा ॲडमिन नसताना कोण मंजुरी देईल?'],
   s_backup_when: ['For which days?', 'किन दिनों के लिए?', 'कोणत्या दिवसांसाठी?'],
   backup_note: ['They see the office queue and can give second approvals. They can never approve their own request. Up to 31 days.', 'वे ऑफ़िस की सूची देखते हैं और दूसरी मंज़ूरी दे सकते हैं। अपना अनुरोध कभी मंज़ूर नहीं कर सकते। 31 दिन तक।', 'त्यांना ऑफिसची यादी दिसते आणि ते दुसरी मंजुरी देऊ शकतात. स्वतःची विनंती कधीही मंजूर करू शकत नाहीत. 31 दिवसांपर्यंत.'],
   backup_from: ['From', 'से', 'पासून'],
@@ -1477,7 +1479,7 @@ const L = {
   ev_LIFT_QR_SET: ['Lift QR label changed', 'लिफ्ट QR नाम बदला', 'लिफ्ट QR नाव बदलले'],
   tk_sla_breach: ['A ticket passed its time limit', 'टिकट समय-सीमा पार कर गया', 'तिकिटाने वेळमर्यादा ओलांडली'],
   rg_tickets: ['Ticket time limits', 'टिकट समय-सीमा', 'तिकीट वेळमर्यादा'],
-  rg_tickets_d: ['Hours to fix a ticket, by how serious it is (sample numbers — the Owner decides). A person trapped has no published target: the rescue line and 112 come first.', 'गंभीरता के अनुसार टिकट ठीक करने के घंटे (नमूना संख्याएँ — मालिक तय करें)। फँसे व्यक्ति का कोई घोषित लक्ष्य नहीं: पहले रेस्क्यू लाइन और 112।', 'गंभीरतेनुसार तिकीट दुरुस्त करण्याचे तास (नमुना आकडे — मालक ठरवतात). अडकलेल्या व्यक्तीसाठी जाहीर लक्ष्य नाही: आधी रेस्क्यू लाइन आणि 112.'],
+  rg_tickets_d: ['Hours to fix a ticket, by how serious it is (sample numbers — the Head Quarter decides). A person trapped has no published target: the rescue line and 112 come first.', 'गंभीरता के अनुसार टिकट ठीक करने के घंटे (नमूना संख्याएँ — हेड क्वार्टर तय करें)। फँसे व्यक्ति का कोई घोषित लक्ष्य नहीं: पहले रेस्क्यू लाइन और 112।', 'गंभीरतेनुसार तिकीट दुरुस्त करण्याचे तास (नमुना आकडे — हेड क्वार्टर ठरवतात). अडकलेल्या व्यक्तीसाठी जाहीर लक्ष्य नाही: आधी रेस्क्यू लाइन आणि 112.'],
   cfg_slaUnsafe: ['Hours to fix: unsafe to use', 'ठीक करने के घंटे: इस्तेमाल असुरक्षित', 'दुरुस्तीचे तास: वापर असुरक्षित'],
   cfg_slaBreakdown: ['Hours to fix: lift stopped', 'ठीक करने के घंटे: लिफ्ट बंद', 'दुरुस्तीचे तास: लिफ्ट बंद'],
   cfg_slaRepeat: ['Hours to fix: fault came back', 'ठीक करने के घंटे: खराबी दोबारा', 'दुरुस्तीचे तास: बिघाड पुन्हा'],
@@ -1763,7 +1765,7 @@ const L = {
   stat_pass: ['Passed', 'पास', 'पास'],
   stat_fail: ['Not passed — fixes needed', 'पास नहीं — सुधार चाहिए', 'पास नाही — दुरुस्ती हवी'],
   stat_fixes: ['What the Inspector asked to fix', 'इंस्पेक्टर ने क्या ठीक करने को कहा', 'निरीक्षकाने काय दुरुस्त करायला सांगितले'],
-  stat_holder_note: ['Who holds the licence (AIEC, the partner company or the building) is an Owner decision with a lawyer.', 'लाइसेंस किसके नाम (AIEC, पार्टनर कंपनी या बिल्डिंग) यह मालिक वकील के साथ तय करें।', 'परवाना कोणाच्या नावे (AIEC, भागीदार कंपनी की इमारत) हे मालकाने वकिलासोबत ठरवावे.'],
+  stat_holder_note: ['Who holds the licence (AIEC, the partner company or the building) is an Head Quarter decision with a lawyer.', 'लाइसेंस किसके नाम (AIEC, पार्टनर कंपनी या बिल्डिंग) यह हेड क्वार्टर वकील के साथ तय करें।', 'परवाना कोणाच्या नावे (AIEC, भागीदार कंपनी की इमारत) हे हेड क्वार्टरने वकिलासोबत ठरवावे.'],
   what_stat_saved: ['Record saved.', 'रिकॉर्ड सेव।', 'नोंद जतन.'],
   hold_put: ['Put on hold', 'होल्ड पर रखें', 'होल्डवर ठेवा'],
   hold_ask: ['Ask to put on hold', 'होल्ड के लिए कहें', 'होल्डसाठी विनंती करा'],
@@ -1794,7 +1796,7 @@ const L = {
   dispute_on: ['Dispute with the customer', 'ग्राहक से विवाद', 'ग्राहकाशी वाद'],
   s_dispute: ['What is the dispute about?', 'विवाद किस बारे में है?', 'वाद कशाबद्दल आहे?'],
   dispute_note: ['Pay already confirmed for workers keeps going during a dispute.', 'विवाद के दौरान कर्मचारियों का पक्का भुगतान चलता रहता है।', 'वादाच्या काळात कामगारांचे निश्चित पैसे चालू राहतात.'],
-  what_dispute_set: ['Dispute marked. The Owner sees it until it is settled.', 'विवाद दर्ज। सुलझने तक मालिक इसे देखेगा।', 'वाद नोंदवला. मिटेपर्यंत मालकाला दिसेल.'],
+  what_dispute_set: ['Dispute marked. The Head Quarter sees it until it is settled.', 'विवाद दर्ज। सुलझने तक हेड क्वार्टर इसे देखेगा।', 'वाद नोंदवला. मिटेपर्यंत हेड क्वार्टरला दिसेल.'],
   s_dispute_clear: ['How was it settled?', 'कैसे सुलझा?', 'कसा मिटला?'],
   what_dispute_cleared: ['Dispute settled.', 'विवाद सुलझा।', 'वाद मिटला.'],
   contact_masked: ['Customer contact details are kept by AIEC. Talk to the customer through the project chat or the AIEC office.', 'ग्राहक के संपर्क विवरण AIEC के पास रहते हैं। ग्राहक से प्रोजेक्ट चैट या AIEC ऑफ़िस के ज़रिए बात करें।', 'ग्राहकाचे संपर्क तपशील AIEC कडे राहतात. ग्राहकाशी प्रकल्प चॅट किंवा AIEC ऑफिसमार्फत बोला.'],
@@ -1912,7 +1914,7 @@ const L = {
   sos_saved: ['SOS saved with your location. Now call for help.', 'आपकी जगह के साथ SOS सेव हुआ। अब मदद के लिए कॉल करें।', 'तुमच्या ठिकाणासह SOS जतन झाले. आता मदतीसाठी फोन करा.'],
   sos_call_company: ['Call company rescue', 'कंपनी बचाव को कॉल करें', 'कंपनी बचावला फोन करा'],
   sos_call_112: ['Emergency', 'आपातकाल', 'आणीबाणी'],
-  sos_no_number: ['The Owner has not set a company rescue number yet (Business rules → Site safety). Call 112.', 'मालिक ने अभी कंपनी बचाव नंबर नहीं डाला (व्यवसाय नियम → साइट सुरक्षा)। 112 पर कॉल करें।', 'मालकाने अजून कंपनी बचाव क्रमांक टाकलेला नाही (व्यवसाय नियम → साइट सुरक्षा). 112 ला फोन करा.'],
+  sos_no_number: ['The Head Quarter has not set a company rescue number yet (Business rules → Site safety). Call 112.', 'हेड क्वार्टर ने अभी कंपनी बचाव नंबर नहीं डाला (व्यवसाय नियम → साइट सुरक्षा)। 112 पर कॉल करें।', 'हेड क्वार्टरने अजून कंपनी बचाव क्रमांक टाकलेला नाही (व्यवसाय नियम → साइट सुरक्षा). 112 ला फोन करा.'],
   sos_sms: ['Send my location by SMS', 'मेरी जगह SMS से भेजें', 'माझे ठिकाण SMS ने पाठवा'],
   sos_limit: ['The office sees this SOS on their phone only after files are shared. Always call.', 'ऑफ़िस यह SOS अपने फ़ोन पर फ़ाइल शेयर होने के बाद ही देखता है। हमेशा कॉल करें।', 'फाइल शेअर झाल्यावरच ऑफिसला हे SOS त्यांच्या फोनवर दिसते. नेहमी फोन करा.'],
   sos_hold: ['Press and hold the SOS button for 1 second.', 'SOS बटन 1 सेकंड दबाकर रखें।', 'SOS बटण 1 सेकंद दाबून ठेवा.'],
@@ -2098,7 +2100,7 @@ const L = {
   see_owner: ['All projects, money, margins, people and history.', 'सारे प्रोजेक्ट, पैसा, मार्जिन, लोग और इतिहास।', 'सर्व प्रकल्प, पैसे, मार्जिन, लोक आणि इतिहास.'],
   see_admin: ['All projects, money, margins, people and history.', 'सारे प्रोजेक्ट, पैसा, मार्जिन, लोग और इतिहास।', 'सर्व प्रकल्प, पैसे, मार्जिन, लोक आणि इतिहास.'],
   see_field: ['Only the sites you added or helped with.', 'सिर्फ़ आपकी जोड़ी या मदद की गई साइटें।', 'फक्त तुम्ही जोडलेल्या किंवा मदत केलेल्या साइट.'],
-  see_sales: ['New unassigned leads and the projects given to you, with prices and margins.', 'बिना मालिक की नई लीड और आपको दिए गए प्रोजेक्ट, कीमत और मार्जिन के साथ।', 'कोणालाही न दिलेल्या नवीन लीड आणि तुम्हाला दिलेले प्रकल्प, किंमत आणि मार्जिनसह.'],
+  see_sales: ['New unassigned leads and the projects given to you, with prices and margins.', 'बिना हेड क्वार्टर की नई लीड और आपको दिए गए प्रोजेक्ट, कीमत और मार्जिन के साथ।', 'कोणालाही न दिलेल्या नवीन लीड आणि तुम्हाला दिलेले प्रकल्प, किंमत आणि मार्जिनसह.'],
   see_finance: ['All projects and payments. Not internal margins.', 'सारे प्रोजेक्ट और भुगतान। अंदरूनी मार्जिन नहीं।', 'सर्व प्रकल्प आणि पेमेंट. अंतर्गत मार्जिन नाही.'],
   see_qc: ['Projects from site preparation onward.', 'साइट तैयारी से आगे के प्रोजेक्ट।', 'साइट तयारीपासून पुढचे प्रकल्प.'],
   see_supplier: ['Only orders given to you. Not customer phone numbers or prices.', 'सिर्फ़ आपको दिए ऑर्डर। ग्राहक फ़ोन या कीमत नहीं।', 'फक्त तुम्हाला दिलेल्या ऑर्डर. ग्राहकाचा फोन किंवा किंमत नाही.'],
@@ -2121,9 +2123,9 @@ const L = {
   ab_sop: ['Checklists and steps', 'चेकलिस्ट और चरण', 'तपासयाद्या आणि पायऱ्या'],
   ab_sop_d: ['All QC checklists and installation steps are templates. A qualified lift engineer must approve them against the Maharashtra Lifts Act and rules.', 'सारी QC चेकलिस्ट और इंस्टॉलेशन चरण नमूने हैं। योग्य लिफ्ट इंजीनियर महाराष्ट्र लिफ्ट अधिनियम और नियमों से इन्हें मंज़ूर करें।', 'सर्व QC तपासयाद्या आणि इन्स्टॉलेशन पायऱ्या नमुने आहेत. पात्र लिफ्ट अभियंत्याने महाराष्ट्र लिफ्ट अधिनियम आणि नियमांनुसार त्या मंजूर कराव्यात.'],
   ab_rules: ['Business rules', 'व्यापार नियम', 'व्यवसाय नियम'],
-  ab_rules_d: ['Margins, token amount, 90/10 payments, duplicate-lead commission and the 14-day target are proposals until the Owner approves them in Business rules.', 'मार्जिन, टोकन रकम, 90/10 भुगतान, दोहरी लीड कमीशन और 14 दिन का लक्ष्य तब तक प्रस्ताव हैं जब तक मालिक व्यापार नियमों में मंज़ूर न करें।', 'मार्जिन, टोकन रक्कम, 90/10 पेमेंट, दुहेरी लीड कमिशन आणि 14 दिवसांचे लक्ष्य हे मालक व्यवसाय नियमांत मंजूर करेपर्यंत प्रस्ताव आहेत.'],
+  ab_rules_d: ['Margins, token amount, 90/10 payments, duplicate-lead commission and the 14-day target are proposals until the Head Quarter approves them in Business rules.', 'मार्जिन, टोकन रकम, 90/10 भुगतान, दोहरी लीड कमीशन और 14 दिन का लक्ष्य तब तक प्रस्ताव हैं जब तक हेड क्वार्टर व्यापार नियमों में मंज़ूर न करें।', 'मार्जिन, टोकन रक्कम, 90/10 पेमेंट, दुहेरी लीड कमिशन आणि 14 दिवसांचे लक्ष्य हे हेड क्वार्टर व्यवसाय नियमांत मंजूर करेपर्यंत प्रस्ताव आहेत.'],
   ab_keep: ['How long data is kept', 'डेटा कितने समय रखा जाता है', 'डेटा किती काळ ठेवला जातो'],
-  ab_keep_d: ['Until the Owner deletes it. The Owner must set a keep-and-delete policy that follows the Digital Personal Data Protection Act, 2023.', 'जब तक मालिक न मिटाएँ। मालिक को डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 के अनुसार नीति तय करनी होगी।', 'मालक काढेपर्यंत. मालकाने डिजिटल वैयक्तिक डेटा संरक्षण अधिनियम, 2023 नुसार धोरण ठरवावे.'],
+  ab_keep_d: ['Until the Head Quarter deletes it. The Head Quarter must set a keep-and-delete policy that follows the Digital Personal Data Protection Act, 2023.', 'जब तक हेड क्वार्टर न मिटाएँ। हेड क्वार्टर को डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 के अनुसार नीति तय करनी होगी।', 'हेड क्वार्टर काढेपर्यंत. हेड क्वार्टरने डिजिटल वैयक्तिक डेटा संरक्षण अधिनियम, 2023 नुसार धोरण ठरवावे.'],
 
   /* users */
   add_person: ['Add a person', 'व्यक्ति जोड़ें', 'व्यक्ती जोडा'],
@@ -2139,20 +2141,20 @@ const L = {
   customer_add_note: ['Customers are added from their project (Give customer app access).', 'ग्राहक उनके प्रोजेक्ट से जोड़े जाते हैं (ग्राहक को ऐप लॉगिन दें)।', 'ग्राहक त्यांच्या प्रकल्पातून जोडले जातात (ग्राहकाला ॲप लॉगिन द्या).'],
 
   /* business rules */
-  s_rules: ['These numbers are proposals until the Owner approves them. Changing a number needs approval again.', 'ये संख्याएँ मालिक की मंज़ूरी तक प्रस्ताव हैं। संख्या बदलने पर फिर मंज़ूरी चाहिए।', 'हे आकडे मालकाच्या मंजुरीपर्यंत प्रस्ताव आहेत. आकडा बदलल्यास पुन्हा मंजुरी हवी.'],
-  rule_approved: ['Approved by Owner', 'मालिक द्वारा मंज़ूर', 'मालकाने मंजूर'],
+  s_rules: ['These numbers are proposals until the Head Quarter approves them. Changing a number needs approval again.', 'ये संख्याएँ हेड क्वार्टर की मंज़ूरी तक प्रस्ताव हैं। संख्या बदलने पर फिर मंज़ूरी चाहिए।', 'हे आकडे हेड क्वार्टरच्या मंजुरीपर्यंत प्रस्ताव आहेत. आकडा बदलल्यास पुन्हा मंजुरी हवी.'],
+  rule_approved: ['Approved by Head Quarter', 'हेड क्वार्टर द्वारा मंज़ूर', 'हेड क्वार्टरने मंजूर'],
   rule_proposed: ['Proposed — not approved', 'प्रस्तावित — मंज़ूर नहीं', 'प्रस्तावित — मंजूर नाही'],
   approve_rule: ['Approve this rule', 'यह नियम मंज़ूर करें', 'हा नियम मंजूर करा'],
   rules_saved: ['{n} numbers saved. Approve the rule again.', '{n} संख्याएँ सेव हुईं। नियम फिर मंज़ूर करें।', '{n} आकडे जतन झाले. नियम पुन्हा मंजूर करा.'],
-  rules_owner_only: ['Only the Owner can change or approve business rules.', 'सिर्फ़ मालिक व्यापार नियम बदल या मंज़ूर कर सकते हैं।', 'फक्त मालक व्यवसाय नियम बदलू किंवा मंजूर करू शकतात.'],
+  rules_owner_only: ['Only the Head Quarter can change or approve business rules.', 'सिर्फ़ हेड क्वार्टर व्यापार नियम बदल या मंज़ूर कर सकते हैं।', 'फक्त हेड क्वार्टर व्यवसाय नियम बदलू किंवा मंजूर करू शकतात.'],
   rg_pricing: ['Prices (sample numbers)', 'कीमतें (नमूना संख्याएँ)', 'किमती (नमुना आकडे)'],
-  rg_pricing_d: ['Cost of each part in ₹. These are sample numbers — the Owner must enter real costs.', 'हर हिस्से की लागत ₹ में। ये नमूना संख्याएँ हैं — मालिक असली लागत डालें।', 'प्रत्येक भागाचा खर्च ₹ मध्ये. हे नमुना आकडे आहेत — मालकाने खरा खर्च टाकावा.'],
+  rg_pricing_d: ['Cost of each part in ₹. These are sample numbers — the Head Quarter must enter real costs.', 'हर हिस्से की लागत ₹ में। ये नमूना संख्याएँ हैं — हेड क्वार्टर असली लागत डालें।', 'प्रत्येक भागाचा खर्च ₹ मध्ये. हे नमुना आकडे आहेत — हेड क्वार्टरने खरा खर्च टाकावा.'],
   rg_margins: ['Margin and discount limits', 'मार्जिन और छूट की सीमा', 'मार्जिन आणि सवलत मर्यादा'],
-  rg_margins_d: ['Start margin 60%, Sales may give up to 30% discount, never below 20% margin without Owner approval.', 'शुरुआती मार्जिन 60%, सेल्स 30% तक छूट दे सकता है, मालिक की मंज़ूरी बिना 20% से कम मार्जिन नहीं।', 'सुरुवातीचे मार्जिन 60%, विक्री 30% पर्यंत सवलत देऊ शकते, मालकाच्या मंजुरीशिवाय 20% पेक्षा कमी मार्जिन नाही.'],
+  rg_margins_d: ['Start margin 60%, Sales may give up to 30% discount, never below 20% margin without Head Quarter approval.', 'शुरुआती मार्जिन 60%, सेल्स 30% तक छूट दे सकता है, हेड क्वार्टर की मंज़ूरी बिना 20% से कम मार्जिन नहीं।', 'सुरुवातीचे मार्जिन 60%, विक्री 30% पर्यंत सवलत देऊ शकते, हेड क्वार्टरच्या मंजुरीशिवाय 20% पेक्षा कमी मार्जिन नाही.'],
   rg_token: ['Token payment', 'टोकन भुगतान', 'टोकन पेमेंट'],
   rg_token_d: ['Amount paid after signing. Finance must confirm accounting and refund rules.', 'साइन के बाद दी जाने वाली रकम। अकाउंट्स हिसाब और रिफ़ंड नियम पक्के करें।', 'सहीनंतर द्यायची रक्कम. हिशेब विभागाने लेखा आणि परतावा नियम निश्चित करावेत.'],
   rg_milestones: ['Payment milestones', 'भुगतान के पड़ाव', 'पेमेंटचे टप्पे'],
-  rg_milestones_d: ['Token credited to the material payment (0) or paid on top (1); % of total due when material arrives (including the token when credited); optional cabin payment % due before the cabin is fitted (0 = no cabin payment); the rest at handover. Needs owner, finance, supplier and legal approval.', 'टोकन सामान भुगतान में जोड़ा (0) या अलग से (1); सामान पहुँचने पर कुल का % (जोड़ने पर टोकन सहित); वैकल्पिक केबिन भुगतान % जो केबिन लगने से पहले (0 = नहीं); बाकी हैंडओवर पर। मालिक, अकाउंट्स, सप्लायर और कानूनी मंज़ूरी चाहिए।', 'टोकन साहित्य पैशांत जमा (0) किंवा वेगळा (1); साहित्य पोहोचल्यावर एकूणचे % (जमा केल्यास टोकनसह); पर्यायी केबिन पैसे % केबिन बसवण्यापूर्वी (0 = नाही); उरलेले हस्तांतरणावेळी. मालक, हिशेब, पुरवठादार आणि कायदेशीर मंजुरी हवी.'],
+  rg_milestones_d: ['Token credited to the material payment (0) or paid on top (1); % of total due when material arrives (including the token when credited); optional cabin payment % due before the cabin is fitted (0 = no cabin payment); the rest at handover. Needs Head Quarter, finance, supplier and legal approval.', 'टोकन सामान भुगतान में जोड़ा (0) या अलग से (1); सामान पहुँचने पर कुल का % (जोड़ने पर टोकन सहित); वैकल्पिक केबिन भुगतान % जो केबिन लगने से पहले (0 = नहीं); बाकी हैंडओवर पर। हेड क्वार्टर, अकाउंट्स, सप्लायर और कानूनी मंज़ूरी चाहिए।', 'टोकन साहित्य पैशांत जमा (0) किंवा वेगळा (1); साहित्य पोहोचल्यावर एकूणचे % (जमा केल्यास टोकनसह); पर्यायी केबिन पैसे % केबिन बसवण्यापूर्वी (0 = नाही); उरलेले हस्तांतरणावेळी. हेड क्वार्टर, हिशेब, पुरवठादार आणि कायदेशीर मंजुरी हवी.'],
   rg_install: ['Installation target', 'इंस्टॉलेशन लक्ष्य', 'इन्स्टॉलेशन लक्ष्य'],
   rg_install_d: ['Planning target in days from material handover. Not a penalty.', 'सामान सौंपने से दिनों में योजना लक्ष्य। जुर्माना नहीं।', 'साहित्य सुपूर्द केल्यापासून दिवसांतील नियोजन लक्ष्य. दंड नाही.'],
   rg_service: ['Warranty & service', 'वारंटी और सर्विस', 'वॉरंटी आणि सर्व्हिस'],
@@ -2191,7 +2193,7 @@ const L = {
   last_shared: ['Last shared', 'आख़िरी बार शेयर', 'शेवटचे शेअर'],
   data_local_note: ['Your work is saved on this phone. To give it to the office, send a file (WhatsApp / email). The office loads it on their phone.', 'आपका काम इस फ़ोन पर सेव है। ऑफिस को देने के लिए फ़ाइल भेजें (व्हाट्सएप / ईमेल)। ऑफिस उसे अपने फ़ोन पर लोड करेगा।', 'तुमचे काम या फोनवर जतन आहे. ऑफिसला देण्यासाठी फाइल पाठवा (व्हॉट्सॲप / ईमेल). ऑफिस ती त्यांच्या फोनवर लोड करेल.'],
   exp_logins_office: ['Office logins only (safer)', 'केवल ऑफ़िस लॉगिन (ज़्यादा सुरक्षित)', 'फक्त ऑफिस लॉगिन (जास्त सुरक्षित)'],
-  exp_logins_office_d: ['For another Owner/Admin phone. Other people\'s PINs are removed.', 'दूसरे मालिक/एडमिन फ़ोन के लिए। बाकी लोगों के PIN हटाए जाते हैं।', 'दुसऱ्या मालक/ॲडमिन फोनसाठी. इतरांचे PIN काढले जातात.'],
+  exp_logins_office_d: ['For another Head Quarter/Admin phone. Other people\'s PINs are removed.', 'दूसरे हेड क्वार्टर/एडमिन फ़ोन के लिए। बाकी लोगों के PIN हटाए जाते हैं।', 'दुसऱ्या हेड क्वार्टर/ॲडमिन फोनसाठी. इतरांचे PIN काढले जातात.'],
   exp_logins_all: ['Include everyone\'s logins', 'सबके लॉगिन शामिल करें', 'सर्वांचे लॉगिन समाविष्ट करा'],
   exp_logins_all_d: ['Only for a full backup you keep safe.', 'केवल सुरक्षित रखी जाने वाली पूरी बैकअप फ़ाइल के लिए।', 'फक्त सुरक्षित ठेवायच्या पूर्ण बॅकअपसाठी.'],
   exp_logins_note: ['PINs are stored scrambled, but anyone with the file can try to guess them. Never send a full file on a group chat.', 'PIN छिपे रूप में रखे जाते हैं, पर फ़ाइल वाला कोई भी उन्हें अनुमान लगाने की कोशिश कर सकता है। पूरी फ़ाइल कभी ग्रुप चैट पर न भेजें।', 'PIN लपवलेल्या स्वरूपात ठेवले जातात, पण फाइल असलेला कोणीही ते ओळखण्याचा प्रयत्न करू शकतो. पूर्ण फाइल कधीही ग्रुप चॅटवर पाठवू नका.'],
@@ -2252,7 +2254,7 @@ const L = {
   delivery: ['Delivery', 'डिलीवरी', 'डिलिव्हरी'],
   delivery_text: ['Material is sent after site approval and drawings. Planning target: about {n} days of installation after material handover.', 'साइट मंज़ूरी और ड्रॉइंग के बाद सामान भेजा जाता है। योजना लक्ष्य: सामान सौंपने के बाद लगभग {n} दिन इंस्टॉलेशन।', 'साइट मंजुरी आणि ड्रॉइंगनंतर साहित्य पाठवले जाते. नियोजन लक्ष्य: साहित्य सुपूर्द केल्यानंतर सुमारे {n} दिवस इन्स्टॉलेशन.'],
   approval_status: ['Approval', 'मंज़ूरी', 'मंजुरी'],
-  doc_rules_proposed: ['Some prices or payment rules are still proposals and not yet approved by the Owner.', 'कुछ कीमतें या भुगतान नियम अभी प्रस्ताव हैं, मालिक ने मंज़ूर नहीं किए।', 'काही किमती किंवा पेमेंट नियम अजून प्रस्ताव आहेत, मालकाने मंजूर केलेले नाहीत.'],
+  doc_rules_proposed: ['Some prices or payment rules are still proposals and not yet approved by the Head Quarter.', 'कुछ कीमतें या भुगतान नियम अभी प्रस्ताव हैं, हेड क्वार्टर ने मंज़ूर नहीं किए।', 'काही किमती किंवा पेमेंट नियम अजून प्रस्ताव आहेत, हेड क्वार्टरने मंजूर केलेले नाहीत.'],
   ag_parties: ['This agreement is between {company} and {name} for a lift at {site}.', 'यह करार {company} और {name} के बीच {site} पर लिफ्ट के लिए है।', 'हा करार {company} आणि {name} यांच्यात {site} येथील लिफ्टसाठी आहे.'],
   ak_lift: ['Lift: {stops} stops, {cap}, {type}, {fin}.', 'लिफ्ट: {stops} स्टॉप, {cap}, {type}, {fin}।', 'लिफ्ट: {stops} थांबे, {cap}, {type}, {fin}.'],
   ak_price: ['Total price: {total} including GST.', 'कुल कीमत: {total} GST सहित।', 'एकूण किंमत: {total} GST सह.'],
@@ -2427,7 +2429,7 @@ const L = {
   requested_by: ['Asked by', 'किसने माँगा', 'कोणी मागितले'],
   dual_note: ['A second person must agree before this important change happens. You cannot approve your own request.', 'इस ज़रूरी बदलाव से पहले दूसरे व्यक्ति की सहमति ज़रूरी है। आप अपना ही अनुरोध मंज़ूर नहीं कर सकते।', 'हा महत्त्वाचा बदल होण्यापूर्वी दुसऱ्या व्यक्तीची संमती आवश्यक आहे. तुम्ही स्वतःची विनंती मंजूर करू शकत नाही.'],
   s_approve2: ['Read the change. Approve it only if it is correct.', 'बदलाव पढ़ें। सही हो तभी मंज़ूर करें।', 'बदल वाचा. बरोबर असेल तरच मंजूर करा.'],
-  what_sent_second: ['This needs a second person. It was sent to the Owner/Admin for approval.', 'इसके लिए दूसरे व्यक्ति की ज़रूरत है। मंज़ूरी के लिए मालिक/एडमिन को भेजा गया।', 'यासाठी दुसरी व्यक्ती लागते. मंजुरीसाठी मालक/ॲडमिनकडे पाठवले.'],
+  what_sent_second: ['This needs a second person. It was sent to the Head Quarter/Admin for approval.', 'इसके लिए दूसरे व्यक्ति की ज़रूरत है। मंज़ूरी के लिए हेड क्वार्टर/एडमिन को भेजा गया।', 'यासाठी दुसरी व्यक्ती लागते. मंजुरीसाठी हेड क्वार्टर/ॲडमिनकडे पाठवले.'],
   what_second_ok: ['Approved. The change is now done.', 'मंज़ूर। बदलाव अब हो गया।', 'मंजूर. बदल आता झाला.'],
   what_second_no: ['Not approved. Nothing was changed.', 'मंज़ूर नहीं। कुछ नहीं बदला।', 'मंजूर नाही. काहीही बदलले नाही.'],
   err_needs_second: ['A second person must approve this.', 'इसे दूसरे व्यक्ति की मंज़ूरी चाहिए।', 'याला दुसऱ्या व्यक्तीची मंजुरी लागते.'],
@@ -2443,7 +2445,7 @@ const L = {
   w_area: ['Work area', 'काम का इलाका', 'कामाचा भाग'],
   w_avail: ['Available?', 'उपलब्ध?', 'उपलब्ध?'],
   w_skills: ['Skills', 'कौशल', 'कौशल्ये'],
-  w_privacy: ['Only you, the Owner and Admin can see this.', 'इसे केवल आप, मालिक और एडमिन देख सकते हैं।', 'हे फक्त तुम्ही, मालक आणि ॲडमिन पाहू शकतात.'],
+  w_privacy: ['Only you, the Head Quarter and Admin can see this.', 'इसे केवल आप, हेड क्वार्टर और एडमिन देख सकते हैं।', 'हे फक्त तुम्ही, हेड क्वार्टर आणि ॲडमिन पाहू शकतात.'],
   w_docs: ['Documents', 'कागज़ात', 'कागदपत्रे'],
   w_docs_note: ['Show the original documents to the Admin. The app stores only "checked / not checked", not the document itself.', 'मूल कागज़ात एडमिन को दिखाएँ। ऐप केवल "जाँचा / नहीं जाँचा" रखता है, कागज़ नहीं।', 'मूळ कागदपत्रे ॲडमिनला दाखवा. ॲप फक्त "तपासले / नाही तपासले" ठेवते, कागद नाही.'],
   doc_id: ['Identity card (Aadhaar)', 'पहचान पत्र (आधार)', 'ओळखपत्र (आधार)'],
@@ -2567,7 +2569,7 @@ const L = {
   earnings: ['Earnings', 'कमाई', 'कमाई'],
   s_earn: ['Your work and pay for each week. Each line comes from work saved in the app.', 'हर हफ़्ते का काम और भुगतान। हर लाइन ऐप में सेव काम से आती है।', 'प्रत्येक आठवड्याचे काम आणि पैसे. प्रत्येक ओळ ॲपमध्ये जतन केलेल्या कामातून येते.'],
   pay_rules: ['How pay is worked out', 'भुगतान कैसे बनता है', 'पैसे कसे ठरतात'],
-  pay_rules_note: ['Only installation steps saved with a photo or video count. The Owner/Admin approves each week; Finance pays and records the bank reference.', 'केवल फोटो या वीडियो के साथ सेव चरण गिने जाते हैं। मालिक/एडमिन हर हफ़्ता मंज़ूर करते हैं; अकाउंट्स भुगतान करके बैंक रेफ़रेंस दर्ज करता है।', 'फक्त फोटो किंवा व्हिडिओसह जतन पायऱ्या मोजल्या जातात. मालक/ॲडमिन प्रत्येक आठवडा मंजूर करतात; हिशेब विभाग पैसे देऊन बँक संदर्भ नोंदवतो.'],
+  pay_rules_note: ['Only installation steps saved with a photo or video count. The Head Quarter/Admin approves each week; Finance pays and records the bank reference.', 'केवल फोटो या वीडियो के साथ सेव चरण गिने जाते हैं। हेड क्वार्टर/एडमिन हर हफ़्ता मंज़ूर करते हैं; अकाउंट्स भुगतान करके बैंक रेफ़रेंस दर्ज करता है।', 'फक्त फोटो किंवा व्हिडिओसह जतन पायऱ्या मोजल्या जातात. हेड क्वार्टर/ॲडमिन प्रत्येक आठवडा मंजूर करतात; हिशेब विभाग पैसे देऊन बँक संदर्भ नोंदवतो.'],
   week: ['Week', 'हफ़्ता', 'आठवडा'],
   earn_step: ['Each installation step', 'हर इंस्टॉलेशन चरण', 'प्रत्येक बसवण्याची पायरी'],
   earn_qc_bonus: ['Final inspection passed first time', 'अंतिम जाँच पहली बार में पास', 'अंतिम तपासणी पहिल्याच वेळी पास'],
@@ -2589,7 +2591,7 @@ const L = {
   s_pay_paid: ['After paying from the bank, write the bank reference number.', 'बैंक से भुगतान के बाद बैंक रेफ़रेंस नंबर लिखें।', 'बँकेतून पैसे दिल्यानंतर बँक संदर्भ क्रमांक लिहा.'],
   what_pay_paid: ['The payment is recorded. The technician can see it.', 'भुगतान दर्ज हो गया। तकनीशियन इसे देख सकता है।', 'पेमेंट नोंदवले. तंत्रज्ञाला ते दिसेल.'],
   s_pay_dispute: ['Tell us what is wrong with this week\'s pay.', 'बताएँ कि इस हफ़्ते के भुगतान में क्या गलत है।', 'या आठवड्याच्या पैशांत काय चुकले ते सांगा.'],
-  what_pay_disputed: ['Your question is sent to the Owner/Admin.', 'आपका सवाल मालिक/एडमिन को भेजा गया।', 'तुमचा प्रश्न मालक/ॲडमिनकडे पाठवला.'],
+  what_pay_disputed: ['Your question is sent to the Head Quarter/Admin.', 'आपका सवाल हेड क्वार्टर/एडमिन को भेजा गया।', 'तुमचा प्रश्न हेड क्वार्टर/ॲडमिनकडे पाठवला.'],
   f_answer: ['Answer', 'जवाब', 'उत्तर'],
   pay_answer_note: ['The technician will see your answer. If pay must change, add it as an adjustment in a later week.', 'तकनीशियन आपका जवाब देखेगा। भुगतान बदलना हो तो अगले हफ़्ते में जोड़ें।', 'तंत्रज्ञाला तुमचे उत्तर दिसेल. पैसे बदलायचे असल्यास पुढच्या आठवड्यात जोडा.'],
   what_pay_answered: ['Your answer is saved and the question is closed.', 'आपका जवाब सेव हुआ और सवाल बंद हो गया।', 'तुमचे उत्तर जतन झाले आणि प्रश्न बंद झाला.'],
@@ -2638,7 +2640,7 @@ const L = {
   faq_q5: ['How do I send a WhatsApp message to a customer?', 'ग्राहक को व्हाट्सएप संदेश कैसे भेजें?', 'ग्राहकाला व्हॉट्सॲप संदेश कसा पाठवायचा?'],
   faq_a5: ['Open the project, tap WhatsApp, choose a ready message, tap Open WhatsApp and send it. Then come back and save.', 'प्रोजेक्ट खोलें, व्हाट्सएप दबाएँ, तैयार संदेश चुनें, व्हाट्सएप खोलें दबाकर भेजें। फिर वापस आकर सेव करें।', 'प्रकल्प उघडा, व्हॉट्सॲप दाबा, तयार संदेश निवडा, व्हॉट्सॲप उघडा दाबून पाठवा. मग परत येऊन जतन करा.'],
   faq_q6: ['When does a technician get paid?', 'तकनीशियन को भुगतान कब मिलता है?', 'तंत्रज्ञाला पैसे कधी मिळतात?'],
-  faq_a6: ['After each week ends, the Owner/Admin checks the work saved in the app and approves it. Finance then pays and records the bank reference. See Me → Earnings.', 'हर हफ़्ते के बाद मालिक/एडमिन ऐप में सेव काम जाँचकर मंज़ूर करते हैं। फिर अकाउंट्स भुगतान करके बैंक रेफ़रेंस दर्ज करता है। मैं → कमाई देखें।', 'प्रत्येक आठवड्यानंतर मालक/ॲडमिन ॲपमधील जतन काम तपासून मंजूर करतात. मग हिशेब विभाग पैसे देऊन बँक संदर्भ नोंदवतो. मी → कमाई पाहा.'],
+  faq_a6: ['After each week ends, the Head Quarter/Admin checks the work saved in the app and approves it. Finance then pays and records the bank reference. See Me → Earnings.', 'हर हफ़्ते के बाद हेड क्वार्टर/एडमिन ऐप में सेव काम जाँचकर मंज़ूर करते हैं। फिर अकाउंट्स भुगतान करके बैंक रेफ़रेंस दर्ज करता है। मैं → कमाई देखें।', 'प्रत्येक आठवड्यानंतर हेड क्वार्टर/ॲडमिन ॲपमधील जतन काम तपासून मंजूर करतात. मग हिशेब विभाग पैसे देऊन बँक संदर्भ नोंदवतो. मी → कमाई पाहा.'],
   faq_q7: ['How does a customer report a lift problem?', 'ग्राहक लिफ्ट की समस्या कैसे बताए?', 'ग्राहकाने लिफ्टची समस्या कशी कळवावी?'],
   faq_a7: ['On the home screen tap Report a problem, choose the kind of problem, and speak or type it. The office assigns a person.', 'होम स्क्रीन पर समस्या बताएँ दबाएँ, समस्या का प्रकार चुनें और बोलें या लिखें। ऑफ़िस एक व्यक्ति तय करता है।', 'होम स्क्रीनवर समस्या कळवा दाबा, समस्येचा प्रकार निवडा आणि बोला किंवा लिहा. ऑफिस एक व्यक्ती ठरवते.'],
   faq_q8: ['What is the good work board?', 'अच्छे काम की सूची क्या है?', 'चांगल्या कामाची यादी म्हणजे काय?'],
@@ -2669,7 +2671,7 @@ const L = {
 
   /* ---------- business rules ---------- */
   rg_control: ['Control and checks', 'नियंत्रण और जाँच', 'नियंत्रण आणि तपासणी'],
-  rg_control_d: ['Escalation ladder (reminder → Admin → Owner) and days to finish onboarding; two-person approval for risky changes (1 = on); only fully onboarded technicians get jobs (1 = on).', 'एस्केलेशन सीढ़ी (याद → एडमिन → मालिक) और ऑनबोर्डिंग के दिन; जोखिम वाले बदलाव के लिए दो व्यक्तियों की मंज़ूरी (1 = चालू); केवल पूरी तरह तैयार तकनीशियन को काम (1 = चालू)।', 'एस्कलेशन शिडी (आठवण → ॲडमिन → मालक) आणि ऑनबोर्डिंगचे दिवस; धोकादायक बदलासाठी दोन व्यक्तींची मंजुरी (1 = चालू); फक्त पूर्ण तयार तंत्रज्ञाला काम (1 = चालू).'],
+  rg_control_d: ['Escalation ladder (reminder → Admin → Head Quarter) and days to finish onboarding; two-person approval for risky changes (1 = on); only fully onboarded technicians get jobs (1 = on).', 'एस्केलेशन सीढ़ी (याद → एडमिन → हेड क्वार्टर) और ऑनबोर्डिंग के दिन; जोखिम वाले बदलाव के लिए दो व्यक्तियों की मंज़ूरी (1 = चालू); केवल पूरी तरह तैयार तकनीशियन को काम (1 = चालू)।', 'एस्कलेशन शिडी (आठवण → ॲडमिन → हेड क्वार्टर) आणि ऑनबोर्डिंगचे दिवस; धोकादायक बदलासाठी दोन व्यक्तींची मंजुरी (1 = चालू); फक्त पूर्ण तयार तंत्रज्ञाला काम (1 = चालू).'],
   rg_techpay: ['Technician pay', 'तकनीशियन भुगतान', 'तंत्रज्ञाचे पैसे'],
   rg_techpay_d: ['Pay per installation step with proof, bonus for passing final inspection first time, and pay per service visit. Check with Finance and labour rules.', 'सबूत वाले हर इंस्टॉलेशन चरण का भुगतान, पहली बार अंतिम जाँच पास का बोनस और हर सर्विस विज़िट का भुगतान। अकाउंट्स और श्रम नियमों से जाँचें।', 'पुराव्यासह प्रत्येक बसवण्याच्या पायरीचे पैसे, पहिल्याच वेळी अंतिम तपासणी पासचा बोनस आणि प्रत्येक सर्व्हिस भेटीचे पैसे. हिशेब विभाग आणि कामगार नियमांशी तपासा.'],
   rg_amc: ['Maintenance contract (AMC)', 'रखरखाव अनुबंध (AMC)', 'देखभाल करार (AMC)'],
@@ -2714,7 +2716,7 @@ const L = {
   onb_who_person: ['Worker', 'कर्मचारी', 'कर्मचारी'],
   onb_waiting: ['Started {n} days ago and not finished.', '{n} दिन पहले शुरू हुआ, अभी पूरा नहीं।', '{n} दिवसांपूर्वी सुरू झाले, अजून पूर्ण नाही.'],
   onb_next: ['Do my next step', 'मेरा अगला कदम करें', 'माझी पुढची पायरी करा'],
-  onb_note: ['These steps start by themselves when a person is added. Each person sees their own steps on the home screen; the office gets a task to check documents. If it is not finished in time, it goes to the Admin and then the Owner.', 'व्यक्ति जोड़ते ही ये कदम अपने आप शुरू होते हैं। हर व्यक्ति को होम स्क्रीन पर अपने कदम दिखते हैं; ऑफ़िस को कागज़ जाँचने का काम मिलता है। समय पर पूरा न हो तो पहले एडमिन और फिर मालिक को जाता है।', 'व्यक्ती जोडताच या पायऱ्या आपोआप सुरू होतात. प्रत्येकाला होम स्क्रीनवर स्वतःच्या पायऱ्या दिसतात; ऑफिसला कागदपत्रे तपासण्याचे काम मिळते. वेळेत पूर्ण न झाल्यास आधी ॲडमिन आणि मग मालकाकडे जाते.'],
+  onb_note: ['These steps start by themselves when a person is added. Each person sees their own steps on the home screen; the office gets a task to check documents. If it is not finished in time, it goes to the Admin and then the Head Quarter.', 'व्यक्ति जोड़ते ही ये कदम अपने आप शुरू होते हैं। हर व्यक्ति को होम स्क्रीन पर अपने कदम दिखते हैं; ऑफ़िस को कागज़ जाँचने का काम मिलता है। समय पर पूरा न हो तो पहले एडमिन और फिर हेड क्वार्टर को जाता है।', 'व्यक्ती जोडताच या पायऱ्या आपोआप सुरू होतात. प्रत्येकाला होम स्क्रीनवर स्वतःच्या पायऱ्या दिसतात; ऑफिसला कागदपत्रे तपासण्याचे काम मिळते. वेळेत पूर्ण न झाल्यास आधी ॲडमिन आणि मग हेड क्वार्टरकडे जाते.'],
   onb_started: ['Onboarding has started automatically: {n} steps. The person will see them after logging in.', 'ऑनबोर्डिंग अपने आप शुरू हो गया: {n} कदम। लॉगिन करने पर व्यक्ति को दिखेंगे।', 'ऑनबोर्डिंग आपोआप सुरू झाले: {n} पायऱ्या. लॉगिन केल्यावर व्यक्तीला दिसतील.'],
   tk_onb_profile: ['Fill in your profile', 'अपनी प्रोफ़ाइल भरें', 'तुमची प्रोफाइल भरा'],
   tk_check_docs: ['Check new worker\'s documents', 'नए कर्मचारी के कागज़ जाँचें', 'नवीन कर्मचाऱ्याची कागदपत्रे तपासा'],
@@ -2723,22 +2725,22 @@ const L = {
   /* ---------- escalation ladder ---------- */
   esc_title: ['Escalations', 'एस्केलेशन (ऊपर भेजा काम)', 'एस्कलेशन (वर पाठवलेले काम)'],
   s_escalations: ['Work that is waiting too long. The highest level is shown first.', 'बहुत देर से रुका काम। सबसे ऊँचा स्तर पहले दिखता है।', 'खूप वेळ थांबलेले काम. सर्वात उच्च स्तर आधी दिसतो.'],
-  esc_count: ['🔴 {a} with Owner · 🟠 {b} with Admin', '🔴 {a} मालिक के पास · 🟠 {b} एडमिन के पास', '🔴 {a} मालकाकडे · 🟠 {b} ॲडमिनकडे'],
+  esc_count: ['🔴 {a} with Head Quarter · 🟠 {b} with Admin', '🔴 {a} हेड क्वार्टर के पास · 🟠 {b} एडमिन के पास', '🔴 {a} हेड क्वार्टरकडे · 🟠 {b} ॲडमिनकडे'],
   esc_ladder: ['How escalation works', 'एस्केलेशन कैसे होता है', 'एस्कलेशन कसे होते'],
   esc_rule1: ['After {n} day(s): reminder to the person who must do it', '{n} दिन बाद: काम करने वाले व्यक्ति को याद दिलाना', '{n} दिवसांनी: काम करणाऱ्या व्यक्तीला आठवण'],
   esc_rule2: ['After {n} days: sent to the Admin', '{n} दिन बाद: एडमिन को भेजा जाता है', '{n} दिवसांनी: ॲडमिनकडे पाठवले जाते'],
-  esc_rule3: ['After {n} days, or if the Admin acted twice and it is still stuck: sent to the Owner', '{n} दिन बाद, या एडमिन के दो बार कदम उठाने पर भी अटका रहे तो: मालिक को भेजा जाता है', '{n} दिवसांनी, किंवा ॲडमिनने दोनदा कृती करूनही अडकलेले असल्यास: मालकाकडे पाठवले जाते'],
-  esc_rule4: ['New worker not ready after {n} days: Admin; after {m} days: Owner', 'नया कर्मचारी {n} दिन में तैयार नहीं: एडमिन; {m} दिन में: मालिक', 'नवीन कर्मचारी {n} दिवसांत तयार नाही: ॲडमिन; {m} दिवसांत: मालक'],
+  esc_rule3: ['After {n} days, or if the Admin acted twice and it is still stuck: sent to the Head Quarter', '{n} दिन बाद, या एडमिन के दो बार कदम उठाने पर भी अटका रहे तो: हेड क्वार्टर को भेजा जाता है', '{n} दिवसांनी, किंवा ॲडमिनने दोनदा कृती करूनही अडकलेले असल्यास: हेड क्वार्टरकडे पाठवले जाते'],
+  esc_rule4: ['New worker not ready after {n} days: Admin; after {m} days: Head Quarter', 'नया कर्मचारी {n} दिन में तैयार नहीं: एडमिन; {m} दिन में: हेड क्वार्टर', 'नवीन कर्मचारी {n} दिवसांत तयार नाही: ॲडमिन; {m} दिवसांत: हेड क्वार्टर'],
   esc_open: ['Needs action', 'कार्रवाई चाहिए', 'कृती हवी'],
   esc_none: ['Nothing is stuck. Well done!', 'कुछ भी अटका नहीं है। बढ़िया!', 'काहीही अडकलेले नाही. छान!'],
   esc_reminders: ['Reminders shown to workers', 'कर्मचारियों को दिखाई याद', 'कर्मचाऱ्यांना दाखवलेल्या आठवणी'],
   esc_recent: ['What the office did', 'ऑफ़िस ने क्या किया', 'ऑफिसने काय केले'],
   esc_lv: ['Level {n}', 'स्तर {n}', 'स्तर {n}'],
   esc_to_admin: ['Admin', 'एडमिन', 'ॲडमिन'],
-  esc_to_owner: ['Owner', 'मालिक', 'मालक'],
+  esc_to_owner: ['Head Quarter', 'हेड क्वार्टर', 'हेड क्वार्टर'],
   esc_l1: ['Reminder', 'याद दिलाना', 'आठवण'],
   esc_l2: ['Admin informed', 'एडमिन को बताया', 'ॲडमिनला कळवले'],
-  esc_l3: ['Owner informed', 'मालिक को बताया', 'मालकाला कळवले'],
+  esc_l3: ['Head Quarter informed', 'हेड क्वार्टर को बताया', 'हेड क्वार्टरला कळवले'],
   esc_who: ['Waiting for', 'किसका इंतज़ार', 'कोणाची वाट'],
   esc_days: ['Waiting', 'रुका हुआ', 'थांबलेले'],
   esc_prev: ['Last action', 'पिछली कार्रवाई', 'मागील कृती'],
@@ -2759,7 +2761,7 @@ const L = {
   next_esc: ['The person sees the work in their tasks with a reminder.', 'व्यक्ति को अपने कामों में याद के साथ काम दिखेगा।', 'व्यक्तीला त्यांच्या कामांत आठवणीसह काम दिसेल.'],
   ev_ESC_ACTED: ['Office acted on stuck work', 'अटके काम पर ऑफ़िस की कार्रवाई', 'अडकलेल्या कामावर ऑफिसची कृती'],
   cfg_remindDays: ['Days before a reminder to the person', 'व्यक्ति को याद दिलाने से पहले दिन', 'व्यक्तीला आठवण देण्यापूर्वी दिवस'],
-  cfg_escOwnerDays: ['Days before stuck work goes to the Owner', 'अटका काम मालिक को जाने से पहले दिन', 'अडकलेले काम मालकाकडे जाण्यापूर्वी दिवस'],
+  cfg_escOwnerDays: ['Days before stuck work goes to the Head Quarter', 'अटका काम हेड क्वार्टर को जाने से पहले दिन', 'अडकलेले काम हेड क्वार्टरकडे जाण्यापूर्वी दिवस'],
   cfg_onbDays: ['Days to finish onboarding', 'ऑनबोर्डिंग पूरा करने के दिन', 'ऑनबोर्डिंग पूर्ण करण्याचे दिवस'],
   /* ---------- notifications with sound ---------- */
   ntf_title: ['Notifications and sound', 'सूचना और आवाज़', 'सूचना आणि आवाज'],
@@ -2783,11 +2785,11 @@ const L = {
   ntf_test: ['Try the sounds', 'आवाज़ सुनकर देखें', 'आवाज ऐकून पाहा'],
   ntf_snd_task: ['New task — ding', 'नया काम — टन', 'नवीन काम — टिंग'],
   ntf_snd_urgent: ['Urgent / Admin — beeps', 'ज़रूरी / एडमिन — बीप', 'तातडीचे / ॲडमिन — बीप'],
-  ntf_snd_alarm: ['Escalated to Owner — siren', 'मालिक तक पहुँचा — सायरन', 'मालकापर्यंत पोहोचले — सायरन'],
+  ntf_snd_alarm: ['Escalated to Head Quarter — siren', 'हेड क्वार्टर तक पहुँचा — सायरन', 'हेड क्वार्टरपर्यंत पोहोचले — सायरन'],
   ntf_phone_test: ['Test phone notification', 'फ़ोन सूचना जाँचें', 'फोन सूचना तपासा'],
   ntf_phone_test_d: ['If you see this, phone notifications work.', 'यह दिख रहा है तो फ़ोन सूचनाएँ काम कर रही हैं।', 'हे दिसत असेल तर फोन सूचना चालतात.'],
   ntf_quiet: ['Quiet hours', 'शांत समय', 'शांत वेळ'],
-  ntf_quiet_d: ['No sound at night, except escalations to the Owner', 'रात में आवाज़ नहीं, मालिक तक पहुँचे काम को छोड़कर', 'रात्री आवाज नाही, मालकापर्यंत पोहोचलेले काम सोडून'],
+  ntf_quiet_d: ['No sound at night, except escalations to the Head Quarter', 'रात में आवाज़ नहीं, हेड क्वार्टर तक पहुँचे काम को छोड़कर', 'रात्री आवाज नाही, हेड क्वार्टरपर्यंत पोहोचलेले काम सोडून'],
   ntf_from: ['From', 'से', 'पासून'],
   ntf_to: ['To', 'तक', 'पर्यंत'],
   ntf_limits: ['Sound and messages work while the app is open or recently used. When the phone closes the app to save battery, alerts can be late. Instant alerts when the app is fully closed need a company server (push) or the Android app.', 'ऐप खुला हो या हाल में इस्तेमाल हुआ हो तब आवाज़ और संदेश चलते हैं। बैटरी बचाने के लिए फ़ोन ऐप बंद करे तो सूचना देर से आ सकती है। ऐप पूरी तरह बंद होने पर तुरंत सूचना के लिए कंपनी सर्वर (पुश) या Android ऐप चाहिए।', 'ॲप उघडे असताना किंवा नुकतेच वापरले असताना आवाज आणि संदेश चालतात. बॅटरी वाचवण्यासाठी फोनने ॲप बंद केल्यास सूचना उशिरा येऊ शकतात. ॲप पूर्ण बंद असताना लगेच सूचनेसाठी कंपनी सर्व्हर (पुश) किंवा Android ॲप लागते.'],
@@ -2812,7 +2814,7 @@ const L = {
   err_not_sampled: ['This step was not picked for a spot check.', 'यह चरण अचानक जाँच के लिए नहीं चुना गया।', 'ही पायरी अचानक तपासणीसाठी निवडली नाही.'],
   earn_repair: ['Repair', 'मरम्मत', 'दुरुस्ती'],
   cancel_project: ['Cancel project', 'प्रोजेक्ट रद्द करें', 'प्रकल्प रद्द करा'],
-  s_cancel: ['Why is this project cancelled? Only the Owner can do this.', 'यह प्रोजेक्ट क्यों रद्द हो रहा है? केवल मालिक कर सकता है।', 'हा प्रकल्प का रद्द होत आहे? फक्त मालक करू शकतो.'],
+  s_cancel: ['Why is this project cancelled? Only the Head Quarter can do this.', 'यह प्रोजेक्ट क्यों रद्द हो रहा है? केवल हेड क्वार्टर कर सकता है।', 'हा प्रकल्प का रद्द होत आहे? फक्त हेड क्वार्टर करू शकतो.'],
   cancel_note: ['Open tasks, job posts and problem tickets of this project will close. Nothing is deleted; the record stays.', 'इस प्रोजेक्ट के खुले काम, काम पोस्ट और समस्या टिकट बंद हो जाएँगे। कुछ मिटाया नहीं जाता; रिकॉर्ड रहता है।', 'या प्रकल्पाची खुली कामे, काम पोस्ट आणि समस्या तिकिटे बंद होतील. काहीही पुसले जात नाही; नोंद राहते.'],
   cancel_sure: ['Yes, cancel this project', 'हाँ, यह प्रोजेक्ट रद्द करें', 'हो, हा प्रकल्प रद्द करा'],
   refund_note: ['Payments were confirmed for this project. Finance must decide any refund outside the app.', 'इस प्रोजेक्ट के भुगतान पक्के हुए थे। रिफ़ंड का फ़ैसला अकाउंट्स ऐप के बाहर करेगा।', 'या प्रकल्पाची पेमेंट निश्चित झाली होती. परताव्याचा निर्णय हिशेब विभाग ॲपबाहेर घेईल.'],
@@ -2880,7 +2882,7 @@ const L = {
   strikes: ['Strikes', 'स्ट्राइक', 'स्ट्राइक'],
   strikes_n: ['{n} strikes', '{n} स्ट्राइक', '{n} स्ट्राइक'],
   strikes_none: ['No strikes. Keep it up!', 'कोई स्ट्राइक नहीं। ऐसे ही रहें!', 'एकही स्ट्राइक नाही. असेच चालू ठेवा!'],
-  strike_rules: ['Strikes come only from facts and end after {d} days. 2 strikes pause promotion, 3 mean crew work only and a meeting, 4 go to the Owner. You can appeal any strike.', 'स्ट्राइक केवल तथ्यों से आती है और {d} दिन बाद ख़त्म होती है। 2 पर प्रमोशन रुकता है, 3 पर केवल टीम में काम और मीटिंग, 4 पर मालिक तक। आप हर स्ट्राइक पर अपील कर सकते हैं।', 'स्ट्राइक फक्त तथ्यांवरून येते आणि {d} दिवसांनी संपते. 2 वर बढती थांबते, 3 वर फक्त टीममध्ये काम आणि बैठक, 4 वर मालकाकडे. तुम्ही प्रत्येक स्ट्राइकवर अपील करू शकता.'],
+  strike_rules: ['Strikes come only from facts and end after {d} days. 2 strikes pause promotion, 3 mean crew work only and a meeting, 4 go to the Head Quarter. You can appeal any strike.', 'स्ट्राइक केवल तथ्यों से आती है और {d} दिन बाद ख़त्म होती है। 2 पर प्रमोशन रुकता है, 3 पर केवल टीम में काम और मीटिंग, 4 पर हेड क्वार्टर तक। आप हर स्ट्राइक पर अपील कर सकते हैं।', 'स्ट्राइक फक्त तथ्यांवरून येते आणि {d} दिवसांनी संपते. 2 वर बढती थांबते, 3 वर फक्त टीममध्ये काम आणि बैठक, 4 वर हेड क्वार्टरकडे. तुम्ही प्रत्येक स्ट्राइकवर अपील करू शकता.'],
   sd_active: ['Counts now', 'अभी गिनी जा रही', 'सध्या मोजली जाते'],
   sd_appealed: ['Appeal sent', 'अपील भेजी', 'अपील पाठवले'],
   sd_expired: ['Ended', 'ख़त्म', 'संपली'],
@@ -2898,7 +2900,7 @@ const L = {
   sk_complaint: ['Customer complaint confirmed', 'ग्राहक की शिकायत पक्की', 'ग्राहकाची तक्रार निश्चित'],
   sk_spot: ['Spot check: photo or work not right', 'अचानक जाँच: फोटो या काम सही नहीं', 'अचानक तपासणी: फोटो किंवा काम योग्य नाही'],
   sk_low_rating: ['Low rating (1–2 stars)', 'कम रेटिंग (1–2 स्टार)', 'कमी रेटिंग (1–2 स्टार)'],
-  sk_escalated: ['Work stuck until the Owner had to act', 'काम इतना अटका कि मालिक को कदम उठाना पड़ा', 'काम इतके अडकले की मालकाला कृती करावी लागली'],
+  sk_escalated: ['Work stuck until the Head Quarter had to act', 'काम इतना अटका कि हेड क्वार्टर को कदम उठाना पड़ा', 'काम इतके अडकले की हेड क्वार्टरला कृती करावी लागली'],
   badges: ['Badges', 'बैज', 'बॅज'],
   badges_none: ['Do good work to earn your first badge.', 'पहला बैज पाने के लिए अच्छा काम करें।', 'पहिला बॅज मिळवण्यासाठी चांगले काम करा.'],
   b_first_job: ['First job done', 'पहला काम पूरा', 'पहिले काम पूर्ण'],
@@ -2939,7 +2941,7 @@ const L = {
   promote_to: ['Promote to {g}', '{g} बनाएँ', '{g} करा'],
   s_promote: ['{name} has met every target for {g}. Check and promote.', '{name} ने {g} के सारे लक्ष्य पूरे किए। जाँचें और प्रमोशन दें।', '{name} यांनी {g} ची सर्व लक्ष्ये पूर्ण केली. तपासा आणि बढती द्या.'],
   promote_not_ready: ['Not every target is met yet.', 'अभी सारे लक्ष्य पूरे नहीं हुए।', 'अजून सर्व लक्ष्ये पूर्ण नाहीत.'],
-  promote_qc_note: ['Only the Owner can make someone a QC Inspector. Their role changes to QC and they will never inspect a job they worked on.', 'केवल मालिक किसी को QC निरीक्षक बना सकता है। उनकी भूमिका QC हो जाएगी और वे अपने किए काम की जाँच कभी नहीं करेंगे।', 'फक्त मालक एखाद्याला QC निरीक्षक करू शकतो. त्यांची भूमिका QC होईल आणि ते स्वतः केलेल्या कामाची तपासणी कधीही करणार नाहीत.'],
+  promote_qc_note: ['Only the Head Quarter can make someone a QC Inspector. Their role changes to QC and they will never inspect a job they worked on.', 'केवल हेड क्वार्टर किसी को QC निरीक्षक बना सकता है। उनकी भूमिका QC हो जाएगी और वे अपने किए काम की जाँच कभी नहीं करेंगे।', 'फक्त हेड क्वार्टर एखाद्याला QC निरीक्षक करू शकतो. त्यांची भूमिका QC होईल आणि ते स्वतः केलेल्या कामाची तपासणी कधीही करणार नाहीत.'],
   what_promoted: ['{name} is now {g}. Congratulations!', '{name} अब {g} हैं। बधाई!', '{name} आता {g} आहेत. अभिनंदन!'],
   next_promoted: ['They will see the new level and pay rate in the app.', 'उन्हें ऐप में नया स्तर और भुगतान दर दिखेगी।', 'त्यांना ॲपमध्ये नवीन स्तर आणि पैसे दर दिसेल.'],
   demote: ['Move down a level', 'स्तर घटाएँ', 'स्तर कमी करा'],
@@ -3054,14 +3056,14 @@ const L = {
   tr_qc_l3: ['Never accept money or favours. Be fair and explain each correction so the installer can learn.', 'कभी पैसे या एहसान न लें। निष्पक्ष रहें और हर सुधार समझाएँ ताकि इंस्टॉलर सीख सके।', 'कधीही पैसे किंवा उपकार घेऊ नका. निष्पक्ष राहा आणि प्रत्येक दुरुस्ती समजावून सांगा म्हणजे इन्स्टॉलर शिकू शकेल.'],
   tr_qc_q1: ['Can you inspect a job you worked on?', 'क्या आप अपने किए काम की जाँच कर सकते हैं?', 'तुम्ही स्वतः केलेल्या कामाची तपासणी करू शकता का?'],
   tr_qc_q1_a: ['Yes, I know it best', 'हाँ, मैं इसे सबसे अच्छा जानता हूँ', 'हो, मला ते सर्वात चांगले माहीत आहे'],
-  tr_qc_q1_b: ['Yes, if the Owner is busy', 'हाँ, अगर मालिक व्यस्त है', 'हो, मालक व्यस्त असल्यास'],
+  tr_qc_q1_b: ['Yes, if the Head Quarter is busy', 'हाँ, अगर हेड क्वार्टर व्यस्त है', 'हो, हेड क्वार्टर व्यस्त असल्यास'],
   tr_qc_q1_c: ['No, never', 'नहीं, कभी नहीं', 'नाही, कधीच नाही'],
   tr_qc_q2: ['The lift fails because a part from the factory was faulty. What cause do you choose?', 'फ़ैक्टरी का एक हिस्सा खराब होने से लिफ्ट फेल हुई। आप कौन सा कारण चुनेंगे?', 'कारखान्यातील एक भाग खराब असल्याने लिफ्ट नापास झाली. तुम्ही कोणते कारण निवडाल?'],
   tr_qc_q2_a: ['Workmanship', 'काम की गलती', 'कामातील चूक'],
   tr_qc_q2_b: ['Faulty material', 'खराब सामान', 'खराब साहित्य'],
   tr_qc_q2_c: ['Site problem', 'साइट की समस्या', 'साइटची समस्या'],
   tr_qc_q3: ['The installer offers you money to pass the job. What do you do?', 'इंस्टॉलर काम पास करने के लिए पैसे देता है। आप क्या करेंगे?', 'काम पास करण्यासाठी इन्स्टॉलर पैसे देतो. तुम्ही काय कराल?'],
-  tr_qc_q3_a: ['Refuse and report it to the Owner', 'मना करें और मालिक को बताएँ', 'नकार द्या आणि मालकाला कळवा'],
+  tr_qc_q3_a: ['Refuse and report it to the Head Quarter', 'मना करें और हेड क्वार्टर को बताएँ', 'नकार द्या आणि हेड क्वार्टरला कळवा'],
   tr_qc_q3_b: ['Take it once', 'एक बार ले लें', 'एकदा घ्या'],
   tr_qc_q3_c: ['Pass the job without checking', 'बिना जाँचे पास कर दें', 'न तपासता पास करा'],
   /* ---------- job marketplace ---------- */
@@ -3473,7 +3475,7 @@ const KV = {
 
 /* ---------- domain constants ---------- */
 const ROLES = ['owner', 'admin', 'field', 'sales', 'finance', 'qc', 'supplier', 'partner', 'tech', 'customer'];
-const ROLE_ICON = { owner: '👑', admin: '🛡️', field: '🏍️', sales: '🤝', finance: '💰', qc: '🔍', supplier: '🏭', partner: '🏢', tech: '🔧', customer: '🏠', system: '⚙️' };
+const ROLE_ICON = { owner: '🏛️', admin: '🛡️', field: '🏍️', sales: '🤝', finance: '💰', qc: '🔍', supplier: '🏭', partner: '🏢', tech: '🔧', customer: '🏠', system: '⚙️' };
 const PHASES = [['lead', '📍'], ['sales', '🤝'], ['agree', '✍️'], ['site', '🏗️'], ['material', '🚚'], ['install', '🔧'], ['handover', '🔑']];
 const STAGES = {
   new: [0, '🆕'], returned: [0, '↩️'], accepted: [1, '✅'], contacted: [1, '📞'], requirements: [1, '📝'],
@@ -5678,6 +5680,9 @@ function mainNeed(P) { const n = needs(P); return n.find(x => !['resolve_blocker
    UI framework
    ===================================================================== */
 const LANGS = ['en', 'hi', 'mr'];
+/* the Head Quarter (owner of this app and company) */
+const APP_OWNER = 'MR PRASHANT VASANT WABLE';
+const hqCard = () => `<div class="card" style="border:2px solid var(--gold)"><div class="row"><span style="font-size:2rem">🏛️</span><div class="grow"><b>${t('r_owner')}</b><br><b style="font-size:1.15rem">${APP_OWNER}</b></div></div><p class="small muted" style="margin:6px 0 0">${t('hq_note')}</p></div>`;
 const LANG_NAME = { en: 'English', hi: 'हिंदी', mr: 'मराठी' };
 const LANG_SHORT = { en: 'EN', hi: 'हि', mr: 'म' };
 const SPEECH = { en: 'en-IN', hi: 'hi-IN', mr: 'mr-IN' };
@@ -6291,7 +6296,7 @@ function evGrid(ids) {
 function kv(rows) { return `<dl class="kv">${rows.filter(r => r && r[1] !== undefined && r[1] !== null && r[1] !== '').map(([k, v]) => `<dt>${esc(t(k))}</dt><dd>${v}</dd>`).join('')}</dl>`; }
 function ruleChip(group) {
   const a = S.config.approved[group];
-  return a ? `<span class="chip c-ok">✅ ${t('rg_' + group)}: ${t('rule_approved')}</span>` : `<span class="chip c-warn">⚠️ ${t('rg_' + group)}: ${t('rule_proposed')}</span>`;
+  return a ? `<span class="chip c-ok" style="white-space:normal">✅ ${t('rg_' + group)}: ${t('rule_approved')}</span>` : `<span class="chip c-warn" style="white-space:normal">⚠️ ${t('rg_' + group)}: ${t('rule_proposed')}</span>`;
 }
 
 /* ---------- wizard building blocks (read/write W.ctx) ---------- */
@@ -8203,6 +8208,7 @@ SCREENS.me = () => {
       + tile('nav2', 'leaders|', '🏆', 'leaderboard', staff) + tile('nav', 'templates', '💬', 'templates', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'helper', '🙋', 'helper'))}
     ${group('🏢', 'me_office', tile('nav', 'posts', '📣', 'posts_title', adm) + tile('nav', 'escalations', '⏫', 'esc_title', adm) + tile('nav', 'workers', '🪪', 'workers', adm) + tile('nav', 'users', '👥', 'users', adm)
       + tile('nav', 'rules', '📏', 'business_rules', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'audit', '🧾', 'audit_log', adm) + tile('nav', 'problems', '⚠️', 'problems', adm) + tile('nav', 'access', '🛡️', 'access_log', adm))}
+    ${r === 'owner' ? hqCard() : ''}
     ${fold('me_set', t('me_settings'), `
     <div class="card"><h3>🗣️ ${t('language')}</h3><div class="tiles three">${LANGS.map(l => `<button class="tile ${LANG === l ? 'on' : ''}" data-a="setLang" data-v="${l}" style="min-height:64px">${LANG_NAME[l]}</button>`).join('')}</div></div>
     <div class="card"><h3>🔍 ${t('screen_size')}</h3><p class="small muted" style="margin:0 0 6px">${t('screen_size_d')}</p>
@@ -8265,7 +8271,7 @@ SCREENS.perm = () => {
   return topBar(t('what_can_i_do'), { back: true }) + `<main class="wrap"><div class="note">🔐 ${t('perm_say')}</div><div class="card">${mine.map(k => `<div class="list-item">✅ ${esc(t('ev_' + k))}</div>`).join('')}</div>
     <div class="card"><h3>👁️ ${t('i_can_see')}</h3><p>${t('see_' + u.role)}</p></div>${matrix}</main>` + nav('me');
 };
-SCREENS.about = () => topBar(t('about_privacy'), { back: true }) + `<main class="wrap">${['ab_collect', 'ab_who', 'ab_where', 'ab_limits', 'ab_hardware', 'ab_ai', 'ab_sop', 'ab_rules', 'ab_keep'].map(k => `<div class="card"><h3>${t(k)}</h3><p>${t(k + '_d')}</p></div>`).join('')}
+SCREENS.about = () => topBar(t('about_privacy'), { back: true }) + `<main class="wrap"><div class="card"><b>AIEC Elevator OS</b><p class="small">${t('copyright', { name: APP_OWNER })}</p></div>${['ab_collect', 'ab_who', 'ab_where', 'ab_limits', 'ab_hardware', 'ab_ai', 'ab_sop', 'ab_rules', 'ab_keep'].map(k => `<div class="card"><h3>${t(k)}</h3><p>${t(k + '_d')}</p></div>`).join('')}
   ${['owner', 'admin'].includes(App.me.role) || App.mode === 'practice' ? `<button class="btn btn-bad" data-a="wipe">🗑️ ${t('wipe_device')}</button>` : ''}</main>` + nav('me');
 
 /* ---------- admin: users ---------- */
@@ -8299,7 +8305,7 @@ function userSheet(uid) {
 SCREENS.rules = () => {
   const own = App.me.role === 'owner';
   App.pageSay = t('s_rules');
-  return topBar(t('business_rules'), { back: true }) + `<main class="wrap"><div class="note">📏 ${t('s_rules')}</div>${Object.entries(RULE_GROUPS).map(([gk, keys]) => `<div class="card"><div class="row"><h3 class="grow" style="margin:0">${t('rg_' + gk)}</h3>${ruleChip(gk)}</div>
+  return topBar(t('business_rules'), { back: true }) + `<main class="wrap">${App.me.role === 'owner' ? hqCard() : ''}<div class="note">📏 ${t('s_rules')}</div>${Object.entries(RULE_GROUPS).map(([gk, keys]) => `<div class="card"><div class="row wrapw"><h3 class="grow" style="margin:0;min-width:55%">${t('rg_' + gk)}</h3>${ruleChip(gk)}</div>
     <p class="small muted">${t('rg_' + gk + '_d')}</p>${S.config.approved[gk] ? `<p class="small">✅ ${userName(S.config.approved[gk].by)} · ${fmtD(S.config.approved[gk].t, true)}</p>` : ''}
     ${keys.map(k => own ? `<div class="field"><label for="${fid('cfg.' + k)}"><b>${t('cfg_' + k)}</b></label><input class="in" ${['sosNumber', 'officeNumber'].includes(k) ? 'type="tel" inputmode="tel"' : TEXT_CFG.includes(k) ? `type="text" ${k === 'payAcc' ? 'inputmode="numeric"' : ''}` : 'type="number" min="0" inputmode="decimal"'} id="${fid('cfg.' + k)}" data-f="cfg.${k}" value="${S.config[k]}"></div>` : `<div class="list-item"><span class="grow">${t('cfg_' + k)}</span><b>${S.config[k]}</b></div>`).join('')}
     ${RATE_GROUPS.includes(gk) ? rateBlock(gk, own) : ''}
@@ -10209,7 +10215,7 @@ async function seedPractice() {
   const ph = (k, gps) => ({ id: 'E' + rid(10), m: media[k], kind: k === 'sign' ? 'sign' : 'photo', label: k, t: cur, gps: gps || null, hash: hash[k], dev: 'practice', q: {} });
   const safePh = P => SAFETY_ITEMS.map(([k]) => Object.assign(ph('work', P.site.gps), { label: 'safe_' + k }));
   await SP('ORG_CREATED', null, { orgId: 'ORG-PRACTICE', name: 'AIEC (Practice)' }, 'owner');
-  const people = [['owner', 'Anil Deshmukh', 'owner'], ['admin', 'Sunita Patil', 'admin'], ['field', 'Ramesh Jadhav', 'field'], ['field2', 'Sachin More', 'field'], ['sales', 'Priya Kulkarni', 'sales'],
+  const people = [['owner', APP_OWNER, 'owner'], ['admin', 'Sunita Patil', 'admin'], ['field', 'Ramesh Jadhav', 'field'], ['field2', 'Sachin More', 'field'], ['sales', 'Priya Kulkarni', 'sales'],
     ['finance', 'Meena Joshi', 'finance'], ['qc', 'Vijay Shinde', 'qc'], ['supplier', 'Kaveri Lift Supply', 'supplier'], ['partner', 'Shree Lift Works', 'partner'], ['partner2', 'Om Elevator Services', 'partner'], ['tech', 'Raju Pawar', 'tech']];
   for (const [k, name, role] of people) await SP('USER_ADDED', null, Object.assign({ uid: U[k], name, role, salt, pin }, role === 'tech' ? { company: U.partner } : {}), 'owner');
   for (const [key, value] of [['payUpi', 'aiec.practice@okhdfc'], ['payName', 'AIEC Practice Account'], ['payBank', 'Practice Bank, Pune'], ['payAcc', '000111222333'], ['payIfsc', 'HDFC0000001']]) await SP('CONFIG_SET', null, { key, value }, 'owner');
