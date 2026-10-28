@@ -1241,6 +1241,48 @@ const L = {
   ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
   ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
   ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
+  ev_SITE_CHECKED_IN: ['Checked in at the site', 'साइट पर चेक-इन', 'साइटवर चेक-इन'],
+  ev_CHECKIN_REVIEWED: ['Check-in looked at', 'चेक-इन देखा', 'चेक-इन पाहिले'],
+  ev_DAY_ENDED_TECH: ['Day ended at the site', 'साइट पर दिन खत्म', 'साइटवर दिवस संपला'],
+  cfg_geoRadius: ['Check-in distance from the site, metres', 'साइट से चेक-इन दूरी, मीटर', 'साइटपासून चेक-इन अंतर, मीटर'],
+  cfg_checkinGate: ['Check-in before the safety check (1 = yes)', 'सुरक्षा जाँच से पहले चेक-इन (1 = हाँ)', 'सुरक्षा तपासणीपूर्वी चेक-इन (1 = हो)'],
+  err_checkin: ['Check in at the site first.', 'पहले साइट पर चेक-इन करें।', 'आधी साइटवर चेक-इन करा.'],
+  err_checkin_reason: ['You are not near the site: choose why.', 'आप साइट के पास नहीं हैं: कारण चुनें।', 'तुम्ही साइटजवळ नाही: कारण निवडा.'],
+  err_open_hazard: ['Report the hazard, injury or near miss first.', 'पहले खतरा, चोट या बाल-बाल बचाव की रिपोर्ट करें।', 'आधी धोका, दुखापत किंवा थोडक्यात टळलेल्या अपघाताची नोंद करा.'],
+  tk_site_checkin: ['Check in at the site', 'साइट पर चेक-इन करें', 'साइटवर चेक-इन करा'],
+  tk_review_checkin: ['Look at a check-in far from the site', 'साइट से दूर चेक-इन देखें', 'साइटपासून दूरचे चेक-इन पाहा'],
+  tk_end_day: ['End my day at this site', 'इस साइट पर मेरा दिन खत्म करें', 'या साइटवर माझा दिवस संपवा'],
+  s_checkin: ['Stand at the site and check in. Your location is saved once.', 'साइट पर खड़े होकर चेक-इन करें। आपकी जगह एक बार सेव होती है।', 'साइटवर उभे राहून चेक-इन करा. तुमचे ठिकाण एकदा जतन होते.'],
+  checkin_now: ['Check in', 'चेक-इन', 'चेक-इन'],
+  checkin_ok: ['You are {n} m from the site (within {r} m).', 'आप साइट से {n} मीटर पर हैं ({r} मीटर के अंदर)।', 'तुम्ही साइटपासून {n} मीटरवर आहात ({r} मीटरच्या आत).'],
+  checkin_far: ['You are {n} m from the site (more than {r} m).', 'आप साइट से {n} मीटर दूर हैं ({r} मीटर से ज़्यादा)।', 'तुम्ही साइटपासून {n} मीटर दूर आहात ({r} मीटरपेक्षा जास्त).'],
+  checkin_no_fix: ['No location yet. Go outside for a moment, or choose why below.', 'अभी जगह नहीं मिली। थोड़ी देर बाहर जाएँ, या नीचे कारण चुनें।', 'अजून ठिकाण मिळाले नाही. थोडा वेळ बाहेर जा, किंवा खाली कारण निवडा.'],
+  checkin_no_site: ['This site has no saved location, so distance cannot be checked. Choose why.', 'इस साइट की जगह सेव नहीं है, इसलिए दूरी नहीं जाँच सकते। कारण चुनें।', 'या साइटचे ठिकाण जतन नाही, म्हणून अंतर तपासता येत नाही. कारण निवडा.'],
+  checkin_why: ['Why is the location not at the site?', 'जगह साइट पर क्यों नहीं दिख रही?', 'ठिकाण साइटवर का दिसत नाही?'],
+  ckw_basement: ['Basement or shaft, no signal', 'बेसमेंट या शाफ्ट, सिग्नल नहीं', 'बेसमेंट किंवा शाफ्ट, सिग्नल नाही'],
+  ckw_weak: ['Weak GPS', 'कमज़ोर GPS', 'कमकुवत GPS'],
+  ckw_site_gps: ['The site location is wrong', 'साइट की जगह गलत है', 'साइटचे ठिकाण चुकीचे आहे'],
+  ckw_no_gps: ['Location is off on this phone', 'इस फ़ोन पर लोकेशन बंद है', 'या फोनवर लोकेशन बंद आहे'],
+  checkin_flag_note: ['Work is not stopped. The office looks at it later.', 'काम नहीं रुकता। ऑफ़िस बाद में देखता है।', 'काम थांबत नाही. ऑफिस नंतर पाहते.'],
+  checkin_flagged: ['far from site', 'साइट से दूर', 'साइटपासून दूर'],
+  checkin_dist: ['Distance from site', 'साइट से दूरी', 'साइटपासून अंतर'],
+  what_checked_in: ['Checked in. Next: the daily safety check.', 'चेक-इन हुआ। अगला: रोज़ की सुरक्षा जाँच।', 'चेक-इन झाले. पुढे: दैनिक सुरक्षा तपासणी.'],
+  s_checkin_review: ['This check-in was far from the site. Is the reason fine?', 'यह चेक-इन साइट से दूर था। क्या कारण ठीक है?', 'हे चेक-इन साइटपासून दूर होते. कारण योग्य आहे का?'],
+  checkin_accept: ['Reason is fine', 'कारण ठीक है', 'कारण योग्य'],
+  checkin_doubt: ['Not fine — talk to the person', 'ठीक नहीं — व्यक्ति से बात करें', 'योग्य नाही — व्यक्तीशी बोला'],
+  what_checkin_reviewed: ['Saved.', 'सेव हुआ।', 'जतन झाले.'],
+  techday_today: ['Today at this site', 'आज इस साइट पर', 'आज या साइटवर'],
+  techday_steps: ['Steps done today', 'आज के कदम', 'आजचे टप्पे'],
+  techday_waiting: ['Waiting', 'इंतज़ार', 'प्रतीक्षा'],
+  techday_blocked: ['Problems open', 'खुली समस्याएँ', 'उघड्या अडचणी'],
+  s_end_day: ['Before you leave: was there any hazard, injury or near miss not yet reported?', 'जाने से पहले: क्या कोई खतरा, चोट या बाल-बाल बचाव हुआ जो अभी रिपोर्ट नहीं हुआ?', 'जाण्यापूर्वी: नोंद न झालेला धोका, दुखापत किंवा थोडक्यात टळलेला अपघात झाला का?'],
+  end_hazard_q: ['Anything not yet reported?', 'कुछ अभी रिपोर्ट नहीं हुआ?', 'काही नोंद न झालेले?'],
+  end_hazard_no: ['No, all safe or already reported', 'नहीं, सब सुरक्षित या पहले ही रिपोर्ट', 'नाही, सर्व सुरक्षित किंवा आधीच नोंदवले'],
+  end_hazard_yes: ['Yes, something happened', 'हाँ, कुछ हुआ', 'हो, काहीतरी झाले'],
+  end_hazard_first: ['Report it now, then end the day.', 'अभी रिपोर्ट करें, फिर दिन खत्म करें।', 'आत्ता नोंदवा, मग दिवस संपवा.'],
+  end_day_btn: ['End day', 'दिन खत्म', 'दिवस संपवा'],
+  what_day_ended: ['Day ended. You can print today\'s safety report for the builder.', 'दिन खत्म। बिल्डर के लिए आज की सुरक्षा रिपोर्ट छाप सकते हैं।', 'दिवस संपला. बिल्डरसाठी आजचा सुरक्षा अहवाल छापू शकता.'],
+  safety_report_print: ['Today\'s safety report (print / PDF)', 'आज की सुरक्षा रिपोर्ट (प्रिंट / PDF)', 'आजचा सुरक्षा अहवाल (प्रिंट / PDF)'],
   hq_note: ['Head Quarter of AIEC Elevator OS. Business rules, prices and people are decided here.', 'AIEC Elevator OS का हेड क्वार्टर। कारोबार नियम, कीमतें और लोग यहीं तय होते हैं।', 'AIEC Elevator OS चे हेड क्वार्टर. व्यवसाय नियम, किमती आणि लोक येथे ठरतात.'],
   copyright: ['© {name}. All rights reserved. Copying, reselling or reusing this app or its code is not allowed without written permission.', '© {name}. सर्वाधिकार सुरक्षित। लिखित अनुमति के बिना इस ऐप या इसके कोड की नकल, बिक्री या दोबारा उपयोग मना है।', '© {name}. सर्व हक्क राखीव. लेखी परवानगीशिवाय या ॲपची किंवा त्याच्या कोडची नक्कल, विक्री किंवा पुनर्वापर करण्यास मनाई आहे.'],
   tk_withdraw_quote: ['Nobody else can approve this price: withdraw it and make a new quotation', 'यह कीमत कोई और मंज़ूर नहीं कर सकता: वापस लेकर नया कोटेशन बनाएँ', 'ही किंमत दुसरे कोणी मंजूर करू शकत नाही: मागे घेऊन नवीन कोटेशन करा'],
@@ -3544,7 +3586,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15, poDays: 7, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -3555,7 +3597,7 @@ const RULE_GROUPS = {
   milestones: ['tokenMode', 'arrivalPct', 'cabinPct'],
   paydetails: ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc'],
   fieldpay: ['payLeadValid', 'leadWonPct'],
-  install: ['installDays', 'poDays'],
+  install: ['installDays', 'poDays', 'geoRadius', 'checkinGate'],
   service: ['warrantyMonths', 'amcVisits', 'validityDays'],
   dup: ['dupCommission'],
   control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'dualControl', 'requireTraining'],
@@ -3699,6 +3741,11 @@ const variationOpen = P => !!P.variation && P.variation.status !== 'signed';
 const lastHoldEnd = P => (P.holds || []).filter(h => h.status === 'ended' && h.to).map(h => h.to).sort().pop() || '';
 const safeDay = iso => coDay(new Date(iso || nowISO()).getTime());
 const safetyOn = (P, day) => { const x = (P.safety || {})[day]; return !!x && x.status !== 'rejected'; };
+/* check-in at the site: the lead is asked to check in before the day's safety check; GPS far from the site needs a reason and is looked at by the office (a flag, never proof) */
+const CHECKIN_WHY = [['basement', '🏚️'], ['weak', '📶'], ['site_gps', '📍'], ['no_gps', '🚫']];
+const checkedIn = (P, day, uid) => !!(((P.checkins || {})[day] || {})[uid || P.tech]);
+const checkinNeeded = (P, at) => !!+S.config.checkinGate && !checkedIn(P, safeDay(at));
+const checkinDist = (gps, P) => gps && P.site.gps ? haversine(gps, P.site.gps) : null;
 function safetyWhyNot(P, at) {
   if (stopIncidents(P).length) return 'err_work_stopped';
   return S.config.dailySafety && !safetyOn(P, safeDay(at)) ? 'err_safety_check' : null;
@@ -4569,9 +4616,36 @@ const RULES = {
   },
   VARIATION_DECLINED: { roles: ['customer', 'sales'], project: true, check: (S, ev, u, P) => !P.variation || P.variation.status !== 'proposed' ? 'err_already' : need((ev.data.note || '').trim(), 'err_reason') },
   /* the lead's safety check at the start of each work day: 4 photos (helmet/harness, scaffolding, barricade, earthing) */
+  SITE_CHECKED_IN: {
+    roles: ['tech'], project: true, stages: ['arrived', 'installing', 'install_fix'], check: (S, ev, u, P) => {
+      const d = ev.data;
+      if (P.tech !== u.uid && !(P.crew || []).includes(u.uid)) return 'err_access';
+      if (d.day !== safeDay(ev.t)) return 'err_date';
+      if (checkedIn(P, d.day, u.uid)) return 'err_already';
+      const dist = checkinDist(d.gps, P), out = dist == null || dist > (+S.config.geoRadius || 150);
+      return out && !CHECKIN_WHY.some(x => x[0] === d.reason) ? 'err_checkin_reason' : null;
+    }
+  },
+  CHECKIN_REVIEWED: {
+    roles: ['admin', 'owner'], project: true, check: (S, ev, u, P) => {
+      const x = ((P.checkins || {})[ev.data.day] || {})[ev.data.uid];
+      if (!x || !x.out || x.review) return 'err_already';
+      return ev.data.ok === false ? need((ev.data.note || '').trim(), 'err_reason') : need(ev.data.ok === true, 'err_choose');
+    }
+  },
+  DAY_ENDED_TECH: {
+    roles: ['tech'], project: true, check: (S, ev, u, P) => {
+      const day = safeDay(ev.t);
+      if (!checkedIn(P, day, u.uid)) return 'err_checkin';
+      if (((P.dayEnds || {})[day] || {})[u.uid]) return 'err_already';
+      /* a hazard, injury or near miss is reported first, never left behind at the end of the day */
+      return need(ev.data.noHazard === true, 'err_open_hazard');
+    }
+  },
   SAFETY_CHECKED: {
     roles: ['tech'], project: true, stages: ['installing', 'install_fix'], check: (S, ev, u, P) => {
       if (P.tech !== u.uid) return 'err_access';
+      if (App.liveCheck && checkinNeeded(P, ev.t)) return 'err_checkin';
       if (stopIncidents(P).length) return 'err_work_stopped';
       if (safetyOn(P, safeDay(ev.t))) return 'err_already';
       const labels = ev_(ev.data).map(e => e.label);
@@ -5352,6 +5426,10 @@ function apply(S, ev) {
       P.renewals.push({ t: ev.t, by: ev.by, years: +d.years, amount: +d.amount, from, to: P.amcEnd, note: d.note || '' });
       break;
     }
+    case 'SITE_CHECKED_IN': { const dist = checkinDist(d.gps, P), out = dist == null || dist > (+S.config.geoRadius || 150);
+      ((P.checkins = P.checkins || {})[d.day] = P.checkins[d.day] || {})[ev.by] = { t: ev.t, gps: d.gps || null, dist, out, reason: out ? d.reason : '', note: d.note || '', review: null }; break; }
+    case 'CHECKIN_REVIEWED': P.checkins[d.day][d.uid].review = { ok: d.ok, note: d.note || '', by: ev.by, t: ev.t }; break;
+    case 'DAY_ENDED_TECH': ((P.dayEnds = P.dayEnds || {})[safeDay(ev.t)] = P.dayEnds[safeDay(ev.t)] || {})[ev.by] = { t: ev.t, note: d.note || '' }; break;
     case 'UNDONE': S.undone[d.target] = { by: ev.by, t: ev.t, id: ev.id }; break;
     case 'DATA_EXPORTED': (S.exports = S.exports || []).unshift({ kind: d.kind, rows: +d.rows, by: ev.by, t: ev.t }); break;
     case 'BACKUP_SET': S.backup = { uid: d.uid, from: d.from, to: d.to, note: d.note || '', by: ev.by, t: ev.t, ended: null }; break;
@@ -5502,9 +5580,9 @@ function needs(P) {
     case 'arrived': if (payNeed('arrival') && !openIncidents(P).length) add('material_handover', ['tech'], { uids: [P.tech] }); break;
     case 'installing': if (P.schedule && P.schedule.cabin && sopNext(P) >= CABIN_STEP && sopNext(P) < SOP.length && !payNeed('cabin')) { add('wait_cabin_pay', ['tech'], { uids: [P.tech] }); break; }
       if (peerWaiting(P).length) { add('peer_check', ['tech', 'qc'], { uids: Object.values(S.users).filter(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).map(x => x.uid), step: peerWaiting(P)[0], urgent: true }); add('wait_peer', ['tech'], { uids: [P.tech], step: peerWaiting(P)[0] }); break; }
-      add(sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' ? 'safety_check' : sopNext(P) < SOP.length ? 'install' : 'request_inspection', ['tech'], { uids: [P.tech], urgent: sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' }); break;
+      add(sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' ? (checkinNeeded(P) ? 'site_checkin' : 'safety_check') : sopNext(P) < SOP.length ? 'install' : 'request_inspection', ['tech'], { uids: [P.tech], urgent: sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' }); break;
     case 'qc_final': add('final_inspect', ['qc'], { uids: [P.qc] }); break;
-    case 'install_fix': add(openCorr(P, 'install').length ? (safetyWhyNot(P) === 'err_safety_check' ? 'safety_check' : 'fix_install') : 'request_inspection', ['tech'], { uids: [P.tech] }); break;
+    case 'install_fix': add(openCorr(P, 'install').length ? (safetyWhyNot(P) === 'err_safety_check' ? (checkinNeeded(P) ? 'site_checkin' : 'safety_check') : 'fix_install') : 'request_inspection', ['tech'], { uids: [P.tech] }); break;
     case 'final_pay': payNeed('final'); break;
     case 'handover':
       if (SLOTS.every(s => P.hand[s])) add('complete_handover', ['admin', 'owner', 'qc']);
@@ -5523,6 +5601,7 @@ function needs(P) {
   if (P.stage === 'amc' && !P.amcEnded && statOf(P).licence) { const d = liftLicenceDays(P); if (d != null && d <= (S.config.licWarnDays || 60)) add('lift_licence_due', ['admin', 'owner'], { n: d, urgent: d <= 7, since: statOf(P).licence.expiry + 'T12:00:00' }); }
   for (const h of P.holds || []) { if (h.status === 'pending') add('hold_request', ['admin', 'owner'], { hid: h.id, urgent: true, since: h.t }); if (h.status === 'active') add('hold_end', ['admin', 'owner'], { hid: h.id }); }
   if (P.dispute) add('dispute_open', ['owner', 'admin']);
+  for (const [day, xs] of Object.entries(P.checkins || {})) for (const [uid, x] of Object.entries(xs)) if (x.out && !x.review) add('review_checkin', ['admin', 'owner'], { day, uid, since: x.t });
   for (const c of P.claims || []) {
     if (c.status === 'raised') add('decide_claim', ['admin', 'owner'], { cid: c.id, urgent: c.emergency, alarm: c.emergency, since: c.t });
     else if (c.status === 'approved') add('send_claim', ['supplier'], { uids: [P.supplier], cid: c.id, urgent: c.emergency, since: c.hist[c.hist.length - 1].t });
@@ -5562,7 +5641,7 @@ function needs(P) {
   }
   coverTasks(P, out);
   /* escalation ladder: the main next step counts from the day the stage began, other work from its own date */
-  const main = out.find(x => !['sla_breach', 'po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
+  const main = out.find(x => !['review_checkin', 'sla_breach', 'po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
   if (main && OPEN_STAGES.includes(P.stage) && !main.since) Object.assign(main, { since: lastHoldEnd(P) > P.since ? lastHoldEnd(P) : P.since, escId: P.stage });
   const blocked = P.blockers.some(b => b.open) || P.incidents.some(i => i.open) || onHold(P);
   for (const n of out.slice()) if (n.since && !(blocked && n === main)) { const e = escFor(n, n.since, n.escId || n.bid || n.iid || n.tid || n.mid || n.payId || n.visit); if (e) out.push(e); }
@@ -6247,12 +6326,12 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { if (App.me && OUTSIDERS.includes(App.me.role)) return (P.site.address || '').split(/[,\n]/)[0] || areaOf(P) || P.id; return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
   const P = S.projects[n.pid];
-  const sub = n.sev && ['assign_ticket', 'work_ticket', 'sla_breach'].includes(n.k) ? ' · ' + SEVERITIES[sevRank(n.sev)][1] + ' ' + t('sev_' + n.sev) : ['decide_claim', 'send_claim', 'receive_claim'].includes(n.k) && P && claimOf(P, n.cid) ? ' · ' + t(claimOf(P, n.cid).line) + ' · ' + t('clk_' + claimOf(P, n.cid).kind) : n.k === 'po_late' ? ' · ' + fmtD(n.date) : n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
+  const sub = n.k === 'review_checkin' && P ? ' · ' + userName(n.uid) + ' · ' + (((P.checkins || {})[n.day] || {})[n.uid] || {}).dist + ' m' : n.sev && ['assign_ticket', 'work_ticket', 'sla_breach'].includes(n.k) ? ' · ' + SEVERITIES[sevRank(n.sev)][1] + ' ' + t('sev_' + n.sev) : ['decide_claim', 'send_claim', 'receive_claim'].includes(n.k) && P && claimOf(P, n.cid) ? ' · ' + t(claimOf(P, n.cid).line) + ' · ' + t('clk_' + claimOf(P, n.cid).kind) : n.k === 'po_late' ? ' · ' + fmtD(n.date) : n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
   if (!P || n.k === 'job_open') {
     const info = n.k === 'job_open' && S.posts[n.postId] ? jobTitle(S.posts[n.postId]) + ' · 📍 ' + S.posts[n.postId].card.area : n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
       : n.k === 'clock_gap' ? t('clock_n', { n: n.n }) : n.k === 'day_close' ? t('day_close_sub', { n: officeQueue().length }) : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'access_alert' ? userName(n.uid) + ' · ' + t(n.why, { n: n.n }) : n.k === 'sos' ? userName(n.uid) + ' · ' + fmtD(S.sos[n.sid].t, true) + (n.sosPid ? ' · ' + n.sosPid : '') : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
@@ -7332,6 +7411,36 @@ WIZ.disputeClear = {
   async finish(c, P) { const r = await run([['DISPUTE_CLEARED', P.id, { note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'what_dispute_cleared') : r; }
 };
 /* ---------- daily safety check, review, SOS ---------- */
+WIZ.checkin = {
+  title: 'tk_site_checkin', save: 'checkin_now', saveIcon: '📍', noDraft: true, init: () => ({ gps: null, reason: '', note: '' }),
+  onStart: c => { Geo.get().then(gp => { if (gp) { c.gps = gp; if (W && W.id === 'checkin') render(); } }); },
+  steps: [{ id: 'loc', icon: '📍', say: 's_checkin', body: (c, P) => { const dist = checkinDist(c.gps, P), r = +S.config.geoRadius || 150, out = dist == null || dist > r;
+      return gpsCard(c) + (dist != null ? `<div class="${out ? 'warnbox' : 'okbox'}">📏 ${t(out ? 'checkin_far' : 'checkin_ok', { n: dist, r })}${out && P.site.gps ? ` · <a href="${mapsLink(P.site.gps)}" target="_blank" rel="noopener">${t('open_map')}</a>` : ''}</div>` : `<div class="warnbox">📍 ${t(P.site.gps ? 'checkin_no_fix' : 'checkin_no_site')}</div>`)
+        + (out ? `<h3>${t('checkin_why')}</h3>` + tiles('reason', CHECKIN_WHY.map(([k, i]) => [k, i, 'ckw_' + k]), 'one') + inp('note', 'f_note', { opt: true }) + `<p class="small muted">${t('checkin_flag_note')}</p>` : ''); },
+    check: (c, P) => { const dist = checkinDist(c.gps, P); return (dist == null || dist > (+S.config.geoRadius || 150)) && !c.reason ? 'err_checkin_reason' : null; } }],
+  async finish(c, P) { const r = await run([['SITE_CHECKED_IN', P.id, { day: safeDay(), gps: c.gps, reason: c.reason, note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'what_checked_in') : r; }
+};
+WIZ.checkinReview = {
+  title: 'tk_review_checkin', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
+  steps: [{ id: 'r', icon: '📍', say: 's_checkin_review', body: (c, P) => { const x = ((P.checkins || {})[W.opts.day] || {})[W.opts.uid] || {};
+      return `<div class="card">${kv([['by', userTag(W.opts.uid)], ['captured', fmtD(x.t, true)], ['checkin_dist', x.dist == null ? '—' : x.dist + ' m'], ['checkin_why', x.reason ? t('ckw_' + x.reason) : ''], ['f_note', esc(x.note || '')]])}${x.gps ? `<a href="${mapsLink(x.gps)}" target="_blank" rel="noopener">${t('open_map')}</a>` : ''}</div>`
+        + tiles('ok', [['yes', '✅', 'checkin_accept'], ['no', '⚠️', 'checkin_doubt']], 'one') + inp('note', 'f_reason', { area: true, opt: c.ok !== 'no' }); },
+    check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }],
+  async finish(c, P) { const r = await run([['CHECKIN_REVIEWED', P.id, { day: W.opts.day, uid: W.opts.uid, ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'what_checkin_reviewed') : r; }
+};
+function techDayCard(P, uid) {
+  const day = safeDay(), sop = Object.entries(P.sop).filter(([, x]) => safeDay(x.t) === day), ck = ((P.checkins || {})[day] || {})[uid];
+  return `<div class="card"><h3>📋 ${t('techday_today')}</h3>${kv([['tk_site_checkin', ck ? '✅ ' + fmtD(ck.t, true) + (ck.out ? ' · ⚠️ ' + t('checkin_flagged') : '') : '—'], ['tk_safety_check', safetyOn(P, day) ? '✅' : '—'],
+    ['techday_steps', sop.length ? sop.map(([i]) => t('sop_' + SOP[i][0])).join(', ') : '—'], ['techday_waiting', peerWaiting(P).length ? t('tk_wait_peer') : ''], ['techday_blocked', P.blockers.filter(b => b.open).map(b => t('br_' + b.reason)).join(', ')],
+    ['work_stopped', stopIncidents(P).length ? '🛑' : '']])}</div>`;
+}
+WIZ.techEnd = {
+  title: 'tk_end_day', save: 'end_day_btn', saveIcon: '🏁', noDraft: true, init: () => ({ haz: '', note: '' }),
+  steps: [{ id: 'e', icon: '🏁', say: 's_end_day', body: (c, P) => techDayCard(P, App.me.uid) + `<h3>${t('end_hazard_q')}</h3>` + tiles('haz', [['no', '✅', 'end_hazard_no'], ['yes', '⚠️', 'end_hazard_yes']], 'one')
+      + (c.haz === 'yes' ? `<div class="err">⚠️ ${t('end_hazard_first')}</div><button class="btn btn-bad" data-a="wizOpen" data-v="incidentNew|${P.id}|type|hazard">⚠️ ${t('report_hazard')}</button>` : '') + inp('note', 'f_note', { opt: true, mic: true }),
+    check: c => !c.haz ? 'err_choose' : c.haz === 'yes' ? 'err_open_hazard' : null }],
+  async finish(c, P) { const r = await run([['DAY_ENDED_TECH', P.id, { noHazard: true, note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'what_day_ended', {}, { more: [['safetyLog', '🖨️', 'safety_report_print']] }) : r; }
+};
 WIZ.safety = {
   title: 'tk_safety_check', save: 'safety_send', saveIcon: '🦺', init: () => Object.assign({ ok: false }, Object.fromEntries(SAFETY_ITEMS.map(([k]) => ['s_' + k, []]))),
   steps: [
@@ -7637,6 +7746,8 @@ SCREENS.home = () => {
   const idx = tasks.map((n, i) => [n, i]), hot = idx.filter(([n]) => isHot(n)), rest = idx.filter(([n]) => !isHot(n));
   let h = topBar(t('nav_home')) + `<main class="wrap">${hero(u)}`;
   if (u.role === 'field') h += shiftCard();
+  if (u.role === 'tech') { const open = visibleProjects(u).filter(P => checkedIn(P, safeDay(), u.uid) && !(((P.dayEnds || {})[safeDay()] || {})[u.uid]));
+    open.forEach(P => { h += `<button class="task" style="margin-top:10px" data-a="wizOpen" data-v="techEnd|${P.id}"><span class="ti">🏁</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_end_day')}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span></span><span class="go">▶</span></button>`; }); }
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))}${tasks[0].pid ? ' · ' + esc(tasks[0].pid) : ''}</p>`;
   else h += `<div class="card center"><div class="big-i">☕</div><b>${t('no_tasks')}</b><p class="muted">${t(u.role === 'field' ? 'no_tasks_field' : 'no_tasks_other')}</p></div>`;
   if (u.role === 'field' || u.role === 'sales') h += `<button class="btn btn-big ${tasks.length ? '' : 'btn-p'}" style="margin-top:12px" data-a="addSite"><span class="i">➕</span>${t('add_site')}</button>`;
@@ -7835,6 +7946,8 @@ function projActions(P) {
   add('BLOCKER_RAISED', 'blocker', '⛔', 'report_problem');
   if (allowed('INCIDENT_RAISED', P) && (OPEN_STAGES.includes(P.stage) || P.stage === 'amc') && ['tech', 'partner', 'qc', 'admin', 'owner'].includes(u.role)) a.push(`<button class="btn btn-bad" data-a="wizOpen" data-v="incidentNew|${P.id}|type|hazard">⚠️ ${t('report_hazard')}</button>`);
   add('INCIDENT_RAISED', 'incidentNew', '🚨', 'report_incident', OPEN_STAGES.includes(P.stage));
+  if (u.role === 'tech' && (P.tech === u.uid || (P.crew || []).includes(u.uid)) && allowed('SITE_CHECKED_IN', P) && !checkedIn(P, safeDay(), u.uid)) a.push(`<button class="btn btn-p" data-a="wizOpen" data-v="checkin|${P.id}">📍 ${t('tk_site_checkin')}</button>`);
+  if (u.role === 'tech' && checkedIn(P, safeDay(), u.uid) && !(((P.dayEnds || {})[safeDay()] || {})[u.uid])) a.push(`<button class="btn" data-a="wizOpen" data-v="techEnd|${P.id}">🏁 ${t('tk_end_day')}</button>`);
   if (u.role === 'tech' && P.tech === u.uid && allowed('SAFETY_CHECKED', P) && safetyWhyNot(P) === 'err_safety_check') a.push(`<button class="btn btn-p" data-a="wizOpen" data-v="safety|${P.id}">🦺 ${t('tk_safety_check')}</button>`);
   if (stageIdx(P.stage) >= stageIdx('arrived') && P.stage !== 'lost') a.push(`<button class="btn" data-a="safetyLog" data-v="${P.id}">🦺 ${t('safety_log')}</button>`);
   add('SURPRISE_SET', 'surpriseSet', '🕵️', 'surprise_set', !(P.surprise && !P.surprise.done));
@@ -9755,7 +9868,7 @@ function openTask(n) {
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid),
-    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
+    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
     lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
@@ -10245,7 +10358,7 @@ async function seedPractice() {
       : ['supplier', 'DISPATCHED', { packed: P.materials.map(m => m.k), seal: 'SEAL-' + P.id.slice(-3), vehicle: 'MH12 AB 1234', challan: 'DC/' + P.id.slice(-3) + '/26', serialMap: Object.fromEntries(P.materials.filter(m => SERIAL_ITEMS.includes(m.k)).map(m => [m.k, m.k.slice(2, 5).toUpperCase() + '-' + P.id.slice(-3) + '-' + (100 + SERIAL_ITEMS.indexOf(m.k))])), ev: [ph('work'), ph('work')] }],
     dispatched: P => [P.tech, 'ARRIVED', { gps: P.site.gps, sealSeen: 'SEAL-' + P.id.slice(-3), sealIntact: 'yes', condition: 'good', ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
     arrived: P => payConfirmed(P, 'arrival') ? [P.tech, 'MATERIAL_HANDED', { items: P.materials.map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, signer: 'contact', custody: true, ev: [ph('sign'), ph('sign'), Object.assign(ph('site', P.site.gps), { label: 'storage' })] }] : payStep(P, 'arrival'),
-    installing: P => peerWaiting(P).length ? [Object.values(S.users).find(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).uid, 'PEER_CHECKED', { step: peerWaiting(P)[0], ok: true }] : sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }] : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
+    installing: P => peerWaiting(P).length ? [Object.values(S.users).find(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).uid, 'PEER_CHECKED', { step: peerWaiting(P)[0], ok: true }] : sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? (+S.config.checkinGate && !checkedIn(P, safeDay(nextAt())) ? [P.tech, 'SITE_CHECKED_IN', { day: safeDay(nextAt()), gps: P.site.gps }] : [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }]) : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
     qc_final: P => ['qc', 'QC_FINAL_RESULT', { checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), crit: Object.fromEntries(QC_CRITICAL.map(k => [k, 'pass'])), earthVal: '0.8 Ω', outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)].concat(QC_CRITICAL.map(k => Object.assign(ph('work', P.site.gps), { label: 'crit_' + k }))) }],
     final_pay: P => payStep(P, 'final'),
     handover: P => { const s = SLOTS.find(x => !P.hand[x]); return s ? [s === 'qc' ? 'qc' : P.tech, 'HANDOVER_SIGNED', { slot: s, consent: true, signer: s === 'customer' ? P.contact.name : userName(U[s]), ev: [ph('sign')] }]
@@ -10290,7 +10403,11 @@ async function seedPractice() {
   await SP('USER_ADDED', null, { uid: U.customer, name: 'Mrs. Kale', role: 'customer', projectId: hand, salt, pin }, 'admin');
   await SP('CHAT_POSTED', hand, { text: 'When will the lift start working for us?', kind: 'question', toRole: 'sales' }, 'customer');
   for (let i = 0; i < 5; i++) {
-    for (let k = 0; k < 3 && !safetyOn(S.projects[hosp], safeDay(nextAt())); k++) await SP('SAFETY_CHECKED', hosp, { ev: safePh(S.projects[hosp]) }, S.projects[hosp].tech);
+    for (let k = 0; k < 4 && !safetyOn(S.projects[hosp], safeDay(nextAt())); k++) {
+      const Ph = S.projects[hosp], d0 = safeDay(nextAt());
+      if (+S.config.checkinGate && !checkedIn(Ph, d0)) await SP('SITE_CHECKED_IN', hosp, { day: d0, gps: Ph.site.gps }, Ph.tech);
+      else await SP('SAFETY_CHECKED', hosp, { ev: safePh(Ph) }, Ph.tech);
+    }
     await SP('SOP_STEP_DONE', hosp, { step: sopNext(S.projects[hosp]), ev: [ph('work', S.projects[hosp].site.gps)] }, S.projects[hosp].tech);
   }
   await SP('BLOCKER_RAISED', hosp, { step: null, reason: 'help', role: 'admin', note: 'Need extra scaffolding for top floor' }, S.projects[hosp].tech);

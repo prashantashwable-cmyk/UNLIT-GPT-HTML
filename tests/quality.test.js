@@ -14,6 +14,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await ev('S.rejected.length === 0 && (S.projects["AIEC-P001"].peerLog || []).length === 3'), 'practice data: finished lifts had their 3 safety-critical steps checked by a co-worker');
 
   /* co-worker check */
+  await act('SITE_CHECKED_IN', H, { day: await ev('safeDay()'), gps: await ev(`S.projects["${H}"].site.gps`) }, 'PSENIOR');
   await act('SAFETY_CHECKED', H, { ev: await ev(`SAFETY_ITEMS.map(([k]) => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'safe_' + k, t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }))`) }, 'PSENIOR');
   while (await ev(`sopNext(S.projects["${H}"])`) < 9) assert((await step()).ok, 'step ' + await ev(`sopNext(S.projects["${H}"])`) + ' done');
   assert((await step()).err === 'err_peer_check', 'after the doors step, the next step waits for a co-worker\'s check');

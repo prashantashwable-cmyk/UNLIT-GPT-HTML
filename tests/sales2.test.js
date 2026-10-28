@@ -44,6 +44,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await ev('(s => s.token + s.arrival + s.cabin + s.final)(paySchedule({ token: 10000, tokenMode: 1, arrivalPct: 80, cabinPct: 10 }, 1000000))') === 1010000, 'a token "on top" is added to the price');
   const H = 'AIEC-P003';
   await page.evaluate(H => { S.projects[H].schedule.cabin = 50000; }, H);
+  await act('SITE_CHECKED_IN', H, { day: await ev('safeDay()'), gps: await ev(`S.projects["${H}"].site.gps`) }, 'PSENIOR');
   await act('SAFETY_CHECKED', H, { ev: await photos(4, 'safe') }, 'PSENIOR');
   assert(await ev(`sopNext(S.projects["${H}"])`) === 5 && (await act('SOP_STEP_DONE', H, { step: 5, ev: await photos(1) }, 'PSENIOR')).err === 'err_payment_gate', 'the cabin step waits for the cabin payment');
   assert((await tasks('PSENIOR', H)).includes('wait_cabin_pay'), 'the technician sees "waiting for the cabin payment"');

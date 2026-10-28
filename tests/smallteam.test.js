@@ -78,6 +78,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await step('material_handover', tech, 'MATERIAL_HANDED', { items, custName: 'Mr. Joshi', signer: 'contact', custody: true, ev: (await sign()).concat(await sign(), await ph(1, 'storage')) });
 
   /* installation: safety check, steps, co-worker checks by the company's senior */
+  await step('site_checkin', tech, 'SITE_CHECKED_IN', { day: await ev('safeDay()'), gps: null, reason: 'site_gps' });
   await step('safety_check', tech, 'SAFETY_CHECKED', { ev: await ev(`SAFETY_ITEMS.map(([k]) => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'safe_' + k, t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }))`) });
   for (let guard = 0; guard < 40; guard++) {
     const n = await page.evaluate(p => needs(S.projects[p]).map(x => x.k), pid);

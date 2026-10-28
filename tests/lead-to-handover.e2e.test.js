@@ -226,6 +226,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   assert(await stage(pid) === 'installing', 'installing');
 
   /* --- 9. daily safety check (4 photos), then installation SOP, one blocker on the way --- */
+  await startTask('site_checkin'); await W8(900); await shot('site_checkin'); await next(); await doneOk('checked in');
   await startTask('safety_check');
   for (const k of ['ppe', 'scaffold', 'barricade', 'earthing']) await photo('s_' + k);
   await next(); await tap(page, '[data-a="toggle"][data-k="ok"]'); await next(); await doneOk('safety check');

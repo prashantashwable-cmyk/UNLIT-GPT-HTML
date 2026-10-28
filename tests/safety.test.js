@@ -16,7 +16,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await ev('S.rejected.length === 0 && Object.values(S.projects).some(P => Object.keys(P.safety || {}).length)'), 'practice data has daily safety checks for past work days and no refused records');
 
   /* daily safety check */
-  assert((await tasks('PSENIOR'))[0] === 'safety_check', 'the lead\'s first task today is the daily safety check');
+  assert((await tasks('PSENIOR'))[0] === 'site_checkin', 'the lead\'s first task today is to check in at the site');
+  assert((await act('SAFETY_CHECKED', H, { ev: await safePhotos() }, 'PSENIOR')).err === 'err_checkin', 'no safety check before checking in');
+  assert((await act('SITE_CHECKED_IN', H, { day: await ev('safeDay()'), gps: await ev(`S.projects["${H}"].site.gps`) }, 'PSENIOR')).ok && (await tasks('PSENIOR'))[0] === 'safety_check', 'after checking in, the next task is the daily safety check');
   assert((await sopOk()).err === 'err_safety_check', 'no installation step before today\'s safety check');
   assert((await act('SAFETY_CHECKED', H, { ev: (await safePhotos()).slice(0, 3) }, 'PSENIOR')).err === 'err_safety_photos', 'all 4 safety photos are needed');
   assert((await act('SAFETY_CHECKED', H, { ev: await safePhotos() }, 'PTECH')).err === 'err_access', 'only the job\'s lead sends the check');

@@ -85,6 +85,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await step('pay_now', 'BCUST', 'PAYMENT_RECORDED', { payId: 'PAY-B3', purpose: 'arrival', amount: await ev(`payDue(S.projects["${pid}"]).amount`), method: 'bank', ref: 'NEFT-B3' });
   await step('verify_payment', 'POWNER', 'PAYMENT_STATUS', { payId: 'PAY-B3', status: 'confirmed', ref: 'STMT-B3' });
   await step('material_handover', 'PTECH', 'MATERIAL_HANDED', { items: await ev(`S.projects["${pid}"].materials.map(m => ({ k: m.k, q: m.q, status: 'ok' }))`), custName: 'Mr. Rao', signer: 'contact', custody: true, ev: (await sign()).concat(await sign(), await ph(1, 'storage')) });
+  await step('site_checkin', 'PTECH', 'SITE_CHECKED_IN', { day: await ev('safeDay()'), gps: null, reason: 'site_gps' });
   await step('safety_check', 'PTECH', 'SAFETY_CHECKED', { ev: await ev(`SAFETY_ITEMS.map(([k]) => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'safe_' + k, t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }))`) });
   for (let g = 0; g < 40 && !(await ev(`sopNext(S.projects["${pid}"]) >= SOP.length`)); g++) {
     if ((await page.evaluate(p => needs(S.projects[p]).map(x => x.k), pid)).includes('peer_check')) await step('peer_check', 'PSENIOR', 'PEER_CHECKED', { step: await ev(`peerWaiting(S.projects["${pid}"])[0]`), ok: true });

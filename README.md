@@ -286,6 +286,11 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * **Incident form:** the report records the type (hazard, someone hurt, near miss, equipment damaged, other), what happened, what was done straight away, witnesses and photos. Closing needs the root cause, what was fixed and the office's decision; a stop-work incident also needs a photo of the place made safe.
 * **Safety-critical QC items:** final inspection checks earthing (with the measured value), brakes, overspeed governor and safety gear, and door interlocks one by one, each with its own photo. If any one fails, the whole inspection fails.
 * **Safety log:** each job has a day-by-day safety log (checks, reviews, hazards and how they were closed, steps done, critical QC results). It can be printed or saved as a PDF for the builder; customers see it without internal notes.
+* **Check-in at the site:** each work day the team lead (and any crew member) checks in at the site before the daily safety check.
+  * The phone's GPS is compared with the site's saved location. Within the allowed distance (default 150 m, **Business rules → Installation**) the check-in is plain.
+  * Farther away, or with no GPS, the person picks a reason (basement or pit, weak signal, site location wrong, other). Work is not stopped; the office gets a task to look at it and accept it or not.
+  * The safety check is refused until the lead has checked in that day. The Head Quarter can switch this rule off.
+* **End my day:** the technician's home shows "End my day" for the site they checked in at. It lists today's steps, co-worker checks waiting and open blockers or hazards. A hazard or SOS the person reported today must be reported or closed first. After ending, the printable safety log is offered as today's report for the builder.
 
 ### Licensed Partner Companies (technicians work under a licensed company)
 * **Role:** a **Licensed Partner Company** 🏢 holds the lift licence. Technicians are members of a company. AIEC gives jobs to the company and pays the company; the company pays its technicians.
@@ -373,6 +378,7 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 * **Lift QR:** the QR points to the address the office's app runs from, so print stickers from the installed app or the website, not from a file copy. The resident page does not send anything by itself: the phone call, WhatsApp or SMS does, and a ticket is opened by the office. There is no 24×7 rescue staffing in the app; the company must run the rescue line before printing stickers.
 * **Weekly summary:** the app prepares the message; a person sends it (there is no server to send it automatically).
 * **Background:** a web app cannot run while the phone is locked or the app is closed. Keeping the screen on helps only while the app is open; phone notifications for due tasks come at most about once an hour on installed Android apps (periodic background check), and not at all on some phones. A separate Android app would be needed for always-on alerts and for blocking screenshots.
+* **Site check-in:** phone GPS can be wrong indoors, in a basement or in a shaft, so a far check-in is a flag for the office to look at, not proof that someone was absent.
 * **Safety:** the SOS reaches the office's phone only when files are shared, so the phone call and SMS are the real alert. Safety photos are checked by people, not by a computer. The daily check is confirmed by the team lead (an Head Quarter decision); it does not replace the statutory inspection or a qualified engineer.
 * **Data protection limits:**
   * There is no server, so prices and rules are checked by the same rules on every phone and on every file loaded, not on a server.
