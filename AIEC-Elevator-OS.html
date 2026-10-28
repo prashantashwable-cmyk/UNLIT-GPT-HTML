@@ -1226,6 +1226,56 @@ const L = {
   ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
   ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
   ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
+  ev_BACKUP_SET: ['Backup approver named', 'बैकअप मंज़ूरीकर्ता तय', 'बॅकअप मंजूरकर्ता ठरवला'],
+  ev_BACKUP_ENDED: ['Backup approver ended', 'बैकअप मंज़ूरीकर्ता समाप्त', 'बॅकअप मंजूरकर्ता संपला'],
+  ev_DAY_CLOSED: ['Day closed', 'दिन बंद किया', 'दिवस बंद केला'],
+  ev_CLOCK_REVIEWED: ['Clock jump decided', 'घड़ी बदलाव पर फ़ैसला', 'घड्याळ बदलावर निर्णय'],
+  tk_clock_gap: ['Check records with a wrong phone clock', 'गलत फ़ोन घड़ी वाले रिकॉर्ड जाँचें', 'चुकीच्या फोन घड्याळाच्या नोंदी तपासा'],
+  tk_day_close: ['Close the day', 'दिन बंद करें', 'दिवस बंद करा'],
+  clock_n: ['{n} records', '{n} रिकॉर्ड', '{n} नोंदी'],
+  day_close_sub: ['{n} open items roll to tomorrow', '{n} खुले काम कल पर जाएँगे', '{n} उघडी कामे उद्यावर जातील'],
+  err_close_critical: ['Red items are still open: write what is being done about them.', 'लाल काम अभी खुले हैं: लिखें उन पर क्या हो रहा है।', 'लाल कामे अजून उघडी आहेत: त्यावर काय चालू आहे ते लिहा.'],
+  exc_title: ['Needs the office', 'ऑफ़िस के लिए काम', 'ऑफिससाठी कामे'],
+  exc_say: ['{a} red and {b} orange items, {n} in all.', '{a} लाल और {b} नारंगी काम, कुल {n}।', '{a} लाल आणि {b} नारंगी कामे, एकूण {n}.'],
+  exc_count: ['🔴 {a} · 🟠 {b} · all {n}', '🔴 {a} · 🟠 {b} · कुल {n}', '🔴 {a} · 🟠 {b} · एकूण {n}'],
+  exc_clear: ['All clear — nothing needs you.', 'सब ठीक — आपके लिए कुछ नहीं।', 'सगळे ठीक — तुमच्यासाठी काही नाही.'],
+  exc_critical: ['Critical', 'बहुत ज़रूरी', 'अतिशय तातडीचे'],
+  exc_high: ['High', 'ज़रूरी', 'तातडीचे'],
+  exc_medium: ['Medium', 'मध्यम', 'मध्यम'],
+  exc_low: ['Low', 'कम', 'कमी'],
+  exc_search: ['Search by project number', 'प्रोजेक्ट नंबर से खोजें', 'प्रकल्प क्रमांकाने शोधा'],
+  exc_rolled: ['from yesterday → {who}', 'कल से → {who}', 'कालपासून → {who}'],
+  exc_open_now: ['Open now', 'अभी खुले', 'आत्ता उघडी'],
+  day_done_today: ['Records made today', 'आज बने रिकॉर्ड', 'आज झालेल्या नोंदी'],
+  day_close: ['Close the day', 'दिन बंद करें', 'दिवस बंद करा'],
+  day_close_d: ['At the end of the day, look at what is still open. Each open item goes to tomorrow with a named person.', 'दिन के अंत में देखें क्या खुला है। हर खुला काम एक तय व्यक्ति के साथ कल पर जाता है।', 'दिवसाच्या शेवटी काय उघडे आहे ते पाहा. प्रत्येक उघडे काम ठरलेल्या व्यक्तीसह उद्यावर जाते.'],
+  s_day_close: ['These items roll to tomorrow. Red items need a note.', 'ये काम कल पर जाएँगे। लाल कामों के लिए नोट चाहिए।', 'ही कामे उद्यावर जातील. लाल कामांसाठी नोंद हवी.'],
+  day_roll: ['Goes to tomorrow', 'कल पर जाएगा', 'उद्यावर जाईल'],
+  day_crit_note: ['Red items are open. Write what is being done and by whom.', 'लाल काम खुले हैं। लिखें क्या और कौन कर रहा है।', 'लाल कामे उघडी आहेत. काय आणि कोण करत आहे ते लिहा.'],
+  what_day_closed: ['The day is closed. {n} items go to tomorrow.', 'दिन बंद हुआ। {n} काम कल पर गए।', 'दिवस बंद झाला. {n} कामे उद्यावर गेली.'],
+  day_closed_by: ['Closed by {who} at {t} · {n} items rolled', '{who} ने {t} पर बंद किया · {n} काम आगे', '{who} यांनी {t} ला बंद केला · {n} कामे पुढे'],
+  backup_title: ['Backup approver', 'बैकअप मंज़ूरीकर्ता', 'बॅकअप मंजूरकर्ता'],
+  s_backup_who: ['Who approves when the Owner or Admin is away?', 'मालिक या एडमिन न हों तो कौन मंज़ूरी देगा?', 'मालक किंवा ॲडमिन नसताना कोण मंजुरी देईल?'],
+  s_backup_when: ['For which days?', 'किन दिनों के लिए?', 'कोणत्या दिवसांसाठी?'],
+  backup_note: ['They see the office queue and can give second approvals. They can never approve their own request. Up to 31 days.', 'वे ऑफ़िस की सूची देखते हैं और दूसरी मंज़ूरी दे सकते हैं। अपना अनुरोध कभी मंज़ूर नहीं कर सकते। 31 दिन तक।', 'त्यांना ऑफिसची यादी दिसते आणि ते दुसरी मंजुरी देऊ शकतात. स्वतःची विनंती कधीही मंजूर करू शकत नाहीत. 31 दिवसांपर्यंत.'],
+  backup_from: ['From', 'से', 'पासून'],
+  backup_to: ['Until', 'तक', 'पर्यंत'],
+  backup_end: ['End it now', 'अभी समाप्त करें', 'आत्ता संपवा'],
+  backup_line: ['Backup approver: {who}, {a} to {b}', 'बैकअप मंज़ूरीकर्ता: {who}, {a} से {b}', 'बॅकअप मंजूरकर्ता: {who}, {a} ते {b}'],
+  backup_you: ['You are the backup approver until {d}.', 'आप {d} तक बैकअप मंज़ूरीकर्ता हैं।', 'तुम्ही {d} पर्यंत बॅकअप मंजूरकर्ता आहात.'],
+  what_backup_set: ['{who} is the backup approver for these days.', '{who} इन दिनों के बैकअप मंज़ूरीकर्ता हैं।', '{who} या दिवसांसाठी बॅकअप मंजूरकर्ता आहेत.'],
+  what_backup_ended: ['The backup approver is ended.', 'बैकअप मंज़ूरीकर्ता समाप्त।', 'बॅकअप मंजूरकर्ता संपला.'],
+  clock_title: ['Phone clock checks', 'फ़ोन घड़ी जाँच', 'फोन घड्याळ तपासणी'],
+  clock_note: ['These records were made on a phone whose clock jumped by more than {h} hours. Check with the person, then accept the time or mark it as not trusted.', 'ये रिकॉर्ड ऐसे फ़ोन पर बने जिसकी घड़ी {h} घंटे से ज़्यादा बदली। व्यक्ति से पूछें, फिर समय मानें या भरोसेमंद नहीं बताएँ।', 'या नोंदी अशा फोनवर झाल्या ज्याचे घड्याळ {h} तासांपेक्षा जास्त बदलले. व्यक्तीला विचारा, मग वेळ मान्य करा किंवा विश्वासार्ह नाही म्हणा.'],
+  clock_back: ['clock went back {h} h', 'घड़ी {h} घंटे पीछे गई', 'घड्याळ {h} तास मागे गेले'],
+  clock_future: ['{h} h in the future', '{h} घंटे आगे का समय', '{h} तास पुढची वेळ'],
+  clock_decide: ['Decide', 'फ़ैसला करें', 'निर्णय घ्या'],
+  s_clock: ['Is the time of this record right?', 'क्या इस रिकॉर्ड का समय सही है?', 'या नोंदीची वेळ बरोबर आहे का?'],
+  clock_accept: ['Accept the time', 'समय मानें', 'वेळ मान्य'],
+  clock_reject: ['Time not trusted', 'समय भरोसेमंद नहीं', 'वेळ विश्वासार्ह नाही'],
+  clock_ok: ['Time accepted', 'समय माना', 'वेळ मान्य'],
+  clock_not_ok: ['Time not trusted', 'समय भरोसेमंद नहीं', 'वेळ विश्वासार्ह नाही'],
+  clock_none: ['No clock jumps found.', 'घड़ी में कोई बदलाव नहीं मिला।', 'घड्याळात कोणताही बदल आढळला नाही.'],
   ev_TICKET_SEVERITY: ['Ticket urgency changed', 'टिकट की गंभीरता बदली', 'तिकिटाची गंभीरता बदलली'],
   ev_LIFT_QR_SET: ['Lift QR label changed', 'लिफ्ट QR नाम बदला', 'लिफ्ट QR नाव बदलले'],
   tk_sla_breach: ['A ticket passed its time limit', 'टिकट समय-सीमा पार कर गया', 'तिकिटाने वेळमर्यादा ओलांडली'],
@@ -3380,7 +3430,7 @@ function materialList(req) {
 /* ---------- state ---------- */
 function emptyState() {
   return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
-    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {} };
+    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {} };
 }
 let S = emptyState();
 let EVENTS = [];
@@ -3845,6 +3895,32 @@ function needsSecond(S, ev, P) {
   return false;
 }
 const HIGH_RISK = ['QUOTE_DECISION', 'PAYMENT_STATUS', 'INCIDENT_RESOLVED', 'DEAL_REOPENED', 'USER_UPDATED', 'PAY_APPROVED'];
+/* backup approver: a trusted person the Owner names for set days, who sees the office queue and gives second approvals */
+const isBackup = (uid, t) => { const b = S.backup; if (!b || b.ended || b.uid !== uid) return false; const d = safeDay(t || nowISO()); return d >= b.from && d <= b.to; };
+const backupNow = () => S.backup && !S.backup.ended && isBackup(S.backup.uid) ? S.backup.uid : null;
+const officeLike = u => !!u && (['owner', 'admin'].includes(u.role) || isBackup(u.uid));
+/* phone clock checks: records from one phone in the order they were made should not jump back in time, and none should be far in the future */
+const CLOCK_GAP_H = 6;
+let _clockCache = { n: -1, list: [] };
+function clockGaps() {
+  if (_clockCache.n === EVENTS.length && _clockCache.at > Date.now() - 60000) return _clockCache.list;
+  const byDev = {}, out = [], now = Date.now();
+  for (const e of EVENTS) if (e.dev && e.dev !== 'practice' && e.n != null) (byDev[e.dev] = byDev[e.dev] || []).push(e);
+  for (const list of Object.values(byDev)) {
+    list.sort((a, b) => a.n - b.n);
+    let top = null;
+    for (const e of list) {
+      const t0 = Date.parse(e.t);
+      /* a flagged record is not used as the reference for the next ones */
+      if (top != null && top - t0 > CLOCK_GAP_H * 3600e3) out.push({ id: e.id, dev: e.dev, by: e.by, t: e.t, type: e.type, pid: e.pid, kind: 'back', h: Math.round((top - t0) / 3600e3) });
+      else if (t0 - now > CLOCK_GAP_H * 3600e3) out.push({ id: e.id, dev: e.dev, by: e.by, t: e.t, type: e.type, pid: e.pid, kind: 'future', h: Math.round((t0 - now) / 3600e3) });
+      else top = Math.max(top == null ? t0 : top, t0);
+    }
+  }
+  _clockCache = { n: EVENTS.length, at: Date.now(), list: out };
+  return out;
+}
+const openClockGaps = () => clockGaps().filter(g => !S.clockReviews[g.id]);
 function innerEvent(req, ev) { return { id: ev.id + '~', n: ev.n, t: ev.t, by: req.by, type: req.action.type, pid: req.action.pid, data: Object.assign({}, req.action.data, { _aid: req.id }), dev: ev.dev }; }
 const PAY_KEYS = { approve: ['owner', 'admin'] };
 
@@ -4610,7 +4686,8 @@ const RULES = {
     }
   },
   APPROVAL_DECIDED: {
-    roles: ['owner', 'admin'], check: (S, ev, u) => {
+    roles: ['owner', 'admin', 'sales', 'finance', 'qc'], check: (S, ev, u) => {
+      if (!['owner', 'admin'].includes(u.role) && !isBackup(u.uid, ev.t)) return { k: 'err_role', v: { roles: rolesTxt(['owner', 'admin']) } };
       const r = S.approvals[ev.data.aid];
       if (!r || r.status !== 'pending') return 'err_already';
       if (r.by === u.uid) return 'err_same_person';
@@ -4619,6 +4696,28 @@ const RULES = {
       return validate(S, innerEvent(r, ev));
     }
   },
+  /* the Owner names a backup approver for set days (when the Owner or Admin is away) */
+  BACKUP_SET: {
+    roles: ['owner'], check: (S, ev) => {
+      const d = ev.data, re = /^\d{4}-\d\d-\d\d$/;
+      if (!isActive(d.uid) || !['admin', 'sales', 'finance', 'qc'].includes(roleOf(d.uid))) return 'err_pick_person';
+      if (!re.test(d.from || '') || !re.test(d.to || '') || d.from < safeDay(ev.t) || d.to < d.from || Date.parse(d.to) - Date.parse(d.from) > 31 * 864e5) return 'err_date';
+      return null;
+    }
+  },
+  BACKUP_ENDED: { roles: ['owner'], check: S => !S.backup || S.backup.ended ? 'err_already' : null },
+  /* the day's close: open office items roll to tomorrow with a named person */
+  DAY_CLOSED: {
+    roles: ['owner', 'admin', 'sales', 'finance', 'qc'], check: (S, ev, u) => {
+      if (!['owner', 'admin'].includes(u.role) && !isBackup(u.uid, ev.t)) return { k: 'err_role', v: { roles: rolesTxt(['owner', 'admin']) } };
+      if (ev.data.day !== safeDay(ev.t)) return 'err_date';
+      if (S.dayClose[ev.data.day]) return 'err_already';
+      if (!Array.isArray(ev.data.items)) return 'err_fill';
+      return ev.data.items.some(x => x.sev === 'critical') ? need((ev.data.note || '').trim(), 'err_close_critical') : null;
+    }
+  },
+  /* a record whose phone clock jumped: the office accepts the time or marks it as not trusted, with a reason */
+  CLOCK_REVIEWED: { roles: ['owner', 'admin'], check: (S, ev) => S.clockReviews[ev.data.eid] ? 'err_already' : typeof ev.data.ok !== 'boolean' ? 'err_choose' : need((ev.data.note || '').trim(), 'err_reason') },
   /* people, training and pay */
   WORKER_PROFILE: {
     roles: STAFF, check: (S, ev, u) => {
@@ -4991,6 +5090,10 @@ function apply(S, ev) {
       P.renewals.push({ t: ev.t, by: ev.by, years: +d.years, amount: +d.amount, from, to: P.amcEnd, note: d.note || '' });
       break;
     }
+    case 'BACKUP_SET': S.backup = { uid: d.uid, from: d.from, to: d.to, note: d.note || '', by: ev.by, t: ev.t, ended: null }; break;
+    case 'BACKUP_ENDED': S.backup.ended = { t: ev.t, by: ev.by }; break;
+    case 'DAY_CLOSED': S.dayClose[d.day] = { t: ev.t, by: ev.by, items: d.items, note: d.note || '' }; break;
+    case 'CLOCK_REVIEWED': S.clockReviews[d.eid] = { ok: d.ok, note: d.note, by: ev.by, t: ev.t }; break;
     case 'ESC_ACTED': {
       const prev = S.escAck[d.key];
       S.escAck[d.key] = { until: d.until, by: ev.by, t: ev.t, action: d.action, note: d.note, uid: d.uid || '', n: d.action === 'reassign' ? 0 : (prev ? prev.n : 0) + 1, reset: d.action === 'reassign' ? ev.t : prev && prev.reset };
@@ -5198,7 +5301,11 @@ function globalNeeds(u, all) {
   /* SOS: an alarm for the office and for the person's company until someone confirms they are safe */
   for (const id of S.sosOrder) { const x = S.sos[id]; if (x.open) add('sos', ['admin', 'owner', 'partner'], { sid: id, uid: x.by, uids: [companyOf(x.by)], not: x.by, urgent: true, pid: null, sosPid: x.pid }); }
   const up = (n, from, id) => { const e = escFor(n, from, id); if (e) out.push(e); };
-  for (const id of S.approvalOrder) { const r = S.approvals[id]; if (r.status === 'pending') add('second_approval', ['owner', 'admin'], { aid: id, not: r.by, urgent: true }); }
+  for (const id of S.approvalOrder) { const r = S.approvals[id]; if (r.status === 'pending') { add('second_approval', ['owner', 'admin'], { aid: id, not: r.by, urgent: true }); const b = backupNow(); if (b && b !== r.by) add('second_approval', [roleOf(b)], { aid: id, uids: [b], urgent: true }); } }
+  /* records with a phone-clock jump wait for an office decision (one item for all of them) */
+  { const g = openClockGaps(); if (g.length) add('clock_gap', ['admin', 'owner'], { n: g.length }); }
+  /* evening: close the day (India time, after 6 pm) */
+  if (!S.dayClose[safeDay()] && new Date(Date.now() + CO_TZ).getUTCHours() >= 18 && S.org) add('day_close', ['admin', 'owner'], {});
   if (all || ['owner', 'admin', 'finance', 'tech'].includes(u.role)) {
     for (const x of Object.values(S.users).filter(y => ['tech', 'qc', 'partner', 'field'].includes(y.role) && (y.active || weeksFor(y.uid).some(w => !w.pay || w.pay.status !== 'paid')))) {
       for (const w of weeksFor(x.uid)) {
@@ -5380,7 +5487,8 @@ async function perform(type, pid, data, opt = {}) {
   const by = opt.as || (App.me && App.me.uid);
   let tt = opt.t || nowISO();
   const last = EVENTS[EVENTS.length - 1];
-  if (!opt.t && last && tt <= last.t) tt = new Date(new Date(last.t).getTime() + 1).toISOString();
+  /* keep records made in the same moment in order; a record from a phone whose clock ran far ahead must not drag new records into the future */
+  if (!opt.t && last && tt <= last.t && Date.parse(last.t) - Date.now() < 60000) tt = new Date(new Date(last.t).getTime() + 1).toISOString();
   App.set.seq = (App.set.seq || 0) + 1;
   const ev = { id: App.set.dev + '-' + rid(6), n: App.set.seq, t: tt, by, type, pid: pid || null, data: data || {}, dev: App.set.dev };
   if (App.mode === 'real') await Sign.sign(ev);
@@ -5776,7 +5884,7 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', sla_breach: '⏱️', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { if (App.me && OUTSIDERS.includes(App.me.role)) return (P.site.address || '').split(/[,\n]/)[0] || areaOf(P) || P.id; return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
@@ -5784,7 +5892,7 @@ function taskCard(n, i) {
   const sub = n.sev && ['assign_ticket', 'work_ticket', 'sla_breach'].includes(n.k) ? ' · ' + SEVERITIES[sevRank(n.sev)][1] + ' ' + t('sev_' + n.sev) : ['decide_claim', 'send_claim', 'receive_claim'].includes(n.k) && P && claimOf(P, n.cid) ? ' · ' + t(claimOf(P, n.cid).line) + ' · ' + t('clk_' + claimOf(P, n.cid).kind) : n.k === 'po_late' ? ' · ' + fmtD(n.date) : n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
   if (!P || n.k === 'job_open') {
     const info = n.k === 'job_open' && S.posts[n.postId] ? jobTitle(S.posts[n.postId]) + ' · 📍 ' + S.posts[n.postId].card.area : n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
-      : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'access_alert' ? userName(n.uid) + ' · ' + t(n.why, { n: n.n }) : n.k === 'sos' ? userName(n.uid) + ' · ' + fmtD(S.sos[n.sid].t, true) + (n.sosPid ? ' · ' + n.sosPid : '') : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
+      : n.k === 'clock_gap' ? t('clock_n', { n: n.n }) : n.k === 'day_close' ? t('day_close_sub', { n: officeQueue().length }) : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'access_alert' ? userName(n.uid) + ' · ' + t(n.why, { n: n.n }) : n.k === 'sos' ? userName(n.uid) + ' · ' + fmtD(S.sos[n.sid].t, true) + (n.sosPid ? ' · ' + n.sosPid : '') : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
     return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
@@ -7161,6 +7269,7 @@ SCREENS.home = () => {
   else h += `<div class="card center"><div class="big-i">☕</div><b>${t('no_tasks')}</b><p class="muted">${t(u.role === 'field' ? 'no_tasks_field' : 'no_tasks_other')}</p></div>`;
   if (u.role === 'field' || u.role === 'sales') h += `<button class="btn btn-big ${tasks.length ? '' : 'btn-p'}" style="margin-top:12px" data-a="addSite"><span class="i">➕</span>${t('add_site')}</button>`;
   if (adm && Object.keys(S.users).length < 3) h += `<div class="warnbox" style="margin-top:12px">👥 ${t('add_team_hint')}<br><button class="btn btn-p" style="margin-top:8px" data-a="nav" data-v="users">➕ ${t('add_person')}</button></div>`;
+  if (adm || isBackup(u.uid)) h += excBanner();
   if (adm) h += escBanner();
   if (hot.length) h += `<h2 class="sec">⚠️ ${t('urgent_now')} (${hot.length})</h2>` + taskList(hot);
   if (rest.length) h += fold('tasks', t(hot.length ? 'other_work' : 'my_tasks'), rest.map(([n, i]) => taskCard(n, i)).join(''), { icon: '📋', count: rest.length, sub: t('fold_tap') });
@@ -8428,6 +8537,93 @@ SCREENS.escalations = () => {
     ${S.escLog.length ? `<h2 class="sec">🧾 ${t('esc_recent')}</h2><div class="card">${S.escLog.slice(0, 15).map(x => `<div class="list-item small" style="display:block">${ESC_ICON[x.action]} <b>${esc(t('tk_' + x.ref))}</b>${x.pid ? ' · ' + esc(x.pid) : ''} · ${t('esc_' + x.action)}${x.uid ? ' → ' + esc(userName(x.uid)) : ''}<br><span class="muted">${esc(userName(x.by))} · ${fmtD(x.t, true)} · 📅 ${fmtD(x.until)} · ${esc(x.note)}</span></div>`).join('')}</div>` : ''}
   </main>` + nav('me');
 };
+/* ---------- office queue (exceptions first) ---------- */
+const EXC_SEV = {
+  sos: 'critical',
+  sla_breach: 'high', lift_licence_due: 'high', record_licence: 'high', licence_renew: 'high', record_permit: 'high', po_declined: 'high', access_alert: 'high', pay_dispute: 'high', resolve_incident: 'high', verify_payment: 'medium',
+  second_approval: 'medium', po_late: 'medium', decide_claim: 'medium', strike_appeal: 'medium', hold_request: 'medium', dispute_open: 'medium', resolve_blocker: 'medium', refund_decide: 'medium', approve_key: 'medium', approve_member: 'medium', assign_ticket: 'medium', suspend_review: 'medium',
+  clock_gap: 'low', check_docs: 'low', onb_profile: 'low', review_meeting: 'low', post_nobody: 'low', review_lead: 'low'
+};
+const SEV_ORDER = ['critical', 'high', 'medium', 'low'], SEV_ICON = { critical: '🔴', high: '🟠', medium: '🟡', low: '⚪' };
+function excSev(n) {
+  if (n.k === 'sos' || n.alarm || ['trapped', 'unsafe'].includes(n.sev)) return 'critical';
+  if (n.k === 'escalated') return n.level >= 3 ? 'high' : 'medium';
+  return EXC_SEV[n.k] || null;
+}
+const excKey = n => [n.k, n.pid, n.tid, n.aid, n.cid, n.uid, n.sid, n.ref, n.hid, n.week, n.step].filter(x => x != null && x !== '').join('|');
+/* everything that needs the office, whoever of the Owner/Admin it is for, most serious first, then oldest */
+function officeQueue() {
+  const seen = new Set(), out = [];
+  for (const u of Object.values(S.users).filter(x => x.active && ['owner', 'admin'].includes(x.role))) for (const n of myTasks(u)) {
+    const sev = excSev(n), key = excKey(n); if (!sev || seen.has(key)) continue; seen.add(key); out.push(Object.assign({}, n, { exc: sev, key }));
+  }
+  const age = n => n.since || (n.pid && S.projects[n.pid] ? S.projects[n.pid].since : '9');
+  return out.sort((a, b) => SEV_ORDER.indexOf(a.exc) - SEV_ORDER.indexOf(b.exc) || (age(a) < age(b) ? -1 : 1));
+}
+const lastClose = () => { const days = Object.keys(S.dayClose).filter(d => d < safeDay()).sort(); return days.length ? S.dayClose[days[days.length - 1]] : null; };
+SCREENS.exceptions = ({ f } = {}) => {
+  const q = (App.form.excq || '').trim();
+  const u = App.me; if (!officeLike(u)) return SCREENS.home();
+  const all = officeQueue(), prev = lastClose(), rolled = new Set(prev ? prev.items.map(x => x.key) : []);
+  const cnt = k => all.filter(n => n.exc === k).length;
+  let list = f ? all.filter(n => n.exc === f) : all; if (q) list = list.filter(n => (n.pid || '').toLowerCase().includes(q.toLowerCase()));
+  App.tasks = list; App.pageSay = all.length ? t('exc_say', { a: cnt('critical'), b: cnt('high'), n: all.length }) : t('exc_clear');
+  const closed = S.dayClose[safeDay()];
+  return topBar(t('exc_title'), { back: true }) + `<main class="wrap">
+    ${isBackup(u.uid) ? `<div class="note">🧑‍🤝‍🧑 ${t('backup_you', { d: fmtD(S.backup.to) })}</div>` : ''}
+    <div class="kpis">${SEV_ORDER.map(k => `<button class="kpi ${k === 'critical' && cnt(k) ? 'alert' : ''} ${f === k ? 'act' : ''}" data-a="excFilter" data-v="${f === k ? '' : k}"><b>${cnt(k)}</b>${SEV_ICON[k]} ${t('exc_' + k)}</button>`).join('')}</div>
+    <div style="margin-top:10px">${formInp('excq', 'exc_search')}</div>
+    ${list.length ? list.map((n, i) => `<div style="margin-top:8px"><span class="chip ${n.exc === 'critical' ? 'c-bad' : n.exc === 'high' ? 'c-warn' : 'c-mute'}">${SEV_ICON[n.exc]} ${t('exc_' + n.exc)}</span>${rolled.has(n.key) ? ` <span class="chip c-info">↪️ ${t('exc_rolled', { who: esc(userName((prev.items.find(x => x.key === n.key) || {}).owner) || '') })}</span>` : ''}${taskCard(n, i)}</div>`).join('')
+      : `<div class="card center"><div class="big-i">✅</div><b>${t('exc_clear')}</b></div>`}
+    <h2 class="sec">🌙 ${t('day_close')}</h2><div class="card">${closed ? `<div class="okbox">✅ ${t('day_closed_by', { who: esc(userName(closed.by)), t: fmtD(closed.t, true), n: closed.items.length })}</div>${closed.note ? `<p class="small">${esc(closed.note)}</p>` : ''}`
+      : `<p class="small">${t('day_close_d')}</p><button class="btn btn-p" data-a="wizOpen" data-v="dayClose">🌙 ${t('day_close')}</button>`}</div>
+    <div class="row wrapw" style="margin-top:10px">${u.role === 'owner' ? `<button class="btn" data-a="wizOpen" data-v="backup">🧑‍🤝‍🧑 ${t('backup_title')}</button>` : ''}${openClockGaps().length ? `<button class="btn" data-a="nav" data-v="clock">🕰️ ${t('clock_title')}</button>` : ''}</div>
+    ${S.backup && !S.backup.ended && S.backup.to >= safeDay() ? `<p class="small muted">🧑‍🤝‍🧑 ${t('backup_line', { who: esc(userName(S.backup.uid)), a: fmtD(S.backup.from), b: fmtD(S.backup.to) })}</p>` : ''}
+  </main>` + nav('home');
+};
+function excBanner() {
+  const u = App.me; if (!officeLike(u)) return '';
+  const all = officeQueue(), c = all.filter(n => n.exc === 'critical').length, h = all.filter(n => n.exc === 'high').length;
+  return `<button class="task ${c ? 'urgent' : ''}" data-a="nav" data-v="exceptions" style="margin-top:12px"><span class="ti">🚦</span><span class="grow" style="flex:1;min-width:0"><b>${t('exc_title')}</b><span class="small muted">${all.length ? t('exc_count', { a: c, b: h, n: all.length }) : t('exc_clear')}</span></span><span class="go">▶</span></button>`;
+}
+WIZ.dayClose = {
+  title: 'day_close', save: 'day_close', saveIcon: '🌙', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'c', icon: '🌙', say: 's_day_close', body: c => { const q = officeQueue(), crit = q.filter(n => n.exc === 'critical').length;
+    return `<div class="card">${kv([['exc_open_now', String(q.length)], ['exc_critical', String(crit)], ['day_done_today', String(EVENTS.filter(e => safeDay(e.t) === safeDay()).length)]])}</div>`
+      + (q.length ? `<div class="card"><h3>${t('day_roll')}</h3>${q.slice(0, 30).map(n => `<div class="list-item small"><span>${SEV_ICON[n.exc]}</span><span class="grow">${esc(t('tk_' + n.k))}${n.pid ? ' · ' + esc(n.pid) : ''}<br><span class="muted">→ ${esc(userName(rollOwner(n)))}</span></span></div>`).join('')}</div>` : '')
+      + (crit ? `<div class="warnbox">🔴 ${t('day_crit_note')}</div>` : '') + inp('note', 'f_note', { area: true, mic: true, opt: !crit }); },
+    check: c => officeQueue().some(n => n.exc === 'critical') && !c.note.trim() ? 'err_close_critical' : null }],
+  async finish(c) {
+    const items = officeQueue().map(n => ({ key: n.key, k: n.k, pid: n.pid || null, sev: n.exc, owner: rollOwner(n) }));
+    const r = await run([['DAY_CLOSED', null, { day: safeDay(), items, note: c.note.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_day_closed', { n: items.length }), next: '' } : r;
+  }
+};
+/* who carries an open item into tomorrow: the named person, else the Admin, else the Owner */
+function rollOwner(n) { const ids = (n.uids || []).filter(x => x && S.users[x] && n.roles.includes(roleOf(x))); return ids[0] || activeOf(n.roles.includes('admin') && hasAdmin() ? 'admin' : 'owner') || App.me.uid; }
+WIZ.backup = {
+  title: 'backup_title', save: 'save', noDraft: true, init: () => ({ uid: '', from: todayStr(), to: addDays(7), note: '', end: '' }),
+  steps: [
+    { id: 'who', icon: '🧑‍🤝‍🧑', say: 's_backup_who', body: () => (S.backup && !S.backup.ended && S.backup.to >= todayStr() ? `<div class="note">${t('backup_line', { who: esc(userName(S.backup.uid)), a: fmtD(S.backup.from), b: fmtD(S.backup.to) })}</div>` + tiles('end', [['yes', '⏹️', 'backup_end']], 'one') : '')
+      + tiles('uid', Object.values(S.users).filter(x => x.active && ['admin', 'sales', 'finance', 'qc'].includes(x.role)).map(x => [x.uid, ROLE_ICON[x.role], x.name + ' · ' + t('r_' + x.role)]), 'one') + `<p class="small muted">${t('backup_note')}</p>`,
+      check: c => c.end === 'yes' || roleOf(c.uid) ? null : 'err_pick_person' },
+    { id: 'when', icon: '📅', say: 's_backup_when', skip: c => c.end === 'yes', body: () => inp('from', 'backup_from', { type: 'date' }) + inp('to', 'backup_to', { type: 'date' }) + inp('note', 'f_note', { opt: true }), check: c => c.from && c.to && c.to >= c.from && c.from >= todayStr() ? null : 'err_date' }
+  ],
+  async finish(c) { const r = await run([c.end === 'yes' ? ['BACKUP_ENDED', null, {}] : ['BACKUP_SET', null, { uid: c.uid, from: c.from, to: c.to, note: c.note.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t(c.end === 'yes' ? 'what_backup_ended' : 'what_backup_set', { who: userName(c.uid) }), next: '' } : r; }
+};
+SCREENS.clock = () => {
+  const u = App.me; if (!['owner', 'admin'].includes(u.role)) return SCREENS.home();
+  const g = clockGaps(); App.pageSay = t('clock_title');
+  return topBar(t('clock_title'), { back: true }) + `<main class="wrap"><div class="note">🕰️ ${t('clock_note', { h: CLOCK_GAP_H })}</div>
+    ${g.length ? g.map(x => { const r = S.clockReviews[x.id]; return `<div class="card"><b>${esc(t('ev_' + x.type))}</b>${x.pid ? ' · ' + esc(x.pid) : ''}<br><span class="small">${esc(userName(x.by))} · 📱 ${esc(x.dev)} · ${fmtD(x.t, true)}</span><br>
+      <span class="chip c-warn">${t(x.kind === 'back' ? 'clock_back' : 'clock_future', { h: x.h })}</span>
+      ${r ? `<div class="${r.ok ? 'okbox' : 'warnbox'}" style="margin-top:6px">${t(r.ok ? 'clock_ok' : 'clock_not_ok')} · ${esc(userName(r.by))}: ${esc(r.note)}</div>`
+        : `<div class="row" style="margin-top:6px"><button class="btn btn-sm btn-p" data-a="wizOpen" data-v="clockReview||eid|${x.id}">⚖️ ${t('clock_decide')}</button></div>`}</div>`; }).join('') : `<div class="card center">✅ ${t('clock_none')}</div>`}</main>` + nav('home');
+};
+WIZ.clockReview = {
+  title: 'clock_decide', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
+  steps: [{ id: 'c', icon: '🕰️', say: 's_clock', body: c => tiles('ok', [['yes', '✅', 'clock_accept'], ['no', '🚫', 'clock_reject']], 'one') + inp('note', 'f_reason', { area: true, mic: true }), check: c => !c.ok ? 'err_choose' : c.note.trim() ? null : 'err_reason' }],
+  async finish(c) { const r = await run([['CLOCK_REVIEWED', null, { eid: W.opts.eid, ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? { ok: true, go: () => go('clock', {}, { replace: true }) } : r; }
+};
 function escBanner() {
   const { list } = allEscalations(), a = list.filter(n => n.level >= 3).length, b = list.length - a;
   if (!list.length) return '';
@@ -9002,7 +9198,7 @@ function openTask(n) {
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid),
-    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
+    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
     lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
@@ -9214,6 +9410,7 @@ const ACT = {
     App.qr.sent = v; const url = v === 'wa' ? `https://wa.me/${to.length === 10 ? '91' + to : to}?text=${encodeURIComponent(msg)}` : `sms:${q.office}?body=${encodeURIComponent(msg)}`; App.qr.lastUrl = url; try { window.open(url, '_blank'); } catch (e) { location.href = url; } },
   qrStaff: () => { App.pendingLift = App.qr.code; App.qr = null; history.replaceState({ aiec: 1 }, '', location.href.split('#')[0]); go(!App.set.lang ? 'welcome' : !S.org ? (App.mode === 'practice' ? 'login' : 'setup') : 'login', {}, { replace: true }); },
   liftQr: v => go('liftqr', { pid: v }),
+  excFilter: v => { App.route.p = Object.assign({}, App.route.p, { f: v || '' }); render(); },
   custAccess: v => wiz('custAccess', v),
   clItem: v => {
     const [kind, x] = v.split('|'), pid = App.route.p.pid, P = S.projects[pid], u = App.me;
@@ -9397,7 +9594,7 @@ document.addEventListener('input', e => {
   }
   if (el.dataset.f) {
     App.form[el.dataset.f] = el.type === 'checkbox' ? el.checked : el.value;
-    if (['pq', 'uq', 'aq'].includes(el.dataset.f)) rerenderKeep(el.id);
+    if (['pq', 'uq', 'aq', 'excq'].includes(el.dataset.f)) rerenderKeep(el.id);
   }
 });
 /* remember which folded sections each person keeps open */

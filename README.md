@@ -176,6 +176,17 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * "Report a problem" lets the resident pick the problem, add a call-back number, and send it to the office on WhatsApp or SMS. The office then opens the ticket.
   * Staff who log in from the page land on that lift.
 
+### Office queue, closing the day, backup approver, phone clock checks
+* **Needs the office (Owner/Admin):** one list of everything waiting for the office, in four levels (critical, high, medium, low), most serious first, then oldest.
+  * Critical: SOS, person trapped, unsafe lift, emergency part claims.
+  * High: tickets past their time limit, licences and permits, declined orders, payment disputes, unusual data access, stuck work at Owner level.
+  * Medium: approvals, late suppliers, part claims, appeals, holds, disputes, problems.
+  * Low: onboarding papers, phone clock checks, unassigned leads.
+  * There are counts at the top, filters by level and a search by project number. Items close only when the work behind them is done.
+* **Close the day:** after 6 pm the office is asked to close the day. Each open item rolls to tomorrow with a named person (the person it belongs to, else the Admin, else the Owner). Open red items need a note. Next day those items show "from yesterday → name". One close per day.
+* **Backup approver:** the Owner names a trusted person (Admin, Sales, Finance or QC) for up to 31 days. That person sees the office queue, gets second approvals and can close the day. They can never approve their own request. The Owner can end it early.
+* **Phone clock checks:** a record from a phone whose clock went back more than 6 hours, or that is dated more than 6 hours in the future, goes to the office as one low item. The Admin accepts the time or marks it as not trusted, with a reason. A wrong clock on one phone no longer pushes new records into the future.
+
 ### Shaft limits, variation, co-worker check, surprise QC
 * **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).
   * A shaft below the minimum cannot simply be approved: QC asks for corrections, or approves "with a variation quote".
