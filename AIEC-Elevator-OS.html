@@ -131,6 +131,20 @@ textarea.in{min-height:96px;resize:vertical}
 .kv dt{color:var(--muted)}
 .kv dd{margin:0;font-weight:700;overflow-wrap:anywhere}
 .tl{border-left:3px solid var(--line);margin-left:10px;padding-left:14px}
+.splash{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 16px;background:#23262f;color:#fff;cursor:pointer}
+.splash .logo{width:150px;height:150px;animation:spPop .6s ease-out both}
+.splash .dl,.splash .dr{transform-box:fill-box;animation:spDoor 1s .35s ease-in-out both}.splash .dl{transform-origin:left center}.splash .dr{transform-origin:right center}
+.splash .car{animation:spRise 1.1s .2s ease-out both}
+.splash h1{margin:18px 0 2px;font-size:1.6rem;letter-spacing:2px;animation:spFade .8s .7s both}.splash p{margin:0;color:#c9a227;font-weight:700;animation:spFade .8s 1s both}
+@keyframes spPop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes spDoor{0%{transform:scaleX(1)}55%{transform:scaleX(.15)}100%{transform:scaleX(1)}}
+@keyframes spRise{from{transform:translateY(26px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes spFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.splash *{animation:none!important}}
+.door{display:flex;align-items:center;gap:14px;width:100%;min-height:92px;margin:0 0 12px;padding:14px 16px;border:2px solid var(--line);border-radius:18px;background:var(--card,#fff);color:inherit;font:inherit;text-align:left;cursor:pointer}
+.door .i{font-size:2.4rem;flex:none}.door b{font-size:1.2rem;display:block}.door small{color:var(--muted)}
+.door.d1{border-color:var(--gold)}.door.d2{border-color:var(--ok)}.door.d3{border-color:var(--ink)}
+.reqbox{width:100%;min-height:90px;font:600 .8rem/1.3 monospace;word-break:break-all}
 .tl-i{position:relative;margin-bottom:14px}
 .tl-i::before{content:"";position:absolute;left:-22px;top:5px;width:13px;height:13px;border-radius:50%;background:var(--gold);border:2px solid #fff}
 details.tl-i>summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;min-height:32px}details.tl-i>summary::-webkit-details-marker{display:none}
@@ -2143,6 +2157,93 @@ const L = {
   all_work: ['Everyone\'s open work', 'सबके खुले काम', 'सर्वांची उघडी कामे'],
   all_work_sub: ['View only: the Admin runs the day', 'सिर्फ़ देखने के लिए: दिन का काम Admin चलाते हैं', 'फक्त पाहण्यासाठी: रोजचे काम Admin चालवतात'],
   all_work_note: ['Every open task by role, longest waiting first. The Head Quarter is not given day-to-day tasks while there is an Admin; anything stuck past the last reminder comes to you as an escalation.', 'भूमिका के अनुसार हर खुला काम, सबसे पुराना पहले। Admin होने पर Head Quarter को रोज़ का काम नहीं मिलता; आखिरी याद के बाद भी अटका काम आपको एस्केलेशन के रूप में आएगा।', 'भूमिकेनुसार प्रत्येक उघडे काम, सर्वात जुने आधी. Admin असताना हेड क्वार्टरला रोजची कामे मिळत नाहीत; शेवटच्या आठवणीनंतरही अडलेले काम तुम्हाकडे एस्केलेशन म्हणून येईल.'],
+  sp_tag: ['Lifts made simple', 'लिफ्ट का काम आसान', 'लिफ्टचे काम सोपे'],
+  gate_say: ['Who are you? Choose one door.', 'आप कौन हैं? एक दरवाज़ा चुनें।', 'तुम्ही कोण? एक दरवाजा निवडा.'],
+  door_cust: ['Customer or builder', 'ग्राहक या बिल्डर', 'ग्राहक किंवा बिल्डर'],
+  door_cust_d: ['See your lift work, pay, ask, or make a new enquiry', 'अपनी लिफ्ट का काम देखें, भुगतान करें, पूछें, या नई पूछताछ', 'तुमच्या लिफ्टचे काम पाहा, पैसे भरा, विचारा किंवा नवीन चौकशी'],
+  door_join: ['Join us', 'हमसे जुड़ें', 'आमच्यासोबत जोडा'],
+  door_join_d: ['New staff, technician, supplier or partner company', 'नए कर्मचारी, टेक्नीशियन, सप्लायर या पार्टनर कंपनी', 'नवीन कर्मचारी, तंत्रज्ञ, पुरवठादार किंवा भागीदार कंपनी'],
+  door_staff: ['Staff login', 'स्टाफ़ लॉगिन', 'कर्मचारी लॉगिन'],
+  door_staff_d: ['I already work with the company', 'मैं पहले से कंपनी में काम करता/करती हूँ', 'मी आधीच कंपनीसोबत काम करतो/करते'],
+  gate_continue: ['Continue as {n}', '{n} के रूप में आगे', '{n} म्हणून पुढे'],
+  gate_new_company: ['Set up a new company (Head Quarter)', 'नई कंपनी शुरू करें (हेड क्वार्टर)', 'नवीन कंपनी सुरू करा (हेड क्वार्टर)'],
+  gate_open_file: ['Open a file', 'फ़ाइल खोलें', 'फाइल उघडा'],
+  gate_how: ['How it works', 'यह कैसे काम करता है', 'हे कसे काम करते'],
+  gate_my_req: ['Your request was made on {d}. When the office approves it, they send you a file: open it here.', 'आपका अनुरोध {d} को बना। ऑफिस मंज़ूर करके फ़ाइल भेजेगा: उसे यहाँ खोलें।', 'तुमची विनंती {d} रोजी केली. ऑफिस मंजूर करून फाइल पाठवेल: ती इथे उघडा.'],
+  gate_join_for: ['Joining {n}', '{n} से जुड़ना', '{n} सोबत जोडणी'],
+  cust_have_file: ['Open the file the office sent me', 'ऑफिस की भेजी फ़ाइल खोलें', 'ऑफिसने पाठवलेली फाइल उघडा'],
+  cust_have_file_d: ['You got it on WhatsApp after signing', 'साइन के बाद WhatsApp पर मिली', 'सहीनंतर WhatsApp वर मिळाली'],
+  cust_new_enq: ['I want a lift: new enquiry', 'मुझे लिफ्ट चाहिए: नई पूछताछ', 'मला लिफ्ट हवी: नवीन चौकशी'],
+  cust_new_enq_d: ['The office calls you back', 'ऑफिस आपको वापस कॉल करेगा', 'ऑफिस तुम्हाला परत कॉल करेल'],
+  door_pick_you: ['Choose your name', 'अपना नाम चुनें', 'तुमचे नाव निवडा'],
+  staff_open_file: ['Open my file from the office', 'ऑफिस से मिली मेरी फ़ाइल खोलें', 'ऑफिसकडून आलेली माझी फाइल उघडा'],
+  staff_new_here: ['New here? Use Join us.', 'नए हैं? हमसे जुड़ें चुनें।', 'नवीन आहात? आमच्यासोबत जोडा निवडा.'],
+  join_pick: ['What work will you do?', 'आप क्या काम करेंगे?', 'तुम्ही कोणते काम करणार?'],
+  jr_tech: ['Technician / installer', 'टेक्नीशियन / इंस्टॉलर', 'तंत्रज्ञ / बसवणारे'],
+  jr_sales: ['Sales', 'सेल्स', 'विक्री'],
+  jr_field: ['Field (finding sites)', 'फ़ील्ड (साइट ढूँढना)', 'फील्ड (साइट शोधणे)'],
+  jr_qc: ['QC inspector', 'QC इंस्पेक्टर', 'QC निरीक्षक'],
+  jr_finance: ['Accounts / finance', 'हिसाब / फ़ाइनेंस', 'हिशेब / वित्त'],
+  jr_supplier: ['Supplier (material)', 'सप्लायर (सामान)', 'पुरवठादार (साहित्य)'],
+  jr_partner: ['Licensed partner company', 'लाइसेंस वाली पार्टनर कंपनी', 'परवानाधारक भागीदार कंपनी'],
+  jr_title: ['Join request', 'जुड़ने का अनुरोध', 'जोडणीची विनंती'],
+  jr_say: ['Fill your details and choose your own PIN. The office checks and approves you.', 'अपनी जानकारी भरें और अपना PIN चुनें। ऑफिस जाँचकर मंज़ूर करेगा।', 'तुमची माहिती भरा आणि स्वतःचा PIN निवडा. ऑफिस तपासून मंजूर करेल.'],
+  f_mobile: ['Mobile number', 'मोबाइल नंबर', 'मोबाइल नंबर'],
+  f_area: ['Area / city', 'इलाका / शहर', 'भाग / शहर'],
+  f_co_name: ['Company name', 'कंपनी का नाम', 'कंपनीचे नाव'],
+  f_gst: ['GST number', 'GST नंबर', 'GST क्रमांक'],
+  f_lic_no: ['Lift licence number', 'लिफ्ट लाइसेंस नंबर', 'लिफ्ट परवाना क्रमांक'],
+  f_lic_exp: ['Licence valid until', 'लाइसेंस कब तक मान्य', 'परवाना कधीपर्यंत वैध'],
+  f_office_no: ['Office WhatsApp number', 'ऑफिस का WhatsApp नंबर', 'ऑफिसचा WhatsApp नंबर'],
+  f_site_addr: ['Site address', 'साइट का पता', 'साइटचा पत्ता'],
+  f_floors_n: ['Number of floors', 'मंज़िलों की संख्या', 'मजल्यांची संख्या'],
+  enq_title: ['New enquiry', 'नई पूछताछ', 'नवीन चौकशी'],
+  enq_say: ['Tell us about the site. The office will call you back.', 'साइट के बारे में बताएँ। ऑफिस आपको कॉल करेगा।', 'साइटबद्दल सांगा. ऑफिस तुम्हाला कॉल करेल.'],
+  enq_who: ['I am the', 'मैं हूँ', 'मी आहे'],
+  enq_owner: ['Owner', 'मालिक', 'मालक'],
+  enq_builder: ['Builder', 'बिल्डर', 'बिल्डर'],
+  enq_gps: ['Use my location (I am at the site)', 'मेरी लोकेशन लें (मैं साइट पर हूँ)', 'माझे ठिकाण घ्या (मी साइटवर आहे)'],
+  enq_gps_ok: ['Location added', 'लोकेशन जुड़ी', 'ठिकाण जोडले'],
+  req_make: ['Make my request', 'मेरा अनुरोध बनाएँ', 'माझी विनंती तयार करा'],
+  req_sent_title: ['Send your request', 'अपना अनुरोध भेजें', 'तुमची विनंती पाठवा'],
+  req_sent_say: ['Send this message to the office. It has a code the office pastes into the app.', 'यह संदेश ऑफिस को भेजें। इसमें एक कोड है जिसे ऑफिस ऐप में डालेगा।', 'हा संदेश ऑफिसला पाठवा. त्यात एक कोड आहे जो ऑफिस ॲपमध्ये टाकेल.'],
+  req_wa: ['Send on WhatsApp', 'WhatsApp पर भेजें', 'WhatsApp वर पाठवा'],
+  req_sms: ['Send by SMS', 'SMS से भेजें', 'SMS ने पाठवा'],
+  req_copy: ['Copy the message', 'संदेश कॉपी करें', 'संदेश कॉपी करा'],
+  req_share: ['Share', 'शेयर करें', 'शेअर करा'],
+  req_next_join: ['After the office approves you, they send your file on WhatsApp. Open it here and log in with the PIN you just chose.', 'ऑफिस मंज़ूर करके WhatsApp पर आपकी फ़ाइल भेजेगा। उसे यहाँ खोलें और अभी चुने PIN से लॉगिन करें।', 'ऑफिस मंजूर करून WhatsApp वर तुमची फाइल पाठवेल. ती इथे उघडा आणि आत्ता निवडलेल्या PIN ने लॉगिन करा.'],
+  req_next_enq: ['The office will call you. Keep your phone on.', 'ऑफिस आपको कॉल करेगा। फ़ोन चालू रखें।', 'ऑफिस तुम्हाला कॉल करेल. फोन चालू ठेवा.'],
+  req_msg_join: ['Join request for {org}: {name} · {role} · {phone}', '{org} से जुड़ने का अनुरोध: {name} · {role} · {phone}', '{org} सोबत जोडणीची विनंती: {name} · {role} · {phone}'],
+  req_msg_enq: ['Lift enquiry: {name} · {phone} · {addr}', 'लिफ्ट पूछताछ: {name} · {phone} · {addr}', 'लिफ्ट चौकशी: {name} · {phone} · {addr}'],
+  req_code_note: ['Office: paste this whole message in the app (Users → Paste a request).', 'ऑफिस: यह पूरा संदेश ऐप में डालें (लोग → अनुरोध डालें)।', 'ऑफिस: हा संपूर्ण संदेश ॲपमध्ये टाका (लोक → विनंती टाका).'],
+  copied: ['Copied', 'कॉपी हुआ', 'कॉपी झाले'],
+  err_pin_match: ['The two PINs are not the same.', 'दोनों PIN एक जैसे नहीं हैं।', 'दोन्ही PIN सारखे नाहीत.'], err_pin_len: ['PIN must be 4 to 6 numbers.', 'PIN 4 से 6 अंकों का हो।', 'PIN 4 ते 6 अंकी असावा.'],
+  paste_title: ['Paste a request', 'अनुरोध डालें', 'विनंती टाका'],
+  paste_say: ['Paste the whole message a person sent you (join request or enquiry).', 'किसी ने भेजा पूरा संदेश यहाँ डालें (जुड़ने का अनुरोध या पूछताछ)।', 'कोणी पाठवलेला संपूर्ण संदेश इथे टाका (जोडणी विनंती किंवा चौकशी).'],
+  paste_read: ['Read the request', 'अनुरोध पढ़ें', 'विनंती वाचा'],
+  paste_bad: ['No request code found in this message.', 'इस संदेश में अनुरोध कोड नहीं मिला।', 'या संदेशात विनंती कोड सापडला नाही.'],
+  paste_done: ['This request was already decided.', 'यह अनुरोध पहले ही तय हो चुका।', 'ही विनंती आधीच ठरली आहे.'],
+  paste_unverified: ['Not checked yet: anyone can make a request. Call the number and confirm before you approve.', 'अभी जाँचा नहीं: कोई भी अनुरोध बना सकता है। मंज़ूर करने से पहले नंबर पर कॉल करके पक्का करें।', 'अजून तपासले नाही: कोणीही विनंती करू शकतो. मंजूर करण्यापूर्वी नंबरवर कॉल करून खात्री करा.'],
+  paste_call: ['Call to confirm', 'कॉल करके पक्का करें', 'कॉल करून खात्री करा'],
+  paste_approve: ['Approve and add', 'मंज़ूर करें और जोड़ें', 'मंजूर करा आणि जोडा'],
+  paste_refuse: ['Refuse', 'मना करें', 'नाकारा'],
+  paste_enq_add: ['Add to enquiries', 'पूछताछ में जोड़ें', 'चौकशीत जोडा'],
+  paste_added: ['Added. Now send them their file.', 'जोड़ा गया। अब उनकी फ़ाइल भेजें।', 'जोडले. आता त्यांची फाइल पाठवा.'],
+  paste_send_file: ['Send their file', 'उनकी फ़ाइल भेजें', 'त्यांची फाइल पाठवा'],
+  join_link: ['Join link / QR', 'जुड़ने का लिंक / QR', 'जोडणी लिंक / QR'],
+  join_link_say: ['Share this link or print the QR. New people open it to send a join request straight to your office number.', 'यह लिंक भेजें या QR छापें। नए लोग इसे खोलकर सीधे आपके ऑफिस नंबर पर अनुरोध भेजेंगे।', 'ही लिंक पाठवा किंवा QR छापा. नवीन लोक ती उघडून थेट तुमच्या ऑफिस नंबरवर विनंती पाठवतील.'],
+  join_link_no_office: ['Set the office number first (Business rules).', 'पहले ऑफिस नंबर सेट करें (बिज़नेस नियम)।', 'आधी ऑफिस नंबर सेट करा (व्यवसाय नियम).'],
+  enq_list: ['Enquiries', 'पूछताछ', 'चौकश्या'],
+  enq_visit: ['Visit the site (new lead)', 'साइट पर जाएँ (नई लीड)', 'साइटला भेट द्या (नवीन लीड)'],
+  enq_close: ['Not interested', 'रुचि नहीं', 'रस नाही'],
+  tk_new_enquiry: ['Call a new enquiry', 'नई पूछताछ को कॉल करें', 'नवीन चौकशीला कॉल करा'],
+  ev_ENQUIRY_ADDED: ['Enquiry received', 'पूछताछ मिली', 'चौकशी मिळाली'],
+  ev_ENQUIRY_CLOSED: ['Enquiry closed', 'पूछताछ बंद', 'चौकशी बंद'],
+  ev_JOIN_DECIDED: ['Join request decided', 'जुड़ने का अनुरोध तय', 'जोडणी विनंती ठरली'],
+  ev_CUSTOMER_LINKED: ['Customer linked to another site', 'ग्राहक दूसरी साइट से जुड़ा', 'ग्राहक दुसऱ्या साइटशी जोडला'],
+  builder_sites: ['Your sites', 'आपकी साइटें', 'तुमच्या साइट्स'],
+  link_site: ['Link to another site (builder)', 'दूसरी साइट से जोड़ें (बिल्डर)', 'दुसऱ्या साइटशी जोडा (बिल्डर)'],
+  err_has_customer2: ['This site already has a customer login.', 'इस साइट का ग्राहक लॉगिन पहले से है।', 'या साइटचे ग्राहक लॉगिन आधीच आहे.'],
   ck_obstacle: ['Work stuck', 'काम अटका', 'काम अडले'],
   ck_followup: ['Follow-up', 'फ़ॉलो-अप', 'पाठपुरावा'],
   ck_plan: ['Work plan', 'काम की योजना', 'कामाचे नियोजन'],
@@ -3498,6 +3599,7 @@ const isPriv = (type, k) => { const p = PRIVATE_KEYS[type]; return !!p && (p ===
 /* signature version 2: every field that a file for a partner company or technician may hide has its own salted fingerprint,
    so customer contacts, prices, competitors' details and notes can be removed one by one without breaking the signature */
 const PRIVATE_V2 = {
+  ENQUIRY_ADDED: ['name', 'phone', 'address', 'note', 'gps'],
   SUPPLIER_INVOICE: ['no', 'amount', 'gst'], SUP_INVOICE_DECIDED: ['deduct', 'note'], SUP_INVOICE_PAID: ['ref'],
   USER_ADDED: ['pin', 'salt', 'name'], USER_UPDATED: ['pin', 'salt', 'name'], PIN_UPGRADED: ['pin', 'salt'], WORKER_PROFILE: ['phone', 'area'], JOB_APPLIED: ['note', 'gps', 'team'],
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
@@ -3815,7 +3917,7 @@ function materialList(req) {
 /* ---------- state ---------- */
 function emptyState() {
   return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
-    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {}, lastAt: {}, undone: {} };
+    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], enquiries: {}, enqOrder: [], joins: {}, reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {}, lastAt: {}, undone: {} };
 }
 let S = emptyState();
 let EVENTS = [];
@@ -3832,7 +3934,7 @@ function canSee(u, P) {
     case 'supplier': return P.supplier === u.uid;
     case 'tech': return (peerWaiting(P).length > 0 && !peerWhyNot(u.uid, P)) || P.tech === u.uid || (P.crew || []).includes(u.uid) || Object.values(P.svcOwner || {}).includes(u.uid);
     case 'partner': return P.partner === u.uid || [P.tech].concat(P.crew || [], Object.values(P.svcOwner || {}), P.tickets.map(x => x.owner)).some(x => x && companyOf(x) === u.uid);
-    case 'customer': return u.projectId === P.id;
+    case 'customer': return u.projectId === P.id || (u.projects || []).includes(P.id);
   }
   return false;
 }
@@ -4443,6 +4545,19 @@ const RULES = {
   },
   SHIFT_STARTED: { roles: ['field'], check: (S, ev) => need(ev.data.safe === true, 'err_safe') },
   SHIFT_ENDED: { roles: ['field'] },
+  /* front door: an enquiry or a join request a person sent from their own phone, pasted in by the office */
+  ENQUIRY_ADDED: { roles: ['admin', 'owner', 'sales'], check: (S, ev) => { const d = ev.data; return !/^R[A-Z0-9]{8}$/.test(d.eid || '') || S.enquiries[d.eid] ? 'err_dup_id' : !(d.name || '').trim() ? 'err_fill' : need(validPhone(d.phone), 'err_phone'); } },
+  ENQUIRY_CLOSED: { roles: ['admin', 'owner', 'sales', 'field'], check: (S, ev) => { const e = S.enquiries[ev.data.eid]; return !e || !e.open ? 'err_already' : need(ev.data.pid || (ev.data.note || '').trim(), 'err_reason'); } },
+  JOIN_DECIDED: { roles: ['admin', 'owner'], check: (S, ev) => { const d = ev.data; return !/^R[A-Z0-9]{8}$/.test(d.rid || '') || S.joins[d.rid] ? 'err_already' : d.ok ? need(S.users[d.uid], 'err_no_user') : need((d.note || '').trim(), 'err_reason'); } },
+  CUSTOMER_LINKED: {
+    roles: ['admin', 'owner', 'sales'], project: true, check: (S, ev, u, P) => {
+      const x = S.users[ev.data.uid];
+      if (!x || x.role !== 'customer') return 'err_no_user';
+      if (P.customer) return 'err_has_customer2';
+      if (stageIdx(P.stage) < stageIdx('won') || P.stage === 'lost') return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      return u.role === 'sales' && P.sales !== u.uid ? 'err_access' : null;
+    }
+  },
   LEAD_CREATED: {
     roles: ['field', 'sales', 'admin', 'owner'], check: (S, ev) => {
       const d = ev.data;
@@ -5422,8 +5537,13 @@ function apply(S, ev) {
       break;
     case 'SHIFT_STARTED': S.shifts[ev.by] = { start: ev.t, gps: d.gps || null }; S.shiftLog.push({ uid: ev.by, t: ev.t, kind: 'start', gps: d.gps || null }); break;
     case 'SHIFT_ENDED': delete S.shifts[ev.by]; S.shiftLog.push({ uid: ev.by, t: ev.t, kind: 'end', gps: d.gps || null }); break;
+    case 'ENQUIRY_ADDED': S.enquiries[d.eid] = { eid: d.eid, name: d.name, phone: d.phone, address: d.address || '', gps: d.gps || null, floors: d.floors || null, who: d.who || '', note: d.note || '', t: ev.t, by: ev.by, open: true }; S.enqOrder.unshift(d.eid); break;
+    case 'ENQUIRY_CLOSED': Object.assign(S.enquiries[d.eid], { open: false, closedBy: ev.by, closedT: ev.t, pid: d.pid || null, note2: d.note || '' }); break;
+    case 'JOIN_DECIDED': S.joins[d.rid] = { ok: !!d.ok, uid: d.uid || null, note: d.note || '', by: ev.by, t: ev.t }; break;
+    case 'CUSTOMER_LINKED': { const x = S.users[d.uid]; x.projects = uniq((x.projects || []).concat(P.id)); P.customer = d.uid; break; }
     case 'LEAD_CREATED':
       P = S.projects[ev.pid] = newProject(ev); S.order.unshift(ev.pid);
+      if (d.enquiry && S.enquiries[d.enquiry] && S.enquiries[d.enquiry].open) Object.assign(S.enquiries[d.enquiry], { open: false, closedBy: ev.by, closedT: ev.t, pid: ev.pid });
       break;
     case 'LEAD_INFO_ADDED':
       P.extra.push({ t: ev.t, by: ev.by, note: d.note || '', phone: d.phone ? phone10(d.phone) : '', name: d.name || '', ev: ev_(d).map(e => e.id), newInfo: !!d.newInfo });
@@ -5920,6 +6040,7 @@ function globalNeeds(u, all) {
   for (const id of S.sosOrder) { const x = S.sos[id]; if (x.open) add('sos', ['admin', 'owner', 'partner'], { sid: id, uid: x.by, uids: [companyOf(x.by)], not: x.by, urgent: true, pid: null, sosPid: x.pid }); }
   const up = (n, from, id) => { const e = escFor(n, from, id); if (e) out.push(e); };
   for (const id of S.approvalOrder) { const r = S.approvals[id]; if (r.status === 'pending') { add('second_approval', ['owner', 'admin'], { aid: id, not: r.by, urgent: true }); const b = backupNow(); if (b && b !== r.by) add('second_approval', [roleOf(b)], { aid: id, uids: [b], urgent: true }); } }
+  for (const id of S.enqOrder || []) { const e = S.enquiries[id]; if (e && e.open) add('new_enquiry', ['sales', 'admin', 'owner'], { eid: id, since: e.t }); }
   /* records with a phone-clock jump wait for an office decision (one item for all of them) */
   { const g = openClockGaps(); if (g.length) add('clock_gap', ['admin', 'owner'], { n: g.length }); }
   /* evening: close the day (India time, after 6 pm) */
@@ -6204,7 +6325,7 @@ function render() {
   const r = App.route;
   App.pageSay = ''; App.pageHelp = '';
   let h;
-  const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr'].includes(r.name);
+  const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr', 'splash', 'gate', 'door', 'enquiry', 'joinReq', 'reqSent'].includes(r.name);
   try { h = gated ? SCREENS.install() : (SCREENS[r.name] || SCREENS.home)(r.p || {}); }
   catch (e) { console.error(e); h = `<main class="wrap"><div class="err">⚠️ ${esc(e.message)}</div><button class="btn btn-p" data-a="nav" data-v="home">🏠 ${t('nav_home')}</button></main>`; }
   const banner = App.mode === 'practice' ? `<div class="practice">🎓 ${t('practice_banner')}</div>` : '';
@@ -6579,7 +6700,7 @@ const TASK_ICON = {
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
-  final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
+  final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
@@ -6879,7 +7000,7 @@ WIZ.lead = {
     const r = await run([['LEAD_CREATED', pid, {
       safe: true, ev, gps: ctx.gps, address: ctx.address.trim(), addressSource: ctx.addrSrc === 'gps' && ctx.address === ctx.addrSuggest ? 'gps_lookup' : 'typed', landmark: ctx.landmark.trim(), name: ctx.name.trim(), phone: ctx.noPhone ? '' : phone10(ctx.phone),
       noPhone: !!ctx.noPhone, shaft: ctx.shaft, floors: ctx.floorsUnknown ? null : ctx.floors, dupOf: ctx.dup === 'new' ? dups.map(P => P.id) : [], tower: ctx.tower.trim(), contactRole: ctx.crole || '',
-      consent: ctx.noPhone ? null : { call: ctx.cCall, whatsapp: ctx.cWa }
+      consent: ctx.noPhone ? null : { call: ctx.cCall, whatsapp: ctx.cWa }, enquiry: ctx.enq || undefined
     }]]);
     return r.ok ? Object.assign(doneRes(pid, 'what_site_saved'), { more: [['addSite', '➕', 'add_site']] }) : r;
   }
@@ -7371,6 +7492,11 @@ WIZ.mhand = {
   }
 };
 /* the customer checks the counted material on their own phone, accepts to keep it safe and signs */
+WIZ.custLink = {
+  title: 'link_site', save: 'save', noDraft: true, init: () => ({ uid: '' }),
+  steps: [{ id: 'c', icon: '🏗️', say: 'link_site', body: () => tiles('uid', Object.values(S.users).filter(x => x.role === 'customer' && x.active).map(x => [x.uid, '🏠', x.name + ' · ' + custJobs(x).join(', ')]), 'one'), check: c => c.uid ? null : 'err_choose' }],
+  async finish(c, P) { const r = await run([['CUSTOMER_LINKED', P.id, { uid: c.uid }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
 WIZ.chatAct = {
   title: 'ck_appt', save: 'save', noDraft: true, init: () => ({ note: '', due: '', time: '' }),
   steps: [{ id: 'a', icon: '💬', say: 's_chat_act', body: (c, P) => { const m = P.chat.find(x => x.id === W.opts.mid) || { text: '' }, act = W.opts.act;
@@ -8038,6 +8164,123 @@ SCREENS.install = () => {
     <div style="height:14px"></div><button class="btn" data-a="practice">🎓 ${t('setup_practice')}<br><small class="muted">${t('inst_practice')}</small></button></main>`;
 };
 SCREENS.boot = () => `<main class="wrap center" style="padding-top:30vh">${LOGO}<p>…</p></main>`;
+/* ---------- front door: animated logo, then three doors ---------- */
+const SPLASH_LOGO = `<svg class="logo" viewBox="0 0 120 120" role="img" aria-label="AIEC"><rect width="120" height="120" rx="26" fill="#2d313c"/><g class="car"><rect x="40" y="22" width="40" height="58" rx="4" fill="#3a3f4b"/><circle cx="60" cy="44" r="7" fill="#c9a227"/><rect x="51" y="53" width="18" height="20" rx="4" fill="#c9a227"/></g>
+  <rect class="dl" x="34" y="16" width="26" height="70" fill="#23262f" stroke="#c9a227" stroke-width="4"/><rect class="dr" x="60" y="16" width="26" height="70" fill="#23262f" stroke="#c9a227" stroke-width="4"/>
+  <path d="M42 40l7-8 7 8M64 64l7 8 7-8" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><text x="60" y="108" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="17" fill="#fff" letter-spacing="3">AIEC</text></svg>`;
+SCREENS.splash = () => {
+  const quick = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  clearTimeout(App.splashT); App.splashT = setTimeout(() => { if (App.route.name === 'splash') go('gate', {}, { replace: true }); }, quick ? 300 : 1900);
+  App.pageSay = '';
+  return `<div class="splash" data-a="splashSkip" role="button" aria-label="${esc(t('next'))}">${SPLASH_LOGO}<h1>${esc(S.org ? S.org.name : 'ALL INDIA ELEVATORS COMPANY')}</h1><p>${t('sp_tag')}</p></div>`;
+};
+function langChips() { return `<div class="row wrapw" style="justify-content:center;margin:6px 0 10px">${LANGS.slice().reverse().map(l => `<button class="btn btn-sm ${LANG === l ? 'btn-p' : ''}" data-a="setLang" data-v="${l}" aria-pressed="${LANG === l}">${LANG_NAME[l]}</button>`).join('')}<button class="btn btn-sm" data-a="sayPage" aria-label="${esc(t('listen'))}">🔊</button></div>`; }
+SCREENS.gate = () => {
+  if (!App.set.lang) { App.set.lang = LANG; saveSettings(); }
+  const last = App.set.lastUser && S.users[App.set.lastUser] && S.users[App.set.lastUser].active ? S.users[App.set.lastUser] : null, mr = App.set.myReq;
+  App.pageSay = t('gate_say');
+  return `<main class="wrap center" style="padding-top:4vh">${LOGO}<h1 style="margin:10px 0 0;font-size:1.3rem">${esc(S.org ? S.org.name : 'ALL INDIA ELEVATORS COMPANY')}</h1>${langChips()}
+    ${last ? `<button class="btn btn-p btn-big" data-a="loginUser" data-v="${last.uid}">${ROLE_ICON[last.role]} ${t('gate_continue', { n: esc(last.name) })} →</button><div style="height:12px"></div>` : ''}
+    ${mr && !S.users[mr.uid] ? `<div class="note" style="text-align:left">📨 ${t('gate_my_req', { d: fmtD(mr.t) })}</div>` : ''}
+    <p class="say">${t('gate_say')}</p>
+    <div style="text-align:left">${[[1, 'cust', '🏠', 'door_cust'], [2, 'join', '🧰', 'door_join'], [3, 'staff', '👷', 'door_staff']].map(([n, k, i, l]) => `<button class="door d${n}" data-a="door" data-v="${k}"><span class="i" aria-hidden="true">${i}</span><span><b>${t(l)}</b><small>${t(l + '_d')}</small></span><span aria-hidden="true" style="margin-left:auto;font-size:1.4rem">›</span></button>`).join('')}</div>
+    <div class="row wrapw" style="justify-content:center;margin-top:6px">${!S.org && App.mode === 'real' ? `<button class="btn btn-sm" data-a="nav" data-v="newOrg">👑 ${t('gate_new_company')}</button>` : ''}<button class="btn btn-sm" data-a="practice">🎓 ${t('setup_practice')}</button><button class="btn btn-sm" data-a="nav" data-v="join">📂 ${t('gate_open_file')}</button><button class="btn btn-sm" data-a="nav" data-v="intro">❓ ${t('gate_how')}</button>${App.installEvt ? `<button class="btn btn-sm" data-a="install">📲 ${t('install_app')}</button>` : ''}</div>
+    ${storageNote()}</main>`;
+};
+const JOIN_ROLES = [['tech', '🔧'], ['sales', '🤝'], ['field', '🚶'], ['qc', '🔍'], ['finance', '💰'], ['supplier', '🏭'], ['partner', '🏢']];
+SCREENS.door = ({ kind }) => {
+  const users = Object.values(S.users).filter(u => u.active && u.pin && (kind === 'cust' ? u.role === 'customer' : u.role !== 'customer')).sort((a, b) => String(a.name).localeCompare(String(b.name)));
+  const q = (App.form.uq || '').toLowerCase(), list = users.filter(u => !q || u.name.toLowerCase().includes(q));
+  const tile = (a, v, i, l, sub) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span><span>${t(l)}${sub ? `<br><small>${t(sub)}</small>` : ''}</span></button>`;
+  const people = list.length ? `<p class="say">👤 ${t('door_pick_you')}</p>${users.length > 8 ? formInp('uq', 'search') : ''}<div class="tiles one">${list.map(u => `<button class="tile" data-a="loginUser" data-v="${u.uid}"><span class="i">${ROLE_ICON[u.role]}</span><span>${esc(u.name)}<br><small>${t('r_' + u.role)}</small></span></button>`).join('')}</div><div style="height:12px"></div>` : '';
+  let body;
+  if (kind === 'cust') { App.pageSay = t('door_cust'); body = people + `<div class="tiles one">${tile('nav', 'join', '📂', 'cust_have_file', 'cust_have_file_d')}${tile('nav', 'enquiry', '📞', 'cust_new_enq', 'cust_new_enq_d')}</div>`; }
+  else if (kind === 'staff') { App.pageSay = t('door_staff'); body = people + `<div class="tiles one">${tile('nav', 'join', '📂', 'staff_open_file')}</div><p class="small muted center">🧰 ${t('staff_new_here')}</p><button class="btn" data-a="door" data-v="join">🧰 ${t('door_join')}</button>`; }
+  else { App.pageSay = t('join_pick'); body = (App.joinLink ? `<div class="okbox">🏢 ${t('gate_join_for', { n: esc(App.joinLink.org) })}</div>` : '') + `<p class="say">${t('join_pick')}</p><div class="tiles">${JOIN_ROLES.map(([r, i]) => `<button class="tile" data-a="joinRole" data-v="${r}"><span class="i">${i}</span>${t('jr_' + r)}</button>`).join('')}</div>`; }
+  return topBar(t(kind === 'cust' ? 'door_cust' : kind === 'staff' ? 'door_staff' : 'door_join'), { back: true }) + `<main class="wrap">${body}${App.mode === 'practice' ? `<div class="note">🎓 ${t('practice_pin')}</div>` : ''}</main>`;
+};
+function officeNoField() { const f = App.form; if (f.rqOffice == null) f.rqOffice = (App.joinLink && App.joinLink.office) || S.config.officeNumber || ''; return formInp('rqOffice', 'f_office_no', { type: 'tel', mode: 'tel', max: 15 }); }
+SCREENS.joinReq = ({ role }) => {
+  const f = App.form; f.rqRole = role;
+  App.pageSay = t('jr_say');
+  const co = ['supplier', 'partner'].includes(role);
+  return topBar(t('jr_title') + ' · ' + t('jr_' + role), { back: true }) + `<main class="wrap"><p class="say">${t('jr_say')}</p>
+    ${formInp('rqName', co ? 'your_name' : 'your_name', { mic: true })}${formInp('rqPhone', 'f_mobile', { type: 'tel', mode: 'tel', max: 13 })}${formInp('rqArea', 'f_area')}
+    ${co ? formInp('rqCo', 'f_co_name') + formInp('rqGst', 'f_gst', { max: 15 }) : ''}${role === 'partner' ? formInp('rqLic', 'f_lic_no') + formInp('rqLicExp', 'f_lic_exp', { type: 'date' }) : ''}
+    ${officeNoField()}${formInp('rqPin1', 'new_pin', { type: 'password', mode: 'numeric', max: 6, big: true })}${formInp('rqPin2', 'repeat_pin', { type: 'password', mode: 'numeric', max: 6, big: true })}
+    <div class="note">🔒 ${t('pin_note')}</div><div id="ferr"></div></main>
+    <div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="joinMake">📨 ${t('req_make')}</button></div></div>`;
+};
+SCREENS.enquiry = () => {
+  const f = App.form; App.pageSay = t('enq_say');
+  return topBar(t('enq_title'), { back: true }) + `<main class="wrap"><p class="say">${t('enq_say')}</p>
+    ${formInp('rqName', 'your_name', { mic: true })}${formInp('rqPhone', 'f_mobile', { type: 'tel', mode: 'tel', max: 13 })}
+    <div class="small" style="font-weight:800;margin:6px 0">${t('enq_who')}</div><div class="tiles">${[['owner', '🏠'], ['builder', '🏗️']].map(([k, i]) => `<button class="tile ${f.rqWho === k ? 'on' : ''}" data-a="enqWho" data-v="${k}"><span class="i">${i}</span>${t('enq_' + k)}</button>`).join('')}</div>
+    ${formInp('rqAddr', 'f_site_addr', { mic: true })}<button class="btn" data-a="enqGps">📍 ${f.rqGps ? '✅ ' + t('enq_gps_ok') : t('enq_gps')}</button>
+    ${formInp('rqFloors', 'f_floors_n', { type: 'number', mode: 'numeric', max: 3 })}${formInp('rqNote', 'f_note')}${officeNoField()}<div id="ferr"></div></main>
+    <div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="enqMake">📨 ${t('req_make')}</button></div></div>`;
+};
+SCREENS.reqSent = () => {
+  const r = App.reqOut; if (!r) return SCREENS.gate();
+  const to = digits(r.office).replace(/^0/, ''), wa = `https://wa.me/${to.length === 10 ? '91' + to : to}?text=${encodeURIComponent(r.msg)}`;
+  App.pageSay = t('req_sent_say');
+  return topBar(t('req_sent_title'), { back: true }) + `<main class="wrap"><p class="say">${t('req_sent_say')}</p>
+    <textarea class="in reqbox" readonly id="reqBox">${esc(r.msg)}</textarea>
+    <div class="tiles one" style="margin-top:10px">${to ? `<a class="tile" href="${wa}" target="_blank" rel="noopener"><span class="i">💬</span>${t('req_wa')}</a><a class="tile" href="sms:${esc(r.office)}?body=${encodeURIComponent(r.msg)}"><span class="i">✉️</span>${t('req_sms')}</a>` : ''}
+      <button class="tile" data-a="reqCopy"><span class="i">📋</span>${t('req_copy')}</button>${navigator.share ? `<button class="tile" data-a="reqShare"><span class="i">📤</span>${t('req_share')}</button>` : ''}</div>
+    <div class="okbox">✅ ${t(r.kind === 'join' ? 'req_next_join' : 'req_next_enq')}</div>
+    <button class="btn" data-a="nav" data-v="gate">🏠 ${t('nav_home')}</button></main>`;
+};
+/* request code: the details travel inside the message the person sends; the office pastes the message in */
+const REQ_TAG = 'AIEC-REQ:';
+function reqEncode(o) { return REQ_TAG + btoa(unescape(encodeURIComponent(JSON.stringify(o)))); }
+function reqDecode(text) {
+  const m = String(text || '').match(/AIEC-REQ:([A-Za-z0-9+/=]{20,4000})/); if (!m) return null;
+  let o; try { o = JSON.parse(decodeURIComponent(escape(atob(m[1])))); } catch (e) { return null; }
+  const str = (v, n) => typeof v === 'string' && v.length <= n;
+  if (!o || o.v !== 1 || !/^R[A-Z0-9]{8}$/.test(o.rid || '') || !str(o.name, 60) || !o.name.trim() || !validPhone(o.phone || '') || !str(o.note || '', 300)) return null;
+  if (o.kind === 'join') return JOIN_ROLES.some(([r]) => r === o.role) && str(o.pin, 200) && str(o.salt, 40) && o.pin && o.salt && [o.area, o.co, o.gst, o.lic, o.licExp].every(v => v == null || str(v, 80)) ? o : null;
+  if (o.kind === 'enq') return str(o.address || '', 200) && (o.gps == null || (typeof o.gps.lat === 'number' && typeof o.gps.lng === 'number')) && (o.floors == null || (+o.floors >= 0 && +o.floors <= 99)) ? o : null;
+  return null;
+}
+function parseJoin(hash) {
+  if (!/^#j=1/.test(hash || '')) return null;
+  const q = new URLSearchParams(hash.slice(1));
+  return { org: (q.get('n') || '').slice(0, 60), office: (q.get('o') || '').replace(/[^\d+]/g, '').slice(0, 15) };
+}
+const joinUrl = () => location.href.split('#')[0].split('?')[0] + '#' + new URLSearchParams({ j: '1', n: S.org ? S.org.name : '', o: S.config.officeNumber || '' }).toString();
+SCREENS.joinlink = () => {
+  if (!['owner', 'admin'].includes(App.me.role)) return SCREENS.home();
+  App.pageSay = t('join_link_say');
+  if (!S.config.officeNumber) return topBar(t('join_link'), { back: true }) + `<main class="wrap"><div class="warnbox">⚠️ ${t('join_link_no_office')}</div></main>`;
+  let code; try { code = QR.svg(joinUrl(), 300); } catch (e) { code = ''; }
+  return topBar(t('join_link'), { back: true }) + `<main class="wrap"><p class="say noprint">${t('join_link_say')}</p><div class="row noprint wrapw"><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button><button class="btn" data-a="joinLinkCopy">📋 ${t('req_copy')}</button></div>
+    <div class="card doc center"><h2 style="margin:0">${esc(S.org.name)}</h2><p style="font-size:1.2rem"><b>🧰 ${t('door_join')}</b></p><div style="display:inline-block;background:#fff;padding:6px">${code}</div><p class="small" style="word-break:break-all">${esc(joinUrl())}</p></div></main>`;
+};
+SCREENS.paste = () => {
+  if (!['owner', 'admin', 'sales'].includes(App.me.role)) return SCREENS.home();
+  const f = App.form, o = f.pasteOk ? reqDecode(f.reqText) : null, done = o && (o.kind === 'join' ? S.joins[o.rid] : S.enquiries[o.rid]);
+  App.pageSay = t('paste_say');
+  const card = !f.pasteOk ? '' : !o ? `<div class="err">${t('paste_bad')}</div>` : `<div class="card"><h3>${o.kind === 'join' ? '🧰 ' + t('jr_title') + ' · ' + t('jr_' + o.role) : '📞 ' + t('enq_title')}</h3>
+    ${kv([['your_name', esc(o.name)], ['f_mobile', esc(o.phone)], ['f_area', esc(o.area || '')], ['f_co_name', esc(o.co || '')], ['f_gst', esc(o.gst || '')], ['f_lic_no', esc(o.lic || '')], ['f_lic_exp', o.licExp ? fmtD(o.licExp) : ''], ['f_site_addr', esc(o.address || '')], ['f_floors_n', o.floors != null ? String(+o.floors) : ''], ['enq_who', o.who ? t('enq_' + o.who) : ''], ['f_note', esc(o.note || '')], ['tl_when', o.t ? fmtD(o.t, true) : '']])}
+    ${o.gps ? `<a class="btn btn-sm" href="${mapsLink(o.gps)}" target="_blank" rel="noopener">🗺️ ${t('open_map')}</a>` : ''}
+    ${done ? `<div class="okbox">✅ ${t('paste_done')}</div>${o.kind === 'join' && S.joins[o.rid].uid ? `<button class="btn btn-p" data-a="exportFor" data-v="${S.joins[o.rid].uid}">📤 ${t('paste_send_file')}</button>` : ''}`
+      : `<div class="warnbox">⚠️ ${t('paste_unverified')}</div><a class="btn" href="tel:+91${phone10(o.phone)}">📞 ${t('paste_call')}</a>
+      ${o.kind === 'join' ? (['owner', 'admin'].includes(App.me.role) ? `${formInp('pasteNote', 'f_reason')}<div class="row wrapw"><button class="btn btn-ok" data-a="pasteApprove">✅ ${t('paste_approve')}</button><button class="btn btn-bad" data-a="pasteRefuse">❌ ${t('paste_refuse')}</button></div>` : '')
+        : `<button class="btn btn-ok" data-a="pasteEnq">✅ ${t('paste_enq_add')}</button>`}`}</div>`;
+  return topBar(t('paste_title'), { back: true }) + `<main class="wrap"><p class="say">${t('paste_say')}</p>
+    <textarea class="in reqbox" data-f="reqText" id="${fid('reqText')}" placeholder="AIEC-REQ:…">${esc(f.reqText || '')}</textarea>
+    <button class="btn btn-p" data-a="pasteRead">🔎 ${t('paste_read')}</button>${card}</main>`;
+};
+SCREENS.enquiries = () => {
+  if (!['owner', 'admin', 'sales', 'field'].includes(App.me.role)) return SCREENS.home();
+  const xs = (S.enqOrder || []).map(id => S.enquiries[id]).filter(Boolean);
+  App.pageSay = t('enq_list');
+  return topBar(t('enq_list'), { back: true }) + `<main class="wrap"><button class="btn" data-a="nav" data-v="paste">📥 ${t('paste_title')}</button><div style="height:10px"></div>
+    ${xs.map(e => `<div class="card"><div class="row wrapw"><b class="grow">${esc(e.name)} · ${e.who ? t('enq_' + e.who) : ''}</b><span class="chip ${e.open ? 'c-warn' : 'c-ok'}">${e.open ? t('open') : t('closed')}</span></div>
+      <p class="small">${esc(e.address)}${e.floors ? ' · ' + t('f_floors_n') + ': ' + e.floors : ''}${e.note ? ' · ' + esc(e.note) : ''}</p><p class="small muted">${fmtD(e.t, true)}${e.pid ? ' · ' + esc(e.pid) : ''}${e.note2 ? ' · ' + esc(e.note2) : ''}</p>
+      ${e.open ? `<div class="row wrapw"><a class="btn btn-sm btn-p" href="tel:+91${phone10(e.phone)}">📞 ${esc(e.phone)}</a>${allowed('LEAD_CREATED', null) ? `<button class="btn btn-sm" data-a="enqVisit" data-v="${e.eid}">🏢 ${t('enq_visit')}</button>` : ''}<button class="btn btn-sm btn-bad" data-a="enqClose" data-v="${e.eid}">✖ ${t('enq_close')}</button></div>` : ''}</div>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
+};
 SCREENS.welcome = () => {
   App.pageSay = t('welcome_say');
   return `<main class="wrap center" style="padding-top:12vh">${LOGO}<h1 style="margin:16px 0 0;font-size:1.5rem">AIEC Elevator OS</h1>
@@ -8194,14 +8437,16 @@ function fieldScore() {
   const n = Object.values(S.projects).filter(P => P.createdBy === App.me.uid && P.t.slice(0, 7) === m && P.hist.some(h => h.s === 'accepted')).length;
   return `<div class="card"><h3>🏅 ${t('my_score', { n })}</h3><p class="small muted">${t('score_rule')}</p><button class="btn btn-sm" data-a="nav" data-v="report">📊 ${t('today_report')}</button></div>`;
 }
+const custJobs = u => uniq([u.projectId].concat(u.projects || [])).filter(id => S.projects[id]);
+const custPid = u => { const js = custJobs(u), c = (App.set.custSite || {})[u.uid]; return js.includes(c) ? c : js[0]; };
 function customerHome() {
-  const u = App.me, P = S.projects[u.projectId];
+  const u = App.me, P = S.projects[custPid(u)], js = custJobs(u);
   if (!P) return topBar(t('nav_mylift')) + `<main class="wrap"><div class="card">${t('no_project')}</div></main>` + nav('home');
   const tasks = myTasks(u); App.tasks = tasks;
   App.pageSay = t('cust_say', { stage: stName(P.stage), next: nextLine(P) });
   const q = [...P.quotes].reverse().find(x => x.sent);
   const tile = (a, v, i, l) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`;
-  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}<div class="card"><b>${esc(P.id)}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}</div>${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
+  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}<div class="card"><b>${esc(P.id)}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}</div>${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
     ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + tasks.map((n, i) => taskCard(n, i)).join('') : ''}
     ${payCard(P)}
     ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
@@ -8361,6 +8606,7 @@ function projActions(P) {
   (P.holds || []).filter(h => h.status === 'active').forEach(h => { if (allowed('HOLD_ENDED', P)) a.push(`<button class="btn btn-p" data-a="wizOpen" data-v="holdEnd|${P.id}|hid|${h.id}">▶️ ${t('hold_end')}</button>`); });
   add('STAGE_BACK', 'stageBack', '⏪', 'stage_back', !!STAGE_BACK[P.stage]);
   add('REP_SET', 'rep', '🪪', P.rep ? 'rep_change' : 'rep_add', !P.mhand);
+  add('CUSTOMER_LINKED', 'custLink', '🏗️', 'link_site', !P.customer && stageIdx(P.stage) >= stageIdx('won') && P.stage !== 'lost' && Object.values(S.users).some(x => x.role === 'customer' && x.active));
   if (allowed('CLAIM_RAISED', P) && (P.tech === u.uid || (P.crew || []).includes(u.uid))) a.push(`<button class="btn" data-a="wizOpen" data-v="claim|${P.id}">📦 ${t('claim_new')}</button>`);
   add('OPT_OUT', 'optOut', '🚫', 'opt_out', P.contact.phone && (mayContact(P, 'call') || mayContact(P, 'whatsapp')) && P.stage !== 'lost');
   add('DISPUTE_SET', 'dispute', '⚖️', 'dispute_set', !P.dispute && P.stage !== 'lost' && stageIdx(P.stage) >= stageIdx('won'));
@@ -8563,7 +8809,7 @@ function projDocs(P) {
   return items.length || dw ? `<div class="tiles one">${items.map(([k, i, l]) => `<button class="tile" data-a="openDoc" data-v="${k}"><span class="i">${i}</span>${t(l)}</button>`).join('')}${dw}</div>` : `<div class="card center">${t('no_docs_yet')}</div>`;
 }
 SCREENS.docs = () => {
-  const P = S.projects[App.me.projectId];
+  const P = S.projects[custPid(App.me)];
   App.route.p.pid = P && P.id;
   return topBar(t('nav_docs')) + `<main class="wrap">${P ? projDocs(P) : t('no_project')}</main>` + nav('docs');
 };
@@ -8699,7 +8945,7 @@ AFTER.map = () => {
 /* ---------- chat inbox ---------- */
 SCREENS.chat = () => {
   const u = App.me;
-  if (u.role === 'customer') { const P = S.projects[u.projectId]; if (P) { App.route = { name: 'project', p: { pid: P.id, tab: 'chat' } }; return SCREENS.project({ pid: P.id, tab: 'chat' }); } }
+  if (u.role === 'customer') { const P = S.projects[custPid(u)]; if (P) { App.route = { name: 'project', p: { pid: P.id, tab: 'chat' } }; return SCREENS.project({ pid: P.id, tab: 'chat' }); } }
   App.pageSay = t('s_chat');
   const ps = visibleProjects(u).filter(P => P.chat.length).sort((a, b) => a.chat[a.chat.length - 1].t > b.chat[b.chat.length - 1].t ? -1 : 1);
   const forMe = myTasks(u).filter(n => n.k === 'answer');
@@ -8863,7 +9109,7 @@ SCREENS.about = () => topBar(t('about_privacy'), { back: true }) + `<main class=
 SCREENS.users = () => {
   if (!['owner', 'admin'].includes(App.me.role)) return SCREENS.home();
   const us = Object.values(S.users).sort((a, b) => ROLES.indexOf(a.role) - ROLES.indexOf(b.role));
-  return topBar(t('users'), { back: true }) + `<main class="wrap"><button class="btn btn-p btn-big" data-a="userAdd">➕ ${t('add_person')}</button><div style="height:12px"></div>
+  return topBar(t('users'), { back: true }) + `<main class="wrap"><button class="btn btn-p btn-big" data-a="userAdd">➕ ${t('add_person')}</button><div class="row wrapw" style="margin:10px 0 12px"><button class="btn" data-a="nav" data-v="paste">📥 ${t('paste_title')}</button><button class="btn" data-a="nav" data-v="joinlink">🔗 ${t('join_link')}</button><button class="btn" data-a="nav" data-v="enquiries">📞 ${t('enq_list')}</button></div>
     ${us.map(x => `<button class="task" data-a="userOpen" data-v="${x.uid}"><span class="ti">${ROLE_ICON[x.role]}</span><span style="flex:1"><b>${esc(x.name)}</b><span class="small muted">${t('r_' + x.role)}${x.projectId ? ' · ' + esc(x.projectId) : ''}</span><br>${x.active ? `<span class="chip c-ok">${t('active')}</span>` : `<span class="chip c-bad">${t('blocked')}</span>`}</span><span class="go">▶</span></button>`).join('')}</main>` + nav('me');
 };
 function userAddSheet() {
@@ -9012,6 +9258,7 @@ const ACCESS_LABELS = ['project', 'safetylog', 'doc', 'worker', 'earn', 'users',
 const OUTSIDERS = ['partner', 'tech', 'supplier'];
 const PRICE_GROUPS = ['pricing', 'margins', 'token', 'milestones', 'amc', 'dup'];
 const OUT_HIDE = {
+  ENQUIRY_ADDED: ['name', 'phone', 'address', 'note', 'gps'],
   SUPPLIER_INVOICE: ['no', 'amount', 'gst'], SUP_INVOICE_DECIDED: ['deduct', 'note'], SUP_INVOICE_PAID: ['ref'],
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
@@ -10363,6 +10610,7 @@ function openTask(n) {
     sign_handover: () => go('cl', { pid, kind: 'handover' }), complete_handover: () => go('cl', { pid, kind: 'handover' }),
     resolve_blocker: () => wiz('resolve', pid, { bid: n.bid }), resolve_incident: () => wiz('incident', pid, { iid: n.iid }),
     answer: () => { App.form.replyTo = n.mid; go('project', { pid, tab: 'chat' }); },
+    new_enquiry: () => go('enquiries'),
     chat_obstacle: () => go('project', { pid, tab: 'chat' }), chat_obstacle_late: () => go('project', { pid, tab: 'chat' }), chat_followup: () => go('project', { pid, tab: 'chat' }),
     chat_appt: () => go('project', { pid, tab: 'chat' }), appt_today: () => go('project', { pid, tab: 'chat' }), plan_today: () => go('project', { pid, tab: 'chat' }),
     amc_visit: () => wiz('service', pid, { visit: n.visit }), amc_renew: () => wiz('renew', pid),
@@ -10396,7 +10644,7 @@ function helpHtml() {
 }
 function finishIntro() {
   App.set.introDone = true; saveSettings(); introI = 0;
-  if (App.me) { App.stack = []; go('home', {}, { replace: true }); } else go(S.org ? 'login' : 'setup', {}, { replace: true });
+  if (App.me) { App.stack = []; go('home', {}, { replace: true }); } else go(App.mode === 'practice' && S.org ? 'login' : 'gate', {}, { replace: true });
 }
 function loginAs(u) {
   if (App.me && App.me.uid !== u.uid) Notify.hide();
@@ -10456,8 +10704,57 @@ const ACT = {
   help: () => sheet(helpHtml()),
   helpChat: () => { const pid = pidHere(); closeSheet(); App.form.ck = 'question'; go('project', { pid, tab: 'chat' }); },
   langSheet: () => sheet(langSheetHtml()),
+  splashSkip: () => { clearTimeout(App.splashT); go('gate', {}, { replace: true }); },
+  door: v => { App.form = {}; go('door', { kind: v }); },
+  joinRole: v => { App.form = { rqRole: v }; go('joinReq', { role: v }); },
+  enqWho: v => { App.form.rqWho = v; render(); },
+  enqGps: async () => { const g = await Geo.get(); if (g) { App.form.rqGps = { lat: +g.lat.toFixed(6), lng: +g.lng.toFixed(6) }; render(); } else toast(t('gps_fail'), true); },
+  joinMake: async () => {
+    const f = App.form, bad = k => { const el = $('#ferr'); if (el) el.innerHTML = `<div class="err">${t(k)}</div>`; toast(t(k), true); };
+    if (!(f.rqName || '').trim() || (['supplier', 'partner'].includes(f.rqRole) && !(f.rqCo || '').trim())) return bad('err_fill');
+    if (!validPhone(f.rqPhone || '')) return bad('err_phone');
+    if (!/^\d{4,6}$/.test(f.rqPin1 || '')) return bad('err_pin_len');
+    if (f.rqPin1 !== f.rqPin2) return bad('err_pin_match');
+    const rq = 'R' + rid(8), salt = rid(8) + rid(8), o = { v: 1, kind: 'join', rid: rq, t: nowISO(), role: f.rqRole, name: f.rqName.trim().slice(0, 60), phone: phone10(f.rqPhone), area: (f.rqArea || '').trim().slice(0, 80),
+      co: (f.rqCo || '').trim().slice(0, 80) || undefined, gst: (f.rqGst || '').trim().slice(0, 20) || undefined, lic: (f.rqLic || '').trim().slice(0, 40) || undefined, licExp: f.rqLicExp || undefined, salt, pin: await pinHash(f.rqPin1, salt), pinLen: f.rqPin1.length };
+    App.set.myReq = { rid: rq, t: o.t, uid: 'U' + rq.slice(1), kind: 'join' }; saveSettings();
+    App.reqOut = { kind: 'join', office: f.rqOffice || '', msg: t('req_msg_join', { org: (App.joinLink && App.joinLink.org) || (S.org && S.org.name) || 'AIEC', name: o.name, role: t('jr_' + o.role), phone: o.phone }) + '\n' + t('req_code_note') + '\n' + reqEncode(o) };
+    App.form = {}; go('reqSent', {}, { replace: true });
+  },
+  enqMake: () => {
+    const f = App.form, bad = k => { const el = $('#ferr'); if (el) el.innerHTML = `<div class="err">${t(k)}</div>`; toast(t(k), true); };
+    if (!(f.rqName || '').trim()) return bad('err_fill');
+    if (!validPhone(f.rqPhone || '')) return bad('err_phone');
+    if (!(f.rqAddr || '').trim() && !f.rqGps) return bad('err_location_or_address');
+    const o = { v: 1, kind: 'enq', rid: 'R' + rid(8), t: nowISO(), name: f.rqName.trim().slice(0, 60), phone: phone10(f.rqPhone), address: (f.rqAddr || '').trim().slice(0, 200), gps: f.rqGps || undefined,
+      floors: f.rqFloors !== '' && f.rqFloors != null ? Math.max(0, Math.min(99, +f.rqFloors || 0)) : undefined, who: f.rqWho || undefined, note: (f.rqNote || '').trim().slice(0, 300) || undefined };
+    App.reqOut = { kind: 'enq', office: f.rqOffice || '', msg: t('req_msg_enq', { name: o.name, phone: o.phone, addr: o.address || (o.gps ? mapsLink(o.gps) : '') }) + '\n' + t('req_code_note') + '\n' + reqEncode(o) };
+    App.form = {}; go('reqSent', {}, { replace: true });
+  },
+  reqCopy: async () => { const box = $('#reqBox'); try { await navigator.clipboard.writeText(App.reqOut.msg); toast(t('copied')); } catch (e) { if (box) { box.select(); document.execCommand('copy'); toast(t('copied')); } } },
+  reqShare: async () => { try { await navigator.share({ text: App.reqOut.msg }); } catch (e) { /* cancelled */ } },
+  joinLinkCopy: async () => { try { await navigator.clipboard.writeText(joinUrl()); toast(t('copied')); } catch (e) { toast(joinUrl()); } },
+  pasteRead: () => { App.form.pasteOk = true; render(); },
+  pasteApprove: async () => {
+    const o = reqDecode(App.form.reqText); if (!o || o.kind !== 'join') return;
+    const uid = 'U' + o.rid.slice(1), name = o.co && ['supplier', 'partner'].includes(o.role) ? o.co : o.name;
+    const r = await run([['USER_ADDED', null, { uid, name, role: o.role, salt: o.salt, pin: o.pin, pinLen: o.pinLen || 4 }], ['JOIN_DECIDED', null, { rid: o.rid, ok: true, uid }]]);
+    if (r.ok) { toast(t('paste_added')); render(); }
+  },
+  pasteRefuse: async () => {
+    const o = reqDecode(App.form.reqText); if (!o) return;
+    const r = await perform('JOIN_DECIDED', null, { rid: o.rid, ok: false, note: (App.form.pasteNote || '').trim() }); if (r.ok) { toast(t('saved_item')); render(); }
+  },
+  pasteEnq: async () => {
+    const o = reqDecode(App.form.reqText); if (!o || o.kind !== 'enq') return;
+    const r = await perform('ENQUIRY_ADDED', null, { eid: o.rid, name: o.name, phone: o.phone, address: o.address || '', gps: o.gps || null, floors: o.floors == null ? null : +o.floors, who: o.who || '', note: o.note || '' });
+    if (r.ok) { toast(t('saved_item')); go('enquiries', {}, { replace: true }); }
+  },
+  enqVisit: async v => { const e = S.enquiries[v]; if (!e) return; await wiz('lead', null); Object.assign(W.ctx, { name: e.name, phone: e.phone, address: e.address || '', gps: W.ctx.gps || e.gps, enq: v }); render(); },
+  enqClose: async v => { const note = prompt(t('f_reason')); if (!note) return; const r = await perform('ENQUIRY_CLOSED', null, { eid: v, note }); if (r.ok) render(); },
+  custSite: v => { App.set.custSite = Object.assign({}, App.set.custSite, { [App.me.uid]: v }); saveSettings(); render(); },
   setLang: v => { LANG = v; App.set.lang = v; saveSettings(); closeSheet(); render(); if (App.route.name === 'lang') Voice.say(t('lang_sample')); },
-  afterLang: () => { App.set.lang = LANG; saveSettings(); go(App.set.introDone ? (S.org ? 'login' : 'setup') : 'intro'); },
+  afterLang: () => { App.set.lang = LANG; saveSettings(); go(App.set.introDone ? 'gate' : 'intro'); },
   introNext: () => { if (introI < 3) { introI++; render(); if (App.set.autoRead) Voice.say(App.pageSay); } else finishIntro(); },
   introSkip: () => finishIntro(),
   intro: () => { closeSheet(); introI = 0; go('intro'); },
@@ -10485,7 +10782,7 @@ const ACT = {
     render();
     if (f.pin.length === len) await tryPin(uid);
   },
-  logout: () => { flushAccess(); Voice.stop(); Notify.hide(); App.me = null; App.locked = false; W = null; App.stack = []; App.form = {}; go('login', {}, { replace: true }); },
+  logout: () => { flushAccess(); Voice.stop(); Notify.hide(); App.me = null; App.locked = false; W = null; App.stack = []; App.form = {}; go(App.mode === 'practice' ? 'login' : 'gate', {}, { replace: true }); },
   privacyOk: async () => { const r = await perform('PRIVACY_ACCEPTED', null, { v: PRIVACY_V }); if (r.ok) { toast(t('saved_item')); render(); } },
   setTheme: v => { App.set.theme = v; saveSettings(); applyTheme(); render(); },
   sendDay: () => { const txt = dayText(App.me), o = (S.config.officeNumber || '').replace(/\D/g, '').replace(/^0/, ''); App.lastShare = txt; window.open(o ? `https://wa.me/${o.length === 10 ? '91' + o : o}?text=${encodeURIComponent(txt)}` : 'https://wa.me/?text=' + encodeURIComponent(txt), '_blank'); },
@@ -10974,11 +11271,11 @@ async function boot() {
   history.replaceState({ aiec: 0 }, ''); history.pushState({ aiec: 1 }, '');
   await loadMode(App.set.mode === 'practice' ? 'practice' : 'real');
   await saveSettings();
-  App.qr = parseQr(location.hash);
+  App.qr = parseQr(location.hash); App.joinLink = parseJoin(location.hash);
   if (App.qr) go('qr', {}, { replace: true });
-  else if (!App.set.lang) go('welcome', {}, { replace: true });
-  else if (!S.org) go(App.mode === 'practice' ? 'login' : 'setup', {}, { replace: true });
-  else go('login', {}, { replace: true });
+  else if (App.joinLink) go('door', { kind: 'join' }, { replace: true });
+  else if (App.mode === 'practice' && S.org) go('login', {}, { replace: true });
+  else go('splash', {}, { replace: true });
   if (/^https?:$/.test(location.protocol)) {
     const l = document.createElement('link'); l.rel = 'manifest'; l.href = 'manifest.webmanifest'; document.head.appendChild(l);
     if (location.protocol === 'https:' && 'serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { });

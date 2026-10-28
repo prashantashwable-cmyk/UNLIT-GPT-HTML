@@ -46,10 +46,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   const doneOk = async label => { assert(await page.$('.big-i') && (await page.innerText('main')).length > 0, label); const t = await page.evaluate(() => App.route.name); assert(t === 'done' || t === 'cl', label + ' ended on ' + t + ' ' + await err()); };
 
   /* --- first launch: English, set up company --- */
-  await tap(page, '[data-a="nav"][data-v="lang"]');
+  await tap(page, '[data-a="splashSkip"]');
   await tap(page, '[data-a="setLang"][data-v="en"]');
-  await tap(page, '[data-a="afterLang"]');
-  await tap(page, '[data-a="introSkip"]');
   await tap(page, '[data-a="nav"][data-v="newOrg"]');
   await fill('name', 'Olivia Owner'); await fill('pin1', '1234'); await fill('pin2', '1234');
   await tap(page, '[data-a="createOrg"]', { wait: 400 });

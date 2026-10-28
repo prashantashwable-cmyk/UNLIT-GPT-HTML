@@ -4,14 +4,10 @@ const { launch, tap, miss, pin, OUT } = require('./lib');
 (async () => {
   const { browser, page, errors } = await launch();
   const shot = n => page.screenshot({ path: path.join(OUT, `practice_${n}.png`), fullPage: false });
-  await shot('01_welcome');
-  await tap(page, '[data-a="nav"][data-v="lang"]');
+  await shot('01_splash');
+  await tap(page, '[data-a="splashSkip"]');
   await tap(page, '[data-a="setLang"][data-v="mr"]');
-  await shot('02_lang');
-  await tap(page, '[data-a="afterLang"]');
-  await shot('03_intro');
-  await tap(page, '[data-a="introSkip"]');
-  await shot('04_setup');
+  await shot('02_gate');
   await tap(page, '[data-a="practice"]', { wait: 3000 });
   await shot('05_login');
   const users = await page.$$eval('[data-a="loginUser"]', b => b.map(x => [x.dataset.v, x.innerText.replace(/\n/g, ' ')]));

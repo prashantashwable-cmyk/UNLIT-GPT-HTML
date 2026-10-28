@@ -24,6 +24,14 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
 
 ---
 
+### Front door: who can get in, and how
+The app opens with the animated AIEC logo (tap to skip; skipped for "reduce motion", lift QR stickers and join links), then one screen with the language choice and three doors. If one person used the phone before, "Continue as …" goes straight to their PIN.
+* 🏠 **Customer or builder:** a list of customers only (never staff names), then PIN. On a phone without their file: **Open the file the office sent me**, or **I want a lift: new enquiry** (name, mobile, owner or builder, site address or location, floors). The enquiry is sent as a WhatsApp/SMS message with a code; the office pastes it and it becomes a task for Sales to call, then a new lead with the details filled in.
+* 🧰 **Join us:** technician, sales, field, QC, finance, supplier or licensed partner company. The person fills their details (company, GST and lift licence for a company) and chooses their own PIN; only a salted fingerprint of the PIN travels. The request goes to the office on WhatsApp. The Admin pastes it (**Users → Paste a request**), calls to confirm, approves or refuses, then sends the person their file; their own PIN works. The office can share a **Join link / QR** that opens this door with the company and office number already filled.
+* 👷 **Staff login:** staff only (no customers), with search for big teams. On a new phone: open the file from the office; new people are sent to Join us.
+* **Builders:** one customer login can be linked to more sites (project actions → Link to another site). The builder's home shows a site switcher; each site opens as before.
+* Limits: with no server, requests reach the office only as messages the person sends and the office pastes in; anyone can make a request, so approve only after a call; a new phone still needs the person's file from the office.
+
 ## What it does
 
 ### One project record, one state machine
