@@ -114,6 +114,18 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Nothing happens to a person without a human decision.
 * All targets, pay rates and spot-check rates are Owner-approved business rules (**Me → Business rules → Career ladder**).
 
+### Permits, Lift Inspector and lift licence; hold; stage back; disputes
+* **Statutory records per lift:** the office records the erection permit, the Lift Inspector's visit (passed, or not passed with the list of fixes) and the lift licence (number, holder, valid-until date, photo of the paper).
+  * The licence can be recorded only after a passed inspection.
+  * Handover is refused until a valid licence is recorded, and service visits stop if the licence has expired (Owner rule **Statutory records**).
+  * The office is reminded 60 days before the licence ends.
+  * The app keeps records of the papers; it does not issue permits or licences. Who holds the licence is an Owner decision with a lawyer.
+* **On hold:** the team lead, the partner company, Sales or the supplier can ask to put a job on hold, with a reason (customer, supplier, weather, permission, defect, payment) and a note. The office approves or refuses, and can also hold a job directly.
+  * While on hold, there are no escalations or strikes for the waiting step.
+  * Approved hold days are not counted in the 14-day installation target or in on-time records. The office ends the hold when work can restart.
+* **Move back a stage:** the office can move a job one step back with a reason (site approved → site inspection, order → site approved, dispatched → order, final inspection → installing), for example to release again with corrected drawings.
+* **Disputes:** Sales or the office can mark a dispute with the customer; the Owner/Admin see it until it is settled. Workers' confirmed pay is not affected.
+
 ### Data protection against poaching (partner companies, technicians, suppliers)
 * **Each phone gets only its own share (the offline version of row-level security):**
   * A partner company, technician or supplier receives only the jobs they hold or work on.
