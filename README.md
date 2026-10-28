@@ -31,6 +31,13 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 
 **History tab as a tree:** each stage opens to show the steps done in it (newest stage open; what you open is remembered). Tap a step to see when, who, what, the reason (office only) and its photos and signatures. Customers see only their own job's customer-facing steps (payments, site checks, delivery, installation steps, inspections, handover, service), never office decisions or internal reasons.
 
+**Chat for the next responsible person:** the job chat shows the job's next step and who must do it. Four message types each go to one person; the person who owns the next step is suggested first (⭐), and the office sees every message.
+* 🚧 **Work stuck:** says what is stopping the work. It is a task for that person until they, the sender or the office mark it solved with a note. After a day the office gets a task too.
+* 📅 **Follow-up:** on the chosen date it becomes a task for the person until done.
+* 🗓️ **Work plan:** what will be done on a day; it shows on that person's tasks on the day.
+* 🤝 **Appointment:** date, time and place. The other person (the customer too) accepts, suggests another time (then it goes back) or says they cannot come. Confirmed appointments remind both people on the day. Customers can propose appointments but not send the other types.
+* Coming dates are listed at the top of the chat under **Coming up**.
+
 ### The complete lead-to-handover workflow
 | Phase | Stage | Who acts |
 |---|---|---|
