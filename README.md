@@ -199,6 +199,15 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Cells that look like formulas are saved as plain text.
 * **What the app does by itself:** one page listing every automatic rule with today's numbers and whether the Owner approved it: reminders and escalation, quotation expiry, supplier dispatch, ticket time limits, daily safety check, co-worker check, payment gates, licence reminders, data-access alerts, AMC visits and QR, clock checks, closing the day, backup reminders.
 
+### Undo, photo stamp, voice notes, critical alerts
+* **Undo:** for 5 minutes a person can take back their own simple record (a call note, chat message, follow-up date, site information, needs, SOP step, problem report, ticket update, part claim, representative, profile, rating), if nothing else happened on that job since.
+  * The record and its undo stay in the history; the job looks as if it had not happened.
+  * Money, signatures, approvals and safety records are never undone; they are corrected with a new record.
+* **Photo stamp:** every photo taken in the app gets a band across the bottom with date and time, GPS (or "—"), the person's name and role, the job number, the company and the phone.
+  * The stored check code is of the stamped photo, and the original photo's code is kept too. A stamp can be faked by editing the picture outside the app; it helps, it does not prove.
+* **Voice notes in chat:** up to 60 seconds, recorded in the app and kept on the phone like photos. A voice note can be sent alone. Spoken phone numbers cannot be hidden the way typed ones are.
+* **Critical alerts:** SOS, person trapped, unsafe lift and emergency part claims show a red bar on every screen. They ring the siren at every check (every minute), even in quiet hours, until the person taps "I am on it". Others who have not answered keep getting it. "I am on it" is kept on that phone only.
+
 ### Shaft limits, variation, co-worker check, surprise QC
 * **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).
   * A shaft below the minimum cannot simply be approved: QC asks for corrections, or approves "with a variation quote".

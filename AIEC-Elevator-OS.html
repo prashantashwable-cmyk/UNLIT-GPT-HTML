@@ -155,6 +155,8 @@ details.fold>.fold-in{padding:0 12px 12px}details.fold>.fold-in>.card:first-chil
 .ntf .ib{color:var(--ink);background:#eee;border:0;flex:none}.ntf .btn{flex:none}
 .ntf .i{font-size:2rem}.ntf b{display:block}.ntf .grow{flex:1;min-width:0;overflow-wrap:anywhere}
 @keyframes ntfin{from{transform:translateY(-120%)}to{transform:none}}@keyframes ntfshake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.audio-note{display:flex;align-items:center;gap:6px;margin:6px 0}.audio-note audio{max-width:240px;height:36px}
+.critbar{background:#b71c1c;color:#fff;padding:10px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}.critbar .btn{min-height:40px;padding:6px 12px}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:10px}
 .kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;text-align:left;border-left:5px solid var(--gold);color:var(--ink);width:100%;min-width:0;overflow-wrap:anywhere}
 .kpi b{display:block;font-size:1.35rem}
@@ -1226,6 +1228,24 @@ const L = {
   ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
   ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
   ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
+  ev_UNDONE: ['Taken back', 'वापस लिया', 'मागे घेतले'],
+  err_undo_own: ['Only the person who made a record can take it back.', 'सिर्फ़ रिकॉर्ड बनाने वाला ही उसे वापस ले सकता है।', 'नोंद करणारी व्यक्तीच ती मागे घेऊ शकते.'],
+  err_undo_type: ['This kind of record cannot be taken back (money, signatures, approvals and safety records stay).', 'इस तरह का रिकॉर्ड वापस नहीं लिया जा सकता (पैसा, हस्ताक्षर, मंज़ूरी और सुरक्षा रिकॉर्ड रहते हैं)।', 'अशी नोंद मागे घेता येत नाही (पैसे, सह्या, मंजुरी आणि सुरक्षा नोंदी राहतात).'],
+  err_undo_late: ['More than 5 minutes have passed. Correct it with a new record instead.', '5 मिनट से ज़्यादा हो गए। नए रिकॉर्ड से सुधारें।', '5 मिनिटांपेक्षा जास्त झाले. नवीन नोंदीने दुरुस्त करा.'],
+  err_undo_after: ['Something else already happened on this job after it. Correct it with a new record instead.', 'इसके बाद इस काम पर कुछ और हो चुका है। नए रिकॉर्ड से सुधारें।', 'यानंतर या कामावर दुसरे काही झाले आहे. नवीन नोंदीने दुरुस्त करा.'],
+  undo_btn: ['Undo (within {n} minutes)', 'वापस लें ({n} मिनट तक)', 'मागे घ्या ({n} मिनिटांपर्यंत)'],
+  undo_short: ['Undo', 'वापस लें', 'मागे घ्या'],
+  undo_done: ['Taken back. It stays in the history as taken back.', 'वापस लिया। इतिहास में "वापस लिया" दिखेगा।', 'मागे घेतले. इतिहासात "मागे घेतले" दिसेल.'],
+  crit_title: ['{n} critical alert(s)', '{n} बहुत ज़रूरी चेतावनी', '{n} अतिशय तातडीचे इशारे'],
+  crit_ack: ['I am on it', 'मैं देख रहा/रही हूँ', 'मी पाहतो/पाहते'],
+  mic_unavailable: ['The microphone is not available on this phone.', 'इस फ़ोन पर माइक उपलब्ध नहीं है।', 'या फोनवर मायक्रोफोन उपलब्ध नाही.'],
+  mic_denied: ['Microphone permission is off. Allow it in the phone settings.', 'माइक की अनुमति बंद है। फ़ोन सेटिंग में चालू करें।', 'मायक्रोफोनची परवानगी बंद आहे. फोन सेटिंगमध्ये चालू करा.'],
+  voice_note: ['Voice note', 'आवाज़ संदेश', 'आवाज संदेश'],
+  voice: ['Voice note', 'आवाज़ संदेश', 'आवाज संदेश'],
+  voice_rec_on: ['Recording… speak now.', 'रिकॉर्ड हो रहा है… अब बोलें।', 'रेकॉर्ड होत आहे… आता बोला.'],
+  voice_stop: ['Stop and keep', 'रोकें और रखें', 'थांबवा आणि ठेवा'],
+  cancel: ['Cancel', 'रद्द करें', 'रद्द करा'],
+  kind_audio: ['Voice note', 'आवाज़ संदेश', 'आवाज संदेश'],
   ev_DATA_EXPORTED: ['Spreadsheet saved', 'स्प्रेडशीट सेव', 'स्प्रेडशीट जतन'],
   week_title: ['Weekly summary', 'साप्ताहिक सारांश', 'साप्ताहिक सारांश'],
   wk_prev: ['Earlier week', 'पिछला सप्ताह', 'मागील आठवडा'],
@@ -3503,7 +3523,7 @@ function materialList(req) {
 /* ---------- state ---------- */
 function emptyState() {
   return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
-    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {} };
+    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {}, lastAt: {}, undone: {} };
 }
 let S = emptyState();
 let EVENTS = [];
@@ -3994,6 +4014,18 @@ function clockGaps() {
   return out;
 }
 const openClockGaps = () => clockGaps().filter(g => !S.clockReviews[g.id]);
+/* undo: a person can take back their own simple record for 5 minutes, if nothing else happened on that job since; money, signatures, approvals and safety records are never undone */
+const UNDOABLE = ['CONTACT_LOGGED', 'FOLLOWUP_SET', 'CHAT_POSTED', 'LEAD_INFO_ADDED', 'REQ_SAVED', 'PREP_ITEM_DONE', 'SOP_STEP_DONE', 'BLOCKER_RAISED', 'TICKET_UPDATED', 'CLAIM_RAISED', 'REP_SET', 'WORKER_PROFILE', 'MSG_STATUS', 'CREW_RATED'];
+const UNDO_MIN = 5;
+function undoWhyNot(S, id, by, t) {
+  const x = S.byId[id];
+  if (!x || S.undone[id]) return 'err_already';
+  if (x.by !== by) return 'err_undo_own';
+  if (!UNDOABLE.includes(x.type)) return 'err_undo_type';
+  if (Date.parse(t) - Date.parse(x.t) > UNDO_MIN * 60000) return 'err_undo_late';
+  return S.lastAt[x.pid || '_g'] === id ? null : 'err_undo_after';
+}
+const canUndo = id => !!App.me && !undoWhyNot(S, id, App.me.uid, nowISO());
 function innerEvent(req, ev) { return { id: ev.id + '~', n: ev.n, t: ev.t, by: req.by, type: req.action.type, pid: req.action.pid, data: Object.assign({}, req.action.data, { _aid: req.id }), dev: ev.dev }; }
 const PAY_KEYS = { approve: ['owner', 'admin'] };
 
@@ -4781,6 +4813,7 @@ const RULES = {
   BACKUP_ENDED: { roles: ['owner'], check: S => !S.backup || S.backup.ended ? 'err_already' : null },
   /* a spreadsheet file made by the Owner: who, what and how many rows (the file itself stays with the Owner) */
   DATA_EXPORTED: { roles: ['owner'], check: (S, ev) => need(['projects', 'payments', 'tickets'].includes(ev.data.kind) && +ev.data.rows >= 0, 'err_choose') },
+  UNDONE: { roles: ROLES, check: (S, ev) => undoWhyNot(S, ev.data.target, ev.by, ev.t) },
   /* the day's close: open office items roll to tomorrow with a named person */
   DAY_CLOSED: {
     roles: ['owner', 'admin', 'sales', 'finance', 'qc'], check: (S, ev, u) => {
@@ -4903,7 +4936,7 @@ function setStage(P, s, ev) {
 function apply(S, ev) {
   const d = ev.data || {};
   let P = ev.pid ? S.projects[ev.pid] : null;
-  S.byId[ev.id] = ev;
+  S.byId[ev.id] = ev; if (ev.type !== 'UNDONE') S.lastAt[ev.pid || '_g'] = ev.id;
   switch (ev.type) {
     case 'ORG_CREATED': S.org = { id: d.orgId, name: d.name, t: ev.t }; break;
     case 'USER_ADDED':
@@ -5165,6 +5198,7 @@ function apply(S, ev) {
       P.renewals.push({ t: ev.t, by: ev.by, years: +d.years, amount: +d.amount, from, to: P.amcEnd, note: d.note || '' });
       break;
     }
+    case 'UNDONE': S.undone[d.target] = { by: ev.by, t: ev.t, id: ev.id }; break;
     case 'DATA_EXPORTED': (S.exports = S.exports || []).unshift({ kind: d.kind, rows: +d.rows, by: ev.by, t: ev.t }); break;
     case 'BACKUP_SET': S.backup = { uid: d.uid, from: d.from, to: d.to, note: d.note || '', by: ev.by, t: ev.t, ended: null }; break;
     case 'BACKUP_ENDED': S.backup.ended = { t: ev.t, by: ev.by }; break;
@@ -5239,16 +5273,20 @@ function apply(S, ev) {
     for (const e of ev_(d)) { S.evidence[e.id] = Object.assign({}, e, { pid: ev.pid, by: ev.by, evt: ev.id, type: ev.type }); P.evidence.push(e.id); }
   } else for (const e of ev_(d)) S.evidence[e.id] = Object.assign({}, e, { by: ev.by, evt: ev.id, type: ev.type });
 }
-function rebuild(events) {
+function rebuild(events, skip) {
   const st = emptyState();
   S = st; /* helpers such as roleOf() read the global state, so replay into it */
   const ok = [];
   events.sort((a, b) => a.t < b.t ? -1 : a.t > b.t ? 1 : (a.n || 0) - (b.n || 0) || (a.id < b.id ? -1 : 1));
   for (const ev of events) {
+    /* second pass: records taken back are left out; their undo records were checked in the first pass */
+    if (skip && skip.has(ev.id)) continue;
+    if (skip && ev.type === 'UNDONE' && skip.has(ev.data.target)) { apply(st, ev); ok.push(ev); continue; }
     const err = validate(st, ev);
     if (err) st.rejected.push({ ev, err });
     else { apply(st, ev); ok.push(ev); }
   }
+  if (!skip && Object.keys(st.undone).length) return rebuild(events, new Set(Object.keys(st.undone)));
   return st;
 }
 
@@ -5577,6 +5615,8 @@ async function perform(type, pid, data, opt = {}) {
   }
   if (err) { if (!opt.quiet) toast(errText(err), true); return { ok: false, err }; }
   apply(S, ev); EVENTS.push(ev);
+  if (type === 'UNDONE') S = rebuild(EVENTS);
+  if (UNDOABLE.includes(type) && !opt.as) App.lastDone = ev.id;
   if (!opt.noSave) { await saveAll(); if (App.me) Notify.check({ silent: true }); }
   return { ok: true, ev };
 }
@@ -5644,7 +5684,8 @@ function render() {
   const guard = !!(App.me && OUTSIDERS.includes(App.me.role) && S.org);
   document.body.classList.toggle('guard', guard);
   const wm = guard ? `<div class="wm" aria-hidden="true">${Array.from({ length: 24 }, () => `<span>${esc(App.me.name)} · ${esc(App.me.uid.slice(-4))} · ${todayStr()}</span>`).join('')}</div>` : '';
-  $('#app').innerHTML = banner + h + sos + wm;
+  const cr = App.me && (App.critOpen || []).length && !gated ? `<div class="critbar noprint" role="alert"><span style="font-size:1.4rem">🚨</span><b class="grow">${t('crit_title', { n: App.critOpen.length })}: ${esc(t('tk_' + App.critOpen[0].k))}${App.critOpen[0].pid ? ' · ' + esc(App.critOpen[0].pid) : ''}</b><button class="btn btn-sm" data-a="critGo">▶ ${t('open')}</button><button class="btn btn-sm" data-a="critAck">✋ ${t('crit_ack')}</button></div>` : '';
+  $('#app').innerHTML = banner + cr + h + sos + wm;
   if (sos) bindSos();
   document.documentElement.lang = LANG;
   loadImages($('#app'));
@@ -5658,7 +5699,7 @@ function loadImages(root) {
     else if (!v && App.archived.has(img.dataset.m)) img.replaceWith(Object.assign(document.createElement('span'), { className: 'vid', textContent: '📦', title: t('photo_archived') }));
     else if (v) img.replaceWith(Object.assign(document.createElement('span'), { className: 'vid', textContent: '🎥' }));
   });
-  root.querySelectorAll('video[data-m]').forEach(async vd => { const v = await getMedia(vd.dataset.m); if (v) vd.src = v; });
+  root.querySelectorAll('video[data-m], audio[data-m]').forEach(async vd => { const v = await getMedia(vd.dataset.m); if (v) vd.src = v; });
 }
 
 /* ---------- toast / sheets ---------- */
@@ -5821,12 +5862,63 @@ const Cam = {
       <div class="cam-bar"><button class="btn" data-x="again">🔁 ${t('retake')}</button><button class="btn btn-ok" data-x="use">✅ ${t('use_photo')}</button></div></div>`;
     $('#ov [data-x="again"]').onclick = () => this.start(o, resolve);
     $('#ov [data-x="use"]').onclick = async () => {
-      const m = await putMedia(dataUrl);
-      const meta = { id: 'E' + rid(10), m, kind: isVideo ? 'video' : 'photo', label: o.tag || '', t: nowISO(), gps: Geo.fresh(), hash: hash0 || await sha256(dataUrl), dev: devInfo(), q: { blur: !!q.blur, dark: !!q.dark, ah: q.ah || '', reused: !!same } };
+      const meta = { id: 'E' + rid(10), m: '', kind: isVideo ? 'video' : 'photo', label: o.tag || '', t: nowISO(), gps: Geo.fresh(), hash: '', dev: devInfo(), q: { blur: !!q.blur, dark: !!q.dark, ah: q.ah || '', reused: !!same } };
       if (!meta.gps) { const g = await Promise.race([Geo.get(6000), new Promise(r => setTimeout(() => r(null), 6000))]); meta.gps = g; }
+      /* photos carry a visible stamp (time, place, person, job); the stored hash is of the stamped photo, the original's hash is kept too */
+      let data = dataUrl;
+      if (!isVideo) { data = await stampPhoto(dataUrl, stampLines(meta)); meta.orig = hash0; meta.stamp = true; }
+      meta.m = await putMedia(data); meta.hash = await sha256(data);
       this.close(resolve, meta);
     };
   }
+};
+function stampLines(meta) {
+  const u = App.me, pid = (W && W.pid) || (App.route && App.route.p && App.route.p.pid) || '', g = meta.gps;
+  return [fmtD(meta.t, true) + (g ? ' · 📍 ' + (+g.lat).toFixed(5) + ', ' + (+g.lng).toFixed(5) + ' ±' + g.acc + ' m' : ' · 📍 —'),
+    (u ? u.name + ' · ' + t('r_' + u.role) : '') + (pid ? ' · ' + pid : ''), (S.org ? S.org.name : 'AIEC') + ' · ' + String(meta.dev || '').slice(0, 40)];
+}
+function stampPhoto(dataUrl, lines) {
+  return new Promise(res => {
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement('canvas'); c.width = img.width; c.height = img.height; const x = c.getContext('2d'); x.drawImage(img, 0, 0);
+      const fs = Math.max(12, Math.round(c.width / 42)), band = fs * (lines.length + 0.9);
+      x.fillStyle = 'rgba(0,0,0,.62)'; x.fillRect(0, c.height - band, c.width, band);
+      x.fillStyle = '#fff'; x.font = `600 ${fs}px sans-serif`; x.textBaseline = 'top';
+      lines.forEach((l, i) => x.fillText(l, fs * 0.5, c.height - band + fs * 0.45 + i * fs, c.width - fs));
+      res(c.toDataURL('image/jpeg', 0.75));
+    };
+    img.onerror = () => res(dataUrl);
+    img.src = dataUrl;
+  });
+}
+/* voice note for chat: up to 60 seconds, kept on the phone like photos */
+const VoiceRec = {
+  rec: null, stream: null,
+  ok: () => !!(window.MediaRecorder && navigator.mediaDevices && navigator.mediaDevices.getUserMedia),
+  async open() {
+    if (!this.ok()) { toast(t('mic_unavailable'), true); return null; }
+    try { this.stream = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (e) { toast(t(e && e.name === 'NotAllowedError' ? 'mic_denied' : 'mic_unavailable'), true); return null; }
+    return new Promise(resolve => {
+      const chunks = [], t0 = Date.now(), ov = $('#ov');
+      try { this.rec = new MediaRecorder(this.stream); } catch (e) { this.stop(); toast(t('mic_unavailable'), true); resolve(null); return; }
+      let cancelled = false;
+      ov.innerHTML = `<div class="overlay" role="dialog" aria-modal="true" style="justify-content:center;align-items:center;color:#fff"><div style="font-size:4rem">🎙️</div><p style="font-size:1.4rem"><b id="vrT">0</b> / 60 s</p><p>${t('voice_rec_on')}</p>
+        <div class="cam-bar"><button class="btn" data-x="cancel">✖ ${t('cancel')}</button><button class="btn btn-ok" data-x="stop">⏹ ${t('voice_stop')}</button></div></div>`;
+      const tick = setInterval(() => { const el = $('#vrT'); if (el) el.textContent = Math.round((Date.now() - t0) / 1000); }, 500);
+      this.rec.ondataavailable = e => e.data && e.data.size && chunks.push(e.data);
+      this.rec.onstop = () => { clearInterval(tick); this.stop(); ov.innerHTML = ''; App.ovClose = null;
+        if (cancelled || !chunks.length) return resolve(null);
+        const blob = new Blob(chunks, { type: this.rec.mimeType || 'audio/webm' }), fr = new FileReader();
+        fr.onload = async () => { const m = await putMedia(fr.result); resolve({ id: 'E' + rid(10), m, kind: 'audio', label: 'voice', t: nowISO(), gps: null, hash: await sha256(fr.result), dev: devInfo(), q: {}, dur: Math.round((Date.now() - t0) / 1000) }); };
+        fr.readAsDataURL(blob); };
+      ov.querySelector('[data-x="stop"]').onclick = () => this.rec.stop();
+      ov.querySelector('[data-x="cancel"]').onclick = () => { cancelled = true; this.rec.stop(); };
+      App.ovClose = () => { cancelled = true; if (this.rec && this.rec.state === 'recording') this.rec.stop(); };
+      this.rec.start(); setTimeout(() => { if (this.rec && this.rec.state === 'recording') this.rec.stop(); }, 60000);
+    });
+  },
+  stop() { if (this.stream) this.stream.getTracks().forEach(tr => tr.stop()); this.stream = null; }
 };
 /* simple automatic photo check (a warning only — a person decides) */
 function photoQuality(dataUrl) {
@@ -5992,6 +6084,7 @@ function projCard(P) {
 }
 function thumb(e, o = {}) {
   if (!e) return '';
+  if (e.kind === 'audio') return `<div class="audio-note">🎤 <audio controls preload="none" data-m="${e.m}"></audio>${e.dur ? `<span class="small muted">${e.dur} s</span>` : ''}</div>`;
   const flags = [];
   if (e.q && e.q.blur) flags.push(t('flag_blur'));
   if (e.q && e.q.dark) flags.push(t('flag_dark'));
@@ -7603,7 +7696,7 @@ function projChat(P) {
       ${m.replyTo ? `<div class="small muted">↪ ${esc((P.chat.find(x => x.id === m.replyTo) || {}).text || '').slice(0, 50)}</div>` : ''}
       <div>${esc(OUTSIDERS.includes(App.me.role) ? maskContact(m.text) : m.text)}</div>${evGrid(m.ev)}
       ${m.decision ? `<div class="chip ${m.decision.decision === 'approve' ? 'c-ok' : 'c-bad'}">${t('dec_' + m.decision.decision)} · ${userName(m.decision.by)}${m.decision.reason ? ': ' + esc(m.decision.reason) : ''}</div>` : ''}
-      ${canReply ? `<button class="btn btn-sm" data-a="chatReply" data-v="${m.id}">↪ ${t('reply')}</button>` : ''}
+      ${canReply ? `<button class="btn btn-sm" data-a="chatReply" data-v="${m.id}">↪ ${t('reply')}</button>` : ''}${mineM && canUndo(m.id) ? ` <button class="btn btn-sm" data-a="undo" data-v="${m.id}">↩️ ${t('undo_short')}</button>` : ''}
       ${canDecide ? `<div class="row" style="margin-top:6px"><button class="btn btn-sm btn-ok" data-a="chatDecide" data-v="${m.id}|approve">✅ ${t('dec_approve')}</button><button class="btn btn-sm btn-bad" data-a="chatDecide" data-v="${m.id}|reject">❌ ${t('dec_reject')}</button></div>` : ''}</div>`;
   };
   return `<div>${items.length ? items.map(x => x.m ? msg(x.m) : `<div class="sysmsg">${STAGES[x.h.s][1]} ${esc(stName(x.h.s))} · ${userName(x.h.by)} · ${fmtD(x.h.t, true)}</div>`).join('') : `<div class="card center">${t('no_messages')}</div>`}</div>
@@ -7614,7 +7707,7 @@ function projChat(P) {
       <div class="in-row"><textarea class="in" id="${fid('ctext')}" data-f="ctext" placeholder="${esc(t('type_here'))}">${esc(f.ctext || '')}</textarea>${SR ? `<button class="mic" data-a="mic" data-k="ctext" data-v="text">🎤</button>` : ''}</div>
       ${(f.cph || []).length ? `<div class="photos">${f.cph.map(e => thumb(e)).join('')}</div>` : ''}
       ${u.role !== 'customer' ? `<label class="row small" style="margin:8px 0"><input type="checkbox" data-f="cout" ${f.cout ? 'checked' : ''} style="width:24px;height:24px"> ${t('outside_check')}</label>` : ''}
-      <div class="row" style="margin-top:8px"><button class="btn" data-a="chatPhoto">📷 ${t('photo')}</button><button class="btn btn-p" data-a="chatSend">📤 ${t('send')}</button></div>`}</div>` : ''}`;
+      <div class="row wrapw" style="margin-top:8px"><button class="btn" data-a="chatPhoto">📷 ${t('photo')}</button>${VoiceRec.ok() ? `<button class="btn" data-a="chatVoice">🎤 ${t('voice_note')}</button>` : ''}<button class="btn btn-p" data-a="chatSend">📤 ${t('send')}</button></div>`}</div>` : ''}`;
 }
 function projPhotos(P) {
   const groups = {};
@@ -7701,6 +7794,7 @@ SCREENS.done = p => {
     <div class="card" style="text-align:left"><h3>✔️ ${t('what_happened')}</h3><p>${esc(p.what)}</p><h3>👉 ${t('what_next')}</h3><p>${esc(p.next)}</p></div>
     <div class="stack">${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0">▶ ${t('start_next')}</button>` : ''}
     ${(p.more || []).map(([a, i, l]) => `<button class="btn btn-big" data-a="${a}" data-v="${p.pid || ''}">${i} ${t(l)}</button>`).join('')}
+    ${App.lastDone && canUndo(App.lastDone) ? `<button class="btn" data-a="undo" data-v="${App.lastDone}">↩️ ${t('undo_btn', { n: UNDO_MIN })}</button>` : ''}
     ${p.pid && S.projects[p.pid] && canSee(App.me, S.projects[p.pid]) ? `<button class="btn" data-a="openProject" data-v="${p.pid}">📋 ${t('open_project')}</button>` : ''}
     <button class="btn" data-a="nav" data-v="home">🏠 ${t('nav_home')}</button></div></main>`;
 };
@@ -7797,7 +7891,7 @@ SCREENS.ev = ({ id }) => {
   if (!e) return topBar(t('photo'), { back: true }) + `<main class="wrap">${t('nothing_here')}</main>`;
   const P = e.pid && S.projects[e.pid];
   const dist = P && P.site.gps && e.gps ? haversine(P.site.gps, e.gps) : null;
-  return topBar(t('evidence'), { back: true }) + `<main class="wrap">${e.kind === 'video' ? `<video controls playsinline data-m="${e.m}" style="width:100%;border-radius:12px;background:#000"></video>` : `<img data-m="${e.m}" alt="" style="width:100%;border-radius:12px;background:#ddd">`}
+  return topBar(t('evidence'), { back: true }) + `<main class="wrap">${e.kind === 'audio' ? `<audio controls data-m="${e.m}" style="width:100%"></audio>` : e.kind === 'video' ? `<video controls playsinline data-m="${e.m}" style="width:100%;border-radius:12px;background:#000"></video>` : `<img data-m="${e.m}" alt="" style="width:100%;border-radius:12px;background:#ddd">`}
     <div class="card" style="margin-top:10px">${kv([['ev_id', esc(e.id)], ['ev_kind', t('kind_' + e.kind)], ['captured', fmtD(e.t, true)], ['by', e.by ? userTag(e.by) : userTag(App.me.uid)],
       ['gps', e.gps ? `<a href="${mapsLink(e.gps)}" target="_blank" rel="noopener">${e.gps.lat}, ${e.gps.lng}</a> (±${e.gps.acc} m)` : '⚠️ ' + t('flag_nogps')], ['dist_site', dist != null ? t('meters_away', { n: dist }) : ''],
       ['device', esc(e.dev)], ['hash', `<code style="font-size:.7rem">${esc(e.hash)}</code>`], ['quality', e.q && (e.q.blur || e.q.dark) ? '⚠️ ' + [e.q.blur ? t('flag_blur') : '', e.q.dark ? t('flag_dark') : ''].filter(Boolean).join(', ') : '✅']])}
@@ -8858,6 +8952,11 @@ const Notify = {
     const tasks = myTasks(u), key = 'seen_' + App.mode + '_' + u.uid, seen = new Set(App.set[key] || []);
     const fresh = tasks.filter(n => !seen.has(this.sig(n)));
     App.set[key] = tasks.map(n => this.sig(n));
+    /* critical items (SOS, person trapped, unsafe lift, emergency part claim) ring again at every check, even in quiet hours, until this person taps "I am on it" */
+    const ack = new Set(App.set['crit_' + App.mode + '_' + u.uid] || []), crit = tasks.filter(n => excSev(n) === 'critical' && !ack.has(this.sig(n)));
+    const had = (App.critOpen || []).length; App.critOpen = crit;
+    if (crit.length && !opt.silent) { (App.notifyLog = App.notifyLog || []).push({ kind: 'alarm', crit: true, title: t('crit_title', { n: crit.length }), t: Date.now() }); this.tone('alarm', true); this.buzz('alarm'); if (document.hidden) this.phone(t('crit_title', { n: crit.length }), t('tk_' + crit[0].k), 'alarm'); }
+    if (crit.length !== had && App.route && App.route.name !== 'wiz') render();
     this.badge(tasks.length); this.schedule(u);
     this.celebrate(u);
     if (opt.silent || !fresh.length) { saveSettings(); return []; }
@@ -9639,6 +9738,10 @@ const ACT = {
   chatTo: v => { App.form.cto = v; render(); },
   chatReply: v => { App.form.replyTo = v || null; render(); const c = $('#composer'); if (c) c.scrollIntoView({ block: 'center' }); },
   chatPhoto: async () => { const meta = await Cam.open({ label: t('photo'), tag: 'chat' }); if (meta) { (App.form.cph = App.form.cph || []).push(meta); render(); } },
+  chatVoice: async () => { const meta = await VoiceRec.open(); if (meta) { (App.form.cph = App.form.cph || []).push(meta); render(); } },
+  undo: async v => { const x = S.byId[v]; const r = await perform('UNDONE', x ? x.pid : null, { target: v }); if (r.ok) { App.lastDone = null; toast(t('undo_done')); if (App.route.name === 'done') go('home', {}, { replace: true }); else render(); } },
+  critAck: () => { const u = App.me, key = 'crit_' + App.mode + '_' + u.uid; App.set[key] = uniq((App.set[key] || []).concat((App.critOpen || []).map(n => Notify.sig(n)))); App.critOpen = []; saveSettings(); render(); },
+  critGo: () => { const n = (App.critOpen || [])[0]; if (n) { App.tasks = [n]; openTask(n); } },
   chatSend: async () => {
     const pid = App.route.p.pid, P = S.projects[pid], f = App.form, text = (f.ctext || '').trim();
     if (!text && !(f.cph || []).length) { toast(t('err_fill'), true); return; }
