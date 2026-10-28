@@ -1251,6 +1251,54 @@ const L = {
   ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
   ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
   ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
+  ev_SUPPLIER_INVOICE: ['Supplier invoice', 'सप्लायर बिल', 'पुरवठादार बिल'],
+  ev_SUP_INVOICE_DECIDED: ['Supplier invoice checked', 'सप्लायर बिल जाँचा', 'पुरवठादार बिल तपासले'],
+  ev_SUP_INVOICE_PAID: ['Supplier invoice paid', 'सप्लायर बिल भुगतान', 'पुरवठादार बिल भरले'],
+  err_invoice_copy: ['Take a photo of the invoice.', 'बिल का फ़ोटो लें।', 'बिलाचा फोटो घ्या.'],
+  err_cust_not_cleared: ['Pay the supplier after the customer\'s material payment is found in the bank.', 'ग्राहक का माल भुगतान बैंक में मिलने के बाद सप्लायर को भुगतान करें।', 'ग्राहकाचे साहित्याचे पैसे बँकेत आढळल्यानंतर पुरवठादाराला पैसे द्या.'],
+  tk_approve_invoice: ['Check a supplier invoice', 'सप्लायर बिल जाँचें', 'पुरवठादार बिल तपासा'],
+  tk_pay_invoice: ['Pay a supplier invoice', 'सप्लायर बिल भरें', 'पुरवठादार बिल भरा'],
+  inv_title: ['Supplier invoices', 'सप्लायर बिल', 'पुरवठादार बिले'],
+  inv_note: ['Send one invoice for each dispatched order. You are paid after the office checks it and the customer\'s payment for the material is in the bank.', 'हर भेजे गए आदेश का एक बिल भेजें। ऑफ़िस के जाँचने और ग्राहक का माल भुगतान बैंक में आने के बाद भुगतान होता है।', 'प्रत्येक पाठवलेल्या आदेशाचे एक बिल पाठवा. ऑफिसने तपासल्यावर आणि ग्राहकाचे साहित्याचे पैसे बँकेत आल्यावर पैसे मिळतात.'],
+  inv_new: ['Send invoice', 'बिल भेजें', 'बिल पाठवा'],
+  s_inv_new: ['Write the invoice details and take a photo of it.', 'बिल की जानकारी लिखें और उसका फ़ोटो लें।', 'बिलाची माहिती लिहा आणि त्याचा फोटो घ्या.'],
+  inv_no: ['Invoice number', 'बिल नंबर', 'बिल क्रमांक'],
+  inv_amount: ['Amount before GST, ₹', 'GST से पहले राशि, ₹', 'GST पूर्वी रक्कम, ₹'],
+  inv_gst: ['GST, ₹', 'GST, ₹', 'GST, ₹'],
+  inv_date: ['Invoice date', 'बिल की तारीख', 'बिलाची तारीख'],
+  inv_copy: ['Invoice copy', 'बिल की कॉपी', 'बिलाची प्रत'],
+  inv_copy_hint: ['All pages, readable.', 'सभी पन्ने, पढ़ने लायक।', 'सर्व पाने, वाचता येतील अशी.'],
+  what_inv_sent: ['Invoice sent. The office will check it.', 'बिल भेजा। ऑफ़िस जाँचेगा।', 'बिल पाठवले. ऑफिस तपासेल.'],
+  s_inv_decide: ['Check the invoice against the order and part claims.', 'आदेश और पुर्ज़ों के दावों से बिल मिलाएँ।', 'आदेश आणि भागांच्या दाव्यांशी बिल जुळवा.'],
+  inv_claims_note: ['Part claims on this job', 'इस काम पर पुर्ज़ों के दावे', 'या कामावरील भागांचे दावे'],
+  inv_approve: ['Approve', 'मंज़ूर', 'मंजूर'],
+  inv_reject: ['Send back', 'वापस भेजें', 'परत पाठवा'],
+  inv_deduct_q: ['Deduction, ₹ (damaged/missing parts, return trip)', 'कटौती, ₹ (टूटे/कम पुर्ज़े, वापसी)', 'वजावट, ₹ (खराब/कमी भाग, परतीचा प्रवास)'],
+  what_inv_ok: ['Approved. Finance pays after the customer\'s material payment is in the bank.', 'मंज़ूर। ग्राहक का माल भुगतान बैंक में आने के बाद अकाउंट्स भुगतान करेगा।', 'मंजूर. ग्राहकाचे साहित्याचे पैसे बँकेत आल्यावर अकाउंट्स पैसे देईल.'],
+  what_inv_no: ['Sent back to the supplier with your reason.', 'आपके कारण के साथ सप्लायर को वापस भेजा।', 'तुमच्या कारणासह पुरवठादाराला परत पाठवले.'],
+  s_inv_pay: ['Pay from the company account and write the bank reference.', 'कंपनी खाते से भुगतान करें और बैंक रेफ़रेंस लिखें।', 'कंपनी खात्यातून पैसे द्या आणि बँक संदर्भ लिहा.'],
+  what_inv_paid: ['Supplier invoice paid.', 'सप्लायर बिल भुगतान हुआ।', 'पुरवठादार बिल भरले.'],
+  inv_submitted: ['Waiting for the office', 'ऑफ़िस का इंतज़ार', 'ऑफिसची प्रतीक्षा'],
+  inv_approved: ['Approved', 'मंज़ूर', 'मंजूर'],
+  inv_rejected: ['Sent back', 'वापस भेजा', 'परत पाठवले'],
+  inv_paid: ['Paid', 'भुगतान हुआ', 'भरले'],
+  inv_deduct: ['deduction', 'कटौती', 'वजावट'],
+  inv_wait_customer: ['Waiting for the customer\'s material payment', 'ग्राहक के माल भुगतान का इंतज़ार', 'ग्राहकाच्या साहित्याच्या पैशांची प्रतीक्षा'],
+  recon_title: ['Bank statement match', 'बैंक स्टेटमेंट मिलान', 'बँक स्टेटमेंट जुळवणी'],
+  recon_note: ['Load the bank statement as a CSV file. The app suggests which customer payments it shows; you confirm each one. Nothing is confirmed by itself, and the statement is not kept.', 'बैंक स्टेटमेंट CSV फ़ाइल के रूप में लोड करें। ऐप बताता है कौन-से ग्राहक भुगतान उसमें दिखते हैं; आप हर एक की पुष्टि करें। अपने आप कुछ पक्का नहीं होता, और स्टेटमेंट रखा नहीं जाता।', 'बँक स्टेटमेंट CSV फाइल म्हणून लोड करा. त्यात कोणते ग्राहक पैसे दिसतात ते ॲप सुचवते; तुम्ही प्रत्येकाची खात्री करा. आपोआप काहीही निश्चित होत नाही, आणि स्टेटमेंट ठेवले जात नाही.'],
+  recon_load: ['Load bank statement (CSV)', 'बैंक स्टेटमेंट लोड करें (CSV)', 'बँक स्टेटमेंट लोड करा (CSV)'],
+  recon_read: ['{n} credit lines read from {name}', '{name} से {n} जमा लाइनें पढ़ीं', '{name} मधून {n} जमा ओळी वाचल्या'],
+  recon_suggest: ['Suggested matches', 'सुझाए मिलान', 'सुचवलेल्या जुळण्या'],
+  recon_by_ref: ['Reference matches', 'रेफ़रेंस मिला', 'संदर्भ जुळला'],
+  recon_by_amount: ['Same amount and date — check carefully', 'वही राशि और तारीख — ध्यान से जाँचें', 'तीच रक्कम आणि तारीख — काळजीपूर्वक तपासा'],
+  recon_app: ['In the app', 'ऐप में', 'ॲपमध्ये'],
+  recon_bank: ['In the bank', 'बैंक में', 'बँकेत'],
+  recon_confirm: ['Confirm', 'पक्का करें', 'निश्चित करा'],
+  recon_not_this: ['Not this', 'यह नहीं', 'हे नाही'],
+  recon_free_bank: ['Bank credits with no payment in the app', 'बैंक जमा जिनका ऐप में भुगतान नहीं', 'बँक जमा ज्यांचे ॲपमध्ये पैसे नाहीत'],
+  recon_free_app: ['Payments in the app not found in this statement', 'ऐप के भुगतान जो इस स्टेटमेंट में नहीं मिले', 'ॲपमधील पैसे जे या स्टेटमेंटमध्ये आढळले नाहीत'],
+  recon_limits: ['Bank file formats differ; matches are suggestions. Look at the bank before confirming.', 'बैंक फ़ाइल के रूप अलग होते हैं; मिलान सिर्फ़ सुझाव हैं। पक्का करने से पहले बैंक देखें।', 'बँक फाइलचे प्रकार वेगळे असतात; जुळण्या फक्त सूचना आहेत. निश्चित करण्यापूर्वी बँक पाहा.'],
+  recon_bad_file: ['No credit lines found. Use the bank\'s CSV download with Date, Narration and Credit columns.', 'कोई जमा लाइन नहीं मिली। तारीख, विवरण और जमा कॉलम वाली बैंक CSV लें।', 'जमा ओळी आढळल्या नाहीत. तारीख, तपशील आणि जमा स्तंभ असलेली बँक CSV वापरा.'],
   ev_SITE_CHECKED_IN: ['Checked in at the site', 'साइट पर चेक-इन', 'साइटवर चेक-इन'],
   ev_CHECKIN_REVIEWED: ['Check-in looked at', 'चेक-इन देखा', 'चेक-इन पाहिले'],
   ev_DAY_ENDED_TECH: ['Day ended at the site', 'साइट पर दिन खत्म', 'साइटवर दिवस संपला'],
@@ -3368,6 +3416,7 @@ const isPriv = (type, k) => { const p = PRIVATE_KEYS[type]; return !!p && (p ===
 /* signature version 2: every field that a file for a partner company or technician may hide has its own salted fingerprint,
    so customer contacts, prices, competitors' details and notes can be removed one by one without breaking the signature */
 const PRIVATE_V2 = {
+  SUPPLIER_INVOICE: ['no', 'amount', 'gst'], SUP_INVOICE_DECIDED: ['deduct', 'note'], SUP_INVOICE_PAID: ['ref'],
   USER_ADDED: ['pin', 'salt', 'name'], USER_UPDATED: ['pin', 'salt', 'name'], PIN_UPGRADED: ['pin', 'salt'], WORKER_PROFILE: ['phone', 'area'], JOB_APPLIED: ['note', 'gps', 'team'],
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
@@ -3753,6 +3802,8 @@ const safeDay = iso => coDay(new Date(iso || nowISO()).getTime());
 const safetyOn = (P, day) => { const x = (P.safety || {})[day]; return !!x && x.status !== 'rejected'; };
 /* check-in at the site: the lead is asked to check in before the day's safety check; GPS far from the site needs a reason and is looked at by the office (a flag, never proof) */
 const CHECKIN_WHY = [['basement', '🏚️'], ['weak', '📶'], ['site_gps', '📍'], ['no_gps', '🚫']];
+/* the customer's money for the material is in the bank (arrival payment confirmed, or the job is past it) */
+const custCleared = P => payConfirmed(P, 'arrival') || stageIdx(P.stage) > stageIdx('arrived') && P.stage !== 'lost';
 const checkedIn = (P, day, uid) => !!(((P.checkins || {})[day] || {})[uid || P.tech]);
 const checkinNeeded = (P, at) => !!+S.config.checkinGate && !checkedIn(P, safeDay(at));
 const checkinDist = (gps, P) => gps && P.site.gps ? haversine(gps, P.site.gps) : null;
@@ -4206,13 +4257,14 @@ const canUndo = id => !!App.me && !undoWhyNot(S, id, App.me.uid, nowISO());
 /* small teams: when no other active person holds the Sales, Finance or QC role a step needs, the Owner may do it (and gets the task);
    with such a person in the team the usual separation stays. Physical work (technician, supplier, partner, field) is never covered. */
 const COVER_ROLES = ['sales', 'finance', 'qc'];
-const COVER_EV = ['LEAD_ACCEPTED', 'LEAD_RETURNED', 'CONTACT_LOGGED', 'FOLLOWUP_SET', 'REQ_SAVED', 'QUOTE_CREATED', 'QUOTE_SENT', 'DEAL_WON', 'COUNTER_OFFER', 'AGREEMENT_PREPARED', 'AGREEMENT_SIGNED',
+const COVER_EV = ['SUP_INVOICE_PAID', 'LEAD_ACCEPTED', 'LEAD_RETURNED', 'CONTACT_LOGGED', 'FOLLOWUP_SET', 'REQ_SAVED', 'QUOTE_CREATED', 'QUOTE_SENT', 'DEAL_WON', 'COUNTER_OFFER', 'AGREEMENT_PREPARED', 'AGREEMENT_SIGNED',
   'PAYMENT_RECORDED', 'PAYMENT_STATUS', 'PREP_ITEM_DONE', 'QC_REQUESTED', 'QC_SITE_RESULT', 'QC_FINAL_RESULT', 'SURPRISE_DONE', 'VARIATION_SIGNED', 'VARIATION_DECLINED', 'REFUND_PROPOSED', 'REFUND_PAID', 'PAY_PAID', 'CUSTOMER_RATED', 'HANDOVER_SIGNED', 'CORRECTION_DONE'];
 /* the person a same-person rule keeps out (the one who recorded a payment, proposed a refund or approved pay) */
 function coverExcl(S, ev, P) {
   if (ev.type === 'PAYMENT_STATUS' && P) return ((P.payments || []).find(x => x.id === ev.data.payId) || {}).recordedBy;
   if (ev.type === 'REFUND_PAID' && P && P.refund) return P.refund.by;
   if (ev.type === 'PAY_PAID') return ((S.pay || {})[ev.data.uid + '|' + ev.data.week] || {}).approvedBy;
+  if (ev.type === 'SUP_INVOICE_PAID' && P) return ((P.invoices || []).find(i => i.id === ev.data.iid) || {}).okBy;
   return null;
 }
 function ownerCovers(S, R, ev, u, P) {
@@ -4638,6 +4690,35 @@ const RULES = {
   },
   VARIATION_DECLINED: { roles: ['customer', 'sales'], project: true, check: (S, ev, u, P) => !P.variation || P.variation.status !== 'proposed' ? 'err_already' : need((ev.data.note || '').trim(), 'err_reason') },
   /* the lead's safety check at the start of each work day: 4 photos (helmet/harness, scaffolding, barricade, earthing) */
+  /* supplier bills: the supplier sends its invoice for a dispatched order; the office approves (with deductions for approved part claims); Finance pays after the customer's payment for the material is found in the bank */
+  SUPPLIER_INVOICE: {
+    roles: ['supplier'], project: true, check: (S, ev, u, P) => {
+      const d = ev.data;
+      if (P.supplier !== u.uid) return 'err_access';
+      if (!P.dispatch || P.stage === 'lost') return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      if (!d.iid || (P.invoices || []).some(x => x.id === d.iid)) return 'err_dup_id';
+      if (!(d.no || '').trim() || !(+d.amount > 0) || !(+d.gst >= 0) || !/^\d{4}-\d\d-\d\d$/.test(d.date || '') || d.date > safeDay(ev.t)) return 'err_fill';
+      return need(ev_(d).length >= 1, 'err_invoice_copy');
+    }
+  },
+  SUP_INVOICE_DECIDED: {
+    roles: ['admin', 'owner'], project: true, check: (S, ev, u, P) => {
+      const x = (P.invoices || []).find(i => i.id === ev.data.iid), d = ev.data;
+      if (!x || x.status !== 'submitted') return 'err_already';
+      if (d.ok === false) return need((d.note || '').trim(), 'err_reason');
+      if (d.ok !== true) return 'err_choose';
+      if (!(+d.deduct >= 0) || +d.deduct > x.amount + x.gst) return 'err_amount';
+      return +d.deduct > 0 ? need((d.note || '').trim(), 'err_reason') : null;
+    }
+  },
+  SUP_INVOICE_PAID: {
+    roles: ['finance'], project: true, check: (S, ev, u, P) => {
+      const x = (P.invoices || []).find(i => i.id === ev.data.iid);
+      if (!x || x.status !== 'approved') return 'err_already';
+      if (!custCleared(P)) return 'err_cust_not_cleared';
+      return need((ev.data.ref || '').trim(), 'err_ref');
+    }
+  },
   SITE_CHECKED_IN: {
     roles: ['tech'], project: true, stages: ['arrived', 'installing', 'install_fix'], check: (S, ev, u, P) => {
       const d = ev.data;
@@ -5451,6 +5532,9 @@ function apply(S, ev) {
       P.renewals.push({ t: ev.t, by: ev.by, years: +d.years, amount: +d.amount, from, to: P.amcEnd, note: d.note || '' });
       break;
     }
+    case 'SUPPLIER_INVOICE': (P.invoices = P.invoices || []).push({ id: d.iid, no: d.no, amount: +d.amount, gst: +d.gst, date: d.date, ev: ev_(d).map(e => e.id), status: 'submitted', by: ev.by, t: ev.t, deduct: 0, hist: [] }); break;
+    case 'SUP_INVOICE_DECIDED': { const x = P.invoices.find(i => i.id === d.iid); Object.assign(x, d.ok ? { status: 'approved', deduct: +d.deduct || 0, okBy: ev.by, okT: ev.t } : { status: 'rejected' }); x.hist.push({ s: x.status, t: ev.t, by: ev.by, note: d.note || '' }); break; }
+    case 'SUP_INVOICE_PAID': { const x = P.invoices.find(i => i.id === d.iid); Object.assign(x, { status: 'paid', ref: d.ref, paidBy: ev.by, paidT: ev.t }); x.hist.push({ s: 'paid', t: ev.t, by: ev.by, note: d.ref }); break; }
     case 'SITE_CHECKED_IN': { const dist = checkinDist(d.gps, P), out = dist == null || dist > (+S.config.geoRadius || 150);
       ((P.checkins = P.checkins || {})[d.day] = P.checkins[d.day] || {})[ev.by] = { t: ev.t, gps: d.gps || null, dist, out, reason: out ? d.reason : '', note: d.note || '', review: null }; break; }
     case 'CHECKIN_REVIEWED': P.checkins[d.day][d.uid].review = { ok: d.ok, note: d.note || '', by: ev.by, t: ev.t }; break;
@@ -5629,6 +5713,10 @@ function needs(P) {
   if (P.stage === 'amc' && !P.amcEnded && statOf(P).licence) { const d = liftLicenceDays(P); if (d != null && d <= (S.config.licWarnDays || 60)) add('lift_licence_due', ['admin', 'owner'], { n: d, urgent: d <= 7, since: statOf(P).licence.expiry + 'T12:00:00' }); }
   for (const h of P.holds || []) { if (h.status === 'pending') add('hold_request', ['admin', 'owner'], { hid: h.id, urgent: true, since: h.t }); if (h.status === 'active') add('hold_end', ['admin', 'owner'], { hid: h.id }); }
   if (P.dispute) add('dispute_open', ['owner', 'admin']);
+  for (const x of P.invoices || []) {
+    if (x.status === 'submitted') add('approve_invoice', ['admin', 'owner'], { iid: x.id, since: x.t });
+    else if (x.status === 'approved' && custCleared(P)) add('pay_invoice', ['finance'], { iid: x.id, not: x.okBy, since: x.okT });
+  }
   for (const [day, xs] of Object.entries(P.checkins || {})) for (const [uid, x] of Object.entries(xs)) if (x.out && !x.review) add('review_checkin', ['admin', 'owner'], { day, uid, since: x.t });
   for (const c of P.claims || []) {
     if (c.status === 'raised') add('decide_claim', ['admin', 'owner'], { cid: c.id, urgent: c.emergency, alarm: c.emergency, since: c.t });
@@ -5669,7 +5757,7 @@ function needs(P) {
   }
   coverTasks(P, out);
   /* escalation ladder: the main next step counts from the day the stage began, other work from its own date */
-  const main = out.find(x => !['mhand_cust_wait', 'review_checkin', 'sla_breach', 'po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
+  const main = out.find(x => !['mhand_cust_wait', 'approve_invoice', 'pay_invoice', 'review_checkin', 'sla_breach', 'po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
   if (main && OPEN_STAGES.includes(P.stage) && !main.since) Object.assign(main, { since: lastHoldEnd(P) > P.since ? lastHoldEnd(P) : P.since, escId: P.stage });
   const blocked = P.blockers.some(b => b.open) || P.incidents.some(i => i.open) || onHold(P);
   for (const n of out.slice()) if (n.since && !(blocked && n === main)) { const e = escFor(n, n.since, n.escId || n.bid || n.iid || n.tid || n.mid || n.payId || n.visit); if (e) out.push(e); }
@@ -6354,12 +6442,12 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { if (App.me && OUTSIDERS.includes(App.me.role)) return (P.site.address || '').split(/[,\n]/)[0] || areaOf(P) || P.id; return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
   const P = S.projects[n.pid];
-  const sub = n.k === 'review_checkin' && P ? ' · ' + userName(n.uid) + ' · ' + (((P.checkins || {})[n.day] || {})[n.uid] || {}).dist + ' m' : n.sev && ['assign_ticket', 'work_ticket', 'sla_breach'].includes(n.k) ? ' · ' + SEVERITIES[sevRank(n.sev)][1] + ' ' + t('sev_' + n.sev) : ['decide_claim', 'send_claim', 'receive_claim'].includes(n.k) && P && claimOf(P, n.cid) ? ' · ' + t(claimOf(P, n.cid).line) + ' · ' + t('clk_' + claimOf(P, n.cid).kind) : n.k === 'po_late' ? ' · ' + fmtD(n.date) : n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
+  const sub = ['approve_invoice', 'pay_invoice'].includes(n.k) && P ? ' · ' + ((P.invoices || []).find(i => i.id === n.iid) || {}).no + ' · ' + money(invPayable((P.invoices || []).find(i => i.id === n.iid) || {})) : n.k === 'review_checkin' && P ? ' · ' + userName(n.uid) + ' · ' + (((P.checkins || {})[n.day] || {})[n.uid] || {}).dist + ' m' : n.sev && ['assign_ticket', 'work_ticket', 'sla_breach'].includes(n.k) ? ' · ' + SEVERITIES[sevRank(n.sev)][1] + ' ' + t('sev_' + n.sev) : ['decide_claim', 'send_claim', 'receive_claim'].includes(n.k) && P && claimOf(P, n.cid) ? ' · ' + t(claimOf(P, n.cid).line) + ' · ' + t('clk_' + claimOf(P, n.cid).kind) : n.k === 'po_late' ? ' · ' + fmtD(n.date) : n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
   if (!P || n.k === 'job_open') {
     const info = n.k === 'job_open' && S.posts[n.postId] ? jobTitle(S.posts[n.postId]) + ' · 📍 ' + S.posts[n.postId].card.area : n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
       : n.k === 'clock_gap' ? t('clock_n', { n: n.n }) : n.k === 'day_close' ? t('day_close_sub', { n: officeQueue().length }) : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'access_alert' ? userName(n.uid) + ' · ' + t(n.why, { n: n.n }) : n.k === 'sos' ? userName(n.uid) + ' · ' + fmtD(S.sos[n.sid].t, true) + (n.sosPid ? ' · ' + n.sosPid : '') : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
@@ -7211,8 +7299,91 @@ function claimRow(c, P, full) {
     <div class="small">${t('clk_' + c.kind)} · ${esc(c.note)}${c.serial ? ' · 🔢 ' + esc(c.serial) : ''}</div><div class="small muted">${userName(c.by)} · ${fmtD(c.t, true)}${c.challan ? ' · 🧾 ' + esc(c.challan) : ''}</div>${evGrid(c.ev)}
     ${c.hist.length ? `<div class="small muted">${c.hist.map(h => `${fmtD(h.t, true)} · ${t('cls_' + h.s)} · ${esc(userName(h.by))}${h.note ? ' · ' + esc(h.note) : ''}`).join('<br>')}</div>` : ''}${b ? `<div class="row wrapw" style="margin-top:6px">${b}</div>` : ''}</div>`;
 }
+const invPayable = x => Math.max(0, (+x.amount || 0) + (+x.gst || 0) - (+x.deduct || 0));
+function invRow(x, P, bare) {
+  const u = App.me, btn = (w, i, l) => `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="${w}|${P.id}|iid|${x.id}">${i} ${t(l)}</button>`;
+  const b = bare ? '' : [x.status === 'submitted' && allowed('SUP_INVOICE_DECIDED', P) ? btn('invDecide', '🧾', 'tk_approve_invoice') : '', x.status === 'approved' && custCleared(P) && allowed('SUP_INVOICE_PAID', P) && x.okBy !== u.uid ? btn('invPay', '🏦', 'tk_pay_invoice') : ''].join('');
+  return `<div class="list-item" style="display:block"><b>🧾 ${esc(x.no)}</b> · ${fmtD(x.date)} <span class="chip ${x.status === 'paid' ? 'c-ok' : x.status === 'rejected' ? 'c-bad' : 'c-warn'}">${t('inv_' + x.status)}</span>
+    <div class="small">${t('inv_amount')}: ${money(x.amount)} + GST ${money(x.gst)}${x.deduct ? ` − ${t('inv_deduct')} ${money(x.deduct)}` : ''} = <b>${money(invPayable(x))}</b>${x.ref ? ' · 🏦 ' + esc(x.ref) : ''}</div>
+    ${x.status === 'approved' && !custCleared(P) ? `<div class="small muted">⏳ ${t('inv_wait_customer')}</div>` : ''}${evGrid(x.ev)}
+    ${x.hist.length ? `<div class="small muted">${x.hist.map(h => `${fmtD(h.t, true)} · ${t('inv_' + h.s)} · ${esc(userName(h.by))}${h.note ? ' · ' + esc(h.note) : ''}`).join('<br>')}</div>` : ''}${b ? `<div class="row wrapw" style="margin-top:6px">${b}</div>` : ''}</div>`;
+}
+WIZ.supInvoice = {
+  title: 'inv_new', save: 'send', saveIcon: '🧾', init: () => ({ no: '', amount: '', gst: '', date: todayStr(), ph: [] }),
+  steps: [{ id: 'i', icon: '🧾', say: 's_inv_new', body: (c, P) => `<div class="card">${kv([['po_no', esc((P.po || {}).no || '')], ['f_challan', esc((P.dispatch || {}).challan || '')]])}</div>` + inp('no', 'inv_no', { big: true }) + inp('amount', 'inv_amount', { type: 'number', mode: 'numeric' }) + inp('gst', 'inv_gst', { type: 'number', mode: 'numeric' }) + inp('date', 'inv_date', { type: 'date' })
+      + photoSlot('ph', 'inv_copy', 1, { hint: 'inv_copy_hint', tag: 'invoice' }),
+    check: c => !c.no.trim() || !(+c.amount > 0) || c.gst === '' || +c.gst < 0 || !c.date ? 'err_fill' : c.date > todayStr() ? 'err_date' : c.ph.length ? null : 'err_invoice_copy' }],
+  async finish(c, P) { const r = await run([['SUPPLIER_INVOICE', P.id, { iid: 'INV-' + rid(6), no: c.no.trim(), amount: +c.amount, gst: +c.gst, date: c.date, ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_inv_sent') : r; }
+};
+WIZ.invDecide = {
+  title: 'tk_approve_invoice', save: 'save', noDraft: true, init: () => ({ ok: '', deduct: 0, note: '' }),
+  steps: [{ id: 'd', icon: '🧾', say: 's_inv_decide', body: (c, P) => { const x = (P.invoices || []).find(i => i.id === W.opts.iid) || {}, cl = (P.claims || []).filter(k => ['approved', 'sent', 'received'].includes(k.status) && ['damaged', 'missing'].includes(k.kind));
+      return invRow(x, P, true) + (cl.length ? `<div class="note">📦 ${t('inv_claims_note')}: ${cl.map(k => t(k.line) + ' × ' + k.qty + ' (' + t('clk_' + k.kind) + ')').join(', ')}</div>` : '')
+        + tiles('ok', [['yes', '✅', 'inv_approve'], ['no', '✋', 'inv_reject']], 'one') + (c.ok === 'yes' ? inp('deduct', 'inv_deduct_q', { type: 'number', mode: 'numeric' }) : '') + inp('note', 'f_reason', { area: true, opt: !(c.ok === 'no' || +c.deduct > 0) }); },
+    check: c => !c.ok ? 'err_choose' : (c.ok === 'no' || +c.deduct > 0) && !c.note.trim() ? 'err_reason' : null }],
+  async finish(c, P) { const r = await run([['SUP_INVOICE_DECIDED', P.id, { iid: W.opts.iid, ok: c.ok === 'yes', deduct: +c.deduct || 0, note: c.note.trim() }]]); return r.ok ? doneRes(P.id, c.ok === 'yes' ? 'what_inv_ok' : 'what_inv_no') : r; }
+};
+WIZ.invPay = {
+  title: 'tk_pay_invoice', save: 'save', noDraft: true, init: () => ({ ref: '' }),
+  steps: [{ id: 'p', icon: '🏦', say: 's_inv_pay', body: (c, P) => invRow((P.invoices || []).find(i => i.id === W.opts.iid) || {}, P, true) + inp('ref', 'f_bank_ref', { big: true }), check: c => c.ref.trim() ? null : 'err_ref' }],
+  async finish(c, P) { const r = await run([['SUP_INVOICE_PAID', P.id, { iid: W.opts.iid, ref: c.ref.trim() }]]); return r.ok ? doneRes(P.id, 'what_inv_paid') : r; }
+};
+SCREENS.supbills = () => {
+  const u = App.me; if (u.role !== 'supplier') return SCREENS.home();
+  const ps = visibleProjects(u).filter(P => P.supplier === u.uid), inv = ps.flatMap(P => (P.invoices || []).map(x => [P, x]));
+  const due = ps.filter(P => P.dispatch && P.stage !== 'lost' && !(P.invoices || []).some(x => x.status !== 'rejected'));
+  App.pageSay = t('inv_title');
+  return topBar(t('inv_title'), { back: true }) + `<main class="wrap"><div class="note">🧾 ${t('inv_note')}</div>
+    ${due.map(P => `<button class="btn" data-a="wizOpen" data-v="supInvoice|${P.id}">🧾 ${t('inv_new')} · ${esc(P.id)} · ${esc((P.po || {}).no || '')}</button>`).join('')}
+    ${inv.length ? `<div class="card">${inv.map(([P, x]) => `<div class="small muted">${esc(P.id)}</div>` + invRow(x, P, true)).join('')}</div>` : `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
+};
+/* ---------- bank statement match: suggestions only; a person confirms each one ---------- */
+function csvParse(text) {
+  const rows = [], re = /("([^"]|"")*"|[^,\r\n]*)(,|\r?\n|$)/g; let row = [], m;
+  text = String(text || '').replace(/^\ufeff/, '');
+  while ((m = re.exec(text)) && m[0] !== '') { let v = m[1]; if (v.startsWith('"')) v = v.slice(1, -1).replace(/""/g, '"'); row.push(v.trim()); if (m[3] !== ',') { if (row.some(x => x)) rows.push(row); row = []; } }
+  return rows;
+}
+function statementLines(text) {
+  const rows = csvParse(text), h = rows.findIndex(r => r.some(c => /date/i.test(c)) && r.some(c => /narration|description|particular|remark|detail/i.test(c)));
+  if (h < 0) return [];
+  const head = rows[h].map(c => c.toLowerCase()), col = re => head.findIndex(c => re.test(c));
+  const cD = col(/date/), cN = col(/narration|description|particular|remark|detail/), cCr = col(/credit|deposit|^cr\b(?!\s*\/)/), cAmt = col(/amount/), cType = col(/dr\s*\/\s*cr|type/);
+  const num = v => +String(v || '').replace(/[₹,\s]/g, '') || 0;
+  const date = v => { const m = String(v || '').match(/(\d{1,4})[-\/.](\d{1,2})[-\/.](\d{2,4})/); if (!m) return ''; let [, a, b, c] = m; if (a.length === 4) return `${a}-${b.padStart(2, '0')}-${c.padStart(2, '0')}`; if (c.length === 2) c = '20' + c; return `${c}-${b.padStart(2, '0')}-${a.padStart(2, '0')}`; };
+  return rows.slice(h + 1).map((r, i) => {
+    const amt = cCr >= 0 ? num(r[cCr]) : cAmt >= 0 && (cType < 0 || /cr/i.test(r[cType] || '')) ? num(r[cAmt]) : 0;
+    return { i, date: date(r[cD]), text: r[cN] || '', amount: amt };
+  }).filter(x => x.amount > 0 && x.date);
+}
+function reconMatches(lines, skip) {
+  const norm = v => String(v || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const pend = visibleProjects(App.me).flatMap(P => P.payments.filter(p => p.status === 'pending').map(p => ({ P, p })));
+  const used = new Set(), out = [];
+  /* a payment marked "Not this" is not suggested again, so its bank line shows as unmatched */
+  for (const kind of ['ref', 'amount']) for (const L of lines) {
+    if (used.has('L' + L.i)) continue;
+    const hit = pend.find(({ p }) => !used.has(p.id) && !(skip && skip.has(p.id)) && (kind === 'ref' ? norm(p.ref).length >= 6 && norm(L.text).includes(norm(p.ref)) : +p.amount === L.amount && Math.abs(Date.parse(L.date) - Date.parse(p.t.slice(0, 10))) <= 3 * 864e5));
+    if (hit) { used.add('L' + L.i); used.add(hit.p.id); out.push({ kind, line: L, P: hit.P, p: hit.p }); }
+  }
+  return { out, freeLines: lines.filter(L => !used.has('L' + L.i)), freePays: pend.filter(({ p }) => !used.has(p.id)) };
+}
+SCREENS.recon = () => {
+  const u = App.me; if (!['finance', 'owner', 'admin'].includes(u.role)) return SCREENS.home();
+  const R = App.recon, m = R ? reconMatches(R.lines, R.skip) : null; App.pageSay = t('recon_title');
+  const mine = p => p.recordedBy === u.uid;
+  return topBar(t('recon_title'), { back: true }) + `<main class="wrap"><div class="note">🏦 ${t('recon_note')}</div>
+    <label class="btn btn-p btn-big" for="reconFile">📥 ${t('recon_load')}</label><input id="reconFile" type="file" accept=".csv,text/csv,text/plain" style="display:none" data-a-change="recon">
+    ${R ? `<p class="small muted">${t('recon_read', { n: R.lines.length, name: esc(R.name) })}</p>
+      <h2 class="sec">✅ ${t('recon_suggest')} (${m.out.length})</h2>${m.out.map(x => `<div class="card"><span class="chip ${x.kind === 'ref' ? 'c-ok' : 'c-warn'}">${t(x.kind === 'ref' ? 'recon_by_ref' : 'recon_by_amount')}</span>
+        ${kv([['recon_app', `${esc(x.P.id)} · ${t('pay_' + x.p.purpose)} · <b>${money(x.p.amount)}</b> · ${esc(x.p.ref || '')} · ${fmtD(x.p.t)}`], ['recon_bank', `${fmtD(x.line.date)} · <b>${money(x.line.amount)}</b> · ${esc(x.line.text)}`]])}
+        <div class="row wrapw">${mine(x.p) ? `<span class="small muted">${t('err_same_person')}</span>` : `<button class="btn btn-sm btn-ok" data-a="reconOk" data-v="${x.P.id}|${x.p.id}|${x.line.i}">✅ ${t('recon_confirm')}</button>`}<button class="btn btn-sm" data-a="reconSkip" data-v="${x.p.id}">✖ ${t('recon_not_this')}</button></div></div>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}
+      <h2 class="sec">❓ ${t('recon_free_bank')} (${m.freeLines.length})</h2><div class="card">${m.freeLines.slice(0, 30).map(L => `<div class="small">${fmtD(L.date)} · ${money(L.amount)} · ${esc(L.text)}</div>`).join('') || '—'}</div>
+      <h2 class="sec">⏳ ${t('recon_free_app')} (${m.freePays.length})</h2><div class="card">${m.freePays.map(({ P, p }) => `<div class="small">${esc(P.id)} · ${t('pay_' + p.purpose)} · ${money(p.amount)} · ${esc(p.ref || '')}</div>`).join('') || '—'}</div>` : ''}
+    <p class="small muted">${t('recon_limits')}</p></main>` + nav('me');
+};
 function materialCard(P) {
-  if (!P.po && !(P.claims || []).length && !P.rep) return '';
+  if (!P.po && !(P.claims || []).length && !P.rep && !(P.invoices || []).length) return '';
   const u = App.me, po = P.po, rows = [];
   if (po && ['owner', 'admin', 'supplier', 'tech', 'partner', 'qc'].includes(u.role)) rows.push(['po_no', esc(po.no) + (po.declined ? ' · <b style="color:var(--bad)">' + t('po_st_declined') + '</b>' : po.accepted ? ' · ✅ ' + t('po_dispatch_by', { d: fmtD(po.accepted.date) }) : ' · ⏳ ' + t('po_st_waiting'))]);
   if (P.dispatch && P.dispatch.challan) rows.push(['f_challan', esc(P.dispatch.challan)]);
@@ -7223,7 +7394,9 @@ function materialCard(P) {
   const cl = P.claims || [];
   return `<div class="card"><h3>📦 ${t('material_title')}</h3>${kv(rows)}${P.mhand && P.mhand.storage ? evGrid(P.mhand.storage) : ''}
     ${po && ['owner', 'admin', 'supplier'].includes(u.role) ? `<button class="btn btn-sm" data-a="openDoc" data-v="po">📑 ${t('doc_po')}</button>` : ''}
-    ${cl.length ? `<h3 style="margin-top:10px">${t('claims_title')}</h3>${cl.map(c => claimRow(c, P)).join('')}` : ''}</div>`;
+    ${cl.length ? `<h3 style="margin-top:10px">${t('claims_title')}</h3>${cl.map(c => claimRow(c, P)).join('')}` : ''}
+    ${(P.invoices || []).length && ['owner', 'admin', 'finance', 'supplier'].includes(u.role) ? `<h3 style="margin-top:10px">${t('inv_title')}</h3>${P.invoices.map(x => invRow(x, P)).join('')}` : ''}
+    ${u.role === 'supplier' && P.supplier === u.uid && P.dispatch && !(P.invoices || []).some(x => x.status !== 'rejected') ? `<button class="btn btn-sm" style="margin-top:6px" data-a="wizOpen" data-v="supInvoice|${P.id}">🧾 ${t('inv_new')}</button>` : ''}</div>`;
 }
 function docPO(P) {
   const po = P.po; if (!po) return '';
@@ -8379,7 +8552,7 @@ SCREENS.me = () => {
       <button class="btn" style="margin-top:10px" data-a="testVoice">▶ ${t('voice_test')}</button>
       ${'speechSynthesis' in window ? (Voice.has('mr') ? `<div class="okbox">✅ ${t('voice_mr_ok')}</div>` : `<div class="warnbox">⚠️ ${t('voice_mr_missing')}</div>`) : `<div class="warnbox">⚠️ ${t('no_tts')}</div>`}</div>
     <div class="tiles one">${`<button class="tile" data-a="nav" data-v="notify"><span class="i">🔔</span><span>${t('ntf_title')}<br><small>${t(Notify.set().sound ? 'ntf_sound_on' : 'ntf_sound_off')}</small></span></button>`}</div>`, { icon: '⚙️', sub: t('me_settings_d') })}
-    ${group('📱', 'me_app', tile('nav', 'data', '📤', 'share_data') + tile('nav', 'perm', '🔐', 'what_can_i_do') + tile('nav', 'privacy', '🔏', 'pn_title') + tile('intro', '', '🎬', 'watch_intro') + tile('nav', 'about', 'ℹ️', 'about_privacy')
+    ${group('📱', 'me_app', tile('nav', 'data', '📤', 'share_data') + tile('nav', 'perm', '🔐', 'what_can_i_do') + tile('nav', 'supbills', '🧾', 'inv_title', r === 'supplier') + tile('nav', 'recon', '🏦', 'recon_title', ['finance', 'owner', 'admin'].includes(r)) + tile('nav', 'privacy', '🔏', 'pn_title') + tile('intro', '', '🎬', 'watch_intro') + tile('nav', 'about', 'ℹ️', 'about_privacy')
       + (App.installEvt ? tile('install', '', '📲', 'install_app') : '') + (App.mode === 'practice' ? tile('resetPractice', '', '♻️', 'reset_practice') + tile('exitPractice', '', '🚪', 'exit_practice') : ''))}
     ${!App.installEvt ? (standalone ? `<div class="okbox" style="margin-top:10px">📲 ${t('installed_ok')}</div>` : `<p class="small muted">📲 ${t('install_hint')}</p>`) : ''}
     <button class="btn btn-bad" style="margin-top:14px" data-a="logout">🚪 ${t('logout')}</button>
@@ -8581,6 +8754,7 @@ const ACCESS_LABELS = ['project', 'safetylog', 'doc', 'worker', 'earn', 'users',
 const OUTSIDERS = ['partner', 'tech', 'supplier'];
 const PRICE_GROUPS = ['pricing', 'margins', 'token', 'milestones', 'amc', 'dup'];
 const OUT_HIDE = {
+  SUPPLIER_INVOICE: ['no', 'amount', 'gst'], SUP_INVOICE_DECIDED: ['deduct', 'note'], SUP_INVOICE_PAID: ['ref'],
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
   MSG_LOGGED: ['text'], AGREEMENT_SIGNED: ['signer'], CONFIG_SET: ['value'], PARTNER_PROFILE: ['licNo', 'licHolder', 'licAuthority', 'gst'],
@@ -8635,7 +8809,7 @@ function exportPack(kind, forUid, opts = {}) {
         if (out && ev.by !== forUid) {
           const k = OUT_HIDE[ev.type];
           if (ev.type === 'HANDOVER_SIGNED' && d.slot === 'customer') keys.push('signer');
-          if (k && !(ev.type === 'CONTACT_CORRECTED' && d.field === 'address') && !(ev.type === 'CONFIG_SET' && !PRICE_GROUPS.includes(groupOf(d.key))) && !(ev.type === 'PARTNER_PROFILE' && d.uid === myCo)) keys.push(...k);
+          if (k && !(/^SUP(PLIER)?_INVOICE/.test(ev.type) && target.role === 'supplier') && !(ev.type === 'CONTACT_CORRECTED' && d.field === 'address') && !(ev.type === 'CONFIG_SET' && !PRICE_GROUPS.includes(groupOf(d.key))) && !(ev.type === 'PARTNER_PROFILE' && d.uid === myCo)) keys.push(...k);
         }
         return keys.length ? strip(ev, keys, extra) : ev;
       });
@@ -9221,7 +9395,8 @@ function csvRows(kind) {
   if (kind === 'projects') return [['Project', 'Stage', 'Created', 'Address', 'Customer', 'Sales', 'Partner company', 'Team lead', 'Price (agreed)', 'Paid (confirmed)', 'Days in stage', 'On hold', 'Open tickets']]
     .concat(ps.map(P => [P.id, P.stage, d(P.t), P.site.address, P.contact.name, userName(P.sales), userName(P.partner), userName(P.tech), (P.quotes.find(q => q.accepted) || {}).total || '', paidTotal(P), daysSince(P.since), onHold(P) ? 'yes' : '', P.tickets.filter(x => x.status !== 'closed').length]));
   if (kind === 'payments') return [['Project', 'Payment', 'Purpose', 'Amount', 'Method', 'Status', 'Recorded by', 'Recorded', 'Checked by', 'Checked', 'Bank reference']]
-    .concat(ps.flatMap(P => P.payments.map(x => [P.id, x.id, x.purpose, x.amount, x.method, x.status, userName(x.recordedBy), d(x.t), userName(x.confirmedBy), d(x.confirmedAt), x.bankRef || ''])));
+    .concat(ps.flatMap(P => P.payments.map(x => [P.id, x.id, x.purpose, x.amount, x.method, x.status, userName(x.recordedBy), d(x.t), userName(x.confirmedBy), d(x.confirmedAt), x.bankRef || '']))
+      .concat(ps.flatMap(P => (P.invoices || []).map(x => [P.id, x.id, 'supplier bill ' + x.no, -invPayable(x), 'bank', x.status, userName(x.by), d(x.t), userName(x.paidBy || x.okBy), d(x.paidT || x.okT), x.ref || '']))));
   return [['Project', 'Ticket', 'Kind', 'Urgency', 'Came from', 'Opened', 'Status', 'Fixer', 'Time limit (h)', 'Fixed', 'In time']]
     .concat(ps.flatMap(P => P.tickets.map(x => [P.id, x.id, x.kind, x.sev || '', x.src || '', d(x.t), x.status, userName(x.owner), slaHours(x.sev || 'routine') || '', d(x.resolvedT), x.resolvedT && ticketDue(x) != null ? (ticketLate(x) ? 'late' : 'yes') : ''])));
 }
@@ -9910,7 +10085,7 @@ function openTask(n) {
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
-    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
+    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
     lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
@@ -10125,6 +10300,9 @@ const ACT = {
     App.qr.sent = v; const url = v === 'wa' ? `https://wa.me/${to.length === 10 ? '91' + to : to}?text=${encodeURIComponent(msg)}` : `sms:${q.office}?body=${encodeURIComponent(msg)}`; App.qr.lastUrl = url; try { window.open(url, '_blank'); } catch (e) { location.href = url; } },
   qrStaff: () => { App.pendingLift = App.qr.code; App.qr = null; history.replaceState({ aiec: 1 }, '', location.href.split('#')[0]); go(!App.set.lang ? 'welcome' : !S.org ? (App.mode === 'practice' ? 'login' : 'setup') : 'login', {}, { replace: true }); },
   liftQr: v => go('liftqr', { pid: v }),
+  reconOk: async v => { const [pid, payId, li] = v.split('|'), L = App.recon.lines.find(x => x.i === +li);
+    const r = await perform('PAYMENT_STATUS', pid, { payId, status: 'confirmed', ref: ('STMT ' + L.date + ' ' + L.text).slice(0, 80) }); if (r.ok) { toast(t('saved_item')); render(); } },
+  reconSkip: v => { App.recon.skip.add(v); render(); },
   payInfo: v => go('pay', { pid: v || pidHere() }),
   weekGo: v => { App.route.p = { end: v }; render(); },
   weekShare: async v => { const txt = weekText(weekSummary(v)); App.lastShare = txt;
@@ -10334,6 +10512,7 @@ document.addEventListener('change', e => {
   if (el.id === 'f_scale') { setScale(+el.value); return; }
   if (el.id === 'ntf_qFrom' || el.id === 'ntf_qTo') { Notify.save(el.id.slice(4), el.value); return; }
   if (el.dataset.aChange === 'import' && el.files && el.files[0]) { doImport(el.files[0]); el.value = ''; }
+  if (el.dataset.aChange === 'recon' && el.files && el.files[0]) { const f = el.files[0]; f.text().then(txt => { App.recon = { name: f.name, lines: statementLines(txt), skip: new Set() }; if (!App.recon.lines.length) toast(t('recon_bad_file'), true); render(); }); el.value = ''; }
   if (el.type === 'checkbox' && el.dataset.f) App.form[el.dataset.f] = el.checked;
   if (el.type === 'date' && el.dataset.k && W) { setPath(W.ctx, el.dataset.k, el.value); saveDraft(); render(); }
 });

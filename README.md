@@ -164,6 +164,15 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Only parts on the job's list can be claimed. A claim does not stop the work; a "safety emergency" claim rings the office alarm.
   * The office approves or refuses with a reason, the supplier sends the part with a challan number, and the technician confirms with a photo.
 
+### Supplier bills and bank statement match
+* **Supplier bills:** once the order is dispatched, the supplier sends its bill from **Me → Supplier bills** (bill number, amount, GST, date and a photo of the bill).
+  * The office checks it: approve, approve with a deduction (for example a damaged part; a reason is needed), or send it back with a reason. Approved part claims for the job are shown while checking.
+  * Finance pays it with the bank reference. Paying waits until the customer's own payment for the material is found in the bank, so the company does not pay before it is paid. The person who approved a bill does not also pay it (the Head Quarter can pay in place of Finance only for a bill someone else approved).
+  * The supplier sees only its own bills and their status. Paid bills are in the payments spreadsheet as money out.
+* **Bank statement match (Finance and office):** **Me → Bank statement match** loads a bank statement saved as CSV.
+  * The file is read on the phone and not stored. Credits are matched to customer payments waiting to be checked: first by the UPI/UTR reference in the bank text, then by the same amount within 3 days.
+  * Each match is only a suggestion: a person presses **Confirm** (this marks the payment found in the bank, with the statement line as the reference) or **Not this**. Bank lines that match nothing are listed for a person to look at. Someone cannot confirm a payment they recorded themselves.
+
 ### Ticket urgency, time limits, lift QR sticker
 * **Urgency:** each ticket is marked person trapped, unsafe to use, lift stopped, fault came back, or ordinary.
   * "Fault came back" is set by the app when a problem arrives within 30 days of an earlier breakdown on the same lift. The office can change urgency with a reason.
@@ -382,6 +391,7 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 * **Weekly summary:** the app prepares the message; a person sends it (there is no server to send it automatically).
 * **Background:** a web app cannot run while the phone is locked or the app is closed. Keeping the screen on helps only while the app is open; phone notifications for due tasks come at most about once an hour on installed Android apps (periodic background check), and not at all on some phones. A separate Android app would be needed for always-on alerts and for blocking screenshots.
 * **Site check-in:** phone GPS can be wrong indoors, in a basement or in a shaft, so a far check-in is a flag for the office to look at, not proof that someone was absent.
+* **Bank statement match:** banks save CSV files in different layouts. The app looks for the date, narration and credit columns; if it cannot find them it reads nothing. Matches are suggestions; nothing is confirmed without a person.
 * **Safety:** the SOS reaches the office's phone only when files are shared, so the phone call and SMS are the real alert. Safety photos are checked by people, not by a computer. The daily check is confirmed by the team lead (an Head Quarter decision); it does not replace the statutory inspection or a qualified engineer.
 * **Data protection limits:**
   * There is no server, so prices and rules are checked by the same rules on every phone and on every file loaded, not on a server.
