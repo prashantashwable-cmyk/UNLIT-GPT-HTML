@@ -126,6 +126,14 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * **Move back a stage:** the office can move a job one step back with a reason (site approved → site inspection, order → site approved, dispatched → order, final inspection → installing), for example to release again with corrected drawings.
 * **Disputes:** Sales or the office can mark a dispute with the customer; the Head Quarter/Admin see it until it is settled. Workers' confirmed pay is not affected.
 
+### Lift papers for all lifts, and drawings
+* **Lift papers: all lifts (Head Quarter, Admin, QC):** from **Me** or a job's permit card. Each lift shows its permit, Lift Inspector visit and licence (number, holder, valid until), with the licence ending soonest on top.
+  * Marks: 🚨 7 days or less, ⚠️ 30 days or less, then 60 days; an ended licence says how many days ago. Filters: ending in 60 days, papers missing.
+  * Papers can be recorded straight from the list. The existing reminder to renew a licence still comes as a task.
+* **Drawings:** the release records the approved drawing number. The office can add a photo of each page, and later new versions (for example after the pit depth changes). The newest is the current version; older ones stay in the record as replaced and only the office sees them.
+  * The technician, partner company and supplier on the job see the current version; opening it is in the access log. Drawings never show prices.
+  * The customer sees the drawings in **Papers** after QC approves the site and the token payment is found in the bank; until then the reason is shown. The customer's view is view only, with their name across the screen, and printing is blocked.
+
 ### Price talks, rate card, quotation validity, profit
 * **Rate card with versions:** the Head Quarter can change costs and margins from a future date (**Business rules → Pricing / Margins → New rates start from**).
   * Quotations use the rates in force on their day and keep the rate card version. The rules page shows the version, waiting changes and the earlier rates.
@@ -392,6 +400,7 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 * **Background:** a web app cannot run while the phone is locked or the app is closed. Keeping the screen on helps only while the app is open; phone notifications for due tasks come at most about once an hour on installed Android apps (periodic background check), and not at all on some phones. A separate Android app would be needed for always-on alerts and for blocking screenshots.
 * **Site check-in:** phone GPS can be wrong indoors, in a basement or in a shaft, so a far check-in is a flag for the office to look at, not proof that someone was absent.
 * **Bank statement match:** banks save CSV files in different layouts. The app looks for the date, narration and credit columns; if it cannot find them it reads nothing. Matches are suggestions; nothing is confirmed without a person.
+* **Drawings:** a picture shown on a phone can still be photographed with another phone; the name across the screen makes such a picture traceable. The app keeps photos of drawing pages, not CAD files.
 * **Safety:** the SOS reaches the office's phone only when files are shared, so the phone call and SMS are the real alert. Safety photos are checked by people, not by a computer. The daily check is confirmed by the team lead (an Head Quarter decision); it does not replace the statutory inspection or a qualified engineer.
 * **Data protection limits:**
   * There is no server, so prices and rules are checked by the same rules on every phone and on every file loaded, not on a server.
