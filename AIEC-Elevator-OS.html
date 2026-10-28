@@ -1152,6 +1152,32 @@ const L = {
   f_decision_note: ['Decision and reason', 'फ़ैसला और कारण', 'निर्णय आणि कारण'],
   report_security: ['Report security problem', 'सुरक्षा समस्या बताएँ', 'सुरक्षा समस्या कळवा'],
   s_incident_new: ['What happened? (theft, missing material, damaged seal, unsafe access)', 'क्या हुआ? (चोरी, सामान गायब, सील टूटा, असुरक्षित पहुँच)', 'काय झाले? (चोरी, साहित्य गहाळ, सील तुटलेला, असुरक्षित प्रवेश)'],
+  err_quote_expired: ['This quotation has expired. Make a new quotation first.', 'यह कोटेशन समाप्त हो गया है। पहले नया कोटेशन बनाएँ।', 'हे कोटेशन संपले आहे. आधी नवीन कोटेशन बनवा.'],
+  quote_expired: ['Quotation expired on {d}. Make a new one with today\'s rates.', 'कोटेशन {d} को समाप्त हुआ। आज की दरों से नया बनाएँ।', 'कोटेशन {d} रोजी संपले. आजच्या दरांनी नवीन बनवा.'],
+  quote_valid_till: ['Quotation valid until {d}', 'कोटेशन {d} तक मान्य', 'कोटेशन {d} पर्यंत वैध'],
+  tk_requote: ['Quotation expired — make a new one', 'कोटेशन समाप्त — नया बनाएँ', 'कोटेशन संपले — नवीन बनवा'],
+  counter_offer: ['Customer\'s offer', 'ग्राहक का प्रस्ताव', 'ग्राहकाचा प्रस्ताव'],
+  counter_amount: ['Price the customer offers (total, ₹)', 'ग्राहक द्वारा दी गई कीमत (कुल, ₹)', 'ग्राहकाने देऊ केलेली किंमत (एकूण, ₹)'],
+  counter_from: ['Customer offered', 'ग्राहक ने प्रस्ताव दिया', 'ग्राहकाने प्रस्ताव दिला'],
+  counter_need: ['Customer offers {a}: about {n}% discount needed', 'ग्राहक {a} देता है: लगभग {n}% छूट चाहिए', 'ग्राहक {a} देतो: सुमारे {n}% सवलत लागेल'],
+  s_counter: ['What price does the customer offer?', 'ग्राहक कौन-सी कीमत देता है?', 'ग्राहक कोणती किंमत देऊ करतो?'],
+  what_counter: ['Your offer was sent to AIEC.', 'आपका प्रस्ताव AIEC को भेजा गया।', 'तुमचा प्रस्ताव AIEC ला पाठवला.'],
+  neg_history: ['Price talks so far', 'अब तक की कीमत बातचीत', 'आतापर्यंतची किंमत चर्चा'],
+  neg_ladder: ['Discount steps (within your limit)', 'छूट के चरण (आपकी सीमा में)', 'सवलतीचे टप्पे (तुमच्या मर्यादेत)'],
+  neg_list: ['List price', 'सूची कीमत', 'यादी किंमत'],
+  ev_COUNTER_OFFER: ['Customer\'s offer', 'ग्राहक का प्रस्ताव', 'ग्राहकाचा प्रस्ताव'],
+  cfg_negStep: ['Discount step in talks (%)', 'बातचीत में छूट का चरण (%)', 'चर्चेतील सवलतीचा टप्पा (%)'],
+  rate_v: ['Rate card version {v}', 'दर सूची संस्करण {v}', 'दर यादी आवृत्ती {v}'],
+  rate_from: ['from {d}', '{d} से', '{d} पासून'],
+  rate_start: ['New rates start from (leave empty for today)', 'नई दरें कब से (आज के लिए खाली छोड़ें)', 'नवीन दर कधीपासून (आजसाठी रिकामे ठेवा)'],
+  rate_history: ['Earlier rates', 'पिछली दरें', 'मागील दर'],
+  profit_title: ['Profit on this job (office only)', 'इस काम पर लाभ (केवल ऑफ़िस)', 'या कामावरील नफा (फक्त ऑफिस)'],
+  profit_price: ['Price before tax', 'टैक्स से पहले कीमत', 'करापूर्वी किंमत'],
+  profit_cost: ['Estimated cost (rate card)', 'अनुमानित लागत (दर सूची)', 'अंदाजे खर्च (दर यादी)'],
+  profit_labour: ['Labour paid so far (inside the cost)', 'अब तक दिया गया श्रम (लागत में शामिल)', 'आतापर्यंत दिलेली मजुरी (खर्चात समाविष्ट)'],
+  profit_margin: ['Margin', 'मार्जिन', 'मार्जिन'],
+  profit_markup: ['Markup', 'मार्कअप', 'मार्कअप'],
+  profit_note: ['Margin = (price − cost) ÷ price. Markup = (price − cost) ÷ cost. Cost from rate card version {v}; real material bills are not yet in the app.', 'मार्जिन = (कीमत − लागत) ÷ कीमत। मार्कअप = (कीमत − लागत) ÷ लागत। लागत दर सूची संस्करण {v} से; असली सामान बिल अभी ऐप में नहीं।', 'मार्जिन = (किंमत − खर्च) ÷ किंमत. मार्कअप = (किंमत − खर्च) ÷ खर्च. खर्च दर यादी आवृत्ती {v} वरून; खरी साहित्य बिले अजून ॲपमध्ये नाहीत.'],
   err_tolerance: ['The shaft is smaller than the minimum. Ask for corrections, or approve only with a variation quote.', 'शाफ्ट न्यूनतम से छोटा है। सुधार माँगें, या केवल बदलाव कोटेशन के साथ मंज़ूर करें।', 'शाफ्ट किमानपेक्षा लहान आहे. दुरुस्ती मागा, किंवा फक्त बदल कोटेशनसह मंजूर करा.'],
   err_variation: ['The customer must sign the variation quote before material is released.', 'सामान भेजने से पहले ग्राहक को बदलाव कोटेशन पर साइन करना होगा।', 'साहित्य पाठवण्यापूर्वी ग्राहकाने बदल कोटेशनवर सही करायला हवी.'],
   err_peer_check: ['Another technician must check the last safety-critical step first.', 'पहले किसी दूसरे तकनीशियन को पिछला सुरक्षा-ज़रूरी चरण जाँचना होगा।', 'आधी दुसऱ्या तंत्रज्ञाने मागील सुरक्षा-महत्त्वाची पायरी तपासायला हवी.'],
@@ -2807,7 +2833,7 @@ const PRIVATE_V2 = {
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
   MSG_LOGGED: ['text'], CONFIG_SET: ['value'], AGREEMENT_SIGNED: ['signer'], PARTNER_PROFILE: ['licNo', 'licHolder', 'licAuthority', 'gst'],
   MATERIAL_HANDED: ['custName'], HANDOVER_SIGNED: ['signer'], CUSTOMER_RATED: ['name', 'note'],
-  VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date']
+  VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date'], COUNTER_OFFER: ['amount', 'note']
 };
 const isPriv2 = (type, k) => (PRIVATE_V2[type] || []).includes(k);
 const privOf = ev => ev.sig && ev.sig.v === 2 ? isPriv2 : isPriv;
@@ -3009,7 +3035,7 @@ const DEFAULT_CONFIG = {
   costAuto: 300000, costManual: 220000, costPerStop: 40000, costSS: 50000,
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
-  targetMargin: 60, salesDiscountLimit: 30, minMargin: 20,
+  targetMargin: 60, salesDiscountLimit: 30, minMargin: 20, negStep: 5,
   token: 10000, arrivalPct: 90, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
@@ -3022,7 +3048,7 @@ const DEFAULT_CONFIG = {
 /* every number belongs to a rule group that the Owner must approve */
 const RULE_GROUPS = {
   pricing: ['costAuto', 'costManual', 'costPerStop', 'costSS', 'cap4', 'cap6', 'cap8', 'cap10', 'cap13', 'install', 'transport', 'gst'],
-  margins: ['targetMargin', 'salesDiscountLimit', 'minMargin'],
+  margins: ['targetMargin', 'salesDiscountLimit', 'minMargin', 'negStep'],
   token: ['token'],
   milestones: ['arrivalPct'],
   install: ['installDays'],
@@ -3043,6 +3069,17 @@ const RULE_GROUPS = {
   amc: ['amcPrice']
 };
 const groupOf = key => Object.keys(RULE_GROUPS).find(g => RULE_GROUPS[g].includes(key));
+/* rate card: costs and margins can be changed from a future date; a quote uses the rates in force on its day and keeps that version */
+const RATE_GROUPS = ['pricing', 'margins'];
+const isRateKey = k => RATE_GROUPS.includes(groupOf(k));
+const effOf = x => x.from || x.t.slice(0, 10);
+function priceCfg(at) {
+  const day = safeDay(at || nowISO()), cfg = Object.assign({}, S.config);
+  for (const [k, log] of Object.entries(S.priceLog || {})) { const ok = log.filter(x => effOf(x) <= day).sort((a, b) => effOf(a) < effOf(b) ? -1 : effOf(a) > effOf(b) ? 1 : a.t < b.t ? -1 : 1); cfg[k] = ok.length ? ok[ok.length - 1].value : DEFAULT_CONFIG[k]; }
+  return cfg;
+}
+const rateVersion = at => { const day = safeDay(at || nowISO()); return 1 + Object.values(S.priceLog || {}).reduce((a, log) => a + log.filter(x => effOf(x) <= day).length, 0); };
+const ratePending = () => Object.entries(S.priceLog || {}).flatMap(([k, log]) => log.filter(x => effOf(x) > todayStr()).map(x => Object.assign({ key: k }, x)));
 
 /* ---------- money + quotation maths (deterministic) ---------- */
 const r100 = n => Math.round(n / 100) * 100;
@@ -3083,7 +3120,7 @@ function materialList(req) {
 /* ---------- state ---------- */
 function emptyState() {
   return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
-    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {} };
+    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {} };
 }
 let S = emptyState();
 let EVENTS = [];
@@ -3117,6 +3154,9 @@ const seeF = (u, f) => !!u && FIELD_ACCESS[f].includes(u.role);
 const ev_ = (d, kind) => (d.ev || []).filter(e => !kind || e.kind === kind);
 const need = (cond, key, vars) => cond ? null : (vars ? { k: key, v: vars } : key);
 const lastQuote = P => P.quotes[P.quotes.length - 1];
+/* a sent quotation is valid for the set number of days (India date) */
+const quoteValidTill = q => q && q.sent ? addDays(q.validity || S.config.validityDays, new Date(q.sent.t)) : null;
+const quoteExpired = (q, at) => !!q && !!q.sent && quoteValidTill(q) < safeDay(at || nowISO());
 const activePay = (P, purpose) => [...P.payments].reverse().find(p => p.purpose === purpose && p.status !== 'failed');
 const payConfirmed = (P, purpose) => { const p = activePay(P, purpose); return !!p && p.status === 'confirmed'; };
 const openIncidents = P => P.incidents.filter(i => i.open);
@@ -3509,8 +3549,11 @@ function weeksFor(uid) {
 }
 /* high-risk actions that need a second Owner/Admin when two-person approval is switched on */
 function needsSecond(S, ev, P) {
-  if (!S.config.dualControl || ev.data._aid) return false;
+  if (ev.data._aid) return false;
   const d = ev.data;
+  /* a price below the margin floor always needs a second Owner/Admin, even when two-person approval is off */
+  if (ev.type === 'QUOTE_DECISION' && d.decision === 'approve' && lastQuote(P) && lastQuote(P).margin < S.config.minMargin) return true;
+  if (!S.config.dualControl) return false;
   switch (ev.type) {
     case 'QUOTE_DECISION': return d.decision === 'approve' && lastQuote(P) && lastQuote(P).margin < S.config.minMargin;
     case 'PAYMENT_STATUS': return d.status === 'reversed';
@@ -3598,6 +3641,7 @@ const RULES = {
       const d = ev.data;
       if (d.approve) return RULE_GROUPS[d.approve] ? null : 'err_fill';
       if (!(d.key in DEFAULT_CONFIG)) return 'err_fill';
+      if (d.from != null && (!isRateKey(d.key) || !/^\d{4}-\d\d-\d\d$/.test(d.from) || d.from < safeDay(ev.t))) return 'err_date';
       if (d.key === 'sosNumber' || d.key === 'officeNumber') return /^(\+?\d{3,15})?$/.test(String(d.value)) ? null : 'err_phone';
       return (typeof d.value === 'number' && isFinite(d.value) && d.value >= 0) ? null : 'err_number';
     }
@@ -3663,12 +3707,17 @@ const RULES = {
       if (!q) return 'err_no_req';
       if (q.by === u.uid) return 'err_same_person';
       if (!['approve', 'reject'].includes(ev.data.decision)) return 'err_choose';
+      if (ev.data.decision === 'approve' && q.margin < S.config.minMargin && u.role !== 'owner') return { k: 'err_role', v: { roles: rolesTxt(['owner']) } };
       if (ev.data.decision === 'reject' && !(ev.data.reason || '').trim()) return 'err_reason';
       return null;
     }
   },
   QUOTE_SENT: { roles: ['sales'], project: true, stages: ['quote_ready'] },
-  DEAL_WON: { roles: ['sales'], project: true, stages: ['quoted'] },
+  DEAL_WON: { roles: ['sales'], project: true, stages: ['quoted'], check: (S, ev, u, P) => quoteExpired(lastQuote(P), ev.t) ? 'err_quote_expired' : null },
+  /* the customer's counter-offer (typed by the customer, or by Sales after a call) */
+  COUNTER_OFFER: {
+    roles: ['customer', 'sales'], project: true, stages: ['quoted'], check: (S, ev, u, P) => u.role === 'customer' && P.customer !== u.uid ? 'err_access' : need(+ev.data.amount > 0, 'err_amount')
+  },
   DEAL_LOST: { roles: ['sales', 'admin', 'owner'], project: true, stages: PRE_WON, check: (S, ev) => need(ev.data.reason, 'err_reason') },
   PROJECT_CANCELLED: {
     roles: ['owner'], project: true, check: (S, ev, u, P) => stageIdx(P.stage) < stageIdx('won') || ['lost', 'amc'].includes(P.stage) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : need((ev.data.reason || '').trim(), 'err_reason')
@@ -4343,7 +4392,11 @@ function apply(S, ev) {
     case 'TEAM_SET': P.tech = d.lead; P.crew = (d.crew || []).slice(); P.partner = companyOf(d.lead); break;
     case 'CONFIG_SET':
       if (d.approve) S.config.approved[d.approve] = { by: ev.by, t: ev.t };
-      else { if (d.value != null) S.config[d.key] = d.value; delete S.config.approved[groupOf(d.key)]; }
+      else {
+        if (d.value != null && isRateKey(d.key)) (S.priceLog[d.key] = S.priceLog[d.key] || []).push({ value: d.value, from: d.from || null, t: ev.t, by: ev.by, old: priceCfg(ev.t)[d.key] });
+        if (d.value != null && !(d.from && d.from > safeDay(ev.t))) S.config[d.key] = d.value;
+        delete S.config.approved[groupOf(d.key)];
+      }
       break;
     case 'SHIFT_STARTED': S.shifts[ev.by] = { start: ev.t, gps: d.gps || null }; S.shiftLog.push({ uid: ev.by, t: ev.t, kind: 'start', gps: d.gps || null }); break;
     case 'SHIFT_ENDED': delete S.shifts[ev.by]; S.shiftLog.push({ uid: ev.by, t: ev.t, kind: 'end', gps: d.gps || null }); break;
@@ -4376,8 +4429,8 @@ function apply(S, ev) {
     case 'FOLLOWUP_SET': P.followUp = { due: d.due, by: ev.by, note: d.note || '' }; break;
     case 'REQ_SAVED': P.req = Object.assign({}, d.req); P.materials = materialList(P.req); if (P.stage === 'contacted') setStage(P, 'requirements', ev); break;
     case 'QUOTE_CREATED': {
-      const q = calcQuote(S.config, P.req, d.discountPct);
-      Object.assign(q, { v: P.quotes.length + 1, t: ev.t, by: ev.by, reason: d.reason || '', req: clone(P.req), status: q.needsApproval ? 'pending' : 'auto', validity: S.config.validityDays });
+      const q = calcQuote(priceCfg(ev.t), P.req, d.discountPct);
+      Object.assign(q, { v: P.quotes.length + 1, t: ev.t, by: ev.by, rv: rateVersion(ev.t), reason: d.reason || '', req: clone(P.req), status: q.needsApproval ? 'pending' : 'auto', validity: S.config.validityDays });
       P.quotes.push(q);
       setStage(P, q.needsApproval ? 'quote_approval' : 'quote_ready', ev);
       break;
@@ -4389,6 +4442,7 @@ function apply(S, ev) {
       setStage(P, d.decision === 'approve' ? 'quote_ready' : 'requirements', ev);
       break;
     }
+    case 'COUNTER_OFFER': (P.counters = P.counters || []).push({ amount: +d.amount, note: d.note || '', by: ev.by, t: ev.t, qv: (lastQuote(P) || {}).v }); break;
     case 'QUOTE_SENT': { const q = lastQuote(P); q.sent = { t: ev.t, by: ev.by, channel: d.channel }; setStage(P, 'quoted', ev); break; }
     case 'DEAL_WON': { const q = lastQuote(P); q.accepted = { t: ev.t, by: ev.by }; P.schedule = paySchedule(S.config, q.total); P.schedule.quoteV = q.v; P.followUp = null; setStage(P, 'won', ev); break; }
     case 'DEAL_LOST': P.lost = { reason: d.reason, note: d.note || '', by: ev.by, t: ev.t }; P.followUp = null; setStage(P, 'lost', ev); break;
@@ -4654,7 +4708,7 @@ function needs(P) {
     case 'requirements': add('make_quote', ['sales'], { uids: [P.sales] }); break;
     case 'quote_approval': add('approve_quote', ['owner', 'admin'], { not: q && q.by, urgent: true }); break;
     case 'quote_ready': add('send_quote', ['sales'], { uids: [P.sales] }); break;
-    case 'quoted': add('get_decision', ['sales'], { uids: [P.sales] }); break;
+    case 'quoted': add(quoteExpired(q) ? 'requote' : 'get_decision', ['sales'], { uids: [P.sales], urgent: quoteExpired(q) }); break;
     case 'won': add('prepare_agreement', ['sales'], { uids: [P.sales] }); break;
     case 'agreement': add('sign_agreement', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
     case 'signed': payNeed('token'); break;
@@ -5308,7 +5362,7 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { if (App.me && OUTSIDERS.includes(App.me.role)) return (P.site.address || '').split(/[,\n]/)[0] || areaOf(P) || P.id; return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
@@ -5737,6 +5791,37 @@ function reqKv(r) {
     ['q_shaft_ready', r.shaft ? t(r.shaft === 'unknown' ? 'not_sure' : r.shaft) : ''], ['q_power3', r.power ? t(r.power === 'unknown' ? 'not_sure' : r.power) : ''], ['q_timeline', r.timeline ? t('tl_' + r.timeline) : '']]);
 }
 /* ---------- Sales: quotation ---------- */
+/* negotiation: earlier quotes and the customer's offers, then the discount ladder within the Sales limit */
+function negHistory(P) {
+  const qs = P.quotes, cs = P.counters || [];
+  if (!qs.length && !cs.length) return '';
+  const rows = qs.map(q => ({ t: q.t, html: `📄 ${t('quote_v', { v: q.v })} · <b>${money(q.total)}</b>${q.discountPct ? ' · −' + q.discountPct + '%' : ''} · ${t('qs_' + q.status)}` }))
+    .concat(cs.map(c => ({ t: c.t, html: `💬 ${t('counter_from')} · <b>${money(c.amount)}</b>${c.note ? ' · ' + esc(c.note) : ''}` }))).sort((a, b) => a.t < b.t ? -1 : 1);
+  return `<div class="card"><h3>🤝 ${t('neg_history')}</h3>${rows.map(r => `<div class="small">${fmtD(r.t)} · ${r.html}</div>`).join('')}</div>`;
+}
+function negLadder(P, c) {
+  const cfg = priceCfg(), step = Math.max(1, +cfg.negStep || 5), lim = +cfg.salesDiscountLimit || 0, steps = [];
+  for (let d = 0; d <= lim; d += step) steps.push(d);
+  const last = (P.counters || []).slice(-1)[0], base = calcQuote(cfg, P.req, 0);
+  const need = last ? Math.max(0, Math.ceil((1 - last.amount / base.total) * 100)) : null;
+  return `<h3>${t('neg_ladder')}</h3>${last ? `<div class="note">💬 ${t('counter_need', { a: money(last.amount), n: need })}${need > lim ? ' · ⏳ ' + t('q_will_need_approval') : ''}</div>` : ''}
+    <div class="tiles">${steps.map(d => { const q = calcQuote(cfg, P.req, d); return `<button class="tile ${+c.discountPct === d ? 'on' : ''}" data-a="discSet" data-v="${d}" style="min-height:70px"><span>${d ? '−' + d + '%' : t('neg_list')}</span><small>${money(q.total)}</small></button>`; }).join('')}</div>`;
+}
+function rateBlock(gk, own) {
+  const keys = RULE_GROUPS[gk], hist = keys.flatMap(k => ((S.priceLog || {})[k] || []).map(x => Object.assign({ key: k }, x))).sort((a, b) => a.t < b.t ? 1 : -1), pend = ratePending().filter(x => keys.includes(x.key));
+  return `<p class="small"><b>${t('rate_v', { v: rateVersion() })}</b></p>${pend.map(x => `<div class="note">📅 ${t('rate_from', { d: fmtD(x.from) })}: ${t('cfg_' + x.key)} → <b>${x.value}</b></div>`).join('')}
+    ${own ? `<div class="field"><label for="${fid('cfgFrom.' + gk)}"><b>${t('rate_start')}</b> <small class="muted">(${t('optional')})</small></label><input class="in" type="date" id="${fid('cfgFrom.' + gk)}" data-f="cfgFrom.${gk}" value="${esc(App.form['cfgFrom.' + gk] || '')}"></div>` : ''}
+    ${hist.length ? `<details><summary class="small">🕒 ${t('rate_history')} (${hist.length})</summary>${hist.slice(0, 30).map(x => `<div class="small">${fmtD(x.t)} · ${t('cfg_' + x.key)}: ${x.old} → <b>${x.value}</b>${x.from ? ' · ' + t('rate_from', { d: fmtD(x.from) }) : ''} · ${esc(userName(x.by))}</div>`).join('')}</details>` : ''}`;
+}
+/* profit of a job for the Owner/Admin: price before tax minus the estimated cost (from the quote's rate card) and extra labour paid */
+function profitCard(P) {
+  const q = P.quotes.find(x => x.accepted) || null; if (!q) return '';
+  const labour = Object.values(S.users).filter(u => u.role === 'tech' || u.role === 'qc').reduce((a, u) => a + earnings(u.uid).filter(e => e.pid === P.id).reduce((b, e) => b + e.amount, 0), 0);
+  const varAmt = P.variation && P.variation.status === 'signed' ? +P.variation.amount || 0 : 0, price = q.price + Math.round(varAmt / (1 + q.gstPct / 100));
+  const est = q.cost, margin = price ? Math.round((price - est) / price * 1000) / 10 : 0, markup = est ? Math.round((price - est) / est * 1000) / 10 : 0;
+  return `<div class="card"><h3>📊 ${t('profit_title')}</h3>${kv([['profit_price', money(price)], ['profit_cost', money(est)], ['profit_labour', money(labour)], ['profit_margin', margin + '%'], ['profit_markup', markup + '%']])}
+    <p class="small muted">${t('profit_note', { v: q.rv || 1 })}</p></div>`;
+}
 function quoteBox(q, internal) {
   return `<table class="mx" style="font-size:.95rem">${q.lines.map(([k, v]) => `<tr><td>${esc(t(k))}</td><td style="text-align:right">${money(v)}</td></tr>`).join('')}
     <tr><td><b>${t('q_list')}</b></td><td style="text-align:right"><b>${money(q.list)}</b></td></tr>
@@ -5753,7 +5838,7 @@ WIZ.quote = {
   steps: [
     {
       id: 'price', icon: '🧮', say: 's_quote_price',
-      body: (c, P) => `<div class="card">${reqKv(P.req)}</div><div class="card" id="qbox">${quoteBox(calcQuote(S.config, P.req, c.discountPct), true)}</div>
+      body: (c, P) => `<div class="card">${reqKv(P.req)}</div>${negHistory(P)}<div class="card" id="qbox">${quoteBox(calcQuote(priceCfg(), P.req, c.discountPct), true)}</div>${negLadder(P, c)}
         <h3>${t('q_discount')}</h3><div class="stepper"><button data-a="disc" data-v="-5">−5</button><output style="font-size:2.2rem">${c.discountPct}%</output><button data-a="disc" data-v="5">+5</button></div>
         <div class="row" style="justify-content:center"><button class="btn btn-sm" data-a="disc" data-v="-1">−1%</button><button class="btn btn-sm" data-a="disc" data-v="1">+1%</button></div>
         ${c.discountPct > 0 ? inp('reason', 'f_discount_reason', { mic: true }) : ''}
@@ -5762,7 +5847,7 @@ WIZ.quote = {
     },
     {
       id: 'review', icon: '📄', say: 's_quote_review',
-      body: (c, P) => { const q = calcQuote(S.config, P.req, c.discountPct); return `<div class="card">${quoteBox(q, false)}</div>${q.needsApproval ? `<div class="warnbox">⏳ ${t('q_will_need_approval')}</div>` : ''}<p class="small muted">${t('q_version_note', { v: P.quotes.length + 1 })}</p>`; }
+      body: (c, P) => { const q = calcQuote(priceCfg(), P.req, c.discountPct); return `<div class="card">${quoteBox(q, false)}</div><p class="small muted">${t('rate_v', { v: rateVersion() })}</p>${q.needsApproval ? `<div class="warnbox">⏳ ${t('q_will_need_approval')}</div>` : ''}<p class="small muted">${t('q_version_note', { v: P.quotes.length + 1 })}</p>`; }
     }
   ],
   async finish(c, P) {
@@ -5801,7 +5886,7 @@ WIZ.decision = {
   title: 'tk_get_decision', save: 'save',
   init: () => ({ dec: '', due: '', reason: '' }),
   steps: [
-    { id: 'dec', icon: '🤝', say: 's_decision', body: (c, P) => `<div class="card">${quoteBox(lastQuote(P), false)}</div>` + contactButtons(P, 'quote') + tiles('dec', [['yes', '🎉', 'dec_yes'], ['lower', '💬', 'dec_lower'], ['later', '⏰', 'dec_later'], ['no', '🙁', 'dec_no']], 'one'), check: c => c.dec ? null : 'err_choose' },
+    { id: 'dec', icon: '🤝', say: 's_decision', body: (c, P) => (quoteExpired(lastQuote(P)) ? `<div class="err">⏰ ${t('quote_expired', { d: fmtD(quoteValidTill(lastQuote(P))) })}</div>` : `<div class="note">⏰ ${t('quote_valid_till', { d: fmtD(quoteValidTill(lastQuote(P))) })}</div>`) + negHistory(P) + `<div class="card">${quoteBox(lastQuote(P), false)}</div>` + contactButtons(P, 'quote') + tiles('dec', [['yes', '🎉', 'dec_yes'], ['lower', '💬', 'dec_lower'], ['later', '⏰', 'dec_later'], ['no', '🙁', 'dec_no']], 'one'), check: c => c.dec ? null : 'err_choose' },
     { id: 'when', icon: '📅', say: 's_call_when', skip: c => c.dec !== 'later', body: () => dateTiles('due'), check: c => /^\d{4}-\d\d-\d\d$/.test(c.due) ? null : 'err_date' },
     { id: 'lost', icon: '🙁', say: 's_lost_why', skip: c => c.dec !== 'no', body: () => tiles('reason', LOST_REASONS, 'one'), check: c => c.reason ? null : 'err_reason' },
     {
@@ -5810,9 +5895,19 @@ WIZ.decision = {
     }
   ],
   async finish(c, P) {
-    if (c.dec === 'lower') return { ok: true, go: () => wiz('quote', P.id) };
+    if (c.dec === 'lower') return { ok: true, go: () => wiz('counter', P.id) };
+    if (c.dec === 'yes' && quoteExpired(lastQuote(P))) return { ok: false, err: 'err_quote_expired' };
     const r = c.dec === 'yes' ? await run([['DEAL_WON', P.id, {}]]) : c.dec === 'later' ? await run([['FOLLOWUP_SET', P.id, { due: c.due }]]) : await run([['DEAL_LOST', P.id, { reason: c.reason }]]);
     return r.ok ? doneRes(P.id, { yes: 'what_won', later: 'what_followup', no: 'what_lost' }[c.dec]) : r;
+  }
+};
+WIZ.counter = {
+  title: 'counter_offer', save: 'save', noDraft: true, init: () => ({ amount: '', note: '' }),
+  steps: [{ id: 'c', icon: '💬', say: 's_counter', body: (c, P) => `<div class="card">${quoteBox(lastQuote(P), false)}</div>` + inp('amount', 'counter_amount', { type: 'number', mode: 'numeric', big: true }) + inp('note', 'f_note', { mic: true, opt: true }),
+    check: c => +c.amount > 0 ? null : 'err_amount' }],
+  async finish(c, P) {
+    const r = await run([['COUNTER_OFFER', P.id, { amount: +c.amount, note: c.note.trim() }]]); if (!r.ok) return r;
+    return App.me.role === 'sales' ? { ok: true, go: () => wiz('quote', P.id) } : doneRes(P.id, 'what_counter');
   }
 };
 /* ---------- Agreement ---------- */
@@ -6539,6 +6634,7 @@ function customerHome() {
   const tile = (a, v, i, l) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`;
   return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}<div class="card"><b>${esc(P.id)}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}</div>${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
     ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + tasks.map((n, i) => taskCard(n, i)).join('') : ''}
+    ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
     ${P.done && allowed('TICKET_OPENED', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="ticket|${P.id}">🚨 ${t('ticket_new')}</button>` : ''}
     ${fold('cdocs', t('papers_help'), `<div class="tiles">${q ? tile('openDocP', P.id + '|quote', '📄', 'doc_quote') : ''}${P.agreement ? tile('openDocP', P.id + '|agreement', '✍️', 'doc_agreement') : ''}
       ${tile('openProjectTab', P.id + '|money', '💰', 'tab_money')}${['site_prep', 'site_fix'].includes(P.stage) ? tile('openCl', P.id + '|' + (P.stage === 'site_prep' ? 'prep' : 'sitefix'), '🧱', 'site_checklist') : ''}
@@ -6770,7 +6866,7 @@ function projMoney(P) {
   const sch = P.schedule;
   const payRow = purpose => { const p = activePay(P, purpose); return `<div class="list-item"><span class="grow">${t('pay_' + purpose)}<br><b>${sch ? money(sch[purpose]) : '—'}</b></span>${p ? `<span class="chip ${p.status === 'confirmed' ? 'c-ok' : p.status === 'pending' ? 'c-warn' : 'c-bad'}">${t('ps_' + p.status)}</span>` : `<span class="chip c-mute">${t('ps_not_yet')}</span>`}</div>`; };
   const quotes = u.role === 'customer' ? P.quotes.filter(q => q.sent) : P.quotes;
-  return `<div class="card"><h3>💳 ${t('pay_schedule')}</h3>${sch ? ['token', 'arrival', 'final'].map(payRow).join('') + `<div style="margin-top:6px">${ruleChip('token')} ${ruleChip('milestones')}</div>` : `<p class="muted">${t('no_schedule')}</p>`}</div>
+  return (['owner', 'admin'].includes(u.role) ? profitCard(P) : '') + `<div class="card"><h3>💳 ${t('pay_schedule')}</h3>${sch ? ['token', 'arrival', 'final'].map(payRow).join('') + `<div style="margin-top:6px">${ruleChip('token')} ${ruleChip('milestones')}</div>` : `<p class="muted">${t('no_schedule')}</p>`}</div>
     <div class="card"><h3>🧾 ${t('payments')}</h3>${P.payments.length ? P.payments.map(p => `<div class="list-item" style="display:block"><b>${t('pay_' + p.purpose)} · ${money(p.amount)}</b> <span class="chip ${p.status === 'confirmed' ? 'c-ok' : p.status === 'pending' ? 'c-warn' : 'c-bad'}">${t('ps_' + p.status)}</span>
       <div class="small">${t('pm_' + p.method)} · ${esc(p.ref)}${p.bankRef ? ' · 🏦 ' + esc(p.bankRef) : ''}</div>
       ${p.hist.map(h => `<div class="small muted">${fmtD(h.t, true)} · ${t('ps_' + h.status)} · ${userName(h.by)} ${esc(h.reason || h.note || '')}</div>`).join('')}
@@ -7098,6 +7194,7 @@ SCREENS.rules = () => {
   return topBar(t('business_rules'), { back: true }) + `<main class="wrap"><div class="note">📏 ${t('s_rules')}</div>${Object.entries(RULE_GROUPS).map(([gk, keys]) => `<div class="card"><div class="row"><h3 class="grow" style="margin:0">${t('rg_' + gk)}</h3>${ruleChip(gk)}</div>
     <p class="small muted">${t('rg_' + gk + '_d')}</p>${S.config.approved[gk] ? `<p class="small">✅ ${userName(S.config.approved[gk].by)} · ${fmtD(S.config.approved[gk].t, true)}</p>` : ''}
     ${keys.map(k => own ? `<div class="field"><label for="${fid('cfg.' + k)}"><b>${t('cfg_' + k)}</b></label><input class="in" ${['sosNumber', 'officeNumber'].includes(k) ? 'type="tel" inputmode="tel"' : 'type="number" min="0" inputmode="decimal"'} id="${fid('cfg.' + k)}" data-f="cfg.${k}" value="${S.config[k]}"></div>` : `<div class="list-item"><span class="grow">${t('cfg_' + k)}</span><b>${S.config[k]}</b></div>`).join('')}
+    ${RATE_GROUPS.includes(gk) ? rateBlock(gk, own) : ''}
     ${own ? `<div class="row"><button class="btn" data-a="cfgSave" data-v="${gk}">💾 ${t('save')}</button>${S.config.approved[gk] ? '' : `<button class="btn btn-ok" data-a="cfgApprove" data-v="${gk}">✅ ${t('approve_rule')}</button>`}</div>` : ''}</div>`).join('')}
     ${!own ? `<p class="small muted">${t('rules_owner_only')}</p>` : ''}</main>` + nav('me');
 };
@@ -7205,7 +7302,7 @@ const OUT_HIDE = {
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
   MSG_LOGGED: ['text'], AGREEMENT_SIGNED: ['signer'], CONFIG_SET: ['value'], PARTNER_PROFILE: ['licNo', 'licHolder', 'licAuthority', 'gst'],
-  MATERIAL_HANDED: ['custName'], CUSTOMER_RATED: ['name', 'note'], VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date']
+  MATERIAL_HANDED: ['custName'], CUSTOMER_RATED: ['name', 'note'], VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date'], COUNTER_OFFER: ['amount', 'note']
 };
 const strip = (ev, keys, extra) => { const e = redact(ev, keys); return e === ev ? ev : Object.assign(e, { data: Object.assign(e.data, extra || {}) }); };
 /* a copy of a record with some private fields removed (set to empty); fields that the record's signature cannot hide stay */
@@ -8205,7 +8302,7 @@ function openTask(n) {
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid),
-    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
+    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
     lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
@@ -8363,6 +8460,7 @@ const ACT = {
   toggle: (v, el) => { setPath(W.ctx, el.dataset.k, !getPath(W.ctx, el.dataset.k)); W.err = null; saveDraft(); render(); },
   toggleIn: (v, el) => { const arr = getPath(W.ctx, el.dataset.k) || []; const i = arr.indexOf(v); if (i < 0) arr.push(v); else arr.splice(i, 1); setPath(W.ctx, el.dataset.k, arr); saveDraft(); render(); },
   step: (v, el) => { const k = el.dataset.k; setPath(W.ctx, k, Math.max(+el.dataset.min, Math.min(+el.dataset.max, (+getPath(W.ctx, k) || 0) + (+v)))); saveDraft(); render(); },
+  discSet: v => { W.ctx.discountPct = +v; W.err = null; saveDraft(); render(); },
   disc: v => { W.ctx.discountPct = Math.max(0, Math.min(60, (+W.ctx.discountPct || 0) + (+v))); W.err = null; saveDraft(); render(); },
   cam: async (v, el) => {
     const key = el.dataset.k;
@@ -8514,8 +8612,9 @@ const ACT = {
     let n = 0;
     for (const k of RULE_GROUPS[gk]) {
       const raw = App.form['cfg.' + k]; if (raw == null || raw === '') continue;
-      const val = ['sosNumber', 'officeNumber'].includes(k) ? String(raw).replace(/[^\d+]/g, '') : +raw; if (val === S.config[k]) continue;
-      const r = await perform('CONFIG_SET', null, { key: k, value: val }); if (!r.ok) return; n++;
+      const val = ['sosNumber', 'officeNumber'].includes(k) ? String(raw).replace(/[^\d+]/g, '') : +raw; if (val === S.config[k] && !(RATE_GROUPS.includes(gk) && App.form['cfgFrom.' + gk])) continue;
+      const from = RATE_GROUPS.includes(gk) && App.form['cfgFrom.' + gk] && App.form['cfgFrom.' + gk] > todayStr() ? App.form['cfgFrom.' + gk] : null;
+      const r = await perform('CONFIG_SET', null, Object.assign({ key: k, value: val }, from ? { from } : {})); if (!r.ok) return; n++;
     }
     toast(n ? t('rules_saved', { n }) : t('no_change')); render();
   },
@@ -8583,7 +8682,7 @@ document.addEventListener('input', e => {
   if (el.dataset.k && W) {
     let v = el.value; if (el.type === 'number') v = v === '' ? '' : +v;
     setPath(W.ctx, el.dataset.k, v); saveDraft();
-    if (el.dataset.live === 'q') { const b = $('#qbox'); if (b) b.innerHTML = quoteBox(calcQuote(S.config, S.projects[W.pid].req, W.ctx.discountPct), true); }
+    if (el.dataset.live === 'q') { const b = $('#qbox'); if (b) b.innerHTML = quoteBox(calcQuote(priceCfg(), S.projects[W.pid].req, W.ctx.discountPct), true); }
     return;
   }
   if (el.dataset.f) {

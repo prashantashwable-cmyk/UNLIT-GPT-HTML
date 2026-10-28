@@ -126,6 +126,15 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * **Move back a stage:** the office can move a job one step back with a reason (site approved → site inspection, order → site approved, dispatched → order, final inspection → installing), for example to release again with corrected drawings.
 * **Disputes:** Sales or the office can mark a dispute with the customer; the Owner/Admin see it until it is settled. Workers' confirmed pay is not affected.
 
+### Price talks, rate card, quotation validity, profit
+* **Rate card with versions:** the Owner can change costs and margins from a future date (**Business rules → Pricing / Margins → New rates start from**).
+  * Quotations use the rates in force on their day and keep the rate card version. The rules page shows the version, waiting changes and the earlier rates.
+* **Price talks:** the quotation screen shows earlier quotations and the customer's offers (recorded by Sales).
+  * It shows the discount the offer needs, and discount steps (set by the Owner) up to the Sales limit. Beyond the limit, the quotation goes for approval.
+* **Below the margin floor:** only the Owner may approve, and a second Owner/Admin must agree, even when two-person approval is off.
+* **Quotation validity:** a sent quotation is valid for the set days. After that it cannot be won, and Sales gets "make a new quotation".
+* **Profit per job (Owner/Admin):** price before tax, estimated cost from the quotation's rate card, labour paid so far, margin and markup.
+
 ### Shaft limits, variation, co-worker check, surprise QC
 * **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).
   * A shaft below the minimum cannot simply be approved: QC asks for corrections, or approves "with a variation quote".
