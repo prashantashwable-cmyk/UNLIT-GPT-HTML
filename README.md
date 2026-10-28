@@ -135,6 +135,21 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * **Quotation validity:** a sent quotation is valid for the set days. After that it cannot be won, and Sales gets "make a new quotation".
 * **Profit per job (Owner/Admin):** price before tax, estimated cost from the quotation's rate card, labour paid so far, margin and markup.
 
+### Consent, field pay, payment plan, refunds, receipts
+* **Call and WhatsApp consent:** when a site has a phone number, the field worker asks the person "may we call?" and "may we send WhatsApp?" and records who they are (owner, builder, manager, watchman).
+  * A "no" turns that button off, and WhatsApp messages are refused. Sales or the office can record "asked us to stop" (calls, WhatsApp or both) at any time.
+* **Towers:** a lead in another tower of the same building is not counted as a duplicate. When attaching to an existing lead, the field worker can mark "I added new useful information".
+* **Field worker pay (Owner rules, off until set):** a fixed amount for each lead Sales accepts, and a % of the price before tax when the deal is won. A worker who added new information to another person's lead shares that % (duplicate-lead share). Field workers see their own pay.
+* **Payment plan:** the token can be part of the price or paid on top. The Owner can add a **cabin payment** (a % of the price): the cabin step of installation waits until Finance confirms it.
+* **Refund after cancellation:** Finance works out the refund from the stage reached:
+  * before ordering: everything paid, less costs (all of it if the site was rejected);
+  * after ordering: less the token and the supplier's charge;
+  * after dispatch: less freight;
+  * after the cabin payment: less the cabin payment and material;
+  * after installation started: nothing by default.
+  * A different amount needs a reason. The Owner approves or refuses; Finance pays with the bank reference, and a second Finance person pays when there is one.
+* **Receipt:** each confirmed payment has a 🧾 receipt (number, date, customer, purpose, amount, method, bank reference, who checked it) that can be printed or saved as PDF.
+
 ### Shaft limits, variation, co-worker check, surprise QC
 * **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).
   * A shaft below the minimum cannot simply be approved: QC asks for corrections, or approves "with a variation quote".
@@ -257,6 +272,7 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 
 ## Honest limits of this version
 * **Offline, single file.** Roles are enforced by the app on every action and on every imported file. There is no company server.
+* **Money:** refunds and receipts are records in the app. The money itself moves through the bank; the app does not send payments, and a receipt is not a GST tax invoice.
 * **Safety:** the SOS reaches the office's phone only when files are shared, so the phone call and SMS are the real alert. Safety photos are checked by people, not by a computer. The daily check is confirmed by the team lead (an Owner decision); it does not replace the statutory inspection or a qualified engineer.
 * **Data protection limits:**
   * There is no server, so prices and rules are checked by the same rules on every phone and on every file loaded, not on a server.

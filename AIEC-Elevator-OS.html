@@ -1152,6 +1152,80 @@ const L = {
   f_decision_note: ['Decision and reason', 'फ़ैसला और कारण', 'निर्णय आणि कारण'],
   report_security: ['Report security problem', 'सुरक्षा समस्या बताएँ', 'सुरक्षा समस्या कळवा'],
   s_incident_new: ['What happened? (theft, missing material, damaged seal, unsafe access)', 'क्या हुआ? (चोरी, सामान गायब, सील टूटा, असुरक्षित पहुँच)', 'काय झाले? (चोरी, साहित्य गहाळ, सील तुटलेला, असुरक्षित प्रवेश)'],
+  err_no_consent: ['The contact said no to this kind of message, or asked us to stop.', 'संपर्क ने इस तरह के संदेश को मना किया, या रोकने को कहा।', 'संपर्काने अशा संदेशाला नकार दिला, किंवा थांबायला सांगितले.'],
+  err_consent_ask: ['Ask the person: may we call? may we send WhatsApp?', 'व्यक्ति से पूछें: क्या हम कॉल कर सकते हैं? क्या WhatsApp भेज सकते हैं?', 'व्यक्तीला विचारा: आम्ही फोन करू शकतो का? WhatsApp पाठवू शकतो का?'],
+  no_contact_ok: ['The contact does not want calls or WhatsApp messages.', 'संपर्क कॉल या WhatsApp नहीं चाहता।', 'संपर्काला फोन किंवा WhatsApp नको.'],
+  no_call_ok: ['The contact does not want phone calls. Use WhatsApp only.', 'संपर्क फ़ोन कॉल नहीं चाहता। केवल WhatsApp।', 'संपर्काला फोन नको. फक्त WhatsApp.'],
+  no_wa_ok: ['The contact does not want WhatsApp messages. Call only.', 'संपर्क WhatsApp नहीं चाहता। केवल कॉल।', 'संपर्काला WhatsApp नको. फक्त फोन.'],
+  f_tower: ['Tower / wing (if many buildings)', 'टावर / विंग (कई बिल्डिंग हों तो)', 'टॉवर / विंग (अनेक इमारती असल्यास)'],
+  q_contact_role: ['Who is this person?', 'यह व्यक्ति कौन है?', 'ही व्यक्ती कोण आहे?'],
+  cr_owner: ['Owner', 'मालिक', 'मालक'], cr_builder: ['Builder', 'बिल्डर', 'बिल्डर'], cr_manager: ['Manager / secretary', 'मैनेजर / सचिव', 'व्यवस्थापक / सचिव'], cr_watchman: ['Watchman', 'चौकीदार', 'वॉचमन'], cr_other: ['Other', 'अन्य', 'इतर'],
+  q_consent_call: ['May AIEC call this number?', 'क्या AIEC इस नंबर पर कॉल कर सकता है?', 'AIEC या नंबरवर फोन करू शकते का?'],
+  q_consent_wa: ['May AIEC send WhatsApp messages?', 'क्या AIEC WhatsApp भेज सकता है?', 'AIEC WhatsApp पाठवू शकते का?'],
+  consent_note: ['Ask the person and tap their answer. If they say no, nobody will call or message them.', 'व्यक्ति से पूछें और उनका जवाब दबाएँ। मना करने पर कोई कॉल या संदेश नहीं करेगा।', 'व्यक्तीला विचारा आणि त्यांचे उत्तर दाबा. नकार दिल्यास कोणी फोन किंवा संदेश करणार नाही.'],
+  consent_title: ['May contact', 'संपर्क की अनुमति', 'संपर्काची परवानगी'],
+  dup_new_info: ['I have something new (new person, number or photos)', 'मेरे पास कुछ नया है (नया व्यक्ति, नंबर या फ़ोटो)', 'माझ्याकडे काहीतरी नवीन आहे (नवीन व्यक्ती, नंबर किंवा फोटो)'],
+  earn_lead_valid: ['Lead accepted by Sales', 'लीड सेल्स ने स्वीकारी', 'लीड विक्री विभागाने स्वीकारली'],
+  earn_lead_won: ['Deal won from my lead', 'मेरी लीड से सौदा हुआ', 'माझ्या लीडमधून सौदा झाला'],
+  earn_lead_info: ['Share for useful new information', 'काम की नई जानकारी का हिस्सा', 'उपयोगी नवीन माहितीचा वाटा'],
+  field_pay: ['How field workers are paid', 'फ़ील्ड कर्मचारियों को भुगतान कैसे', 'फील्ड कामगारांना पैसे कसे'],
+  amount_not_set: ['Amount not set yet (Owner decision)', 'रकम अभी तय नहीं (मालिक का फ़ैसला)', 'रक्कम अजून ठरलेली नाही (मालकाचा निर्णय)'],
+  rg_fieldpay: ['Field worker pay', 'फ़ील्ड कर्मचारी भुगतान', 'फील्ड कामगार पैसे'],
+  rg_fieldpay_d: ['Amount for a lead accepted by Sales, and % of the price (before tax) when the deal is won. A helper who added new information shares the won amount (duplicate-lead %). 0 = not decided yet.', 'सेल्स द्वारा स्वीकारी गई लीड की रकम, और सौदा होने पर कीमत (टैक्स से पहले) का %। नई जानकारी जोड़ने वाले को जीत की रकम में हिस्सा (दोहरी लीड %)। 0 = अभी तय नहीं।', 'विक्री विभागाने स्वीकारलेल्या लीडची रक्कम, आणि सौदा झाल्यावर किंमतीचे (करापूर्वी) %. नवीन माहिती जोडणाऱ्याला वाटा (दुहेरी लीड %). 0 = अजून ठरले नाही.'],
+  cfg_payLeadValid: ['Pay for a lead accepted by Sales (₹)', 'सेल्स द्वारा स्वीकारी लीड का भुगतान (₹)', 'विक्रीने स्वीकारलेल्या लीडचे पैसे (₹)'],
+  cfg_leadWonPct: ['Commission when the deal is won (% of price before tax)', 'सौदा होने पर कमीशन (टैक्स से पहले कीमत का %)', 'सौदा झाल्यावर कमिशन (करापूर्वी किंमतीचे %)'],
+  cfg_tokenMode: ['Token: 0 = part of the price, 1 = paid on top', 'टोकन: 0 = कीमत में शामिल, 1 = अलग से', 'टोकन: 0 = किंमतीत समाविष्ट, 1 = वेगळा'],
+  cfg_cabinPct: ['Cabin payment % (0 = none)', 'केबिन भुगतान % (0 = नहीं)', 'केबिन पैसे % (0 = नाही)'],
+  pay_cabin: ['Cabin payment', 'केबिन भुगतान', 'केबिन पैसे'],
+  tk_wait_cabin_pay: ['Waiting for the cabin payment before fitting the cabin', 'केबिन लगाने से पहले केबिन भुगतान का इंतज़ार', 'केबिन बसवण्यापूर्वी केबिन पैशांची प्रतीक्षा'],
+  refund_title: ['Refund after cancellation', 'रद्द होने के बाद धनवापसी', 'रद्द झाल्यानंतर परतावा'],
+  refund_paid_in: ['Paid by the customer', 'ग्राहक द्वारा भुगतान', 'ग्राहकाने भरलेले'],
+  refund_rule: ['Rule', 'नियम', 'नियम'],
+  refund_amount: ['Refund', 'धनवापसी', 'परतावा'],
+  refund_suggest: ['Worked out by the rule', 'नियम से निकाली गई', 'नियमानुसार काढलेली'],
+  refund_legal: ['These rules are a proposal. A lawyer and CA must confirm them and the agreement decides.', 'ये नियम प्रस्ताव हैं। वकील और CA पुष्टि करें, अनुबंध अंतिम है।', 'हे नियम प्रस्ताव आहेत. वकील आणि CA ने पुष्टी करावी; करार अंतिम.'],
+  rr_before_qc: ['Before the site was approved', 'साइट मंज़ूरी से पहले', 'साइट मंजुरीपूर्वी'],
+  rr_before_qc_d: ['Token refunded in full if QC rejected the site; otherwise less the documented costs.', 'QC ने साइट नामंज़ूर की तो पूरा टोकन वापस; नहीं तो दर्ज लागत घटाकर।', 'QC ने साइट नाकारली तर पूर्ण टोकन परत; अन्यथा नोंदवलेला खर्च वजा करून.'],
+  rr_qc_rejected: ['QC did not approve this site: full refund.', 'QC ने यह साइट मंज़ूर नहीं की: पूरी वापसी।', 'QC ने ही साइट मंजूर केली नाही: पूर्ण परतावा.'],
+  rr_ordered: ['After the material was ordered, before dispatch', 'सामान ऑर्डर के बाद, भेजने से पहले', 'साहित्य मागवल्यानंतर, पाठवण्यापूर्वी'],
+  rr_ordered_d: ['Token kept, and the proven supplier cost for custom items is taken off.', 'टोकन रखा जाता है, और कस्टम सामान की सिद्ध सप्लायर लागत घटाई जाती है।', 'टोकन ठेवला जातो, आणि कस्टम साहित्याचा सिद्ध पुरवठादार खर्च वजा होतो.'],
+  rr_dispatched: ['After dispatch', 'भेजने के बाद', 'पाठवल्यानंतर'],
+  rr_dispatched_d: ['Return freight and handling are taken off; the rest is refunded as the agreement says.', 'वापसी भाड़ा और हैंडलिंग घटाई जाती है; बाकी अनुबंध के अनुसार वापस।', 'परतीचे भाडे आणि हाताळणी वजा; उरलेले करारानुसार परत.'],
+  rr_cabin: ['After the cabin payment', 'केबिन भुगतान के बाद', 'केबिन पैशांनंतर'],
+  rr_cabin_d: ['The custom cabin is not refunded; standard material only if unopened and matching the list.', 'कस्टम केबिन वापस नहीं; सामान्य सामान केवल बिना खोले और सूची से मेल खाने पर।', 'कस्टम केबिन परत नाही; साधे साहित्य फक्त न उघडलेले आणि यादीशी जुळणारे असल्यास.'],
+  rr_installed: ['After installation started', 'इंस्टॉलेशन शुरू होने के बाद', 'बसवणे सुरू झाल्यानंतर'],
+  rr_installed_d: ['No refund for delivered and installed work; any claim goes through the dispute process.', 'पहुँचे और लगे काम का कोई रिफ़ंड नहीं; कोई दावा विवाद प्रक्रिया से।', 'पोहोचलेल्या आणि बसवलेल्या कामाचा परतावा नाही; दावा वाद प्रक्रियेतून.'],
+  rd_costs: ['Documented costs so far (₹)', 'अब तक की दर्ज लागत (₹)', 'आतापर्यंतचा नोंदवलेला खर्च (₹)'],
+  rd_supplier: ['Proven supplier cost for custom items (₹)', 'कस्टम सामान की सिद्ध सप्लायर लागत (₹)', 'कस्टम साहित्याचा सिद्ध पुरवठादार खर्च (₹)'],
+  rd_freight: ['Return freight and handling (₹)', 'वापसी भाड़ा और हैंडलिंग (₹)', 'परतीचे भाडे आणि हाताळणी (₹)'],
+  rd_material: ['Opened or non-returnable material (₹)', 'खोला गया या न लौटने वाला सामान (₹)', 'उघडलेले किंवा परत न होणारे साहित्य (₹)'],
+  rfs_proposed: ['waiting for the Owner', 'मालिक का इंतज़ार', 'मालकाची प्रतीक्षा'], rfs_approved: ['approved, to be paid', 'मंज़ूर, भुगतान बाकी', 'मंजूर, देणे बाकी'], rfs_rejected: ['not approved', 'मंज़ूर नहीं', 'मंजूर नाही'], rfs_paid: ['paid', 'भुगतान हुआ', 'दिले'],
+  s_refund: ['Enter the costs for this case. The app works out the refund by the rule; if you change it, write why.', 'इस मामले की लागत लिखें। ऐप नियम से रिफ़ंड निकालता है; बदलें तो कारण लिखें।', 'या प्रकरणाचा खर्च लिहा. ॲप नियमानुसार परतावा काढते; बदलल्यास कारण लिहा.'],
+  what_refund_sent: ['Refund sent to the Owner for a decision.', 'रिफ़ंड मालिक के फ़ैसले के लिए भेजा।', 'परतावा मालकाच्या निर्णयासाठी पाठवला.'],
+  tk_refund_calc: ['Work out the refund', 'रिफ़ंड निकालें', 'परतावा काढा'],
+  tk_refund_decide: ['Approve the refund', 'रिफ़ंड मंज़ूर करें', 'परतावा मंजूर करा'],
+  tk_refund_pay: ['Pay the refund', 'रिफ़ंड का भुगतान करें', 'परतावा द्या'],
+  s_refund_decide: ['Check the refund worked out by Finance.', 'अकाउंट्स द्वारा निकाला रिफ़ंड जाँचें।', 'हिशेब विभागाने काढलेला परतावा तपासा.'],
+  refund_ok: ['Approve', 'मंज़ूर', 'मंजूर'], refund_no: ['Do not approve', 'मंज़ूर नहीं', 'मंजूर नाही'],
+  what_refund_ok: ['Refund approved. Finance will pay it.', 'रिफ़ंड मंज़ूर। अकाउंट्स भुगतान करेगा।', 'परतावा मंजूर. हिशेब विभाग देईल.'],
+  what_refund_no: ['Refund not approved. Finance will work it out again.', 'रिफ़ंड मंज़ूर नहीं। अकाउंट्स फिर निकालेगा।', 'परतावा मंजूर नाही. हिशेब विभाग पुन्हा काढेल.'],
+  s_refund_pay: ['Pay the refund from the bank and type the bank reference.', 'बैंक से रिफ़ंड दें और बैंक संदर्भ लिखें।', 'बँकेतून परतावा द्या आणि बँक संदर्भ लिहा.'],
+  what_refund_paid: ['Refund paid.', 'रिफ़ंड का भुगतान हुआ।', 'परतावा दिला.'],
+  opt_out: ['Stop calls / messages', 'कॉल / संदेश बंद करें', 'फोन / संदेश बंद करा'],
+  s_opt_out: ['What does the contact not want any more?', 'संपर्क अब क्या नहीं चाहता?', 'संपर्काला आता काय नको?'],
+  oo_call: ['No phone calls', 'कोई फ़ोन कॉल नहीं', 'फोन नको'], oo_wa: ['No WhatsApp', 'कोई WhatsApp नहीं', 'WhatsApp नको'], oo_all: ['No calls and no messages', 'न कॉल न संदेश', 'फोन आणि संदेश नको'],
+  what_opt_out: ['Saved. Nobody will contact them that way.', 'सेव। कोई उस तरह संपर्क नहीं करेगा।', 'जतन. कोणीही त्या प्रकारे संपर्क करणार नाही.'],
+  receipt_title: ['Payment receipt', 'भुगतान रसीद', 'पैसे पावती'],
+  receipt_no: ['Receipt number', 'रसीद नंबर', 'पावती क्रमांक'],
+  receipt_date: ['Date', 'तारीख', 'तारीख'],
+  receipt_for: ['For', 'किसके लिए', 'कशासाठी'],
+  receipt_method: ['Paid by', 'भुगतान का तरीका', 'पैसे भरण्याची पद्धत'],
+  receipt_checked: ['Checked in the bank by', 'बैंक में जाँचा', 'बँकेत तपासले'],
+  receipt_note: ['This receipt is made only after Finance found the money in the bank. It is not a tax invoice.', 'यह रसीद तभी बनती है जब अकाउंट्स ने बैंक में पैसा देखा। यह टैक्स इनवॉइस नहीं है।', 'हिशेब विभागाने बँकेत पैसे पाहिल्यावरच ही पावती बनते. हे कर बीजक नाही.'],
+  ev_OPT_OUT: ['Contact asked to stop', 'संपर्क ने रोकने को कहा', 'संपर्काने थांबायला सांगितले'],
+  ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
+  ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
+  ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
   err_quote_expired: ['This quotation has expired. Make a new quotation first.', 'यह कोटेशन समाप्त हो गया है। पहले नया कोटेशन बनाएँ।', 'हे कोटेशन संपले आहे. आधी नवीन कोटेशन बनवा.'],
   quote_expired: ['Quotation expired on {d}. Make a new one with today\'s rates.', 'कोटेशन {d} को समाप्त हुआ। आज की दरों से नया बनाएँ।', 'कोटेशन {d} रोजी संपले. आजच्या दरांनी नवीन बनवा.'],
   quote_valid_till: ['Quotation valid until {d}', 'कोटेशन {d} तक मान्य', 'कोटेशन {d} पर्यंत वैध'],
@@ -1666,7 +1740,7 @@ const L = {
   rg_token: ['Token payment', 'टोकन भुगतान', 'टोकन पेमेंट'],
   rg_token_d: ['Amount paid after signing. Finance must confirm accounting and refund rules.', 'साइन के बाद दी जाने वाली रकम। अकाउंट्स हिसाब और रिफ़ंड नियम पक्के करें।', 'सहीनंतर द्यायची रक्कम. हिशेब विभागाने लेखा आणि परतावा नियम निश्चित करावेत.'],
   rg_milestones: ['Payment milestones', 'भुगतान के पड़ाव', 'पेमेंटचे टप्पे'],
-  rg_milestones_d: ['% of total due when material arrives (rest at handover). Needs owner, finance, supplier and legal approval.', 'सामान पहुँचने पर कुल का % (बाकी हैंडओवर पर)। मालिक, अकाउंट्स, सप्लायर और कानूनी मंज़ूरी चाहिए।', 'साहित्य पोहोचल्यावर एकूणचे % (उरलेले हस्तांतरणावेळी). मालक, हिशेब, पुरवठादार आणि कायदेशीर मंजुरी हवी.'],
+  rg_milestones_d: ['Token credited to the material payment (0) or paid on top (1); % of total due when material arrives (including the token when credited); optional cabin payment % due before the cabin is fitted (0 = no cabin payment); the rest at handover. Needs owner, finance, supplier and legal approval.', 'टोकन सामान भुगतान में जोड़ा (0) या अलग से (1); सामान पहुँचने पर कुल का % (जोड़ने पर टोकन सहित); वैकल्पिक केबिन भुगतान % जो केबिन लगने से पहले (0 = नहीं); बाकी हैंडओवर पर। मालिक, अकाउंट्स, सप्लायर और कानूनी मंज़ूरी चाहिए।', 'टोकन साहित्य पैशांत जमा (0) किंवा वेगळा (1); साहित्य पोहोचल्यावर एकूणचे % (जमा केल्यास टोकनसह); पर्यायी केबिन पैसे % केबिन बसवण्यापूर्वी (0 = नाही); उरलेले हस्तांतरणावेळी. मालक, हिशेब, पुरवठादार आणि कायदेशीर मंजुरी हवी.'],
   rg_install: ['Installation target', 'इंस्टॉलेशन लक्ष्य', 'इन्स्टॉलेशन लक्ष्य'],
   rg_install_d: ['Planning target in days from material handover. Not a penalty.', 'सामान सौंपने से दिनों में योजना लक्ष्य। जुर्माना नहीं।', 'साहित्य सुपूर्द केल्यापासून दिवसांतील नियोजन लक्ष्य. दंड नाही.'],
   rg_service: ['Warranty & service', 'वारंटी और सर्विस', 'वॉरंटी आणि सर्व्हिस'],
@@ -2833,7 +2907,7 @@ const PRIVATE_V2 = {
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
   MSG_LOGGED: ['text'], CONFIG_SET: ['value'], AGREEMENT_SIGNED: ['signer'], PARTNER_PROFILE: ['licNo', 'licHolder', 'licAuthority', 'gst'],
   MATERIAL_HANDED: ['custName'], HANDOVER_SIGNED: ['signer'], CUSTOMER_RATED: ['name', 'note'],
-  VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date'], COUNTER_OFFER: ['amount', 'note']
+  VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date'], COUNTER_OFFER: ['amount', 'note'], REFUND_PROPOSED: ['amount', 'deduct', 'note'], REFUND_PAID: ['ref']
 };
 const isPriv2 = (type, k) => (PRIVATE_V2[type] || []).includes(k);
 const privOf = ev => ev.sig && ev.sig.v === 2 ? isPriv2 : isPriv;
@@ -3001,7 +3075,10 @@ const PRE_WON = ['new', 'returned', 'accepted', 'contacted', 'requirements', 'qu
 const SALES_TALK = ['accepted', 'contacted', 'requirements', 'quote_ready', 'quoted'];
 const OPEN_STAGES = STAGE_ORDER.filter(s => s !== 'lost' && s !== 'amc');
 const stageIdx = s => STAGE_ORDER.indexOf(s);
-const PAY_STAGE = { token: 'signed', arrival: 'arrived', final: 'final_pay' };
+const PAY_STAGE = { token: 'signed', arrival: 'arrived', cabin: 'installing', final: 'final_pay' };
+/* the cabin payment is due before the car (cabin) step */
+const CABIN_STEP = 5;
+const CONTACT_ROLES = [['owner', '🏠'], ['builder', '🏗️'], ['manager', '🧑‍💼'], ['watchman', '💂'], ['other', '👤']];
 const PREP_ITEMS = [['shaft', '🧱'], ['pit', '⬇️'], ['power', '⚡'], ['clean', '🧹'], ['light', '💡'], ['barricade', '🚧']];
 const SOP = [['sitesafe', '🦺'], ['plumb', '📏'], ['brackets', '🔩'], ['rails', '🛤️'], ['machine', '⚙️'], ['car', '🛗'], ['cwt', '🧱'], ['ropes', '🪢'], ['doors', '🚪'], ['wiring', '🔌'], ['safetydev', '🛡️'], ['test', '▶️']];
 const QC_SITE_CHECKS = ['plumb', 'pit_dry', 'power3', 'barricade', 'access'];
@@ -3036,7 +3113,7 @@ const DEFAULT_CONFIG = {
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 30, minMargin: 20, negStep: 5,
-  token: 10000, arrivalPct: 90, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, dupCommission: 10,
+  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
@@ -3050,7 +3127,8 @@ const RULE_GROUPS = {
   pricing: ['costAuto', 'costManual', 'costPerStop', 'costSS', 'cap4', 'cap6', 'cap8', 'cap10', 'cap13', 'install', 'transport', 'gst'],
   margins: ['targetMargin', 'salesDiscountLimit', 'minMargin', 'negStep'],
   token: ['token'],
-  milestones: ['arrivalPct'],
+  milestones: ['tokenMode', 'arrivalPct', 'cabinPct'],
+  fieldpay: ['payLeadValid', 'leadWonPct'],
   install: ['installDays'],
   service: ['warrantyMonths', 'amcVisits', 'validityDays'],
   dup: ['dupCommission'],
@@ -3104,11 +3182,17 @@ function calcQuote(cfg, req, discountPct) {
   if (margin < cfg.minMargin) why.push('below_floor');
   return { lines, cost, list, discountPct: d, discount, price, gstPct: cfg.gst, gst, total, margin, why, needsApproval: why.length > 0 };
 }
+/* token credited to the material payment (default) or paid on top (Owner/CA decision); an optional cabin milestone */
 function paySchedule(cfg, total) {
-  const token = Math.min(cfg.token, total);
-  const arrival = Math.max(0, Math.round(total * cfg.arrivalPct / 100) - token);
-  return { token, arrival, final: Math.max(0, total - token - arrival) };
+  const add = +cfg.tokenMode === 1, token = add ? +cfg.token : Math.min(cfg.token, total);
+  const arrival = Math.max(0, Math.round(total * cfg.arrivalPct / 100) - (add ? 0 : token));
+  const cabin = +cfg.cabinPct > 0 ? Math.round(total * cfg.cabinPct / 100) : 0;
+  const out = { token, arrival, final: Math.max(0, total - (add ? 0 : token) - arrival - cabin) };
+  if (cabin) out.cabin = cabin;
+  return out;
 }
+const PURPOSES = ['token', 'arrival', 'cabin', 'final'];
+const paidTotal = P => P.payments.filter(p => p.status === 'confirmed').reduce((a, p) => a + (+p.amount || 0), 0);
 function materialList(req) {
   const st = +req.stops || 2;
   return [
@@ -3154,6 +3238,8 @@ const seeF = (u, f) => !!u && FIELD_ACCESS[f].includes(u.role);
 const ev_ = (d, kind) => (d.ev || []).filter(e => !kind || e.kind === kind);
 const need = (cond, key, vars) => cond ? null : (vars ? { k: key, v: vars } : key);
 const lastQuote = P => P.quotes[P.quotes.length - 1];
+/* the contact agreed to calls / WhatsApp when the lead was taken, and has not asked to stop */
+const mayContact = (P, ch) => !((P.optOut || {})[ch]) && !(P.consent && P.consent[ch] === 'no');
 /* a sent quotation is valid for the set number of days (India date) */
 const quoteValidTill = q => q && q.sent ? addDays(q.validity || S.config.validityDays, new Date(q.sent.t)) : null;
 const quoteExpired = (q, at) => !!q && !!q.sent && quoteValidTill(q) < safeDay(at || nowISO());
@@ -3520,6 +3606,20 @@ function weekKey(iso) { const z = new Date(new Date(iso).getTime() + CO_TZ); con
 /* technician earnings, worked out from completed work and the approved pay rules */
 function earnings(uid) {
   const c = S.config, out = [];
+  if (roleOf(uid) === 'field') {
+    /* leads: a fixed amount when Sales accepts the lead, a % of the price (before tax) when the deal is won; a person who added useful new
+       information to someone else's lead shares the won amount (duplicate-lead %) */
+    for (const P of Object.values(S.projects)) {
+      const acc = P.hist.find(h => h.s === 'accepted'), won = P.hist.find(h => h.s === 'won'), q = P.quotes.find(x => x.accepted);
+      const wonAmt = won && q ? Math.round(q.price * c.leadWonPct / 100) : 0, helpers = P.extra.filter(x => x.newInfo && roleOf(x.by) === 'field' && x.by !== P.createdBy && (!won || x.t < won.t)).map(x => x.by);
+      const share = helpers.length ? Math.round(wonAmt * c.dupCommission / 100) : 0;
+      if (P.createdBy === uid) {
+        if (acc) out.push({ t: acc.t, pid: P.id, what: 'earn_lead_valid', amount: +c.payLeadValid || 0 });
+        if (won) out.push({ t: won.t, pid: P.id, what: 'earn_lead_won', amount: wonAmt - share });
+      } else if (won && uniq(helpers).includes(uid)) out.push({ t: won.t, pid: P.id, what: 'earn_lead_info', amount: Math.round(share / uniq(helpers).length) });
+    }
+    return out.sort((a, b) => a.t < b.t ? -1 : 1);
+  }
   /* amounts follow the person's level on the day of the work (Owner-approved rates) */
   const r = (amt, t0) => Math.round(amt * gradeRate(gradeAt(uid, t0)) / 100);
   for (const P of Object.values(S.projects)) {
@@ -3714,6 +3814,12 @@ const RULES = {
   },
   QUOTE_SENT: { roles: ['sales'], project: true, stages: ['quote_ready'] },
   DEAL_WON: { roles: ['sales'], project: true, stages: ['quoted'], check: (S, ev, u, P) => quoteExpired(lastQuote(P), ev.t) ? 'err_quote_expired' : null },
+  /* refund after a cancelled job: Finance works it out from the cancellation rules, the Owner decides, Finance pays */
+  REFUND_PROPOSED: { roles: ['finance'], project: true, stages: ['lost'], check: (S, ev, u, P) => !(P.lost && P.lost.reason === 'cancelled') || !paidTotal(P) || (P.refund && P.refund.status !== 'rejected') ? 'err_already' : !(+ev.data.amount >= 0 && +ev.data.amount <= paidTotal(P)) ? 'err_amount' : +ev.data.amount !== refundSuggest(P, ev.data.deduct || {}) && !(ev.data.note || '').trim() ? 'err_reason' : null },
+  REFUND_DECIDED: { roles: ['owner'], project: true, check: (S, ev, u, P) => !P.refund || P.refund.status !== 'proposed' ? 'err_already' : ev.data.ok === false ? need((ev.data.note || '').trim(), 'err_reason') : need(ev.data.ok === true, 'err_choose') },
+  REFUND_PAID: { roles: ['finance'], project: true, check: (S, ev, u, P) => !P.refund || P.refund.status !== 'approved' ? 'err_already' : P.refund.by === u.uid && Object.values(S.users).some(x => x.active && x.role === 'finance' && x.uid !== u.uid) ? 'err_same_person' : need((ev.data.ref || '').trim(), 'err_ref') },
+  /* the contact asks not to be called or messaged again */
+  OPT_OUT: { roles: ['owner', 'admin', 'sales', 'customer'], project: true, check: (S, ev, u, P) => u.role === 'customer' && P.customer !== u.uid ? 'err_access' : need(['call', 'whatsapp', 'all'].includes(ev.data.channel), 'err_choose') },
   /* the customer's counter-offer (typed by the customer, or by Sales after a call) */
   COUNTER_OFFER: {
     roles: ['customer', 'sales'], project: true, stages: ['quoted'], check: (S, ev, u, P) => u.role === 'customer' && P.customer !== u.uid ? 'err_access' : need(+ev.data.amount > 0, 'err_amount')
@@ -3738,7 +3844,8 @@ const RULES = {
       if (!PAY_STAGE[d.purpose] || P.stage !== PAY_STAGE[d.purpose]) return { k: 'err_stage', v: { stage: stName(P.stage) } };
       const a = activePay(P, d.purpose);
       if (a) return 'err_pay_exists';
-      if (!P.schedule || +d.amount !== P.schedule[d.purpose]) return 'err_amount';
+      if (!P.schedule || !P.schedule[d.purpose] && d.purpose === 'cabin' || +d.amount !== P.schedule[d.purpose]) return 'err_amount';
+      if (d.purpose === 'cabin' && sopNext(P) < CABIN_STEP) return { k: 'err_stage', v: { stage: stName(P.stage) } };
       if (!['upi', 'bank', 'cheque', 'cash'].includes(d.method)) return 'err_choose';
       if (d.method !== 'cash' && !(d.ref || '').trim()) return 'err_ref';
       return null;
@@ -3866,6 +3973,7 @@ const RULES = {
       if (openIncidents(P).length) return 'err_incident';
       const sw = safetyWhyNot(P, ev.t); if (sw) return sw;
       if (peerWaiting(P).length) return 'err_peer_check';
+      if (ev.data.step >= CABIN_STEP && P.schedule && P.schedule.cabin && !payConfirmed(P, 'cabin')) return 'err_payment_gate';
       return need(ev_(ev.data).length >= 1, 'err_photos', { n: 1 });
     }
   },
@@ -4041,7 +4149,7 @@ const RULES = {
   TEMPLATE_DELETED: { roles: ['owner', 'admin'], check: (S, ev) => need(S.templates[ev.data.tid], 'err_already') },
   MSG_LOGGED: {
     roles: ['owner', 'admin', 'sales', 'finance'], project: true, check: (S, ev, u, P) =>
-      !P.contact.phone ? 'err_phone' : need(ev.data.mid && !P.msgs.some(m => m.id === ev.data.mid) && (ev.data.text || '').trim(), 'err_fill')
+      !P.contact.phone ? 'err_phone' : !mayContact(P, 'whatsapp') ? 'err_no_consent' : need(ev.data.mid && !P.msgs.some(m => m.id === ev.data.mid) && (ev.data.text || '').trim(), 'err_fill')
   },
   MSG_STATUS: { roles: ['owner', 'admin', 'sales', 'finance'], project: true, check: (S, ev, u, P) => need(P.msgs.some(m => m.id === ev.data.mid) && ['replied', 'no_reply', 'failed'].includes(ev.data.status), 'err_choose') },
   /* AMC service */
@@ -4281,7 +4389,7 @@ const RULES = {
   PAY_APPROVED: {
     roles: ['owner', 'admin'], check: (S, ev) => {
       const d = ev.data, w = weeksFor(d.uid).find(x => x.week === d.week);
-      if (!['tech', 'qc', 'partner'].includes(roleOf(d.uid)) || !w) return 'err_fill';
+      if (!['tech', 'qc', 'partner', 'field'].includes(roleOf(d.uid)) || !w) return 'err_fill';
       if (w.pay) return 'err_already';
       if (d.week >= weekKey(ev.t)) return 'err_week_open';
       if (+d.adjust && !(d.reason || '').trim()) return 'err_reason';
@@ -4298,7 +4406,7 @@ const RULES = {
     }
   },
   PAY_DISPUTED: {
-    roles: ['tech', 'qc', 'partner'], check: (S, ev, u) => {
+    roles: ['tech', 'qc', 'partner', 'field'], check: (S, ev, u) => {
       if (ev.data.uid !== u.uid) return 'err_access';
       const w = weeksFor(u.uid).find(x => x.week === ev.data.week);
       if (!w || (w.pay && w.pay.dispute && w.pay.dispute.open)) return 'err_already';
@@ -4347,7 +4455,8 @@ function newProject(ev) {
     id: ev.pid, t: ev.t, createdBy: ev.by, stage: 'new', since: ev.t, hist: [{ s: 'new', t: ev.t, by: ev.by }],
     site: { address: d.address || '', gps: d.gps || null, landmark: d.landmark || '' },
     contact: { name: d.name || '', phone: d.noPhone || !d.phone ? '' : phone10(d.phone) },
-    lead: { shaft: d.shaft || 'unknown', floors: d.floors || null, note: d.note || '', noPhone: !!d.noPhone, dupOf: d.dupOf || [], use: d.use || '' },
+    lead: { shaft: d.shaft || 'unknown', floors: d.floors || null, note: d.note || '', noPhone: !!d.noPhone, dupOf: d.dupOf || [], use: d.use || '', tower: d.tower || '', contactRole: d.contactRole || '' },
+    consent: d.consent ? { call: d.consent.call || '', whatsapp: d.consent.whatsapp || '', t: ev.t, by: ev.by } : null, optOut: {},
     contributors: [], extra: [], sales: null, tech: null, supplier: null, qc: null, customer: null,
     contacts: [], followUp: null, req: null, quotes: [], schedule: null, agreement: null, payments: [],
     prep: {}, qcSite: [], corrections: [], drawings: null, materials: [], dispatch: null, arrival: null,
@@ -4404,7 +4513,7 @@ function apply(S, ev) {
       P = S.projects[ev.pid] = newProject(ev); S.order.unshift(ev.pid);
       break;
     case 'LEAD_INFO_ADDED':
-      P.extra.push({ t: ev.t, by: ev.by, note: d.note || '', phone: d.phone ? phone10(d.phone) : '', name: d.name || '', ev: ev_(d).map(e => e.id) });
+      P.extra.push({ t: ev.t, by: ev.by, note: d.note || '', phone: d.phone ? phone10(d.phone) : '', name: d.name || '', ev: ev_(d).map(e => e.id), newInfo: !!d.newInfo });
       if (!P.contributors.includes(ev.by) && P.createdBy !== ev.by && roleOf(ev.by) !== 'field') P.contributors.push(ev.by);
       break;
     case 'LEAD_ACCEPTED': P.sales = d.salesUid || ev.by; P.returned = null; setStage(P, 'accepted', ev); break;
@@ -4442,6 +4551,10 @@ function apply(S, ev) {
       setStage(P, d.decision === 'approve' ? 'quote_ready' : 'requirements', ev);
       break;
     }
+    case 'REFUND_PROPOSED': P.refund = { status: 'proposed', amount: +d.amount, deduct: d.deduct || {}, rule: refundRule(P), note: d.note || '', by: ev.by, t: ev.t }; break;
+    case 'REFUND_DECIDED': Object.assign(P.refund, d.ok ? { status: 'approved', okBy: ev.by, okT: ev.t } : { status: 'rejected', rejBy: ev.by, rejNote: d.note }); break;
+    case 'REFUND_PAID': Object.assign(P.refund, { status: 'paid', paidBy: ev.by, paidT: ev.t, ref: d.ref }); break;
+    case 'OPT_OUT': { const o = P.optOut = P.optOut || {}; (d.channel === 'all' ? ['call', 'whatsapp'] : [d.channel]).forEach(c => { o[c] = { t: ev.t, by: ev.by, note: d.note || '' }; }); break; }
     case 'COUNTER_OFFER': (P.counters = P.counters || []).push({ amount: +d.amount, note: d.note || '', by: ev.by, t: ev.t, qv: (lastQuote(P) || {}).v }); break;
     case 'QUOTE_SENT': { const q = lastQuote(P); q.sent = { t: ev.t, by: ev.by, channel: d.channel }; setStage(P, 'quoted', ev); break; }
     case 'DEAL_WON': { const q = lastQuote(P); q.accepted = { t: ev.t, by: ev.by }; P.schedule = paySchedule(S.config, q.total); P.schedule.quoteV = q.v; P.followUp = null; setStage(P, 'won', ev); break; }
@@ -4722,7 +4835,8 @@ function needs(P) {
     case 'material_order': add('dispatch', ['supplier'], { uids: [P.supplier] }); break;
     case 'dispatched': add('arrival', ['tech', 'supplier'], { uids: [P.tech, P.supplier] }); break;
     case 'arrived': if (payNeed('arrival') && !openIncidents(P).length) add('material_handover', ['tech'], { uids: [P.tech] }); break;
-    case 'installing': if (peerWaiting(P).length) { add('peer_check', ['tech', 'qc'], { uids: Object.values(S.users).filter(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).map(x => x.uid), step: peerWaiting(P)[0], urgent: true }); add('wait_peer', ['tech'], { uids: [P.tech], step: peerWaiting(P)[0] }); break; }
+    case 'installing': if (P.schedule && P.schedule.cabin && sopNext(P) >= CABIN_STEP && sopNext(P) < SOP.length && !payNeed('cabin')) { add('wait_cabin_pay', ['tech'], { uids: [P.tech] }); break; }
+      if (peerWaiting(P).length) { add('peer_check', ['tech', 'qc'], { uids: Object.values(S.users).filter(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).map(x => x.uid), step: peerWaiting(P)[0], urgent: true }); add('wait_peer', ['tech'], { uids: [P.tech], step: peerWaiting(P)[0] }); break; }
       add(sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' ? 'safety_check' : sopNext(P) < SOP.length ? 'install' : 'request_inspection', ['tech'], { uids: [P.tech], urgent: sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' }); break;
     case 'qc_final': add('final_inspect', ['qc'], { uids: [P.qc] }); break;
     case 'install_fix': add(openCorr(P, 'install').length ? (safetyWhyNot(P) === 'err_safety_check' ? 'safety_check' : 'fix_install') : 'request_inspection', ['tech'], { uids: [P.tech] }); break;
@@ -4744,6 +4858,11 @@ function needs(P) {
   if (P.stage === 'amc' && !P.amcEnded && statOf(P).licence) { const d = liftLicenceDays(P); if (d != null && d <= (S.config.licWarnDays || 60)) add('lift_licence_due', ['admin', 'owner'], { n: d, urgent: d <= 7, since: statOf(P).licence.expiry + 'T12:00:00' }); }
   for (const h of P.holds || []) { if (h.status === 'pending') add('hold_request', ['admin', 'owner'], { hid: h.id, urgent: true, since: h.t }); if (h.status === 'active') add('hold_end', ['admin', 'owner'], { hid: h.id }); }
   if (P.dispute) add('dispute_open', ['owner', 'admin']);
+  if (P.stage === 'lost' && P.lost && P.lost.reason === 'cancelled' && paidTotal(P) > 0) {
+    if (!P.refund || P.refund.status === 'rejected') add('refund_calc', ['finance'], { urgent: true, since: P.lost.t });
+    else if (P.refund.status === 'proposed') add('refund_decide', ['owner'], { urgent: true, since: P.refund.t });
+    else if (P.refund.status === 'approved') add('refund_pay', ['finance'], Object.assign({ urgent: true, since: P.refund.okT }, Object.values(S.users).some(x => x.active && x.role === 'finance' && x.uid !== P.refund.by) ? { not: P.refund.by } : {}));
+  }
   if (P.surprise && !P.surprise.done && P.surprise.date && P.surprise.date <= todayStr()) add('surprise_qc', ['qc'], { uids: [P.qc], urgent: true, since: P.surprise.date + 'T09:00:00' });
   /* the partner company looks at today's safety photos of its job */
   { const day = safeDay(), x = (P.safety || {})[day]; if (x && x.status === 'ok' && P.partner && !x.reviews.some(r => r.by === P.partner)) add('review_safety', ['partner'], { uids: [P.partner], day }); }
@@ -4770,7 +4889,7 @@ function needs(P) {
     else if (x.status === 'resolved') add('confirm_ticket', P.customer ? ['customer'] : ['admin', 'owner'], { uids: [P.customer], tid: x.id });
   }
   /* escalation ladder: the main next step counts from the day the stage began, other work from its own date */
-  const main = out.find(x => !['wait_peer', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
+  const main = out.find(x => !['wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
   if (main && OPEN_STAGES.includes(P.stage) && !main.since) Object.assign(main, { since: lastHoldEnd(P) > P.since ? lastHoldEnd(P) : P.since, escId: P.stage });
   const blocked = P.blockers.some(b => b.open) || P.incidents.some(i => i.open) || onHold(P);
   for (const n of out.slice()) if (n.since && !(blocked && n === main)) { const e = escFor(n, n.since, n.escId || n.bid || n.iid || n.tid || n.mid || n.payId || n.visit); if (e) out.push(e); }
@@ -4786,7 +4905,7 @@ function globalNeeds(u, all) {
   const up = (n, from, id) => { const e = escFor(n, from, id); if (e) out.push(e); };
   for (const id of S.approvalOrder) { const r = S.approvals[id]; if (r.status === 'pending') add('second_approval', ['owner', 'admin'], { aid: id, not: r.by, urgent: true }); }
   if (all || ['owner', 'admin', 'finance', 'tech'].includes(u.role)) {
-    for (const x of Object.values(S.users).filter(y => ['tech', 'qc', 'partner'].includes(y.role) && (y.active || weeksFor(y.uid).some(w => !w.pay || w.pay.status !== 'paid')))) {
+    for (const x of Object.values(S.users).filter(y => ['tech', 'qc', 'partner', 'field'].includes(y.role) && (y.active || weeksFor(y.uid).some(w => !w.pay || w.pay.status !== 'paid')))) {
       for (const w of weeksFor(x.uid)) {
         const id = x.uid + '|' + w.week;
         if (!w.pay || w.pay.status === 'open') { if (w.week < weekKey(nowISO()) && w.total > 0) up(add('approve_pay', ['owner', 'admin'], { uid: x.uid, week: w.week }), addDays(7, new Date(w.week + 'T12:00:00')) + 'T00:00:00', id); }
@@ -5362,7 +5481,7 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { if (App.me && OUTSIDERS.includes(App.me.role)) return (P.site.address || '').split(/[,\n]/)[0] || areaOf(P) || P.id; return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
@@ -5583,11 +5702,11 @@ function findDuplicates(ctx) {
   const ph = phone10(ctx.phone);
   return Object.values(S.projects).filter(P => P.stage !== 'lost' && (
     (ph && !ctx.noPhone && (P.contact.phone === ph || P.extra.some(x => x.phone === ph))) ||
-    (ctx.gps && P.site.gps && haversine(ctx.gps, P.site.gps) < 80)));
+    (ctx.gps && P.site.gps && haversine(ctx.gps, P.site.gps) < 80)) && !(ctx.tower && P.lead.tower && ctx.tower.trim().toLowerCase() !== P.lead.tower.trim().toLowerCase()));
 }
 WIZ.lead = {
   title: 'add_site', save: 'save_site', saveIcon: '💾',
-  init: () => ({ safe: '', b: [], s: [], x: [], gps: null, address: '', landmark: '', name: '', phone: '', noPhone: false, shaft: '', floors: 0, floorsUnknown: false, dup: '', attachTo: '' }),
+  init: () => ({ safe: '', b: [], s: [], x: [], gps: null, address: '', landmark: '', tower: '', name: '', phone: '', noPhone: false, crole: '', cCall: '', cWa: '', shaft: '', floors: 0, floorsUnknown: false, dup: '', attachTo: '', newInfo: false }),
   onStart: ctx => { Geo.get().then(gp => { if (gp && !ctx.gps) { ctx.gps = gp; saveDraft(); if (W && W.sid === 'loc') render(); } }); },
   steps: [
     {
@@ -5606,14 +5725,16 @@ WIZ.lead = {
       },
       body: ctx => gpsCard(ctx) + (ctx.addrSuggest && ctx.address !== ctx.addrSuggest ? `<div class="okbox">🗺️ <b>${t('addr_found')}</b><br>${esc(ctx.addrSuggest)}<br><button class="btn btn-sm" style="margin-top:6px" data-a="useAddr">✅ ${t('addr_use')}</button></div>` : '') +
         (ctx.addrSrc === 'gps' && ctx.address === ctx.addrSuggest ? `<div class="note">🗺️ ${t('addr_check')}</div>` : '') +
-        inp('address', 'f_address', { area: true, mic: true }) + inp('landmark', 'f_landmark', { mic: true, opt: true }) + `<p class="small muted">${t(navigator.onLine ? 'address_hint_online' : 'address_hint')}</p>`,
+        inp('address', 'f_address', { area: true, mic: true }) + inp('landmark', 'f_landmark', { mic: true, opt: true }) + inp('tower', 'f_tower', { mic: true, opt: true }) + `<p class="small muted">${t(navigator.onLine ? 'address_hint_online' : 'address_hint')}</p>`,
       check: ctx => ctx.gps || ctx.address.trim() ? null : 'err_location_or_address'
     },
     {
       id: 'contact', icon: '📞', say: 's_lead_contact',
       body: ctx => inp('name', 'f_contact_name', { mic: true, opt: true }) + inp('phone', 'f_phone', { type: 'tel', mode: 'numeric', mic: 'digits', big: true, max: 14 }) +
-        `<button class="btn" data-a="readBack" data-v="phone">🔊 ${t('read_number')}</button><div style="height:10px"></div>` + toggleTile('noPhone', '🚫', 'i_no_phone'),
-      check: ctx => ctx.noPhone || validPhone(ctx.phone) ? null : 'err_phone'
+        `<button class="btn" data-a="readBack" data-v="phone">🔊 ${t('read_number')}</button><div style="height:10px"></div>` + toggleTile('noPhone', '🚫', 'i_no_phone')
+        + `<h3 style="margin-top:14px">${t('q_contact_role')}</h3>` + tiles('crole', CONTACT_ROLES.map(([k, i]) => [k, i, 'cr_' + k]), '')
+        + (ctx.noPhone ? '' : `<h3 style="margin-top:14px">${t('q_consent_call')}</h3>` + tiles('cCall', [['yes', '✅', 'yes'], ['no', '🚫', 'no']], 'three') + `<h3>${t('q_consent_wa')}</h3>` + tiles('cWa', [['yes', '✅', 'yes'], ['no', '🚫', 'no']], 'three') + `<p class="small muted">${t('consent_note')}</p>`),
+      check: ctx => !(ctx.noPhone || validPhone(ctx.phone)) ? 'err_phone' : !ctx.noPhone && (!ctx.cCall || !ctx.cWa) ? 'err_consent_ask' : null
     },
     {
       id: 'q', icon: '❓', say: 's_lead_q',
@@ -5627,7 +5748,7 @@ WIZ.lead = {
         const list = findDuplicates(ctx);
         return list.map(P => `<div class="card"><b>${esc(P.id)}</b> ${stageChip(P)}<br><span class="small">${esc((P.site.address || '').slice(0, 70))}</span>
           ${ctx.gps && P.site.gps ? `<br><span class="chip c-mute">📏 ${t('meters_away', { n: haversine(ctx.gps, P.site.gps) })}</span>` : ''}</div>`).join('') +
-          tiles('dup', [['attach', '➕', 'dup_attach'], ['new', '🆕', 'dup_new']], 'one') +
+          tiles('dup', [['attach', '➕', 'dup_attach'], ['new', '🆕', 'dup_new']], 'one') + (ctx.dup === 'attach' ? toggleTile('newInfo', '⬜', 'dup_new_info') : '') +
           `<div class="note">💡 ${t('dup_rule', { n: S.config.dupCommission })} ${ruleChip('dup')}</div>`;
       },
       check: ctx => ctx.dup ? null : 'err_choose'
@@ -5649,13 +5770,14 @@ WIZ.lead = {
     const ev = [...ctx.b, ...ctx.s, ...ctx.x];
     const dups = findDuplicates(ctx);
     if (ctx.dup === 'attach' && dups[0]) {
-      const r = await run([['LEAD_INFO_ADDED', dups[0].id, { ev, note: [ctx.address, ctx.landmark].filter(Boolean).join(' · '), phone: ctx.noPhone ? '' : phone10(ctx.phone), name: ctx.name }]]);
+      const r = await run([['LEAD_INFO_ADDED', dups[0].id, { ev, note: [ctx.address, ctx.landmark].filter(Boolean).join(' · '), phone: ctx.noPhone ? '' : phone10(ctx.phone), name: ctx.name, newInfo: !!ctx.newInfo }]]);
       return r.ok ? Object.assign(doneRes(dups[0].id, 'what_info_added'), { more: [['addSite', '➕', 'add_site']] }) : r;
     }
     let pid; do { pid = 'AIEC-' + todayStr().slice(2, 4) + todayStr().slice(5, 7) + '-' + rid(3); } while (S.projects[pid]);
     const r = await run([['LEAD_CREATED', pid, {
       safe: true, ev, gps: ctx.gps, address: ctx.address.trim(), addressSource: ctx.addrSrc === 'gps' && ctx.address === ctx.addrSuggest ? 'gps_lookup' : 'typed', landmark: ctx.landmark.trim(), name: ctx.name.trim(), phone: ctx.noPhone ? '' : phone10(ctx.phone),
-      noPhone: !!ctx.noPhone, shaft: ctx.shaft, floors: ctx.floorsUnknown ? null : ctx.floors, dupOf: ctx.dup === 'new' ? dups.map(P => P.id) : []
+      noPhone: !!ctx.noPhone, shaft: ctx.shaft, floors: ctx.floorsUnknown ? null : ctx.floors, dupOf: ctx.dup === 'new' ? dups.map(P => P.id) : [], tower: ctx.tower.trim(), contactRole: ctx.crole || '',
+      consent: ctx.noPhone ? null : { call: ctx.cCall, whatsapp: ctx.cWa }
     }]]);
     return r.ok ? Object.assign(doneRes(pid, 'what_site_saved'), { more: [['addSite', '➕', 'add_site']] }) : r;
   }
@@ -5687,6 +5809,8 @@ function leadSummary(P) {
     ${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)], ['gps', P.site.gps ? `<a href="${mapsLink(P.site.gps)}" target="_blank" rel="noopener">${P.site.gps.lat}, ${P.site.gps.lng}</a> (±${P.site.gps.acc} m)` : t('no')],
       ['f_contact_name', esc(P.contact.name)], ['f_phone', seeF(App.me, 'phone') ? esc(P.contact.phone || t('i_no_phone')) : '🔒'],
       ['q_shaft_ready', t(P.lead.shaft === 'unknown' ? 'not_sure' : P.lead.shaft)], ['q_floors', P.lead.floors == null ? t('not_sure') : P.lead.floors],
+      ['f_tower', esc(P.lead.tower || '')], ['q_contact_role', P.lead.contactRole ? t('cr_' + P.lead.contactRole) : ''],
+      ['consent_title', P.consent ? `📞 ${t(P.consent.call === 'no' || (P.optOut || {}).call ? 'no' : 'yes')} · 💬 ${t(P.consent.whatsapp === 'no' || (P.optOut || {}).whatsapp ? 'no' : 'yes')}` : ''],
       ['added_by', userTag(P.createdBy) + ' · ' + fmtD(P.t, true)], ['note', esc(P.lead.note)]])}
     <div style="margin-top:8px"><span class="chip ${leadScore(P) >= 80 ? 'c-ok' : 'c-warn'}">📊 ${t('complete_pct', { n: leadScore(P) })}</span></div>
     ${P.lead.dupOf.length ? `<div class="warnbox">👯 ${t('dup_warning', { ids: P.lead.dupOf.join(', ') })}</div>` : ''}
@@ -5735,6 +5859,8 @@ function waText(P, kind) { return fillTpl(tplRaw(kind === 'quote' && lastQuote(P
 function contactButtons(P, kind) {
   const ph = P.contact.phone;
   if (!ph) return `<div class="warnbox">📵 ${t('i_no_phone')}</div>`;
+  if (!mayContact(P, 'call') && !mayContact(P, 'whatsapp')) return `<div class="warnbox">🚫 ${t('no_contact_ok')}</div>`;
+  if (!mayContact(P, 'call') || !mayContact(P, 'whatsapp')) return `<div class="warnbox">🚫 ${t(mayContact(P, 'call') ? 'no_wa_ok' : 'no_call_ok')}</div>` + (mayContact(P, 'call') ? `<div class="tiles one"><a class="tile" href="tel:+91${ph}" data-a="chan" data-v="call"><span class="i">📞</span>${t('ch_call')}</a></div>` : `<div class="tiles one"><a class="tile" href="https://wa.me/91${ph}?text=${encodeURIComponent(waText(P, kind))}" target="_blank" rel="noopener" data-a="chan" data-v="whatsapp" data-tpl="${kind === 'quote' ? 'quote' : 'intro'}"><span class="i">💬</span>${t('ch_whatsapp')}</a></div>`);
   if (App.mode === 'practice') return `<div class="note">🎓 ${t('practice_no_send')}</div><div class="tiles"><button class="tile" data-a="pick" data-k="channel" data-v="call"><span class="i">📞</span>${t('ch_call')}</button><button class="tile" data-a="pick" data-k="channel" data-v="whatsapp"><span class="i">💬</span>${t('ch_whatsapp')}</button></div>`;
   return `<div class="tiles"><a class="tile" href="tel:+91${ph}" data-a="chan" data-v="call"><span class="i">📞</span>${t('ch_call')}<small>+91 ${esc(ph)}</small></a>
     <a class="tile" href="https://wa.me/91${ph}?text=${encodeURIComponent(waText(P, kind))}" target="_blank" rel="noopener" data-a="chan" data-v="whatsapp" data-tpl="${kind === 'quote' ? 'quote' : 'intro'}"><span class="i">💬</span>${t('ch_whatsapp')}<small>${t('wa_template')}</small></a></div>
@@ -6186,6 +6312,68 @@ WIZ.incidentNew = {
     { id: 'ph', icon: '📷', say: 's_inc_photo', body: () => photoSlot('ph', 'ph_incident', 0, { video: true, tag: 'incident' }) }
   ],
   async finish(c) { const r = await run([['INCIDENT_RAISED', W.pid, { type: c.type, note: c.note.trim(), witnesses: c.witnesses.trim(), action: c.action.trim(), ev: c.ph }]]); return r.ok ? doneRes(W.pid, STOP_TYPES.includes(c.type) ? 'what_work_stopped' : 'what_incident_raised') : r; }
+};
+/* ---------- refund after cancellation (proposal from the source; a lawyer and CA must confirm), receipts, opt-out ---------- */
+function refundRule(P) {
+  const from = (P.lost && P.lost.from) || P.stage, i = stageIdx(from);
+  if (Object.keys(P.sop).length || i >= stageIdx('installing')) return 'installed';
+  if (P.schedule && P.schedule.cabin && payConfirmed(P, 'cabin')) return 'cabin';
+  if (i >= stageIdx('dispatched')) return 'dispatched';
+  if (i >= stageIdx('material_order')) return 'ordered';
+  return 'before_qc';
+}
+const REFUND_DEDUCT = { before_qc: ['costs'], ordered: ['supplier'], dispatched: ['freight'], cabin: ['material'], installed: [] };
+const qcRejected = P => P.qcSite.length && P.qcSite[P.qcSite.length - 1].outcome !== 'approved';
+function refundSuggest(P, ded) {
+  const paid = paidTotal(P), r = refundRule(P), n = k => Math.max(0, Math.round(+(ded || {})[k] || 0));
+  switch (r) {
+    case 'before_qc': return qcRejected(P) ? paid : Math.max(0, paid - n('costs'));
+    case 'ordered': return Math.max(0, paid - (P.schedule ? P.schedule.token : 0) - n('supplier'));
+    case 'dispatched': return Math.max(0, paid - n('freight'));
+    case 'cabin': return Math.max(0, paid - (P.schedule.cabin || 0) - n('material'));
+  }
+  return 0;
+}
+function refundCard(P) {
+  if (!(P.lost && P.lost.reason === 'cancelled' && paidTotal(P) > 0) || !seeF(App.me, 'money')) return '';
+  const f = P.refund;
+  return `<div class="card"><h3>↩️ ${t('refund_title')}</h3>${kv([['refund_paid_in', money(paidTotal(P))], ['refund_rule', t('rr_' + refundRule(P))], ['refund_amount', f ? money(f.amount) + ' · ' + t('rfs_' + f.status) : '—'], ['f_bank_ref', f && f.ref ? esc(f.ref) : '']])}
+    <p class="small muted">⚖️ ${t('refund_legal')}</p></div>`;
+}
+WIZ.refund = {
+  title: 'tk_refund_calc', save: 'send', noDraft: true, init: () => ({ costs: '', supplier: '', freight: '', material: '', amount: '', note: '' }),
+  steps: [{ id: 'r', icon: '↩️', say: 's_refund', body: (c, P) => { const r = refundRule(P), sug = refundSuggest(P, c);
+      return `<div class="card">${kv([['refund_paid_in', money(paidTotal(P))], ['refund_rule', t('rr_' + r)]])}<p class="small">${t('rr_' + r + '_d')}${r === 'before_qc' && qcRejected(P) ? ' ' + t('rr_qc_rejected') : ''}</p></div>`
+        + REFUND_DEDUCT[r].map(k => inp(k, 'rd_' + k, { type: 'number', mode: 'numeric', live: 'refund' })).join('')
+        + `<div class="okbox">${t('refund_suggest')}: <b id="refSug">${money(sug)}</b></div>` + inp('amount', 'refund_amount', { type: 'number', mode: 'numeric', ph: String(sug) }) + inp('note', 'f_reason', { area: true, mic: true, opt: true }) + `<p class="small muted">⚖️ ${t('refund_legal')}</p>`; },
+    check: (c, P) => { const sug = refundSuggest(P, c), a = c.amount === '' ? sug : +c.amount; return !(a >= 0 && a <= paidTotal(P)) ? 'err_amount' : a !== sug && !c.note.trim() ? 'err_reason' : null; } }],
+  async finish(c, P) { const sug = refundSuggest(P, c), a = c.amount === '' ? sug : +c.amount, deduct = Object.fromEntries(REFUND_DEDUCT[refundRule(P)].map(k => [k, +c[k] || 0]));
+    const r = await run([['REFUND_PROPOSED', P.id, { amount: a, deduct, note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'what_refund_sent') : r; }
+};
+WIZ.refundDecide = {
+  title: 'tk_refund_decide', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
+  steps: [{ id: 'd', icon: '↩️', say: 's_refund_decide', body: (c, P) => `<div class="card">${kv([['refund_paid_in', money(paidTotal(P))], ['refund_rule', t('rr_' + P.refund.rule)], ['refund_amount', money(P.refund.amount)], ['note', esc(P.refund.note)]].concat(Object.entries(P.refund.deduct).map(([k, v]) => ['rd_' + k, money(v)])))}</div>` + tiles('ok', [['yes', '✅', 'refund_ok'], ['no', '❌', 'refund_no']], 'one') + (c.ok === 'no' ? inp('note', 'f_reason', { area: true, mic: true }) : ''),
+    check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }],
+  async finish(c, P) { const r = await run([['REFUND_DECIDED', P.id, { ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? doneRes(P.id, c.ok === 'yes' ? 'what_refund_ok' : 'what_refund_no') : r; }
+};
+WIZ.refundPay = {
+  title: 'tk_refund_pay', save: 'save', noDraft: true, init: () => ({ ref: '' }),
+  steps: [{ id: 'p', icon: '🏦', say: 's_refund_pay', body: (c, P) => `<div class="card">${kv([['refund_amount', money(P.refund.amount)]])}</div>` + inp('ref', 'f_bank_ref', { mic: 'digits' }), check: c => c.ref.trim() ? null : 'err_ref' }],
+  async finish(c, P) { const r = await run([['REFUND_PAID', P.id, { ref: c.ref.trim() }]]); return r.ok ? doneRes(P.id, 'what_refund_paid') : r; }
+};
+WIZ.optOut = {
+  title: 'opt_out', save: 'save', noDraft: true, init: () => ({ channel: '', note: '' }),
+  steps: [{ id: 'o', icon: '🚫', say: 's_opt_out', body: () => tiles('channel', [['call', '📞', 'oo_call'], ['whatsapp', '💬', 'oo_wa'], ['all', '🚫', 'oo_all']], 'one') + inp('note', 'f_note', { mic: true, opt: true }), check: c => c.channel ? null : 'err_choose' }],
+  async finish(c, P) { const r = await run([['OPT_OUT', P.id, { channel: c.channel, note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'what_opt_out') : r; }
+};
+SCREENS.receipt = ({ pid, pay }) => {
+  const P = S.projects[pid], u = App.me, p = P && P.payments.find(x => x.id === pay);
+  if (!P || !p || p.status !== 'confirmed' || !canSee(u, P) || !seeF(u, 'money')) return SCREENS.home();
+  App.pageSay = t('receipt_title');
+  return topBar(t('receipt_title'), { back: true }) + `<main class="wrap"><div class="row noprint" style="margin-bottom:10px"><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button></div>
+    <div class="card doc"><h2>🧾 ${t('receipt_title')}</h2><p><b>${esc(S.org.name)}</b></p>${kv([['receipt_no', esc(p.id)], ['receipt_date', fmtD(p.confirmedAt || p.t)], ['f_contact_name', esc(P.contact.name)], ['f_address', esc(P.site.address)], ['receipt_for', t('pay_' + p.purpose) + ' · ' + esc(P.id)],
+      ['amount', money(p.amount)], ['receipt_method', t('pm_' + p.method)], ['f_bank_ref', esc(p.bankRef || p.ref || '')], ['receipt_checked', userName(p.confirmedBy) + ' · ' + fmtD(p.confirmedAt, true)]])}
+      <p class="small muted">${t('receipt_note')}</p></div></main>` + nav('projects');
 };
 /* ---------- variation, co-worker check, surprise QC ---------- */
 function varCard(P) {
@@ -6752,6 +6940,7 @@ function projActions(P) {
   add('HOLD_REQUESTED', 'hold', '⏸️', ['owner', 'admin'].includes(u.role) ? 'hold_put' : 'hold_ask', !(P.holds || []).some(h => ['pending', 'active'].includes(h.status)) && OPEN_STAGES.includes(P.stage) && stageIdx(P.stage) >= stageIdx('signed') && (u.role !== 'tech' || P.tech === u.uid) && (u.role !== 'partner' || P.partner === u.uid));
   (P.holds || []).filter(h => h.status === 'active').forEach(h => { if (allowed('HOLD_ENDED', P)) a.push(`<button class="btn btn-p" data-a="wizOpen" data-v="holdEnd|${P.id}|hid|${h.id}">▶️ ${t('hold_end')}</button>`); });
   add('STAGE_BACK', 'stageBack', '⏪', 'stage_back', !!STAGE_BACK[P.stage]);
+  add('OPT_OUT', 'optOut', '🚫', 'opt_out', P.contact.phone && (mayContact(P, 'call') || mayContact(P, 'whatsapp')) && P.stage !== 'lost');
   add('DISPUTE_SET', 'dispute', '⚖️', 'dispute_set', !P.dispute && P.stage !== 'lost' && stageIdx(P.stage) >= stageIdx('won'));
   add('DISPUTE_CLEARED', 'disputeClear', '🤝', 'dispute_clear', !!P.dispute);
   add('MSG_LOGGED', 'wa', '💬', 'wa_send', !!P.contact.phone && (u.role !== 'sales' || P.sales === u.uid));
@@ -6864,9 +7053,9 @@ function projPhotos(P) {
 function projMoney(P) {
   const u = App.me, internal = seeF(u, 'internal');
   const sch = P.schedule;
-  const payRow = purpose => { const p = activePay(P, purpose); return `<div class="list-item"><span class="grow">${t('pay_' + purpose)}<br><b>${sch ? money(sch[purpose]) : '—'}</b></span>${p ? `<span class="chip ${p.status === 'confirmed' ? 'c-ok' : p.status === 'pending' ? 'c-warn' : 'c-bad'}">${t('ps_' + p.status)}</span>` : `<span class="chip c-mute">${t('ps_not_yet')}</span>`}</div>`; };
+  const payRow = purpose => { const p = activePay(P, purpose); return `<div class="list-item"><span class="grow">${t('pay_' + purpose)}<br><b>${sch ? money(sch[purpose]) : '—'}</b></span>${p ? `<span class="chip ${p.status === 'confirmed' ? 'c-ok' : p.status === 'pending' ? 'c-warn' : 'c-bad'}">${t('ps_' + p.status)}</span>${p.status === 'confirmed' ? ` <button class="btn btn-sm" data-a="receipt" data-v="${P.id}|${p.id}">🧾</button>` : ''}` : `<span class="chip c-mute">${t('ps_not_yet')}</span>`}</div>`; };
   const quotes = u.role === 'customer' ? P.quotes.filter(q => q.sent) : P.quotes;
-  return (['owner', 'admin'].includes(u.role) ? profitCard(P) : '') + `<div class="card"><h3>💳 ${t('pay_schedule')}</h3>${sch ? ['token', 'arrival', 'final'].map(payRow).join('') + `<div style="margin-top:6px">${ruleChip('token')} ${ruleChip('milestones')}</div>` : `<p class="muted">${t('no_schedule')}</p>`}</div>
+  return (['owner', 'admin'].includes(u.role) ? profitCard(P) : '') + refundCard(P) + `<div class="card"><h3>💳 ${t('pay_schedule')}</h3>${sch ? PURPOSES.filter(x => sch[x] != null).map(payRow).join('') + `<div style="margin-top:6px">${ruleChip('token')} ${ruleChip('milestones')}</div>` : `<p class="muted">${t('no_schedule')}</p>`}</div>
     <div class="card"><h3>🧾 ${t('payments')}</h3>${P.payments.length ? P.payments.map(p => `<div class="list-item" style="display:block"><b>${t('pay_' + p.purpose)} · ${money(p.amount)}</b> <span class="chip ${p.status === 'confirmed' ? 'c-ok' : p.status === 'pending' ? 'c-warn' : 'c-bad'}">${t('ps_' + p.status)}</span>
       <div class="small">${t('pm_' + p.method)} · ${esc(p.ref)}${p.bankRef ? ' · 🏦 ' + esc(p.bankRef) : ''}</div>
       ${p.hist.map(h => `<div class="small muted">${fmtD(h.t, true)} · ${t('ps_' + h.status)} · ${userName(h.by)} ${esc(h.reason || h.note || '')}</div>`).join('')}
@@ -7108,7 +7297,7 @@ SCREENS.me = () => {
   const tile = (a, v, i, l, on) => on === false ? '' : `<button class="tile" data-a="${a}" data-v="${v || ''}"><span class="i" aria-hidden="true">${i}</span>${t(l)}</button>`;
   const group = (icon, l, body) => !body.trim() ? '' : l === 'me_app' ? fold('me_app', t(l), `<div class="tiles">${body}</div>`, { icon, sub: t('fold_tap') }) : `<h2 class="sec">${icon} ${t(l)}</h2><div class="tiles">${body}</div>`;
   return topBar(t('me')) + `<main class="wrap"><div class="hero"><div class="row"><span style="font-size:2.4rem">${ROLE_ICON[r]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + r)}</span></div></div><p class="small muted" style="margin:8px 0 0">${t('role_note')}</p></div>
-    ${group('🧰', 'me_work', tile('nav', 'jobs', '🧰', 'jobs_title', ['partner', 'qc'].includes(r)) + tile('nav2', 'worker|' + u.uid, '🏢', 'my_company', r === 'partner') + tile('nav2', 'ladder|' + u.uid, '🪜', 'my_ladder', !!gradeOf(u.uid)) + tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', ['qc', 'partner'].includes(r))
+    ${group('🧰', 'me_work', tile('nav', 'jobs', '🧰', 'jobs_title', ['partner', 'qc'].includes(r)) + tile('nav2', 'worker|' + u.uid, '🏢', 'my_company', r === 'partner') + tile('nav2', 'ladder|' + u.uid, '🪜', 'my_ladder', !!gradeOf(u.uid)) + tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', ['qc', 'partner', 'field'].includes(r))
       + tile('nav2', 'leaders|', '🏆', 'leaderboard', staff) + tile('nav', 'templates', '💬', 'templates', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'helper', '🙋', 'helper'))}
     ${group('🏢', 'me_office', tile('nav', 'posts', '📣', 'posts_title', adm) + tile('nav', 'escalations', '⏫', 'esc_title', adm) + tile('nav', 'workers', '🪪', 'workers', adm) + tile('nav', 'users', '👥', 'users', adm)
       + tile('nav', 'rules', '📏', 'business_rules', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'audit', '🧾', 'audit_log', adm) + tile('nav', 'problems', '⚠️', 'problems', adm) + tile('nav', 'access', '🛡️', 'access_log', adm))}
@@ -7302,7 +7491,7 @@ const OUT_HIDE = {
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
   MSG_LOGGED: ['text'], AGREEMENT_SIGNED: ['signer'], CONFIG_SET: ['value'], PARTNER_PROFILE: ['licNo', 'licHolder', 'licAuthority', 'gst'],
-  MATERIAL_HANDED: ['custName'], CUSTOMER_RATED: ['name', 'note'], VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date'], COUNTER_OFFER: ['amount', 'note']
+  MATERIAL_HANDED: ['custName'], CUSTOMER_RATED: ['name', 'note'], VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date'], COUNTER_OFFER: ['amount', 'note'], REFUND_PROPOSED: ['amount', 'deduct', 'note'], REFUND_PAID: ['ref']
 };
 const strip = (ev, keys, extra) => { const e = redact(ev, keys); return e === ev ? ev : Object.assign(e, { data: Object.assign(e.data, extra || {}) }); };
 /* a copy of a record with some private fields removed (set to empty); fields that the record's signature cannot hide stay */
@@ -7430,7 +7619,7 @@ function tplIds() { return uniq([...DEFAULT_TEMPLATES, ...Object.keys(S.template
 function tplName(id) { return (S.templates[id] && S.templates[id].name) || (L['tplname_' + id] ? t('tplname_' + id) : id); }
 function tplRaw(id) { const c = S.templates[id]; return (c && c.text && c.text[LANG]) || (L['tpl_' + id] ? t('tpl_' + id) : (c && (c.text.en || c.text.hi || c.text.mr)) || ''); }
 function waVars(P) {
-  const q = [...P.quotes].reverse().find(x => x.sent) || lastQuote(P), due = ['token', 'arrival', 'final'].map(x => P.schedule && !payConfirmed(P, x) ? P.schedule[x] : 0).find(x => x);
+  const q = [...P.quotes].reverse().find(x => x.sent) || lastQuote(P), due = PURPOSES.map(x => P.schedule && !payConfirmed(P, x) ? P.schedule[x] : 0).find(x => x);
   const visit = P.done ? P.done.amc.visits.find((d, i) => !P.service[i]) : '';
   return { name: P.contact.name || '', company: S.org.name, id: P.id, total: q ? money(q.total) : '', amount: due ? money(due) : '', date: fmtD(visit || (P.followUp && P.followUp.due) || addDays(1)) };
 }
@@ -8174,7 +8363,7 @@ SCREENS.earn = ({ uid }) => {
   if (!u || !(uid === me.uid || ['owner', 'admin', 'finance'].includes(me.role)) || me.role === 'tech') return SCREENS.home();
   App.pageSay = t('s_earn');
   const c = S.config, now = weekKey(nowISO());
-  return topBar(t('earnings') + ' · ' + u.name, { back: true }) + `<main class="wrap"><div class="card"><h3>📏 ${t('pay_rules')}</h3>${kv([['earn_step', money(c.paySopStep)], ['earn_qc_bonus', money(c.payQcBonus)], ['earn_amc_visit', money(c.payAmcVisit)]])}<div style="margin-top:6px">${ruleChip('techpay')}</div><p class="small muted">${t('pay_rules_note')}</p></div>${u.role === 'tech' ? companyWorkCard(uid) : ''}
+  return topBar(t('earnings') + ' · ' + u.name, { back: true }) + `<main class="wrap"><div class="card"><h3>📏 ${t('pay_rules')}</h3>${kv([['earn_step', money(c.paySopStep)], ['earn_qc_bonus', money(c.payQcBonus)], ['earn_amc_visit', money(c.payAmcVisit)]])}<div style="margin-top:6px">${ruleChip('techpay')}</div><p class="small muted">${t('pay_rules_note')}</p></div>${u.role === 'field' ? `<div class="card"><h3>🏍️ ${t('field_pay')}</h3>${kv([['earn_lead_valid', +S.config.payLeadValid ? money(S.config.payLeadValid) : t('amount_not_set')], ['earn_lead_won', +S.config.leadWonPct ? S.config.leadWonPct + '%' : t('amount_not_set')]])}<div style="margin-top:6px">${ruleChip('fieldpay')}</div></div>` : ''}${u.role === 'tech' ? companyWorkCard(uid) : ''}
     ${weeksFor(uid).map(w => { const p = w.pay, diff = p && p.status !== 'open' && w.total !== p.computed ? w.total - p.computed : 0;
       const btn = [];
       if ((!p || p.status === 'open') && w.week < now && ['owner', 'admin'].includes(me.role) && w.total >= 0) btn.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="payApprove||uid|${uid}|week|${w.week}">✅ ${t('tk_approve_pay')}</button>`);
@@ -8302,7 +8491,7 @@ function openTask(n) {
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid),
-    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
+    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
     lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
@@ -8584,6 +8773,7 @@ const ACT = {
   nuGrade: v => { App.form.nuGrade = v; userAddSheet(); },
   nuCo: v => { App.form.nuCo = v; userAddSheet(); },
   safetyLog: v => go('safetylog', { pid: v }),
+  receipt: v => { const [pid, pay] = v.split('|'); go('receipt', { pid, pay }); },
   openChat: v => go('project', { pid: v, tab: 'chat' }),
   accessOk: async v => { const r = await perform('ACCESS_REVIEWED', null, { uid: v, upto: nowISO() }); if (r.ok) { toast(t('saved_item')); render(); } },
   memberAdd: () => { Object.assign(App.form, { nuName: '', nuRole: 'tech', nuGrade: 'trainee', nuPin: newPin() }); App.sheetRe = userAddSheet; userAddSheet(); },
@@ -8682,6 +8872,7 @@ document.addEventListener('input', e => {
   if (el.dataset.k && W) {
     let v = el.value; if (el.type === 'number') v = v === '' ? '' : +v;
     setPath(W.ctx, el.dataset.k, v); saveDraft();
+    if (el.dataset.live === 'refund') { const b = $('#refSug'); if (b) b.textContent = money(refundSuggest(S.projects[W.pid], W.ctx)); }
     if (el.dataset.live === 'q') { const b = $('#qbox'); if (b) b.innerHTML = quoteBox(calcQuote(priceCfg(), S.projects[W.pid].req, W.ctx.discountPct), true); }
     return;
   }

@@ -94,7 +94,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await next(); // optional context photo
   await W8(500); await fill('address', 'Plot 12, Sinhagad Road, Pune'); await fill('landmark', 'Near Big Temple'); await shot('lead_location'); await next();
   await fill('name', 'Mr. Deshmukh'); await fill('phone', '12345'); await next(); assert((await err()).toLowerCase().includes('10'), 'phone validation');
-  await fill('phone', '9876543210'); await next();
+  await fill('phone', '9876543210'); await next(); assert((await err()).includes('WhatsApp'), 'call and WhatsApp consent must be asked');
+  await pick('crole', 'owner'); await pick('cCall', 'yes'); await pick('cWa', 'yes'); await next();
   await pick('shaft', 'yes'); await tap(page, '[data-a="step"][data-v="1"]'); await tap(page, '[data-a="step"][data-v="1"]'); await tap(page, '[data-a="step"][data-v="1"]'); await tap(page, '[data-a="step"][data-v="1"]');
   await next();
   await shot('lead_review');
@@ -119,7 +120,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await fill('reason', 'Festival offer'); await shot('quote_price'); await next(); await next(); await doneOk('quote');
   assert(await stage(pid) === 'quote_ready', 'quote within limit is ready: ' + await stage(pid));
   await startTask('send_quote'); await pick('channel', 'whatsapp'); await next(); await doneOk('sent');
-  await startTask('get_decision'); await pick('dec', 'lower'); await next(); // new quotation version
+  await startTask('get_decision'); await pick('dec', 'lower'); await next(); // customer's offer, then a new quotation version
+  assert(await page.evaluate(() => W && W.id) === 'counter', 'lower price asks what the customer offers');
+  await fill('amount', '700000'); await next(); await page.waitForTimeout(300);
   assert(await page.evaluate(() => W && W.id) === 'quote', 'lower price opens a new quotation');
   for (let i = 0; i < 7; i++) await tap(page, '[data-a="disc"][data-v="5"]');
   await fill('reason', 'Customer asked for big discount'); await next(); await shot('quote_needs_approval'); await next(); await doneOk('quote v2');
