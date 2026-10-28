@@ -221,9 +221,15 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await login('Fiona Finance'); await startTask('verify_payment'); await pick('status', 'confirmed'); await next(); await fill('ref', 'STMT-1002'); await next();
   await login('Tara Tech');
   await startTask('material_handover'); await shot('material_handover'); await next(); await photo('store'); await next();
+  assert(!(await page.$('[data-a="sign"][data-k="csig"]')), 'the customer has the app: no customer signature on the technician\'s phone');
+  await next(); await sign('tsig'); await next(); await doneOk('material counted');
+  assert(await stage(pid) === 'arrived', 'installation waits for the customer\'s signature');
+  await login('Mr. Deshmukh');
+  await startTask('mhand_cust_sign'); await shot('material_customer_list'); await next();
   await sign('csig'); await next(); assert((await err()).length > 0, 'the customer must accept to keep the material safe');
-  await tap(page, '[data-a="toggle"][data-k="custody"]'); await shot('material_custody'); await next(); await sign('tsig'); await next(); await doneOk('material handed');
+  await tap(page, '[data-a="toggle"][data-k="custody"]'); await shot('material_custody'); await next(); await doneOk('material signed by customer');
   assert(await stage(pid) === 'installing', 'installing');
+  await login('Tara Tech');
 
   /* --- 9. daily safety check (4 photos), then installation SOP, one blocker on the way --- */
   await startTask('site_checkin'); await W8(900); await shot('site_checkin'); await next(); await doneOk('checked in');
