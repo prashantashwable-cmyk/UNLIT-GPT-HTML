@@ -221,6 +221,10 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * In real use, tapping Next records a signed "privacy notice read" (version 1). It can be read again any time in Me → Privacy notice.
   * The text follows India's Digital Personal Data Protection Act, 2023; a lawyer must confirm it.
 
+### Screen stays on while working
+* While someone is working in the app (a form, the installation checklist, the safety log, a critical alert, the lift help page), the screen does not turn off by itself. Everywhere else it turns off as usual, and never because of a field worker's shift (no phone use while riding).
+* It can be switched off in Me → Settings, which also shows whether the phone supports it.
+
 ### Shaft limits, variation, co-worker check, surprise QC
 * **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).
   * A shaft below the minimum cannot simply be approved: QC asks for corrections, or approves "with a variation quote".
@@ -346,6 +350,7 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 * **Money:** refunds and receipts are records in the app. The money itself moves through the bank; the app does not send payments, and a receipt is not a GST tax invoice.
 * **Lift QR:** the QR points to the address the office's app runs from, so print stickers from the installed app or the website, not from a file copy. The resident page does not send anything by itself: the phone call, WhatsApp or SMS does, and a ticket is opened by the office. There is no 24×7 rescue staffing in the app; the company must run the rescue line before printing stickers.
 * **Weekly summary:** the app prepares the message; a person sends it (there is no server to send it automatically).
+* **Background:** a web app cannot run while the phone is locked or the app is closed. Keeping the screen on helps only while the app is open; phone notifications for due tasks come at most about once an hour on installed Android apps (periodic background check), and not at all on some phones. A separate Android app would be needed for always-on alerts and for blocking screenshots.
 * **Safety:** the SOS reaches the office's phone only when files are shared, so the phone call and SMS are the real alert. Safety photos are checked by people, not by a computer. The daily check is confirmed by the team lead (an Owner decision); it does not replace the statutory inspection or a qualified engineer.
 * **Data protection limits:**
   * There is no server, so prices and rules are checked by the same rules on every phone and on every file loaded, not on a server.

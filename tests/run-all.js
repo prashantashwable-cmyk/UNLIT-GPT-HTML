@@ -1,7 +1,7 @@
 /* Runs every test one after another. Usage: npm test */
 const { spawnSync } = require('child_process');
 const path = require('path');
-const files = ['practice-roles.test.js', 'voice-guide.test.js', 'install-gate.test.js', 'screen-scale.test.js', 'lead-to-handover.e2e.test.js', 'sync.test.js', 'permissions-denied.test.js', 'operations.test.js', 'escalation.test.js', 'notifications.test.js', 'home-fold.test.js', 'ladder.test.js', 'market.test.js', 'fairness.test.js', 'sync2.test.js', 'security.test.js', 'security2.test.js', 'partner.test.js', 'safety.test.js', 'privacy.test.js', 'statutory.test.js', 'quality.test.js', 'sales.test.js', 'sales2.test.js', 'material.test.js', 'tickets.test.js', 'office.test.js', 'reports.test.js', 'extras.test.js', 'finish.test.js', 'layout.test.js'];
+const files = ['practice-roles.test.js', 'voice-guide.test.js', 'install-gate.test.js', 'screen-scale.test.js', 'lead-to-handover.e2e.test.js', 'sync.test.js', 'permissions-denied.test.js', 'operations.test.js', 'escalation.test.js', 'notifications.test.js', 'home-fold.test.js', 'ladder.test.js', 'market.test.js', 'fairness.test.js', 'sync2.test.js', 'security.test.js', 'security2.test.js', 'partner.test.js', 'safety.test.js', 'privacy.test.js', 'statutory.test.js', 'quality.test.js', 'sales.test.js', 'sales2.test.js', 'material.test.js', 'tickets.test.js', 'office.test.js', 'reports.test.js', 'extras.test.js', 'finish.test.js', 'wake.test.js', 'layout.test.js'];
 let failed = 0;
 for (const f of files) {
   console.log(`\n=== ${f}`);

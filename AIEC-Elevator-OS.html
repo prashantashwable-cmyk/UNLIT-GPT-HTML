@@ -1241,6 +1241,12 @@ const L = {
   ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
   ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
   ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
+  wake_title: ['Screen stays on', 'स्क्रीन चालू रहे', 'स्क्रीन चालू राहील'],
+  wake_on: ['Keep the screen on while I work in the app', 'ऐप में काम करते समय स्क्रीन चालू रखें', 'ॲपमध्ये काम करताना स्क्रीन चालू ठेवा'],
+  wake_now: ['On now', 'अभी चालू', 'आत्ता चालू'],
+  wake_ready: ['Turns on during forms, installation steps and alerts', 'फ़ॉर्म, इंस्टॉलेशन कदम और चेतावनी के समय चालू', 'फॉर्म, बसवणीचे टप्पे आणि इशाऱ्यांच्या वेळी चालू'],
+  wake_no: ['This phone\'s browser cannot keep the screen on', 'इस फ़ोन का ब्राउज़र स्क्रीन चालू नहीं रख सकता', 'या फोनचा ब्राउझर स्क्रीन चालू ठेवू शकत नाही'],
+  wake_note: ['Only while the app is open on screen: never while riding. When the phone is locked or the app is closed, the app does not run; open it again to see new tasks.', 'सिर्फ़ जब ऐप स्क्रीन पर खुला हो: चलाते समय कभी नहीं। फ़ोन लॉक होने या ऐप बंद होने पर ऐप नहीं चलता; नए काम देखने के लिए फिर खोलें।', 'फक्त ॲप स्क्रीनवर उघडे असताना: गाडी चालवताना कधीच नाही. फोन लॉक किंवा ॲप बंद असताना ॲप चालत नाही; नवीन कामे पाहण्यासाठी पुन्हा उघडा.'],
   ev_TRIAL_RESULT: ['Trial job result', 'ट्रायल काम का परिणाम', 'चाचणी कामाचा निकाल'],
   ev_PRIVACY_ACCEPTED: ['Privacy notice read', 'गोपनीयता सूचना पढ़ी', 'गोपनीयता सूचना वाचली'],
   cfg_safetyRetest: ['Safety test again every … months (0 = never)', 'सुरक्षा टेस्ट हर … महीने में दोबारा (0 = कभी नहीं)', 'सुरक्षा चाचणी दर … महिन्यांनी पुन्हा (0 = कधीच नाही)'],
@@ -5731,6 +5737,21 @@ function back() {
   if (prev) { if (prev.name !== 'wiz') W = null; App.route = prev; render(); window.scrollTo(0, 0); }
   else if (App.me) { App.route = { name: 'home', p: {} }; render(); }
 }
+/* keep the screen on while someone is working in the app (a form, the installation checklist, a critical alert, the lift help page);
+   never during riding, and the phone can still be locked by hand. The app cannot run when the phone is locked or the app is closed. */
+const Wake = {
+  lock: null, busy: false,
+  ok: () => !!(navigator.wakeLock && navigator.wakeLock.request),
+  needed: () => App.set.wake !== false && !document.hidden && (!!W || ['cl', 'qr', 'safetylog'].includes((App.route || {}).name) || ((App.critOpen || []).length > 0 && !!App.me)),
+  async sync() {
+    if (this.busy || !this.ok()) return; this.busy = true;
+    try {
+      if (this.needed() && !this.lock) { this.lock = await navigator.wakeLock.request('screen'); this.lock.addEventListener('release', () => { this.lock = null; }); }
+      else if (!this.needed() && this.lock) { const l = this.lock; this.lock = null; await l.release(); }
+    } catch (e) { this.lock = null; } finally { this.busy = false; }
+  }
+};
+document.addEventListener('visibilitychange', () => Wake.sync());
 /* outside companies: the screen is blurred when the app goes to the background (app switcher pictures), copying is off, and unsent views are saved */
 document.addEventListener('visibilitychange', () => {
   const guard = document.body.classList.contains('guard');
@@ -5779,6 +5800,7 @@ function render() {
   const wm = guard ? `<div class="wm" aria-hidden="true">${Array.from({ length: 24 }, () => `<span>${esc(App.me.name)} · ${esc(App.me.uid.slice(-4))} · ${todayStr()}</span>`).join('')}</div>` : '';
   const cr = App.me && (App.critOpen || []).length && !gated ? `<div class="critbar noprint" role="alert"><span style="font-size:1.4rem">🚨</span><b class="grow">${t('crit_title', { n: App.critOpen.length })}: ${esc(t('tk_' + App.critOpen[0].k))}${App.critOpen[0].pid ? ' · ' + esc(App.critOpen[0].pid) : ''}</b><button class="btn btn-sm" data-a="critGo">▶ ${t('open')}</button><button class="btn btn-sm" data-a="critAck">✋ ${t('crit_ack')}</button></div>` : '';
   $('#app').innerHTML = banner + cr + h + sos + wm;
+  Wake.sync();
   if (sos) bindSos();
   document.documentElement.lang = LANG;
   loadImages($('#app'));
@@ -8079,6 +8101,7 @@ SCREENS.me = () => {
       <div class="tiles three" style="margin-top:8px">${[[80, 'size_s'], [100, 'size_n'], [130, 'size_xl']].map(([z, l]) => `<button class="tile ${getScale() === z ? 'on' : ''}" data-a="scaleSet" data-v="${z}" style="min-height:64px">${t(l)}<small>${z}%</small></button>`).join('')}</div>
       ${getScale() < 60 ? `<div class="warnbox">⚠️ ${t('scale_small')}</div>` : ''}</div>
     <div class="card"><h3>🎨 ${t('theme')}</h3><div class="tiles">${THEMES.map(([k, i]) => `<button class="tile ${(App.set.theme || 'auto') === k ? 'on' : ''}" data-a="setTheme" data-v="${k}" style="min-height:64px"><span class="i">${i}</span>${t('th_' + k)}</button>`).join('')}</div></div>
+    <div class="card"><h3>💡 ${t('wake_title')}</h3><div class="tiles one"><button class="tile ${App.set.wake !== false ? 'on' : ''}" data-a="toggleWake"><span class="i">💡</span><span>${t('wake_on')}<br><small>${t(Wake.ok() ? (Wake.lock ? 'wake_now' : 'wake_ready') : 'wake_no')}</small></span></button></div><p class="small muted">${t('wake_note')}</p></div>
     <div class="card"><h3>🔊 ${t('me_voice')}</h3><div class="tiles one"><button class="tile ${guideOn() ? 'on' : ''}" data-a="toggleGuide"><span class="i">🗣️</span><span>${t('voice_guide')}<br><small>${t('voice_guide_d')}</small></span></button>
       <button class="tile ${App.set.autoRead ? 'on' : ''}" data-a="toggleAuto"><span class="i">🔊</span>${t('auto_read')}</button></div>
       <button class="btn" style="margin-top:10px" data-a="testVoice">▶ ${t('voice_test')}</button>
@@ -9999,6 +10022,7 @@ const ACT = {
   ntfOpen: () => { const el = document.getElementById('ntf'); if (el) el.innerHTML = ''; if (App.me) { App.stack = []; go('home'); } },
   ntfClose: () => { const el = document.getElementById('ntf'); if (el) el.innerHTML = ''; },
   allTasks: () => { App.form.allTasks = !App.form.allTasks; render(); },
+  toggleWake: () => { App.set.wake = App.set.wake === false; saveSettings(); render(); },
   toggleAuto: () => { App.set.autoRead = !App.set.autoRead; saveSettings(); render(); if (App.set.autoRead) Voice.say(t('auto_read')); },
   moreAudit: () => { App.form.alim = (App.form.alim || 150) + 150; render(); },
   sheetBg: (v, el, e) => { if (e.target === el) closeSheet(); },
