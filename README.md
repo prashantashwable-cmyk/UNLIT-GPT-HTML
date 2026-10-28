@@ -352,10 +352,17 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * **Notifications and escalation:** eligible companies hear a "new job" ding. Applications waiting for a choice, and posts nobody applies to, go to the office and up the escalation ladder.
 * **Business rules (Head Quarter-approved):** the limits are set under **Me → Business rules → Job marketplace**.
 
-### Head Quarter and Admin have separate to-do lists
-* **Head Quarter** gets the decisions: quotations above the discount limit, technician weekly pay, approval requests in chat, and checking the Admin's own documents.
-* **Admin** gets the daily work: releasing drawings and assigning teams, work problems, security problems, tickets, new workers' documents, pay questions and completing handovers.
-* When the Admin's work is late, it goes up the ladder to the Head Quarter. If the company has no Admin, the Head Quarter gets everything. Two-person approvals go to whichever of the two did not ask. Both keep full permission to act on any project.
+### Head Quarter stays out of day-to-day work; the Admin runs the day
+* **Admin** gets all daily work and decisions:
+  * quotations above the discount limit, technician weekly pay, approval requests in chat, refunds and suspension reviews;
+  * releasing drawings and assigning teams, work problems, tickets, new workers' documents and completing handovers;
+  * covering a step when the company has no Sales, Finance or QC person.
+* **Head Quarter** is not sent day-to-day tasks while there is an Admin. It gets:
+  * work still stuck after the last reminder (the Admin's own late work reaches the Head Quarter only then);
+  * SOS and injury alarms (the Admin handles them);
+  * business rules and two-person approvals.
+* **Everyone's open work:** the Head Quarter's home shows every open task by role, longest waiting first, to view only.
+* The Head Quarter still takes the work when the company has no Admin, or when the only Admin is the person who asked (no one approves their own request). Both keep full permission to act on any project. In the job chat, the Head Quarter is not offered as a person to send day-to-day items to.
 
 ### Enforced role permissions
 * Each event type has an allowed role list and allowed stages (see **Me → What can I do?**; Head Quarter/Admin see the full matrix).

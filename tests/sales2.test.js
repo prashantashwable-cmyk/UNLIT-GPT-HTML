@@ -68,10 +68,10 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await ev(`refundSuggest(S.projects["${R}"], { freight: 1500 })`) === 8500, 'the suggested refund is what was paid minus freight');
   assert((await act('REFUND_PROPOSED', R, { amount: 8000, deduct: { freight: 1500 } }, 'PFIN')).err === 'err_reason', 'a different amount needs a reason');
   assert((await act('REFUND_PROPOSED', R, { amount: 20000, deduct: {}, note: 'x' }, 'PFIN')).err === 'err_amount', 'never more than was paid');
-  assert((await act('REFUND_PROPOSED', R, { amount: 8500, deduct: { freight: 1500 } }, 'PFIN')).ok && (await tasks('POWNER', R)).includes('refund_decide'), 'Finance proposes the refund; the Owner decides');
-  assert((await act('REFUND_DECIDED', R, { ok: true }, 'PADMIN')).ok === false, 'only the Owner decides');
-  assert((await act('REFUND_PAID', R, { ref: 'NEFT1' }, 'PFIN')).err === 'err_already', 'nothing is paid before the Owner agrees');
-  assert((await act('REFUND_DECIDED', R, { ok: true }, 'POWNER')).ok && (await tasks('PFIN', R)).includes('refund_pay'), 'the Owner agrees; Finance pays');
+  assert((await act('REFUND_PROPOSED', R, { amount: 8500, deduct: { freight: 1500 } }, 'PFIN')).ok && (await tasks('PADMIN', R)).includes('refund_decide') && !(await tasks('POWNER', R)).includes('refund_decide'), 'Finance proposes the refund; the Admin decides (not the Head Quarter)');
+  assert((await act('REFUND_DECIDED', R, { ok: true }, 'PFIN')).ok === false, 'Finance does not decide its own proposal');
+  assert((await act('REFUND_PAID', R, { ref: 'NEFT1' }, 'PFIN')).err === 'err_already', 'nothing is paid before the Admin agrees');
+  assert((await act('REFUND_DECIDED', R, { ok: true }, 'PADMIN')).ok && (await tasks('PFIN', R)).includes('refund_pay'), 'the Admin agrees; Finance pays');
   assert((await act('REFUND_PAID', R, { ref: '' }, 'PFIN')).err === 'err_ref', 'paying needs the bank reference');
   assert((await act('REFUND_PAID', R, { ref: 'NEFT-778' }, 'PFIN')).ok && await ev(`S.projects["${R}"].refund.status`) === 'paid', 'the refund is paid and recorded');
   const tf = await page.evaluate(() => { App.me = S.users.PADMIN; return JSON.stringify(exportPack('person', 'PTECH').events.filter(e => e.type.startsWith('REFUND'))); });

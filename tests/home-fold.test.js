@@ -21,10 +21,12 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(n === all - hot && await page.evaluate(() => App.route.name !== 'home' || !!W), 'folded work opens like any other task');
   /* Owner and Admin have different lists */
   const oa = await page.evaluate(() => { const f = u => myTasks(S.users[u]).filter(n => n.k !== 'escalated').map(n => n.k + '|' + (n.pid || n.uid || '') + '|' + (n.week || '')); return { o: f('POWNER'), a: f('PADMIN') }; });
-  assert(oa.o.length && oa.a.length && !oa.o.some(x => oa.a.includes(x)), 'Owner and Admin never get the same task: ' + oa.o.map(x => x.split('|')[0]).join(',') + ' / ' + oa.a.map(x => x.split('|')[0]).join(','));
-  assert(oa.o.every(x => /^(approve_quote|approve_pay|answer|second_approval|check_docs|strike_appeal|promotion_ready|suspend_review)/.test(x)), 'the Owner gets decisions about money, price and the Admin');
+  assert(oa.a.length && !oa.o.some(x => oa.a.includes(x)), 'Head Quarter and Admin never get the same task: ' + oa.o.map(x => x.split('|')[0]).join(',') + ' / ' + oa.a.map(x => x.split('|')[0]).join(','));
+  assert(oa.o.every(x => /^(second_approval|check_docs|strike_appeal|promotion_ready|sos|resolve_incident)/.test(x)), 'the Head Quarter gets no day-to-day work, only decisions about the Admin and alarms: ' + oa.o.map(x => x.split('|')[0]).join(','));
+  assert(oa.a.some(x => /^(approve_quote|approve_pay)/.test(x)), 'the Admin gets quotation and pay approvals');
   assert(await page.evaluate(() => { const P = S.projects['AIEC-P006']; P.since = new Date(Date.now() - 4 * 864e5).toISOString(); return myTasks(S.users.POWNER).some(n => n.k === 'escalated' && n.pid === 'AIEC-P006') === false && myTasks(S.users.PADMIN).some(n => n.k === 'escalated' && n.pid === 'AIEC-P006'); }), 'late field work goes to the Admin first');
-  assert(await page.evaluate(() => { const P = S.projects['AIEC-P003']; const b = P.blockers.find(x => x.open); b.t = new Date(Date.now() - 4 * 864e5).toISOString(); return myTasks(S.users.POWNER).some(n => n.k === 'escalated' && n.ref === 'resolve_blocker'); }), "the Admin's own late work goes to the Owner");
+  assert(await page.evaluate(() => { const P = S.projects['AIEC-P003']; const b = P.blockers.find(x => x.open); b.t = new Date(Date.now() - 4 * 864e5).toISOString(); return !myTasks(S.users.POWNER).some(n => n.k === 'escalated' && n.ref === 'resolve_blocker'); }), "the Admin's own late work does not go to the Head Quarter before the last level");
+  assert(await page.evaluate(() => { const P = S.projects['AIEC-P003']; const b = P.blockers.find(x => x.open); b.t = new Date(Date.now() - 10 * 864e5).toISOString(); return myTasks(S.users.POWNER).some(n => n.k === 'escalated' && n.ref === 'resolve_blocker'); }), "still stuck after the last reminder: it reaches the Head Quarter");
   await page.evaluate(() => { loginAs(S.users.POWNER); ACT.permsDone(); Notify.hide(); });
   /* customer and technician */
   await page.evaluate(() => { loginAs(S.users.PCUST); ACT.permsDone(); Notify.hide(); }); await page.waitForTimeout(200);

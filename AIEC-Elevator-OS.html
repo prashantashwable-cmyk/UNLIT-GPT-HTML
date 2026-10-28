@@ -2140,6 +2140,9 @@ const L = {
   ck_message: ['Message', 'संदेश', 'संदेश'],
   ck_question: ['Question', 'सवाल', 'प्रश्न'],
   ck_approval: ['Ask approval', 'मंज़ूरी माँगें', 'मंजुरी मागा'],
+  all_work: ['Everyone\'s open work', 'सबके खुले काम', 'सर्वांची उघडी कामे'],
+  all_work_sub: ['View only: the Admin runs the day', 'सिर्फ़ देखने के लिए: दिन का काम Admin चलाते हैं', 'फक्त पाहण्यासाठी: रोजचे काम Admin चालवतात'],
+  all_work_note: ['Every open task by role, longest waiting first. The Head Quarter is not given day-to-day tasks while there is an Admin; anything stuck past the last reminder comes to you as an escalation.', 'भूमिका के अनुसार हर खुला काम, सबसे पुराना पहले। Admin होने पर Head Quarter को रोज़ का काम नहीं मिलता; आखिरी याद के बाद भी अटका काम आपको एस्केलेशन के रूप में आएगा।', 'भूमिकेनुसार प्रत्येक उघडे काम, सर्वात जुने आधी. Admin असताना हेड क्वार्टरला रोजची कामे मिळत नाहीत; शेवटच्या आठवणीनंतरही अडलेले काम तुम्हाकडे एस्केलेशन म्हणून येईल.'],
   ck_obstacle: ['Work stuck', 'काम अटका', 'काम अडले'],
   ck_followup: ['Follow-up', 'फ़ॉलो-अप', 'पाठपुरावा'],
   ck_plan: ['Work plan', 'काम की योजना', 'कामाचे नियोजन'],
@@ -4207,8 +4210,9 @@ function escStrikeFor(key, ev) {
 /* who is told at level 2 / 3; null when nobody is higher than the person who must act */
 function escUp(n, lv) {
   if (n.roles.length === 1 && n.roles[0] === 'owner') return null; /* nobody is above the Owner */
-  const up = lv >= 3 || n.roles.includes('admin') || !hasAdmin() ? ['owner'] : ['admin'];
-  if (up.every(r => n.roles.includes(r))) return null;
+  /* the Admin's own late work waits for the last level before it reaches the Head Quarter */
+  const up = lv >= 3 || !hasAdmin() ? ['owner'] : n.roles.includes('admin') ? null : ['admin'];
+  if (!up || up.every(r => n.roles.includes(r))) return null;
   if (lv >= 3 && hasAdmin() && !n.roles.includes('admin')) up.push('admin');
   return up;
 }
@@ -4333,7 +4337,7 @@ function undoWhyNot(S, id, by, t) {
   return S.lastAt[x.pid || '_g'] === id ? null : 'err_undo_after';
 }
 const canUndo = id => !!App.me && !undoWhyNot(S, id, App.me.uid, nowISO());
-/* small teams: when no other active person holds the Sales, Finance or QC role a step needs, the Owner may do it (and gets the task);
+/* small teams: when no other active person holds the Sales, Finance or QC role a step needs, the Admin may do it (and gets the task); the Head Quarter only when there is no Admin;
    with such a person in the team the usual separation stays. Physical work (technician, supplier, partner, field) is never covered. */
 const COVER_ROLES = ['sales', 'finance', 'qc'];
 const COVER_EV = ['SUP_INVOICE_PAID', 'LEAD_ACCEPTED', 'LEAD_RETURNED', 'CONTACT_LOGGED', 'FOLLOWUP_SET', 'REQ_SAVED', 'QUOTE_CREATED', 'QUOTE_SENT', 'DEAL_WON', 'COUNTER_OFFER', 'AGREEMENT_PREPARED', 'AGREEMENT_SIGNED',
@@ -4347,9 +4351,12 @@ function coverExcl(S, ev, P) {
   return null;
 }
 function ownerCovers(S, R, ev, u, P) {
-  if (!u || u.role !== 'owner' || !COVER_EV.includes(ev.type)) return false;
+  if (!u || !['owner', 'admin'].includes(u.role) || !COVER_EV.includes(ev.type)) return false;
   const need = R.roles.filter(r => COVER_ROLES.includes(r)), ex = coverExcl(S, ev, P);
-  return need.length > 0 && !Object.values(S.users).some(x => x.active && x.uid !== u.uid && x.uid !== ex && need.includes(x.role));
+  if (!need.length || Object.values(S.users).some(x => x.active && x.uid !== u.uid && x.uid !== ex && need.includes(x.role))) return false;
+  const admin = Object.values(S.users).some(x => x.active && x.role === 'admin' && x.uid !== ex);
+  /* records saved before this rule (the Head Quarter covering while an Admin existed) still load */
+  return u.role === (admin ? 'admin' : 'owner') || (!App.liveCheck && u.role === 'owner');
 }
 function innerEvent(req, ev) { return { id: ev.id + '~', n: ev.n, t: ev.t, by: req.by, type: req.action.type, pid: req.action.pid, data: Object.assign({}, req.action.data, { _aid: req.id }), dev: ev.dev }; }
 const PAY_KEYS = { approve: ['owner', 'admin'] };
@@ -4504,7 +4511,7 @@ const RULES = {
   DEAL_WON: { roles: ['sales'], project: true, stages: ['quoted'], check: (S, ev, u, P) => quoteExpired(lastQuote(P), ev.t) ? 'err_quote_expired' : null },
   /* refund after a cancelled job: Finance works it out from the cancellation rules, the Owner decides, Finance pays */
   REFUND_PROPOSED: { roles: ['finance'], project: true, stages: ['lost'], check: (S, ev, u, P) => !(P.lost && P.lost.reason === 'cancelled') || !paidTotal(P) || (P.refund && P.refund.status !== 'rejected') ? 'err_already' : !(+ev.data.amount >= 0 && +ev.data.amount <= paidTotal(P)) ? 'err_amount' : +ev.data.amount !== refundSuggest(P, ev.data.deduct || {}) && !(ev.data.note || '').trim() ? 'err_reason' : null },
-  REFUND_DECIDED: { roles: ['owner'], project: true, check: (S, ev, u, P) => !P.refund || P.refund.status !== 'proposed' ? 'err_already' : ev.data.ok === false ? need((ev.data.note || '').trim(), 'err_reason') : need(ev.data.ok === true, 'err_choose') },
+  REFUND_DECIDED: { roles: ['owner', 'admin'], project: true, check: (S, ev, u, P) => !P.refund || P.refund.status !== 'proposed' ? 'err_already' : ev.data.ok === false ? need((ev.data.note || '').trim(), 'err_reason') : need(ev.data.ok === true, 'err_choose') },
   REFUND_PAID: { roles: ['finance'], project: true, check: (S, ev, u, P) => !P.refund || P.refund.status !== 'approved' ? 'err_already' : P.refund.by === u.uid && Object.values(S.users).some(x => x.active && x.role === 'finance' && x.uid !== u.uid) ? 'err_same_person' : need((ev.data.ref || '').trim(), 'err_ref') },
   /* the contact asks not to be called or messaged again */
   OPT_OUT: { roles: ['owner', 'admin', 'sales', 'customer'], project: true, check: (S, ev, u, P) => u.role === 'customer' && P.customer !== u.uid ? 'err_access' : need(['call', 'whatsapp', 'all'].includes(ev.data.channel), 'err_choose') },
@@ -5760,14 +5767,13 @@ function rebuild(events, skip) {
 
 /* Owner and Admin do not share the same to-do list: the Owner decides money and price, the Admin runs daily work.
    Both keep the permission to act; this only decides whose list a task appears on. The Owner sees Admin work again only when it is late (escalation). */
-const OWNER_TASKS = ['approve_quote', 'approve_pay', 'answer_approval', 'suspend_review'];
-const SHARED_TASKS = ['second_approval'];
+const SHARED_TASKS = ['second_approval', 'sos'];
 const activeOf = role => Object.values(S.users).some(u => u.active && u.role === role);
+/* the Head Quarter is kept out of day-to-day work: an Admin gets it. The Head Quarter gets it only when no other Admin can
+   (no Admin, or the only Admin is the person who asked). Safety alarms and two-person approvals go to both. */
 function splitOA(n) {
-  if (SHARED_TASKS.includes(n.k) || !(n.roles.includes('owner') && n.roles.includes('admin'))) return n;
-  const owner = OWNER_TASKS.includes(n.k) || (n.k === 'answer' && n.approval);
-  if (owner && activeOf('owner')) n.roles = n.roles.filter(r => r !== 'admin');
-  else if (!owner && hasAdmin()) n.roles = n.roles.filter(r => r !== 'owner');
+  if (n.shared || SHARED_TASKS.includes(n.k) || !(n.roles.includes('owner') && n.roles.includes('admin'))) return n;
+  if (Object.values(S.users).some(u => u.active && u.role === 'admin' && u.uid !== n.not)) n.roles = n.roles.filter(r => r !== 'owner');
   return n;
 }
 /* ---------- what must happen next (single task engine) ---------- */
@@ -5831,7 +5837,7 @@ function needs(P) {
       break;
   }
   for (const b of P.blockers) if (b.open) add('resolve_blocker', uniq([b.role, 'admin']), { bid: b.id, urgent: true, since: b.t });
-  for (const i of P.incidents) if (i.open) add('resolve_incident', ['admin', 'owner'], { iid: i.id, urgent: true, since: i.t });
+  for (const i of P.incidents) if (i.open) add('resolve_incident', ['admin', 'owner'], { iid: i.id, urgent: true, since: i.t, shared: i.type === 'injury' });
   /* statutory records, holds and disputes */
   if (['site_prep', 'qc_site', 'site_fix', 'site_ok', 'material_order', 'dispatched', 'arrived', 'installing'].includes(P.stage) && !statOf(P).permit) add('record_permit', ['admin', 'owner']);
   if (P.stage === 'handover' && S.config.licenceGate && !liftLicenceOk(P)) add('record_licence', ['admin', 'owner'], { urgent: true, item: statOf(P).inspection && statOf(P).inspection.result === 'pass' ? 'licence' : 'inspection' });
@@ -5850,7 +5856,7 @@ function needs(P) {
   }
   if (P.stage === 'lost' && P.lost && P.lost.reason === 'cancelled' && paidTotal(P) > 0) {
     if (!P.refund || P.refund.status === 'rejected') add('refund_calc', ['finance'], { urgent: true, since: P.lost.t });
-    else if (P.refund.status === 'proposed') add('refund_decide', ['owner'], { urgent: true, since: P.refund.t });
+    else if (P.refund.status === 'proposed') add('refund_decide', ['admin', 'owner'], { urgent: true, since: P.refund.t });
     else if (P.refund.status === 'approved') add('refund_pay', ['finance'], Object.assign({ urgent: true, since: P.refund.okT }, Object.values(S.users).some(x => x.active && x.role === 'finance' && x.uid !== P.refund.by) ? { not: P.refund.by } : {}));
   }
   if (P.surprise && !P.surprise.done && P.surprise.date && P.surprise.date <= todayStr()) add('surprise_qc', ['qc'], { uids: [P.qc], urgent: true, since: P.surprise.date + 'T09:00:00' });
@@ -5898,11 +5904,11 @@ function needs(P) {
 }
 function coverTasks(P, out) {
   const act = Object.values(S.users).filter(u => u.active), owner = act.find(u => u.role === 'owner');
-  if (!owner) return;
   for (const n of out) {
     const need = n.roles.filter(r => COVER_ROLES.concat('admin').includes(r));
     if (!need.length || act.some(u => (!P || canSee(u, P)) && isMine(n, u)) || act.some(u => u.uid !== n.not && need.includes(u.role))) continue;
-    if (n.not !== owner.uid) Object.assign(n, { roles: ['owner'], uids: [], cover: true });
+    if (act.some(u => u.role === 'admin' && u.uid !== n.not)) Object.assign(n, { roles: ['admin'], uids: [], cover: true });
+    else if (owner && n.not !== owner.uid) Object.assign(n, { roles: ['owner'], uids: [], cover: true });
   }
 }
 /* work that is not tied to one project: second approvals, pay, training */
@@ -5974,7 +5980,7 @@ function globalNeeds(u, all) {
     const sk = strikesOf(x.uid), n = sk.filter(k => k.active).reduce((a, k) => a + k.n, 0);
     sk.filter(k => k.appeal && !k.decision).forEach(k => add('strike_appeal', roleOf(k.by) === 'admin' && Object.values(S.users).filter(y => y.active && y.role === 'admin').length < 2 ? ['owner'] : ['admin', 'owner'], { uid: x.uid, sid: k.id, not: k.by }));
     const last = sk.filter(k => k.active)[0], held = last && S.reviewsHeld.some(h => h.uid === x.uid && h.t > last.t);
-    if (n >= 3 && !held) add(n >= 4 ? 'suspend_review' : 'review_meeting', n >= 4 ? ['owner'] : ['admin', 'owner'], { uid: x.uid, not: x.uid, urgent: true });
+    if (n >= 3 && !held) add(n >= 4 ? 'suspend_review' : 'review_meeting', ['admin', 'owner'], { uid: x.uid, not: x.uid, urgent: true });
   }
   /* job marketplace: new jobs for eligible workers (3 newest), applicants to pick, posts nobody wants */
   for (const p of S.postOrder.map(id => S.posts[id]).filter(postLive)) {
@@ -8156,6 +8162,7 @@ SCREENS.home = () => {
   if (rest.length) h += fold('tasks', t(hot.length ? 'other_work' : 'my_tasks'), rest.map(([n, i]) => taskCard(n, i)).join(''), { icon: '📋', count: rest.length, sub: t('fold_tap') });
   if (!onboarding(u.uid).ready) { const ob = onboarding(u.uid), lv = escLevel(daysSince(u.t), 'onboarding');
     h += fold('onb', t('onb_title'), onbCard(u.uid, { short: true, bare: true }), { icon: '🪪', sub: t('onb_progress', { n: ob.done, m: ob.total }), open: lv >= 2, alert: lv >= 2 }); }
+  if (u.role === 'owner' && hasAdmin()) { const aw = allOpenWork(); h += fold('allwork', t('all_work'), allWorkCard(aw), { icon: '👀', count: aw.length, sub: t('all_work_sub') }); }
   if (adm) { const qn = queueRows().filter(r => r.n).length;
     h += fold('queues', t('queues'), queuesCard(true), { icon: '🗂️', count: qn, alert: qn > 0, sub: t('fold_tap') });
     h += fold('dash', t(u.role === 'owner' ? 'owner_dash' : 'admin_dash'), dashboard(true), { icon: '📊', sub: t('fold_tap') }); }
@@ -8459,7 +8466,7 @@ const CK2_ICON = { obstacle: '🚧', followup: '📅', plan: '🗓️', appt: '�
 const CHAT_TASKS = ['chat_obstacle', 'chat_obstacle_late', 'chat_followup', 'chat_appt', 'appt_today', 'plan_today'];
 function chatPeople(P) {
   const u = App.me, n = mainNeed(P), linked = [P.tech, ...(P.crew || []), P.sales, P.customer, P.qc, P.supplier, P.partner].filter(Boolean);
-  const all = Object.values(S.users).filter(x => x.active && x.uid !== u.uid && canSee(x, P) && (u.role !== 'customer' || ['sales', 'tech', 'admin', 'owner'].includes(x.role)));
+  const all = Object.values(S.users).filter(x => x.active && x.uid !== u.uid && canSee(x, P) && !(x.role === 'owner' && hasAdmin()) && (u.role !== 'customer' || ['sales', 'tech', 'admin', 'owner'].includes(x.role)));
   const next = n ? all.filter(x => isMine(n, x)).map(x => x.uid) : [];
   const rank = x => next.includes(x.uid) ? 0 : linked.includes(x.uid) ? 1 : ['admin', 'owner'].includes(x.role) ? 2 : 3;
   return { n, next, list: all.filter(x => rank(x) < 3 || x.role === 'finance').sort((a, b) => rank(a) - rank(b)).slice(0, 12) };
@@ -9685,6 +9692,19 @@ function excSev(n) {
 }
 const excKey = n => [n.k, n.pid, n.tid, n.aid, n.cid, n.uid, n.sid, n.ref, n.hid, n.week, n.step].filter(x => x != null && x !== '').join('|');
 /* everything that needs the office, whoever of the Owner/Admin it is for, most serious first, then oldest */
+/* the Head Quarter's view of every open task in the company, by role; nothing to do from here, the Admin runs the day */
+function allOpenWork() {
+  const out = [], seen = new Set();
+  for (const P of Object.values(S.projects)) for (const n of needs(P)) { const key = n.pid + '|' + n.k + '|' + (n.mid || n.iid || n.tid || n.payId || n.cid || n.slot || ''); if (!seen.has(key)) { seen.add(key); out.push(n); } }
+  const age = n => n.since || (n.pid && S.projects[n.pid] ? S.projects[n.pid].since : nowISO());
+  return out.map(n => Object.assign({}, n, { age: daysSince(age(n)) })).sort((a, b) => b.age - a.age);
+}
+function allWorkCard(list) {
+  const by = {}; for (const n of list) for (const r of n.roles.slice(0, 1)) (by[r] = by[r] || []).push(n);
+  return `<p class="small muted">${t('all_work_note')}</p>` + (Object.keys(by).length ? Object.entries(by).map(([r, xs]) => `<h3>${ROLE_ICON[r] || ''} ${t('r_' + r)} (${xs.length})</h3>${xs.slice(0, 15).map(n => {
+    const who = (n.uids || []).filter(Boolean).map(id => userName(id)).join(', ');
+    return `<div class="list-item"><span class="grow">${TASK_ICON[n.k] || '▶'} ${esc(t('tk_' + n.k))}${n.pid ? ' · ' + esc(n.pid) : ''}<br><span class="small muted">${who ? esc(who) + ' · ' : ''}${t('days_n', { n: n.age })}</span></span>${n.pid ? `<button class="btn btn-sm" data-a="openProject" data-v="${n.pid}">📂</button>` : ''}</div>`; }).join('')}`).join('') : `<p class="muted">${t('nothing_here')}</p>`);
+}
 function officeQueue() {
   const seen = new Set(), out = [];
   for (const u of Object.values(S.users).filter(x => x.active && ['owner', 'admin'].includes(x.role))) for (const n of myTasks(u)) {

@@ -87,7 +87,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await page.evaluate(() => { const P = S.projects['AIEC-P001']; ['a', 'b', 'c'].forEach((x, i) => S.reviews.push({ id: 'T' + x, uid: 'PTECH', by: 'PQC', src: 'qc', stars: 1, pid: 'AIEC-P001', ref: 'test' + i, t: nowISO() })); });
   const nS = await ev('activeStrikes("PTECH")');
   assert(nS >= 3 && !(await ev('canLead("PTECH", S.projects["AIEC-P005"])')), `${nS} strikes: crew only, cannot lead`);
-  assert(nS >= 4 ? (await tasks('POWNER')).includes('suspend_review') : (await tasks('PADMIN')).includes('review_meeting'), nS >= 4 ? '4+ strikes: suspension review goes to the Owner' : '3 strikes: review meeting for the Admin');
+  assert(nS >= 4 ? (await tasks('PADMIN')).includes('suspend_review') && !(await tasks('POWNER')).includes('suspend_review') : (await tasks('PADMIN')).includes('review_meeting'), nS >= 4 ? '4+ strikes: suspension review goes to the Admin, not the Head Quarter' : '3 strikes: review meeting for the Admin');
   assert((await act('REVIEW_HELD', null, { uid: 'PTECH', note: 'Talked about quality; extra spot checks for a month' }, 'POWNER')).ok && !(await tasks('POWNER')).includes('suspend_review') && !(await tasks('PADMIN')).includes('review_meeting'), 'the meeting is recorded and the task closes');
   assert(await ev('ladderStatus("PTECH").checks.find(c => c.k === "lc_no_strikes").ok') === false, 'strikes pause promotion');
 
