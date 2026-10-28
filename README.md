@@ -161,6 +161,21 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Only parts on the job's list can be claimed. A claim does not stop the work; a "safety emergency" claim rings the office alarm.
   * The office approves or refuses with a reason, the supplier sends the part with a challan number, and the technician confirms with a photo.
 
+### Ticket urgency, time limits, lift QR sticker
+* **Urgency:** each ticket is marked person trapped, unsafe to use, lift stopped, fault came back, or ordinary.
+  * "Fault came back" is set by the app when a problem arrives within 30 days of an earlier breakdown on the same lift. The office can change urgency with a reason.
+  * Person trapped and unsafe ring the alarm. Choosing "person trapped" shows buttons to call the rescue number and 112, because a ticket alone reaches nobody in time.
+  * The office records where a ticket came from (phone call, lift QR, WhatsApp, the app). Open tickets are listed most serious first.
+* **Time limits (Owner rules, sample numbers):** hours to fix for unsafe, stopped, repeat and ordinary tickets.
+  * Each ticket shows the hours left or how late it is. After the limit, the worker's task turns urgent and the office sees "a ticket passed its time limit". A fixed ticket stays recorded as fixed in time or late.
+  * There is no published target for a person trapped (the rescue line comes first).
+* **Lift QR sticker:** every handed-over lift gets a lift code. The office prints a sticker with the QR, the lift's name (for example building and wing), and the rescue number and 112 printed as text.
+  * The QR holds only the lift code, that name and the company numbers, never customer details.
+* **Resident page (no login, no data on the phone):** scanning the QR opens a page in Marathi, Hindi or English.
+  * A big red "Person trapped — call" button calls the rescue number, with 112 below.
+  * "Report a problem" lets the resident pick the problem, add a call-back number, and send it to the office on WhatsApp or SMS. The office then opens the ticket.
+  * Staff who log in from the page land on that lift.
+
 ### Shaft limits, variation, co-worker check, surprise QC
 * **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).
   * A shaft below the minimum cannot simply be approved: QC asks for corrections, or approves "with a variation quote".
@@ -284,6 +299,7 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 ## Honest limits of this version
 * **Offline, single file.** Roles are enforced by the app on every action and on every imported file. There is no company server.
 * **Money:** refunds and receipts are records in the app. The money itself moves through the bank; the app does not send payments, and a receipt is not a GST tax invoice.
+* **Lift QR:** the QR points to the address the office's app runs from, so print stickers from the installed app or the website, not from a file copy. The resident page does not send anything by itself: the phone call, WhatsApp or SMS does, and a ticket is opened by the office. There is no 24×7 rescue staffing in the app; the company must run the rescue line before printing stickers.
 * **Safety:** the SOS reaches the office's phone only when files are shared, so the phone call and SMS are the real alert. Safety photos are checked by people, not by a computer. The daily check is confirmed by the team lead (an Owner decision); it does not replace the statutory inspection or a qualified engineer.
 * **Data protection limits:**
   * There is no server, so prices and rules are checked by the same rules on every phone and on every file loaded, not on a server.

@@ -1226,6 +1226,70 @@ const L = {
   ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
   ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
   ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
+  ev_TICKET_SEVERITY: ['Ticket urgency changed', 'टिकट की गंभीरता बदली', 'तिकिटाची गंभीरता बदलली'],
+  ev_LIFT_QR_SET: ['Lift QR label changed', 'लिफ्ट QR नाम बदला', 'लिफ्ट QR नाव बदलले'],
+  tk_sla_breach: ['A ticket passed its time limit', 'टिकट समय-सीमा पार कर गया', 'तिकिटाने वेळमर्यादा ओलांडली'],
+  rg_tickets: ['Ticket time limits', 'टिकट समय-सीमा', 'तिकीट वेळमर्यादा'],
+  rg_tickets_d: ['Hours to fix a ticket, by how serious it is (sample numbers — the Owner decides). A person trapped has no published target: the rescue line and 112 come first.', 'गंभीरता के अनुसार टिकट ठीक करने के घंटे (नमूना संख्याएँ — मालिक तय करें)। फँसे व्यक्ति का कोई घोषित लक्ष्य नहीं: पहले रेस्क्यू लाइन और 112।', 'गंभीरतेनुसार तिकीट दुरुस्त करण्याचे तास (नमुना आकडे — मालक ठरवतात). अडकलेल्या व्यक्तीसाठी जाहीर लक्ष्य नाही: आधी रेस्क्यू लाइन आणि 112.'],
+  cfg_slaUnsafe: ['Hours to fix: unsafe to use', 'ठीक करने के घंटे: इस्तेमाल असुरक्षित', 'दुरुस्तीचे तास: वापर असुरक्षित'],
+  cfg_slaBreakdown: ['Hours to fix: lift stopped', 'ठीक करने के घंटे: लिफ्ट बंद', 'दुरुस्तीचे तास: लिफ्ट बंद'],
+  cfg_slaRepeat: ['Hours to fix: fault came back', 'ठीक करने के घंटे: खराबी दोबारा', 'दुरुस्तीचे तास: बिघाड पुन्हा'],
+  cfg_slaRoutine: ['Hours to fix: ordinary', 'ठीक करने के घंटे: सामान्य', 'दुरुस्तीचे तास: सामान्य'],
+  sev_trapped: ['Person trapped', 'व्यक्ति फँसा है', 'व्यक्ती अडकली आहे'],
+  sev_trapped_d: ['Someone is inside a stopped lift', 'कोई बंद लिफ्ट के अंदर है', 'कोणी बंद लिफ्टमध्ये आहे'],
+  sev_unsafe: ['Unsafe to use', 'इस्तेमाल असुरक्षित', 'वापरणे असुरक्षित'],
+  sev_unsafe_d: ['Door opens while moving, sparks, smell of burning', 'चलते हुए दरवाज़ा खुलना, चिंगारी, जलने की गंध', 'चालताना दरवाजा उघडणे, ठिणग्या, जळल्याचा वास'],
+  sev_breakdown: ['Lift stopped', 'लिफ्ट बंद', 'लिफ्ट बंद'],
+  sev_breakdown_d: ['The lift does not work, nobody inside', 'लिफ्ट नहीं चलती, अंदर कोई नहीं', 'लिफ्ट चालत नाही, आत कोणी नाही'],
+  sev_repeat: ['Fault came back', 'खराबी दोबारा', 'बिघाड पुन्हा'],
+  sev_repeat_d: ['Same lift had a breakdown in the last 30 days', 'इसी लिफ्ट में पिछले 30 दिन में खराबी थी', 'याच लिफ्टमध्ये गेल्या 30 दिवसांत बिघाड होता'],
+  sev_routine: ['Ordinary', 'सामान्य', 'सामान्य'],
+  sev_routine_d: ['Noise, light, a request', 'आवाज़, लाइट, कोई अनुरोध', 'आवाज, दिवा, एखादी विनंती'],
+  s_ticket_sev: ['How serious is it?', 'कितना गंभीर है?', 'किती गंभीर आहे?'],
+  sev_change: ['Change urgency', 'गंभीरता बदलें', 'गंभीरता बदला'],
+  what_sev_changed: ['The urgency is changed; the time limit follows it.', 'गंभीरता बदली; समय-सीमा उसी के अनुसार।', 'गंभीरता बदलली; वेळमर्यादा त्यानुसार.'],
+  trapped_call_now: ['Call the rescue line now. This ticket alone does not reach anyone in time.', 'अभी रेस्क्यू लाइन पर कॉल करें। सिर्फ़ यह टिकट समय पर किसी तक नहीं पहुँचता।', 'आत्ताच रेस्क्यू लाइनला फोन करा. फक्त हे तिकीट वेळेत कोणापर्यंत पोहोचत नाही.'],
+  call_rescue: ['Call rescue', 'रेस्क्यू को कॉल', 'रेस्क्यूला फोन'],
+  ticket_src_q: ['How did it come in?', 'यह कैसे आया?', 'हे कसे आले?'],
+  tsrc_app: ['In the app', 'ऐप में', 'ॲपमध्ये'],
+  tsrc_call: ['Phone call', 'फ़ोन कॉल', 'फोन कॉल'],
+  tsrc_qr: ['Lift QR', 'लिफ्ट QR', 'लिफ्ट QR'],
+  tsrc_whatsapp: ['WhatsApp', 'WhatsApp', 'WhatsApp'],
+  sla_now: ['emergency — no waiting', 'आपातकाल — कोई इंतज़ार नहीं', 'आणीबाणी — थांबायचे नाही'],
+  sla_left: ['{h} h left', '{h} घंटे बाकी', '{h} तास बाकी'],
+  sla_late: ['late by {h} h', '{h} घंटे देर', '{h} तास उशीर'],
+  sla_was_late: ['fixed late', 'देर से ठीक हुआ', 'उशिरा दुरुस्त'],
+  sla_in_time: ['fixed in time', 'समय पर ठीक', 'वेळेत दुरुस्त'],
+  lift_qr: ['Lift QR sticker', 'लिफ्ट QR स्टिकर', 'लिफ्ट QR स्टिकर'],
+  lift_label: ['Name on the sticker', 'स्टिकर पर नाम', 'स्टिकरवरचे नाव'],
+  s_lift_label: ['Write a short name residents know, like the building and wing. No person\'s name.', 'छोटा नाम लिखें जो निवासी जानते हों, जैसे बिल्डिंग और विंग। किसी व्यक्ति का नाम नहीं।', 'रहिवाशांना माहीत असलेले छोटे नाव लिहा, जसे इमारत आणि विंग. व्यक्तीचे नाव नको.'],
+  lift_label_note: ['Up to 30 letters. It is printed and goes inside the QR.', '30 अक्षर तक। यह छपता है और QR के अंदर जाता है।', '30 अक्षरांपर्यंत. हे छापले जाते आणि QR मध्ये जाते.'],
+  lift_label_long: ['The name is too long for the QR. Make it shorter.', 'QR के लिए नाम बहुत लंबा है। छोटा करें।', 'QR साठी नाव खूप लांब आहे. लहान करा.'],
+  lift_no_rescue: ['No rescue number is set. Set it in Business rules → Safety before printing.', 'रेस्क्यू नंबर तय नहीं है। छापने से पहले कारोबार नियम → सुरक्षा में डालें।', 'रेस्क्यू क्रमांक ठरवलेला नाही. छापण्यापूर्वी व्यवसाय नियम → सुरक्षा मध्ये टाका.'],
+  qr_scan_text: ['Problem with this lift? Scan with your phone camera.', 'इस लिफ्ट में समस्या? फ़ोन कैमरे से स्कैन करें।', 'या लिफ्टमध्ये अडचण? फोन कॅमेऱ्याने स्कॅन करा.'],
+  qr_trapped_call: ['Person trapped? Call', 'कोई फँसा है? कॉल करें', 'कोणी अडकले आहे? फोन करा'],
+  qr_danger: ['In danger, call', 'खतरे में कॉल करें', 'धोक्यात फोन करा'],
+  qr_sticker_note: ['Stick inside the cabin and at the ground floor. The numbers are printed so they can be called without the internet.', 'केबिन के अंदर और ग्राउंड फ़्लोर पर लगाएँ। नंबर छपे हैं ताकि बिना इंटरनेट कॉल हो सके।', 'केबिनमध्ये आणि तळमजल्यावर लावा. क्रमांक छापलेले आहेत म्हणजे इंटरनेटशिवाय फोन करता येईल.'],
+  lift_qr_how: ['The QR opens a page with "Person trapped" (calls the rescue number) and "Report a problem" (sends a WhatsApp or SMS to the office). It holds only the lift code, the name above and the office numbers.', 'QR एक पेज खोलता है: "व्यक्ति फँसा है" (रेस्क्यू नंबर पर कॉल) और "समस्या बताएँ" (ऑफ़िस को WhatsApp या SMS)। इसमें सिर्फ़ लिफ्ट कोड, ऊपर का नाम और ऑफ़िस नंबर हैं।', 'QR एक पान उघडतो: "व्यक्ती अडकली" (रेस्क्यू क्रमांकाला फोन) आणि "अडचण कळवा" (ऑफिसला WhatsApp किंवा SMS). त्यात फक्त लिफ्ट कोड, वरचे नाव आणि ऑफिस क्रमांक असतात.'],
+  qr_title: ['Lift help', 'लिफ्ट मदद', 'लिफ्ट मदत'],
+  qr_trapped: ['PERSON TRAPPED — CALL', 'व्यक्ति फँसा — कॉल करें', 'व्यक्ती अडकली — फोन करा'],
+  qr_keep_112: ['Nobody answers or someone is hurt? Call', 'कोई नहीं उठाता या कोई घायल है? कॉल करें', 'कोणी उचलत नाही किंवा कोणी जखमी आहे? फोन करा'],
+  qr_report: ['REPORT A PROBLEM', 'समस्या बताएँ', 'अडचण कळवा'],
+  qr_what: ['What is the problem?', 'क्या समस्या है?', 'काय अडचण आहे?'],
+  qp_stopped: ['Lift stopped', 'लिफ्ट बंद', 'लिफ्ट बंद'],
+  qp_door: ['Door problem', 'दरवाज़े की समस्या', 'दरवाजाची अडचण'],
+  qp_noise: ['Strange noise', 'अजीब आवाज़', 'विचित्र आवाज'],
+  qp_buttons: ['Buttons not working', 'बटन नहीं चलते', 'बटणे चालत नाहीत'],
+  qp_light: ['Light or fan off', 'लाइट या पंखा बंद', 'दिवा किंवा पंखा बंद'],
+  qp_other: ['Something else', 'कुछ और', 'दुसरे काही'],
+  qr_phone: ['Your phone number, if you want a call back', 'आपका फ़ोन नंबर, अगर वापस कॉल चाहिए', 'तुमचा फोन क्रमांक, परत फोन हवा असल्यास'],
+  qr_send_wa: ['Send on WhatsApp', 'WhatsApp पर भेजें', 'WhatsApp वर पाठवा'],
+  qr_send_sms: ['Send SMS', 'SMS भेजें', 'SMS पाठवा'],
+  qr_call_office: ['Call the office', 'ऑफ़िस को कॉल करें', 'ऑफिसला फोन करा'],
+  qr_send_note: ['Your message goes to the lift company\'s office, which opens a ticket.', 'आपका संदेश लिफ्ट कंपनी के ऑफ़िस जाता है, जो टिकट खोलता है।', 'तुमचा संदेश लिफ्ट कंपनीच्या ऑफिसला जातो, जे तिकीट उघडते.'],
+  qr_no_data: ['No internet? Call the number printed on the sticker.', 'इंटरनेट नहीं? स्टिकर पर छपा नंबर कॉल करें।', 'इंटरनेट नाही? स्टिकरवर छापलेल्या क्रमांकावर फोन करा.'],
+  qr_staff: ['Staff: open the app', 'स्टाफ़: ऐप खोलें', 'कर्मचारी: ॲप उघडा'],
+  qr_msg: ['Lift {code} ({label}): {p}', 'लिफ्ट {code} ({label}): {p}', 'लिफ्ट {code} ({label}): {p}'],
   ev_PO_ACCEPTED: ['Purchase order accepted', 'खरीद आदेश स्वीकार', 'खरेदी आदेश स्वीकारला'],
   ev_PO_DECLINED: ['Purchase order declined', 'खरीद आदेश अस्वीकार', 'खरेदी आदेश नाकारला'],
   ev_REP_SET: ['Representative named', 'प्रतिनिधि तय', 'प्रतिनिधी ठरवला'],
@@ -3206,6 +3270,11 @@ const SLOTS = ['customer', 'tech', 'qc'];
 const BLOCK_REASONS = [['material', '📦', 'supplier'], ['site', '🏗️', 'sales'], ['power', '⚡', 'sales'], ['help', '🙋', 'admin'], ['safety', '⚠️', 'admin']];
 const AMC_CHECKS = ['ride', 'doors', 'alarm', 'brake', 'ropes', 'oil', 'pit'];
 const TICKET_KINDS = [['breakdown', '🚨'], ['complaint', '😟'], ['request', '🙋']];
+/* how serious a ticket is, most serious first; "repeat" is set by the app when a fault comes back within 30 days */
+const SEVERITIES = [['trapped', '🆘'], ['unsafe', '⚠️'], ['breakdown', '🚨'], ['repeat', '🔁'], ['routine', '🔧']];
+const sevRank = k => Math.max(0, SEVERITIES.findIndex(x => x[0] === k));
+const TICKET_SRC = [['app', '📱'], ['call', '📞'], ['qr', '🔳'], ['whatsapp', '💬']];
+const QR_PROBLEMS = [['stopped', '🛑'], ['door', '🚪'], ['noise', '🔊'], ['buttons', '🔘'], ['light', '💡'], ['other', '❓']];
 const SKILLS = ['install', 'wiring', 'welding', 'service', 'qc', 'driving', 'survey', 'sales'];
 const DOCS = ['id', 'address', 'safety_cert', 'license'];
 /* training modules: [module, roles who must pass it, correct option index for each of 3 questions] */
@@ -3224,7 +3293,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15, poDays: 7,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15, poDays: 7, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -3249,7 +3318,8 @@ const RULE_GROUPS = {
   privacy: ['officeNumber', 'accessAlert'],
   ladderpay: ['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior', 'payCrewJob', 'payQcInspection', 'spotTrainee', 'spotTech', 'spotSenior'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
-  amc: ['amcPrice']
+  amc: ['amcPrice'],
+  tickets: ['slaUnsafe', 'slaBreakdown', 'slaRepeat', 'slaRoutine']
 };
 const groupOf = key => Object.keys(RULE_GROUPS).find(g => RULE_GROUPS[g].includes(key));
 /* rate card: costs and margins can be changed from a future date; a quote uses the rates in force on its day and keeps that version */
@@ -3705,6 +3775,11 @@ function escFor(n, from, id) {
   return { k: 'escalated', roles: up, pid: n.pid, ref: n.k, who: n.roles, whoUids: (n.uids || []).filter(Boolean), days, level: lv, eid: key, tid: n.tid, uid: n.uid, not: n.k === 'onboarding' ? n.uid : undefined, urgent: lv >= 3, acks: ack ? ack.n : 0 };
 }
 const ticketOf = (P, tid) => P.tickets.find(x => x.id === tid);
+/* ticket time limit (hours, set by the Owner); a person trapped has no published target: it is an emergency for the rescue line */
+const slaHours = sev => ({ unsafe: S.config.slaUnsafe, breakdown: S.config.slaBreakdown, repeat: S.config.slaRepeat, routine: S.config.slaRoutine })[sev];
+const ticketDue = x => { const h = +slaHours(x.sev || 'routine'); return h > 0 ? Date.parse(x.t) + h * 3600e3 : null; };
+const ticketLate = (x, now = Date.now()) => { const d = ticketDue(x); return d != null && (x.resolvedT ? Date.parse(x.resolvedT) > d : x.status !== 'closed' && now > d); };
+const liftCode = id => { let h = 2166136261; for (const ch of id) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0; let out = ''; for (let i = 0; i < 6; i++) { out += '23456789ABCDEFGHJKLMNPQRSTUVWXYZ'[h % 32]; h = Math.floor(h / 32) + (i + 1) * 7919; } return 'L-' + out; };
 /* pay weeks and rule dates use the company's time zone (India, +05:30) so every phone gives the same answer */
 const CO_TZ = 330 * 60000;
 const coDay = ms => new Date(ms + CO_TZ).toISOString().slice(0, 10);
@@ -4341,9 +4416,21 @@ const RULES = {
       if (P.stage === 'lost') return { k: 'err_stage', v: { stage: stName(P.stage) } };
       if (!TICKET_KINDS.some(k => k[0] === ev.data.kind)) return 'err_choose';
       if (ev.data.kind === 'breakdown' && P.stage !== 'amc') return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      if (ev.data.sev != null && !SEVERITIES.some(x => x[0] === ev.data.sev && x[0] !== 'repeat')) return 'err_choose';
+      if (ev.data.sev === 'trapped' && ev.data.kind !== 'breakdown') return 'err_choose';
+      if (ev.data.src != null && !TICKET_SRC.some(x => x[0] === ev.data.src)) return 'err_choose';
       return need(ev.data.tid && !ticketOf(P, ev.data.tid) && (ev.data.text || '').trim(), 'err_fill');
     }
   },
+  TICKET_SEVERITY: {
+    roles: ['admin', 'owner', 'sales'], project: true, check: (S, ev, u, P) => {
+      const x = ticketOf(P, ev.data.tid);
+      if (!x || x.status === 'closed') return 'err_already';
+      if (!SEVERITIES.some(s => s[0] === ev.data.sev) || ev.data.sev === x.sev || (ev.data.sev === 'trapped' && x.kind !== 'breakdown')) return 'err_choose';
+      return need((ev.data.note || '').trim(), 'err_reason');
+    }
+  },
+  LIFT_QR_SET: { roles: ['admin', 'owner'], project: true, stages: ['amc'], check: (S, ev, u, P) => need(P.lift && (ev.data.label || '').trim().length >= 2 && ev.data.label.trim().length <= 30, 'err_fill') },
   TICKET_ASSIGNED: {
     roles: ['admin', 'owner', 'sales'], project: true, check: (S, ev, u, P) => {
       const x = ticketOf(P, ev.data.tid);
@@ -4863,6 +4950,8 @@ function apply(S, ev) {
       const start = ev.t.slice(0, 10), n = Math.max(1, S.config.amcVisits), gap = Math.round(365 / n);
       P.done = { team: { lead: leadAt(P, passEntry(P)), crew: crewAt(P, passEntry(P)).slice(), partner: (passEntry(P) || {}).partner || P.partner || null }, t: ev.t, by: ev.by, warrantyMonths: S.config.warrantyMonths, amc: { start, visits: Array.from({ length: n }, (_, i) => addDays(gap * (i + 1), new Date(ev.t))) } };
       P.amcEnd = addDays(365, new Date(ev.t));
+      /* each handed-over lift gets a code for its QR sticker (no personal data in it) */
+      P.lift = { code: liftCode(P.id + ev.id), label: P.id, t: ev.t };
       setStage(P, 'amc', ev);
       break;
     }
@@ -4882,10 +4971,18 @@ function apply(S, ev) {
     case 'MSG_LOGGED': P.msgs.push({ id: d.mid, t: ev.t, by: ev.by, template: d.template || '', text: d.text || '', lang: d.lang || '', status: 'opened', hist: [] }); break;
     case 'MSG_STATUS': { const m = P.msgs.find(x => x.id === d.mid); m.status = d.status; m.hist.push({ status: d.status, t: ev.t, by: ev.by, note: d.note || '' }); break; }
     case 'SERVICE_DONE': P.service[d.visit] = { t: ev.t, by: ev.by, checks: d.checks, note: d.note || '', met: d.met || '', ev: ev_(d).map(e => e.id) }; break;
-    case 'TICKET_OPENED': P.tickets.push({ id: d.tid, kind: d.kind, text: d.text, t: ev.t, by: ev.by, ev: ev_(d).map(e => e.id), status: 'open', owner: null, due: '', hist: [{ status: 'open', t: ev.t, by: ev.by, note: d.text }] }); break;
+    case 'TICKET_OPENED': {
+      /* a fault that comes back within 30 days of an earlier breakdown is a repeat fault */
+      const back = d.kind !== 'request' && P.tickets.some(o => o.kind === 'breakdown' && Date.parse(ev.t) - Date.parse(o.t) < 30 * 864e5);
+      let sev = d.sev || (d.kind === 'breakdown' ? 'breakdown' : 'routine'); if (back && sev === 'routine') sev = 'repeat';
+      P.tickets.push({ id: d.tid, kind: d.kind, text: d.text, t: ev.t, by: ev.by, ev: ev_(d).map(e => e.id), status: 'open', owner: null, due: '', sev, repeat: back, src: d.src || 'app', resolvedT: null, hist: [{ status: 'open', t: ev.t, by: ev.by, note: d.text }] });
+      break;
+    }
+    case 'TICKET_SEVERITY': { const x = ticketOf(P, d.tid); x.hist.push({ status: 'sev', t: ev.t, by: ev.by, from: x.sev, to: d.sev, note: d.note }); x.sev = d.sev; break; }
+    case 'LIFT_QR_SET': P.lift.label = d.label.trim(); break;
     case 'TICKET_ASSIGNED': { const x = ticketOf(P, d.tid); x.owner = d.uid; x.due = d.due; if (x.status === 'open') x.status = 'assigned'; x.hist.push({ status: 'assigned', t: ev.t, by: ev.by, note: userName(d.uid) + ' · ' + d.due }); break; }
-    case 'TICKET_UPDATED': { const x = ticketOf(P, d.tid); x.status = d.status; x.hist.push({ status: d.status, t: ev.t, by: ev.by, note: d.note, ev: ev_(d).map(e => e.id) }); break; }
-    case 'TICKET_CLOSED': { const x = ticketOf(P, d.tid); if (d.fault) Object.assign(x, { fault: d.fault, faultT: ev.t, faultBy: ev.by }); x.status = d.ok === false ? 'in_progress' : 'closed'; x.hist.push({ status: d.ok === false ? 'reopened' : 'closed', t: ev.t, by: ev.by, note: d.note || '' }); break; }
+    case 'TICKET_UPDATED': { const x = ticketOf(P, d.tid); x.status = d.status; if (d.status === 'resolved') x.resolvedT = ev.t; x.hist.push({ status: d.status, t: ev.t, by: ev.by, note: d.note, ev: ev_(d).map(e => e.id) }); break; }
+    case 'TICKET_CLOSED': { const x = ticketOf(P, d.tid); if (d.fault) Object.assign(x, { fault: d.fault, faultT: ev.t, faultBy: ev.by }); x.status = d.ok === false ? 'in_progress' : 'closed'; if (d.ok === false) x.resolvedT = null; x.hist.push({ status: d.ok === false ? 'reopened' : 'closed', t: ev.t, by: ev.by, note: d.note || '' }); break; }
     case 'AMC_ENDED': P.amcEnded = { t: ev.t, by: ev.by, reason: d.reason }; break;
     case 'AMC_RENEWED': { P.amcEnded = null;
       const from = P.amcEnd && P.amcEnd > ev.t.slice(0, 10) ? P.amcEnd : ev.t.slice(0, 10), n = Math.max(1, S.config.amcVisits) * +d.years, gap = Math.round(365 * +d.years / n);
@@ -5080,12 +5177,14 @@ function needs(P) {
   }
   if (passedQc(P) && leadAt(P, passEntry(P))) crewAt(P, passEntry(P)).filter(x => !S.reviews.some(r => r.src === 'lead' && r.pid === P.id && r.uid === x)).forEach(x => add('rate_crew', ['tech'], { uids: [leadAt(P, passEntry(P))], uid: x }));
   for (const x of P.tickets) {
-    if (x.status === 'open') add('assign_ticket', ['admin', 'owner', 'sales'], { tid: x.id, urgent: x.kind === 'breakdown', uids: [P.sales], since: x.t });
-    else if (['assigned', 'in_progress'].includes(x.status)) add('work_ticket', [roleOf(x.owner) || 'admin'], { uids: [x.owner], tid: x.id, urgent: x.kind === 'breakdown', overdue: x.due && x.due < todayStr(), since: x.due ? addDays(1, new Date(x.due + 'T12:00:00')) + 'T00:00:00' : null });
+    const sev = x.sev || 'routine', late = ticketLate(x), hot = ['trapped', 'unsafe', 'breakdown'].includes(sev), alarm = ['trapped', 'unsafe'].includes(sev) && !['resolved', 'closed'].includes(x.status);
+    if (x.status === 'open') add('assign_ticket', ['admin', 'owner', 'sales'], { tid: x.id, sev, urgent: hot || late, alarm, uids: [P.sales], since: x.t });
+    else if (['assigned', 'in_progress'].includes(x.status)) add('work_ticket', [roleOf(x.owner) || 'admin'], { uids: [x.owner], tid: x.id, sev, urgent: hot || late, alarm, overdue: late || (x.due && x.due < todayStr()), since: x.due ? addDays(1, new Date(x.due + 'T12:00:00')) + 'T00:00:00' : null });
+    if (late && !['resolved', 'closed'].includes(x.status)) add('sla_breach', ['admin', 'owner'], { tid: x.id, sev, since: new Date(ticketDue(x)).toISOString() });
     else if (x.status === 'resolved') add('confirm_ticket', P.customer ? ['customer'] : ['admin', 'owner'], { uids: [P.customer], tid: x.id });
   }
   /* escalation ladder: the main next step counts from the day the stage began, other work from its own date */
-  const main = out.find(x => !['po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
+  const main = out.find(x => !['sla_breach', 'po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
   if (main && OPEN_STAGES.includes(P.stage) && !main.since) Object.assign(main, { since: lastHoldEnd(P) > P.since ? lastHoldEnd(P) : P.since, escId: P.stage });
   const blocked = P.blockers.some(b => b.open) || P.incidents.some(i => i.open) || onHold(P);
   for (const n of out.slice()) if (n.since && !(blocked && n === main)) { const e = escFor(n, n.since, n.escId || n.bid || n.iid || n.tid || n.mid || n.payId || n.visit); if (e) out.push(e); }
@@ -5353,7 +5452,7 @@ function render() {
   const r = App.route;
   App.pageSay = ''; App.pageHelp = '';
   let h;
-  const gated = installGate() && !['welcome', 'lang', 'intro', 'install'].includes(r.name);
+  const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr'].includes(r.name);
   try { h = gated ? SCREENS.install() : (SCREENS[r.name] || SCREENS.home)(r.p || {}); }
   catch (e) { console.error(e); h = `<main class="wrap"><div class="err">⚠️ ${esc(e.message)}</div><button class="btn btn-p" data-a="nav" data-v="home">🏠 ${t('nav_home')}</button></main>`; }
   const banner = App.mode === 'practice' ? `<div class="practice">🎓 ${t('practice_banner')}</div>` : '';
@@ -5677,12 +5776,12 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', sla_breach: '⏱️', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { if (App.me && OUTSIDERS.includes(App.me.role)) return (P.site.address || '').split(/[,\n]/)[0] || areaOf(P) || P.id; return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
   const P = S.projects[n.pid];
-  const sub = ['decide_claim', 'send_claim', 'receive_claim'].includes(n.k) && P && claimOf(P, n.cid) ? ' · ' + t(claimOf(P, n.cid).line) + ' · ' + t('clk_' + claimOf(P, n.cid).kind) : n.k === 'po_late' ? ' · ' + fmtD(n.date) : n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
+  const sub = n.sev && ['assign_ticket', 'work_ticket', 'sla_breach'].includes(n.k) ? ' · ' + SEVERITIES[sevRank(n.sev)][1] + ' ' + t('sev_' + n.sev) : ['decide_claim', 'send_claim', 'receive_claim'].includes(n.k) && P && claimOf(P, n.cid) ? ' · ' + t(claimOf(P, n.cid).line) + ' · ' + t('clk_' + claimOf(P, n.cid).kind) : n.k === 'po_late' ? ' · ' + fmtD(n.date) : n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
   if (!P || n.k === 'job_open') {
     const info = n.k === 'job_open' && S.posts[n.postId] ? jobTitle(S.posts[n.postId]) + ' · 📍 ' + S.posts[n.postId].card.area : n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
       : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'access_alert' ? userName(n.uid) + ' · ' + t(n.why, { n: n.n }) : n.k === 'sos' ? userName(n.uid) + ' · ' + fmtD(S.sos[n.sid].t, true) + (n.sosPid ? ' · ' + n.sosPid : '') : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
@@ -7953,6 +8052,107 @@ function tplSheet(id) {
     <p class="small muted">${t('tpl_vars')}</p><button class="btn btn-ok btn-big" data-a="tplSave">💾 ${t('save')}</button>`);
 }
 
+/* QR code (byte mode, error correction level M, versions 1–20): returns a square array of true/false modules */
+const QR = (() => {
+  const ECC = [0, 10, 16, 26, 18, 24, 16, 18, 22, 22, 26, 30, 22, 22, 24, 24, 28, 28, 26, 26, 26], BLK = [0, 1, 1, 1, 2, 2, 4, 4, 4, 5, 5, 5, 8, 9, 9, 10, 10, 11, 13, 14, 16];
+  const rawMods = v => { let r = (16 * v + 128) * v + 64; if (v >= 2) { const n = Math.floor(v / 7) + 2; r -= (25 * n - 10) * n - 55; if (v >= 7) r -= 36; } return r; };
+  const dataCw = v => Math.floor(rawMods(v) / 8) - ECC[v] * BLK[v];
+  const mul = (x, y) => { let z = 0; for (let i = 7; i >= 0; i--) { z = (z << 1) ^ ((z >>> 7) * 0x11D); z ^= ((y >>> i) & 1) * x; } return z & 255; };
+  const rsDiv = deg => { const r = new Array(deg).fill(0); r[deg - 1] = 1; let root = 1; for (let i = 0; i < deg; i++) { for (let j = 0; j < deg; j++) { r[j] = mul(r[j], root); if (j + 1 < deg) r[j] ^= r[j + 1]; } root = mul(root, 2); } return r; };
+  const rsRem = (data, div) => { const r = div.map(() => 0); for (const b of data) { const f = b ^ r.shift(); r.push(0); div.forEach((c, i) => { r[i] ^= mul(c, f); }); } return r; };
+  const align = v => { if (v === 1) return []; const n = Math.floor(v / 7) + 2, step = Math.ceil((v * 4 + 4) / (n * 2 - 2)) * 2, out = [6]; for (let i = 0, p = v * 4 + 10; i < n - 1; i++, p -= step) out.splice(1, 0, p); return out; };
+  function encode(text) {
+    const bytes = Array.from(new TextEncoder().encode(text));
+    let v = 1; while (v <= 20 && 4 + (v < 10 ? 8 : 16) + bytes.length * 8 > dataCw(v) * 8) v++;
+    if (v > 20) throw new Error('qr_too_long');
+    const bits = [], put = (val, n) => { for (let i = n - 1; i >= 0; i--) bits.push((val >>> i) & 1); };
+    put(4, 4); put(bytes.length, v < 10 ? 8 : 16); bytes.forEach(b => put(b, 8));
+    const cap = dataCw(v) * 8; put(0, Math.min(4, cap - bits.length)); put(0, (8 - bits.length % 8) % 8);
+    for (let pad = 0xEC; bits.length < cap; pad ^= 0xEC ^ 0x11) put(pad, 8);
+    const data = []; for (let i = 0; i < bits.length; i += 8) data.push(parseInt(bits.slice(i, i + 8).join(''), 2));
+    /* split into blocks, add error correction, interleave */
+    const nb = BLK[v], raw = Math.floor(rawMods(v) / 8), short = nb - raw % nb, sLen = Math.floor(raw / nb), div = rsDiv(ECC[v]), blocks = [];
+    for (let i = 0, k = 0; i < nb; i++) { const d = data.slice(k, k + sLen - ECC[v] + (i < short ? 0 : 1)); k += d.length; const e = rsRem(d, div); if (i < short) d.push(0); blocks.push(d.concat(e)); }
+    const cw = []; for (let i = 0; i < blocks[0].length; i++) blocks.forEach((b, j) => { if (i !== sLen - ECC[v] || j >= short) cw.push(b[i]); });
+    /* function patterns */
+    const n = v * 4 + 17, m = [...Array(n)].map(() => Array(n).fill(false)), fn = [...Array(n)].map(() => Array(n).fill(false));
+    const set = (x, y, b) => { m[y][x] = b; fn[y][x] = true; };
+    for (let i = 0; i < n; i++) { set(6, i, i % 2 === 0); set(i, 6, i % 2 === 0); }
+    const finder = (cx, cy) => { for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++) { const d = Math.max(Math.abs(dx), Math.abs(dy)), x = cx + dx, y = cy + dy; if (x >= 0 && x < n && y >= 0 && y < n) set(x, y, d !== 2 && d !== 4); } };
+    finder(3, 3); finder(n - 4, 3); finder(3, n - 4);
+    const al = align(v); al.forEach((a, i) => al.forEach((b, j) => { if (!((i === 0 && j === 0) || (i === 0 && j === al.length - 1) || (i === al.length - 1 && j === 0))) for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) set(a + dx, b + dy, Math.max(Math.abs(dx), Math.abs(dy)) !== 1); }));
+    const format = mask => { const d = (0 << 3) | mask; let r = d; for (let i = 0; i < 10; i++) r = (r << 1) ^ ((r >>> 9) * 0x537); const b = ((d << 10) | r) ^ 0x5412, bit = i => ((b >>> i) & 1) === 1;
+      for (let i = 0; i <= 5; i++) set(8, i, bit(i)); set(8, 7, bit(6)); set(8, 8, bit(7)); set(7, 8, bit(8)); for (let i = 9; i < 15; i++) set(14 - i, 8, bit(i));
+      for (let i = 0; i < 8; i++) set(n - 1 - i, 8, bit(i)); for (let i = 8; i < 15; i++) set(8, n - 15 + i, bit(i)); set(8, n - 8, true); };
+    format(0);
+    if (v >= 7) { let r = v; for (let i = 0; i < 12; i++) r = (r << 1) ^ ((r >>> 11) * 0x1F25); const b = (v << 12) | r; for (let i = 0; i < 18; i++) { const bt = ((b >>> i) & 1) === 1, a = n - 11 + i % 3, c = Math.floor(i / 3); set(a, c, bt); set(c, a, bt); } }
+    /* data in zigzag columns */
+    let i = 0; for (let right = n - 1; right >= 1; right -= 2) { if (right === 6) right = 5; for (let vert = 0; vert < n; vert++) for (let j = 0; j < 2; j++) { const x = right - j, up = ((right + 1) & 2) === 0, y = up ? n - 1 - vert : vert; if (!fn[y][x] && i < cw.length * 8) { m[y][x] = ((cw[i >>> 3] >>> (7 - (i & 7))) & 1) === 1; i++; } } }
+    /* choose the mask with the lowest penalty */
+    const MASKS = [(x, y) => (x + y) % 2, (x, y) => y % 2, (x, y) => x % 3, (x, y) => (x + y) % 3, (x, y) => (Math.floor(x / 3) + Math.floor(y / 2)) % 2, (x, y) => x * y % 2 + x * y % 3, (x, y) => (x * y % 2 + x * y % 3) % 2, (x, y) => ((x + y) % 2 + x * y % 3) % 2];
+    const apply = k => { for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) if (!fn[y][x] && MASKS[k](x, y) === 0) m[y][x] = !m[y][x]; };
+    const penalty = () => { let p = 0, dark = 0;
+      const lines = []; for (let y = 0; y < n; y++) { lines.push(m[y]); lines.push(m.map(r => r[y])); }
+      for (const ln of lines) { let run = 1; for (let k = 1; k <= n; k++) { if (k < n && ln[k] === ln[k - 1]) run++; else { if (run >= 5) p += run - 2; run = 1; } }
+        const s = ln.map(b => b ? 1 : 0).join(''); p += 40 * ((s.match(/(?=10111010000|00001011101)/g) || []).length); }
+      for (let y = 0; y < n - 1; y++) for (let x = 0; x < n - 1; x++) { const c = m[y][x]; if (c === m[y][x + 1] && c === m[y + 1][x] && c === m[y + 1][x + 1]) p += 3; }
+      m.forEach(r => r.forEach(b => { if (b) dark++; })); p += Math.floor(Math.abs(dark * 20 - n * n * 10) / (n * n)) * 10; return p; };
+    let best = 0, bestP = Infinity;
+    for (let k = 0; k < 8; k++) { apply(k); format(k); const pp = penalty(); if (pp < bestP) { bestP = pp; best = k; } apply(k); }
+    apply(best); format(best);
+    return m;
+  }
+  /* an SVG drawing with a quiet zone of 4 modules */
+  const svg = (text, px) => { const m = encode(text), n = m.length, s = n + 8; let d = ''; m.forEach((r, y) => r.forEach((b, x) => { if (b) d += `M${x + 4} ${y + 4}h1v1h-1z`; }));
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${s} ${s}" width="${px}" height="${px}" shape-rendering="crispEdges" role="img" aria-label="QR"><rect width="${s}" height="${s}" fill="#fff"/><path d="${d}" fill="#000"/></svg>`; };
+  return { encode, svg };
+})();
+/* the address the lift's QR opens: lift code, label and the numbers to call; never the customer's name or phone */
+function liftUrl(P) {
+  const q = new URLSearchParams({ q: P.lift.code, l: P.lift.label || '' }); if (S.config.sosNumber) q.set('r', S.config.sosNumber); if (S.config.officeNumber) q.set('o', S.config.officeNumber);
+  return location.href.split('#')[0].split('?')[0] + '#' + q.toString();
+}
+function parseQr(hash) {
+  if (!/^#q=L-[A-Z0-9]{6}/.test(hash || '')) return null;
+  const q = new URLSearchParams(hash.slice(1)), num = v => (v || '').replace(/[^\d+]/g, '').slice(0, 15);
+  return { code: q.get('q').slice(0, 8), label: (q.get('l') || '').slice(0, 40), rescue: num(q.get('r')), office: num(q.get('o')), step: '', problem: '' };
+}
+SCREENS.liftqr = ({ pid }) => {
+  const P = S.projects[pid], u = App.me;
+  if (!P || !P.lift || !canSee(u, P) || !['owner', 'admin', 'sales', 'qc'].includes(u.role)) return SCREENS.home();
+  App.pageSay = t('lift_qr');
+  let code; try { code = QR.svg(liftUrl(P), 300); } catch (e) { code = `<div class="err">${t('lift_label_long')}</div>`; }
+  const r = S.config.sosNumber, o = S.config.officeNumber;
+  return topBar(t('lift_qr'), { back: true }) + `<main class="wrap"><div class="row noprint wrapw" style="margin-bottom:10px"><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button>${allowed('LIFT_QR_SET', P) ? `<button class="btn" data-a="wizOpen" data-v="liftLabel|${P.id}">✏️ ${t('lift_label')}</button>` : ''}</div>
+    ${!r ? `<div class="warnbox noprint">⚠️ ${t('lift_no_rescue')}</div>` : ''}
+    <div class="card doc center" id="sticker"><h2 style="margin:0">${esc(S.org.name)}</h2><p style="font-size:1.2rem;margin:6px 0"><b>${esc(P.lift.label)}</b> · ${esc(P.lift.code)}</p>
+      <div style="display:inline-block;background:#fff;padding:6px">${code}</div>
+      <p style="font-size:1.1rem"><b>${t('qr_scan_text')}</b></p>
+      <p style="font-size:1.35rem;margin:6px 0">🆘 ${t('qr_trapped_call')}: <b>${esc(r || o || '112')}</b></p><p style="font-size:1.2rem;margin:6px 0">🚑 ${t('qr_danger')}: <b>112</b></p>
+      <p class="small muted">${t('qr_sticker_note')}</p></div>
+    <p class="small muted noprint">${t('lift_qr_how')}</p></main>` + nav('projects');
+};
+function qrMessage(q, phone) {
+  return t('qr_msg', { code: q.code, label: q.label, p: t('qp_' + (q.problem || 'other')) }) + (phone ? ' · 📞 ' + phone : '');
+}
+SCREENS.qr = () => {
+  const q = App.qr;
+  if (!q) return SCREENS.login ? SCREENS.login() : '';
+  App.pageSay = t('qr_title');
+  const callNo = q.rescue || q.office || '112', langs = LANGS.map(l => `<button class="btn btn-sm ${LANG === l ? 'btn-p' : ''}" data-a="qrLang" data-v="${l}">${LANG_NAME[l]}</button>`).join('');
+  const report = q.step === 'report' ? `<div class="card"><h3>${t('qr_what')}</h3>${`<div class="tiles">${QR_PROBLEMS.map(([k, i]) => `<button class="tile ${q.problem === k ? 'on' : ''}" data-a="qrProblem" data-v="${k}" aria-pressed="${q.problem === k}"><span class="i">${i}</span>${t('qp_' + k)}</button>`).join('')}</div>`}
+      <div class="field" style="margin-top:10px"><label for="qrPhone"><b>${t('qr_phone')}</b> <small class="muted">(${t('optional')})</small></label><input class="in" id="qrPhone" type="tel" inputmode="numeric" maxlength="14" autocomplete="off"></div>
+      ${q.problem ? (q.office ? `<div class="stack"><button class="btn btn-ok btn-big" data-a="qrSend" data-v="wa">💬 ${t('qr_send_wa')}</button><button class="btn btn-big" data-a="qrSend" data-v="sms">✉️ ${t('qr_send_sms')}</button><a class="btn btn-big" href="tel:${esc(q.office)}">📞 ${t('qr_call_office')}</a></div>` : `<a class="btn btn-p btn-big" href="tel:${esc(callNo)}">📞 ${t('qr_call_office')}</a>`) : ''}
+      <p class="small muted">${t('qr_send_note')}</p></div>` : '';
+  return `<main class="wrap" style="padding-top:14px"><div class="row wrapw" style="justify-content:center;gap:6px">${langs}</div>
+    <div class="center" style="margin:12px 0"><div style="font-size:2.4rem">🛗</div><h1 style="margin:4px 0">${esc(q.label || t('qr_title'))}</h1><p class="muted">${esc(q.code)}</p></div>
+    <a class="btn btn-big" style="font-size:1.6rem;padding:26px 12px;background:#c62828;color:#fff;border-color:#8e0000" href="tel:${esc(callNo)}">🆘 ${t('qr_trapped')}</a>
+    <p class="center" style="margin:6px 0 14px">${t('qr_keep_112')} <a href="tel:112"><b>112</b></a></p>
+    <button class="btn btn-big" style="font-size:1.3rem;padding:20px 12px;background:#1f5fbf;color:#fff" data-a="qrReport">🛠️ ${t('qr_report')}</button>
+    ${report}
+    <div class="note" style="margin-top:14px">📵 ${t('qr_no_data')}</div>
+    <p class="center small" style="margin-top:18px"><button class="btn btn-sm" data-a="qrStaff">🔑 ${t('qr_staff')}</button></p></main>`;
+};
 /* ---------- AMC: visits, tickets, renewal ---------- */
 function amcCard(P) {
   if (!P.done) return '';
@@ -7962,14 +8162,17 @@ function amcCard(P) {
     return `<div class="list-item"><span>${x ? '✅' : d < todayStr() ? '⏰' : '📅'}</span><span class="grow">${t('amc_visit_n', { n: i + 1 })} · ${fmtD(d)}${x ? `<br><span class="small muted">${userName(x.by)} · ${fmtD(x.t)}${Object.values(x.checks).includes('fail') ? ' · ⚠️ ' + t('amc_issues') : ''}</span>` : ''}</span>
       ${canDo ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="service|${P.id}|visit|${i}">🔧 ${t('amc_do_visit')}</button>` : x ? `<button class="btn btn-sm" data-a="svcView" data-v="${P.id}|${i}">👁️</button>` : ''}</div>`;
   }).join('');
-  const tk = P.tickets.map(x => {
-    const btns = [];
+  const tk = P.tickets.slice().sort((a, b) => (a.status === 'closed') - (b.status === 'closed') || sevRank(a.sev) - sevRank(b.sev) || (a.t < b.t ? -1 : 1)).map(x => {
+    const btns = [], due = ticketDue(x), late = ticketLate(x), open = !['resolved', 'closed'].includes(x.status);
+    if (x.status !== 'closed' && allowed('TICKET_SEVERITY', P)) btns.push(`<button class="btn btn-sm" data-a="wizOpen" data-v="ticketSev|${P.id}|tid|${x.id}">🚦 ${t('sev_change')}</button>`);
     if (x.status === 'open' && allowed('TICKET_ASSIGNED', P)) btns.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="ticketAssign|${P.id}|tid|${x.id}">👤 ${t('tk_assign_ticket')}</button>`);
     if (['assigned', 'in_progress'].includes(x.status) && (x.owner === u.uid || ['admin', 'owner'].includes(u.role))) btns.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="ticketUpdate|${P.id}|tid|${x.id}">🔧 ${t('tk_work_ticket')}</button>`);
     if (x.status === 'resolved' && allowed('TICKET_CLOSED', P)) btns.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="ticketClose|${P.id}|tid|${x.id}">✅ ${t('tk_confirm_ticket')}</button>`);
-    return `<div class="list-item" style="display:block"><b>${TICKET_KINDS.find(k => k[0] === x.kind)[1]} ${t('tkind_' + x.kind)}</b> <span class="chip ${x.status === 'closed' ? 'c-ok' : x.status === 'resolved' ? 'c-info' : 'c-warn'}">${t('ts_' + x.status)}</span>
+    const sv = x.sev || 'routine', sevChip = `<span class="chip ${sevRank(sv) <= 1 ? 'c-bad' : sevRank(sv) <= 3 ? 'c-warn' : 'c-mute'}">${SEVERITIES[sevRank(sv)][1]} ${t('sev_' + sv)}</span>`;
+    const clock = due == null ? (sv === 'trapped' && open ? ` <span class="chip c-bad">🆘 ${t('sla_now')}</span>` : '') : open ? ` <span class="chip ${late ? 'c-bad' : 'c-info'}">⏱️ ${late ? t('sla_late', { h: Math.ceil((Date.now() - due) / 3600e3) }) : t('sla_left', { h: Math.max(1, Math.ceil((due - Date.now()) / 3600e3)) })}</span>` : late ? ` <span class="chip c-warn">⏱️ ${t('sla_was_late')}</span>` : ` <span class="chip c-ok">⏱️ ${t('sla_in_time')}</span>`;
+    return `<div class="list-item" style="display:block"><b>${TICKET_KINDS.find(k => k[0] === x.kind)[1]} ${t('tkind_' + x.kind)}</b> ${sevChip}${x.repeat ? ` <span class="chip c-warn">🔁 ${t('sev_repeat')}</span>` : ''}${clock} <span class="chip ${x.status === 'closed' ? 'c-ok' : x.status === 'resolved' ? 'c-info' : 'c-warn'}">${t('ts_' + x.status)}</span> <span class="small muted">${(TICKET_SRC.find(k => k[0] === x.src) || ['', ''])[1]}</span>
       <div class="small">${esc(x.text)}</div><div class="small muted">${userName(x.by)} · ${fmtD(x.t, true)}${x.owner ? ' · 👤 ' + esc(userName(x.owner)) : ''}${x.due ? ' · 📅 ' + fmtD(x.due) : ''}${x.due && x.due < todayStr() && x.status !== 'closed' && x.status !== 'resolved' ? ' · <b style="color:var(--bad)">' + t('overdue') + '</b>' : ''}</div>
-      ${x.hist.length > 1 ? `<details class="small"><summary>${t('history')}</summary>${x.hist.map(h => `<div>${fmtD(h.t, true)} · ${t('ts_' + h.status)} · ${esc(userName(h.by))} ${esc(h.note || '')}</div>`).join('')}</details>` : ''}
+      ${x.hist.length > 1 ? `<details class="small"><summary>${t('history')}</summary>${x.hist.map(h => `<div>${fmtD(h.t, true)} · ${h.status === 'sev' ? t('sev_' + h.from) + ' → ' + t('sev_' + h.to) : t('ts_' + h.status)} · ${esc(userName(h.by))} ${esc(h.note || '')}</div>`).join('')}</details>` : ''}
       ${btns.length ? `<div class="row wrapw" style="margin-top:6px">${btns.join('')}</div>` : ''}</div>`;
   }).join('');
   const out = P.amcEnded || (P.amcEnd && P.amcEnd < todayStr());
@@ -7977,6 +8180,7 @@ function amcCard(P) {
     <h3 style="margin-top:10px">${t('amc_visits')}</h3>${visits}
     ${P.renewals.length ? `<div class="small muted" style="margin-top:6px">${P.renewals.map(r => `♻️ ${fmtD(r.t)} · ${r.years} ${t('years')} · ${money(r.amount)} · ${esc(userName(r.by))}`).join('<br>')}</div>` : ''}
     ${allowed('AMC_RENEWED', P) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="renew|${P.id}">♻️ ${t('tk_amc_renew')}</button>` : ''}
+    ${P.lift && ['owner', 'admin', 'sales', 'qc'].includes(u.role) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="liftQr" data-v="${P.id}">🔳 ${t('lift_qr')} · ${esc(P.lift.code)}</button>` : ''}
     <h3 style="margin-top:12px">🎫 ${t('tickets')}</h3>${tk || `<p class="muted small">${t('nothing_here')}</p>`}
     ${allowed('TICKET_OPENED', P) ? `<button class="btn" style="margin-top:8px" data-a="wizOpen" data-v="ticket|${P.id}">🚨 ${t('ticket_new')}</button>` : ''}</div>`;
 }
@@ -7995,12 +8199,30 @@ WIZ.service = {
   }
 };
 WIZ.ticket = {
-  title: 'ticket_new', save: 'send', saveIcon: '🎫', init: () => ({ kind: '', text: '', ph: [] }),
+  title: 'ticket_new', save: 'send', saveIcon: '🎫', init: () => ({ kind: '', sev: '', src: App.me.role === 'customer' ? 'app' : 'call', text: '', ph: [] }),
   steps: [
     { id: 'kind', icon: '🎫', say: 's_ticket_kind', body: (c, P) => (P.stage === 'amc' && (P.amcEnded || (P.amcEnd && P.amcEnd < todayStr())) ? `<div class="note">🛑 ${t('amc_out_paid')}</div>` : '') + tiles('kind', TICKET_KINDS.filter(k => k[0] !== 'breakdown' || P.stage === 'amc').map(([k, i]) => [k, i, 'tkind_' + k, 'tkind_' + k + '_d']), 'one'), check: c => c.kind ? null : 'err_choose' },
+    {
+      id: 'sev', icon: '🚦', say: 's_ticket_sev',
+      body: c => tiles('sev', SEVERITIES.filter(([k]) => k !== 'repeat' && (k !== 'trapped' || c.kind === 'breakdown')).map(([k, i]) => [k, i, 'sev_' + k, 'sev_' + k + '_d']), 'one')
+        + (c.sev === 'trapped' ? `<div class="err">🆘 ${t('trapped_call_now')}</div><div class="tiles">${S.config.sosNumber ? `<a class="tile" href="tel:${esc(S.config.sosNumber)}"><span class="i">📞</span>${t('call_rescue')}</a>` : ''}<a class="tile" href="tel:112"><span class="i">🚑</span>112</a></div>` : '')
+        + (App.me.role !== 'customer' ? `<h3 style="margin-top:12px">${t('ticket_src_q')}</h3>` + tiles('src', TICKET_SRC.map(([k, i]) => [k, i, 'tsrc_' + k])) : ''),
+      check: c => c.sev ? null : 'err_choose'
+    },
     { id: 'text', icon: '📝', say: 's_ticket_text', body: () => inp('text', 'f_problem', { area: true, mic: true }) + photoSlot('ph', 'ph_problem', 0, { video: true, tag: 'ticket' }), check: c => c.text.trim() ? null : 'err_fill' }
   ],
-  async finish(c, P) { const r = await run([['TICKET_OPENED', P.id, { tid: 'T-' + rid(5), kind: c.kind, text: c.text.trim(), ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_ticket_opened') : r; }
+  async finish(c, P) { const r = await run([['TICKET_OPENED', P.id, { tid: 'T-' + rid(5), kind: c.kind, sev: c.sev, src: c.src, text: c.text.trim(), ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_ticket_opened') : r; }
+};
+WIZ.ticketSev = {
+  title: 'sev_change', save: 'save', noDraft: true, init: (P) => ({ sev: '', note: '' }),
+  steps: [{ id: 's', icon: '🚦', say: 's_ticket_sev', body: (c, P) => { const x = ticketOf(P, W.opts.tid) || {}; return `<div class="card">${esc(x.text || '')}</div>` + tiles('sev', SEVERITIES.filter(([k]) => k !== x.sev && (k !== 'trapped' || x.kind === 'breakdown')).map(([k, i]) => [k, i, 'sev_' + k, 'sev_' + k + '_d']), 'one') + inp('note', 'f_reason', { area: true, mic: true }); },
+    check: c => !c.sev ? 'err_choose' : c.note.trim() ? null : 'err_reason' }],
+  async finish(c, P) { const r = await run([['TICKET_SEVERITY', P.id, { tid: W.opts.tid, sev: c.sev, note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'what_sev_changed') : r; }
+};
+WIZ.liftLabel = {
+  title: 'lift_label', save: 'save', noDraft: true, init: P => ({ label: P.lift ? P.lift.label : '' }),
+  steps: [{ id: 'l', icon: '🔳', say: 's_lift_label', body: () => inp('label', 'lift_label', { max: 30 }) + `<p class="small muted">${t('lift_label_note')}</p>`, check: c => c.label.trim().length >= 2 ? null : 'err_fill' }],
+  async finish(c, P) { const r = await run([['LIFT_QR_SET', P.id, { label: c.label.trim() }]]); return r.ok ? { ok: true, go: () => go('liftqr', { pid: P.id }, { replace: true }) } : r; }
 };
 WIZ.ticketAssign = {
   title: 'tk_assign_ticket', save: 'save', init: (P) => ({ uid: P.tech || '', due: addDays(2) }),
@@ -8780,7 +9002,7 @@ function openTask(n) {
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid),
-    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
+    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
     lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
@@ -8826,6 +9048,7 @@ function loginAs(u) {
   if (App.locked) { App.locked = false; App.route = App.lockedRoute || { name: 'home', p: {} }; render(); return; }
   App.stack = []; W = null;
   go(App.set.permsSeen && App.set.permsSeen[App.mode + u.uid] ? 'home' : 'perms', {}, { replace: true });
+  if (App.pendingLift && App.route.name === 'home') { const P = Object.values(S.projects).find(x => x.lift && x.lift.code === App.pendingLift); App.pendingLift = null; if (P && canSee(u, P)) go('project', { pid: P.id }); }
   setTimeout(() => Notify.check(), 900);
   if (App.mode === 'real') Sign.ensure(u.uid).catch(() => {});
 }
@@ -8984,6 +9207,13 @@ const ACT = {
   useAddr: () => { if (!W) return; W.ctx.address = W.ctx.addrSuggest; W.ctx.addrSrc = 'gps'; saveDraft(); render(); },
   raiseBlocker: v => wiz('blocker', W.pid, { step: +v }),
   projAct: v => wiz(v, pidHere()),
+  qrLang: v => { LANG = v; App.set.lang = v; saveSettings(); render(); },
+  qrReport: () => { App.qr.step = App.qr.step === 'report' ? '' : 'report'; render(); },
+  qrProblem: v => { const ph = ($('#qrPhone') || {}).value || ''; App.qr.problem = v; render(); if ($('#qrPhone')) $('#qrPhone').value = ph; },
+  qrSend: v => { const q = App.qr, ph = (($('#qrPhone') || {}).value || '').replace(/\D/g, '').slice(-10), msg = qrMessage(q, ph), to = q.office.replace(/\D/g, '').replace(/^0/, '');
+    App.qr.sent = v; const url = v === 'wa' ? `https://wa.me/${to.length === 10 ? '91' + to : to}?text=${encodeURIComponent(msg)}` : `sms:${q.office}?body=${encodeURIComponent(msg)}`; App.qr.lastUrl = url; try { window.open(url, '_blank'); } catch (e) { location.href = url; } },
+  qrStaff: () => { App.pendingLift = App.qr.code; App.qr = null; history.replaceState({ aiec: 1 }, '', location.href.split('#')[0]); go(!App.set.lang ? 'welcome' : !S.org ? (App.mode === 'practice' ? 'login' : 'setup') : 'login', {}, { replace: true }); },
+  liftQr: v => go('liftqr', { pid: v }),
   custAccess: v => wiz('custAccess', v),
   clItem: v => {
     const [kind, x] = v.split('|'), pid = App.route.p.pid, P = S.projects[pid], u = App.me;
@@ -9353,7 +9583,9 @@ async function boot() {
   history.replaceState({ aiec: 0 }, ''); history.pushState({ aiec: 1 }, '');
   await loadMode(App.set.mode === 'practice' ? 'practice' : 'real');
   await saveSettings();
-  if (!App.set.lang) go('welcome', {}, { replace: true });
+  App.qr = parseQr(location.hash);
+  if (App.qr) go('qr', {}, { replace: true });
+  else if (!App.set.lang) go('welcome', {}, { replace: true });
   else if (!S.org) go(App.mode === 'practice' ? 'login' : 'setup', {}, { replace: true });
   else go('login', {}, { replace: true });
   if (/^https?:$/.test(location.protocol)) {
