@@ -131,8 +131,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   const r2 = await page.evaluate(p => perform('QUOTE_DECISION', p, { decision: 'approve' }, { quiet: true }), pid);
   assert(!r2.ok, 'sales cannot approve quotation');
 
-  await login('Olivia Owner');
-  await startTask('approve_quote'); await shot('owner_approve'); await pick('decision', 'reject'); await next(); await next(); assert((await err()).length, 'reject needs reason');
+  assert(!(await page.evaluate(() => myTasks(Object.values(S.users).find(u => u.role === 'owner')).some(n => n.k === 'approve_quote'))), 'the Head Quarter is not asked: the Admin approves');
+  await login('Adam Admin');
+  await startTask('approve_quote'); await shot('admin_approve'); await pick('decision', 'reject'); await next(); await next(); assert((await err()).length, 'reject needs reason');
   await fill('reason', 'Too low. Max 30%.'); await next(); await doneOk('rejected');
   assert(await stage(pid) === 'requirements', 'rejected goes back to requirements');
 
