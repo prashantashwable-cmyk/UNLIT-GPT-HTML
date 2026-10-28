@@ -187,6 +187,18 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * **Backup approver:** the Owner names a trusted person (Admin, Sales, Finance or QC) for up to 31 days. That person sees the office queue, gets second approvals and can close the day. They can never approve their own request. The Owner can end it early.
 * **Phone clock checks:** a record from a phone whose clock went back more than 6 hours, or that is dated more than 6 hours in the future, goes to the office as one low item. The Admin accepts the time or marks it as not trusted, with a reason. A wrong clock on one phone no longer pushes new records into the future.
 
+### Weekly summary, key numbers, spreadsheets, what the app does by itself
+* **Weekly summary (Owner/Admin):** the last 7 days, with earlier weeks one tap away.
+  * Sales: leads, quotations, deals won with value, lost. Money: payments found in the bank, refunds.
+  * Installation: started, handed over, inspections passed. Service: tickets opened, closed, in time, late now.
+  * Safety: incidents, SOS, daily checks. Control: second approvals, stage moves back, disputes, holds, days closed, clock checks. Plus what is open in the office queue.
+  * "Send the summary" prepares it as a WhatsApp message; it can also be printed or saved as PDF.
+* **Key numbers (all jobs):** passed final inspection the first time, installed on time (hold days not counted), tickets fixed in time, days from lead to deal, and money collected. Each says how it is counted.
+* **Spreadsheets (Owner only):** jobs, payments and tickets as CSV files that open in Excel or Google Sheets.
+  * Every save is recorded with who and how many rows. Customer phone numbers are left out.
+  * Cells that look like formulas are saved as plain text.
+* **What the app does by itself:** one page listing every automatic rule with today's numbers and whether the Owner approved it: reminders and escalation, quotation expiry, supplier dispatch, ticket time limits, daily safety check, co-worker check, payment gates, licence reminders, data-access alerts, AMC visits and QR, clock checks, closing the day, backup reminders.
+
 ### Shaft limits, variation, co-worker check, surprise QC
 * **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).
   * A shaft below the minimum cannot simply be approved: QC asks for corrections, or approves "with a variation quote".
@@ -311,6 +323,7 @@ These numbers come from the original brainstorm and are marked **"Proposed — n
 * **Offline, single file.** Roles are enforced by the app on every action and on every imported file. There is no company server.
 * **Money:** refunds and receipts are records in the app. The money itself moves through the bank; the app does not send payments, and a receipt is not a GST tax invoice.
 * **Lift QR:** the QR points to the address the office's app runs from, so print stickers from the installed app or the website, not from a file copy. The resident page does not send anything by itself: the phone call, WhatsApp or SMS does, and a ticket is opened by the office. There is no 24×7 rescue staffing in the app; the company must run the rescue line before printing stickers.
+* **Weekly summary:** the app prepares the message; a person sends it (there is no server to send it automatically).
 * **Safety:** the SOS reaches the office's phone only when files are shared, so the phone call and SMS are the real alert. Safety photos are checked by people, not by a computer. The daily check is confirmed by the team lead (an Owner decision); it does not replace the statutory inspection or a qualified engineer.
 * **Data protection limits:**
   * There is no server, so prices and rules are checked by the same rules on every phone and on every file loaded, not on a server.

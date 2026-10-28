@@ -1226,6 +1226,79 @@ const L = {
   ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
   ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
   ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
+  ev_DATA_EXPORTED: ['Spreadsheet saved', 'स्प्रेडशीट सेव', 'स्प्रेडशीट जतन'],
+  week_title: ['Weekly summary', 'साप्ताहिक सारांश', 'साप्ताहिक सारांश'],
+  wk_prev: ['Earlier week', 'पिछला सप्ताह', 'मागील आठवडा'],
+  wk_next: ['Later week', 'अगला सप्ताह', 'पुढील आठवडा'],
+  wk_sales: ['Sales', 'बिक्री', 'विक्री'],
+  wk_leads: ['New leads / accepted', 'नई लीड / स्वीकार', 'नवीन लीड / स्वीकारल्या'],
+  wk_quotes: ['Quotations sent', 'भेजे कोटेशन', 'पाठवलेली कोटेशन'],
+  wk_won: ['Deals won', 'जीते सौदे', 'जिंकलेले सौदे'],
+  wk_lost: ['Lost or cancelled', 'हारे या रद्द', 'गमावले किंवा रद्द'],
+  wk_money: ['Money', 'पैसा', 'पैसे'],
+  wk_paid: ['Payments found in the bank', 'बैंक में मिले भुगतान', 'बँकेत आढळलेले पैसे'],
+  wk_refunds: ['Refunds paid', 'दिए रिफ़ंड', 'दिलेले परतावे'],
+  wk_work: ['Installation', 'इंस्टॉलेशन', 'बसवणी'],
+  wk_installs: ['Started / handed over', 'शुरू / सौंपे', 'सुरू / सोपवले'],
+  wk_qc: ['Final inspections passed / done', 'अंतिम जाँच पास / कुल', 'अंतिम तपासणी पास / एकूण'],
+  wk_service: ['Service', 'सर्विस', 'सर्व्हिस'],
+  wk_tickets: ['Tickets opened / closed', 'टिकट खुले / बंद', 'तिकिटे उघडली / बंद'],
+  wk_late_now: ['Open and late now', 'अभी खुले और देर', 'आत्ता उघडी आणि उशीर'],
+  wk_safety: ['Safety', 'सुरक्षा', 'सुरक्षा'],
+  wk_incidents: ['Incidents', 'घटनाएँ', 'घटना'],
+  wk_safety_checks: ['Daily safety checks', 'रोज़ की सुरक्षा जाँच', 'दैनिक सुरक्षा तपासणी'],
+  wk_control: ['Control', 'नियंत्रण', 'नियंत्रण'],
+  wk_overrides: ['Second approvals and changes', 'दूसरी मंज़ूरी और बदलाव', 'दुसरी मंजुरी आणि बदल'],
+  wk_closes: ['Days closed', 'बंद किए दिन', 'बंद केलेले दिवस'],
+  wk_share: ['Send the summary (WhatsApp)', 'सारांश भेजें (WhatsApp)', 'सारांश पाठवा (WhatsApp)'],
+  kn_title: ['Key numbers (all jobs)', 'मुख्य आँकड़े (सभी काम)', 'मुख्य आकडे (सर्व कामे)'],
+  kn_qc: ['Passed final inspection the first time', 'पहली बार में अंतिम जाँच पास', 'पहिल्यांदाच अंतिम तपासणी पास'],
+  kn_qc_d: ['Jobs whose first final inspection passed (or failed for a site or material reason), out of all inspected jobs.', 'वे काम जिनकी पहली अंतिम जाँच पास हुई (या साइट/माल के कारण फ़ेल), कुल जाँचे कामों में से।', 'ज्या कामांची पहिली अंतिम तपासणी पास झाली (किंवा साइट/साहित्यामुळे नापास), सर्व तपासलेल्या कामांपैकी.'],
+  kn_ontime: ['Installed on time', 'समय पर इंस्टॉल', 'वेळेत बसवले'],
+  kn_ontime_d: ['Ready for inspection within {d} days of material handover, approved hold days not counted.', 'माल सौंपने के {d} दिन में जाँच के लिए तैयार, मंज़ूर रुकावट के दिन नहीं गिने।', 'साहित्य सोपवल्यापासून {d} दिवसांत तपासणीसाठी तयार, मंजूर थांब्याचे दिवस मोजले नाहीत.'],
+  kn_tickets: ['Tickets fixed in time', 'समय पर ठीक टिकट', 'वेळेत दुरुस्त तिकिटे'],
+  kn_tickets_d: ['Fixed tickets that were fixed within their time limit.', 'ठीक हुए टिकट जो समय-सीमा में ठीक हुए।', 'दुरुस्त झालेली तिकिटे जी वेळमर्यादेत दुरुस्त झाली.'],
+  kn_days_won: ['Days from lead to deal', 'लीड से सौदे तक दिन', 'लीडपासून सौद्यापर्यंत दिवस'],
+  kn_days_won_d: ['Average days from adding the site to winning the deal.', 'साइट जोड़ने से सौदा जीतने तक औसत दिन।', 'साइट जोडल्यापासून सौदा जिंकेपर्यंत सरासरी दिवस.'],
+  kn_collected: ['Money collected', 'वसूला पैसा', 'वसूल झालेले पैसे'],
+  kn_collected_d: ['Payments found in the bank, out of the agreed price of won jobs.', 'जीते कामों की तय कीमत में से बैंक में मिले भुगतान।', 'जिंकलेल्या कामांच्या ठरलेल्या किमतीपैकी बँकेत आढळलेले पैसे.'],
+  csv_title: ['Spreadsheets', 'स्प्रेडशीट', 'स्प्रेडशीट'],
+  csv_note: ['Only the Owner can save these. Each save is recorded. Customer phone numbers are not included.', 'सिर्फ़ मालिक इन्हें सेव कर सकते हैं। हर सेव दर्ज होता है। ग्राहक फ़ोन नंबर शामिल नहीं।', 'फक्त मालक हे जतन करू शकतात. प्रत्येक जतन नोंदवले जाते. ग्राहकांचे फोन क्रमांक नाहीत.'],
+  csv_projects: ['Jobs', 'काम', 'कामे'],
+  csv_payments: ['Payments', 'भुगतान', 'पैसे'],
+  csv_tickets: ['Tickets', 'टिकट', 'तिकिटे'],
+  auto_title: ['What the app does by itself', 'ऐप अपने आप क्या करता है', 'ॲप आपोआप काय करते'],
+  auto_note: ['These run on every phone from the records; nothing is sent by itself. Numbers come from the Business rules.', 'ये हर फ़ोन पर रिकॉर्ड से चलते हैं; अपने आप कुछ नहीं भेजा जाता। संख्याएँ कारोबार नियमों से हैं।', 'हे प्रत्येक फोनवर नोंदींवरून चालतात; आपोआप काहीही पाठवले जात नाही. आकडे व्यवसाय नियमांतून.'],
+  auto_esc_t: ['Reminders and escalation', 'याद दिलाना और ऊपर भेजना', 'आठवण आणि वर पाठवणे'],
+  auto_esc: ['Work not done: reminder after {a} days, Admin after {b} days, Owner after {c} days.', 'काम नहीं हुआ: {a} दिन बाद याद, {b} दिन बाद एडमिन, {c} दिन बाद मालिक।', 'काम झाले नाही: {a} दिवसांनी आठवण, {b} दिवसांनी ॲडमिन, {c} दिवसांनी मालक.'],
+  auto_quote_t: ['Quotation expiry', 'कोटेशन समाप्ति', 'कोटेशन मुदत'],
+  auto_quote: ['A sent quotation is valid for {n} days; after that Sales is asked to make a new one.', 'भेजा कोटेशन {n} दिन मान्य; उसके बाद सेल्स से नया बनाने को कहा जाता है।', 'पाठवलेले कोटेशन {n} दिवस वैध; त्यानंतर सेल्सला नवीन करायला सांगितले जाते.'],
+  auto_po_t: ['Supplier dispatch', 'सप्लायर से भेजना', 'पुरवठादाराकडून पाठवणे'],
+  auto_po: ['The purchase order asks for dispatch within {n} days; after the promised date the office is told.', 'खरीद आदेश {n} दिन में भेजने को कहता है; वादे की तारीख के बाद ऑफ़िस को बताया जाता है।', 'खरेदी आदेश {n} दिवसांत पाठवायला सांगतो; दिलेल्या तारखेनंतर ऑफिसला कळवले जाते.'],
+  auto_sla_t: ['Ticket time limits', 'टिकट समय-सीमा', 'तिकीट वेळमर्यादा'],
+  auto_sla: ['Hours to fix: unsafe {a}, stopped {b}, came back {c}, ordinary {d}. A person trapped: alarm at once.', 'ठीक करने के घंटे: असुरक्षित {a}, बंद {b}, दोबारा {c}, सामान्य {d}। फँसा व्यक्ति: तुरंत अलार्म।', 'दुरुस्तीचे तास: असुरक्षित {a}, बंद {b}, पुन्हा {c}, सामान्य {d}. अडकलेली व्यक्ती: लगेच अलार्म.'],
+  auto_safety_on_t: ['Daily safety check', 'रोज़ की सुरक्षा जाँच', 'दैनिक सुरक्षा तपासणी'],
+  auto_safety_on: ['On: installation steps wait for the day\'s safety check.', 'चालू: इंस्टॉलेशन के कदम दिन की सुरक्षा जाँच का इंतज़ार करते हैं।', 'चालू: बसवणीचे टप्पे दिवसाच्या सुरक्षा तपासणीची वाट पाहतात.'],
+  auto_safety_off_t: ['Daily safety check', 'रोज़ की सुरक्षा जाँच', 'दैनिक सुरक्षा तपासणी'],
+  auto_safety_off: ['Off.', 'बंद।', 'बंद.'],
+  auto_peer_on_t: ['Co-worker check', 'साथी की जाँच', 'सहकाऱ्याची तपासणी'],
+  auto_peer_on: ['On: after doors, wiring and safety devices, another technician or QC checks before work goes on.', 'चालू: दरवाज़े, वायरिंग और सुरक्षा उपकरण के बाद दूसरा तकनीशियन या QC जाँचता है।', 'चालू: दरवाजे, वायरिंग आणि सुरक्षा उपकरणांनंतर दुसरा तंत्रज्ञ किंवा QC तपासतो.'],
+  auto_peer_off_t: ['Co-worker check', 'साथी की जाँच', 'सहकाऱ्याची तपासणी'],
+  auto_peer_off: ['Off.', 'बंद।', 'बंद.'],
+  auto_pay_t: ['Payment gates', 'भुगतान की शर्तें', 'पैशांच्या अटी'],
+  auto_pay: ['Material is handed over only after the arrival payment is found in the bank; the cabin step waits for the cabin payment when it is set ({c}%).', 'आगमन भुगतान बैंक में मिलने के बाद ही माल सौंपा जाता है; केबिन भुगतान तय हो ({c}%) तो केबिन कदम उसका इंतज़ार करता है।', 'आगमन पैसे बँकेत आढळल्यावरच साहित्य सोपवले जाते; केबिन पैसे ठरले असल्यास ({c}%) केबिनचा टप्पा त्याची वाट पाहतो.'],
+  auto_lic_t: ['Licence reminders', 'लाइसेंस याद', 'परवाना आठवण'],
+  auto_lic: ['Partner company and lift licences ending within {n} days ask for renewal.', '{n} दिन में खत्म होने वाले पार्टनर कंपनी और लिफ्ट लाइसेंस नवीनीकरण माँगते हैं।', '{n} दिवसांत संपणारे भागीदार कंपनी आणि लिफ्ट परवाने नूतनीकरण मागतात.'],
+  auto_access_t: ['Unusual looking at data', 'डेटा को असामान्य रूप से देखना', 'डेटा असामान्यपणे पाहणे'],
+  auto_access: ['The office is told when an outside person opens more than {n} jobs in a day or tries pages they may not see.', 'जब कोई बाहरी व्यक्ति दिन में {n} से ज़्यादा काम खोले या मना पेज खोलने की कोशिश करे तो ऑफ़िस को बताया जाता है।', 'बाहेरची व्यक्ती दिवसात {n} पेक्षा जास्त कामे उघडते किंवा मनाई असलेली पाने उघडायचा प्रयत्न करते तेव्हा ऑफिसला कळवले जाते.'],
+  auto_amc_t: ['After handover', 'सौंपने के बाद', 'सोपवल्यानंतर'],
+  auto_amc: ['{n} maintenance visits are planned for the year and the lift gets its QR code.', 'साल के लिए {n} मेंटेनेंस विज़िट तय होती हैं और लिफ्ट को QR कोड मिलता है।', 'वर्षासाठी {n} देखभाल भेटी ठरतात आणि लिफ्टला QR कोड मिळतो.'],
+  auto_clock_t: ['Phone clock check', 'फ़ोन घड़ी जाँच', 'फोन घड्याळ तपासणी'],
+  auto_clock: ['Records from a phone whose clock jumped more than {h} hours go to the office to decide.', 'जिस फ़ोन की घड़ी {h} घंटे से ज़्यादा बदली, उसके रिकॉर्ड फ़ैसले के लिए ऑफ़िस जाते हैं।', 'ज्या फोनचे घड्याळ {h} तासांपेक्षा जास्त बदलले त्याच्या नोंदी निर्णयासाठी ऑफिसकडे जातात.'],
+  auto_day_t: ['Close the day', 'दिन बंद करना', 'दिवस बंद करणे'],
+  auto_day: ['After 6 pm the office is asked to close the day; open items roll to tomorrow with a named person.', 'शाम 6 बजे के बाद ऑफ़िस से दिन बंद करने को कहा जाता है; खुले काम तय व्यक्ति के साथ कल पर जाते हैं।', 'संध्याकाळी 6 नंतर ऑफिसला दिवस बंद करायला सांगितले जाते; उघडी कामे ठरलेल्या व्यक्तीसह उद्यावर जातात.'],
+  auto_backup_t: ['Backup reminder', 'बैकअप याद', 'बॅकअप आठवण'],
+  auto_backup: ['When data has not been saved or shared for a week, the office is reminded.', 'जब एक सप्ताह तक डेटा सेव या शेयर नहीं हुआ, ऑफ़िस को याद दिलाया जाता है।', 'आठवडाभर डेटा जतन किंवा शेअर झाला नाही तर ऑफिसला आठवण केली जाते.'],
   ev_BACKUP_SET: ['Backup approver named', 'बैकअप मंज़ूरीकर्ता तय', 'बॅकअप मंजूरकर्ता ठरवला'],
   ev_BACKUP_ENDED: ['Backup approver ended', 'बैकअप मंज़ूरीकर्ता समाप्त', 'बॅकअप मंजूरकर्ता संपला'],
   ev_DAY_CLOSED: ['Day closed', 'दिन बंद किया', 'दिवस बंद केला'],
@@ -4706,6 +4779,8 @@ const RULES = {
     }
   },
   BACKUP_ENDED: { roles: ['owner'], check: S => !S.backup || S.backup.ended ? 'err_already' : null },
+  /* a spreadsheet file made by the Owner: who, what and how many rows (the file itself stays with the Owner) */
+  DATA_EXPORTED: { roles: ['owner'], check: (S, ev) => need(['projects', 'payments', 'tickets'].includes(ev.data.kind) && +ev.data.rows >= 0, 'err_choose') },
   /* the day's close: open office items roll to tomorrow with a named person */
   DAY_CLOSED: {
     roles: ['owner', 'admin', 'sales', 'finance', 'qc'], check: (S, ev, u) => {
@@ -5090,6 +5165,7 @@ function apply(S, ev) {
       P.renewals.push({ t: ev.t, by: ev.by, years: +d.years, amount: +d.amount, from, to: P.amcEnd, note: d.note || '' });
       break;
     }
+    case 'DATA_EXPORTED': (S.exports = S.exports || []).unshift({ kind: d.kind, rows: +d.rows, by: ev.by, t: ev.t }); break;
     case 'BACKUP_SET': S.backup = { uid: d.uid, from: d.from, to: d.to, note: d.note || '', by: ev.by, t: ev.t, ended: null }; break;
     case 'BACKUP_ENDED': S.backup.ended = { t: ev.t, by: ev.by }; break;
     case 'DAY_CLOSED': S.dayClose[d.day] = { t: ev.t, by: ev.by, items: d.items, note: d.note || '' }; break;
@@ -7371,7 +7447,8 @@ function dashboard(noTitle) {
     ${kpi('alert', cnt('delayed'), 'k_delayed', 'tag_count', 'delayed')}${kpi('act', cycles.length ? Math.round(sum(cycles) / cycles.length) + ' ' + t('days') : '—', 'k_cycle', cycles.length ? 'tag_actual' : 'tag_missing', 'done')}</div>
     <div class="card" style="margin-top:12px"><h3>${t('by_phase')}</h3>${byPhase.map(([l, n]) => `<div class="bar"><span class="lb">${esc(l)}</span><span class="b"><i style="width:${n / mx * 100}%"></i></span><b>${n}</b></div>`).join('')}</div>
     ${Object.keys(lostR).length ? `<div class="card"><h3>${t('lost_reasons')}</h3>${Object.entries(lostR).map(([r, n]) => `<div class="bar"><span class="lb">${t('lr_' + r)}</span><span class="b"><i style="width:${n / lost * 100}%"></i></span><b>${n}</b></div>`).join('')}</div>` : ''}
-    <p class="small muted">${t('dash_note')}</p>`;
+    <p class="small muted">${t('dash_note')}</p>
+    <div class="row wrapw"><button class="btn btn-sm" data-a="nav" data-v="weekly">📅 ${t('week_title')}</button><button class="btn btn-sm" data-a="nav" data-v="auto">⚙️ ${t('auto_title')}</button></div>`;
 }
 SCREENS.drill = ({ k }) => {
   const list = visibleProjects(App.me).filter(DRILL[k] || DRILL.all);
@@ -8537,6 +8614,101 @@ SCREENS.escalations = () => {
     ${S.escLog.length ? `<h2 class="sec">🧾 ${t('esc_recent')}</h2><div class="card">${S.escLog.slice(0, 15).map(x => `<div class="list-item small" style="display:block">${ESC_ICON[x.action]} <b>${esc(t('tk_' + x.ref))}</b>${x.pid ? ' · ' + esc(x.pid) : ''} · ${t('esc_' + x.action)}${x.uid ? ' → ' + esc(userName(x.uid)) : ''}<br><span class="muted">${esc(userName(x.by))} · ${fmtD(x.t, true)} · 📅 ${fmtD(x.until)} · ${esc(x.note)}</span></div>`).join('')}</div>` : ''}
   </main>` + nav('me');
 };
+/* ---------- weekly summary and key numbers (Owner/Admin) ---------- */
+function weekSummary(end) {
+  end = end || safeDay(); const from = safeDay(Date.parse(end + 'T12:00:00Z') - 6 * 864e5);
+  const bad = new Set(S.rejected.map(x => x.ev.id)), evs = EVENTS.filter(e => !bad.has(e.id) && safeDay(e.t) >= from && safeDay(e.t) <= end);
+  const n = ty => evs.filter(e => e.type === ty).length, Pof = e => S.projects[e.pid] || null;
+  const wonEv = evs.filter(e => e.type === 'DEAL_WON'), acc = P => (P && P.quotes.find(q => q.accepted)) || null;
+  const payOk = evs.filter(e => e.type === 'PAYMENT_STATUS' && e.data.status === 'confirmed').map(e => ((Pof(e) || { payments: [] }).payments.find(x => x.id === e.data.payId) || {}).amount || 0);
+  const refunds = evs.filter(e => e.type === 'REFUND_PAID').map(e => ((Pof(e) || {}).refund || {}).amount || 0);
+  const qcEv = evs.filter(e => e.type === 'QC_FINAL_RESULT');
+  const tkClosed = evs.filter(e => e.type === 'TICKET_CLOSED' && e.data.ok !== false).map(e => Pof(e) && ticketOf(Pof(e), e.data.tid)).filter(Boolean);
+  const q = officeQueue();
+  return {
+    from, end,
+    leads: n('LEAD_CREATED'), accepted: n('LEAD_ACCEPTED'), quotes: n('QUOTE_SENT'), won: wonEv.length, wonValue: sum(wonEv.map(e => (acc(Pof(e)) || { total: 0 }).total)), lost: n('DEAL_LOST') + n('PROJECT_CANCELLED'),
+    paid: sum(payOk), refunds: sum(refunds),
+    installStart: n('MATERIAL_HANDED'), handovers: n('HANDOVER_COMPLETED'), qcPass: qcEv.filter(e => e.data.outcome === 'pass').length, qcAll: qcEv.length,
+    tkOpened: n('TICKET_OPENED'), tkClosed: tkClosed.length, tkInTime: tkClosed.filter(x => ticketDue(x) != null && !ticketLate(x)).length, tkLateNow: Object.values(S.projects).flatMap(P => P.tickets).filter(x => !['resolved', 'closed'].includes(x.status) && ticketLate(x)).length,
+    incidents: n('INCIDENT_RAISED'), sos: n('SOS_RAISED'), safety: n('SAFETY_CHECKED'),
+    approvals: n('APPROVAL_DECIDED'), stageBack: n('STAGE_BACK'), disputes: n('DISPUTE_SET'), holds: n('HOLD_DECIDED'), clock: clockGaps().filter(g => safeDay(g.t) >= from && safeDay(g.t) <= end).length,
+    closes: Object.keys(S.dayClose).filter(d => d >= from && d <= end).length,
+    open: { critical: q.filter(x => x.exc === 'critical').length, high: q.filter(x => x.exc === 'high').length, all: q.length }
+  };
+}
+/* key numbers over all jobs; each one says how it is counted */
+function keyNumbers() {
+  const ps = Object.values(S.projects), pct = (a, b) => b ? Math.round(a / b * 100) + '%' : '—';
+  const qc = ps.filter(P => P.qcFinal.length), insp = ps.filter(P => P.mhand && P.hist.some(h => h.s === 'qc_final'));
+  const onTime = insp.filter(P => installUsed(P, P.hist.find(h => h.s === 'qc_final').t) <= +S.config.installDays);
+  const tk = ps.flatMap(P => P.tickets).filter(x => x.resolvedT && ticketDue(x) != null);
+  const won = ps.filter(DRILL.won), wonDays = won.map(P => { const a = P.hist.find(h => h.s === 'won'); return a ? (Date.parse(a.t) - Date.parse(P.t)) / 864e5 : null; }).filter(x => x != null);
+  const contract = sum(won.map(P => (P.quotes.find(q => q.accepted) || { total: 0 }).total)), paid = sum(won.map(paidTotal));
+  return [['kn_qc', pct(qc.filter(firstPass).length, qc.length), 'kn_qc_d'], ['kn_ontime', pct(onTime.length, insp.length), 'kn_ontime_d'], ['kn_tickets', pct(tk.filter(x => !ticketLate(x)).length, tk.length), 'kn_tickets_d'],
+    ['kn_days_won', wonDays.length ? Math.round(sum(wonDays) / wonDays.length) + ' ' + t('days') : '—', 'kn_days_won_d'], ['kn_collected', pct(paid, contract), 'kn_collected_d']];
+}
+function weekText(w) {
+  const L1 = (k, v) => '• ' + t(k) + ': ' + v;
+  return [S.org.name + ' — ' + t('week_title') + ' ' + fmtD(w.from) + ' – ' + fmtD(w.end),
+    '', '🧲 ' + t('wk_sales'), L1('wk_leads', w.leads + ' / ' + w.accepted), L1('wk_quotes', w.quotes), L1('wk_won', w.won + ' · ' + money(w.wonValue)), L1('wk_lost', w.lost),
+    '', '💰 ' + t('wk_money'), L1('wk_paid', money(w.paid)), L1('wk_refunds', money(w.refunds)),
+    '', '🔧 ' + t('wk_work'), L1('wk_installs', w.installStart + ' / ' + w.handovers), L1('wk_qc', w.qcPass + ' / ' + w.qcAll),
+    '', '🎫 ' + t('wk_service'), L1('wk_tickets', w.tkOpened + ' / ' + w.tkClosed + ' (' + w.tkInTime + ' ' + t('sla_in_time') + ')'), L1('wk_late_now', w.tkLateNow),
+    '', '🦺 ' + t('wk_safety'), L1('wk_incidents', w.incidents + ' · SOS ' + w.sos), L1('wk_safety_checks', w.safety),
+    '', '⚖️ ' + t('wk_control'), L1('wk_overrides', w.approvals + ' · ' + t('stage_back') + ' ' + w.stageBack + ' · ' + t('dispute_set') + ' ' + w.disputes), L1('wk_closes', w.closes + ' / 7'),
+    '', '🚦 ' + t('exc_title') + ': 🔴 ' + w.open.critical + ' · 🟠 ' + w.open.high + ' · ' + w.open.all].join('\n');
+}
+SCREENS.weekly = ({ end } = {}) => {
+  const u = App.me; if (!['owner', 'admin'].includes(u.role)) return SCREENS.home();
+  const w = weekSummary(end), row = (k, v) => [k, esc(String(v))];
+  App.pageSay = t('week_title');
+  const card = (icon, title, rows) => `<div class="card"><h3>${icon} ${t(title)}</h3>${kv(rows)}</div>`;
+  return topBar(t('week_title'), { back: true }) + `<main class="wrap"><div class="row wrapw noprint" style="margin-bottom:8px"><button class="btn btn-sm" data-a="weekGo" data-v="${safeDay(Date.parse(w.from + 'T12:00:00Z') - 864e5)}">◀ ${t('wk_prev')}</button>${w.end < safeDay() ? `<button class="btn btn-sm" data-a="weekGo" data-v="${safeDay(Date.parse(w.end + 'T12:00:00Z') + 7 * 864e5) > safeDay() ? safeDay() : safeDay(Date.parse(w.end + 'T12:00:00Z') + 7 * 864e5)}">${t('wk_next')} ▶</button>` : ''}</div>
+    <p><b>${fmtD(w.from)} – ${fmtD(w.end)}</b></p>
+    ${card('🧲', 'wk_sales', [row('wk_leads', w.leads + ' / ' + w.accepted), row('wk_quotes', w.quotes), ['wk_won', w.won + ' · ' + money(w.wonValue)], row('wk_lost', w.lost)])}
+    ${card('💰', 'wk_money', [['wk_paid', money(w.paid)], ['wk_refunds', money(w.refunds)]])}
+    ${card('🔧', 'wk_work', [row('wk_installs', w.installStart + ' / ' + w.handovers), row('wk_qc', w.qcPass + ' / ' + w.qcAll)])}
+    ${card('🎫', 'wk_service', [row('wk_tickets', w.tkOpened + ' / ' + w.tkClosed + ' (' + w.tkInTime + ' ' + t('sla_in_time') + ')'), row('wk_late_now', w.tkLateNow)])}
+    ${card('🦺', 'wk_safety', [row('wk_incidents', w.incidents + ' · SOS ' + w.sos), row('wk_safety_checks', w.safety)])}
+    ${card('⚖️', 'wk_control', [row('wk_overrides', w.approvals + ' · ' + t('stage_back') + ' ' + w.stageBack + ' · ' + t('dispute_set') + ' ' + w.disputes + ' · ' + t('hold_put') + ' ' + w.holds), row('wk_closes', w.closes + ' / 7'), row('clock_title', w.clock)])}
+    <div class="card"><h3>📏 ${t('kn_title')}</h3>${keyNumbers().map(([k, v, d]) => `<div class="list-item" style="display:block"><b>${t(k)}: ${esc(v)}</b><br><span class="small muted">${t(d, { d: S.config.installDays })}</span></div>`).join('')}</div>
+    <div class="stack noprint"><button class="btn btn-ok btn-big" data-a="weekShare" data-v="${w.end}">📤 ${t('wk_share')}</button><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button><button class="btn" data-a="nav" data-v="auto">⚙️ ${t('auto_title')}</button></div>
+    ${u.role === 'owner' ? `<h2 class="sec noprint">📊 ${t('csv_title')}</h2><div class="card noprint"><p class="small">${t('csv_note')}</p><div class="row wrapw">${['projects', 'payments', 'tickets'].map(k => `<button class="btn btn-sm" data-a="csvGo" data-v="${k}">⬇️ ${t('csv_' + k)}</button>`).join('')}</div>
+      ${(S.exports || []).length ? `<p class="small muted" style="margin-top:6px">${S.exports.slice(0, 5).map(x => `${fmtD(x.t, true)} · ${t('csv_' + x.kind)} · ${x.rows} · ${esc(userName(x.by))}`).join('<br>')}</p>` : ''}</div>` : ''}
+  </main>` + nav('home');
+};
+/* spreadsheet files (CSV, opens in Excel or Google Sheets); cells that start like a formula are made plain text */
+const csvCell = v => { let x = v == null ? '' : String(v); if (/^[=+\-@]/.test(x)) x = "'" + x; return /[",\n\r]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; };
+const csvText = rows => '﻿' + rows.map(r => r.map(csvCell).join(',')).join('\r\n');
+function csvRows(kind) {
+  const ps = Object.values(S.projects), d = x => x ? x.slice(0, 10) : '';
+  if (kind === 'projects') return [['Project', 'Stage', 'Created', 'Address', 'Customer', 'Sales', 'Partner company', 'Team lead', 'Price (agreed)', 'Paid (confirmed)', 'Days in stage', 'On hold', 'Open tickets']]
+    .concat(ps.map(P => [P.id, P.stage, d(P.t), P.site.address, P.contact.name, userName(P.sales), userName(P.partner), userName(P.tech), (P.quotes.find(q => q.accepted) || {}).total || '', paidTotal(P), daysSince(P.since), onHold(P) ? 'yes' : '', P.tickets.filter(x => x.status !== 'closed').length]));
+  if (kind === 'payments') return [['Project', 'Payment', 'Purpose', 'Amount', 'Method', 'Status', 'Recorded by', 'Recorded', 'Checked by', 'Checked', 'Bank reference']]
+    .concat(ps.flatMap(P => P.payments.map(x => [P.id, x.id, x.purpose, x.amount, x.method, x.status, userName(x.recordedBy), d(x.t), userName(x.confirmedBy), d(x.confirmedAt), x.bankRef || ''])));
+  return [['Project', 'Ticket', 'Kind', 'Urgency', 'Came from', 'Opened', 'Status', 'Fixer', 'Time limit (h)', 'Fixed', 'In time']]
+    .concat(ps.flatMap(P => P.tickets.map(x => [P.id, x.id, x.kind, x.sev || '', x.src || '', d(x.t), x.status, userName(x.owner), slaHours(x.sev || 'routine') || '', d(x.resolvedT), x.resolvedT && ticketDue(x) != null ? (ticketLate(x) ? 'late' : 'yes') : ''])));
+}
+async function saveText(name, text, type) {
+  const blob = new Blob([text], { type });
+  try { const f = new File([blob], name, { type }); if (navigator.canShare && navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], title: name }); return true; } } catch (e) { if (e && e.name === 'AbortError') return false; }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000); return true;
+}
+/* what the app does by itself, with today's settings */
+function autoRows() {
+  const c = S.config;
+  return [['⏰', 'auto_esc', { a: c.remindDays, b: c.escalateDays, c: c.escOwnerDays }, 'control'], ['📄', 'auto_quote', { n: c.validityDays }, 'service'], ['📑', 'auto_po', { n: c.poDays }, 'install'],
+    ['⏱️', 'auto_sla', { a: c.slaUnsafe, b: c.slaBreakdown, c: c.slaRepeat, d: c.slaRoutine }, 'tickets'], ['🦺', c.dailySafety ? 'auto_safety_on' : 'auto_safety_off', {}, 'safety'], ['👀', c.peerCheck ? 'auto_peer_on' : 'auto_peer_off', {}, 'quality'],
+    ['💳', 'auto_pay', { c: c.cabinPct }, 'milestones'], ['📜', 'auto_lic', { n: c.licWarnDays }, 'partner'], ['🛡️', 'auto_access', { n: c.accessAlert }, 'privacy'],
+    ['🛠️', 'auto_amc', { n: c.amcVisits }, 'service'], ['🕰️', 'auto_clock', { h: CLOCK_GAP_H }, null], ['🌙', 'auto_day', {}, null], ['💾', 'auto_backup', {}, null]];
+}
+SCREENS.auto = () => {
+  if (!['owner', 'admin'].includes(App.me.role)) return SCREENS.home();
+  App.pageSay = t('auto_title');
+  return topBar(t('auto_title'), { back: true }) + `<main class="wrap"><div class="note">⚙️ ${t('auto_note')}</div><div class="card">${autoRows().map(([i, k, v, g]) => `<div class="list-item" style="display:block"><b>${i} ${t(k + '_t')}</b><br><span class="small">${t(k, v)}</span>${g ? `<div style="margin-top:4px">${ruleChip(g)}</div>` : ''}</div>`).join('')}</div>
+    ${App.me.role === 'owner' ? `<button class="btn" data-a="nav" data-v="rules">⚖️ ${t('business_rules')}</button>` : ''}</main>` + nav('home');
+};
 /* ---------- office queue (exceptions first) ---------- */
 const EXC_SEV = {
   sos: 'critical',
@@ -9410,6 +9582,12 @@ const ACT = {
     App.qr.sent = v; const url = v === 'wa' ? `https://wa.me/${to.length === 10 ? '91' + to : to}?text=${encodeURIComponent(msg)}` : `sms:${q.office}?body=${encodeURIComponent(msg)}`; App.qr.lastUrl = url; try { window.open(url, '_blank'); } catch (e) { location.href = url; } },
   qrStaff: () => { App.pendingLift = App.qr.code; App.qr = null; history.replaceState({ aiec: 1 }, '', location.href.split('#')[0]); go(!App.set.lang ? 'welcome' : !S.org ? (App.mode === 'practice' ? 'login' : 'setup') : 'login', {}, { replace: true }); },
   liftQr: v => go('liftqr', { pid: v }),
+  weekGo: v => { App.route.p = { end: v }; render(); },
+  weekShare: async v => { const txt = weekText(weekSummary(v)); App.lastShare = txt;
+    try { if (navigator.share) { await navigator.share({ text: txt }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+    window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank'); },
+  csvGo: async v => { const rows = csvRows(v), r = await perform('DATA_EXPORTED', null, { kind: v, rows: rows.length - 1 }, { quiet: true }); if (!r.ok) return toast(t(r.err.k || r.err), true);
+    const txt = csvText(rows); App.lastCsv = txt; await saveText('AIEC-' + v + '-' + safeDay() + '.csv', txt, 'text/csv'); render(); },
   excFilter: v => { App.route.p = Object.assign({}, App.route.p, { f: v || '' }); render(); },
   custAccess: v => wiz('custAccess', v),
   clItem: v => {
