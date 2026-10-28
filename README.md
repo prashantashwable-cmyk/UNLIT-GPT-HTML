@@ -236,6 +236,16 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Examples: confirming a payment, inspecting the site, final inspection, signing the handover as QC.
   * Physical work (technician, supplier, partner, field) is never covered this way.
   * A test runs a whole job from lead to handover with only the Owner, a field worker, a partner company, a supplier and the customer. At every step it checks that the person acting has the task.
+  * A second test walks the side branches with the same small team, checks that each task opens its screen, and finally that no task anywhere is left without someone who can do it:
+    * a lead sent back and fixed;
+    * a quotation below the margin floor;
+    * site corrections;
+    * a payment not found in the bank;
+    * a failed final inspection;
+    * a breakdown ticket and a service visit.
+* **Quotation by the Owner:** the Owner's own discount needs no approval unless it goes below the margin floor. Below the floor a second Owner/Admin (or the backup approver) must agree. If there is nobody, the Owner gets "withdraw it and make a new quotation" instead of a stuck job.
+* **Lead sent back:** it returns to whoever added it (field worker, Sales or the Owner).
+* **Payment not found in the bank:** the customer's pay screen says so, with the reason, and the customer can report the payment again.
 
 ### Shaft limits, variation, co-worker check, surprise QC
 * **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).

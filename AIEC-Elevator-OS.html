@@ -1241,6 +1241,7 @@ const L = {
   ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
   ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
   ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
+  tk_withdraw_quote: ['Nobody else can approve this price: withdraw it and make a new quotation', 'यह कीमत कोई और मंज़ूर नहीं कर सकता: वापस लेकर नया कोटेशन बनाएँ', 'ही किंमत दुसरे कोणी मंजूर करू शकत नाही: मागे घेऊन नवीन कोटेशन करा'],
   err_pay_detail: ['Check this payment detail (UPI ID like name@bank, IFSC like HDFC0001234, account number in digits).', 'यह भुगतान जानकारी जाँचें (UPI ID जैसे name@bank, IFSC जैसे HDFC0001234, खाता नंबर अंकों में)।', 'ही पैसे भरण्याची माहिती तपासा (UPI ID जसे name@bank, IFSC जसे HDFC0001234, खाते क्रमांक अंकांत).'],
   rg_paydetails: ['How customers pay', 'ग्राहक कैसे भुगतान करें', 'ग्राहकांनी पैसे कसे भरावे'],
   rg_paydetails_d: ['The company\'s UPI ID and bank account shown to customers when a payment is due. Only company accounts.', 'भुगतान बाकी होने पर ग्राहकों को दिखने वाला कंपनी का UPI ID और बैंक खाता। सिर्फ़ कंपनी खाते।', 'पैसे बाकी असताना ग्राहकांना दिसणारा कंपनीचा UPI ID आणि बँक खाते. फक्त कंपनीची खाती.'],
@@ -4262,7 +4263,7 @@ const RULES = {
     }
   },
   LEAD_RETURNED: { roles: ['sales', 'admin'], project: true, stages: ['new'], check: (S, ev) => need(ev.data.reason, 'err_reason') },
-  LEAD_RESUBMITTED: { roles: ['field', 'sales', 'admin'], project: true, stages: ['returned'] },
+  LEAD_RESUBMITTED: { roles: ['field', 'sales', 'admin', 'owner'], project: true, stages: ['returned'] },
   CONTACT_CORRECTED: {
     roles: ['field', 'sales', 'admin', 'owner'], project: true, stages: OPEN_STAGES, check: (S, ev, u, P) => {
       if (!['name', 'phone', 'address'].includes(ev.data.field)) return 'err_fill';
@@ -4300,7 +4301,7 @@ const RULES = {
     roles: ['owner', 'admin'], project: true, stages: ['quote_approval'], check: (S, ev, u, P) => {
       const q = lastQuote(P);
       if (!q) return 'err_no_req';
-      if (q.by === u.uid) return 'err_same_person';
+      if (q.by === u.uid && ev.data.decision !== 'reject') return 'err_same_person';
       if (!['approve', 'reject'].includes(ev.data.decision)) return 'err_choose';
       if (ev.data.decision === 'approve' && q.margin < S.config.minMargin && u.role !== 'owner') return { k: 'err_role', v: { roles: rolesTxt(['owner']) } };
       if (ev.data.decision === 'reject' && !(ev.data.reason || '').trim()) return 'err_reason';
@@ -5153,6 +5154,7 @@ function apply(S, ev) {
     case 'REQ_SAVED': P.req = Object.assign({}, d.req); P.materials = materialList(P.req); if (P.stage === 'contacted') setStage(P, 'requirements', ev); break;
     case 'QUOTE_CREATED': {
       const q = calcQuote(priceCfg(ev.t), P.req, d.discountPct);
+      if (roleOf(ev.by) === 'owner' && q.margin >= S.config.minMargin) q.needsApproval = false;
       Object.assign(q, { v: P.quotes.length + 1, t: ev.t, by: ev.by, rv: rateVersion(ev.t), reason: d.reason || '', req: clone(P.req), status: q.needsApproval ? 'pending' : 'auto', validity: S.config.validityDays });
       P.quotes.push(q);
       setStage(P, q.needsApproval ? 'quote_approval' : 'quote_ready', ev);
@@ -5467,11 +5469,14 @@ function needs(P) {
   const q = lastQuote(P);
   switch (P.stage) {
     case 'new': add('review_lead', ['sales'], { uids: [P.sales] }); break;
-    case 'returned': add('fix_lead', ['field'], { uids: [P.createdBy] }); break;
+    case 'returned': add('fix_lead', [roleOf(P.createdBy) && ['field', 'sales', 'admin', 'owner'].includes(roleOf(P.createdBy)) ? roleOf(P.createdBy) : 'field'], { uids: [P.createdBy] }); break;
     case 'accepted': add('call_customer', ['sales'], { uids: [P.sales] }); break;
     case 'contacted': add('write_needs', ['sales'], { uids: [P.sales] }); break;
     case 'requirements': add('make_quote', ['sales'], { uids: [P.sales] }); break;
-    case 'quote_approval': add('approve_quote', ['owner', 'admin'], { not: q && q.by, urgent: true }); break;
+    case 'quote_approval': add('approve_quote', ['owner', 'admin'], { not: q && q.by, urgent: true });
+      /* nobody else can approve (e.g. the Owner alone made a price below the floor): the maker withdraws it and makes a new one */
+      if (q && !Object.values(S.users).some(x => x.active && x.uid !== q.by && ['owner', 'admin'].includes(x.role)) && !backupNow()) add('withdraw_quote', [roleOf(q.by)], { uids: [q.by], urgent: true });
+      break;
     case 'quote_ready': add('send_quote', ['sales'], { uids: [P.sales] }); break;
     case 'quoted': add(quoteExpired(q) ? 'requote' : 'get_decision', ['sales'], { uids: [P.sales], urgent: quoteExpired(q) }); break;
     case 'won': add('prepare_agreement', ['sales'], { uids: [P.sales] }); break;
@@ -6237,7 +6242,7 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', pay_now: '💳', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { if (App.me && OUTSIDERS.includes(App.me.role)) return (P.site.address || '').split(/[,\n]/)[0] || areaOf(P) || P.id; return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
@@ -6747,7 +6752,7 @@ WIZ.approve = {
     {
       id: 'look', icon: '🧾', say: 's_approve_look',
       body: (c, P) => { const q = lastQuote(P); return `<div class="card"><b>${t('quote_v', { v: q.v })}</b> · ${userTag(q.by)}<br>${reqKv(q.req)}</div><div class="card">${quoteBox(q, true)}
-        ${q.reason ? `<div class="note">💬 ${esc(q.reason)}</div>` : ''}</div>` + tiles('decision', [['approve', '✅', 'dec_approve'], ['reject', '❌', 'dec_reject', 'dec_reject_d']], 'one'); },
+        ${q.reason ? `<div class="note">💬 ${esc(q.reason)}</div>` : ''}</div>` + tiles('decision', [['approve', '✅', 'dec_approve'], ['reject', '❌', 'dec_reject', 'dec_reject_d']].filter(x => x[0] !== 'approve' || q.by !== App.me.uid), 'one'); },
       check: c => c.decision ? null : 'err_choose'
     },
     { id: 'why', icon: '📝', say: 's_approve_why', body: c => inp('reason', 'f_decision_reason', { area: true, mic: true, opt: c.decision === 'approve' }), check: c => c.decision === 'reject' && !c.reason.trim() ? 'err_reason' : null }
@@ -7693,7 +7698,9 @@ function payDue(P) {
 const upiLink = (P, due) => `upi://pay?${new URLSearchParams({ pa: S.config.payUpi, pn: S.config.payName || S.org.name, am: String(due.amount), cu: 'INR', tn: P.id + ' ' + due.purpose })}`;
 function payCard(P, full) {
   const due = payDue(P), c = S.config; if (!due) return '';
-  const st = due.pay ? (due.pay.status === 'pending' ? `<div class="note">⏳ ${t(due.pay.recordedBy === P.customer ? 'pay_reported' : 'pay_recorded_wait')} · ${esc(due.pay.ref || '')}</div>` : due.pay.status === 'failed' ? `<div class="warnbox">⚠️ ${t('pay_failed_again')}</div>` : '') : '';
+  const last = [...P.payments].reverse().find(x => x.purpose === due.purpose);
+  const st = due.pay ? (due.pay.status === 'pending' ? `<div class="note">⏳ ${t(due.pay.recordedBy === P.customer ? 'pay_reported' : 'pay_recorded_wait')} · ${esc(due.pay.ref || '')}</div>` : '')
+    : last && last.status === 'failed' ? `<div class="warnbox">⚠️ ${t('pay_failed_again')}${(last.hist || []).slice(-1)[0] && last.hist.slice(-1)[0].reason ? ' · ' + esc(last.hist.slice(-1)[0].reason) : ''}</div>` : '';
   const have = c.payUpi || (c.payAcc && c.payIfsc);
   let qr = ''; if (full && c.payUpi) { try { qr = `<div class="center" style="margin:8px 0"><div style="display:inline-block;background:#fff;padding:6px">${QR.svg(upiLink(P, due), 220)}</div><p class="small muted">${t('pay_qr_note')}</p></div>`; } catch (e) { qr = ''; } }
   return `<div class="card"><h3>💳 ${t('pay_title')}</h3>${kv([['pay_for', t('pay_' + due.purpose) + ' · ' + esc(P.id)], ['amount', `<b style="font-size:1.3rem">${money(due.amount)}</b>`]])}${st}
@@ -9742,7 +9749,7 @@ function openTask(n) {
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid),
-    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), pay_now: () => go('pay', { pid }), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
+    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
     lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
