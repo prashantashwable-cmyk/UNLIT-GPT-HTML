@@ -225,6 +225,18 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * While someone is working in the app (a form, the installation checklist, the safety log, a critical alert, the lift help page), the screen does not turn off by itself. Everywhere else it turns off as usual, and never because of a field worker's shift (no phone use while riding).
 * It can be switched off in Me → Settings, which also shows whether the phone supports it.
 
+### How customers pay, and small teams (no dead ends)
+* **How to pay:** when a payment is due, the customer's home shows the amount and a "Pay the next amount" task.
+  * The pay screen has a "Pay with a UPI app" button with the company UPI ID and the exact amount filled in, a UPI QR code to scan from another phone, and the company bank account with IFSC and the job number to write in remarks.
+  * It warns to pay only into the company account.
+  * The Owner sets the details in Business rules → How customers pay.
+  * Sales can open the same screen for the customer right after the agreement is signed.
+* **"I have paid":** the customer reports the payment with the UPI or bank reference (and a screenshot if they like). Finance, or the Owner when there is no other Finance person, checks it in the bank and confirms. The one who reported or recorded a payment never confirms it.
+* **Small teams:** when nobody else in the team holds the Sales, Finance or QC role a step needs, the Owner gets that task and may do it. When the team has such a person, the usual separation stays.
+  * Examples: confirming a payment, inspecting the site, final inspection, signing the handover as QC.
+  * Physical work (technician, supplier, partner, field) is never covered this way.
+  * A test runs a whole job from lead to handover with only the Owner, a field worker, a partner company, a supplier and the customer. At every step it checks that the person acting has the task.
+
 ### Shaft limits, variation, co-worker check, surprise QC
 * **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).
   * A shaft below the minimum cannot simply be approved: QC asks for corrections, or approves "with a variation quote".

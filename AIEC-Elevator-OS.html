@@ -1241,6 +1241,41 @@ const L = {
   ev_REFUND_PROPOSED: ['Refund worked out', 'रिफ़ंड निकाला', 'परतावा काढला'],
   ev_REFUND_DECIDED: ['Refund decided', 'रिफ़ंड पर फ़ैसला', 'परताव्यावर निर्णय'],
   ev_REFUND_PAID: ['Refund paid', 'रिफ़ंड भुगतान', 'परतावा दिला'],
+  err_pay_detail: ['Check this payment detail (UPI ID like name@bank, IFSC like HDFC0001234, account number in digits).', 'यह भुगतान जानकारी जाँचें (UPI ID जैसे name@bank, IFSC जैसे HDFC0001234, खाता नंबर अंकों में)।', 'ही पैसे भरण्याची माहिती तपासा (UPI ID जसे name@bank, IFSC जसे HDFC0001234, खाते क्रमांक अंकांत).'],
+  rg_paydetails: ['How customers pay', 'ग्राहक कैसे भुगतान करें', 'ग्राहकांनी पैसे कसे भरावे'],
+  rg_paydetails_d: ['The company\'s UPI ID and bank account shown to customers when a payment is due. Only company accounts.', 'भुगतान बाकी होने पर ग्राहकों को दिखने वाला कंपनी का UPI ID और बैंक खाता। सिर्फ़ कंपनी खाते।', 'पैसे बाकी असताना ग्राहकांना दिसणारा कंपनीचा UPI ID आणि बँक खाते. फक्त कंपनीची खाती.'],
+  cfg_payUpi: ['Company UPI ID', 'कंपनी UPI ID', 'कंपनी UPI ID'],
+  cfg_payName: ['Account name', 'खाते का नाम', 'खात्याचे नाव'],
+  cfg_payBank: ['Bank and branch', 'बैंक और शाखा', 'बँक आणि शाखा'],
+  cfg_payAcc: ['Account number', 'खाता नंबर', 'खाते क्रमांक'],
+  cfg_payIfsc: ['IFSC', 'IFSC', 'IFSC'],
+  tk_pay_now: ['Pay the next amount', 'अगली राशि भरें', 'पुढील रक्कम भरा'],
+  pay_title: ['How to pay', 'भुगतान कैसे करें', 'पैसे कसे भरावे'],
+  pay_how: ['See how to pay', 'भुगतान का तरीका देखें', 'पैसे भरण्याची पद्धत पाहा'],
+  pay_show: ['Show the customer how to pay', 'ग्राहक को भुगतान का तरीका दिखाएँ', 'ग्राहकाला पैसे भरण्याची पद्धत दाखवा'],
+  pay_upi_app: ['Pay with a UPI app', 'UPI ऐप से भरें', 'UPI ॲपने भरा'],
+  pay_qr_note: ['Or scan this with any UPI app on another phone.', 'या दूसरे फ़ोन के किसी भी UPI ऐप से यह स्कैन करें।', 'किंवा दुसऱ्या फोनवरील कोणत्याही UPI ॲपने हे स्कॅन करा.'],
+  pay_upi_id: ['UPI ID', 'UPI ID', 'UPI ID'],
+  pay_bank: ['Bank transfer (NEFT / IMPS / RTGS)', 'बैंक ट्रांसफ़र (NEFT / IMPS / RTGS)', 'बँक ट्रान्सफर (NEFT / IMPS / RTGS)'],
+  pay_acc_name: ['Account name', 'खाते का नाम', 'खात्याचे नाव'],
+  pay_bank_name: ['Bank', 'बैंक', 'बँक'],
+  pay_acc: ['Account number', 'खाता नंबर', 'खाते क्रमांक'],
+  pay_ifsc: ['IFSC', 'IFSC', 'IFSC'],
+  pay_remark: ['Write in remarks', 'टिप्पणी में लिखें', 'शेऱ्यात लिहा'],
+  pay_safe: ['Pay only to this company account. Nobody from the company will ask you to pay into a personal account. Cash only against a printed receipt.', 'सिर्फ़ इसी कंपनी खाते में भुगतान करें। कंपनी से कोई व्यक्तिगत खाते में पैसे नहीं माँगेगा। नकद सिर्फ़ छपी रसीद पर।', 'फक्त याच कंपनी खात्यात पैसे भरा. कंपनीतील कोणीही वैयक्तिक खात्यात पैसे मागणार नाही. रोख फक्त छापील पावतीवर.'],
+  pay_no_details: ['The company has not added its payment details yet. Please ask your Sales contact.', 'कंपनी ने अभी भुगतान जानकारी नहीं डाली। कृपया अपने सेल्स संपर्क से पूछें।', 'कंपनीने अजून पैसे भरण्याची माहिती टाकलेली नाही. कृपया तुमच्या सेल्स संपर्काला विचारा.'],
+  pay_i_paid: ['I have paid', 'मैंने भुगतान कर दिया', 'मी पैसे भरले'],
+  s_cust_paid: ['How did you pay?', 'आपने कैसे भुगतान किया?', 'तुम्ही पैसे कसे भरले?'],
+  s_cust_ref: ['Write the UPI reference (UTR) or bank reference. A screenshot helps.', 'UPI रेफ़रेंस (UTR) या बैंक रेफ़रेंस लिखें। स्क्रीनशॉट मदद करता है।', 'UPI संदर्भ (UTR) किंवा बँक संदर्भ लिहा. स्क्रीनशॉट उपयोगी ठरतो.'],
+  pay_ref_q: ['Reference number (UTR)', 'रेफ़रेंस नंबर (UTR)', 'संदर्भ क्रमांक (UTR)'],
+  pay_proof: ['Payment screenshot', 'भुगतान का स्क्रीनशॉट', 'पैसे भरल्याचा स्क्रीनशॉट'],
+  pay_proof_hint: ['Optional. Take a photo of the success screen.', 'वैकल्पिक। सफल भुगतान स्क्रीन का फ़ोटो लें।', 'ऐच्छिक. यशस्वी पेमेंट स्क्रीनचा फोटो घ्या.'],
+  what_cust_paid: ['Thank you. The office will check it in the bank; then the next step starts.', 'धन्यवाद। ऑफ़िस बैंक में जाँच करेगा; फिर अगला कदम शुरू होगा।', 'धन्यवाद. ऑफिस बँकेत तपासेल; मग पुढचा टप्पा सुरू होईल.'],
+  pay_reported: ['You reported this payment. The office is checking it in the bank.', 'आपने यह भुगतान बताया। ऑफ़िस बैंक में जाँच रहा है।', 'तुम्ही हे पैसे भरल्याचे कळवले. ऑफिस बँकेत तपासत आहे.'],
+  pay_recorded_wait: ['Payment noted. The office is checking it in the bank.', 'भुगतान दर्ज। ऑफ़िस बैंक में जाँच रहा है।', 'पैसे नोंदवले. ऑफिस बँकेत तपासत आहे.'],
+  pay_failed_again: ['The last payment was not found in the bank. Please pay again or call Sales.', 'पिछला भुगतान बैंक में नहीं मिला। कृपया फिर भरें या सेल्स को कॉल करें।', 'मागील पैसे बँकेत आढळले नाहीत. कृपया पुन्हा भरा किंवा सेल्सला फोन करा.'],
+  pay_nothing_due: ['Nothing to pay right now.', 'अभी कुछ भरना नहीं है।', 'आत्ता काही भरायचे नाही.'],
+  pay_details_where: ['Payment details are set in Business rules → How customers pay.', 'भुगतान जानकारी कारोबार नियम → ग्राहक कैसे भुगतान करें में।', 'पैसे भरण्याची माहिती व्यवसाय नियम → ग्राहकांनी पैसे कसे भरावे मध्ये.'],
   wake_title: ['Screen stays on', 'स्क्रीन चालू रहे', 'स्क्रीन चालू राहील'],
   wake_on: ['Keep the screen on while I work in the app', 'ऐप में काम करते समय स्क्रीन चालू रखें', 'ॲपमध्ये काम करताना स्क्रीन चालू ठेवा'],
   wake_now: ['On now', 'अभी चालू', 'आत्ता चालू'],
@@ -3451,6 +3486,8 @@ const PRE_WON = ['new', 'returned', 'accepted', 'contacted', 'requirements', 'qu
 const SALES_TALK = ['accepted', 'contacted', 'requirements', 'quote_ready', 'quoted'];
 const OPEN_STAGES = STAGE_ORDER.filter(s => s !== 'lost' && s !== 'amc');
 const stageIdx = s => STAGE_ORDER.indexOf(s);
+const TEXT_CFG = ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc'];
+const TEXT_CFG_RE = { payUpi: /^[\w.\-]{2,}@[a-zA-Z]{2,}$/, payName: /^[^<>]{2,60}$/, payBank: /^[^<>]{2,60}$/, payAcc: /^\d{6,20}$/, payIfsc: /^[A-Z]{4}0[A-Z0-9]{6}$/ };
 const PAY_STAGE = { token: 'signed', arrival: 'arrived', cabin: 'installing', final: 'final_pay' };
 /* the cabin payment is due before the car (cabin) step */
 const CABIN_STEP = 5;
@@ -3504,7 +3541,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15, poDays: 7, safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15, poDays: 7, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -3513,6 +3550,7 @@ const RULE_GROUPS = {
   margins: ['targetMargin', 'salesDiscountLimit', 'minMargin', 'negStep'],
   token: ['token'],
   milestones: ['tokenMode', 'arrivalPct', 'cabinPct'],
+  paydetails: ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc'],
   fieldpay: ['payLeadValid', 'leadWonPct'],
   install: ['installDays', 'poDays'],
   service: ['warrantyMonths', 'amcVisits', 'validityDays'],
@@ -4103,6 +4141,23 @@ function undoWhyNot(S, id, by, t) {
   return S.lastAt[x.pid || '_g'] === id ? null : 'err_undo_after';
 }
 const canUndo = id => !!App.me && !undoWhyNot(S, id, App.me.uid, nowISO());
+/* small teams: when no other active person holds the Sales, Finance or QC role a step needs, the Owner may do it (and gets the task);
+   with such a person in the team the usual separation stays. Physical work (technician, supplier, partner, field) is never covered. */
+const COVER_ROLES = ['sales', 'finance', 'qc'];
+const COVER_EV = ['LEAD_ACCEPTED', 'LEAD_RETURNED', 'CONTACT_LOGGED', 'FOLLOWUP_SET', 'REQ_SAVED', 'QUOTE_CREATED', 'QUOTE_SENT', 'DEAL_WON', 'COUNTER_OFFER', 'AGREEMENT_PREPARED', 'AGREEMENT_SIGNED',
+  'PAYMENT_RECORDED', 'PAYMENT_STATUS', 'PREP_ITEM_DONE', 'QC_REQUESTED', 'QC_SITE_RESULT', 'QC_FINAL_RESULT', 'SURPRISE_DONE', 'VARIATION_SIGNED', 'VARIATION_DECLINED', 'REFUND_PROPOSED', 'REFUND_PAID', 'PAY_PAID', 'CUSTOMER_RATED', 'HANDOVER_SIGNED', 'CORRECTION_DONE'];
+/* the person a same-person rule keeps out (the one who recorded a payment, proposed a refund or approved pay) */
+function coverExcl(S, ev, P) {
+  if (ev.type === 'PAYMENT_STATUS' && P) return ((P.payments || []).find(x => x.id === ev.data.payId) || {}).recordedBy;
+  if (ev.type === 'REFUND_PAID' && P && P.refund) return P.refund.by;
+  if (ev.type === 'PAY_PAID') return ((S.pay || {})[ev.data.uid + '|' + ev.data.week] || {}).approvedBy;
+  return null;
+}
+function ownerCovers(S, R, ev, u, P) {
+  if (!u || u.role !== 'owner' || !COVER_EV.includes(ev.type)) return false;
+  const need = R.roles.filter(r => COVER_ROLES.includes(r)), ex = coverExcl(S, ev, P);
+  return need.length > 0 && !Object.values(S.users).some(x => x.active && x.uid !== u.uid && x.uid !== ex && need.includes(x.role));
+}
 function innerEvent(req, ev) { return { id: ev.id + '~', n: ev.n, t: ev.t, by: req.by, type: req.action.type, pid: req.action.pid, data: Object.assign({}, req.action.data, { _aid: req.id }), dev: ev.dev }; }
 const PAY_KEYS = { approve: ['owner', 'admin'] };
 
@@ -4182,6 +4237,7 @@ const RULES = {
       if (!(d.key in DEFAULT_CONFIG)) return 'err_fill';
       if (d.from != null && (!isRateKey(d.key) || !/^\d{4}-\d\d-\d\d$/.test(d.from) || d.from < safeDay(ev.t))) return 'err_date';
       if (d.key === 'sosNumber' || d.key === 'officeNumber') return /^(\+?\d{3,15})?$/.test(String(d.value)) ? null : 'err_phone';
+      if (TEXT_CFG.includes(d.key)) return typeof d.value === 'string' && d.value.length <= 60 && (!d.value || TEXT_CFG_RE[d.key].test(d.value)) ? null : 'err_pay_detail';
       return (typeof d.value === 'number' && isFinite(d.value) && d.value >= 0) ? null : 'err_number';
     }
   },
@@ -4278,8 +4334,10 @@ const RULES = {
     }
   },
   PAYMENT_RECORDED: {
-    roles: ['sales', 'finance'], project: true, check: (S, ev, u, P) => {
+    roles: ['sales', 'finance', 'customer'], project: true, check: (S, ev, u, P) => {
       const d = ev.data;
+      /* the customer can report "I have paid" for their own job, with the bank or UPI reference; the office checks it in the bank */
+      if (u.role === 'customer' && (P.customer !== u.uid || d.method === 'cash')) return P.customer !== u.uid ? 'err_access' : 'err_choose';
       if (!PAY_STAGE[d.purpose] || P.stage !== PAY_STAGE[d.purpose]) return { k: 'err_stage', v: { stage: stName(P.stage) } };
       const a = activePay(P, d.purpose);
       if (a) return 'err_pay_exists';
@@ -4579,7 +4637,7 @@ const RULES = {
       if (s === 'customer' && !(u.role === 'customer' || (u.role === 'tech' && P.tech === u.uid))) return 'err_access';
       if (s === 'tech' && !(u.role === 'tech' && P.tech === u.uid)) return { k: 'err_role', v: { roles: rolesTxt(['tech']) } };
       if (s === 'qc' && P.qc && P.qc !== u.uid && isActive(P.qc)) return 'err_not_your_qc';
-      if (s === 'qc' && u.role !== 'qc') return { k: 'err_role', v: { roles: rolesTxt(['qc']) } };
+      if (s === 'qc' && u.role !== 'qc' && !ownerCovers(S, RULES.HANDOVER_SIGNED, ev, u, P)) return { k: 'err_role', v: { roles: rolesTxt(['qc']) } };
       if (ev.data.consent !== true) return 'err_consent';
       if (!(ev.data.signer || '').trim()) return 'err_fill';
       return need(ev_(ev.data, 'sign').length >= 1, 'err_sign');
@@ -4987,7 +5045,8 @@ function validate(S, ev) {
   if (isBoot) return (ev.data.role === 'owner' && ev.by === ev.data.uid && ev.data.name && (ev.data.pin || ev.data.stripped)) ? null : 'err_boot';
   const u = S.users[ev.by];
   if (!u || !u.active) return 'err_no_user';
-  if (!R.roles.includes(u.role)) return { k: 'err_role', v: { roles: rolesTxt(R.roles) } };
+  const P0 = R.project ? S.projects[ev.pid] : null;
+  if (!R.roles.includes(u.role) && !ownerCovers(S, R, ev, u, P0)) return { k: 'err_role', v: { roles: rolesTxt(R.roles) } };
   let P = null;
   if (R.project) {
     P = S.projects[ev.pid];
@@ -5400,6 +5459,7 @@ function needs(P) {
   const out = [], add = (k, roles, o = {}) => out.push(splitOA(Object.assign({ k, roles, pid: P.id }, o)));
   const payNeed = purpose => {
     const p = activePay(P, purpose);
+    if (!p && P.customer) add('pay_now', ['customer'], { uids: [P.customer], purpose });
     if (!p) add('record_payment', ['sales', 'finance'], { uids: [P.sales], purpose });
     else if (p.status === 'pending') add('verify_payment', ['finance'], { not: p.recordedBy, payId: p.id, purpose, urgent: true, since: p.t });
     return p && p.status === 'confirmed';
@@ -5493,12 +5553,22 @@ function needs(P) {
     if (late && !['resolved', 'closed'].includes(x.status)) add('sla_breach', ['admin', 'owner'], { tid: x.id, sev, since: new Date(ticketDue(x)).toISOString() });
     else if (x.status === 'resolved') add('confirm_ticket', P.customer ? ['customer'] : ['admin', 'owner'], { uids: [P.customer], tid: x.id });
   }
+  coverTasks(P, out);
   /* escalation ladder: the main next step counts from the day the stage began, other work from its own date */
   const main = out.find(x => !['sla_breach', 'po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
   if (main && OPEN_STAGES.includes(P.stage) && !main.since) Object.assign(main, { since: lastHoldEnd(P) > P.since ? lastHoldEnd(P) : P.since, escId: P.stage });
   const blocked = P.blockers.some(b => b.open) || P.incidents.some(i => i.open) || onHold(P);
   for (const n of out.slice()) if (n.since && !(blocked && n === main)) { const e = escFor(n, n.since, n.escId || n.bid || n.iid || n.tid || n.mid || n.payId || n.visit); if (e) out.push(e); }
   return out;
+}
+function coverTasks(P, out) {
+  const act = Object.values(S.users).filter(u => u.active), owner = act.find(u => u.role === 'owner');
+  if (!owner) return;
+  for (const n of out) {
+    const need = n.roles.filter(r => COVER_ROLES.concat('admin').includes(r));
+    if (!need.length || act.some(u => (!P || canSee(u, P)) && isMine(n, u)) || act.some(u => u.uid !== n.not && need.includes(u.role))) continue;
+    if (n.not !== owner.uid) Object.assign(n, { roles: ['owner'], uids: [], cover: true });
+  }
 }
 /* work that is not tied to one project: second approvals, pay, training */
 function globalNeeds(u, all) {
@@ -5716,7 +5786,7 @@ async function perform(type, pid, data, opt = {}) {
 /* a quick pre-check used to show or hide buttons; perform() still validates fully */
 function allowed(type, P) {
   const R = RULES[type], u = App.me;
-  if (!R || !u || !R.roles.includes(u.role)) return false;
+  if (!R || !u || (!R.roles.includes(u.role) && !(u.role === 'owner' && COVER_EV.includes(type) && R.roles.some(r => COVER_ROLES.includes(r) && !Object.values(S.users).some(x => x.active && x.role === r))))) return false;
   if (P) { if (!R.open && !canSee(u, P)) return false; if (R.stages && !R.stages.includes(P.stage)) return false; }
   return true;
 }
@@ -6167,7 +6237,7 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', pay_now: '💳', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { if (App.me && OUTSIDERS.includes(App.me.role)) return (P.site.address || '').split(/[,\n]/)[0] || areaOf(P) || P.id; return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
@@ -6745,7 +6815,7 @@ WIZ.sign = {
     { id: 'name', icon: '👤', say: 's_sign_name', body: () => inp('signer', 'f_signer_name', { mic: true }), check: c => (c.signer || '').trim() ? null : 'err_fill' },
     { id: 'sign', icon: '✍️', say: 's_sign_pad', body: () => signSlot('sig', 'customer_signature') + (App.me.role !== 'customer' ? `<div class="note">${t('in_person_note')}</div>` : ''), check: c => c.sig ? null : 'err_sign' }
   ],
-  async finish(c, P) { const r = await run([['AGREEMENT_SIGNED', P.id, { consent: true, signer: c.signer.trim(), ev: [c.sig] }]]); return r.ok ? doneRes(P.id, 'what_signed') : r; }
+  async finish(c, P) { const r = await run([['AGREEMENT_SIGNED', P.id, { consent: true, signer: c.signer.trim(), ev: [c.sig] }]]); return r.ok ? doneRes(P.id, 'what_signed', {}, { more: [['payInfo', '💳', 'pay_show']] }) : r; }
 };
 /* ---------- Payments ---------- */
 WIZ.paynew = {
@@ -7607,6 +7677,7 @@ function customerHome() {
   const tile = (a, v, i, l) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`;
   return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}<div class="card"><b>${esc(P.id)}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}</div>${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
     ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + tasks.map((n, i) => taskCard(n, i)).join('') : ''}
+    ${payCard(P)}
     ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
     ${P.done && allowed('TICKET_OPENED', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="ticket|${P.id}">🚨 ${t('ticket_new')}</button>` : ''}
     ${fold('cdocs', t('papers_help'), `<div class="tiles">${q ? tile('openDocP', P.id + '|quote', '📄', 'doc_quote') : ''}${P.agreement ? tile('openDocP', P.id + '|agreement', '✍️', 'doc_agreement') : ''}
@@ -7614,6 +7685,39 @@ function customerHome() {
       ${tile('openProjectTab', P.id + '|chat', '❓', 'ask_question')}${tile('openProjectTab', P.id + '|chat', '😟', 'complaint')}${P.done ? tile('openDocP', P.id + '|handover', '🔑', 'doc_handover') : ''}</div>`, { icon: '📄', sub: t('fold_tap') })}
     ${P.done ? fold('camc', t('amc_title'), amcCard(P), { icon: '🛠️', open: P.tickets.some(x => x.status !== 'closed'), count: P.tickets.filter(x => x.status !== 'closed').length || null, alert: true }) : ''}${!P.done && allowed('TICKET_OPENED', P) ? `<button class="btn" data-a="wizOpen" data-v="ticket|${P.id}">🎫 ${t('ticket_new')}</button>` : ''}</main>` + nav('home');
 }
+/* ---------- how the customer pays: amount due, UPI (app link and QR) and bank transfer to the company account only ---------- */
+function payDue(P) {
+  const k = PURPOSES.find(x => PAY_STAGE[x] === P.stage && P.schedule && P.schedule[x] && !payConfirmed(P, x) && (x !== 'cabin' || sopNext(P) >= CABIN_STEP));
+  return k ? { purpose: k, amount: P.schedule[k], pay: activePay(P, k) } : null;
+}
+const upiLink = (P, due) => `upi://pay?${new URLSearchParams({ pa: S.config.payUpi, pn: S.config.payName || S.org.name, am: String(due.amount), cu: 'INR', tn: P.id + ' ' + due.purpose })}`;
+function payCard(P, full) {
+  const due = payDue(P), c = S.config; if (!due) return '';
+  const st = due.pay ? (due.pay.status === 'pending' ? `<div class="note">⏳ ${t(due.pay.recordedBy === P.customer ? 'pay_reported' : 'pay_recorded_wait')} · ${esc(due.pay.ref || '')}</div>` : due.pay.status === 'failed' ? `<div class="warnbox">⚠️ ${t('pay_failed_again')}</div>` : '') : '';
+  const have = c.payUpi || (c.payAcc && c.payIfsc);
+  let qr = ''; if (full && c.payUpi) { try { qr = `<div class="center" style="margin:8px 0"><div style="display:inline-block;background:#fff;padding:6px">${QR.svg(upiLink(P, due), 220)}</div><p class="small muted">${t('pay_qr_note')}</p></div>`; } catch (e) { qr = ''; } }
+  return `<div class="card"><h3>💳 ${t('pay_title')}</h3>${kv([['pay_for', t('pay_' + due.purpose) + ' · ' + esc(P.id)], ['amount', `<b style="font-size:1.3rem">${money(due.amount)}</b>`]])}${st}
+    ${!have ? `<div class="warnbox">⚠️ ${t('pay_no_details')}</div>` : full ? `${c.payUpi ? `<a class="btn btn-ok btn-big" href="${esc(upiLink(P, due))}">📱 ${t('pay_upi_app')}</a>${qr}${kv([['pay_upi_id', `<b>${esc(c.payUpi)}</b>`]])}` : ''}
+      ${c.payAcc && c.payIfsc ? `<h3 style="margin-top:10px">🏦 ${t('pay_bank')}</h3>${kv([['pay_acc_name', esc(c.payName || S.org.name)], ['pay_bank_name', esc(c.payBank)], ['pay_acc', `<b>${esc(c.payAcc)}</b>`], ['pay_ifsc', `<b>${esc(c.payIfsc)}</b>`], ['pay_remark', `<b>${esc(P.id)}</b>`]])}` : ''}
+      <div class="warnbox">🔐 ${t('pay_safe')}</div>` : `<button class="btn btn-p btn-big" data-a="payInfo" data-v="${P.id}">💳 ${t('pay_how')}</button>`}
+    ${full && App.me.role === 'customer' && !due.pay && have ? `<button class="btn btn-p btn-big" data-a="wizOpen" data-v="custPaid|${P.id}|purpose|${due.purpose}">✅ ${t('pay_i_paid')}</button>` : ''}</div>`;
+}
+SCREENS.pay = ({ pid }) => {
+  const P = S.projects[pid], u = App.me;
+  if (!P || !canSee(u, P) || !seeF(u, 'money')) return SCREENS.home();
+  App.pageSay = t('pay_title');
+  return topBar(t('pay_title'), { back: true }) + `<main class="wrap">${payCard(P, true) || `<div class="card center">✅ ${t('pay_nothing_due')}</div>`}
+    ${['owner', 'admin'].includes(u.role) ? `<p class="small muted">${t('pay_details_where')}</p>` : ''}</main>` + nav(u.role === 'customer' ? 'home' : 'projects');
+};
+WIZ.custPaid = {
+  title: 'pay_i_paid', save: 'send', saveIcon: '✅', noDraft: true, init: () => ({ method: '', ref: '', ph: [] }),
+  steps: [
+    { id: 'm', icon: '💳', say: 's_cust_paid', body: () => tiles('method', [['upi', '📱', 'pm_upi'], ['bank', '🏦', 'pm_bank'], ['cheque', '🧾', 'pm_cheque']], 'three'), check: c => c.method ? null : 'err_choose' },
+    { id: 'r', icon: '🔢', say: 's_cust_ref', body: () => inp('ref', 'pay_ref_q', { big: true }) + photoSlot('ph', 'pay_proof', 0, { hint: 'pay_proof_hint', tag: 'payment' }), check: c => c.ref.trim().length >= 4 ? null : 'err_ref' }
+  ],
+  async finish(c, P) { const due = payDue(P); if (!due) return { ok: false, err: 'err_already' };
+    const r = await run([['PAYMENT_RECORDED', P.id, { payId: 'PAY-' + rid(6), purpose: due.purpose, amount: due.amount, method: c.method, ref: c.ref.trim(), note: '', ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_cust_paid') : r; }
+};
 /* ---------- admin / owner queues and dashboard (all derived from the same project data) ---------- */
 const DRILL = {
   all: P => true,
@@ -8190,7 +8294,7 @@ SCREENS.rules = () => {
   App.pageSay = t('s_rules');
   return topBar(t('business_rules'), { back: true }) + `<main class="wrap"><div class="note">📏 ${t('s_rules')}</div>${Object.entries(RULE_GROUPS).map(([gk, keys]) => `<div class="card"><div class="row"><h3 class="grow" style="margin:0">${t('rg_' + gk)}</h3>${ruleChip(gk)}</div>
     <p class="small muted">${t('rg_' + gk + '_d')}</p>${S.config.approved[gk] ? `<p class="small">✅ ${userName(S.config.approved[gk].by)} · ${fmtD(S.config.approved[gk].t, true)}</p>` : ''}
-    ${keys.map(k => own ? `<div class="field"><label for="${fid('cfg.' + k)}"><b>${t('cfg_' + k)}</b></label><input class="in" ${['sosNumber', 'officeNumber'].includes(k) ? 'type="tel" inputmode="tel"' : 'type="number" min="0" inputmode="decimal"'} id="${fid('cfg.' + k)}" data-f="cfg.${k}" value="${S.config[k]}"></div>` : `<div class="list-item"><span class="grow">${t('cfg_' + k)}</span><b>${S.config[k]}</b></div>`).join('')}
+    ${keys.map(k => own ? `<div class="field"><label for="${fid('cfg.' + k)}"><b>${t('cfg_' + k)}</b></label><input class="in" ${['sosNumber', 'officeNumber'].includes(k) ? 'type="tel" inputmode="tel"' : TEXT_CFG.includes(k) ? `type="text" ${k === 'payAcc' ? 'inputmode="numeric"' : ''}` : 'type="number" min="0" inputmode="decimal"'} id="${fid('cfg.' + k)}" data-f="cfg.${k}" value="${S.config[k]}"></div>` : `<div class="list-item"><span class="grow">${t('cfg_' + k)}</span><b>${S.config[k]}</b></div>`).join('')}
     ${RATE_GROUPS.includes(gk) ? rateBlock(gk, own) : ''}
     ${own ? `<div class="row"><button class="btn" data-a="cfgSave" data-v="${gk}">💾 ${t('save')}</button>${S.config.approved[gk] ? '' : `<button class="btn btn-ok" data-a="cfgApprove" data-v="${gk}">✅ ${t('approve_rule')}</button>`}</div>` : ''}</div>`).join('')}
     ${!own ? `<p class="small muted">${t('rules_owner_only')}</p>` : ''}</main>` + nav('me');
@@ -9638,7 +9742,7 @@ function openTask(n) {
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid),
-    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
+    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), pay_now: () => go('pay', { pid }), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
     lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
@@ -9853,6 +9957,7 @@ const ACT = {
     App.qr.sent = v; const url = v === 'wa' ? `https://wa.me/${to.length === 10 ? '91' + to : to}?text=${encodeURIComponent(msg)}` : `sms:${q.office}?body=${encodeURIComponent(msg)}`; App.qr.lastUrl = url; try { window.open(url, '_blank'); } catch (e) { location.href = url; } },
   qrStaff: () => { App.pendingLift = App.qr.code; App.qr = null; history.replaceState({ aiec: 1 }, '', location.href.split('#')[0]); go(!App.set.lang ? 'welcome' : !S.org ? (App.mode === 'practice' ? 'login' : 'setup') : 'login', {}, { replace: true }); },
   liftQr: v => go('liftqr', { pid: v }),
+  payInfo: v => go('pay', { pid: v || pidHere() }),
   weekGo: v => { App.route.p = { end: v }; render(); },
   weekShare: async v => { const txt = weekText(weekSummary(v)); App.lastShare = txt;
     try { if (navigator.share) { await navigator.share({ text: txt }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
@@ -9971,7 +10076,7 @@ const ACT = {
     let n = 0;
     for (const k of RULE_GROUPS[gk]) {
       const raw = App.form['cfg.' + k]; if (raw == null || raw === '') continue;
-      const val = ['sosNumber', 'officeNumber'].includes(k) ? String(raw).replace(/[^\d+]/g, '') : +raw; if (val === S.config[k] && !(RATE_GROUPS.includes(gk) && App.form['cfgFrom.' + gk])) continue;
+      const val = ['sosNumber', 'officeNumber'].includes(k) ? String(raw).replace(/[^\d+]/g, '') : TEXT_CFG.includes(k) ? String(raw).trim().replace(/\s+/g, k === 'payAcc' ? '' : ' ').replace(/^.*$/, x => k === 'payIfsc' ? x.toUpperCase() : x) : +raw; if (val === S.config[k] && !(RATE_GROUPS.includes(gk) && App.form['cfgFrom.' + gk])) continue;
       const from = RATE_GROUPS.includes(gk) && App.form['cfgFrom.' + gk] && App.form['cfgFrom.' + gk] > todayStr() ? App.form['cfgFrom.' + gk] : null;
       const r = await perform('CONFIG_SET', null, Object.assign({ key: k, value: val }, from ? { from } : {})); if (!r.ok) return; n++;
     }
@@ -10100,6 +10205,7 @@ async function seedPractice() {
   const people = [['owner', 'Anil Deshmukh', 'owner'], ['admin', 'Sunita Patil', 'admin'], ['field', 'Ramesh Jadhav', 'field'], ['field2', 'Sachin More', 'field'], ['sales', 'Priya Kulkarni', 'sales'],
     ['finance', 'Meena Joshi', 'finance'], ['qc', 'Vijay Shinde', 'qc'], ['supplier', 'Kaveri Lift Supply', 'supplier'], ['partner', 'Shree Lift Works', 'partner'], ['partner2', 'Om Elevator Services', 'partner'], ['tech', 'Raju Pawar', 'tech']];
   for (const [k, name, role] of people) await SP('USER_ADDED', null, Object.assign({ uid: U[k], name, role, salt, pin }, role === 'tech' ? { company: U.partner } : {}), 'owner');
+  for (const [key, value] of [['payUpi', 'aiec.practice@okhdfc'], ['payName', 'AIEC Practice Account'], ['payBank', 'Practice Bank, Pune'], ['payAcc', '000111222333'], ['payIfsc', 'HDFC0000001']]) await SP('CONFIG_SET', null, { key, value }, 'owner');
   /* licensed partner companies: Shree Lift Works (licence valid, the installers work for it); Om Elevator Services (licence ends soon, no approved team yet) */
   await SP('PARTNER_PROFILE', null, { uid: U.partner, licNo: 'MH/LIFT/2024/1187', licHolder: 'Dattatray Kulkarni (Shree Lift Works)', licAuthority: 'Electrical Inspector, Pune', licExpiry: addDays(400), gst: '27ABCDE1234F1Z5' }, 'admin');
   await SP('PARTNER_PROFILE', null, { uid: U.partner2, licNo: 'MH/LIFT/2021/0642', licHolder: 'Om Elevator Services', licAuthority: 'Electrical Inspector, Pune', licExpiry: addDays(20) }, 'admin');
