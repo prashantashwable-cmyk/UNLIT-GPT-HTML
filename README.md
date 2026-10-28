@@ -49,7 +49,7 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 | 🚚 Material | Packing checklist, seal number, vehicle, photos | Supplier |
 | | Arrival: GPS, seal number seen, seal intact, condition, photos (mismatch = incident) | Technician / Supplier |
 | | Arrival payment recorded → **verified by Finance** | Sales → Finance |
-| | Material handover — **blocked until payment is verified and incidents are closed**; customer + technician sign | Technician |
+| | Material handover — **blocked until payment is verified and incidents are closed**; technician counts and signs; a customer with the app then signs on their own phone | Technician, then Customer |
 | 🔧 Install | 12 SOP steps in order, photo/video for each, "I can't do this step" → blocker routed to the right role | Technician |
 | | Final inspection: pass/fail checks; any fail → correction tasks → re-inspection | QC / Technician |
 | 🔑 Handover | Final payment recorded → **verified by Finance** | Sales → Finance |
@@ -157,6 +157,9 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * **Dispatch:** the supplier writes the serial numbers of the machine, controller and governor and the delivery challan number, besides the seal and photos.
 * **Representative:** the customer, Sales or the office can name a person who receives the material (family member, society secretary, site manager, watchman), with a photo of the letter or ID. The name and phone never go to partner companies, technicians or suppliers.
 * **Safe keeping at delivery:** the material handover needs a photo of the storage place, and the customer or representative accepts to keep the material safe until installation, then signs.
+  * When the customer has the app, the technician's phone does not take the customer's signature. The technician counts the items, photographs the storage place and signs. The customer then gets "Sign for the material received": they see the counted list, who counted it and the storage photo, can ask a question first, accept to keep the material safe, and sign on their own phone.
+  * Installation starts (and the installation days count) from the customer's signature. If the customer has not signed after a day, the office gets a task to call them.
+  * A representative, or a customer without the app, still signs on the technician's phone at the site.
 * **Part claims:** a line marked damaged or missing at the handover becomes a claim at once; later the team can report damaged, missing or extra parts with a photo and the serial seen.
   * Only parts on the job's list can be claimed. A claim does not stop the work; a "safety emergency" claim rings the office alarm.
   * The office approves or refuses with a reason, the supplier sends the part with a challan number, and the technician confirms with a photo.

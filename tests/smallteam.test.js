@@ -75,7 +75,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await step('pay_now', 'SCUST', 'PAYMENT_RECORDED', { payId: 'PAY-S2', purpose: 'arrival', amount: due2.amount, method: 'bank', ref: 'NEFT-S2' });
   await step('verify_payment', 'POWNER', 'PAYMENT_STATUS', { payId: 'PAY-S2', status: 'confirmed', ref: 'BANK-STMT-2' });
   const items = await ev(`S.projects["${pid}"].materials.map(m => ({ k: m.k, q: m.q, status: 'ok' }))`);
-  await step('material_handover', tech, 'MATERIAL_HANDED', { items, custName: 'Mr. Joshi', signer: 'contact', custody: true, ev: (await sign()).concat(await sign(), await ph(1, 'storage')) });
+  await step('material_handover', tech, 'MATERIAL_HANDED', { items: items, custName: 'Mr. Joshi', signer: 'contact', custApp: true, ev: (await sign()).concat(await ph(1, 'storage')) });
+  await step('mhand_cust_sign', 'SCUST', 'MATERIAL_RECEIPT_SIGNED', { custName: 'Mr. Joshi', custody: true, ev: await sign() });
 
   /* installation: safety check, steps, co-worker checks by the company's senior */
   await step('site_checkin', tech, 'SITE_CHECKED_IN', { day: await ev('safeDay()'), gps: null, reason: 'site_gps' });

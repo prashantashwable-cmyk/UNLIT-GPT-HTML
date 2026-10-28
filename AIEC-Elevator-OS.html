@@ -559,6 +559,16 @@ const L = {
   tk_dispatch: ['Pack and send material', 'सामान पैक करके भेजें', 'साहित्य पॅक करून पाठवा'],
   tk_arrival: ['Record material arrival', 'सामान पहुँचना दर्ज करें', 'साहित्य पोहोचल्याची नोंद करा'],
   tk_material_handover: ['Hand over material', 'सामान सौंपें', 'साहित्य सुपूर्द करा'],
+  tk_mhand_cust_sign: ['Sign for the material received', 'मिले हुए सामान पर साइन करें', 'मिळालेल्या साहित्यावर सही करा'],
+  tk_mhand_cust_wait: ['Customer has not signed for the material', 'ग्राहक ने सामान पर साइन नहीं किया', 'ग्राहकाने साहित्यावर सही केली नाही'],
+  mh_cust_app: ['The customer signs in their own app. They get a task now; installation starts after they sign.', 'ग्राहक अपने ऐप में साइन करेंगे। उन्हें अभी काम मिलेगा; उनके साइन के बाद इंस्टॉलेशन शुरू होगा।', 'ग्राहक स्वतःच्या ॲपमध्ये सही करतील. त्यांना आता काम मिळेल; त्यांच्या सहीनंतर बसवणे सुरू होईल.'],
+  mh_wait_cust: ['Waiting for the customer to sign for the material in their app', 'ग्राहक के ऐप में सामान पर साइन का इंतज़ार', 'ग्राहकाच्या ॲपमध्ये साहित्यावरील सहीची वाट'],
+  s_mh_cust_items: ['Check the material the technician counted with you, then sign.', 'टेक्नीशियन ने आपके साथ जो सामान गिना, उसे देखें, फिर साइन करें।', 'तंत्रज्ञाने तुमच्यासोबत मोजलेले साहित्य तपासा, मग सही करा.'],
+  mh_counted_by: ['Counted by {n}', '{n} ने गिना', '{n} यांनी मोजले'],
+  mh_not_right: ['Something not right? Ask the office before you sign.', 'कुछ गलत है? साइन करने से पहले ऑफिस से पूछें।', 'काही चुकीचे आहे? सही करण्यापूर्वी ऑफिसला विचारा.'],
+  what_mhand_tech_done: ['Saved. The customer now signs for the material in their app.', 'सेव हुआ। अब ग्राहक अपने ऐप में सामान पर साइन करेंगे।', 'जतन झाले. आता ग्राहक त्यांच्या ॲपमध्ये साहित्यावर सही करतील.'],
+  ev_MATERIAL_RECEIPT_SIGNED: ['Customer signed for the material', 'ग्राहक ने सामान पर साइन किया', 'ग्राहकाने साहित्यावर सही केली'],
+  err_cust_signs_app: ['The customer has the app: they sign for the material on their own phone.', 'ग्राहक के पास ऐप है: वे अपने फ़ोन पर सामान के लिए साइन करेंगे।', 'ग्राहकाकडे ॲप आहे: ते स्वतःच्या फोनवर साहित्यासाठी सही करतील.'],
   tk_install: ['Do installation steps', 'इंस्टॉलेशन के चरण करें', 'इन्स्टॉलेशनच्या पायऱ्या करा'],
   tk_request_inspection: ['Ask for final inspection', 'अंतिम जाँच के लिए बुलाएँ', 'अंतिम तपासणीसाठी बोलवा'],
   tk_final_inspect: ['Final inspection', 'अंतिम जाँच करें', 'अंतिम तपासणी करा'],
@@ -3362,7 +3372,7 @@ const PRIVATE_V2 = {
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
   MSG_LOGGED: ['text'], CONFIG_SET: ['value'], AGREEMENT_SIGNED: ['signer'], PARTNER_PROFILE: ['licNo', 'licHolder', 'licAuthority', 'gst'],
-  MATERIAL_HANDED: ['custName'], HANDOVER_SIGNED: ['signer'], CUSTOMER_RATED: ['name', 'note'], REP_SET: ['name', 'phone'],
+  MATERIAL_HANDED: ['custName'], MATERIAL_RECEIPT_SIGNED: ['custName'], HANDOVER_SIGNED: ['signer'], CUSTOMER_RATED: ['name', 'note'], REP_SET: ['name', 'phone'],
   VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date'], COUNTER_OFFER: ['amount', 'note'], REFUND_PROPOSED: ['amount', 'deduct', 'note'], REFUND_PAID: ['ref']
 };
 const isPriv2 = (type, k) => (PRIVATE_V2[type] || []).includes(k);
@@ -3798,6 +3808,8 @@ function distKm(a, b) {
   return Math.round(2 * R * Math.asin(Math.sqrt(h)) * 10) / 10;
 }
 const isActive = uid => !!(S.users[uid] && S.users[uid].active);
+/* a customer with the app signs for the material on their own phone; a representative (no app) or a customer without the app signs on the technician's phone */
+const custSignsApp = (P, signer) => !!P.customer && isActive(P.customer) && signer !== 'rep';
 /* Licensed Partner Companies: technicians work under a company that holds the lift licence; AIEC gives jobs to the company and pays the company */
 const companyOf = uid => (S.users[uid] || {}).company || null;
 /* the company a technician belonged to on a given day (pay and credit follow the company at the time of the work) */
@@ -4533,11 +4545,21 @@ const RULES = {
       if (!(ev.data.custName || '').trim()) return 'err_fill';
       if (App.liveCheck) {
         if (ev.data.signer === 'rep' && !P.rep) return 'err_no_rep';
-        if (ev.data.custody !== true) return 'err_custody';
+        if (!ev.data.custApp !== !custSignsApp(P, ev.data.signer)) return ev.data.custApp ? 'err_choose' : 'err_cust_signs_app';
+        if (ev.data.custody !== true && !ev.data.custApp) return 'err_custody';
         if (ev_(ev.data, 'photo').length < 1) return 'err_storage_photo';
       }
       if ((ev.data.items || []).length !== P.materials.length) return 'err_not_all';
-      return need(ev_(ev.data, 'sign').length >= 2, 'err_sign');
+      return need(ev_(ev.data, 'sign').length >= (ev.data.custApp ? 1 : 2), 'err_sign');
+    }
+  },
+  MATERIAL_RECEIPT_SIGNED: {
+    roles: ['customer'], project: true, stages: ['arrived'], check: (S, ev, u, P) => {
+      if (P.customer !== u.uid) return 'err_access';
+      if (!P.mhand || !P.mhand.wait) return 'err_already';
+      if (!(ev.data.custName || '').trim()) return 'err_fill';
+      if (ev.data.custody !== true) return 'err_custody';
+      return need(ev_(ev.data, 'sign').length >= 1, 'err_sign');
     }
   },
   SOP_STEP_DONE: {
@@ -5360,10 +5382,13 @@ function apply(S, ev) {
     case 'SOS_CLOSED': Object.assign(S.sos[d.sid], { open: false, closed: { t: ev.t, by: ev.by, note: d.note } }); break;
     case 'MATERIAL_HANDED': {
       const sg = ev_(d, 'sign');
-      P.mhand = { t: ev.t, by: ev.by, items: d.items, custName: d.custName, custSig: sg[0].id, techSig: sg[1].id, note: d.note || '', signer: d.signer || 'contact', custody: !!d.custody, storage: ev_(d, 'photo').map(e => e.id) };
-      setStage(P, 'installing', ev);
+      P.mhand = d.custApp ? { t: ev.t, by: ev.by, items: d.items, custName: d.custName, custSig: null, techSig: sg[0].id, note: d.note || '', signer: 'contact', custody: false, storage: ev_(d, 'photo').map(e => e.id), wait: true }
+        : { t: ev.t, by: ev.by, items: d.items, custName: d.custName, custSig: sg[0].id, techSig: sg[1].id, note: d.note || '', signer: d.signer || 'contact', custody: !!d.custody, storage: ev_(d, 'photo').map(e => e.id) };
+      if (!d.custApp) setStage(P, 'installing', ev);
       break;
     }
+    /* installation time counts from the customer's signature */
+    case 'MATERIAL_RECEIPT_SIGNED': Object.assign(P.mhand, { custSig: ev_(d, 'sign')[0].id, custName: d.custName, custody: true, wait: false, techT: P.mhand.t, t: ev.t }); setStage(P, 'installing', ev); break;
     case 'SOP_STEP_DONE': P.sop[d.step] = { t: ev.t, by: ev.by, note: d.note || '', ev: ev_(d).map(e => e.id) }; break;
     case 'BLOCKER_RAISED':
       P.blockers.push({ id: ev.id, step: d.step == null ? null : d.step, reason: d.reason, role: d.role, note: d.note || '', t: ev.t, by: ev.by, open: true, ev: ev_(d).map(e => e.id) });
@@ -5577,7 +5602,10 @@ function needs(P) {
         if (late) add('po_late', ['admin', 'owner'], { date: P.po.accepted.date, since: P.po.accepted.date + 'T23:59:00' }); }
       break;
     case 'dispatched': add('arrival', ['tech', 'supplier'], { uids: [P.tech, P.supplier] }); break;
-    case 'arrived': if (payNeed('arrival') && !openIncidents(P).length) add('material_handover', ['tech'], { uids: [P.tech] }); break;
+    case 'arrived':
+      if (P.mhand && P.mhand.wait) { add('mhand_cust_sign', ['customer'], { uids: [P.customer], since: P.mhand.t }); if (Date.now() - Date.parse(P.mhand.t) > 864e5) add('mhand_cust_wait', ['admin', 'owner'], { since: P.mhand.t }); }
+      else if (payNeed('arrival') && !openIncidents(P).length) add('material_handover', ['tech'], { uids: [P.tech] });
+      break;
     case 'installing': if (P.schedule && P.schedule.cabin && sopNext(P) >= CABIN_STEP && sopNext(P) < SOP.length && !payNeed('cabin')) { add('wait_cabin_pay', ['tech'], { uids: [P.tech] }); break; }
       if (peerWaiting(P).length) { add('peer_check', ['tech', 'qc'], { uids: Object.values(S.users).filter(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).map(x => x.uid), step: peerWaiting(P)[0], urgent: true }); add('wait_peer', ['tech'], { uids: [P.tech], step: peerWaiting(P)[0] }); break; }
       add(sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' ? (checkinNeeded(P) ? 'site_checkin' : 'safety_check') : sopNext(P) < SOP.length ? 'install' : 'request_inspection', ['tech'], { uids: [P.tech], urgent: sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' }); break;
@@ -5641,7 +5669,7 @@ function needs(P) {
   }
   coverTasks(P, out);
   /* escalation ladder: the main next step counts from the day the stage began, other work from its own date */
-  const main = out.find(x => !['review_checkin', 'sla_breach', 'po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
+  const main = out.find(x => !['mhand_cust_wait', 'review_checkin', 'sla_breach', 'po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
   if (main && OPEN_STAGES.includes(P.stage) && !main.since) Object.assign(main, { since: lastHoldEnd(P) > P.since ? lastHoldEnd(P) : P.since, escId: P.stage });
   const blocked = P.blockers.some(b => b.open) || P.incidents.some(i => i.open) || onHold(P);
   for (const n of out.slice()) if (n.since && !(blocked && n === main)) { const e = escFor(n, n.since, n.escId || n.bid || n.iid || n.tid || n.mid || n.payId || n.visit); if (e) out.push(e); }
@@ -6323,7 +6351,7 @@ function nextLine(P) {
 const TASK_ICON = {
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -7100,8 +7128,8 @@ WIZ.mhand = {
     {
       id: 'cust', icon: '🏠', say: 's_mh_cust',
       body: (c, P) => (P.rep ? tiles('signer', [['rep', '🪪', t('rep_signs', { n: P.rep.name || t('rep_title') })], ['contact', '🏠', 'contact_signs']], 'one') : `<div class="note">🪪 ${t('rep_none')}</div>`)
-        + inp('custName', 'f_customer_name') + `<div class="warnbox">📦 ${t('custody_text')}</div>` + toggleTile('custody', '⬜', 'custody_ok') + signSlot('csig', 'customer_signature'),
-      check: c => !c.custName.trim() ? 'err_fill' : !c.custody ? 'err_custody' : c.csig ? null : 'err_sign'
+        + (custSignsApp(P, c.signer) ? `<div class="okbox">📱 ${t('mh_cust_app')}</div>` : inp('custName', 'f_customer_name') + `<div class="warnbox">📦 ${t('custody_text')}</div>` + toggleTile('custody', '⬜', 'custody_ok') + signSlot('csig', 'customer_signature')),
+      check: (c, P) => custSignsApp(P, c.signer) ? null : !c.custName.trim() ? 'err_fill' : !c.custody ? 'err_custody' : c.csig ? null : 'err_sign'
     },
     { id: 'tech', icon: '🔧', say: 's_mh_tech', body: () => signSlot('tsig', 'tech_signature'), check: c => c.tsig ? null : 'err_sign' }
   ],
@@ -7109,9 +7137,23 @@ WIZ.mhand = {
     const items = P.materials.map((m, i) => ({ k: m.k, q: m.q, status: c.items[i] }));
     /* damaged or missing lines become part claims for the office and the supplier; installation can go on with the other parts */
     const claims = items.filter(x => x.status !== 'ok').map(x => ['CLAIM_RAISED', P.id, { cid: 'C-' + rid(5), line: x.k, kind: x.status, qty: x.q, note: t('mi_' + x.status) + (c.note.trim() ? ' · ' + c.note.trim() : ''), src: 'handover' }]);
-    const r = await run(claims.concat([['MATERIAL_HANDED', P.id, { items, custName: c.custName.trim(), signer: c.signer, custody: c.custody, note: c.note, ev: [c.csig, c.tsig].concat(c.store) }]]));
-    return r.ok ? doneRes(P.id, claims.length ? 'what_material_claims' : 'what_material_handed', { n: claims.length }) : r;
+    const app = custSignsApp(P, c.signer);
+    const r = await run(claims.concat([['MATERIAL_HANDED', P.id, Object.assign({ items, custName: c.custName.trim() || P.contact.name, signer: c.signer, custody: app ? false : c.custody, note: c.note, ev: (app ? [c.tsig] : [c.csig, c.tsig]).concat(c.store) }, app ? { custApp: true } : {})]]));
+    return r.ok ? doneRes(P.id, claims.length ? 'what_material_claims' : app ? 'what_mhand_tech_done' : 'what_material_handed', { n: claims.length }) : r;
   }
+};
+/* the customer checks the counted material on their own phone, accepts to keep it safe and signs */
+WIZ.mhandCust = {
+  title: 'tk_mhand_cust_sign', save: 'save', saveIcon: '✍️', noDraft: true, init: P => ({ custName: P.contact.name || '', custody: false, csig: null }),
+  steps: [
+    { id: 'items', icon: '📦', say: 's_mh_cust_items', body: (c, P) => { const m = P.mhand || { items: [], storage: [] };
+      return `<div class="card">${m.items.map(x => `<div class="list-item"><span class="grow">${esc(t(x.k))} × ${x.q}</span><span>${x.status === 'ok' ? '✅' : x.status === 'damaged' ? '💥' : '❓'} ${t('mi_' + x.status)}</span></div>`).join('')}
+        ${m.note ? `<p class="small">${esc(m.note)}</p>` : ''}<p class="small muted">${t('mh_counted_by', { n: esc(userName(m.by)) })} · ${fmtD(m.t, true)}</p>${evGrid(m.storage)}</div>
+        <div class="note">💬 ${t('mh_not_right')}</div><button class="btn" data-a="openProjectTab" data-v="${P.id}|chat">❓ ${t('ask_question')}</button>`; } },
+    { id: 'sign', icon: '✍️', say: 's_mh_cust', body: () => inp('custName', 'f_customer_name') + `<div class="warnbox">📦 ${t('custody_text')}</div>` + toggleTile('custody', '⬜', 'custody_ok') + signSlot('csig', 'customer_signature'),
+      check: c => !c.custName.trim() ? 'err_fill' : !c.custody ? 'err_custody' : c.csig ? null : 'err_sign' }
+  ],
+  async finish(c, P) { const r = await run([['MATERIAL_RECEIPT_SIGNED', P.id, { custName: c.custName.trim(), custody: true, ev: [c.csig] }]]); return r.ok ? doneRes(P.id, 'what_material_handed') : r; }
 };
 /* ---------- purchase order, representative, part claims ---------- */
 WIZ.poAccept = {
@@ -7177,7 +7219,7 @@ function materialCard(P) {
   if (P.dispatch && P.dispatch.serialMap) Object.entries(P.dispatch.serialMap).forEach(([k, v]) => rows.push([k, '🔢 ' + esc(v)]));
   if (P.rep && seeF(u, 'phone')) rows.push(['rep_title', `${esc(P.rep.name)} · ${t('rel_' + P.rep.relation)} · 📞 ${esc(P.rep.phone)}`]);
   else if (P.rep) rows.push(['rep_title', t('rel_' + P.rep.relation)]);
-  if (P.mhand) rows.push(['custody_title', (P.mhand.custody ? '✅ ' : '') + t(P.mhand.signer === 'rep' ? 'custody_rep' : 'custody_contact') + ' · ' + fmtD(P.mhand.t)]);
+  if (P.mhand) rows.push(['custody_title', P.mhand.wait ? '⏳ ' + t('mh_wait_cust') : (P.mhand.custody ? '✅ ' : '') + t(P.mhand.signer === 'rep' ? 'custody_rep' : 'custody_contact') + ' · ' + fmtD(P.mhand.t)]);
   const cl = P.claims || [];
   return `<div class="card"><h3>📦 ${t('material_title')}</h3>${kv(rows)}${P.mhand && P.mhand.storage ? evGrid(P.mhand.storage) : ''}
     ${po && ['owner', 'admin', 'supplier'].includes(u.role) ? `<button class="btn btn-sm" data-a="openDoc" data-v="po">📑 ${t('doc_po')}</button>` : ''}
@@ -8542,7 +8584,7 @@ const OUT_HIDE = {
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
   MSG_LOGGED: ['text'], AGREEMENT_SIGNED: ['signer'], CONFIG_SET: ['value'], PARTNER_PROFILE: ['licNo', 'licHolder', 'licAuthority', 'gst'],
-  MATERIAL_HANDED: ['custName'], CUSTOMER_RATED: ['name', 'note'], REP_SET: ['name', 'phone'], VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date'], COUNTER_OFFER: ['amount', 'note'], REFUND_PROPOSED: ['amount', 'deduct', 'note'], REFUND_PAID: ['ref']
+  MATERIAL_HANDED: ['custName'], MATERIAL_RECEIPT_SIGNED: ['custName'], CUSTOMER_RATED: ['name', 'note'], REP_SET: ['name', 'phone'], VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date'], COUNTER_OFFER: ['amount', 'note'], REFUND_PROPOSED: ['amount', 'deduct', 'note'], REFUND_PAID: ['ref']
 };
 const strip = (ev, keys, extra) => { const e = redact(ev, keys); return e === ev ? ev : Object.assign(e, { data: Object.assign(e.data, extra || {}) }); };
 /* a copy of a record with some private fields removed (set to empty); fields that the record's signature cannot hide stay */
@@ -9867,7 +9909,7 @@ function openTask(n) {
     record_payment: () => wiz('paynew', pid, { purpose: n.purpose }), verify_payment: () => wiz('payverify', pid, { payId: n.payId }),
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
-    dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid),
+    dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
     lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
@@ -10357,7 +10399,8 @@ async function seedPractice() {
     material_order: P => !statOf(P).permit ? ['admin', 'STATUTORY_SET', { item: 'permit', no: 'EP/' + P.id.slice(-3) + '/2026', date: safeDay(nextAt()) }] : !P.po.accepted ? ['supplier', 'PO_ACCEPTED', { date: safeDay(Date.parse(nextAt()) + 2 * 864e5) }]
       : ['supplier', 'DISPATCHED', { packed: P.materials.map(m => m.k), seal: 'SEAL-' + P.id.slice(-3), vehicle: 'MH12 AB 1234', challan: 'DC/' + P.id.slice(-3) + '/26', serialMap: Object.fromEntries(P.materials.filter(m => SERIAL_ITEMS.includes(m.k)).map(m => [m.k, m.k.slice(2, 5).toUpperCase() + '-' + P.id.slice(-3) + '-' + (100 + SERIAL_ITEMS.indexOf(m.k))])), ev: [ph('work'), ph('work')] }],
     dispatched: P => [P.tech, 'ARRIVED', { gps: P.site.gps, sealSeen: 'SEAL-' + P.id.slice(-3), sealIntact: 'yes', condition: 'good', ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
-    arrived: P => payConfirmed(P, 'arrival') ? [P.tech, 'MATERIAL_HANDED', { items: P.materials.map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, signer: 'contact', custody: true, ev: [ph('sign'), ph('sign'), Object.assign(ph('site', P.site.gps), { label: 'storage' })] }] : payStep(P, 'arrival'),
+    arrived: P => P.mhand && P.mhand.wait ? [P.customer, 'MATERIAL_RECEIPT_SIGNED', { custName: P.contact.name, custody: true, ev: [ph('sign')] }]
+      : payConfirmed(P, 'arrival') ? [P.tech, 'MATERIAL_HANDED', Object.assign({ items: P.materials.map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, signer: 'contact', custody: !custSignsApp(P, 'contact'), ev: (custSignsApp(P, 'contact') ? [ph('sign')] : [ph('sign'), ph('sign')]).concat([Object.assign(ph('site', P.site.gps), { label: 'storage' })]) }, custSignsApp(P, 'contact') ? { custApp: true } : {})] : payStep(P, 'arrival'),
     installing: P => peerWaiting(P).length ? [Object.values(S.users).find(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).uid, 'PEER_CHECKED', { step: peerWaiting(P)[0], ok: true }] : sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? (+S.config.checkinGate && !checkedIn(P, safeDay(nextAt())) ? [P.tech, 'SITE_CHECKED_IN', { day: safeDay(nextAt()), gps: P.site.gps }] : [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }]) : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
     qc_final: P => ['qc', 'QC_FINAL_RESULT', { checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), crit: Object.fromEntries(QC_CRITICAL.map(k => [k, 'pass'])), earthVal: '0.8 Ω', outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)].concat(QC_CRITICAL.map(k => Object.assign(ph('work', P.site.gps), { label: 'crit_' + k }))) }],
     final_pay: P => payStep(P, 'final'),
