@@ -1152,6 +1152,69 @@ const L = {
   f_decision_note: ['Decision and reason', 'फ़ैसला और कारण', 'निर्णय आणि कारण'],
   report_security: ['Report security problem', 'सुरक्षा समस्या बताएँ', 'सुरक्षा समस्या कळवा'],
   s_incident_new: ['What happened? (theft, missing material, damaged seal, unsafe access)', 'क्या हुआ? (चोरी, सामान गायब, सील टूटा, असुरक्षित पहुँच)', 'काय झाले? (चोरी, साहित्य गहाळ, सील तुटलेला, असुरक्षित प्रवेश)'],
+  err_tolerance: ['The shaft is smaller than the minimum. Ask for corrections, or approve only with a variation quote.', 'शाफ्ट न्यूनतम से छोटा है। सुधार माँगें, या केवल बदलाव कोटेशन के साथ मंज़ूर करें।', 'शाफ्ट किमानपेक्षा लहान आहे. दुरुस्ती मागा, किंवा फक्त बदल कोटेशनसह मंजूर करा.'],
+  err_variation: ['The customer must sign the variation quote before material is released.', 'सामान भेजने से पहले ग्राहक को बदलाव कोटेशन पर साइन करना होगा।', 'साहित्य पाठवण्यापूर्वी ग्राहकाने बदल कोटेशनवर सही करायला हवी.'],
+  err_peer_check: ['Another technician must check the last safety-critical step first.', 'पहले किसी दूसरे तकनीशियन को पिछला सुरक्षा-ज़रूरी चरण जाँचना होगा।', 'आधी दुसऱ्या तंत्रज्ञाने मागील सुरक्षा-महत्त्वाची पायरी तपासायला हवी.'],
+  meas_min: ['Minimum {n} mm', 'न्यूनतम {n} mm', 'किमान {n} mm'],
+  meas_low: ['Below the minimum: {list}', 'न्यूनतम से कम: {list}', 'किमानपेक्षा कमी: {list}'],
+  qo_approved_var: ['Approve with a variation quote', 'बदलाव कोटेशन के साथ मंज़ूर', 'बदल कोटेशनसह मंजूर'],
+  qo_approved_var_d: ['The lift design must change for this shaft; the customer signs a variation before material is ordered.', 'इस शाफ्ट के लिए लिफ्ट डिज़ाइन बदलना होगा; सामान से पहले ग्राहक बदलाव पर साइन करेगा।', 'या शाफ्टसाठी लिफ्ट डिझाइन बदलावे लागेल; साहित्याआधी ग्राहक बदलावर सही करेल.'],
+  var_title: ['Variation', 'बदलाव', 'बदल'],
+  var_st_needed: ['Variation quote needed', 'बदलाव कोटेशन चाहिए', 'बदल कोटेशन हवे'],
+  var_st_proposed: ['Variation quote sent, waiting for the customer\'s signature', 'बदलाव कोटेशन भेजा, ग्राहक के साइन का इंतज़ार', 'बदल कोटेशन पाठवले, ग्राहकाच्या सहीची प्रतीक्षा'],
+  var_st_signed: ['Variation signed by the customer', 'ग्राहक ने बदलाव पर साइन किया', 'ग्राहकाने बदलावर सही केली'],
+  var_st_declined: ['Customer did not accept the variation', 'ग्राहक ने बदलाव स्वीकार नहीं किया', 'ग्राहकाने बदल स्वीकारला नाही'],
+  var_amount: ['Price change (₹, minus for less)', 'कीमत बदलाव (₹, कम हो तो माइनस)', 'किंमत बदल (₹, कमी असल्यास वजा)'],
+  var_amount_note: ['Added to (or taken from) the final payment once the customer signs.', 'ग्राहक के साइन करने पर अंतिम भुगतान में जोड़ा (या घटाया) जाता है।', 'ग्राहकाने सही केल्यावर अंतिम पैशांत जोडले (किंवा वजा) जाते.'],
+  var_what: ['What changes in the lift', 'लिफ्ट में क्या बदलेगा', 'लिफ्टमध्ये काय बदलेल'],
+  var_accept: ['Accept and sign', 'स्वीकार करें और साइन करें', 'स्वीकारा आणि सही करा'],
+  var_decline: ['Do not accept', 'स्वीकार नहीं', 'स्वीकारत नाही'],
+  s_variation: ['Write what changes in the lift because of the smaller shaft and the price change.', 'छोटे शाफ्ट के कारण लिफ्ट में क्या बदलेगा और कीमत में बदलाव लिखें।', 'लहान शाफ्टमुळे लिफ्टमध्ये काय बदलेल आणि किंमतीतील बदल लिहा.'],
+  s_var_sign: ['Read the variation. Does the customer accept it?', 'बदलाव पढ़ें। क्या ग्राहक इसे स्वीकार करता है?', 'बदल वाचा. ग्राहक तो स्वीकारतो का?'],
+  s_var_decline: ['Why does the customer not accept?', 'ग्राहक क्यों स्वीकार नहीं करता?', 'ग्राहक का स्वीकारत नाही?'],
+  what_var_sent: ['Variation quote sent to the customer.', 'बदलाव कोटेशन ग्राहक को भेजा।', 'बदल कोटेशन ग्राहकाला पाठवले.'],
+  what_var_signed: ['Variation signed. Material can now be released.', 'बदलाव पर साइन हुआ। अब सामान भेजा जा सकता है।', 'बदलावर सही झाली. आता साहित्य पाठवता येईल.'],
+  what_var_declined: ['Not accepted. Sales will talk to the customer again.', 'स्वीकार नहीं। सेल्स ग्राहक से फिर बात करेगा।', 'स्वीकारले नाही. विक्री विभाग ग्राहकाशी पुन्हा बोलेल.'],
+  tk_make_variation: ['Make a variation quote', 'बदलाव कोटेशन बनाएँ', 'बदल कोटेशन बनवा'],
+  tk_sign_variation: ['Sign the variation quote', 'बदलाव कोटेशन पर साइन करें', 'बदल कोटेशनवर सही करा'],
+  tk_peer_check: ['Check a co-worker\'s step', 'साथी का चरण जाँचें', 'सहकाऱ्याची पायरी तपासा'],
+  tk_wait_peer: ['Waiting for a co-worker to check your step', 'साथी के आपका चरण जाँचने का इंतज़ार', 'सहकारी तुमची पायरी तपासेपर्यंत थांबा'],
+  tk_surprise_qc: ['Surprise inspection today', 'आज अचानक जाँच', 'आज अचानक तपासणी'],
+  peer_done: ['checked by {name}', '{name} ने जाँचा', '{name} यांनी तपासले'],
+  peer_waiting: ['waiting for a co-worker\'s check', 'साथी की जाँच का इंतज़ार', 'सहकाऱ्याच्या तपासणीची प्रतीक्षा'],
+  s_peer: ['Look at the photos of "{step}". Is it done right and safe?', '"{step}" की फ़ोटो देखें। क्या यह सही और सुरक्षित है?', '"{step}" चे फोटो पहा. हे बरोबर आणि सुरक्षित आहे का?'],
+  peer_how_doors: ['Look for: every landing door locks before the car can move (interlock), no gaps.', 'देखें: हर मंज़िल का दरवाज़ा लॉक हो तभी कार चले (इंटरलॉक), कोई गैप नहीं।', 'पहा: प्रत्येक मजल्याचा दरवाजा लॉक झाल्यावरच कार चालते (इंटरलॉक), फट नाही.'],
+  peer_how_wiring: ['Look for: earth wire on every metal part, covered joints, no loose wires.', 'देखें: हर धातु के हिस्से पर अर्थ तार, ढके जोड़, कोई ढीला तार नहीं।', 'पहा: प्रत्येक धातूच्या भागाला अर्थ तार, झाकलेले जोड, सैल तार नाही.'],
+  peer_how_safetydev: ['Look for: governor rope fitted, safety gear and buffers in place, limit switches fixed.', 'देखें: गवर्नर रस्सी लगी, सेफ़्टी गियर और बफ़र लगे, लिमिट स्विच पक्के।', 'पहा: गव्हर्नर दोर बसवलेला, सेफ्टी गियर आणि बफर जागेवर, लिमिट स्विच पक्के.'],
+  peer_ok: ['Right and safe', 'सही और सुरक्षित', 'बरोबर आणि सुरक्षित'],
+  peer_redo: ['Not right — do this step again', 'सही नहीं — यह चरण दोबारा करें', 'बरोबर नाही — ही पायरी पुन्हा करा'],
+  what_peer_ok: ['Check saved. The team can go on.', 'जाँच सेव। टीम आगे बढ़ सकती है।', 'तपासणी जतन. टीम पुढे जाऊ शकते.'],
+  what_peer_redo: ['The step must be done again.', 'चरण दोबारा करना होगा।', 'पायरी पुन्हा करावी लागेल.'],
+  surprise_set: ['Plan a surprise inspection', 'अचानक जाँच की योजना', 'अचानक तपासणीचे नियोजन'],
+  s_surprise_set: ['Choose a day for a surprise QC visit.', 'अचानक QC विज़िट का दिन चुनें।', 'अचानक QC भेटीचा दिवस निवडा.'],
+  surprise_hidden: ['The technician and the partner company do not see this date.', 'तकनीशियन और पार्टनर कंपनी यह तारीख नहीं देखते।', 'तंत्रज्ञ आणि भागीदार कंपनीला ही तारीख दिसत नाही.'],
+  what_surprise_set: ['Surprise inspection planned. QC gets the task on that day.', 'अचानक जाँच तय। उस दिन QC को काम मिलेगा।', 'अचानक तपासणी ठरली. त्या दिवशी QC ला काम मिळेल.'],
+  s_surprise: ['Take at least 2 photos of the work as it is now.', 'अभी के काम की कम से कम 2 फ़ोटो लें।', 'आताच्या कामाचे किमान 2 फोटो घ्या.'],
+  s_surprise_result: ['Is the work done right and safely?', 'क्या काम सही और सुरक्षित तरीके से हुआ है?', 'काम बरोबर आणि सुरक्षितपणे झाले आहे का?'],
+  ph_surprise: ['Photos of the work', 'काम की फ़ोटो', 'कामाचे फोटो'],
+  surprise_ok: ['All right', 'सब ठीक', 'सर्व ठीक'],
+  surprise_bad: ['Problem found', 'समस्या मिली', 'समस्या आढळली'],
+  what_surprise_ok: ['Surprise inspection saved: all right.', 'अचानक जाँच सेव: सब ठीक।', 'अचानक तपासणी जतन: सर्व ठीक.'],
+  what_surprise_bad: ['Problem saved. It counts as a strike for the team lead.', 'समस्या सेव। यह टीम लीड के लिए स्ट्राइक है।', 'समस्या जतन. ही टीम लीडसाठी स्ट्राइक आहे.'],
+  sk_surprise: ['Problem found in a surprise inspection', 'अचानक जाँच में समस्या मिली', 'अचानक तपासणीत समस्या आढळली'],
+  ev_PEER_CHECKED: ['Co-worker check', 'साथी की जाँच', 'सहकाऱ्याची तपासणी'],
+  ev_SURPRISE_SET: ['Surprise inspection planned', 'अचानक जाँच तय', 'अचानक तपासणी ठरली'],
+  ev_SURPRISE_DONE: ['Surprise inspection', 'अचानक जाँच', 'अचानक तपासणी'],
+  ev_VARIATION_PROPOSED: ['Variation quote', 'बदलाव कोटेशन', 'बदल कोटेशन'],
+  ev_VARIATION_SIGNED: ['Variation signed', 'बदलाव साइन', 'बदलावर सही'],
+  ev_VARIATION_DECLINED: ['Variation not accepted', 'बदलाव स्वीकार नहीं', 'बदल स्वीकारला नाही'],
+  rg_quality: ['Shaft limits and checks', 'शाफ्ट सीमा और जाँच', 'शाफ्ट मर्यादा आणि तपासणी'],
+  rg_quality_d: ['Minimum shaft width, depth, pit and headroom in mm (sample numbers — a lift engineer must set them per lift type), and a co-worker check after doors, wiring and safety devices (1 = on).', 'शाफ्ट की न्यूनतम चौड़ाई, गहराई, पिट और हेडरूम mm में (नमूना संख्याएँ — लिफ्ट इंजीनियर हर लिफ्ट प्रकार के लिए तय करें), और दरवाज़े, वायरिंग और सुरक्षा उपकरण के बाद साथी की जाँच (1 = चालू)।', 'शाफ्टची किमान रुंदी, खोली, पिट आणि हेडरूम mm मध्ये (नमुना आकडे — लिफ्ट अभियंत्याने प्रत्येक प्रकारासाठी ठरवावे), आणि दरवाजे, वायरिंग आणि सुरक्षा उपकरणांनंतर सहकाऱ्याची तपासणी (1 = चालू).'],
+  cfg_tolWidth: ['Minimum shaft width (mm)', 'न्यूनतम शाफ्ट चौड़ाई (mm)', 'किमान शाफ्ट रुंदी (mm)'],
+  cfg_tolDepth: ['Minimum shaft depth (mm)', 'न्यूनतम शाफ्ट गहराई (mm)', 'किमान शाफ्ट खोली (mm)'],
+  cfg_tolPit: ['Minimum pit depth (mm)', 'न्यूनतम पिट गहराई (mm)', 'किमान पिट खोली (mm)'],
+  cfg_tolHead: ['Minimum headroom (mm)', 'न्यूनतम हेडरूम (mm)', 'किमान हेडरूम (mm)'],
+  cfg_peerCheck: ['Co-worker check of safety-critical steps (1 = on)', 'सुरक्षा-ज़रूरी चरणों की साथी जाँच (1 = चालू)', 'सुरक्षा-महत्त्वाच्या पायऱ्यांची सहकारी तपासणी (1 = चालू)'],
   err_lift_licence: ['The lift licence must be recorded (after a passed Lift Inspector visit) and not expired.', 'लिफ्ट लाइसेंस दर्ज होना चाहिए (लिफ्ट इंस्पेक्टर की पास जाँच के बाद) और समाप्त नहीं।', 'लिफ्ट परवाना नोंदलेला हवा (लिफ्ट निरीक्षकाच्या पास तपासणीनंतर) आणि संपलेला नसावा.'],
   err_inspection_first: ['Record a passed Lift Inspector visit first.', 'पहले लिफ्ट इंस्पेक्टर की पास जाँच दर्ज करें।', 'आधी लिफ्ट निरीक्षकाची पास तपासणी नोंदवा.'],
   err_hold_open: ['A hold is already asked for or active on this job.', 'इस काम पर पहले से होल्ड माँगा गया है या चालू है।', 'या कामावर आधीच होल्ड मागितला आहे किंवा चालू आहे.'],
@@ -2743,7 +2806,8 @@ const PRIVATE_V2 = {
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
   MSG_LOGGED: ['text'], CONFIG_SET: ['value'], AGREEMENT_SIGNED: ['signer'], PARTNER_PROFILE: ['licNo', 'licHolder', 'licAuthority', 'gst'],
-  MATERIAL_HANDED: ['custName'], HANDOVER_SIGNED: ['signer'], CUSTOMER_RATED: ['name', 'note']
+  MATERIAL_HANDED: ['custName'], HANDOVER_SIGNED: ['signer'], CUSTOMER_RATED: ['name', 'note'],
+  VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date']
 };
 const isPriv2 = (type, k) => (PRIVATE_V2[type] || []).includes(k);
 const privOf = ev => ev.sig && ev.sig.v === 2 ? isPriv2 : isPriv;
@@ -2925,6 +2989,10 @@ const STOP_TYPES = ['hazard', 'sos', 'injury'];
 /* statutory records per lift (who applies is an Owner decision); reasons work can be put on hold; stage moves back the office may make */
 const STAT_ITEMS = [['permit', '📝'], ['inspection', '🏛️'], ['licence', '📜']];
 const HOLD_REASONS = [['customer', '🏠'], ['supplier', '🏭'], ['weather', '🌧️'], ['permit', '📝'], ['defect', '🛠️'], ['payment', '💰']];
+/* installation steps another technician must look at before the next step: doors (interlocks), wiring (earthing), safety devices */
+const PEER_STEPS = [8, 9, 10];
+const TOL = { width: 'tolWidth', depth: 'tolDepth', pit: 'tolPit', head: 'tolHead' };
+const measLow = meas => QC_SITE_MEAS.filter(m => +(meas || {})[m] > 0 && +(meas || {})[m] < +S.config[TOL[m]]);
 const STAGE_BACK = { site_ok: 'qc_site', material_order: 'site_ok', dispatched: 'material_order', qc_final: 'installing' };
 const SLOTS = ['customer', 'tech', 'qc'];
 const BLOCK_REASONS = [['material', '📦', 'supplier'], ['site', '🏗️', 'sales'], ['power', '⚡', 'sales'], ['help', '🙋', 'admin'], ['safety', '⚠️', 'admin']];
@@ -2948,7 +3016,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, officeNumber: '', accessAlert: 15,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -2968,6 +3036,7 @@ const RULE_GROUPS = {
   security: ['pinDigits'],
   safety: ['dailySafety', 'sosNumber'],
   statutory: ['licenceGate'],
+  quality: ['tolWidth', 'tolDepth', 'tolPit', 'tolHead', 'peerCheck'],
   privacy: ['officeNumber', 'accessAlert'],
   ladderpay: ['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior', 'payCrewJob', 'payQcInspection', 'spotTrainee', 'spotTech', 'spotSenior'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
@@ -3029,7 +3098,7 @@ function canSee(u, P) {
     case 'sales': return !P.sales || P.sales === u.uid;
     case 'qc': return stageIdx(P.stage) >= stageIdx('site_prep') && P.stage !== 'lost';
     case 'supplier': return P.supplier === u.uid;
-    case 'tech': return P.tech === u.uid || (P.crew || []).includes(u.uid) || Object.values(P.svcOwner || {}).includes(u.uid);
+    case 'tech': return (peerWaiting(P).length > 0 && !peerWhyNot(u.uid, P)) || P.tech === u.uid || (P.crew || []).includes(u.uid) || Object.values(P.svcOwner || {}).includes(u.uid);
     case 'partner': return P.partner === u.uid || [P.tech].concat(P.crew || [], Object.values(P.svcOwner || {}), P.tickets.map(x => x.owner)).some(x => x && companyOf(x) === u.uid);
     case 'customer': return u.projectId === P.id;
   }
@@ -3062,6 +3131,17 @@ const onHold = P => (P.holds || []).some(h => h.status === 'active');
 const heldDays = (P, from, to) => (P.holds || []).filter(h => h.from).reduce((a, h) => { const s = Math.max(Date.parse(from), Date.parse(h.from)), e = Math.min(Date.parse(to), Date.parse(h.to || to)); return a + Math.max(0, e - s); }, 0) / 864e5;
 /* installation days used: from material handover to the given time, minus approved hold days */
 const installUsed = (P, to) => P.mhand ? Math.max(0, Math.floor((Date.parse(to || nowISO()) - Date.parse(P.mhand.t)) / 864e5 - heldDays(P, P.mhand.t, to || nowISO()))) : null;
+/* co-worker check: a step that needs another technician's look, still waiting */
+const peerWaiting = P => S.config.peerCheck ? PEER_STEPS.filter(i => P.sop[i] && !((P.peer || {})[i] || {}).ok) : [];
+function peerWhyNot(uid, P) {
+  const u = S.users[uid]; if (!u || !u.active) return 'err_access';
+  if (u.role === 'qc') return null;
+  if (u.role !== 'tech' || !['technician', 'senior'].includes(gradeOf(uid))) return 'err_cant_lead';
+  if (uid === P.tech || (P.crew || []).includes(uid)) return 'err_own_job';
+  return P.partner && u.company !== P.partner ? 'err_other_company' : null;
+}
+/* variation: shaft smaller than the minimum, accepted by QC only with a signed variation quote before material is released */
+const variationOpen = P => !!P.variation && P.variation.status !== 'signed';
 const lastHoldEnd = P => (P.holds || []).filter(h => h.status === 'ended' && h.to).map(h => h.to).sort().pop() || '';
 const safeDay = iso => coDay(new Date(iso || nowISO()).getTime());
 const safetyOn = (P, day) => { const x = (P.safety || {})[day]; return !!x && x.status !== 'rejected'; };
@@ -3281,6 +3361,7 @@ function strikesOf(uid, at) {
     out.push({ id, t: t0, reason, n, by, pid, appeal: S.strikeAppeals[id] || null, decision: dec || null, active: !removed && now - new Date(t0).getTime() < days * 864e5 }); };
   for (const P of Object.values(S.projects)) {
     P.qcFinal.forEach((x, i) => { if (x.outcome === 'fail' && x.cause === 'work' && leadAt(P, x) === uid) add('qcf:' + P.id + ':' + i, x.t, 'sk_qc_fail', 1, x.by, P.id); });
+    for (const x of P.surprises || []) if (x.done && x.done.ok === false && x.done.lead === uid) add('surp:' + P.id + ':' + x.t, x.done.t, 'sk_surprise', 1, x.done.by, P.id);
     for (const k of P.tickets) if (k.fault === uid) add('tk:' + P.id + ':' + k.id, k.faultT, 'sk_complaint', 1, k.faultBy, P.id);
     Object.entries(S.spots).forEach(([key, x]) => { if (!x.ok && x.doer === uid && x.pid === P.id) add('spot:' + key, x.t, 'sk_spot', 2, x.by, P.id); });
   }
@@ -3647,6 +3728,7 @@ const RULES = {
       if (!QC_SITE_CHECKS.every(c => ['yes', 'no'].includes((d.checks || {})[c]))) return 'err_checks';
       if (!['approved', 'corrections', 'revisit'].includes(d.outcome)) return 'err_choose';
       if (d.outcome === 'approved' && QC_SITE_CHECKS.some(c => d.checks[c] === 'no')) return 'err_approve_fail';
+      if (d.outcome === 'approved' && measLow(d.meas).length && d.variation !== true) return 'err_tolerance';
       if (d.outcome === 'corrections' && !(d.items || []).filter(x => (x.text || '').trim()).length) return 'err_items';
       if (d.outcome === 'revisit' && !d.revisit) return 'err_date';
       return null;
@@ -3669,6 +3751,7 @@ const RULES = {
       if (roleOf(d.supplier) !== 'supplier' || !isActive(d.supplier)) return 'err_pick_supplier';
       const tw = techWhyNot(d.tech, ev.t); if (tw) return tw;
       if (!canLead(d.tech, P, ev.t)) return 'err_cant_lead';
+      if (variationOpen(P)) return 'err_variation';
       if (!(d.drawings || '').trim()) return 'err_fill';
       return need((d.materials || []).length > 0, 'err_fill');
     }
@@ -3733,9 +3816,36 @@ const RULES = {
       if (P.blockers.some(b => b.open && b.step === ev.data.step)) return 'err_blocker';
       if (openIncidents(P).length) return 'err_incident';
       const sw = safetyWhyNot(P, ev.t); if (sw) return sw;
+      if (peerWaiting(P).length) return 'err_peer_check';
       return need(ev_(ev.data).length >= 1, 'err_photos', { n: 1 });
     }
   },
+  /* another technician (not on this job's team) or a QC Inspector looks at the photos of a safety-critical step */
+  PEER_CHECKED: {
+    roles: ['tech', 'qc'], project: true, stages: ['installing'], check: (S, ev, u, P) => {
+      const d = ev.data;
+      if (!PEER_STEPS.includes(d.step) || !P.sop[d.step] || ((P.peer || {})[d.step] || {}).ok) return 'err_already';
+      const w = peerWhyNot(u.uid, P); if (w) return w;
+      return d.ok === false ? need((d.note || '').trim(), 'err_reason') : need(d.ok === true, 'err_choose');
+    }
+  },
+  /* surprise QC: a visit date only the office and QC see */
+  SURPRISE_SET: { roles: ['owner', 'admin'], project: true, stages: ['arrived', 'installing', 'install_fix'], check: (S, ev, u, P) => P.surprise && !P.surprise.done ? 'err_already' : need(/^\d{4}-\d\d-\d\d$/.test(ev.data.date || '') && ev.data.date >= safeDay(ev.t), 'err_date') },
+  SURPRISE_DONE: {
+    roles: ['qc'], project: true, check: (S, ev, u, P) => {
+      if (!P.surprise || P.surprise.done) return 'err_already';
+      if (P.tech === u.uid || (P.crew || []).includes(u.uid)) return 'err_own_job';
+      if (ev_(ev.data, 'photo').length < 2) return { k: 'err_photos', v: { n: 2 } };
+      return ev.data.ok === false ? need((ev.data.note || '').trim(), 'err_reason') : need(ev.data.ok === true, 'err_choose');
+    }
+  },
+  /* variation quote after the shaft was found smaller than the minimum */
+  VARIATION_PROPOSED: { roles: ['owner', 'admin', 'sales'], project: true, check: (S, ev, u, P) => !P.variation || !['needed', 'declined'].includes(P.variation.status) ? 'err_already' : !(ev.data.note || '').trim() ? 'err_fill' : need(Number.isInteger(+ev.data.amount), 'err_amount') },
+  VARIATION_SIGNED: {
+    roles: ['customer', 'sales'], project: true, check: (S, ev, u, P) => !P.variation || P.variation.status !== 'proposed' ? 'err_already'
+      : u.role === 'customer' && P.customer !== u.uid ? 'err_access' : !ev.data.consent ? 'err_consent' : !(ev.data.signer || '').trim() ? 'err_fill' : need(ev_(ev.data, 'sign').length >= 1, 'err_sign')
+  },
+  VARIATION_DECLINED: { roles: ['customer', 'sales'], project: true, check: (S, ev, u, P) => !P.variation || P.variation.status !== 'proposed' ? 'err_already' : need((ev.data.note || '').trim(), 'err_reason') },
   /* the lead's safety check at the start of each work day: 4 photos (helmet/harness, scaffolding, barricade, earthing) */
   SAFETY_CHECKED: {
     roles: ['tech'], project: true, stages: ['installing', 'install_fix'], check: (S, ev, u, P) => {
@@ -3778,6 +3888,7 @@ const RULES = {
     roles: ['tech'], project: true, stages: ['installing', 'install_fix'], check: (S, ev, u, P) => {
       if (P.tech !== u.uid) return 'err_access';
       if (stopIncidents(P).length) return 'err_work_stopped';
+      if (peerWaiting(P).length) return 'err_peer_check';
       return P.stage === 'installing' ? need(sopNext(P) >= SOP.length, 'err_not_all') : need(!openCorr(P, 'install').length, 'err_not_all');
     }
   },
@@ -4311,6 +4422,7 @@ function apply(S, ev) {
       P.qc = ev.by;
       P.qcSite.push({ t: ev.t, by: ev.by, meas: d.meas, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), revisit: d.revisit || '', note: d.note || '', ev: ev_(d).map(e => e.id) });
       P.corrections.push(...items);
+      if (d.outcome === 'approved' && d.variation) P.variation = { status: 'needed', low: measLow(d.meas), meas: d.meas, t: ev.t, by: ev.by };
       if (d.outcome === 'approved') setStage(P, 'site_ok', ev);
       if (d.outcome === 'corrections') setStage(P, 'site_fix', ev);
       break;
@@ -4333,6 +4445,17 @@ function apply(S, ev) {
     case 'SAFETY_CHECKED': { const sf = P.safety = P.safety || {}, day = safeDay(ev.t), old = sf[day];
       /* a check sent again after "not safe" keeps the earlier one in the record */
       sf[day] = { by: ev.by, t: ev.t, ev: ev_(d).map(e => e.id), status: 'ok', reviews: [], prev: old ? (old.prev || []).concat(Object.assign({}, old, { prev: undefined })) : [] }; break; }
+    case 'PEER_CHECKED': {
+      (P.peer = P.peer || {})[d.step] = { by: ev.by, t: ev.t, ok: d.ok, note: d.note || '' };
+      (P.peerLog = P.peerLog || []).push({ step: d.step, by: ev.by, t: ev.t, ok: d.ok, note: d.note || '', doer: P.sop[d.step].by });
+      if (!d.ok) { delete P.sop[d.step]; delete P.peer[d.step]; } /* not right: the step is done again */
+      break;
+    }
+    case 'SURPRISE_SET': P.surprise = { date: d.date, by: ev.by, t: ev.t, done: null }; break;
+    case 'SURPRISE_DONE': P.surprise.done = { by: ev.by, t: ev.t, ok: d.ok, note: d.note || '', ev: ev_(d).map(e => e.id), lead: P.tech || null }; (P.surprises = P.surprises || []).push(P.surprise); break;
+    case 'VARIATION_PROPOSED': Object.assign(P.variation, { status: 'proposed', amount: +d.amount, note: d.note, proposedBy: ev.by, proposedT: ev.t }); break;
+    case 'VARIATION_SIGNED': Object.assign(P.variation, { status: 'signed', signed: { by: ev.by, t: ev.t, signer: d.signer, sig: ev_(d, 'sign')[0].id, inPerson: roleOf(ev.by) !== 'customer' } }); if (P.schedule && +P.variation.amount) P.schedule.final = Math.max(0, P.schedule.final + +P.variation.amount); break;
+    case 'VARIATION_DECLINED': Object.assign(P.variation, { status: 'declined', declined: { by: ev.by, t: ev.t, note: d.note } }); break;
     case 'STATUTORY_SET': {
       const st = P.statutory = P.statutory || {}, x = Object.assign({ t: ev.t, by: ev.by, ev: ev_(d).map(e => e.id) }, d);
       delete x.item; delete x.ev; x.ev = ev_(d).map(e => e.id);
@@ -4538,11 +4661,15 @@ function needs(P) {
     case 'site_prep': add(prepDone(P) ? 'request_qc' : 'prepare_site', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
     case 'qc_site': add('inspect_site', ['qc'], { uids: [P.qc] }); break;
     case 'site_fix': add(openCorr(P, 'site').length ? 'fix_site' : 'request_qc', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
-    case 'site_ok': add('release', ['admin', 'owner']); break;
+    case 'site_ok':
+      if (variationOpen(P)) add(P.variation.status === 'proposed' ? 'sign_variation' : 'make_variation', P.variation.status === 'proposed' && P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales], urgent: true });
+      else add('release', ['admin', 'owner']);
+      break;
     case 'material_order': add('dispatch', ['supplier'], { uids: [P.supplier] }); break;
     case 'dispatched': add('arrival', ['tech', 'supplier'], { uids: [P.tech, P.supplier] }); break;
     case 'arrived': if (payNeed('arrival') && !openIncidents(P).length) add('material_handover', ['tech'], { uids: [P.tech] }); break;
-    case 'installing': add(sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' ? 'safety_check' : sopNext(P) < SOP.length ? 'install' : 'request_inspection', ['tech'], { uids: [P.tech], urgent: sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' }); break;
+    case 'installing': if (peerWaiting(P).length) { add('peer_check', ['tech', 'qc'], { uids: Object.values(S.users).filter(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).map(x => x.uid), step: peerWaiting(P)[0], urgent: true }); add('wait_peer', ['tech'], { uids: [P.tech], step: peerWaiting(P)[0] }); break; }
+      add(sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' ? 'safety_check' : sopNext(P) < SOP.length ? 'install' : 'request_inspection', ['tech'], { uids: [P.tech], urgent: sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' }); break;
     case 'qc_final': add('final_inspect', ['qc'], { uids: [P.qc] }); break;
     case 'install_fix': add(openCorr(P, 'install').length ? (safetyWhyNot(P) === 'err_safety_check' ? 'safety_check' : 'fix_install') : 'request_inspection', ['tech'], { uids: [P.tech] }); break;
     case 'final_pay': payNeed('final'); break;
@@ -4563,6 +4690,7 @@ function needs(P) {
   if (P.stage === 'amc' && !P.amcEnded && statOf(P).licence) { const d = liftLicenceDays(P); if (d != null && d <= (S.config.licWarnDays || 60)) add('lift_licence_due', ['admin', 'owner'], { n: d, urgent: d <= 7, since: statOf(P).licence.expiry + 'T12:00:00' }); }
   for (const h of P.holds || []) { if (h.status === 'pending') add('hold_request', ['admin', 'owner'], { hid: h.id, urgent: true, since: h.t }); if (h.status === 'active') add('hold_end', ['admin', 'owner'], { hid: h.id }); }
   if (P.dispute) add('dispute_open', ['owner', 'admin']);
+  if (P.surprise && !P.surprise.done && P.surprise.date && P.surprise.date <= todayStr()) add('surprise_qc', ['qc'], { uids: [P.qc], urgent: true, since: P.surprise.date + 'T09:00:00' });
   /* the partner company looks at today's safety photos of its job */
   { const day = safeDay(), x = (P.safety || {})[day]; if (x && x.status === 'ok' && P.partner && !x.reviews.some(r => r.by === P.partner)) add('review_safety', ['partner'], { uids: [P.partner], day }); }
   if (P.followUp && SALES_TALK.includes(P.stage) && P.followUp.due <= todayStr()) add('follow_up', ['sales'], { uids: [P.sales], overdue: P.followUp.due < todayStr(), since: P.followUp.due + 'T12:00:00' });
@@ -4588,7 +4716,7 @@ function needs(P) {
     else if (x.status === 'resolved') add('confirm_ticket', P.customer ? ['customer'] : ['admin', 'owner'], { uids: [P.customer], tid: x.id });
   }
   /* escalation ladder: the main next step counts from the day the stage began, other work from its own date */
-  const main = out.find(x => !['resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
+  const main = out.find(x => !['wait_peer', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
   if (main && OPEN_STAGES.includes(P.stage) && !main.since) Object.assign(main, { since: lastHoldEnd(P) > P.since ? lastHoldEnd(P) : P.since, escId: P.stage });
   const blocked = P.blockers.some(b => b.open) || P.incidents.some(i => i.open) || onHold(P);
   for (const n of out.slice()) if (n.since && !(blocked && n === main)) { const e = escFor(n, n.since, n.escId || n.bid || n.iid || n.tid || n.mid || n.payId || n.visit); if (e) out.push(e); }
@@ -5180,7 +5308,7 @@ const TASK_ICON = {
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
-  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
+  rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { if (App.me && OUTSIDERS.includes(App.me.role)) return (P.site.address || '').split(/[,\n]/)[0] || areaOf(P) || P.id; return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 function taskCard(n, i) {
@@ -5795,7 +5923,7 @@ WIZ.qcsite = {
     },
     {
       id: 'meas', icon: '📏', say: 's_qc_meas',
-      body: () => QC_SITE_MEAS.map(m => inp('meas.' + m, 'meas_' + m, { type: 'number', mode: 'numeric', big: true })).join(''),
+      body: c => QC_SITE_MEAS.map(m => inp('meas.' + m, 'meas_' + m, { type: 'number', mode: 'numeric', big: true }) + `<p class="small ${measLow(c.meas).includes(m) ? '' : 'muted'}" style="margin:-6px 0 8px${measLow(c.meas).includes(m) ? ';color:var(--bad);font-weight:800' : ''}">${measLow(c.meas).includes(m) ? '⚠️ ' : ''}${t('meas_min', { n: S.config[TOL[m]] })}</p>`).join(''),
       check: c => QC_SITE_MEAS.every(m => +c.meas[m] > 0) ? null : 'err_meas'
     },
     { id: 'checks', icon: '✔️', say: 's_qc_checks', body: () => `<div class="card">${QC_SITE_CHECKS.map(k => ynRow('checks.' + k, 'qcs_' + k)).join('')}</div>`, check: c => QC_SITE_CHECKS.every(k => c.checks[k]) ? null : 'err_checks' },
@@ -5803,7 +5931,8 @@ WIZ.qcsite = {
     {
       id: 'out', icon: '⚖️', say: 's_qc_out',
       enter: c => { if (!c.items.length) { c.items = QC_SITE_CHECKS.filter(k => c.checks[k] === 'no').map(k => ({ text: t('qcs_fix_' + k), due: addDays(7) })); saveDraft(); } },
-      body: c => (QC_SITE_CHECKS.some(k => c.checks[k] === 'no') ? `<div class="warnbox">⚠️ ${t('qc_some_no')}</div>` : '') + tiles('outcome', [['approved', '✅', 'qo_approved'], ['corrections', '🛠️', 'qo_corrections'], ['revisit', '🔁', 'qo_revisit']], 'one'),
+      body: c => (QC_SITE_CHECKS.some(k => c.checks[k] === 'no') ? `<div class="warnbox">⚠️ ${t('qc_some_no')}</div>` : '') + (measLow(c.meas).length ? `<div class="err">📐 ${t('meas_low', { list: measLow(c.meas).map(m => t('meas_' + m)).join(', ') })}</div>` : '')
+        + tiles('outcome', [[measLow(c.meas).length ? 'approved' : 'approved', measLow(c.meas).length ? '📐' : '✅', measLow(c.meas).length ? 'qo_approved_var' : 'qo_approved', measLow(c.meas).length ? 'qo_approved_var_d' : ''], ['corrections', '🛠️', 'qo_corrections'], ['revisit', '🔁', 'qo_revisit']], 'one'),
       check: c => !c.outcome ? 'err_choose' : c.outcome === 'approved' && QC_SITE_CHECKS.some(k => c.checks[k] === 'no') ? 'err_approve_fail' : null
     },
     { id: 'items', icon: '🛠️', say: 's_qc_items', skip: c => c.outcome !== 'corrections', body: () => itemsEditor('items'), check: c => c.items.some(x => (x.text || '').trim()) ? null : 'err_items' },
@@ -5811,7 +5940,7 @@ WIZ.qcsite = {
     { id: 'review', icon: '✅', say: 's_qc_review', body: c => `<div class="card">${kv(QC_SITE_MEAS.map(m => ['meas_' + m, c.meas[m] + ' mm']))}${QC_SITE_CHECKS.map(k => `<div>${c.checks[k] === 'yes' ? '✅' : '❌'} ${t('qcs_' + k)}</div>`).join('')}<p><b>${t('qo_' + c.outcome)}</b></p>${evGrid(c.ph)}</div>` }
   ],
   async finish(c, P) {
-    const r = await run([['QC_SITE_RESULT', P.id, { meas: c.meas, checks: c.checks, outcome: c.outcome, items: c.outcome === 'corrections' ? c.items : [], revisit: c.revisit, note: c.note, ev: c.ph }]]);
+    const r = await run([['QC_SITE_RESULT', P.id, { meas: c.meas, checks: c.checks, outcome: c.outcome, variation: c.outcome === 'approved' && measLow(c.meas).length > 0, items: c.outcome === 'corrections' ? c.items : [], revisit: c.revisit, note: c.note, ev: c.ph }]]);
     return r.ok ? doneRes(P.id, 'what_qc_' + c.outcome) : r;
   }
 };
@@ -5962,6 +6091,50 @@ WIZ.incidentNew = {
     { id: 'ph', icon: '📷', say: 's_inc_photo', body: () => photoSlot('ph', 'ph_incident', 0, { video: true, tag: 'incident' }) }
   ],
   async finish(c) { const r = await run([['INCIDENT_RAISED', W.pid, { type: c.type, note: c.note.trim(), witnesses: c.witnesses.trim(), action: c.action.trim(), ev: c.ph }]]); return r.ok ? doneRes(W.pid, STOP_TYPES.includes(c.type) ? 'what_work_stopped' : 'what_incident_raised') : r; }
+};
+/* ---------- variation, co-worker check, surprise QC ---------- */
+function varCard(P) {
+  const v = P.variation; if (!v) return '';
+  const money = seeF(App.me, 'money');
+  return `<div class="card"><h3>📐 ${t('var_title')}</h3><div class="${v.status === 'signed' ? 'okbox' : 'warnbox'}">${t('var_st_' + v.status)}</div>
+    <p class="small">${t('meas_low', { list: (v.low || []).map(m => t('meas_' + m) + ' ' + v.meas[m] + ' mm').join(', ') })}</p>${v.note && money ? `<p>${esc(v.note)}</p>` : ''}${v.amount != null && money ? `<p><b>${t('var_amount')}: ${money ? (v.amount >= 0 ? '+' : '−') + moneyFmt(Math.abs(v.amount)) : ''}</b></p>` : ''}</div>`;
+}
+const moneyFmt = n => money(n);
+WIZ.variation = {
+  title: 'tk_make_variation', save: 'send', noDraft: true, init: () => ({ note: '', amount: '0' }),
+  steps: [{ id: 'v', icon: '📐', say: 's_variation', body: (c, P) => varCard(P) + inp('note', 'var_what', { area: true, mic: true }) + inp('amount', 'var_amount', { type: 'number', mode: 'numeric' }) + `<p class="small muted">${t('var_amount_note')}</p>`,
+    check: c => !c.note.trim() ? 'err_fill' : Number.isInteger(+c.amount) ? null : 'err_amount' }],
+  async finish(c, P) { const r = await run([['VARIATION_PROPOSED', P.id, { note: c.note.trim(), amount: +c.amount }]]); return r.ok ? doneRes(P.id, 'what_var_sent') : r; }
+};
+WIZ.variationSign = {
+  title: 'tk_sign_variation', save: 'save', init: P => ({ ok: '', consent: false, signer: P.contact.name, sig: null, note: '' }),
+  steps: [
+    { id: 'look', icon: '📐', say: 's_var_sign', body: (c, P) => varCard(P) + tiles('ok', [['yes', '✍️', 'var_accept'], ['no', '✋', 'var_decline']], 'one'), check: c => c.ok ? null : 'err_choose' },
+    { id: 'why', icon: '✋', say: 's_var_decline', skip: c => c.ok !== 'no', body: () => inp('note', 'f_reason', { area: true, mic: true }), check: c => c.note.trim() ? null : 'err_reason' },
+    { id: 'sign', icon: '✍️', say: 's_sign_pad', skip: c => c.ok !== 'yes', body: () => toggleTile('consent', '⬜', App.me.role === 'customer' ? 'i_have_read' : 'i_customer_read') + inp('signer', 'f_signer_name', { mic: true }) + signSlot('sig', 'customer_signature'),
+      check: c => !c.consent ? 'err_consent' : !(c.signer || '').trim() ? 'err_fill' : c.sig ? null : 'err_sign' }
+  ],
+  async finish(c, P) { const r = await run([c.ok === 'yes' ? ['VARIATION_SIGNED', P.id, { consent: true, signer: c.signer.trim(), ev: [c.sig] }] : ['VARIATION_DECLINED', P.id, { note: c.note.trim() }]]); return r.ok ? doneRes(P.id, c.ok === 'yes' ? 'what_var_signed' : 'what_var_declined') : r; }
+};
+WIZ.peer = {
+  title: 'tk_peer_check', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
+  steps: [{ id: 'p', icon: '👀', say: () => t('s_peer', { step: t('sop_' + SOP[W.opts.step][0]) }), body: (c, P) => { const x = P.sop[W.opts.step]; return `<div class="card"><b>${W.opts.step + 1}. ${SOP[W.opts.step][1]} ${t('sop_' + SOP[W.opts.step][0])}</b><br><span class="small muted">${userTag(x.by)} · ${fmtD(x.t, true)}</span>${evGrid(x.ev)}</div><div class="note">${t('peer_how_' + SOP[W.opts.step][0])}</div>`
+      + tiles('ok', [['yes', '✅', 'peer_ok'], ['no', '🔁', 'peer_redo']], 'one') + (c.ok === 'no' ? inp('note', 'f_reason', { area: true, mic: true }) : ''); },
+    check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }],
+  async finish(c, P) { const r = await run([['PEER_CHECKED', P.id, { step: W.opts.step, ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? doneRes(P.id, c.ok === 'yes' ? 'what_peer_ok' : 'what_peer_redo') : r; }
+};
+WIZ.surpriseSet = {
+  title: 'surprise_set', save: 'save', noDraft: true, init: () => ({ date: addDays(3) }),
+  steps: [{ id: 'd', icon: '🕵️', say: 's_surprise_set', body: () => dateTiles('date') + `<div class="note">🔒 ${t('surprise_hidden')}</div>`, check: c => /^\d{4}-\d\d-\d\d$/.test(c.date) ? null : 'err_date' }],
+  async finish(c, P) { const r = await run([['SURPRISE_SET', P.id, { date: c.date }]]); return r.ok ? doneRes(P.id, 'what_surprise_set') : r; }
+};
+WIZ.surprise = {
+  title: 'tk_surprise_qc', save: 'save_result', saveIcon: '🕵️', init: () => ({ ok: '', note: '', ph: [] }),
+  steps: [
+    { id: 'p', icon: '📷', say: 's_surprise', body: () => photoSlot('ph', 'ph_surprise', 2, { tag: 'surprise' }), check: c => c.ph.length >= 2 ? null : { k: 'err_photos', v: { n: 2 } } },
+    { id: 'r', icon: '⚖️', say: 's_surprise_result', body: c => tiles('ok', [['yes', '✅', 'surprise_ok'], ['no', '❌', 'surprise_bad']], 'one') + (c.ok === 'no' ? inp('note', 'f_problem', { area: true, mic: true }) : ''), check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }
+  ],
+  async finish(c, P) { const r = await run([['SURPRISE_DONE', P.id, { ok: c.ok === 'yes', note: c.note.trim(), ev: c.ph }]]); return r.ok ? doneRes(P.id, c.ok === 'yes' ? 'what_surprise_ok' : 'what_surprise_bad') : r; }
 };
 /* ---------- statutory records, hold, stage back, dispute ---------- */
 function statCard(P) {
@@ -6478,6 +6651,7 @@ function projActions(P) {
   add('INCIDENT_RAISED', 'incidentNew', '🚨', 'report_incident', OPEN_STAGES.includes(P.stage));
   if (u.role === 'tech' && P.tech === u.uid && allowed('SAFETY_CHECKED', P) && safetyWhyNot(P) === 'err_safety_check') a.push(`<button class="btn btn-p" data-a="wizOpen" data-v="safety|${P.id}">🦺 ${t('tk_safety_check')}</button>`);
   if (stageIdx(P.stage) >= stageIdx('arrived') && P.stage !== 'lost') a.push(`<button class="btn" data-a="safetyLog" data-v="${P.id}">🦺 ${t('safety_log')}</button>`);
+  add('SURPRISE_SET', 'surpriseSet', '🕵️', 'surprise_set', !(P.surprise && !P.surprise.done));
   add('STATUTORY_SET', 'statutory', '📜', 'stat_title', P.stage !== 'lost' && stageIdx(P.stage) >= stageIdx('signed'));
   add('HOLD_REQUESTED', 'hold', '⏸️', ['owner', 'admin'].includes(u.role) ? 'hold_put' : 'hold_ask', !(P.holds || []).some(h => ['pending', 'active'].includes(h.status)) && OPEN_STAGES.includes(P.stage) && stageIdx(P.stage) >= stageIdx('signed') && (u.role !== 'tech' || P.tech === u.uid) && (u.role !== 'partner' || P.partner === u.uid));
   (P.holds || []).filter(h => h.status === 'active').forEach(h => { if (allowed('HOLD_ENDED', P)) a.push(`<button class="btn btn-p" data-a="wizOpen" data-v="holdEnd|${P.id}|hid|${h.id}">▶️ ${t('hold_end')}</button>`); });
@@ -6505,7 +6679,7 @@ function projInfo(P) {
   const sopN = Object.keys(P.sop).length;
   const target = installUsed(P);
   const cancelled = P.lost && P.lost.reason === 'cancelled' ? `<div class="err">⛔ ${t('cancelled_on', { d: fmtD(P.lost.t) })}: ${esc(P.lost.note)}${P.payments.some(x => x.status === 'confirmed') ? '<br>🏦 ' + t('refund_note') : ''}</div>` : '';
-  return cancelled + open + statCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
+  return cancelled + open + varCard(P) + statCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
       ['gps', P.site.gps ? `<a href="${mapsLink(P.site.gps)}" target="_blank" rel="noopener">${P.site.gps.lat}, ${P.site.gps.lng}</a> · <a href="${dirLink(P.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a>` : t('no')]])}</div>
     ${OUTSIDERS.includes(u.role) ? maskedContact(P) : `<div class="card"><h3>👤 ${t('contact')}</h3>${kv([['f_contact_name', esc(P.contact.name)], ['f_phone', seeF(u, 'phone') ? (P.contact.phone ? `<a href="tel:+91${P.contact.phone}">📞 ${esc(P.contact.phone)}</a>` : t('i_no_phone')) : '🔒 ' + t('hidden')]])}
       ${P.corrected.length ? `<details style="margin-top:6px"><summary class="small">✏️ ${t('corrections_history')} (${P.corrected.length})</summary>${P.corrected.map(c => `<div class="small">${fmtD(c.t, true)} · ${userTag(c.by)} · ${t(c.field === 'address' ? 'f_address' : c.field === 'phone' ? 'f_phone' : 'f_contact_name')}: <s>${esc(c.old)}</s> → <b>${esc(c.val)}</b> (${esc(c.reason)})</div>`).join('')}</details>` : ''}</div>`}
@@ -6647,7 +6821,7 @@ SCREENS.cl = ({ pid, kind }) => {
     body = `<div class="stepline"><span>${done} / ${SOP.length} ${t('done_word')}</span>${P.mhand ? `<span class="chip ${installUsed(P) > S.config.installDays ? 'c-bad' : 'c-info'}">🎯 ${t('target_days', { n: installUsed(P), m: S.config.installDays })}</span>` : ''}</div><div class="prog"><i style="width:${done / SOP.length * 100}%"></i></div>
       <div class="note">📜 ${t('sop_disclaimer')}</div>` + (nx < SOP.length && safetyWhyNot(P) ? `<div class="err">${safetyWhyNot(P) === 'err_work_stopped' ? '🛑 ' + t('work_stopped') : `🦺 ${t('err_safety_check')}${P.tech === u.uid ? `<br><button class="btn btn-p" style="margin-top:8px" data-a="wizOpen" data-v="safety|${P.id}">🦺 ${t('tk_safety_check')}</button>` : ''}`}</div>` : '') +
       SOP.map(([k, i], n) => { const blk = P.blockers.find(b => b.open && b.step === n); const st = P.sop[n] ? 'done' : n === nx ? 'cur' : 'lock';
-        return `<button class="cl-item ${st}" data-a="clItem" data-v="sop|${n}" ${st === 'lock' ? 'aria-disabled="true"' : ''}><span class="st">${P.sop[n] ? '✅' : blk ? '⛔' : n === nx ? '▶️' : '🔒'}</span><span class="grow"><b>${n + 1}. ${i} ${t('sop_' + k)}</b>${blk ? `<br><span class="small" style="color:var(--bad)">⛔ ${t('br_' + blk.reason)} → ${t('r_' + blk.role)}</span>` : ''}</span></button>`; }).join('');
+        return `<button class="cl-item ${st}" data-a="clItem" data-v="sop|${n}" ${st === 'lock' ? 'aria-disabled="true"' : ''}><span class="st">${P.sop[n] ? '✅' : blk ? '⛔' : n === nx ? '▶️' : '🔒'}</span><span class="grow"><b>${n + 1}. ${i} ${t('sop_' + k)}</b>${PEER_STEPS.includes(n) && S.config.peerCheck && P.sop[n] ? `<br><span class="small">${((P.peer || {})[n] || {}).ok ? '👀 ✅ ' + t('peer_done', { name: userName(P.peer[n].by) }) : '👀 ⏳ ' + t('peer_waiting')}</span>` : ''}${blk ? `<br><span class="small" style="color:var(--bad)">⛔ ${t('br_' + blk.reason)} → ${t('r_' + blk.role)}</span>` : ''}</span></button>`; }).join('');
     if (nx >= SOP.length && P.stage === 'installing' && allowed('INSPECTION_REQUESTED', P)) action = `<button class="btn btn-ok btn-big" data-a="clAction" data-v="INSPECTION_REQUESTED">🔍 ${t('tk_request_inspection')}</button>`;
   } else if (kind === 'handover') {
     title = t('tk_sign_handover');
@@ -7031,7 +7205,7 @@ const OUT_HIDE = {
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
   MSG_LOGGED: ['text'], AGREEMENT_SIGNED: ['signer'], CONFIG_SET: ['value'], PARTNER_PROFILE: ['licNo', 'licHolder', 'licAuthority', 'gst'],
-  MATERIAL_HANDED: ['custName'], CUSTOMER_RATED: ['name', 'note']
+  MATERIAL_HANDED: ['custName'], CUSTOMER_RATED: ['name', 'note'], VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date']
 };
 const strip = (ev, keys, extra) => { const e = redact(ev, keys); return e === ev ? ev : Object.assign(e, { data: Object.assign(e.data, extra || {}) }); };
 /* a copy of a record with some private fields removed (set to empty); fields that the record's signature cannot hide stay */
@@ -8031,7 +8205,8 @@ function openTask(n) {
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid),
-    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), record_licence: () => wiz('statutory', pid, { item: n.item }),
+    install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
+    make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
     lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
     sign_handover: () => go('cl', { pid, kind: 'handover' }), complete_handover: () => go('cl', { pid, kind: 'handover' }),
@@ -8490,7 +8665,7 @@ async function seedPractice() {
     material_order: P => !statOf(P).permit ? ['admin', 'STATUTORY_SET', { item: 'permit', no: 'EP/' + P.id.slice(-3) + '/2026', date: safeDay(nextAt()) }] : ['supplier', 'DISPATCHED', { packed: P.materials.map(m => m.k), seal: 'SEAL-' + P.id.slice(-3), vehicle: 'MH12 AB 1234', ev: [ph('work'), ph('work')] }],
     dispatched: P => [P.tech, 'ARRIVED', { gps: P.site.gps, sealSeen: 'SEAL-' + P.id.slice(-3), sealIntact: 'yes', condition: 'good', ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
     arrived: P => payConfirmed(P, 'arrival') ? [P.tech, 'MATERIAL_HANDED', { items: P.materials.map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, ev: [ph('sign'), ph('sign')] }] : payStep(P, 'arrival'),
-    installing: P => sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }] : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
+    installing: P => peerWaiting(P).length ? [Object.values(S.users).find(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).uid, 'PEER_CHECKED', { step: peerWaiting(P)[0], ok: true }] : sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }] : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
     qc_final: P => ['qc', 'QC_FINAL_RESULT', { checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), crit: Object.fromEntries(QC_CRITICAL.map(k => [k, 'pass'])), earthVal: '0.8 Ω', outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)].concat(QC_CRITICAL.map(k => Object.assign(ph('work', P.site.gps), { label: 'crit_' + k }))) }],
     final_pay: P => payStep(P, 'final'),
     handover: P => { const s = SLOTS.find(x => !P.hand[x]); return s ? [s === 'qc' ? 'qc' : P.tech, 'HANDOVER_SIGNED', { slot: s, consent: true, signer: s === 'customer' ? P.contact.name : userName(U[s]), ev: [ph('sign')] }]

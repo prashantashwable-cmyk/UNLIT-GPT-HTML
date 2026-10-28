@@ -230,6 +230,11 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
     }
     await tap(page, `[data-a="clItem"][data-v="sop|${i}"]`, { wait: 250 });
     await photo('ph'); await next();
+    /* doors, wiring and safety devices: a co-worker (here the QC Inspector) checks the photos before the next step */
+    if ([8, 9, 10].includes(i)) {
+      await login('Quinn QC'); await startTask('peer_check'); await pick('ok', 'yes'); await next(); await doneOk('co-worker check');
+      await login('Tara Tech'); await startTask(i === 10 ? 'install' : 'install');
+    }
   }
   await tap(page, '[data-a="clAction"][data-v="INSPECTION_REQUESTED"]', { wait: 300 }); await doneOk('inspection requested');
 
@@ -259,6 +264,14 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
     await tap(page, '[data-a="toggle"][data-k="consent"]'); await next(); await next(); await sign('sig'); await next();
   }
   await shot('handover_list');
+  assert(!(await page.$('[data-a="clAction"][data-v="HANDOVER_COMPLETED"]')), 'handover cannot be completed before the lift licence is recorded');
+  /* the office records the Lift Inspector's visit and the lift licence */
+  await login('Olivia Owner');
+  await page.evaluate(p => wiz('statutory', p, { item: 'inspection' }), pid); await W8(250);
+  await pick('result', 'pass'); await next(); await doneOk('inspection recorded');
+  await page.evaluate(p => wiz('statutory', p, { item: 'licence' }), pid); await W8(250);
+  await fill('no', 'PUNE/LIFT/0099/2026'); await fill('expiry', '2027-12-31'); await next(); await doneOk('licence recorded');
+  await login('Quinn QC'); await startTask('complete_handover');
   await tap(page, '[data-a="clAction"][data-v="HANDOVER_COMPLETED"]', { wait: 300 }); await doneOk('handover complete');
   assert(await stage(pid) === 'amc', 'amc');
   await tap(page, '[data-a="openDocP"]', { wait: 400 }); await shot('handover_doc');

@@ -126,6 +126,16 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
 * **Move back a stage:** the office can move a job one step back with a reason (site approved → site inspection, order → site approved, dispatched → order, final inspection → installing), for example to release again with corrected drawings.
 * **Disputes:** Sales or the office can mark a dispute with the customer; the Owner/Admin see it until it is settled. Workers' confirmed pay is not affected.
 
+### Shaft limits, variation, co-worker check, surprise QC
+* **Shaft limits:** QC enters the shaft width, depth, pit and headroom; any value below the minimum is shown in red. The minimums are sample numbers that a lift engineer must set (**Business rules → Shaft limits and checks**).
+  * A shaft below the minimum cannot simply be approved: QC asks for corrections, or approves "with a variation quote".
+* **Variation quote:** Sales writes what changes in the lift and the price change. The customer accepts and signs (or declines).
+  * Material cannot be released until the variation is signed, and the final payment changes by the agreed amount.
+* **Co-worker check:** after the doors (interlocks), wiring (earthing) and safety-device steps, another technician of the same company (not on this job's team, Technician or Senior) or a QC Inspector looks at the photos before the next step.
+  * "Not right" sends the step back to be done again. Waiting for the check never counts against the lead.
+* **Surprise QC:** the office plans a surprise inspection date that only the office and QC see (it is removed from technicians' and companies' files).
+  * On that day QC takes photos and records the result; a problem found is a strike for the team lead.
+
 ### Data protection against poaching (partner companies, technicians, suppliers)
 * **Each phone gets only its own share (the offline version of row-level security):**
   * A partner company, technician or supplier receives only the jobs they hold or work on.
