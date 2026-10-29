@@ -46,9 +46,12 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const n = await pa.evaluate(() => EVENTS.length);
   const E = await launch(), pe = E.page;
   await pe.evaluate(async () => { App.set.lang = 'en'; LANG = 'en'; App.set.mode = 'practice'; await loadMode('practice'); App.me = null; go('restore'); }); await pe.waitForTimeout(150);
-  await pe.fill('[data-f="rsUrl"]', url); await pe.fill('[data-f="rsCode"]', 'AAAA-BBBB-CCCC-DDDD-EEEE-FFFF'); await pe.click('[data-a="rsGo"]'); await pe.waitForTimeout(2500);
+  await pe.fill('[data-f="rsUrl"]', url); await pe.fill('[data-f="rsCode"]', 'AAAA-BBBB-CCCC-DDDD-EEEE-FFFF'); await pe.click('[data-a="rsGo"]');
+  /* a real server far away answers more slowly, so wait for the answer rather than a fixed time */
+  await pe.waitForFunction(() => /does not open the backup/.test(document.querySelector('main').innerText), null, { timeout: 30000 }).catch(() => { });
   assert(/does not open the backup/.test(await pe.innerText('main')), 'a wrong recovery code is refused');
-  await pe.fill('[data-f="rsCode"]', code); await pe.click('[data-a="rsGo"]'); await pe.waitForTimeout(8000);
+  await pe.fill('[data-f="rsCode"]', code); await pe.click('[data-a="rsGo"]');
+  await pe.waitForFunction(n => EVENTS.length === n && Sync.cfg(), n, { timeout: 60000 }).catch(() => { });
   assert(await pe.evaluate(() => EVENTS.length) === n && await pe.evaluate(() => Sync.cfg() && Sync.cfg().role === 'office'), 'with only the server address and the recovery code, a new phone brings back the whole company');
 
   for (const lang of ['en', 'hi', 'mr']) {
