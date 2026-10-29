@@ -2244,6 +2244,24 @@ const L = {
   builder_sites: ['Your sites', 'आपकी साइटें', 'तुमच्या साइट्स'],
   link_site: ['Link to another site (builder)', 'दूसरी साइट से जोड़ें (बिल्डर)', 'दुसऱ्या साइटशी जोडा (बिल्डर)'],
   err_has_customer2: ['This site already has a customer login.', 'इस साइट का ग्राहक लॉगिन पहले से है।', 'या साइटचे ग्राहक लॉगिन आधीच आहे.'],
+  srv_title: ['Company server', 'कंपनी सर्वर', 'कंपनी सर्व्हर'],
+  srv_say: ['Phones send and receive updates by themselves through the company server. Everything is locked (encrypted) on the phone before it leaves; the server cannot read it.', 'फ़ोन कंपनी सर्वर से अपने-आप अपडेट भेजते और लेते हैं। हर चीज़ फ़ोन पर ही ताला लगाकर (एन्क्रिप्ट) भेजी जाती है; सर्वर उसे पढ़ नहीं सकता।', 'फोन कंपनी सर्व्हरमधून आपोआप अपडेट पाठवतात आणि घेतात. सर्व काही फोनवरच कुलूपबंद (एन्क्रिप्ट) करून जाते; सर्व्हर ते वाचू शकत नाही.'],
+  srv_url: ['Server address', 'सर्वर का पता', 'सर्व्हरचा पत्ता'],
+  srv_secret: ['Setup secret (from the server setup)', 'सेटअप सीक्रेट (सर्वर सेटअप से)', 'सेटअप सीक्रेट (सर्व्हर सेटअपमधून)'],
+  srv_on: ['Turn on automatic sync', 'अपने-आप सिंक चालू करें', 'आपोआप सिंक सुरू करा'],
+  srv_off: ['Turn off on this phone', 'इस फ़ोन पर बंद करें', 'या फोनवर बंद करा'],
+  srv_now: ['Sync now', 'अभी सिंक करें', 'आत्ता सिंक करा'],
+  srv_state_ok: ['Synced {t}', 'सिंक हुआ {t}', 'सिंक झाले {t}'],
+  srv_state_wait: ['Waiting for internet; your work is saved on this phone', 'इंटरनेट का इंतज़ार; आपका काम इस फ़ोन पर सेव है', 'इंटरनेटची वाट; तुमचे काम या फोनवर जतन आहे'],
+  srv_state_err: ['Could not reach the server; will try again', 'सर्वर तक नहीं पहुँचे; फिर कोशिश होगी', 'सर्व्हरपर्यंत पोहोचलो नाही; पुन्हा प्रयत्न होईल'],
+  srv_state_revoked: ['This phone was removed from the server. Ask the office for a new file.', 'यह फ़ोन सर्वर से हटाया गया। ऑफिस से नई फ़ाइल माँगें।', 'हा फोन सर्व्हरवरून काढला. ऑफिसकडे नवीन फाइल मागा.'],
+  srv_none: ['Not connected. Updates travel by files until the office turns on the server.', 'जुड़ा नहीं। ऑफिस सर्वर चालू करने तक अपडेट फ़ाइल से जाएँगे।', 'जोडलेले नाही. ऑफिस सर्व्हर सुरू करेपर्यंत अपडेट फाइलने जातील.'],
+  srv_people: ['Phones connected: {n}', 'जुड़े फ़ोन: {n}', 'जोडलेले फोन: {n}'],
+  srv_how: ['After turning on, send each person their file once (Users → send file). From then on their phone syncs by itself. Removing a person stops their phone at once.', 'चालू करने के बाद हर व्यक्ति को एक बार उनकी फ़ाइल भेजें (लोग → फ़ाइल भेजें)। फिर उनका फ़ोन अपने-आप सिंक होगा। किसी को हटाने पर उनका फ़ोन तुरंत रुक जाएगा।', 'सुरू केल्यावर प्रत्येकाला एकदा त्यांची फाइल पाठवा (लोक → फाइल पाठवा). त्यानंतर त्यांचा फोन आपोआप सिंक होईल. एखाद्याला काढल्यावर त्यांचा फोन लगेच थांबेल.'],
+  srv_note: ['The rules are still checked on every phone, as before. Files and paste keep working if the server is off.', 'नियम पहले की तरह हर फ़ोन पर जाँचे जाते हैं। सर्वर बंद हो तो फ़ाइल और पेस्ट चलते रहेंगे।', 'नियम पूर्वीसारखे प्रत्येक फोनवर तपासले जातात. सर्व्हर बंद असल्यास फाइल आणि पेस्ट चालू राहतील.'],
+  err_server_url: ['Type the full server address, starting with https://', 'पूरा सर्वर पता लिखें, https:// से शुरू', 'संपूर्ण सर्व्हर पत्ता लिहा, https:// ने सुरू'],
+  err_server_secret: ['The setup secret is not right.', 'सेटअप सीक्रेट सही नहीं है।', 'सेटअप सीक्रेट बरोबर नाही.'],
+  err_server_down: ['Could not reach the server. Check the address and the internet.', 'सर्वर तक नहीं पहुँचे। पता और इंटरनेट जाँचें।', 'सर्व्हरपर्यंत पोहोचलो नाही. पत्ता आणि इंटरनेट तपासा.'],
   ck_obstacle: ['Work stuck', 'काम अटका', 'काम अडले'],
   ck_followup: ['Follow-up', 'फ़ॉलो-अप', 'पाठपुरावा'],
   ck_plan: ['Work plan', 'काम की योजना', 'कामाचे नियोजन'],
@@ -3706,6 +3724,131 @@ const Sign = {
       if (ev.type === 'KEY_APPROVED') approve(K, ev);
     }
     return { keep, bad, office };
+  }
+};
+/* ---------- company server: automatic sync through an encrypted mailbox; files stay as the fallback ----------
+   The office phones hold the company key. From it each person's box token and lock key are derived, so the server only ever
+   sees locked messages and fingerprints of tokens. Each person's box gets exactly what their file would have had. */
+const b64big = buf => { const u = new Uint8Array(buf); let s = ''; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); };
+const Sync = {
+  busy: false, soonT: null, state: null,
+  cfg() { return ((App.set.sync || {})[App.mode]) || null; },
+  async save(c) { App.set.sync = Object.assign({}, App.set.sync, { [App.mode]: c }); await saveSettings(); },
+  async ck() { const v = await KV.get(App.ns + 'ck'); return v ? unb64(v) : null; },
+  async hmac(key, label) { const k = await crypto.subtle.importKey('raw', key, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']); return new Uint8Array(await crypto.subtle.sign('HMAC', k, new TextEncoder().encode(label))); },
+  async tokenFor(ck, box) { return Array.from(await this.hmac(ck, 'tok:' + box), x => x.toString(16).padStart(2, '0')).join('').slice(0, 48); },
+  keyFor(ck, box) { return this.hmac(ck, 'key:' + box); },
+  async lock(raw, text) { const iv = crypto.getRandomValues(new Uint8Array(12)), k = await crypto.subtle.importKey('raw', raw, 'AES-GCM', false, ['encrypt']); return b64(iv) + '.' + b64big(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, k, new TextEncoder().encode(text))); },
+  async unlock(raw, blob) { const [iv, ct] = String(blob).split('.'), k = await crypto.subtle.importKey('raw', raw, 'AES-GCM', false, ['decrypt']); return new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(iv) }, k, unb64(ct))); },
+  async api(c, path, auth, method = 'GET', body) {
+    try {
+      const r = await fetch(c.url + path, { method, headers: Object.assign({ Authorization: 'Bearer ' + auth.tok, 'Content-Type': 'application/json' }, auth.box ? { 'X-Box': auth.box } : {}), body: body ? JSON.stringify(body) : undefined });
+      let j = null; try { j = await r.json(); } catch (e) { j = null; }
+      return { ok: r.ok, status: r.status, body: j };
+    } catch (e) { return { ok: false, status: 0 }; }
+  },
+  /* the office turns the server on with the secret chosen when the server was made */
+  async enable(url, secret) {
+    url = String(url || '').trim().replace(/\/+$/, '');
+    if (!/^https?:\/\/[^\s/]+/.test(url)) return 'err_server_url';
+    let ck = await this.ck(); if (!ck) { ck = crypto.getRandomValues(new Uint8Array(32)); await KV.set(App.ns + 'ck', b64(ck)); }
+    let st = 0;
+    try { st = (await fetch(url + '/setup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ adminSecret: secret || '', officeHash: await sha256(await this.tokenFor(ck, 'office')), org: S.org.id }) })).status; } catch (e) { st = 0; }
+    if (st !== 200) return st === 403 ? 'err_server_secret' : 'err_server_down';
+    await this.save({ url, role: 'office', cur: 0, boxes: [] });
+    await this.tick(); return null;
+  },
+  async disable() { App.set.sync = Object.assign({}, App.set.sync, { [App.mode]: null }); this.state = null; await saveSettings(); },
+  /* the sync details a file carries: the full office file carries the company key; a person's file only that person's box */
+  async creds(kind, uid) {
+    const c = this.cfg(), ck = c && c.role === 'office' && await this.ck(); if (!ck) return null;
+    if (kind === 'full') return { url: c.url, ck: b64(ck) };
+    if (kind === 'person' && uid && S.users[uid] && !['owner', 'admin'].includes(S.users[uid].role)) return { url: c.url, box: uid, tok: await this.tokenFor(ck, uid), k: b64(await this.keyFor(ck, uid)) };
+    return null;
+  },
+  async adopt(pack) {
+    const x = pack.sync; if (!x || !/^https?:\/\//.test(x.url || '')) return;
+    if (pack.kind === 'full' && x.ck) { await KV.set(App.ns + 'ck', x.ck); await this.save({ url: x.url, role: 'office', cur: 0, boxes: [] }); }
+    else if (pack.kind === 'person' && x.box && x.box === pack.for && x.tok && x.k) await this.save({ url: x.url, role: 'person', box: x.box, tok: x.tok, k: x.k, cur: 0 });
+    else return;
+    this.soon();
+  },
+  /* send records in pieces small enough for the server, each piece signed and locked */
+  async send(c, to, auth, pack, raw) {
+    const groups = [], media = {};
+    let g = [], n = 0;
+    for (const ev of pack.events) {
+      let sz = JSON.stringify(ev).length;
+      for (const e of (ev.data && ev.data.ev) || []) if (e.m && !(e.m in media)) { media[e.m] = (await getMedia(e.m)) || null; sz += media[e.m] ? media[e.m].length : 0; }
+      if (g.length && n + sz > 560000) { groups.push(g); g = []; n = 0; }
+      g.push(ev); n += sz;
+    }
+    if (g.length) groups.push(g);
+    for (const evs of groups) {
+      const part = await finishPack(Object.assign({}, pack, { events: evs, media: {} }));
+      for (const ev of evs) for (const e of (ev.data && ev.data.ev) || []) if (e.m && media[e.m]) part.media[e.m] = media[e.m];
+      const r = await this.api(c, '/send/' + to, auth, 'POST', { blob: await this.lock(raw, JSON.stringify(part)) });
+      if (!r.ok) return r;
+    }
+    return { ok: true };
+  },
+  async pull(c, box, auth, keyOf) {
+    for (let round = 0; round < 20; round++) {
+      const r = await this.api(c, '/recv/' + box + '?after=' + (c.cur || 0), auth);
+      if (!r.ok) return r;
+      for (const m of r.body.msgs) {
+        try { const raw = await keyOf(m); if (raw) await importText(await this.unlock(raw, m.blob)); } catch (e) { /* a message this phone cannot open is skipped */ }
+        c.cur = m.seq;
+      }
+      await this.save(c);
+      if (!r.body.more) break;
+    }
+    return { ok: true };
+  },
+  async tick() {
+    const c = this.cfg();
+    if (!c || this.busy || !S.org || !App.me || !(window.crypto && crypto.subtle)) return;
+    if (navigator.onLine === false) { this.state = { st: 'wait' }; return; }
+    this.busy = true;
+    try {
+      const sent = (await KV.get(App.ns + 'syncSent')) || {}, has = box => new Set(sent[box] || []);
+      const mark = (box, ids) => { sent[box] = uniq((sent[box] || []).concat(ids)); };
+      let r = { ok: true };
+      if (c.role === 'office') {
+        const ck = await this.ck(); if (!ck) return;
+        const auth = { tok: await this.tokenFor(ck, 'office') };
+        const want = Object.values(S.users).filter(u => u.active && !['owner', 'admin'].includes(u.role)).map(u => u.uid);
+        for (const uid of want.filter(x => !(c.boxes || []).includes(x))) { const x = await this.api(c, '/box/' + uid, auth, 'PUT', { hash: await sha256(await this.tokenFor(ck, uid)) }); if (x.ok) c.boxes = uniq((c.boxes || []).concat(uid)); else r = x; }
+        for (const uid of (c.boxes || []).filter(x => !want.includes(x))) { const x = await this.api(c, '/box/' + uid, auth, 'DELETE'); if (x.ok) c.boxes = c.boxes.filter(y => y !== uid); }
+        if (r.ok) r = await this.pull(c, 'inbox', auth, m => this.keyFor(ck, m.from));
+        /* this phone's own new records go to the other office phones */
+        if (r.ok) { const seen = has('inbox'), p = exportPack('full'); p.events = p.events.filter(e => e.dev === App.set.dev && !seen.has(e.id)); if (p.events.length) { r = await this.send(c, 'inbox', auth, p, await this.keyFor(ck, 'office')); if (r.ok) mark('inbox', p.events.map(e => e.id)); } }
+        /* each person's box gets what their file would have, only what is new for them */
+        for (const uid of c.boxes || []) {
+          if (!r.ok) break;
+          const seen = has(uid), p = exportPack('person', uid); p.events = p.events.filter(e => !seen.has(e.id));
+          if (p.events.length) { r = await this.send(c, uid, auth, p, await this.keyFor(ck, uid)); if (r.ok) mark(uid, p.events.map(e => e.id)); }
+        }
+      } else {
+        const auth = { tok: c.tok, box: c.box }, raw = unb64(c.k);
+        r = await this.pull(c, c.box, auth, () => raw);
+        if (r.ok && App.me.uid === c.box) {
+          const seen = has('inbox'), p = exportPack('person', c.box); p.events = p.events.filter(e => e.by === c.box && !seen.has(e.id));
+          if (p.events.length) { r = await this.send(c, 'inbox', auth, p, raw); if (r.ok) mark('inbox', p.events.map(e => e.id)); }
+        }
+      }
+      await KV.set(App.ns + 'syncSent', sent);
+      if (r.ok) { c.last = nowISO(); this.state = { st: 'ok' }; } else this.state = { st: r.status === 401 ? 'revoked' : 'err' };
+      await this.save(c);
+    } catch (e) { this.state = { st: 'err' }; } finally { this.busy = false; }
+    if (['me', 'server'].includes(App.route.name) && !W) render();
+  },
+  soon() { clearTimeout(this.soonT); this.soonT = setTimeout(() => this.tick(), 2500); },
+  start() { setInterval(() => this.tick(), 60000); window.addEventListener('online', () => this.tick()); document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') this.tick(); }); },
+  line() {
+    const c = this.cfg(); if (!c) return `☁️ ${t('srv_none')}`;
+    const st = this.state && this.state.st;
+    return st === 'revoked' ? `⛔ ${t('srv_state_revoked')}` : st === 'err' ? `⚠️ ${t('srv_state_err')}` : st === 'wait' || navigator.onLine === false ? `📴 ${t('srv_state_wait')}` : c.last ? `✅ ${t('srv_state_ok', { t: fmtD(c.last, true) })}` : `⏳ ${t('srv_state_wait')}`;
   }
 };
 function deviceName() { const ua = navigator.userAgent || ''; const m = ua.match(/\(([^;)]+);\s*([^;)]+)/); return ((m && (/Android/.test(ua) ? m[2] : m[1])) || 'Phone').slice(0, 40); }
@@ -6245,7 +6388,7 @@ async function perform(type, pid, data, opt = {}) {
   apply(S, ev); EVENTS.push(ev);
   if (type === 'UNDONE') S = rebuild(EVENTS);
   if (UNDOABLE.includes(type) && !opt.as) App.lastDone = ev.id;
-  if (!opt.noSave) { await saveAll(); if (App.me) Notify.check({ silent: true }); }
+  if (!opt.noSave) { await saveAll(); if (App.me) Notify.check({ silent: true }); Sync.soon(); }
   return { ok: true, ev };
 }
 /* a quick pre-check used to show or hide buttons; perform() still validates fully */
@@ -9055,7 +9198,7 @@ SCREENS.me = () => {
       <button class="btn" style="margin-top:10px" data-a="testVoice">▶ ${t('voice_test')}</button>
       ${'speechSynthesis' in window ? (Voice.has('mr') ? `<div class="okbox">✅ ${t('voice_mr_ok')}</div>` : `<div class="warnbox">⚠️ ${t('voice_mr_missing')}</div>`) : `<div class="warnbox">⚠️ ${t('no_tts')}</div>`}</div>
     <div class="tiles one">${`<button class="tile" data-a="nav" data-v="notify"><span class="i">🔔</span><span>${t('ntf_title')}<br><small>${t(Notify.set().sound ? 'ntf_sound_on' : 'ntf_sound_off')}</small></span></button>`}</div>`, { icon: '⚙️', sub: t('me_settings_d') })}
-    ${group('📱', 'me_app', tile('nav', 'data', '📤', 'share_data') + tile('nav', 'perm', '🔐', 'what_can_i_do') + tile('nav', 'supbills', '🧾', 'inv_title', r === 'supplier') + tile('nav', 'recon', '🏦', 'recon_title', ['finance', 'owner', 'admin'].includes(r)) + tile('nav', 'stattracker', '📜', 'stat_tracker', ['owner', 'admin', 'qc'].includes(r)) + tile('nav', 'privacy', '🔏', 'pn_title') + tile('intro', '', '🎬', 'watch_intro') + tile('nav', 'about', 'ℹ️', 'about_privacy')
+    ${group('📱', 'me_app', tile('nav', 'data', '📤', 'share_data') + tile('nav', 'perm', '🔐', 'what_can_i_do') + tile('nav', 'supbills', '🧾', 'inv_title', r === 'supplier') + tile('nav', 'server', '☁️', 'srv_title') + tile('nav', 'recon', '🏦', 'recon_title', ['finance', 'owner', 'admin'].includes(r)) + tile('nav', 'stattracker', '📜', 'stat_tracker', ['owner', 'admin', 'qc'].includes(r)) + tile('nav', 'privacy', '🔏', 'pn_title') + tile('intro', '', '🎬', 'watch_intro') + tile('nav', 'about', 'ℹ️', 'about_privacy')
       + (App.installEvt ? tile('install', '', '📲', 'install_app') : '') + (App.mode === 'practice' ? tile('resetPractice', '', '♻️', 'reset_practice') + tile('exitPractice', '', '🚪', 'exit_practice') : ''))}
     ${!App.installEvt ? (standalone ? `<div class="okbox" style="margin-top:10px">📲 ${t('installed_ok')}</div>` : `<p class="small muted">📲 ${t('install_hint')}</p>`) : ''}
     <button class="btn btn-bad" style="margin-top:14px" data-a="logout">🚪 ${t('logout')}</button>
@@ -9133,6 +9276,15 @@ function userSheet(uid) {
     ${!locked ? `<div class="stack" style="margin-top:12px"><button class="btn" data-a="userPin" data-v="${uid}">🔢 ${t('reset_pin')}</button>${!self ? `<button class="btn ${x.active ? 'btn-bad' : 'btn-ok'}" data-a="userActive" data-v="${uid}">${x.active ? '⛔ ' + t('block_user') : '✅ ' + t('unblock_user')}</button>` : ''}</div>` : `<div class="note">${t('err_role', { roles: t('r_owner') })}</div>`}`);
 }
 /* ---------- owner: business rules ---------- */
+SCREENS.server = () => {
+  const u = App.me, office = ['owner', 'admin'].includes(u.role), c = Sync.cfg(), f = App.form;
+  App.pageSay = t('srv_say');
+  return topBar(t('srv_title'), { back: true }) + `<main class="wrap"><p class="say">☁️ ${t('srv_say')}</p>
+    <div class="card"><b>${Sync.line()}</b>${c && c.role === 'office' ? `<p class="small muted">${t('srv_people', { n: (c.boxes || []).length })} · ${esc(c.url)}</p>` : c ? `<p class="small muted">${esc(c.url)}</p>` : ''}
+      ${c ? `<div class="row wrapw" style="margin-top:8px"><button class="btn btn-p" data-a="srvNow">🔄 ${t('srv_now')}</button>${office ? `<button class="btn" data-a="srvOff">⏹ ${t('srv_off')}</button>` : ''}</div>` : ''}</div>
+    ${office && !c ? `<div class="card">${formInp('srvUrl', 'srv_url', { type: 'url' })}${formInp('srvSecret', 'srv_secret', { type: 'password' })}<div id="ferr"></div><button class="btn btn-ok btn-big" data-a="srvOn">☁️ ${t('srv_on')}</button></div>` : ''}
+    ${office ? `<div class="note">📤 ${t('srv_how')}</div>` : ''}<p class="small muted">${t('srv_note')}</p></main>` + nav('me');
+};
 SCREENS.rules = () => {
   const own = App.me.role === 'owner';
   App.pageSay = t('s_rules');
@@ -9345,6 +9497,7 @@ async function saveArchived() { try { await KV.set(App.ns + 'archived', [...App.
 async function exportFile(kind, forUid, opts) {
   logAccess('export', kind + (forUid ? ':' + forUid : '')); await flushAccess();
   const pack = await finishPack(exportPack(kind, forUid, opts));
+  const sc = await Sync.creds(kind, forUid); if (sc) pack.sync = sc;
   const keys = new Set();
   pack.events.forEach(ev => (ev.data && ev.data.ev || []).forEach(e => keys.add(e.m)));
   for (const k of keys) { const v = await getMedia(k); if (v) pack.media[k] = v; }
@@ -9379,6 +9532,7 @@ async function importText(text) {
   S = rebuild(all); EVENTS = all;
   await saveAll();
   const rej = S.rejected.filter(r => fresh.some(f => f.id === r.ev.id)).length;
+  if (pack.sync && ['owner', 'admin'].includes(packRole)) await Sync.adopt(pack);
   if (App.me) Notify.check();
   App.set.imports = [{ t: nowISO(), by: pack.by || '', kind: pack.kind || '', added: fresh.length - rej, rejected: rej + refused }].concat(App.set.imports || []).slice(0, 20); saveSettings();
   return { ok: true, added: fresh.length - rej, rejected: rej + refused, unsigned: chk.bad, photos: Object.keys(pack.media || {}).length, before };
@@ -10704,6 +10858,9 @@ const ACT = {
   help: () => sheet(helpHtml()),
   helpChat: () => { const pid = pidHere(); closeSheet(); App.form.ck = 'question'; go('project', { pid, tab: 'chat' }); },
   langSheet: () => sheet(langSheetHtml()),
+  srvOn: async () => { const f = App.form, e = await Sync.enable(f.srvUrl, f.srvSecret); if (e) { const el = $('#ferr'); if (el) el.innerHTML = `<div class="err">${t(e)}</div>`; toast(t(e), true); return; } App.form = {}; toast(t('saved_item')); render(); },
+  srvOff: async () => { await Sync.disable(); render(); },
+  srvNow: async () => { await Sync.tick(); render(); },
   splashSkip: () => { clearTimeout(App.splashT); go('gate', {}, { replace: true }); },
   door: v => { App.form = {}; go('door', { kind: v }); },
   joinRole: v => { App.form = { rqRole: v }; go('joinReq', { role: v }); },
@@ -11285,6 +11442,7 @@ async function boot() {
   /* installed app: ask the phone to keep this app's data even when storage runs low */
   if (isInstalled() && navigator.storage && navigator.storage.persist) navigator.storage.persist().then(ok => { App.persisted = ok; }).catch(() => { });
   Notify.start();
+  Sync.start();
   window.addEventListener('offline', () => toast(t('offline_saved')));
   window.addEventListener('online', () => toast(t('online_again')));
 }

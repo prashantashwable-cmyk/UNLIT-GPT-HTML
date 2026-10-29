@@ -24,6 +24,15 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
 
 ---
 
+### Company server (automatic sync)
+* **Me → Company server:** the Head Quarter or Admin types the server address and the setup secret once. From then on phones send and receive updates by themselves (every minute, and a few seconds after each action) when they have internet. Without internet, work is saved on the phone and goes later.
+* **Locked on the phone:** everything is locked (encrypted) on the phone before it leaves. The server never sees names, prices or photos; it only keeps an inbox the office reads and one box per person.
+* **Each person's box:** it gets exactly what their file would have, so partner companies, technicians and suppliers still never receive customer contacts or prices. A person's file carries only their own connection, never the company key.
+* **Removing a person** deletes their box and stops their phone at once.
+* **What stays the same:** the rules are still checked on every phone, as before. Files, paste and the offline flows keep working.
+* **Setting it up:** the server itself runs on the company's own Cloudflare account; setup steps are in `server/README.md` (English and Marathi).
+* **Not in this stage:** login by SMS code, alerts that wake a closed app, photo storage and backups on the server come in later stages.
+
 ### Front door: who can get in, and how
 The app opens with the animated AIEC logo (tap to skip; skipped for "reduce motion", lift QR stickers and join links), then one screen with the language choice and three doors. If one person used the phone before, "Continue as …" goes straight to their PIN.
 * 🏠 **Customer or builder:** a list of customers only (never staff names), then PIN. On a phone without their file: **Open the file the office sent me**, or **I want a lift: new enquiry** (name, mobile, owner or builder, site address or location, floors). The enquiry is sent as a WhatsApp/SMS message with a code; the office pastes it and it becomes a task for Sales to call, then a new lead with the details filled in.
