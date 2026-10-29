@@ -16,6 +16,8 @@ The company server runs on Supabase's free plan at `https://ycyvtdrtkdrnnkiszrxf
 - **Testing on the real engine:** deploy `supabase-test.ts` as `aiec-test`. Every test run gets its own empty schema (`.../aiec-test/t_<run>`), so the live tables are never touched. Switch it off again afterwards.
 - **Free plan:** Supabase pauses a free project after about a week with no use. Daily use keeps it awake. If it is paused, open the Supabase dashboard and press Restore; nothing is lost.
 
+**Join requests:** a new person applies in the app (details, photo and ID photo). The request is locked on their phone with the office's public key (`GET /pubkey`; the office phone sets it with `PUT /pubkey`) and dropped in with `POST /request` (no login; at most 5 a minute per network, 400 KB each). Only office phones read it. Admin's answer waits for the person in a private login-code box (`/invite/...`) that only the applicant's phone can find and open.
+
 ## One-tap setup on Cloudflare (another free way)
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/prashantashwable-cmyk/UNLIT-GPT-HTML/tree/main/server)

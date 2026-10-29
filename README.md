@@ -41,6 +41,7 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
   * The office makes a one-time 6-digit **login code** (Users → the person → Login code for a new phone) and tells it on a call.
   * The person types the server address, their mobile number and the code. Their data comes down locked with the code.
   * The code works once, for 2 days, and is deleted after 5 wrong tries. There is no SMS, so no SMS cost or DLT registration.
+* **Join requests in the app:** a new person fills the Join form with their photo and ID photo and presses Send. Admin sees it on the home screen, checks the profile (warnings for a number already in the company, a wrong GST number, an expired licence), must call the person, then approves, asks for more details, or refuses with a reason. The person's phone shows the answer; when approved it opens the app as them, already connected. Without a server, the form goes by WhatsApp as before.
 * **Alerts:** connected phones that allow notifications are woken by the server.
   * An SOS or a safety incident wakes the office at once; other news at most every 10 minutes.
   * An alert carries no text or names. The details load when the person opens the app with their PIN.

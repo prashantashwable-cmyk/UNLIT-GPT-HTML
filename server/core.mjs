@@ -152,6 +152,19 @@ export async function handle(req, env, store) {
       return json(200, { ok: true, seq, t: new Date().toISOString() });
     }
 
+    /* a new person asks to join: locked on their phone with the office's public key, so the server cannot read it */
+    if (req.method === 'GET' && parts[0] === 'pubkey') { const k = await store.getMeta('officePub'); return k ? json(200, { key: k }) : json(404, { error: 'not_ready' }); }
+    if (req.method === 'POST' && parts[0] === 'request') {
+      const ip = req.headers.get('CF-Connecting-IP') || req.headers.get('X-Forwarded-For') || 'local';
+      if (!(await store.allow('req|' + ip, 5)) || !(await store.allow('req', 60))) return json(429, { error: 'too_many' });
+      const b = await body();
+      if (!(await store.getMeta('officePub'))) return json(404, { error: 'not_ready' });
+      if (!b || typeof b.blob !== 'string' || !b.blob.length || b.blob.length > 400 * 1024 || !/^[A-Za-z0-9+/=._-]+$/.test(b.blob)) return json(413, { error: 'bad_blob' });
+      const seq = await store.addMsg('requests', 'public', new Date().toISOString(), b.blob);
+      await wake(env, store, 'office', 'normal');
+      return json(200, { ok: true, seq });
+    }
+
     const who = await caller(req, store);
     if (!who) return json(401, { error: 'not_allowed' });
     if (!(await store.allow(who.box, PER_MIN))) return json(429, { error: 'too_many' });
@@ -160,9 +173,16 @@ export async function handle(req, env, store) {
     if (parts[0] === 'box' && parts[1]) {
       if (!who.office) return json(403, { error: 'office_only' });
       const id = parts[1];
-      if (!ID.test(id) || ['inbox', 'office'].includes(id)) return json(400, { error: 'bad_box' });
+      if (!ID.test(id) || ['inbox', 'office', 'reports', 'requests'].includes(id)) return json(400, { error: 'bad_box' });
       if (req.method === 'PUT') { const b = await body(); if (!/^[0-9a-f]{64}$/.test((b && b.hash) || '')) return json(400, { error: 'bad_request' }); await store.putBox(id, { hash: b.hash, t: new Date().toISOString() }); return json(200, { ok: true }); }
       if (req.method === 'DELETE') { await store.delBox(id); for (const x of await store.listSubs(id)) await store.delSub(x.endpoint); return json(200, { ok: true }); }
+    }
+    /* the office phone publishes the public key new people lock their join requests with */
+    if (req.method === 'PUT' && parts[0] === 'pubkey') {
+      if (!who.office) return json(403, { error: 'office_only' });
+      const b = await body();
+      if (!b || !/^[A-Za-z0-9_-]{80,100}$/.test(b.key || '')) return json(400, { error: 'bad_request' });
+      await store.setMeta('officePub', b.key); return json(200, { ok: true });
     }
     /* the office leaves a locked file for a new phone, opened with a one-time code (valid up to 3 days) */
     if (req.method === 'PUT' && parts[0] === 'invite' && parts[1]) {

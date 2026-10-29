@@ -2316,6 +2316,65 @@ const L = {
   qr_send_srv: ['Send to the office now', 'अभी ऑफिस को भेजें', 'आत्ता ऑफिसला पाठवा'],
   qr_srv_ok: ['Received by the company\'s server at {t}. The office phones have been alerted. If someone is trapped, also call.', 'कंपनी के सर्वर को {t} पर मिला। ऑफिस फ़ोनों को सूचना गई। कोई फँसा हो तो कॉल भी करें।', 'कंपनीच्या सर्व्हरला {t} वाजता मिळाले. ऑफिस फोनला सूचना गेली. कोणी अडकले असल्यास कॉलही करा.'],
   qr_srv_fail: ['Could not send. Please use WhatsApp, SMS or call.', 'नहीं भेज सके। WhatsApp, SMS या कॉल करें।', 'पाठवता आले नाही. WhatsApp, SMS किंवा कॉल करा.'],
+  jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
+  jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
+  jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
+  jq_take: ['Take photo', 'फोटो लें', 'फोटो काढा'],
+  jq_retake: ['Take again', 'फिर से लें', 'पुन्हा काढा'],
+  jq_exp: ['Years of experience', 'कितने साल का अनुभव', 'किती वर्षांचा अनुभव'],
+  jq_skills: ['What work can you do?', 'आप कौन सा काम कर सकते हैं?', 'तुम्ही कोणते काम करू शकता?'],
+  jq_employer: ['Last company you worked for', 'पिछली कंपनी जहाँ काम किया', 'आधी काम केलेली कंपनी'],
+  jq_ref_name: ['Reference person (name)', 'जान-पहचान वाला व्यक्ति (नाम)', 'ओळखीची व्यक्ती (नाव)'],
+  jq_ref_phone: ['Reference person\'s mobile', 'जान-पहचान वाले का मोबाइल', 'ओळखीच्या व्यक्तीचा मोबाईल'],
+  jq_send: ['Send to the office', 'ऑफिस को भेजें', 'ऑफिसला पाठवा'],
+  jq_need_photos: ['Add your photo and the ID photo', 'अपनी फोटो और पहचान पत्र की फोटो जोड़ें', 'तुमचा फोटो आणि ओळखपत्राचा फोटो जोडा'],
+  jq_srv_fail: ['Could not reach the company\'s server. Send the request by WhatsApp instead.', 'कंपनी के सर्वर तक नहीं पहुँचे। अनुरोध WhatsApp से भेजें।', 'कंपनीच्या सर्व्हरपर्यंत पोहोचता आले नाही. विनंती WhatsApp ने पाठवा.'],
+  jq_my: ['My join request', 'मेरा जुड़ने का अनुरोध', 'माझी जोडणी विनंती'],
+  jq_my_say: ['Your request is with the office. This page shows their answer as soon as it comes. Keep the app open or come back later.', 'आपका अनुरोध ऑफिस के पास है। जवाब आते ही यहाँ दिखेगा। ऐप खुला रखें या बाद में आएँ।', 'तुमची विनंती ऑफिसकडे आहे. उत्तर येताच इथे दिसेल. ॲप उघडे ठेवा किंवा नंतर या.'],
+  jq_st_sent: ['Sent to the office · {d}', 'ऑफिस को भेजा · {d}', 'ऑफिसला पाठवले · {d}'],
+  jq_st_check: ['The office checks your details and will call you', 'ऑफिस आपकी जानकारी जाँचेगा और आपको फ़ोन करेगा', 'ऑफिस तुमची माहिती तपासेल आणि तुम्हाला फोन करेल'],
+  jq_st_ok: ['Approved. Welcome to the company!', 'मंज़ूर। कंपनी में आपका स्वागत है!', 'मंजूर. कंपनीत तुमचे स्वागत आहे!'],
+  jq_st_more: ['The office needs more details', 'ऑफिस को और जानकारी चाहिए', 'ऑफिसला आणखी माहिती हवी आहे'],
+  jq_st_no: ['Not approved', 'मंज़ूर नहीं हुआ', 'मंजूर झाले नाही'],
+  jq_check_now: ['Check for the answer now', 'अभी जवाब देखें', 'आता उत्तर पाहा'],
+  jq_fix: ['Fix and send again', 'सुधारकर फिर भेजें', 'दुरुस्त करून पुन्हा पाठवा'],
+  jq_cancel: ['Remove this request from my phone', 'यह अनुरोध मेरे फ़ोन से हटाएँ', 'ही विनंती माझ्या फोनवरून काढा'],
+  jq_last_check: ['Last checked {t}', 'आखिरी बार देखा {t}', 'शेवटचे पाहिले {t}'],
+  jq_gate: ['Your join request: see the answer', 'आपका जुड़ने का अनुरोध: जवाब देखें', 'तुमची जोडणी विनंती: उत्तर पाहा'],
+  jq_long: ['No answer for many days? Call the office.', 'कई दिनों से जवाब नहीं? ऑफिस को फ़ोन करें।', 'बरेच दिवस उत्तर नाही? ऑफिसला फोन करा.'],
+  jq_login_now: ['Open the app', 'ऐप खोलें', 'ॲप उघडा'],
+  jq_title: ['Join requests', 'जुड़ने के अनुरोध', 'जोडणी विनंत्या'],
+  jq_say: ['New people who asked to join from the app. Call each one, check the photos, then decide.', 'ऐप से जुड़ने को कहने वाले नए लोग। हर एक को फ़ोन करें, फोटो जाँचें, फिर तय करें।', 'ॲपमधून जोडायला सांगणारे नवे लोक. प्रत्येकाला फोन करा, फोटो तपासा, मग ठरवा.'],
+  jq_home_sub: ['Check each profile, then approve or not', 'हर प्रोफ़ाइल जाँचें, फिर मंज़ूर करें या नहीं', 'प्रत्येक प्रोफाइल तपासा, मग मंजूर करा किंवा नाही'],
+  jq_none: ['No requests waiting.', 'कोई अनुरोध बाकी नहीं।', 'कोणतीही विनंती बाकी नाही.'],
+  jq_decided: ['Decided', 'तय हो गए', 'ठरलेल्या'],
+  jq_check_t: ['Profile check', 'प्रोफ़ाइल जाँच', 'प्रोफाइल तपासणी'],
+  jq_c_phone_ok: ['Mobile number looks right', 'मोबाइल नंबर सही लगता है', 'मोबाईल नंबर बरोबर दिसतो'],
+  jq_c_in: ['This number already belongs to {n} ({r}) in the company', 'यह नंबर पहले से कंपनी में {n} ({r}) का है', 'हा नंबर आधीच कंपनीत {n} ({r}) यांचा आहे'],
+  jq_c_removed: ['This number belonged to {n}, who was removed on {d}', 'यह नंबर {n} का था, जिन्हें {d} को हटाया गया', 'हा नंबर {n} यांचा होता, त्यांना {d} रोजी काढले'],
+  jq_c_dup: ['The same number sent {n} other request(s)', 'इसी नंबर से {n} और अनुरोध आए', 'याच नंबरवरून आणखी {n} विनंत्या आल्या'],
+  jq_c_new: ['New number: not in the company before', 'नया नंबर: पहले कंपनी में नहीं था', 'नवा नंबर: आधी कंपनीत नव्हता'],
+  jq_c_gst_ok: ['GST number format is right', 'GST नंबर का रूप सही है', 'GST नंबरचे स्वरूप बरोबर आहे'],
+  jq_c_gst_bad: ['GST number format is wrong', 'GST नंबर का रूप गलत है', 'GST नंबरचे स्वरूप चुकीचे आहे'],
+  jq_c_lic_ok: ['Licence valid till {d}', 'लाइसेंस {d} तक वैध', 'परवाना {d} पर्यंत वैध'],
+  jq_c_lic_bad: ['Licence expired on {d}', 'लाइसेंस {d} को खत्म हुआ', 'परवाना {d} रोजी संपला'],
+  jq_c_photos: ['Photo and ID photo are there', 'फोटो और पहचान पत्र की फोटो हैं', 'फोटो आणि ओळखपत्राचा फोटो आहेत'],
+  jq_c_age: ['Waiting {n} day(s)', '{n} दिन से इंतज़ार', '{n} दिवसांपासून वाट'],
+  jq_called: ['I called this number and spoke to the person', 'मैंने इस नंबर पर फ़ोन करके व्यक्ति से बात की', 'मी या नंबरवर फोन करून व्यक्तीशी बोललो'],
+  jq_need_call: ['First call the number and tick that you spoke to the person', 'पहले नंबर पर फ़ोन करें और टिक करें कि बात हुई', 'आधी नंबरवर फोन करा आणि बोललो याची खूण करा'],
+  jq_role_give: ['Role to give', 'कौन सी भूमिका दें', 'कोणती भूमिका द्यायची'],
+  jq_ok: ['Approve', 'मंज़ूर करें', 'मंजूर करा'],
+  jq_more: ['Ask for more details', 'और जानकारी माँगें', 'आणखी माहिती मागा'],
+  jq_no: ['Not approved', 'मंज़ूर नहीं', 'मंजूर नाही'],
+  jq_note: ['Note for the person (they will see it)', 'व्यक्ति के लिए नोट (वे इसे देखेंगे)', 'व्यक्तीसाठी टीप (त्यांना दिसेल)'],
+  jq_done_ok: ['Approved. Their phone opens the app by itself; their first-day checklist has started.', 'मंज़ूर। उनका फ़ोन अपने-आप ऐप खोलेगा; पहले दिन की सूची शुरू हो गई।', 'मंजूर. त्यांचा फोन आपोआप ॲप उघडेल; पहिल्या दिवसाची यादी सुरू झाली.'],
+  jq_done_more: ['Sent back for more details', 'और जानकारी के लिए वापस भेजा', 'आणखी माहितीसाठी परत पाठवले'],
+  jq_done_no: ['Not approved; their photos are deleted from this phone', 'मंज़ूर नहीं; उनकी फोटो इस फ़ोन से हटा दी गईं', 'मंजूर नाही; त्यांचे फोटो या फोनवरून काढले'],
+  jq_resend: ['Send the answer again', 'जवाब फिर भेजें', 'उत्तर पुन्हा पाठवा'],
+  jq_answer_sent: ['Answer sent', 'जवाब भेजा', 'उत्तर पाठवले'],
+  jq_other_key: ['This phone cannot open join requests. Get the office file again from Head Quarter.', 'यह फ़ोन जुड़ने के अनुरोध नहीं खोल सकता। हेड क्वार्टर से ऑफिस फ़ाइल फिर लें।', 'हा फोन जोडणी विनंत्या उघडू शकत नाही. हेड क्वार्टरकडून ऑफिस फाइल पुन्हा घ्या.'],
+  jq_fixed: ['Sent again after the office asked for more details', 'ऑफिस के और जानकारी माँगने पर फिर भेजा', 'ऑफिसने आणखी माहिती मागितल्यावर पुन्हा पाठवले'],
+  jq_photo_tap: ['Tap a photo to see it big', 'बड़ा देखने के लिए फोटो पर टैप करें', 'मोठा पाहण्यासाठी फोटोवर टॅप करा'],
   rp_title: ['Resident reports', 'निवासियों की रिपोर्ट', 'रहिवाशांचे अहवाल'],
   rp_say: ['Reports sent from lift stickers. Call if needed, then open a ticket.', 'लिफ्ट स्टिकर से आई रिपोर्ट। ज़रूरत हो तो कॉल करें, फिर टिकट खोलें।', 'लिफ्ट स्टिकरवरून आलेले अहवाल. गरज असल्यास कॉल करा, मग तिकीट उघडा.'],
   rp_open: ['Open a ticket', 'टिकट खोलें', 'तिकीट उघडा'],
@@ -3824,7 +3883,7 @@ const Sync = {
   /* the sync details a file carries: the full office file carries the company key; a person's file only that person's box */
   async creds(kind, uid) {
     const c = this.cfg(), ck = c && c.role === 'office' && await this.ck(); if (!ck) return null;
-    if (kind === 'full') { const bk = await KV.get(App.ns + 'bk'), rk = await KV.get(App.ns + 'rk'); return Object.assign({ url: c.url, ck: b64(ck) }, bk ? { bk } : {}, rk ? { rk } : {}); }
+    if (kind === 'full') { const bk = await KV.get(App.ns + 'bk'), rk = await this.reportKey(); return Object.assign({ url: c.url, ck: b64(ck) }, bk ? { bk } : {}, rk ? { rk } : {}); }
     if (kind === 'person' && uid && S.users[uid] && !['owner', 'admin'].includes(S.users[uid].role)) return { url: c.url, box: uid, tok: await this.tokenFor(ck, uid), k: b64(await this.keyFor(ck, uid)) };
     return null;
   },
@@ -3898,6 +3957,8 @@ const Sync = {
         for (const uid of (c.boxes || []).filter(x => !want.includes(x))) { const x = await this.api(c, '/box/' + uid, auth, 'DELETE'); if (x.ok) c.boxes = c.boxes.filter(y => y !== uid); }
         if (r.ok) r = await this.pull(c, 'inbox', auth, m => this.keyFor(ck, m.from));
         if (r.ok) r = await this.pullReports(c, auth);
+        if (r.ok) r = await this.pubKey(c, auth);
+        if (r.ok) r = await this.pullJoins(c, auth);
         /* this phone's own new records go to the other office phones */
         if (r.ok) { const seen = has('inbox'), p = exportPack('full'); p.events = p.events.filter(e => e.dev === App.set.dev && !seen.has(e.id)); if (p.events.length) { r = await this.send(c, 'inbox', auth, p, await this.keyFor(ck, 'office'), this.wakeFor(p.events, App.me.uid)); if (r.ok) mark('inbox', p.events.map(e => e.id)); } }
         /* each person's box gets what their file would have, only what is new for them */
@@ -3931,12 +3992,19 @@ const Sync = {
     if (!ck) return { err: 'srv_needed' };
     if (!validPhone(phone || '')) return { err: 'err_phone' };
     const pack = await finishPack(exportPack('person', uid)); pack.sync = await this.creds('person', uid);
-    const code = String(100000 + (crypto.getRandomValues(new Uint32Array(1))[0] % 900000)), id = await this.inviteId(phone), salt = rid(16);
-    const blob = await this.lock(await this.codeKey(code, id), JSON.stringify(pack));
-    if (blob.length > 880000) return { err: 'err_code_big' };
-    const r = await this.api(c, '/invite/' + id, { tok: await this.tokenFor(ck, 'office') }, 'PUT', { blob, salt, codeHash: await sha256(salt + '|' + code), exp: new Date(Date.now() + 2 * 864e5).toISOString() });
-    return r.ok ? { code } : { err: 'err_server_down' };
+    const code = String(100000 + (crypto.getRandomValues(new Uint32Array(1))[0] % 900000)), id = await this.inviteId(phone);
+    const r = await this.leave(c, ck, id, code, JSON.stringify(pack), 2);
+    return r.ok ? { code } : r;
   },
+  /* leave a locked file on the server, opened once with a 6-digit code */
+  async leave(c, ck, id, code, text, days) {
+    const salt = rid(16), blob = await this.lock(await this.codeKey(code, id), text);
+    if (blob.length > 880000) return { err: 'err_code_big' };
+    const r = await this.api(c, '/invite/' + id, { tok: await this.tokenFor(ck, 'office') }, 'PUT', { blob, salt, codeHash: await sha256(salt + '|' + code), exp: new Date(Date.now() + days * 864e5).toISOString() });
+    return r.ok ? { ok: true } : { err: 'err_server_down' };
+  },
+  /* a join request's private answer box: only the phone that sent the request knows the secret behind it */
+  async joinIds(secret) { const h = await sha256('aiec-join-code|' + secret); return { id: await sha256('aiec-join|' + secret), code: String(100000 + parseInt(h.slice(0, 8), 16) % 900000) }; },
   async openCode(url, phone, code) {
     url = String(url || '').trim().replace(/\/+$/, '');
     if (!/^https?:\/\/[^\s/]+/.test(url)) return { err: 'err_server_url' };
@@ -3998,6 +4066,47 @@ const Sync = {
     return { ok: true, n: res.added };
   },
   /* ---------- lift sticker reports: residents lock them with the office's public key; only office phones can open them ---------- */
+  /* lock for the office's public key (lift stickers, join requests): only office phones can open it */
+  async seal(pub, obj) {
+    const office = await crypto.subtle.importKey('raw', unb64(pub.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((pub.length + 3) % 4)), { name: 'ECDH', namedCurve: 'P-256' }, false, []);
+    const mine = await crypto.subtle.generateKey({ name: 'ECDH', namedCurve: 'P-256' }, true, ['deriveBits']);
+    const bits = await crypto.subtle.deriveBits({ name: 'ECDH', public: office }, mine.privateKey, 256), key = await crypto.subtle.importKey('raw', await crypto.subtle.digest('SHA-256', bits), 'AES-GCM', false, ['encrypt']);
+    const iv = crypto.getRandomValues(new Uint8Array(12)), ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, new TextEncoder().encode(JSON.stringify(obj)));
+    return b64(await crypto.subtle.exportKey('raw', mine.publicKey)) + '.' + b64(iv) + '.' + b64big(ct);
+  },
+  async unseal(blob, rk) {
+    const priv = await crypto.subtle.importKey('jwk', rk.priv, { name: 'ECDH', namedCurve: 'P-256' }, false, ['deriveBits']);
+    const [epk, iv, ct] = blob.split('.'), pub = await crypto.subtle.importKey('raw', unb64(epk), { name: 'ECDH', namedCurve: 'P-256' }, false, []);
+    const bits = await crypto.subtle.deriveBits({ name: 'ECDH', public: pub }, priv, 256), key = await crypto.subtle.importKey('raw', await crypto.subtle.digest('SHA-256', bits), 'AES-GCM', false, ['decrypt']);
+    return JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(iv) }, key, unb64(ct))));
+  },
+  /* the office phone tells the server the public key new people lock their join requests with (once); a phone whose key
+     differs from the one already there cannot open requests and says so */
+  async pubKey(c, auth) {
+    const rk = await this.reportKey(); App.rkPub = rk.pub;
+    if (c.pub === rk.pub || (c.pubOther && Date.now() - (c.pubOtherT || 0) < 6 * 3600e3)) return { ok: true };
+    const g = await this.api(c, '/pubkey', auth);
+    if (g.ok && g.body && g.body.key && g.body.key !== rk.pub) { c.pubOther = true; c.pubOtherT = Date.now(); return { ok: true }; }
+    if (!g.ok) { if (g.status !== 404) return { ok: true }; const p = await this.api(c, '/pubkey', auth, 'PUT', { key: rk.pub }); if (!p.ok) return { ok: true }; }
+    c.pub = rk.pub; delete c.pubOther; return { ok: true };
+  },
+  async pullJoins(c, auth) {
+    const rk = await KV.get(App.ns + 'rk'); if (!rk || c.pubOther) return { ok: true };
+    const list = (await KV.get(App.ns + 'joinReqs')) || [];
+    for (let round = 0; round < 10; round++) {
+      const r = await this.api(c, '/recv/requests?after=' + (c.jcur || 0), auth); if (!r.ok) return r;
+      for (const m of r.body.msgs || []) {
+        try {
+          const x = joinCheck(await this.unseal(m.blob, rk));
+          if (x && !list.some(y => y.rid === x.rid)) { x.photo = await putMedia(x.photo); x.idPhoto = await putMedia(x.idPhoto); x.got = m.t; list.unshift(x); }
+        } catch (e) { /* a request this phone cannot open is skipped */ }
+        c.jcur = m.seq;
+      }
+      if (!r.body.more) break;
+    }
+    await KV.set(App.ns + 'joinReqs', list.slice(0, 200)); App.joinReqs = list.slice(0, 200);
+    return { ok: true };
+  },
   async reportKey() {
     let k = await KV.get(App.ns + 'rk');
     if (!k) { const pair = await crypto.subtle.generateKey({ name: 'ECDH', namedCurve: 'P-256' }, true, ['deriveBits']); k = { pub: b64(await crypto.subtle.exportKey('raw', pair.publicKey)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''), priv: await crypto.subtle.exportKey('jwk', pair.privateKey) }; await KV.set(App.ns + 'rk', k); }
@@ -4005,15 +4114,12 @@ const Sync = {
   },
   async pullReports(c, auth) {
     const rk = await KV.get(App.ns + 'rk'); if (!rk) return { ok: true };
-    const priv = await crypto.subtle.importKey('jwk', rk.priv, { name: 'ECDH', namedCurve: 'P-256' }, false, ['deriveBits']);
     const list = (await KV.get(App.ns + 'reports')) || [];
     for (let round = 0; round < 10; round++) {
       const r = await this.api(c, '/recv/reports?after=' + (c.rcur || 0), auth); if (!r.ok) return r;
       for (const m of r.body.msgs) {
         try {
-          const [epk, iv, ct] = m.blob.split('.'), pub = await crypto.subtle.importKey('raw', unb64(epk), { name: 'ECDH', namedCurve: 'P-256' }, false, []);
-          const bits = await crypto.subtle.deriveBits({ name: 'ECDH', public: pub }, priv, 256), key = await crypto.subtle.importKey('raw', await crypto.subtle.digest('SHA-256', bits), 'AES-GCM', false, ['decrypt']);
-          const o = JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(iv) }, key, unb64(ct))));
+          const o = await this.unseal(m.blob, rk);
           if (o && /^L-[A-Z0-9]{6}$/.test(o.code || '') && QR_PROBLEMS.some(([k]) => k === o.problem)) list.unshift({ rid: 'RP' + m.seq, code: o.code, problem: o.problem, phone: String(o.phone || '').replace(/\D/g, '').slice(-10), t: m.t });
         } catch (e) { /* a report this phone cannot open is skipped */ }
         c.rcur = m.seq;
@@ -5871,7 +5977,7 @@ function apply(S, ev) {
     case 'SHIFT_ENDED': delete S.shifts[ev.by]; S.shiftLog.push({ uid: ev.by, t: ev.t, kind: 'end', gps: d.gps || null }); break;
     case 'ENQUIRY_ADDED': S.enquiries[d.eid] = { eid: d.eid, name: d.name, phone: d.phone, address: d.address || '', gps: d.gps || null, floors: d.floors || null, who: d.who || '', note: d.note || '', t: ev.t, by: ev.by, open: true }; S.enqOrder.unshift(d.eid); break;
     case 'ENQUIRY_CLOSED': Object.assign(S.enquiries[d.eid], { open: false, closedBy: ev.by, closedT: ev.t, pid: d.pid || null, note2: d.note || '' }); break;
-    case 'JOIN_DECIDED': S.joins[d.rid] = { ok: !!d.ok, uid: d.uid || null, note: d.note || '', by: ev.by, t: ev.t }; break;
+    case 'JOIN_DECIDED': S.joins[d.rid] = { ok: !!d.ok, more: !d.ok && !!d.more, uid: d.uid || null, note: d.note || '', by: ev.by, t: ev.t }; break;
     case 'CUSTOMER_LINKED': { const x = S.users[d.uid]; x.projects = uniq((x.projects || []).concat(P.id)); P.customer = d.uid; break; }
     case 'LEAD_CREATED':
       P = S.projects[ev.pid] = newProject(ev); S.order.unshift(ev.pid);
@@ -6539,6 +6645,7 @@ async function loadMode(mode) {
   EVENTS = await loadEvents();
   S = rebuild(EVENTS);
   App.archived = new Set((await KV.get(App.ns + 'archived')) || []); Sign.mine = {};
+  App.joinReqs = (await KV.get(App.ns + 'joinReqs')) || [];
   savedSig = { ns: App.ns, sigs: [] };
   if (await KV.get(App.ns + 'events')) { await saveAll(); await KV.del(App.ns + 'events'); }
 }
@@ -8515,7 +8622,7 @@ SCREENS.gate = () => {
   App.pageSay = t('gate_say');
   return `<main class="wrap center" style="padding-top:4vh">${LOGO}<h1 style="margin:10px 0 0;font-size:1.3rem">${esc(S.org ? S.org.name : 'ALL INDIA ELEVATORS COMPANY')}</h1>${langChips()}
     ${last ? `<button class="btn btn-p btn-big" data-a="loginUser" data-v="${last.uid}">${ROLE_ICON[last.role]} ${t('gate_continue', { n: esc(last.name) })} →</button><div style="height:12px"></div>` : ''}
-    ${mr && !S.users[mr.uid] ? `<div class="note" style="text-align:left">📨 ${t('gate_my_req', { d: fmtD(mr.t) })}</div>` : ''}
+    ${myJoin() && myJoin().st !== 'ok' ? `<button class="btn btn-p btn-big" data-a="nav" data-v="myReq">📨 ${t('jq_gate')}${myJoin().st ? ' · ' + t('jq_st_' + myJoin().st) : ''}</button><div style="height:10px"></div>` : mr && !S.users[mr.uid] ? `<div class="note" style="text-align:left">📨 ${t('gate_my_req', { d: fmtD(mr.t) })}</div>` : ''}
     <p class="say">${t('gate_say')}</p>
     <div style="text-align:left">${[[1, 'cust', '🏠', 'door_cust'], [2, 'join', '🧰', 'door_join'], [3, 'staff', '👷', 'door_staff']].map(([n, k, i, l]) => `<button class="door d${n}" data-a="door" data-v="${k}"><span class="i" aria-hidden="true">${i}</span><span><b>${t(l)}</b><small>${t(l + '_d')}</small></span><span aria-hidden="true" style="margin-left:auto;font-size:1.4rem">›</span></button>`).join('')}</div>
     <div class="row wrapw" style="justify-content:center;margin-top:6px">${!S.org && App.mode === 'real' ? `<button class="btn btn-sm" data-a="nav" data-v="newOrg">👑 ${t('gate_new_company')}</button><button class="btn btn-sm" data-a="nav" data-v="restore">🗄️ ${t('rs_title')}</button>` : ''}<button class="btn btn-sm" data-a="practice">🎓 ${t('setup_practice')}</button><button class="btn btn-sm" data-a="nav" data-v="join">📂 ${t('gate_open_file')}</button><button class="btn btn-sm" data-a="nav" data-v="intro">❓ ${t('gate_how')}</button>${App.installEvt ? `<button class="btn btn-sm" data-a="install">📲 ${t('install_app')}</button>` : ''}</div>
@@ -8541,17 +8648,95 @@ SCREENS.codeLogin = () => {
     ${formInp('clUrl', 'srv_url', { type: 'url' })}${formInp('clPhone', 'f_mobile', { type: 'tel', mode: 'tel', max: 13 })}${formInp('clCode', 'f_code', { mode: 'numeric', max: 6, big: true })}<div id="ferr"></div></main>
     <div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="codeOpen">📥 ${t('code_open')}</button></div></div>`;
 };
+/* the join form can go straight to the office through the company server (with photos), or by WhatsApp when there is none */
+const joinSrv = () => (App.joinLink && App.joinLink.srv) || App.set.lastSrv || App.defaultSrv || '';
+const JOIN_WORK = ['tech', 'field', 'qc'];
+function jrPhotoBtn(key, label) {
+  const m = App.form[key];
+  return `<div class="field"><span style="display:block;font-weight:800;margin-bottom:5px">📷 ${t(label)}</span><div class="row wrapw">${m ? `<img data-m="${m}" alt="" style="width:96px;height:96px;object-fit:cover;border-radius:10px;border:1px solid var(--line)">` : ''}<button class="btn ${m ? '' : 'btn-p'}" data-a="jrPhoto" data-v="${key}">${m ? '🔁 ' + t('jq_retake') : '📷 ' + t('jq_take')}</button></div></div>`;
+}
 SCREENS.joinReq = ({ role }) => {
-  const f = App.form; f.rqRole = role;
+  const f = App.form; f.rqRole = role; f.rqSkills = f.rqSkills || [];
   App.pageSay = t('jr_say');
-  const co = ['supplier', 'partner'].includes(role);
+  const co = ['supplier', 'partner'].includes(role), srv = joinSrv();
   return topBar(t('jr_title') + ' · ' + t('jr_' + role), { back: true }) + `<main class="wrap"><p class="say">${t('jr_say')}</p>
+    ${f.rqNote ? `<div class="warnbox">📝 ${t('jq_st_more')}: ${esc(f.rqNote)}</div>` : ''}
     ${formInp('rqName', co ? 'your_name' : 'your_name', { mic: true })}${formInp('rqPhone', 'f_mobile', { type: 'tel', mode: 'tel', max: 13 })}${formInp('rqArea', 'f_area')}
     ${co ? formInp('rqCo', 'f_co_name') + formInp('rqGst', 'f_gst', { max: 15 }) : ''}${role === 'partner' ? formInp('rqLic', 'f_lic_no') + formInp('rqLicExp', 'f_lic_exp', { type: 'date' }) : ''}
+    ${srv ? jrPhotoBtn('rqPhotoM', 'jq_photo') + jrPhotoBtn('rqIdM', co ? 'jq_id_photo_co' : 'jq_id_photo') : ''}
+    ${srv && !co ? formInp('rqExp', 'jq_exp', { type: 'number', mode: 'numeric', max: 2 }) : ''}
+    ${srv && JOIN_WORK.includes(role) ? `<div class="small" style="font-weight:800;margin:6px 0">${t('jq_skills')}</div><div class="tiles">${SKILLS.map(k => `<button class="tile ${f.rqSkills.includes(k) ? 'on' : ''}" data-a="jrSkill" data-v="${k}" aria-pressed="${f.rqSkills.includes(k)}" style="min-height:60px">${t('skill_' + k)}</button>`).join('')}</div>` : ''}
+    ${srv ? formInp('rqEmp', 'jq_employer') + formInp('rqRefName', 'jq_ref_name') + formInp('rqRefPhone', 'jq_ref_phone', { type: 'tel', mode: 'tel', max: 13 }) : ''}
     ${officeNoField()}${formInp('rqPin1', 'new_pin', { type: 'password', mode: 'numeric', max: 6, big: true })}${formInp('rqPin2', 'repeat_pin', { type: 'password', mode: 'numeric', max: 6, big: true })}
     <div class="note">🔒 ${t('pin_note')}</div><div id="ferr"></div></main>
-    <div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="joinMake">📨 ${t('req_make')}</button></div></div>`;
+    <div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="joinMake">📨 ${t(srv ? 'jq_send' : 'req_make')}</button></div></div>`;
 };
+/* make a photo smaller before it travels (a join request carries two) */
+function shrinkPhoto(dataUrl, max, q) {
+  return new Promise(res => { const im = new Image(); im.onload = () => { const sc = Math.min(1, max / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * sc); c.height = Math.round(im.height * sc); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL('image/jpeg', q)); }; im.onerror = () => res(dataUrl); im.src = dataUrl; });
+}
+async function joinSend(url, o, f) {
+  url = url.replace(/\/+$/, '');
+  try {
+    let key = App.joinLink && App.joinLink.srv === url ? App.joinLink.k : '';
+    if (!key) { const r = await fetch(url + '/pubkey'); if (!r.ok) return false; key = ((await r.json()) || {}).key || ''; }
+    if (!/^[A-Za-z0-9_-]{80,100}$/.test(key)) return false;
+    const secret = rid(24), body = Object.assign({}, o, { v: 2, secret, prev: f.rqPrev || undefined, exp: f.rqExp !== '' && f.rqExp != null ? Math.max(0, Math.min(60, +f.rqExp || 0)) : undefined,
+      skills: (f.rqSkills || []).filter(k => SKILLS.includes(k)), emp: (f.rqEmp || '').trim().slice(0, 80) || undefined, refName: (f.rqRefName || '').trim().slice(0, 60) || undefined,
+      refPhone: (f.rqRefPhone || '').trim() ? phone10(f.rqRefPhone) : undefined, photo: await getMedia(f.rqPhotoM), idPhoto: await getMedia(f.rqIdM) });
+    const r = await fetch(url + '/request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ blob: await Sync.seal(key, body) }) });
+    if (!r.ok) return false;
+    const keep = {}; for (const k of ['rqName', 'rqPhone', 'rqArea', 'rqCo', 'rqGst', 'rqLic', 'rqLicExp', 'rqExp', 'rqSkills', 'rqEmp', 'rqRefName', 'rqRefPhone', 'rqPhotoM', 'rqIdM', 'rqOffice']) if (f[k] != null) keep[k] = f[k];
+    await setMyJoin({ url, secret, rid: o.rid, role: o.role, name: o.name, sent: nowISO(), uid: 'U' + o.rid.slice(1), form: keep });
+    return true;
+  } catch (e) { return false; }
+}
+/* what the office accepts from a join request: anything else is dropped */
+function joinCheck(o) {
+  const str = (v, n) => v == null || (typeof v === 'string' && v.length <= n), img = v => typeof v === 'string' && v.length < 300000 && /^data:image\/jpeg;base64,[A-Za-z0-9+/=]+$/.test(v);
+  if (!o || o.v !== 2 || o.kind !== 'join' || !/^R[A-Z0-9]{8}$/.test(o.rid || '') || !JOIN_ROLES.some(([r]) => r === o.role) || typeof o.name !== 'string' || !o.name.trim() || o.name.length > 60) return null;
+  if (!validPhone(o.phone || '') || !/^[A-Za-z0-9]{24}$/.test(o.secret || '') || !str(o.pin, 200) || !o.pin || !str(o.salt, 40) || !o.salt || !(o.pinLen >= 4 && o.pinLen <= 6)) return null;
+  if (![o.area, o.co, o.gst, o.lic, o.licExp, o.emp].every(v => str(v, 80)) || !str(o.refName, 60) || (o.refPhone && !validPhone(o.refPhone)) || (o.prev && !/^R[A-Z0-9]{8}$/.test(o.prev))) return null;
+  if (!img(o.photo) || !img(o.idPhoto) || (o.exp != null && !(o.exp >= 0 && o.exp <= 60)) || !Array.isArray(o.skills || [])) return null;
+  const keep = ['rid', 't', 'role', 'name', 'phone', 'area', 'co', 'gst', 'lic', 'licExp', 'salt', 'pin', 'pinLen', 'secret', 'prev', 'exp', 'emp', 'refName', 'refPhone', 'photo', 'idPhoto'], x = {};
+  for (const k of keep) if (o[k] != null) x[k] = o[k];
+  x.phone = phone10(o.phone); x.skills = (o.skills || []).filter(k => SKILLS.includes(k)); x.t = typeof o.t === 'string' ? o.t.slice(0, 30) : nowISO();
+  return x;
+}
+/* ---------- the new person's own view of their request ---------- */
+const myJoin = () => (App.set.joinPending || {})[App.mode] || null;
+async function setMyJoin(v) { App.set.joinPending = Object.assign({}, App.set.joinPending, { [App.mode]: v }); await saveSettings(); }
+SCREENS.myReq = () => {
+  const j = myJoin(); if (!j) return SCREENS.gate();
+  App.pageSay = t('jq_my_say');
+  const step = (ok, txt, cur) => `<div class="row" style="align-items:flex-start;gap:10px;margin:8px 0"><span style="font-size:1.4rem">${ok ? '✅' : cur ? '⏳' : '⚪'}</span><span class="grow">${txt}</span></div>`;
+  const res = j.st === 'ok' ? `<div class="okbox">🎉 ${t('jq_st_ok')}</div>${S.users[j.uid] ? `<button class="btn btn-p btn-big" data-a="myReqIn">▶ ${t('jq_login_now')}</button>` : ''}`
+    : j.st === 'more' ? `<div class="warnbox">📝 <b>${t('jq_st_more')}</b><br>${esc(j.note || '')}</div><button class="btn btn-p btn-big" data-a="myReqFix">✏️ ${t('jq_fix')}</button>`
+    : j.st === 'no' ? `<div class="err">❌ <b>${t('jq_st_no')}</b><br>${esc(j.note || '')}</div>`
+    : `<button class="btn btn-big" data-a="myReqCheck">🔄 ${t('jq_check_now')}</button>${j.checked ? `<p class="small muted center">${t('jq_last_check', { t: fmtD(j.checked, true) })}</p>` : ''}<p class="small muted center">📞 ${t('jq_long')}</p>`;
+  return topBar(t('jq_my'), { back: true }) + `<main class="wrap"><p class="say">📨 ${t('jq_my_say')}</p>
+    <div class="card"><b>${esc(j.name)}</b> · ${t('jr_' + j.role)}<div style="height:6px"></div>
+      ${step(true, t('jq_st_sent', { d: fmtD(j.sent, true) }))}${step(!!j.st, t('jq_st_check'), !j.st)}${step(j.st === 'ok', t(j.st === 'more' ? 'jq_st_more' : j.st === 'no' ? 'jq_st_no' : 'jq_st_ok'))}</div>
+    ${res}${j.st !== 'ok' ? `<button class="btn" style="margin-top:12px" data-a="myReqCancel">🗑️ ${t('jq_cancel')}</button>` : ''}</main>`;
+};
+/* check the private answer box (the app does this every minute while a request waits) */
+async function myReqPoll() {
+  const j = myJoin(); if (!j || j.st || App.jqBusy) return;
+  App.jqBusy = true;
+  try {
+    const { id, code } = await Sync.joinIds(j.secret);
+    const r = await fetch(j.url + '/invite/' + id + '/open', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code }) });
+    j.checked = nowISO();
+    if (r.ok) {
+      const a = JSON.parse(await Sync.unlock(await Sync.codeKey(code, id), (await r.json()).blob));
+      if (a.decision === 'ok' && a.pack) { const res = await importText(a.pack); if (res.ok) { j.st = 'ok'; j.uid = a.uid; App.set.lastSrv = j.url; } }
+      else if (['more', 'no'].includes(a.decision)) { j.st = a.decision; j.note = String(a.note || '').slice(0, 300); }
+    }
+    await setMyJoin(j);
+    if (j.st === 'ok' && S.users[j.uid]) { await setMyJoin(Object.assign({}, j, { form: null })); App.set.lastUser = j.uid; await saveSettings(); loginAs(S.users[j.uid]); return; }
+  } catch (e) { /* no network: try again later */ } finally { App.jqBusy = false; }
+  if (['myReq', 'gate'].includes(App.route.name) && !W) render();
+}
 SCREENS.enquiry = () => {
   const f = App.form; App.pageSay = t('enq_say');
   return topBar(t('enq_title'), { back: true }) + `<main class="wrap"><p class="say">${t('enq_say')}</p>
@@ -8588,9 +8773,10 @@ function parseJoin(hash) {
   if (!/^#j=1/.test(hash || '')) return null;
   const q = new URLSearchParams(hash.slice(1));
   const srv = (q.get('s') || '').slice(0, 200);
-  return { org: (q.get('n') || '').slice(0, 60), office: (q.get('o') || '').replace(/[^\d+]/g, '').slice(0, 15), srv: /^https:\/\/[^\s]+$/.test(srv) ? srv : '' };
+  const k = q.get('k') || '';
+  return { org: (q.get('n') || '').slice(0, 60), office: (q.get('o') || '').replace(/[^\d+]/g, '').slice(0, 15), srv: /^https:\/\/[^\s]+$/.test(srv) ? srv : '', k: /^[A-Za-z0-9_-]{80,100}$/.test(k) ? k : '' };
 }
-const joinUrl = () => location.href.split('#')[0].split('?')[0] + '#' + new URLSearchParams(Object.assign({ j: '1', n: S.org ? S.org.name : '', o: S.config.officeNumber || '' }, Sync.cfg() ? { s: Sync.cfg().url } : {})).toString();
+const joinUrl = () => location.href.split('#')[0].split('?')[0] + '#' + new URLSearchParams(Object.assign({ j: '1', n: S.org ? S.org.name : '', o: S.config.officeNumber || '' }, Sync.cfg() ? { s: Sync.cfg().url } : {}, Sync.cfg() && App.rkPub ? { k: App.rkPub } : {})).toString();
 SCREENS.joinlink = () => {
   if (!['owner', 'admin'].includes(App.me.role)) return SCREENS.home();
   App.pageSay = t('join_link_say');
@@ -8748,6 +8934,7 @@ SCREENS.home = () => {
   if (!onboarding(u.uid).ready) { const ob = onboarding(u.uid), lv = escLevel(daysSince(u.t), 'onboarding');
     h += fold('onb', t('onb_title'), onbCard(u.uid, { short: true, bare: true }), { icon: '🪪', sub: t('onb_progress', { n: ob.done, m: ob.total }), open: lv >= 2, alert: lv >= 2 }); }
   if (u.role === 'owner' && hasAdmin()) { const aw = allOpenWork(); h += fold('allwork', t('all_work'), allWorkCard(aw), { icon: '👀', count: aw.length, sub: t('all_work_sub') }); }
+  if (jqWho(u) && pendingJoins().length) h += `<button class="task" data-a="nav" data-v="joins"><span class="ti">🧰</span><span class="grow" style="flex:1;min-width:0"><b>${t('jq_title')} (${pendingJoins().length})</b><br><span class="small muted">${t('jq_home_sub')}</span></span></button>`;
   if (adm && openReports().length) { const n = openReports().length, urgent = openReports().some(x => x.problem === 'stopped'); h += `<button class="task ${urgent ? 'urgent' : ''}" data-a="nav" data-v="reports"><span class="ti">📨</span><span class="grow" style="flex:1;min-width:0"><b>${t('rp_title')} (${n})</b><br><span class="small muted">${t('rp_say')}</span></span></button>`; }
   if (adm) { const qn = queueRows().filter(r => r.n).length;
     h += fold('queues', t('queues'), queuesCard(true), { icon: '🗂️', count: qn, alert: qn > 0, sub: t('fold_tap') });
@@ -9454,7 +9641,7 @@ SCREENS.about = () => topBar(t('about_privacy'), { back: true }) + `<main class=
 SCREENS.users = () => {
   if (!['owner', 'admin'].includes(App.me.role)) return SCREENS.home();
   const us = Object.values(S.users).sort((a, b) => ROLES.indexOf(a.role) - ROLES.indexOf(b.role));
-  return topBar(t('users'), { back: true }) + `<main class="wrap"><button class="btn btn-p btn-big" data-a="userAdd">➕ ${t('add_person')}</button><div class="row wrapw" style="margin:10px 0 12px"><button class="btn" data-a="nav" data-v="paste">📥 ${t('paste_title')}</button><button class="btn" data-a="nav" data-v="joinlink">🔗 ${t('join_link')}</button><button class="btn" data-a="nav" data-v="enquiries">📞 ${t('enq_list')}</button></div>
+  return topBar(t('users'), { back: true }) + `<main class="wrap"><button class="btn btn-p btn-big" data-a="userAdd">➕ ${t('add_person')}</button><div class="row wrapw" style="margin:10px 0 12px"><button class="btn" data-a="nav" data-v="joins">🧰 ${t('jq_title')}${pendingJoins().length ? ' (' + pendingJoins().length + ')' : ''}</button><button class="btn" data-a="nav" data-v="paste">📥 ${t('paste_title')}</button><button class="btn" data-a="nav" data-v="joinlink">🔗 ${t('join_link')}</button><button class="btn" data-a="nav" data-v="enquiries">📞 ${t('enq_list')}</button></div>
     ${us.map(x => `<button class="task" data-a="userOpen" data-v="${x.uid}"><span class="ti">${ROLE_ICON[x.role]}</span><span style="flex:1"><b>${esc(x.name)}</b><span class="small muted">${t('r_' + x.role)}${x.projectId ? ' · ' + esc(x.projectId) : ''}</span><br>${x.active ? `<span class="chip c-ok">${t('active')}</span>` : `<span class="chip c-bad">${t('blocked')}</span>`}</span><span class="go">▶</span></button>`).join('')}</main>` + nav('me');
 };
 function userAddSheet() {
@@ -9510,6 +9697,76 @@ SCREENS.restore = () => {
 };
 const liftOf = code => Object.values(S.projects).find(P => P.lift && P.lift.code === code);
 const openReports = () => (App.reports || []).filter(x => !x.done && !Object.values(S.projects).some(P => P.tickets.some(k => k.report === x.rid)));
+/* ---------- join requests that came through the server: Admin checks each profile, then decides ---------- */
+const jqStatus = x => S.joins[x.rid] ? (S.joins[x.rid].ok ? 'ok' : S.joins[x.rid].more ? 'more' : 'no') : x.st || '';
+const pendingJoins = () => (App.joinReqs || []).filter(x => !jqStatus(x));
+const jqWho = u => u.role === 'admin' || (u.role === 'owner' && !hasAdmin());
+async function jqSave() { await KV.set(App.ns + 'joinReqs', App.joinReqs || []); }
+/* what the office should notice before saying yes */
+function jqChecks(x) {
+  const out = [], ph = x.phone, users = Object.values(S.users).filter(u => ((S.workers[u.uid] || {}).profile || {}).phone === ph);
+  out.push([validPhone(ph), t('jq_c_phone_ok')]);
+  for (const u of users) {
+    if (u.active) out.push([false, t('jq_c_in', { n: esc(u.name), r: t('r_' + u.role) })]);
+    else { const off = EVENTS.filter(e => e.type === 'USER_UPDATED' && e.data.uid === u.uid && e.data.active === false).pop(); out.push([false, t('jq_c_removed', { n: esc(u.name), d: off ? fmtD(off.t) : '—' })]); }
+  }
+  if (!users.length) out.push([true, t('jq_c_new')]);
+  const dup = (App.joinReqs || []).filter(y => y.rid !== x.rid && y.phone === ph).length;
+  if (dup) out.push([!!x.prev, t('jq_c_dup', { n: dup })]);
+  if (x.gst) out.push([/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(x.gst.toUpperCase()), t(/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(x.gst.toUpperCase()) ? 'jq_c_gst_ok' : 'jq_c_gst_bad')]);
+  if (x.licExp) out.push([x.licExp >= todayStr(), t(x.licExp >= todayStr() ? 'jq_c_lic_ok' : 'jq_c_lic_bad', { d: fmtD(x.licExp) })]);
+  if (x.photo !== undefined) out.push([!!(x.photo && x.idPhoto), t('jq_c_photos')]);
+  out.push([daysSince(x.got || x.t) < 3, t('jq_c_age', { n: daysSince(x.got || x.t) })]);
+  return out;
+}
+SCREENS.joins = () => {
+  const u = App.me; if (!['owner', 'admin'].includes(u.role)) return SCREENS.home();
+  App.pageSay = t('jq_say');
+  const c = Sync.cfg(), all = App.joinReqs || [], open = all.filter(x => !jqStatus(x)), done = all.filter(x => jqStatus(x)).slice(0, 30);
+  const card = x => `<button class="task" data-a="jqOpen" data-v="${x.rid}"><span class="ti">${(JOIN_ROLES.find(([r]) => r === x.role) || [])[1] || '🧰'}</span><span class="grow" style="flex:1;min-width:0"><b>${esc(x.co && ['supplier', 'partner'].includes(x.role) ? x.co + ' · ' + x.name : x.name)}</b><br><span class="small muted">${t('jr_' + x.role)} · ${esc(x.phone)} · ${fmtD(x.got || x.t)}${jqStatus(x) ? ' · ' + t('jq_st_' + jqStatus(x)) : ''}</span></span></button>`;
+  return topBar(t('jq_title'), { back: true }) + `<main class="wrap"><p class="say">🧰 ${t('jq_say')}</p>
+    ${!c || c.role !== 'office' ? `<div class="warnbox">☁️ ${t('srv_needed')}</div>` : c.pubOther ? `<div class="warnbox">⚠️ ${t('jq_other_key')}</div>` : ''}
+    ${open.map(card).join('') || `<div class="card center muted">${t('jq_none')}</div>`}
+    ${done.length ? fold('jqdone', t('jq_decided'), done.map(card).join(''), { icon: '🗂️', count: done.length }) : ''}</main>`;
+};
+SCREENS.joinCheck = ({ rid }) => {
+  const u = App.me, x = (App.joinReqs || []).find(y => y.rid === rid), f = App.form;
+  if (!['owner', 'admin'].includes(u.role) || !x) return SCREENS.joins();
+  const st = jqStatus(x), d = S.joins[x.rid], co = ['supplier', 'partner'].includes(x.role); f.jcRole = f.jcRole || x.role;
+  App.pageSay = t('jq_check_t');
+  const pic = m => m ? `<img data-m="${m}" data-a="jqZoom" data-v="${m}" alt="" style="width:46%;max-width:220px;aspect-ratio:1;object-fit:cover;border-radius:12px;border:1px solid var(--line);cursor:zoom-in">` : '';
+  const checks = jqChecks(x).map(([ok, txt]) => `<div style="margin:4px 0">${ok ? '✅' : '⚠️'} ${txt}</div>`).join('');
+  const decide = st ? `<div class="${st === 'ok' ? 'okbox' : st === 'more' ? 'warnbox' : 'err'}">${t('jq_st_' + st)}${d && d.note ? ': ' + esc(d.note) : ''}${d ? ' · ' + esc(userName(d.by)) + ' · ' + fmtD(d.t, true) : ''}</div>
+      ${x.secret ? `<button class="btn" data-a="jqResend" data-v="${x.rid}">📨 ${t('jq_resend')}</button>` : ''}${st === 'ok' && d && d.uid && S.users[d.uid] ? `<button class="btn" data-a="userOpen" data-v="${d.uid}">👤 ${esc(S.users[d.uid].name)}</button>` : ''}`
+    : `<h3>${t('jq_role_give')}</h3><div class="tiles">${JOIN_ROLES.map(([r, i]) => `<button class="tile ${f.jcRole === r ? 'on' : ''}" data-a="jcRole" data-v="${r}" aria-pressed="${f.jcRole === r}"><span class="i">${i}</span>${t('jr_' + r)}</button>`).join('')}</div>
+      <button class="btn btn-big ${f.jcCalled ? 'btn-ok' : ''}" style="margin-top:10px;text-align:left" data-a="jcCalled" aria-pressed="${!!f.jcCalled}">${f.jcCalled ? '☑️' : '⬜'} ${t('jq_called')}</button>
+      ${formInp('jcNote', 'jq_note', { mic: true })}<div id="ferr"></div>
+      <button class="btn btn-ok btn-big" data-a="jqOk" data-v="${x.rid}">✅ ${t('jq_ok')}</button>
+      <div class="row wrapw" style="margin-top:8px"><button class="btn grow" data-a="jqMore" data-v="${x.rid}">📝 ${t('jq_more')}</button><button class="btn grow btn-bad" data-a="jqNo" data-v="${x.rid}">❌ ${t('jq_no')}</button></div>`;
+  return topBar(t('jq_check_t'), { back: true }) + `<main class="wrap">
+    <div class="card"><h2 style="margin:0">${esc(x.name)}</h2><p class="muted" style="margin:4px 0">${t('jr_' + x.role)}${x.co ? ' · ' + esc(x.co) : ''}</p>
+      ${x.prev ? `<div class="note">🔁 ${t('jq_fixed')}</div>` : ''}
+      <div class="row wrapw" style="gap:8px">${pic(x.photo)}${pic(x.idPhoto)}</div>${x.photo || x.idPhoto ? `<p class="small muted">${t('jq_photo_tap')}</p>` : ''}
+      <div class="row wrapw"><a class="btn btn-p" href="tel:+91${esc(x.phone)}">📞 ${esc(x.phone)}</a><a class="btn" href="https://wa.me/91${esc(x.phone)}" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+      ${kv([['f_area', esc(x.area || '')], ['jq_exp', x.exp != null ? String(x.exp) : ''], ['jq_skills', (x.skills || []).map(k => t('skill_' + k)).join(', ')], ['jq_employer', esc(x.emp || '')], ['f_gst', esc(x.gst || '')], ['f_lic_no', esc(x.lic || '')], ['f_lic_exp', x.licExp ? fmtD(x.licExp) : ''],
+        ['jq_ref_name', x.refName ? esc(x.refName) + (x.refPhone ? ` · <a href="tel:+91${esc(x.refPhone)}">📞 ${esc(x.refPhone)}</a>` : '') : '']])}</div>
+    <div class="card"><h3 style="margin-top:0">🔎 ${t('jq_check_t')}</h3>${checks}</div>
+    ${decide}</main>`;
+};
+/* the private answer for the new person's phone (only that phone can open it) */
+async function jqAnswer(x, a) {
+  const c = Sync.cfg(), ck = c && c.role === 'office' && await Sync.ck(); if (!ck || !x.secret) return { err: 'srv_needed' };
+  const { id, code } = await Sync.joinIds(x.secret);
+  return Sync.leave(c, ck, id, code, JSON.stringify(a), 3);
+}
+async function jqApproveAnswer(x, uid) {
+  const c = Sync.cfg(), ck = c && c.role === 'office' && await Sync.ck(); if (!ck) return { err: 'srv_needed' };
+  const b = await Sync.api(c, '/box/' + uid, { tok: await Sync.tokenFor(ck, 'office') }, 'PUT', { hash: await sha256(await Sync.tokenFor(ck, uid)) });
+  if (!b.ok) return { err: 'err_server_down' };
+  c.boxes = uniq((c.boxes || []).concat(uid)); await Sync.save(c);
+  const pack = await finishPack(exportPack('person', uid)); pack.sync = await Sync.creds('person', uid);
+  return jqAnswer(x, { decision: 'ok', uid, pack: JSON.stringify(pack) });
+}
 SCREENS.reports = () => {
   if (!['owner', 'admin', 'sales'].includes(App.me.role)) return SCREENS.home();
   const xs = openReports(); App.pageSay = t('rp_say');
@@ -11128,11 +11385,63 @@ const ACT = {
     if (!validPhone(f.rqPhone || '')) return bad('err_phone');
     if (!/^\d{4,6}$/.test(f.rqPin1 || '')) return bad('err_pin_len');
     if (f.rqPin1 !== f.rqPin2) return bad('err_pin_match');
+    const srv = joinSrv();
+    if (srv && (!f.rqPhotoM || !f.rqIdM)) return bad('jq_need_photos');
+    if (srv && (f.rqRefPhone || '').trim() && !validPhone(f.rqRefPhone)) return bad('err_phone');
     const rq = 'R' + rid(8), salt = rid(8) + rid(8), o = { v: 1, kind: 'join', rid: rq, t: nowISO(), role: f.rqRole, name: f.rqName.trim().slice(0, 60), phone: phone10(f.rqPhone), area: (f.rqArea || '').trim().slice(0, 80),
       co: (f.rqCo || '').trim().slice(0, 80) || undefined, gst: (f.rqGst || '').trim().slice(0, 20) || undefined, lic: (f.rqLic || '').trim().slice(0, 40) || undefined, licExp: f.rqLicExp || undefined, salt, pin: await pinHash(f.rqPin1, salt), pinLen: f.rqPin1.length };
+    /* straight to the office through the server, locked so only office phones can open it */
+    if (srv) {
+      const sent = await joinSend(srv, o, f);
+      if (sent) { App.form = {}; go('myReq', {}, { replace: true }); return; }
+      toast(t('jq_srv_fail'), true);
+    }
     App.set.myReq = { rid: rq, t: o.t, uid: 'U' + rq.slice(1), kind: 'join' }; saveSettings();
     App.reqOut = { kind: 'join', office: f.rqOffice || '', msg: t('req_msg_join', { org: (App.joinLink && App.joinLink.org) || (S.org && S.org.name) || 'AIEC', name: o.name, role: t('jr_' + o.role), phone: o.phone }) + '\n' + t('req_code_note') + '\n' + reqEncode(o) };
     App.form = {}; go('reqSent', {}, { replace: true });
+  },
+  jrPhoto: async v => {
+    const meta = await Cam.open({ label: t(v === 'rqPhotoM' ? 'jq_photo' : 'jq_id_photo'), tag: 'join' });
+    if (meta) { App.form[v] = await putMedia(await shrinkPhoto(await getMedia(meta.m), 640, 0.6)); render(); }
+  },
+  jrSkill: v => { const a = App.form.rqSkills = App.form.rqSkills || []; const i = a.indexOf(v); if (i < 0) a.push(v); else a.splice(i, 1); render(); },
+  myReqCheck: async () => { await myReqPoll(); const j = myJoin(); if (j && !j.st) toast(t('jq_st_check')); },
+  myReqIn: () => { const j = myJoin(); if (j && S.users[j.uid]) loginAs(S.users[j.uid]); },
+  myReqFix: () => { const j = myJoin(); if (!j) return; App.form = Object.assign({}, j.form || {}, { rqNote: j.note || '', rqPrev: j.rid }); go('joinReq', { role: j.role }); },
+  myReqCancel: async () => { if (!confirm(t('jq_cancel') + '?')) return; await setMyJoin(null); go('gate', {}, { replace: true }); },
+  jqOpen: v => { App.form = {}; go('joinCheck', { rid: v }); },
+  jqZoom: v => sheet(`<img data-m="${v}" alt="" style="width:100%;border-radius:10px">`),
+  jcRole: v => { App.form.jcRole = v; render(); },
+  jcCalled: () => { App.form.jcCalled = !App.form.jcCalled; render(); },
+  jqOk: async v => {
+    const x = (App.joinReqs || []).find(y => y.rid === v), f = App.form; if (!x) return;
+    if (!f.jcCalled) { const el = $('#ferr'); if (el) el.innerHTML = `<div class="err">${t('jq_need_call')}</div>`; toast(t('jq_need_call'), true); return; }
+    const role = f.jcRole || x.role, uid = 'U' + x.rid.slice(1), name = x.co && ['supplier', 'partner'].includes(role) ? x.co : x.name;
+    const evs = [['USER_ADDED', null, { uid, name, role, salt: x.salt, pin: x.pin, pinLen: x.pinLen || 4 }], ['JOIN_DECIDED', null, { rid: x.rid, ok: true, uid }]];
+    if (!['supplier', 'partner'].includes(role)) evs.push(['WORKER_PROFILE', null, { uid, phone: x.phone, area: x.area || '', skills: x.skills || [], availability: 'available' }]);
+    const r = await run(evs); if (!r.ok) { toast(t(r.err || 'err_access'), true); return; }
+    const a = await jqApproveAnswer(x, uid); x.answered = a.ok ? nowISO() : ''; await jqSave();
+    toast(a.ok ? t('jq_done_ok') : t(a.err), !a.ok); render();
+  },
+  jqMore: async v => {
+    const x = (App.joinReqs || []).find(y => y.rid === v), note = (App.form.jcNote || '').trim(); if (!x) return;
+    if (!note) { toast(t('err_reason'), true); return; }
+    const r = await perform('JOIN_DECIDED', null, { rid: x.rid, ok: false, more: true, note }); if (!r.ok) return;
+    const a = await jqAnswer(x, { decision: 'more', note }); x.answered = a.ok ? nowISO() : ''; await jqSave();
+    toast(a.ok ? t('jq_done_more') : t(a.err), !a.ok); render();
+  },
+  jqNo: async v => {
+    const x = (App.joinReqs || []).find(y => y.rid === v), note = (App.form.jcNote || '').trim(); if (!x) return;
+    if (!note) { toast(t('err_reason'), true); return; }
+    const r = await perform('JOIN_DECIDED', null, { rid: x.rid, ok: false, note }); if (!r.ok) return;
+    const a = await jqAnswer(x, { decision: 'no', note }); x.answered = a.ok ? nowISO() : '';
+    for (const k of ['photo', 'idPhoto']) if (x[k]) { await KV.del(App.ns + 'm:' + x[k]); MEDIA.delete(x[k]); x[k] = ''; }
+    await jqSave(); toast(a.ok ? t('jq_done_no') : t(a.err), !a.ok); render();
+  },
+  jqResend: async v => {
+    const x = (App.joinReqs || []).find(y => y.rid === v), d = S.joins[v]; if (!x || !d) return;
+    const a = d.ok ? await jqApproveAnswer(x, d.uid) : await jqAnswer(x, { decision: d.more ? 'more' : 'no', note: d.note });
+    toast(a.ok ? t('jq_answer_sent') : t(a.err), !a.ok);
   },
   enqMake: () => {
     const f = App.form, bad = k => { const el = $('#ferr'); if (el) el.innerHTML = `<div class="err">${t(k)}</div>`; toast(t(k), true); };
@@ -11288,12 +11597,7 @@ const ACT = {
   qrServer: async () => {
     const q = App.qr, ph = (($('#qrPhone') || {}).value || '').replace(/\D/g, '').slice(-10);
     try {
-      const pad = q.rk.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((q.rk.length + 3) % 4);
-      const office = await crypto.subtle.importKey('raw', unb64(pad), { name: 'ECDH', namedCurve: 'P-256' }, false, []);
-      const mine = await crypto.subtle.generateKey({ name: 'ECDH', namedCurve: 'P-256' }, true, ['deriveBits']);
-      const bits = await crypto.subtle.deriveBits({ name: 'ECDH', public: office }, mine.privateKey, 256), key = await crypto.subtle.importKey('raw', await crypto.subtle.digest('SHA-256', bits), 'AES-GCM', false, ['encrypt']);
-      const iv = crypto.getRandomValues(new Uint8Array(12)), ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, new TextEncoder().encode(JSON.stringify({ code: q.code, problem: q.problem, phone: ph, lang: LANG })));
-      const blob = b64(await crypto.subtle.exportKey('raw', mine.publicKey)) + '.' + b64(iv) + '.' + b64(ct);
+      const blob = await Sync.seal(q.rk, { code: q.code, problem: q.problem, phone: ph, lang: LANG });
       const r = await fetch(q.srv.replace(/\/+$/, '') + '/report', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ blob, urgent: q.problem === 'stopped' }) });
       if (!r.ok) throw new Error('send');
       q.sent = 'srv'; q.sentT = (await r.json()).t || nowISO();
@@ -11719,6 +12023,8 @@ async function boot() {
   if (isInstalled() && navigator.storage && navigator.storage.persist) navigator.storage.persist().then(ok => { App.persisted = ok; }).catch(() => { });
   Notify.start();
   Sync.start();
+  /* a new person waiting for the office's answer: check every minute while the app is open */
+  setInterval(() => { if (!document.hidden) myReqPoll(); }, 60000); setTimeout(myReqPoll, 1500);
   if (/^https?:$/.test(location.protocol)) fetch('server.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(j => { if (j && /^https:\/\/[^\s]+$/.test(j.url || '')) App.defaultSrv = j.url.replace(/\/+$/, ''); }).catch(() => { });
   KV.get(App.ns + 'reports').then(v => { App.reports = v || []; }).catch(() => { });
   window.addEventListener('offline', () => toast(t('offline_saved')));
