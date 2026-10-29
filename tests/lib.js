@@ -7,7 +7,7 @@ const OUT = path.join(__dirname, 'out');
 fs.mkdirSync(OUT, { recursive: true });
 async function launch(opts = {}) {
   const browser = await chromium.launch({ args: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream', '--allow-file-access-from-files'] });
-  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, geolocation: { latitude: 18.5204, longitude: 73.8567, accuracy: 10 }, permissions: ['geolocation', 'camera', 'microphone'], deviceScaleFactor: 1, ...opts });
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, geolocation: { latitude: 18.5204, longitude: 73.8567, accuracy: 10 }, timezoneId: 'Asia/Kolkata', permissions: ['geolocation', 'camera', 'microphone'], deviceScaleFactor: 1, ...opts });
   /* tests run offline: the street map's library and tiles are unreachable, so the app must fall back cleanly */
   await ctx.route(/^https:\/\/(unpkg\.com|tile\.openstreetmap\.org)\//, r => r.abort('internetdisconnected'));
   const page = await ctx.newPage();
