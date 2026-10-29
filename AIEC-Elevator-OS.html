@@ -2294,6 +2294,15 @@ const L = {
   rs_ok: ['The company is back on this phone ({n} records). Log in with your PIN.', 'कंपनी इस फ़ोन पर वापस आई ({n} रिकॉर्ड)। अपने PIN से लॉगिन करें।', 'कंपनी या फोनवर परत आली ({n} नोंदी). तुमच्या PIN ने लॉगिन करा.'],
   rs_none: ['There is no backup on this server yet.', 'इस सर्वर पर अभी कोई बैकअप नहीं।', 'या सर्व्हरवर अजून बॅकअप नाही.'],
   rs_bad_code: ['This recovery code does not open the backup.', 'यह रिकवरी कोड बैकअप नहीं खोलता।', 'हा रिकव्हरी कोड बॅकअप उघडत नाही.'],
+  qr_send_srv: ['Send to the office now', 'अभी ऑफिस को भेजें', 'आत्ता ऑफिसला पाठवा'],
+  qr_srv_ok: ['Received by the company\'s server at {t}. The office phones have been alerted. If someone is trapped, also call.', 'कंपनी के सर्वर को {t} पर मिला। ऑफिस फ़ोनों को सूचना गई। कोई फँसा हो तो कॉल भी करें।', 'कंपनीच्या सर्व्हरला {t} वाजता मिळाले. ऑफिस फोनला सूचना गेली. कोणी अडकले असल्यास कॉलही करा.'],
+  qr_srv_fail: ['Could not send. Please use WhatsApp, SMS or call.', 'नहीं भेज सके। WhatsApp, SMS या कॉल करें।', 'पाठवता आले नाही. WhatsApp, SMS किंवा कॉल करा.'],
+  rp_title: ['Resident reports', 'निवासियों की रिपोर्ट', 'रहिवाशांचे अहवाल'],
+  rp_say: ['Reports sent from lift stickers. Call if needed, then open a ticket.', 'लिफ्ट स्टिकर से आई रिपोर्ट। ज़रूरत हो तो कॉल करें, फिर टिकट खोलें।', 'लिफ्ट स्टिकरवरून आलेले अहवाल. गरज असल्यास कॉल करा, मग तिकीट उघडा.'],
+  rp_open: ['Open a ticket', 'टिकट खोलें', 'तिकीट उघडा'],
+  rp_dismiss: ['Not real / already handled', 'असली नहीं / पहले से संभाला', 'खरे नाही / आधीच हाताळले'],
+  rp_unknown: ['Lift code not found in this company', 'यह लिफ्ट कोड इस कंपनी में नहीं', 'हा लिफ्ट कोड या कंपनीत नाही'],
+  rp_text: ['Resident report from the lift sticker: {p}', 'लिफ्ट स्टिकर से निवासी की रिपोर्ट: {p}', 'लिफ्ट स्टिकरवरून रहिवाशाचा अहवाल: {p}'],
   ck_obstacle: ['Work stuck', 'काम अटका', 'काम अडले'],
   ck_followup: ['Follow-up', 'फ़ॉलो-अप', 'पाठपुरावा'],
   ck_plan: ['Work plan', 'काम की योजना', 'कामाचे नियोजन'],
@@ -3788,19 +3797,20 @@ const Sync = {
     try { st = (await fetch(url + '/setup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ adminSecret: secret || '', officeHash: await sha256(await this.tokenFor(ck, 'office')), org: S.org.id }) })).status; } catch (e) { st = 0; }
     if (st !== 200) return st === 403 ? 'err_server_secret' : 'err_server_down';
     await this.save({ url, role: 'office', cur: 0, boxes: [] });
+    await this.reportKey();
     await this.tick(); return null;
   },
   async disable() { App.set.sync = Object.assign({}, App.set.sync, { [App.mode]: null }); this.state = null; await saveSettings(); },
   /* the sync details a file carries: the full office file carries the company key; a person's file only that person's box */
   async creds(kind, uid) {
     const c = this.cfg(), ck = c && c.role === 'office' && await this.ck(); if (!ck) return null;
-    if (kind === 'full') { const bk = await KV.get(App.ns + 'bk'); return Object.assign({ url: c.url, ck: b64(ck) }, bk ? { bk } : {}); }
+    if (kind === 'full') { const bk = await KV.get(App.ns + 'bk'), rk = await KV.get(App.ns + 'rk'); return Object.assign({ url: c.url, ck: b64(ck) }, bk ? { bk } : {}, rk ? { rk } : {}); }
     if (kind === 'person' && uid && S.users[uid] && !['owner', 'admin'].includes(S.users[uid].role)) return { url: c.url, box: uid, tok: await this.tokenFor(ck, uid), k: b64(await this.keyFor(ck, uid)) };
     return null;
   },
   async adopt(pack) {
     const x = pack.sync; if (!x || !/^https?:\/\//.test(x.url || '')) return;
-    if (pack.kind === 'full' && x.ck) { await KV.set(App.ns + 'ck', x.ck); if (x.bk) await KV.set(App.ns + 'bk', x.bk); await this.save({ url: x.url, role: 'office', cur: 0, boxes: [] }); }
+    if (pack.kind === 'full' && x.ck) { await KV.set(App.ns + 'ck', x.ck); if (x.bk) await KV.set(App.ns + 'bk', x.bk); if (x.rk && x.rk.pub && x.rk.priv) await KV.set(App.ns + 'rk', x.rk); await this.save({ url: x.url, role: 'office', cur: 0, boxes: [] }); }
     else if (pack.kind === 'person' && x.box && x.box === pack.for && x.tok && x.k) await this.save({ url: x.url, role: 'person', box: x.box, tok: x.tok, k: x.k, cur: 0 });
     else return;
     this.soon();
@@ -3867,6 +3877,7 @@ const Sync = {
         for (const uid of want.filter(x => !(c.boxes || []).includes(x))) { const x = await this.api(c, '/box/' + uid, auth, 'PUT', { hash: await sha256(await this.tokenFor(ck, uid)) }); if (x.ok) c.boxes = uniq((c.boxes || []).concat(uid)); else r = x; }
         for (const uid of (c.boxes || []).filter(x => !want.includes(x))) { const x = await this.api(c, '/box/' + uid, auth, 'DELETE'); if (x.ok) c.boxes = c.boxes.filter(y => y !== uid); }
         if (r.ok) r = await this.pull(c, 'inbox', auth, m => this.keyFor(ck, m.from));
+        if (r.ok) r = await this.pullReports(c, auth);
         /* this phone's own new records go to the other office phones */
         if (r.ok) { const seen = has('inbox'), p = exportPack('full'); p.events = p.events.filter(e => e.dev === App.set.dev && !seen.has(e.id)); if (p.events.length) { r = await this.send(c, 'inbox', auth, p, await this.keyFor(ck, 'office'), this.wakeFor(p.events, App.me.uid)); if (r.ok) mark('inbox', p.events.map(e => e.id)); } }
         /* each person's box gets what their file would have, only what is new for them */
@@ -3964,6 +3975,32 @@ const Sync = {
     await KV.set(App.ns + 'bk', b64(await this.bkKey(code)));
     App.set.bkLast = Object.assign({}, App.set.bkLast, { [App.mode]: last.t }); await saveSettings();
     return { ok: true, n: res.added };
+  },
+  /* ---------- lift sticker reports: residents lock them with the office's public key; only office phones can open them ---------- */
+  async reportKey() {
+    let k = await KV.get(App.ns + 'rk');
+    if (!k) { const pair = await crypto.subtle.generateKey({ name: 'ECDH', namedCurve: 'P-256' }, true, ['deriveBits']); k = { pub: b64(await crypto.subtle.exportKey('raw', pair.publicKey)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''), priv: await crypto.subtle.exportKey('jwk', pair.privateKey) }; await KV.set(App.ns + 'rk', k); }
+    return k;
+  },
+  async pullReports(c, auth) {
+    const rk = await KV.get(App.ns + 'rk'); if (!rk) return { ok: true };
+    const priv = await crypto.subtle.importKey('jwk', rk.priv, { name: 'ECDH', namedCurve: 'P-256' }, false, ['deriveBits']);
+    const list = (await KV.get(App.ns + 'reports')) || [];
+    for (let round = 0; round < 10; round++) {
+      const r = await this.api(c, '/recv/reports?after=' + (c.rcur || 0), auth); if (!r.ok) return r;
+      for (const m of r.body.msgs) {
+        try {
+          const [epk, iv, ct] = m.blob.split('.'), pub = await crypto.subtle.importKey('raw', unb64(epk), { name: 'ECDH', namedCurve: 'P-256' }, false, []);
+          const bits = await crypto.subtle.deriveBits({ name: 'ECDH', public: pub }, priv, 256), key = await crypto.subtle.importKey('raw', await crypto.subtle.digest('SHA-256', bits), 'AES-GCM', false, ['decrypt']);
+          const o = JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(iv) }, key, unb64(ct))));
+          if (o && /^L-[A-Z0-9]{6}$/.test(o.code || '') && QR_PROBLEMS.some(([k]) => k === o.problem)) list.unshift({ rid: 'RP' + m.seq, code: o.code, problem: o.problem, phone: String(o.phone || '').replace(/\D/g, '').slice(-10), t: m.t });
+        } catch (e) { /* a report this phone cannot open is skipped */ }
+        c.rcur = m.seq;
+      }
+      if (!r.body.more) break;
+    }
+    await KV.set(App.ns + 'reports', list.slice(0, 200)); App.reports = list;
+    return { ok: true };
   },
   soon() { clearTimeout(this.soonT); this.soonT = setTimeout(() => this.tick(), 2500); },
   start() { setInterval(() => this.tick(), 60000); window.addEventListener('online', () => this.tick()); document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') this.tick(); }); },
@@ -6033,7 +6070,7 @@ function apply(S, ev) {
       /* a fault that comes back within 30 days of an earlier breakdown is a repeat fault */
       const back = d.kind !== 'request' && P.tickets.some(o => o.kind === 'breakdown' && Date.parse(ev.t) - Date.parse(o.t) < 30 * 864e5);
       let sev = d.sev || (d.kind === 'breakdown' ? 'breakdown' : 'routine'); if (back && sev === 'routine') sev = 'repeat';
-      P.tickets.push({ id: d.tid, kind: d.kind, text: d.text, t: ev.t, by: ev.by, ev: ev_(d).map(e => e.id), status: 'open', owner: null, due: '', sev, repeat: back, src: d.src || 'app', resolvedT: null, hist: [{ status: 'open', t: ev.t, by: ev.by, note: d.text }] });
+      P.tickets.push({ id: d.tid, kind: d.kind, text: d.text, t: ev.t, by: ev.by, ev: ev_(d).map(e => e.id), status: 'open', owner: null, due: '', sev, repeat: back, src: d.src || 'app', report: d.report || null, resolvedT: null, hist: [{ status: 'open', t: ev.t, by: ev.by, note: d.text }] });
       break;
     }
     case 'TICKET_SEVERITY': { const x = ticketOf(P, d.tid); x.hist.push({ status: 'sev', t: ev.t, by: ev.by, from: x.sev, to: d.sev, note: d.note }); x.sev = d.sev; break; }
@@ -8679,6 +8716,7 @@ SCREENS.home = () => {
   if (!onboarding(u.uid).ready) { const ob = onboarding(u.uid), lv = escLevel(daysSince(u.t), 'onboarding');
     h += fold('onb', t('onb_title'), onbCard(u.uid, { short: true, bare: true }), { icon: '🪪', sub: t('onb_progress', { n: ob.done, m: ob.total }), open: lv >= 2, alert: lv >= 2 }); }
   if (u.role === 'owner' && hasAdmin()) { const aw = allOpenWork(); h += fold('allwork', t('all_work'), allWorkCard(aw), { icon: '👀', count: aw.length, sub: t('all_work_sub') }); }
+  if (adm && openReports().length) { const n = openReports().length, urgent = openReports().some(x => x.problem === 'stopped'); h += `<button class="task ${urgent ? 'urgent' : ''}" data-a="nav" data-v="reports"><span class="ti">📨</span><span class="grow" style="flex:1;min-width:0"><b>${t('rp_title')} (${n})</b><br><span class="small muted">${t('rp_say')}</span></span></button>`; }
   if (adm) { const qn = queueRows().filter(r => r.n).length;
     h += fold('queues', t('queues'), queuesCard(true), { icon: '🗂️', count: qn, alert: qn > 0, sub: t('fold_tap') });
     h += fold('dash', t(u.role === 'owner' ? 'owner_dash' : 'admin_dash'), dashboard(true), { icon: '📊', sub: t('fold_tap') }); }
@@ -9423,6 +9461,16 @@ SCREENS.restore = () => {
     ${formInp('rsUrl', 'srv_url', { type: 'url' })}${formInp('rsSecret', 'srv_secret', { type: 'password' })}${formInp('rsCode', 'f_rcode', { big: true })}<div id="ferr"></div></main>
     <div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="rsGo">🗄️ ${t('rs_go')}</button></div></div>`;
 };
+const liftOf = code => Object.values(S.projects).find(P => P.lift && P.lift.code === code);
+const openReports = () => (App.reports || []).filter(x => !x.done && !Object.values(S.projects).some(P => P.tickets.some(k => k.report === x.rid)));
+SCREENS.reports = () => {
+  if (!['owner', 'admin', 'sales'].includes(App.me.role)) return SCREENS.home();
+  const xs = openReports(); App.pageSay = t('rp_say');
+  return topBar(t('rp_title'), { back: true }) + `<main class="wrap"><p class="say">📨 ${t('rp_say')}</p>${xs.map(x => { const P = liftOf(x.code);
+    return `<div class="card"><div class="row wrapw"><b class="grow">${P ? esc(P.lift.label || P.id) + ' · ' + esc(P.id) : '⚠️ ' + t('rp_unknown')}</b><span class="chip ${x.problem === 'stopped' ? 'c-bad' : 'c-warn'}">${QR_PROBLEMS.find(([k]) => k === x.problem)[1]} ${t('qp_' + x.problem)}</span></div>
+      <p class="small muted">${esc(x.code)} · ${fmtD(x.t, true)}${P ? ' · ' + esc(P.site.address) : ''}</p>
+      <div class="row wrapw">${x.phone ? `<a class="btn btn-sm btn-p" href="tel:+91${x.phone}">📞 ${esc(x.phone)}</a>` : ''}${P && allowed('TICKET_OPENED', P) ? `<button class="btn btn-sm btn-ok" data-a="rpTicket" data-v="${x.rid}">🎫 ${t('rp_open')}</button>` : ''}<button class="btn btn-sm" data-a="rpDismiss" data-v="${x.rid}">✖ ${t('rp_dismiss')}</button></div></div>`; }).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
+};
 SCREENS.server = () => {
   const u = App.me, office = ['owner', 'admin'].includes(u.role), c = Sync.cfg(), f = App.form;
   App.pageSay = t('srv_say');
@@ -9796,12 +9844,14 @@ const QR = (() => {
 /* the address the lift's QR opens: lift code, label and the numbers to call; never the customer's name or phone */
 function liftUrl(P) {
   const q = new URLSearchParams({ q: P.lift.code, l: P.lift.label || '' }); if (S.config.sosNumber) q.set('r', S.config.sosNumber); if (S.config.officeNumber) q.set('o', S.config.officeNumber);
+  const c = Sync.cfg(); if (c && c.role === 'office' && App.rkPub && /^https:\/\//.test(c.url)) { q.set('s', c.url); q.set('k', App.rkPub); }
   return location.href.split('#')[0].split('?')[0] + '#' + q.toString();
 }
 function parseQr(hash) {
   if (!/^#q=L-[A-Z0-9]{6}/.test(hash || '')) return null;
   const q = new URLSearchParams(hash.slice(1)), num = v => (v || '').replace(/[^\d+]/g, '').slice(0, 15);
-  return { code: q.get('q').slice(0, 8), label: (q.get('l') || '').slice(0, 40), rescue: num(q.get('r')), office: num(q.get('o')), step: '', problem: '' };
+  const srv = (q.get('s') || '').slice(0, 200), k = (q.get('k') || '').slice(0, 100);
+  return { code: q.get('q').slice(0, 8), label: (q.get('l') || '').slice(0, 40), rescue: num(q.get('r')), office: num(q.get('o')), step: '', problem: '', srv: /^https:\/\/[^\s]+$/.test(srv) ? srv : '', rk: /^[A-Za-z0-9_-]{80,90}$/.test(k) ? k : '' };
 }
 SCREENS.liftqr = ({ pid }) => {
   const P = S.projects[pid], u = App.me;
@@ -9829,6 +9879,7 @@ SCREENS.qr = () => {
   const report = q.step === 'report' ? `<div class="card"><h3>${t('qr_what')}</h3>${`<div class="tiles">${QR_PROBLEMS.map(([k, i]) => `<button class="tile ${q.problem === k ? 'on' : ''}" data-a="qrProblem" data-v="${k}" aria-pressed="${q.problem === k}"><span class="i">${i}</span>${t('qp_' + k)}</button>`).join('')}</div>`}
       <div class="field" style="margin-top:10px"><label for="qrPhone"><b>${t('qr_phone')}</b> <small class="muted">(${t('optional')})</small></label><input class="in" id="qrPhone" type="tel" inputmode="numeric" maxlength="14" autocomplete="off"></div>
       ${q.problem ? (q.office ? `<div class="stack"><button class="btn btn-ok btn-big" data-a="qrSend" data-v="wa">💬 ${t('qr_send_wa')}</button><button class="btn btn-big" data-a="qrSend" data-v="sms">✉️ ${t('qr_send_sms')}</button><a class="btn btn-big" href="tel:${esc(q.office)}">📞 ${t('qr_call_office')}</a></div>` : `<a class="btn btn-p btn-big" href="tel:${esc(callNo)}">📞 ${t('qr_call_office')}</a>`) : ''}
+      ${q.problem && q.srv && q.rk ? (q.sent === 'srv' ? `<div class="okbox">✅ ${t('qr_srv_ok', { t: fmtD(q.sentT, true) })}</div>` : `<button class="btn btn-p btn-big" data-a="qrServer">📨 ${t('qr_send_srv')}</button>${q.sent === 'srvfail' ? `<div class="err">${t('qr_srv_fail')}</div>` : ''}`) : ''}
       <p class="small muted">${t('qr_send_note')}</p></div>` : '';
   return `<main class="wrap" style="padding-top:14px"><div class="row wrapw" style="justify-content:center;gap:6px">${langs}</div>
     <div class="center" style="margin:12px 0"><div style="font-size:2.4rem">🛗</div><h1 style="margin:4px 0">${esc(q.label || t('qr_title'))}</h1><p class="muted">${esc(q.code)}</p></div>
@@ -9897,7 +9948,7 @@ WIZ.ticket = {
     },
     { id: 'text', icon: '📝', say: 's_ticket_text', body: () => inp('text', 'f_problem', { area: true, mic: true }) + photoSlot('ph', 'ph_problem', 0, { video: true, tag: 'ticket' }), check: c => c.text.trim() ? null : 'err_fill' }
   ],
-  async finish(c, P) { const r = await run([['TICKET_OPENED', P.id, { tid: 'T-' + rid(5), kind: c.kind, sev: c.sev, src: c.src, text: c.text.trim(), ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_ticket_opened') : r; }
+  async finish(c, P) { const r = await run([['TICKET_OPENED', P.id, Object.assign({ tid: 'T-' + rid(5), kind: c.kind, sev: c.sev, src: c.src, text: c.text.trim(), ev: c.ph }, c.report ? { report: c.report } : {})]]); return r.ok ? doneRes(P.id, 'what_ticket_opened') : r; }
 };
 WIZ.ticketSev = {
   title: 'sev_change', save: 'save', noDraft: true, init: (P) => ({ sev: '', note: '' }),
@@ -11181,12 +11232,32 @@ const ACT = {
   raiseBlocker: v => wiz('blocker', W.pid, { step: +v }),
   projAct: v => wiz(v, pidHere()),
   qrLang: v => { LANG = v; App.set.lang = v; saveSettings(); render(); },
+  rpTicket: async v => {
+    const x = (App.reports || []).find(y => y.rid === v), P = x && liftOf(x.code); if (!P) return;
+    await wiz('ticket', P.id); Object.assign(W.ctx, { kind: P.stage === 'amc' ? 'breakdown' : 'complaint', src: 'qr', text: t('rp_text', { p: t('qp_' + x.problem) }) + (x.phone ? ' · 📞 ' + x.phone : ''), report: x.rid }); render();
+  },
+  rpDismiss: async v => { const list = (await KV.get(App.ns + 'reports')) || []; const x = list.find(y => y.rid === v); if (x) x.done = true; await KV.set(App.ns + 'reports', list); App.reports = list; render(); },
+  qrServer: async () => {
+    const q = App.qr, ph = (($('#qrPhone') || {}).value || '').replace(/\D/g, '').slice(-10);
+    try {
+      const pad = q.rk.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((q.rk.length + 3) % 4);
+      const office = await crypto.subtle.importKey('raw', unb64(pad), { name: 'ECDH', namedCurve: 'P-256' }, false, []);
+      const mine = await crypto.subtle.generateKey({ name: 'ECDH', namedCurve: 'P-256' }, true, ['deriveBits']);
+      const bits = await crypto.subtle.deriveBits({ name: 'ECDH', public: office }, mine.privateKey, 256), key = await crypto.subtle.importKey('raw', await crypto.subtle.digest('SHA-256', bits), 'AES-GCM', false, ['encrypt']);
+      const iv = crypto.getRandomValues(new Uint8Array(12)), ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, new TextEncoder().encode(JSON.stringify({ code: q.code, problem: q.problem, phone: ph, lang: LANG })));
+      const blob = b64(await crypto.subtle.exportKey('raw', mine.publicKey)) + '.' + b64(iv) + '.' + b64(ct);
+      const r = await fetch(q.srv.replace(/\/+$/, '') + '/report', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ blob, urgent: q.problem === 'stopped' }) });
+      if (!r.ok) throw new Error('send');
+      q.sent = 'srv'; q.sentT = (await r.json()).t || nowISO();
+    } catch (e) { q.sent = 'srvfail'; }
+    render(); if ($('#qrPhone')) $('#qrPhone').value = ph;
+  },
   qrReport: () => { App.qr.step = App.qr.step === 'report' ? '' : 'report'; render(); },
   qrProblem: v => { const ph = ($('#qrPhone') || {}).value || ''; App.qr.problem = v; render(); if ($('#qrPhone')) $('#qrPhone').value = ph; },
   qrSend: v => { const q = App.qr, ph = (($('#qrPhone') || {}).value || '').replace(/\D/g, '').slice(-10), msg = qrMessage(q, ph), to = q.office.replace(/\D/g, '').replace(/^0/, '');
     App.qr.sent = v; const url = v === 'wa' ? `https://wa.me/${to.length === 10 ? '91' + to : to}?text=${encodeURIComponent(msg)}` : `sms:${q.office}?body=${encodeURIComponent(msg)}`; App.qr.lastUrl = url; try { window.open(url, '_blank'); } catch (e) { location.href = url; } },
   qrStaff: () => { App.pendingLift = App.qr.code; App.qr = null; history.replaceState({ aiec: 1 }, '', location.href.split('#')[0]); go(!App.set.lang ? 'welcome' : !S.org ? (App.mode === 'practice' ? 'login' : 'setup') : 'login', {}, { replace: true }); },
-  liftQr: v => go('liftqr', { pid: v }),
+  liftQr: async v => { if (Sync.cfg() && Sync.cfg().role === 'office') App.rkPub = (await Sync.reportKey()).pub; go('liftqr', { pid: v }); },
   reconOk: async v => { const [pid, payId, li] = v.split('|'), L = App.recon.lines.find(x => x.i === +li);
     const r = await perform('PAYMENT_STATUS', pid, { payId, status: 'confirmed', ref: ('STMT ' + L.date + ' ' + L.text).slice(0, 80) }); if (r.ok) { toast(t('saved_item')); render(); } },
   reconSkip: v => { App.recon.skip.add(v); render(); },
@@ -11600,6 +11671,7 @@ async function boot() {
   if (isInstalled() && navigator.storage && navigator.storage.persist) navigator.storage.persist().then(ok => { App.persisted = ok; }).catch(() => { });
   Notify.start();
   Sync.start();
+  KV.get(App.ns + 'reports').then(v => { App.reports = v || []; }).catch(() => { });
   window.addEventListener('offline', () => toast(t('offline_saved')));
   window.addEventListener('online', () => toast(t('online_again')));
 }

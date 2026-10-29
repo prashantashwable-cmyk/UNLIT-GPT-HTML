@@ -41,6 +41,11 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
 * **Backups:** Head Quarter makes a recovery code once (Me → Company server) and keeps it on paper. Then an office phone uploads a locked backup of the whole company, photos included, once a day; the newest 7 are kept.
   * If every office phone is lost, a new phone chooses **Restore the company from backup** on the first screen and types the server address, the setup secret and the recovery code.
   * Nobody can open a backup without the recovery code, not even the server.
+* **Lift QR stickers report straight to the office:** stickers printed after the server is on let a resident press **Send to the office now**.
+  * The report is locked on their phone so only office phones can open it.
+  * "Lift stopped" wakes the office at once.
+  * The office sees **Resident reports** on its home screen and opens a ticket in one tap.
+  * Calling stays the first step for someone trapped.
 * **Not yet:** the business rules are checked on the phones, not on the server.
 
 ### Front door: who can get in, and how

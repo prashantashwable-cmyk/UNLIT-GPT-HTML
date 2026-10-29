@@ -78,6 +78,16 @@ How the code is protected:
 - **If every office phone is lost:** on a new phone, choose **Restore the company from backup** on the first screen. Type the server address, the setup secret and the recovery code. The whole company comes back, and the phone becomes an office phone on the server again.
 - **Changing the code:** a new code is used from then on. Keep the old code too for older backups.
 
+## Lift QR stickers report straight to the office
+
+- **Print stickers after the server is on.** Stickers printed after the server is turned on (with an https address) carry the server address and the office's public lock key. Older stickers keep working with call, WhatsApp and SMS.
+- **What the resident does:** after choosing the problem, the resident can press **Send to the office now**. The report (lift, problem, optional phone number) is locked on their phone, so only office phones can open it. The server cannot read it.
+- **How fast the office hears:** "Lift stopped" wakes the office phones at once; other problems at most every 10 minutes.
+- **Calling stays first:** the trapped-person button still calls the rescue number. A report is extra, never a replacement for a call.
+- **On the office phone:** the reports appear on the home screen (**Resident reports**). One tap opens a ticket filled in, and the report then leaves the list on every office phone.
+- **Limits:** one network can send at most 10 reports a minute.
+- **Use your own domain before printing many stickers.** Moving the server later means reprinting them.
+
 ## Try it on a laptop first
 
 `ADMIN_SECRET=choose-a-secret node local.mjs 8787`
@@ -137,3 +147,10 @@ This runs the same server at `http://127.0.0.1:8787`, keeping everything in memo
 - हेड क्वार्टर: मी → कंपनी सर्व्हर → **रिकव्हरी कोड तयार करा**. कोड कागदावर लिहून सेटअप सीक्रेटसोबत सुरक्षित ठेवा. तो एकदाच दिसतो.
 - दररोज संपूर्ण कंपनीचा कुलूपबंद बॅकअप सर्व्हरवर जातो. शेवटचे 7 ठेवले जातात.
 - सर्व ऑफिस फोन हरवले तर: नवीन फोनवर पहिल्या स्क्रीनवर **बॅकअपमधून कंपनी परत आणा** निवडा. सर्व्हर पत्ता, सेटअप सीक्रेट आणि रिकव्हरी कोड टाका.
+
+**लिफ्ट QR स्टिकरवरून थेट ऑफिसला:**
+- सर्व्हर सुरू केल्यानंतर छापलेल्या स्टिकरवर रहिवासी **आत्ता ऑफिसला पाठवा** दाबू शकतो.
+- अहवाल कुलूपबंद जातो; फक्त ऑफिस फोन तो उघडू शकतात.
+- "लिफ्ट बंद" झाल्यास ऑफिसला लगेच सूचना जाते.
+- ऑफिसच्या मुख्य स्क्रीनवर **रहिवाशांचे अहवाल** दिसतात. एका टॅपने तिकीट उघडते.
+- अडकलेल्या व्यक्तीसाठी आधी कॉलच करायचा.

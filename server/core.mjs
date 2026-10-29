@@ -117,6 +117,18 @@ export async function handle(req, env, store) {
       return backupRead(parts, store);
     }
 
+    /* a resident scanned a lift sticker and sends a report: no login; locked for the office phones; limited per network */
+    if (req.method === 'POST' && parts[0] === 'report') {
+      const ip = req.headers.get('CF-Connecting-IP') || req.headers.get('X-Forwarded-For') || 'local';
+      if (!(await store.allow('rep|' + ip, 10)) || !(await store.allow('rep', 300))) return json(429, { error: 'too_many' });
+      const b = await body();
+      if (!(await store.getMeta('officeHash'))) return json(404, { error: 'not_ready' });
+      if (!b || typeof b.blob !== 'string' || !b.blob.length || b.blob.length > 20000 || !/^[A-Za-z0-9+/=.]+$/.test(b.blob)) return json(413, { error: 'bad_blob' });
+      const seq = await store.addMsg('reports', 'public', new Date().toISOString(), b.blob);
+      await wake(env, store, 'office', b.urgent === true ? 'urgent' : 'normal');
+      return json(200, { ok: true, seq, t: new Date().toISOString() });
+    }
+
     const who = await caller(req, store);
     if (!who) return json(401, { error: 'not_allowed' });
     if (!(await store.allow(who.box, PER_MIN))) return json(429, { error: 'too_many' });
