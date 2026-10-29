@@ -19,22 +19,32 @@ export function pushHostOk(endpoint, env) {
   if (env.PUSH_TEST_HOST && u.hostname === env.PUSH_TEST_HOST) return true;
   return u.protocol === 'https:' && PUSH_HOSTS.some(r => r.test(u.hostname));
 }
-async function vapidJwt(env, aud) {
-  const pub = unb64u(env.VAPID_PUBLIC);
-  const key = await crypto.subtle.importKey('jwk', { kty: 'EC', crv: 'P-256', d: env.VAPID_PRIVATE, x: b64u(pub.slice(1, 33)), y: b64u(pub.slice(33, 65)), ext: true }, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']);
+async function vapidJwt(env, aud, vk) {
+  const pub = unb64u(vk.pub);
+  const key = await crypto.subtle.importKey('jwk', { kty: 'EC', crv: 'P-256', d: vk.priv, x: b64u(pub.slice(1, 33)), y: b64u(pub.slice(33, 65)), ext: true }, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']);
   const head = b64u(enc.encode(JSON.stringify({ typ: 'JWT', alg: 'ES256' }))), body = b64u(enc.encode(JSON.stringify({ aud, exp: Math.floor(Date.now() / 1000) + 12 * 3600, sub: env.VAPID_SUBJECT || 'mailto:office@example.com' })));
   const sig = await crypto.subtle.sign({ name: 'ECDSA', hash: 'SHA-256' }, key, enc.encode(head + '.' + body));
   return head + '.' + body + '.' + b64u(sig);
 }
 /* wake the phones of a box: urgent always; normal at most once in 10 minutes per box */
+export async function vapidKeys(env, store) {
+  if (env.VAPID_PUBLIC && env.VAPID_PRIVATE) return { pub: env.VAPID_PUBLIC, priv: env.VAPID_PRIVATE };
+  let pub = await store.getMeta('vapidPub'), priv = await store.getMeta('vapidPriv');
+  if (!pub || !priv) {
+    const pair = await crypto.subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify']);
+    pub = b64u(await crypto.subtle.exportKey('raw', pair.publicKey)); priv = (await crypto.subtle.exportKey('jwk', pair.privateKey)).d;
+    await store.setMeta('vapidPub', pub); await store.setMeta('vapidPriv', priv);
+  }
+  return { pub, priv };
+}
 async function wake(env, store, box, level) {
-  if (!env.VAPID_PUBLIC || !env.VAPID_PRIVATE) return 0;
+  const vk = await vapidKeys(env, store);
   if (level !== 'urgent') { const k = 'wake|' + box, last = +(await store.getMeta(k)) || 0; if (Date.now() - last < 10 * 60000) return 0; await store.setMeta(k, String(Date.now())); }
   let n = 0;
   for (const sub of await store.listSubs(box)) {
     try {
       const aud = new URL(sub.endpoint).origin;
-      const r = await fetch(sub.endpoint, { method: 'POST', headers: { TTL: '86400', Urgency: level === 'urgent' ? 'high' : 'normal', Authorization: 'vapid t=' + await vapidJwt(env, aud) + ', k=' + env.VAPID_PUBLIC, 'Content-Length': '0' } });
+      const r = await fetch(sub.endpoint, { method: 'POST', headers: { TTL: '86400', Urgency: level === 'urgent' ? 'high' : 'normal', Authorization: 'vapid t=' + await vapidJwt(env, aud, vk) + ', k=' + vk.pub, 'Content-Length': '0' } });
       if (r.status === 404 || r.status === 410) await store.delSub(sub.endpoint); else if (r.ok) n++;
     } catch (e) { /* one phone's push service being down does not stop the others */ }
   }
@@ -81,16 +91,21 @@ export async function handle(req, env, store) {
   const url = new URL(req.url), parts = url.pathname.replace(/\/+$/, '').split('/').filter(Boolean);
   const body = async () => { try { return await req.json(); } catch (e) { return null; } };
   try {
-    if (req.method === 'GET' && parts[0] === 'health') return json(200, { ok: true, version: VERSION, ready: !!(await store.getMeta('officeHash')), push: !!env.VAPID_PUBLIC });
-    if (req.method === 'GET' && parts[0] === 'vapid') return env.VAPID_PUBLIC ? json(200, { key: env.VAPID_PUBLIC }) : json(404, { error: 'no_push' });
+    if (req.method === 'GET' && parts[0] === 'health') return json(200, { ok: true, version: VERSION, ready: !!(await store.getMeta('officeHash')), push: true });
+    if (req.method === 'GET' && parts[0] === 'vapid') return json(200, { key: (await vapidKeys(env, store)).pub });
 
-    /* one-time setup (or a reset after a lost office key) with the secret set when the server was created */
+    /* the company claims the server: the first office phone to turn it on owns it. After that only the same office key,
+       or the setup secret if one was set on Cloudflare, can change it. */
     if (req.method === 'POST' && parts[0] === 'setup') {
       const b = await body();
-      if (!env.ADMIN_SECRET || !b || !same(await sha256hex(b.adminSecret || ''), await sha256hex(env.ADMIN_SECRET))) return json(403, { error: 'bad_secret' });
-      if (!/^[0-9a-f]{64}$/.test(b.officeHash || '')) return json(400, { error: 'bad_request' });
+      if (!b || !/^[0-9a-f]{64}$/.test(b.officeHash || '')) return json(400, { error: 'bad_request' });
+      if (!(await store.allow('setup', 20))) return json(429, { error: 'too_many' });
+      const claimed = await store.getMeta('officeHash');
+      const secretOk = !!env.ADMIN_SECRET && same(await sha256hex(b.adminSecret || ''), await sha256hex(env.ADMIN_SECRET));
+      if (claimed && !same(claimed, b.officeHash) && !secretOk) return json(403, { error: 'claimed' });
+      if (!claimed && env.ADMIN_SECRET && !secretOk) return json(403, { error: 'bad_secret' });
       await store.setMeta('officeHash', b.officeHash);
-      if (b.org) await store.setMeta('org', String(b.org).slice(0, 40));
+      if (b.org && !(await store.getMeta('org'))) await store.setMeta('org', String(b.org).slice(0, 40));
       return json(200, { ok: true });
     }
 
@@ -114,6 +129,14 @@ export async function handle(req, env, store) {
     if (adm != null && req.method === 'GET' && parts[0] === 'backups') {
       if (!(await store.allow('admin-secret', 20))) return json(429, { error: 'too_many' });
       if (!env.ADMIN_SECRET || !same(await sha256hex(adm), await sha256hex(env.ADMIN_SECRET))) return json(403, { error: 'bad_secret' });
+      return backupRead(parts, store);
+    }
+    /* or with proof made from the recovery code (the code itself never leaves the phone) */
+    const rp = req.headers.get('X-Restore');
+    if (rp != null && req.method === 'GET' && parts[0] === 'backups') {
+      if (!(await store.allow('restore', 20))) return json(429, { error: 'too_many' });
+      const want = await store.getMeta('restoreHash');
+      if (!want || !/^[0-9a-f]{64}$/.test(rp) || !same(await sha256hex(rp), want)) return json(403, { error: 'bad_code' });
       return backupRead(parts, store);
     }
 
@@ -165,6 +188,7 @@ export async function handle(req, env, store) {
         if (parts[2] === 'meta') {
           let m; try { m = JSON.parse(text); } catch (e) { return json(400, { error: 'bad_request' }); }
           if (!(m.parts > 0 && m.parts < 400)) return json(400, { error: 'bad_request' });
+          if (/^[0-9a-f]{64}$/.test(m.proof || '')) await store.setMeta('restoreHash', await sha256hex(m.proof));
           for (let i = 0; i < m.parts; i++) if (!(await store.getObj('bk/' + parts[1] + '/' + i))) return json(400, { error: 'missing_part' });
           await store.putObj('bk/' + parts[1] + '/meta', JSON.stringify({ id: parts[1], parts: m.parts, size: +m.size || 0, t: new Date().toISOString() }));
           const ids = (await store.listObj('bk/')).filter(k => k.endsWith('/meta')).map(k => k.split('/')[1]).sort().reverse();

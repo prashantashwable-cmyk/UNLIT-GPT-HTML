@@ -1,18 +1,17 @@
-name = "aiec-mailbox"
-main = "worker.mjs"
-compatibility_date = "2024-09-23"
+# AIEC company server - free plan, nothing to create by hand.
+# Cloudflare Workers -> Create -> Connect GitHub -> this repository, root folder "server", then Deploy.
+name = "aiec-server"
+main = "do.mjs"
+compatibility_date = "2025-04-01"
+workers_dev = true
 
-[[d1_databases]]
-binding = "DB"
-database_name = "aiec-mailbox"
-database_id = "PASTE-YOUR-DATABASE-ID-HERE"
+[[durable_objects.bindings]]
+name = "COMPANY"
+class_name = "Company"
 
-[[r2_buckets]]
-binding = "BACKUP"
-bucket_name = "aiec-backup"
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Company"]
 
-[triggers]
-crons = ["17 21 * * *"]
-
-# ADMIN_SECRET is set with:  npx wrangler secret put ADMIN_SECRET
-# It is never written in this file.
+# Optional: a setup secret (npx wrangler secret put ADMIN_SECRET). Without it, the first office phone that turns the
+# server on claims it for the company.

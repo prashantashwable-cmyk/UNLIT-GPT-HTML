@@ -2,7 +2,14 @@
    Keeps everything in memory (lost when stopped). For real use, deploy worker.mjs to Cloudflare. */
 import http from 'node:http';
 import { handle, memoryStore } from './core.mjs';
+import { sqlStore } from './sqlstore.mjs';
 
+/* the same storage as on Cloudflare's free plan (Durable Object SQLite), here on node:sqlite */
+export async function sqliteStore() {
+  const { DatabaseSync } = await import('node:sqlite');
+  const db = new DatabaseSync(':memory:');
+  return sqlStore({ exec(q, ...a) { const st = db.prepare(q), rows = /^\s*SELECT/i.test(q) ? st.all(...a) : (st.run(...a), []); return { toArray: () => rows }; } });
+}
 export function startLocal(port, env, store = memoryStore()) {
   const srv = http.createServer(async (req, res) => {
     const chunks = []; for await (const c of req) chunks.push(c);

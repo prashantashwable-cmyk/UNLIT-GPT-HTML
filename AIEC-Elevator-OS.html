@@ -2262,6 +2262,8 @@ const L = {
   srv_how: ['After turning on, send each person their file once (Users → send file). From then on their phone syncs by itself. Removing a person stops their phone at once.', 'चालू करने के बाद हर व्यक्ति को एक बार उनकी फ़ाइल भेजें (लोग → फ़ाइल भेजें)। फिर उनका फ़ोन अपने-आप सिंक होगा। किसी को हटाने पर उनका फ़ोन तुरंत रुक जाएगा।', 'सुरू केल्यावर प्रत्येकाला एकदा त्यांची फाइल पाठवा (लोक → फाइल पाठवा). त्यानंतर त्यांचा फोन आपोआप सिंक होईल. एखाद्याला काढल्यावर त्यांचा फोन लगेच थांबेल.'],
   srv_note: ['The rules are still checked on every phone, as before. Files and paste keep working if the server is off.', 'नियम पहले की तरह हर फ़ोन पर जाँचे जाते हैं। सर्वर बंद हो तो फ़ाइल और पेस्ट चलते रहेंगे।', 'नियम पूर्वीसारखे प्रत्येक फोनवर तपासले जातात. सर्व्हर बंद असल्यास फाइल आणि पेस्ट चालू राहतील.'],
   err_server_url: ['Type the full server address, starting with https://', 'पूरा सर्वर पता लिखें, https:// से शुरू', 'संपूर्ण सर्व्हर पत्ता लिहा, https:// ने सुरू'],
+  err_server_claimed: ['This server already belongs to the office phone that turned it on. Turn it on from that phone, or give its full office file to this phone.', 'यह सर्वर उस ऑफिस फ़ोन का है जिसने इसे चालू किया। उसी फ़ोन से चालू करें, या उसकी पूरी ऑफिस फ़ाइल इस फ़ोन पर दें।', 'हा सर्व्हर तो सुरू करणाऱ्या ऑफिस फोनचा आहे. त्याच फोनवरून सुरू करा, किंवा त्याची पूर्ण ऑफिस फाइल या फोनला द्या.'],
+  srv_secret_opt: ['Setup secret (only if one was set on Cloudflare)', 'सेटअप सीक्रेट (सिर्फ़ अगर Cloudflare पर रखा हो)', 'सेटअप सीक्रेट (फक्त Cloudflare वर ठेवले असल्यास)'],
   err_server_secret: ['The setup secret is not right.', 'सेटअप सीक्रेट सही नहीं है।', 'सेटअप सीक्रेट बरोबर नाही.'],
   err_server_down: ['Could not reach the server. Check the address and the internet.', 'सर्वर तक नहीं पहुँचे। पता और इंटरनेट जाँचें।', 'सर्व्हरपर्यंत पोहोचलो नाही. पत्ता आणि इंटरनेट तपासा.'],
   code_title: ['Login code for a new phone', 'नए फ़ोन के लिए लॉगिन कोड', 'नवीन फोनसाठी लॉगिन कोड'],
@@ -2301,11 +2303,11 @@ const L = {
   bk_new_code: ['Make a new recovery code', 'नया रिकवरी कोड बनाएँ', 'नवीन रिकव्हरी कोड तयार करा'],
   bk_now: ['Back up now', 'अभी बैकअप लें', 'आत्ता बॅकअप घ्या'],
   bk_code_title: ['Your recovery code', 'आपका रिकवरी कोड', 'तुमचा रिकव्हरी कोड'],
-  bk_code_tell: ['Write this code on paper now and keep it with the setup secret, away from the office phones. It is shown only once. With the server address, the setup secret and this code, a new phone can bring back the whole company even if every office phone is lost. Nobody, not even the server, can open a backup without it.', 'यह कोड अभी कागज़ पर लिखें और सेटअप सीक्रेट के साथ, ऑफिस फ़ोनों से दूर रखें। यह सिर्फ़ एक बार दिखेगा। सर्वर का पता, सेटअप सीक्रेट और यह कोड हो, तो सारे ऑफिस फ़ोन खो जाने पर भी नया फ़ोन पूरी कंपनी वापस ला सकता है। इसके बिना कोई भी, सर्वर भी, बैकअप नहीं खोल सकता।', 'हा कोड आत्ता कागदावर लिहा आणि सेटअप सीक्रेटसोबत, ऑफिस फोनपासून दूर ठेवा. तो फक्त एकदाच दिसेल. सर्व्हरचा पत्ता, सेटअप सीक्रेट आणि हा कोड असल्यास सर्व ऑफिस फोन हरवले तरी नवीन फोन संपूर्ण कंपनी परत आणू शकतो. याशिवाय कोणीही, सर्व्हरसुद्धा, बॅकअप उघडू शकत नाही.'],
+  bk_code_tell: ['Write this code on paper now and keep it safe, away from the office phones. It is shown only once. With the server address and this code, a new phone can bring back the whole company even if every office phone is lost. Nobody, not even the server, can open a backup without it.', 'यह कोड अभी कागज़ पर लिखें और ऑफिस फ़ोनों से दूर सुरक्षित रखें। यह सिर्फ़ एक बार दिखेगा। सर्वर का पता और यह कोड हो, तो सारे ऑफिस फ़ोन खो जाने पर भी नया फ़ोन पूरी कंपनी वापस ला सकता है। इसके बिना कोई भी, सर्वर भी, बैकअप नहीं खोल सकता।', 'हा कोड आत्ता कागदावर लिहा आणि ऑफिस फोनपासून दूर सुरक्षित ठेवा. तो फक्त एकदाच दिसेल. सर्व्हरचा पत्ता आणि हा कोड असल्यास सर्व ऑफिस फोन हरवले तरी नवीन फोन संपूर्ण कंपनी परत आणू शकतो. याशिवाय कोणीही, सर्व्हरसुद्धा, बॅकअप उघडू शकत नाही.'],
   bk_code_new_note: ['A new code is used for backups from now on. Keep the old code too, for older backups.', 'अब से नए कोड से बैकअप होंगे। पुराने बैकअप के लिए पुराना कोड भी रखें।', 'आतापासून नवीन कोडने बॅकअप होतील. जुन्या बॅकअपसाठी जुना कोडही ठेवा.'],
   bk_done: ['Backup saved on the server.', 'बैकअप सर्वर पर सेव हुआ।', 'बॅकअप सर्व्हरवर जतन झाला.'],
   rs_title: ['Restore the company from backup', 'बैकअप से कंपनी वापस लाएँ', 'बॅकअपमधून कंपनी परत आणा'],
-  rs_say: ['For a new office phone when the old ones are lost. Type the server address, the setup secret and the recovery code that Head Quarter kept on paper.', 'पुराने खो जाने पर नए ऑफिस फ़ोन के लिए। सर्वर का पता, सेटअप सीक्रेट और हेड क्वार्टर का कागज़ पर रखा रिकवरी कोड डालें।', 'जुने हरवल्यावर नवीन ऑफिस फोनसाठी. सर्व्हरचा पत्ता, सेटअप सीक्रेट आणि हेड क्वार्टरने कागदावर ठेवलेला रिकव्हरी कोड टाका.'],
+  rs_say: ['For a new office phone when the old ones are lost. Type the server address and the recovery code that Head Quarter kept on paper.', 'पुराने खो जाने पर नए ऑफिस फ़ोन के लिए। सर्वर का पता और हेड क्वार्टर का कागज़ पर रखा रिकवरी कोड डालें।', 'जुने हरवल्यावर नवीन ऑफिस फोनसाठी. सर्व्हरचा पत्ता आणि हेड क्वार्टरने कागदावर ठेवलेला रिकव्हरी कोड टाका.'],
   f_rcode: ['Recovery code', 'रिकवरी कोड', 'रिकव्हरी कोड'],
   rs_go: ['Restore', 'वापस लाएँ', 'परत आणा'],
   rs_ok: ['The company is back on this phone ({n} records). Log in with your PIN.', 'कंपनी इस फ़ोन पर वापस आई ({n} रिकॉर्ड)। अपने PIN से लॉगिन करें।', 'कंपनी या फोनवर परत आली ({n} नोंदी). तुमच्या PIN ने लॉगिन करा.'],
@@ -3805,14 +3807,15 @@ const Sync = {
       return { ok: r.ok, status: r.status, body: j };
     } catch (e) { return { ok: false, status: 0 }; }
   },
-  /* the office turns the server on with the secret chosen when the server was made */
+  /* the office turns the server on; the first office phone claims an empty server (a setup secret is needed only if one was set on Cloudflare) */
   async enable(url, secret) {
     url = String(url || '').trim().replace(/\/+$/, '');
     if (!/^https?:\/\/[^\s/]+/.test(url)) return 'err_server_url';
     let ck = await this.ck(); if (!ck) { ck = crypto.getRandomValues(new Uint8Array(32)); await KV.set(App.ns + 'ck', b64(ck)); }
     let st = 0;
-    try { st = (await fetch(url + '/setup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ adminSecret: secret || '', officeHash: await sha256(await this.tokenFor(ck, 'office')), org: S.org.id }) })).status; } catch (e) { st = 0; }
-    if (st !== 200) return st === 403 ? 'err_server_secret' : 'err_server_down';
+    let why = '';
+    try { const r = await fetch(url + '/setup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ adminSecret: secret || '', officeHash: await sha256(await this.tokenFor(ck, 'office')), org: S.org.id }) }); st = r.status; why = ((await r.json().catch(() => ({}))) || {}).error || ''; } catch (e) { st = 0; }
+    if (st !== 200) return st === 403 ? (why === 'claimed' ? 'err_server_claimed' : 'err_server_secret') : 'err_server_down';
     await this.save({ url, role: 'office', cur: 0, boxes: [] });
     await this.reportKey();
     await this.tick(); return null;
@@ -3972,16 +3975,17 @@ const Sync = {
     for (let i = 0; i < n; i++) {
       try { const r = await fetch(c.url + '/backups/' + id + '/' + i, { method: 'PUT', headers: { Authorization: 'Bearer ' + auth.tok, 'Content-Type': 'text/plain' }, body: blob.slice(i * size, (i + 1) * size) }); if (!r.ok) return { ok: false, status: r.status }; } catch (e) { return { ok: false, status: 0 }; }
     }
-    const r = await this.api(c, '/backups/' + id + '/meta', auth, 'PUT', { parts: n, size: blob.length });
+    const r = await this.api(c, '/backups/' + id + '/meta', auth, 'PUT', { parts: n, size: blob.length, proof: await sha256(bk + '|restore') });
     if (r.ok) { App.set.bkLast = Object.assign({}, App.set.bkLast, { [App.mode]: nowISO() }); await saveSettings(); }
     return r;
   },
   async restore(url, secret, code) {
     url = String(url || '').trim().replace(/\/+$/, '');
     if (!/^https?:\/\/[^\s/]+/.test(url)) return { err: 'err_server_url' };
-    const get = async path => { const r = await fetch(url + path, { headers: { 'X-Admin-Secret': secret || '' } }); return r; };
+    const proof = await sha256(b64(await this.bkKey(code)) + '|restore');
+    const get = async path => { const r = await fetch(url + path, { headers: secret ? { 'X-Admin-Secret': secret } : { 'X-Restore': proof } }); return r; };
     let r; try { r = await get('/backups'); } catch (e) { return { err: 'err_server_down' }; }
-    if (r.status === 403) return { err: 'err_server_secret' };
+    if (r.status === 403) return { err: secret ? 'err_server_secret' : 'rs_bad_code' };
     if (!r.ok) return { err: 'err_server_down' };
     const last = ((await r.json()).backups || [])[0]; if (!last) return { err: 'rs_none' };
     let blob = '';
@@ -8529,7 +8533,7 @@ SCREENS.door = ({ kind }) => {
 };
 function officeNoField() { const f = App.form; if (f.rqOffice == null) f.rqOffice = (App.joinLink && App.joinLink.office) || S.config.officeNumber || ''; return formInp('rqOffice', 'f_office_no', { type: 'tel', mode: 'tel', max: 15 }); }
 SCREENS.codeLogin = () => {
-  const f = App.form; if (f.clUrl == null) f.clUrl = (App.joinLink && App.joinLink.srv) || App.set.lastSrv || '';
+  const f = App.form; if (f.clUrl == null) f.clUrl = (App.joinLink && App.joinLink.srv) || App.set.lastSrv || App.defaultSrv || '';
   App.pageSay = t('code_login_say');
   return topBar(t('code_have'), { back: true }) + `<main class="wrap"><p class="say">🔑 ${t('code_login_say')}</p>
     ${formInp('clUrl', 'srv_url', { type: 'url' })}${formInp('clPhone', 'f_mobile', { type: 'tel', mode: 'tel', max: 13 })}${formInp('clCode', 'f_code', { mode: 'numeric', max: 6, big: true })}<div id="ferr"></div></main>
@@ -9499,7 +9503,7 @@ function backupCard() {
 SCREENS.restore = () => {
   App.pageSay = t('rs_say');
   return topBar(t('rs_title'), { back: true }) + `<main class="wrap"><p class="say">🗄️ ${t('rs_say')}</p>
-    ${formInp('rsUrl', 'srv_url', { type: 'url' })}${formInp('rsSecret', 'srv_secret', { type: 'password' })}${formInp('rsCode', 'f_rcode', { big: true })}<div id="ferr"></div></main>
+    ${(App.form.rsUrl == null && App.defaultSrv ? (App.form.rsUrl = App.defaultSrv, '') : '')}${formInp('rsUrl', 'srv_url', { type: 'url' })}${formInp('rsCode', 'f_rcode', { big: true })}${formInp('rsSecret', 'srv_secret_opt', { type: 'password' })}<div id="ferr"></div></main>
     <div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="rsGo">🗄️ ${t('rs_go')}</button></div></div>`;
 };
 const liftOf = code => Object.values(S.projects).find(P => P.lift && P.lift.code === code);
@@ -9518,7 +9522,7 @@ SCREENS.server = () => {
   return topBar(t('srv_title'), { back: true }) + `<main class="wrap"><p class="say">☁️ ${t('srv_say')}</p>
     <div class="card"><b>${Sync.line()}</b>${c && c.role === 'office' ? `<p class="small muted">${t('srv_people', { n: (c.boxes || []).length })} · ${esc(c.url)}</p>` : c ? `<p class="small muted">${esc(c.url)}</p>` : ''}
       ${c ? `<div class="row wrapw" style="margin-top:8px"><button class="btn btn-p" data-a="srvNow">🔄 ${t('srv_now')}</button>${office ? `<button class="btn" data-a="srvOff">⏹ ${t('srv_off')}</button>` : ''}</div>` : ''}</div>
-    ${office && !c ? `<div class="card">${formInp('srvUrl', 'srv_url', { type: 'url' })}${formInp('srvSecret', 'srv_secret', { type: 'password' })}<div id="ferr"></div><button class="btn btn-ok btn-big" data-a="srvOn">☁️ ${t('srv_on')}</button></div>` : ''}
+    ${office && !c ? `<div class="card">${(f.srvUrl == null && App.defaultSrv ? (f.srvUrl = App.defaultSrv, '') : '')}${formInp('srvUrl', 'srv_url', { type: 'url' })}${formInp('srvSecret', 'srv_secret_opt', { type: 'password' })}<div id="ferr"></div><button class="btn btn-ok btn-big" data-a="srvOn">☁️ ${t('srv_on')}</button></div>` : ''}
     ${office && c && c.role === 'office' ? readyCard(c) + phonesCard() : ''}${office && c ? backupCard() : ''}${office ? `<div class="note">📤 ${t('srv_how')}</div>` : ''}<p class="small muted">${t('srv_note')}</p></main>` + nav('me');
 };
 SCREENS.rules = () => {
@@ -11713,6 +11717,7 @@ async function boot() {
   if (isInstalled() && navigator.storage && navigator.storage.persist) navigator.storage.persist().then(ok => { App.persisted = ok; }).catch(() => { });
   Notify.start();
   Sync.start();
+  if (/^https?:$/.test(location.protocol)) fetch('server.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(j => { if (j && /^https:\/\/[^\s]+$/.test(j.url || '')) App.defaultSrv = j.url.replace(/\/+$/, ''); }).catch(() => { });
   KV.get(App.ns + 'reports').then(v => { App.reports = v || []; }).catch(() => { });
   window.addEventListener('offline', () => toast(t('offline_saved')));
   window.addEventListener('online', () => toast(t('online_again')));

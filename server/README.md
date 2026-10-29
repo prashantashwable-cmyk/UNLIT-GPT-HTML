@@ -8,6 +8,31 @@ The company server is a locked mailbox. Phones lock (encrypt) every update befor
 
 The rules are still checked on every phone, as before. If the server is off, files and paste keep working.
 
+## Free setup from a phone (recommended): about 5 minutes, nothing to create by hand
+
+This uses Cloudflare's free plan (Workers + one Durable Object with its own small database). There is no card, no database to create, no secret to type and no keys to make.
+
+1. Make sure the **Cloudflare Workers and Pages** app on GitHub can see this repository: GitHub → Settings → Applications → Cloudflare → *Only select repositories* → `UNLIT-GPT-HTML`.
+2. In Cloudflare go to **Workers & Pages → Create → Connect GitHub**, choose `UNLIT-GPT-HTML`, and fill in:
+   - **Project name:** `aiec-server`.
+   - **Production branch:** `ccr-941b528b-js9mxg`.
+   - **Root directory (path):** `server`. This field is under *Advanced settings* or *Build settings*.
+   - **Build command:** leave empty. **Deploy command:** `npx wrangler deploy` (the default).
+3. Press **Deploy**. When it finishes, it shows the address, like `https://aiec-server.<your-name>.workers.dev`. Open `<that address>/health`; it should show `"ok":true`.
+4. On the Head Quarter phone: **Me → Company server**. Type the address and press **Turn on automatic sync**. Leave the secret empty.
+   - The first office phone that does this claims the server for the company. Nobody else can claim it afterwards.
+5. Still on that screen, press **Make the recovery code**. Write it on paper. Nightly locked backups start, and a new phone can restore the whole company with the server address and this code.
+
+From then on, every change pushed to the repository is published to the server automatically.
+
+**Free plan limits:** the free plan is plenty for a team of about 20–30 phones that use the app during the working day. If it ever runs short, Cloudflare stops requests for the rest of the day. It never charges unless you move to a paid plan yourself.
+
+**Optional:** a setup secret can still be set (`npx wrangler secret put ADMIN_SECRET`). With a secret set, turning the server on, or listing backups without the recovery code, needs it.
+
+## Second way: D1 database and R2 bucket (computer needed)
+
+Use `wrangler-d1.toml` and `worker.mjs` (`npx wrangler deploy -c wrangler-d1.toml`). It needs a D1 database id written into the file and, for backups, an R2 bucket. Cloudflare asks for a card before it lets you create one. The steps below are for this way.
+
 ## What you need
 
 - A Cloudflare account in the company's name, with two-step login turned on. Free plan is enough to start.

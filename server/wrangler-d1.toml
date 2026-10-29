@@ -1,0 +1,20 @@
+# Optional second way: the server on D1 + R2 (needs a database id and, for backups, an R2 bucket). The default is wrangler.toml.
+# Deploy this one with:  npx wrangler deploy -c wrangler-d1.toml
+name = "aiec-mailbox"
+main = "worker.mjs"
+compatibility_date = "2024-09-23"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "aiec-mailbox"
+database_id = "PASTE-YOUR-DATABASE-ID-HERE"
+
+[[r2_buckets]]
+binding = "BACKUP"
+bucket_name = "aiec-backup"
+
+[triggers]
+crons = ["17 21 * * *"]
+
+# ADMIN_SECRET is set with:  npx wrangler secret put ADMIN_SECRET
+# It is never written in this file.

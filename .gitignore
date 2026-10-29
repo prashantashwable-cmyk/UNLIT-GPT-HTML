@@ -1,3 +1,5 @@
 node_modules/
 tests/out/
 dist/
+server/.wrangler/
+server/node_modules/
