@@ -5,7 +5,9 @@ const { launch, miss } = require('./lib');
 const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log('ok -', m); };
 (async () => {
   const { startLocal } = await import('../server/local.mjs');
-  const srv = await startLocal(0, {}), url = 'http://127.0.0.1:' + srv.port;
+  /* AIEC_SERVER_URL runs the same test against a real server engine */
+  const ext = process.env.AIEC_SERVER_URL, srv = ext ? { close: async () => { }, store: null } : await startLocal(0, {}), url = ext || 'http://127.0.0.1:' + srv.port;
+  const slow = ms => ext ? ms * 8 : ms;
   const syncNow = pg => pg.evaluate(async () => { while (Sync.busy) await new Promise(r => setTimeout(r, 50)); await Sync.tick(); return Sync.state && Sync.state.st; });
   const main = pg => pg.innerText('main');
 
@@ -44,9 +46,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await pb.evaluate(async () => { const d = await getMedia(App.form.rqPhotoM); return /^data:image\/jpeg/.test(d) && d.length < 200000; }), 'a photo taken with the camera is made small for sending');
   await addPhotos(pb); await pb.waitForTimeout(150);
   assert(await pb.$$eval('main img[data-m]', xs => xs.length) === 2, 'the two photos show on the form');
-  await pb.click('[data-a="joinMake"]'); await pb.waitForTimeout(1500);
+  await pb.click('[data-a="joinMake"]'); await pb.waitForTimeout(slow(1500));
   assert(await pb.evaluate(() => App.route.name) === 'myReq' && /Sent to the office/.test(await main(pb)), 'the person sees "Sent to the office" and waits');
-  const stored = JSON.stringify(srv.store.msgs.filter(m => m.box === 'requests'));
+  const stored = srv.store ? JSON.stringify(srv.store.msgs.filter(m => m.box === 'requests')) : 'x'.repeat(2000);
   assert(stored.length > 1000 && !stored.includes('9876512345') && !stored.includes('Ravi') && !stored.includes('Shree'), 'the server keeps it locked: no name, no number');
   await pb.evaluate(() => myReqPoll()); await pb.waitForTimeout(300);
   assert(!(await pb.evaluate(() => myJoin().st)), 'no answer yet while the office has not decided');
@@ -65,17 +67,17 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(/First call the number/.test(await main(pa)) && !(await pa.evaluate(() => Object.keys(S.joins).length)), 'Admin cannot approve before calling the person');
   await pa.click('[data-a="jqMore"]'); await pa.waitForTimeout(150);
   assert(!(await pa.evaluate(() => Object.keys(S.joins).length)), 'asking for more needs a note');
-  await pa.fill('[data-f="jcNote"]', 'Send a clearer ID photo'); await pa.click('[data-a="jqMore"]'); await pa.waitForTimeout(800);
+  await pa.fill('[data-f="jcNote"]', 'Send a clearer ID photo'); await pa.click('[data-a="jqMore"]'); await pa.waitForTimeout(slow(800));
   const rid1 = await pa.evaluate(() => App.joinReqs[0].rid);
   assert(await pa.evaluate(r => S.joins[r] && S.joins[r].more, rid1), 'the request is sent back for more details');
 
   /* the person sees what is missing, fixes it and sends again */
-  await pb.evaluate(() => myReqPoll()); await pb.waitForTimeout(1500);
+  await pb.evaluate(() => myReqPoll()); await pb.waitForTimeout(slow(1500));
   assert(await pb.evaluate(() => myJoin().st) === 'more' && /Send a clearer ID photo/.test(await main(pb)), 'the person sees the office needs more details, with the note');
   await pb.click('[data-a="myReqFix"]'); await pb.waitForTimeout(200);
   assert(await pb.inputValue('[data-f="rqName"]') === 'Ravi Patil' && /Send a clearer ID photo/.test(await main(pb)), 'the form opens filled in, with the office\'s note');
   await pb.fill('[data-f="rqPin1"]', '2468'); await pb.fill('[data-f="rqPin2"]', '2468');
-  await addPhotos(pb); await pb.click('[data-a="joinMake"]'); await pb.waitForTimeout(1500);
+  await addPhotos(pb); await pb.click('[data-a="joinMake"]'); await pb.waitForTimeout(slow(1500));
   assert(await pb.evaluate(() => App.route.name) === 'myReq' && !(await pb.evaluate(() => myJoin().st)), 'the fixed request is sent and waits again');
 
   /* Admin approves the fixed request */
@@ -83,13 +85,13 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await pa.evaluate(() => pendingJoins().length) === 1, 'only the new request is waiting; the first one is decided');
   await pa.evaluate(() => go('joins')); await pa.waitForTimeout(150); await pa.click('[data-a="jqOpen"]'); await pa.waitForTimeout(300);
   assert(/Sent again after the office asked for more details/.test(await main(pa)), 'Admin sees it is the fixed request');
-  await pa.click('[data-a="jcCalled"]'); await pa.click('[data-a="jqOk"]'); await pa.waitForTimeout(1500);
+  await pa.click('[data-a="jcCalled"]'); await pa.click('[data-a="jqOk"]'); await pa.waitForTimeout(slow(1500));
   const uid = await pa.evaluate(() => S.joins[App.joinReqs[0].rid] && S.joins[App.joinReqs[0].rid].uid);
   assert(uid && await pa.evaluate(u => S.users[u].active && S.users[u].role === 'tech' && S.workers[u].profile.phone === '9876512345' && S.workers[u].profile.skills.includes('wiring'), uid), 'the technician is added with their phone and skills');
   assert(await pa.evaluate(u => Sync.cfg().boxes.includes(u), uid), 'their server box is made at once');
 
   /* the person's phone gets in by itself */
-  await pb.evaluate(() => myReqPoll()); await pb.waitForTimeout(2500);
+  await pb.evaluate(() => myReqPoll()); await pb.waitForTimeout(slow(2500));
   assert(await pb.evaluate(u => App.me && App.me.uid === u, uid), 'the new technician\'s phone opens the app as them');
   assert(await pb.evaluate(u => Sync.cfg() && Sync.cfg().role === 'person' && Sync.cfg().box === u, uid), 'and is connected to the company server');
   assert(await syncNow(pb) === 'ok', 'their phone syncs');
@@ -99,16 +101,16 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const C = await launch(), pc = C.page;
   await applicant(pc, url); await pc.waitForTimeout(200);
   await pc.click('[data-a="door"][data-v="join"]'); await pc.click('[data-a="joinRole"][data-v="field"]'); await pc.waitForTimeout(150);
-  await fillBase(pc, 'Ravi P', '9876512345'); await addPhotos(pc); await pc.click('[data-a="joinMake"]'); await pc.waitForTimeout(1500);
+  await fillBase(pc, 'Ravi P', '9876512345'); await addPhotos(pc); await pc.click('[data-a="joinMake"]'); await pc.waitForTimeout(slow(1500));
   await syncNow(pa);
   await pa.evaluate(() => go('joins')); await pa.waitForTimeout(150); await pa.click('[data-a="jqOpen"]'); await pa.waitForTimeout(300);
   assert(/already belongs to Ravi Patil/.test(await main(pa)), 'Admin is warned the number already belongs to someone in the company');
   const photos = await pa.evaluate(() => [App.joinReqs[0].photo, App.joinReqs[0].idPhoto]);
   await pa.click('[data-a="jqNo"]'); await pa.waitForTimeout(150);
   assert(!(await pa.evaluate(() => S.joins[App.joinReqs[0].rid])), 'refusing needs a reason');
-  await pa.fill('[data-f="jcNote"]', 'Already working with us'); await pa.click('[data-a="jqNo"]'); await pa.waitForTimeout(800);
+  await pa.fill('[data-f="jcNote"]', 'Already working with us'); await pa.click('[data-a="jqNo"]'); await pa.waitForTimeout(slow(800));
   assert(await pa.evaluate(async ks => !(await KV.get(App.ns + 'm:' + ks[0])) && !(await KV.get(App.ns + 'm:' + ks[1])), photos), 'the refused person\'s photos are deleted from the office phone');
-  await pc.evaluate(() => myReqPoll()); await pc.waitForTimeout(1500);
+  await pc.evaluate(() => myReqPoll()); await pc.waitForTimeout(slow(1500));
   assert(await pc.evaluate(() => myJoin().st) === 'no' && /Already working with us/.test(await main(pc)), 'the person sees "Not approved" with the reason');
   await pc.evaluate(() => go('gate')); await pc.waitForTimeout(150);
   assert(/Your join request/.test(await main(pc)), 'the start page shows their request and answer');
