@@ -8,7 +8,13 @@ The company server is a locked mailbox. Phones lock (encrypt) every update befor
 
 The rules are still checked on every phone, as before. If the server is off, files and paste keep working.
 
-## Free setup from a phone (recommended): about 5 minutes, nothing to create by hand
+## One-tap setup (easiest)
+
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/prashantashwable-cmyk/UNLIT-GPT-HTML/tree/main/server)
+
+Press the button, log in to Cloudflare (free, no card) and to GitHub, keep the name `aiec-server`, and press **Create and deploy**. Cloudflare copies the server into a repository in your own GitHub account and deploys it. When it finishes, it shows the address. Then do steps 3–5 below.
+
+## Free setup from a phone: about 5 minutes, nothing to create by hand
 
 This uses Cloudflare's free plan (Workers + one Durable Object with its own small database). There is no card, no database to create, no secret to type and no keys to make.
 

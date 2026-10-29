@@ -25,12 +25,13 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
 ---
 
 ### Company server (automatic sync)
-* **Me → Company server:** the Head Quarter or Admin types the server address and the setup secret once. From then on phones send and receive updates by themselves (every minute, and a few seconds after each action) when they have internet. Without internet, work is saved on the phone and goes later.
+* **Me → Company server:** the Head Quarter or Admin types the server address once (the setup secret is optional). From then on phones send and receive updates by themselves (every minute, and a few seconds after each action) when they have internet. Without internet, work is saved on the phone and goes later.
 * **Locked on the phone:** everything is locked (encrypted) on the phone before it leaves. The server never sees names, prices or photos; it only keeps an inbox the office reads and one box per person.
 * **Each person's box:** it gets exactly what their file would have, so partner companies, technicians and suppliers still never receive customer contacts or prices. A person's file carries only their own connection, never the company key.
 * **Removing a person** deletes their box and stops their phone at once.
 * **What stays the same:** the rules are still checked on every phone, as before. Files, paste and the offline flows keep working.
-* **Setting it up (free, from a phone):** in Cloudflare choose Workers & Pages → Create → Connect GitHub. Pick this repository, choose the production branch `main`, set the root directory to `server`, and deploy.
+* **One-tap setup (free):** [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/prashantashwable-cmyk/UNLIT-GPT-HTML/tree/main/server). Log in to Cloudflare and GitHub, keep the name `aiec-server`, and press Create and deploy.
+* **Or set it up by hand (free, from a phone):** in Cloudflare choose Workers & Pages → Create → Connect GitHub. Pick this repository, choose the production branch `main`, set the root directory to `server`, and deploy.
   * There is no database to create, no card and no secret.
   * On the Head Quarter phone, type the address in Me → Company server and turn it on. The first office phone claims the server.
   * Details are in `server/README.md`.
