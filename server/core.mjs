@@ -172,7 +172,7 @@ export async function handle(req, env, store) {
           return json(200, { ok: true });
         }
         if (!/^\d{1,3}$/.test(parts[2]) || !text.length || text.length > 8 * 1024 * 1024 || !/^[A-Za-z0-9+/=.]+$/.test(text)) return json(413, { error: 'bad_part' });
-        await store.putObj('bk/' + parts[1] + '/' + parts[2], text);
+        try { await store.putObj('bk/' + parts[1] + '/' + parts[2], text); } catch (e) { return json(501, { error: 'no_backup_store' }); }
         return json(200, { ok: true });
       }
       return json(400, { error: 'bad_request' });
