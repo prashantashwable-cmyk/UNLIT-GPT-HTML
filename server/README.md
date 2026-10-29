@@ -1,4 +1,4 @@
-# AIEC company server (stage 1: automatic sync)
+# AIEC company server (automatic sync, login codes, alerts)
 
 The company server is a locked mailbox. Phones lock (encrypt) every update before sending it, so the server never sees names, prices or photos. It decides only who may put into and take from each box:
 
@@ -27,11 +27,15 @@ The rules are still checked on every phone, as before. If the server is off, fil
 5. Choose a long **setup secret** (at least 20 letters and numbers). Write it on paper and keep it safe. Then store it on Cloudflare:
    `npx wrangler secret put ADMIN_SECRET`
    It is never written in any file.
-6. Put the server online:
+6. Make the keys for alerts (once) and store them on Cloudflare. The command prints the keys and the exact commands to run:
+   `node vapid.mjs`
+7. Put the server online:
    `npx wrangler deploy`
    It prints the server address, like `https://aiec-mailbox.<your-name>.workers.dev`.
    Later you can attach your own domain (for example `sync.allindiaelevators.in`) in the Cloudflare dashboard.
-7. Check it: open `<server address>/health` in a browser. It should show `"ok":true`.
+8. Check it: open `<server address>/health` in a browser. It should show `"ok":true` and `"push":true`.
+
+If you set the server up before alerts and login codes were added, run step 4 again (it only adds the new tables) and step 6, then `npx wrangler deploy`.
 
 ## Turn it on in the app
 
@@ -41,6 +45,28 @@ The rules are still checked on every phone, as before. If the server is off, fil
 4. Other office phones: send them the full office file once. They connect by themselves.
 
 The status line shows ✅ synced (with the time), 📴 waiting for internet, ⚠️ server not reached, or ⛔ this phone was removed.
+
+## A new phone without sending a file: login code
+
+1. In the app: Users → the person → **Login code for a new phone**.
+2. Type their mobile number and press **Make the code**.
+3. Tell them the 6-digit code **on a phone call**.
+4. On the new phone they choose **I have a login code from the office**, then type the server address, their mobile number and the code.
+
+How the code is protected:
+- **What the server keeps:** their data waits on the server locked with the code, so the server cannot read it.
+- **One use only:** the code works once, for 2 days.
+- **Wrong tries:** after 5 wrong tries it is deleted.
+- **The server address is filled in for them** if they opened the company's join link or QR (made after the server was turned on).
+
+## Alerts
+
+- **Every connected phone asks to be woken.** It does this once notifications are allowed on that phone (Android app installed from the website, or iPhone 16.4+ with the app on the home screen).
+- **An alert carries no text and no names.** It only shows "New work". The details load when the person opens the app with their PIN.
+- **When phones are woken:**
+  - an SOS or any safety incident report (hazard, injury, near miss) wakes the office phones at once;
+  - other news wakes a phone at most once every 10 minutes.
+- **Only real phone push services are called** (Google, Apple, Mozilla, Microsoft).
 
 ## Try it on a laptop first
 
@@ -57,15 +83,16 @@ This runs the same server at `http://127.0.0.1:8787`, keeping everything in memo
   - To start again, load that file on a new office phone, then turn the server on again with the setup secret.
 - Messages older than 120 days are deleted from the server. The phones keep everything.
 
-## Limits of stage 1
+## Limits
 
 - **Rules are checked on the phones.** The server only controls who may read or write each box; it does not check the business rules.
-- **Each phone must open the app to sync.** Alerts that wake a closed app come in stage 3.
-- **A new phone still needs its file once.** Login by SMS code comes in stage 2.
+- **Alerts depend on the phone.** Android's battery saver can delay alerts, and phones without notification permission are not woken.
+- **Login codes are told by phone call.** There is no SMS; the office tells the code on a call. This avoids SMS costs and the TRAI DLT registration that SMS needs.
+- **Photos only reach a new phone from the last 120 days.** A new phone gets photos only from messages the server still keeps. Older photos stay on the office phones.
 
 ---
 
-# AIEC कंपनी सर्व्हर (टप्पा 1: आपोआप सिंक)
+# AIEC कंपनी सर्व्हर (आपोआप सिंक, लॉगिन कोड, सूचना)
 
 कंपनी सर्व्हर हा कुलूपबंद पेटीसारखा आहे. प्रत्येक फोन अपडेट पाठवण्यापूर्वी त्याला कुलूप (एन्क्रिप्ट) लावतो. त्यामुळे सर्व्हरला नावे, किमती किंवा फोटो दिसत नाहीत. कोण कोणत्या पेटीत टाकू आणि घेऊ शकतो, एवढेच सर्व्हर ठरवतो.
 
@@ -86,3 +113,14 @@ This runs the same server at `http://127.0.0.1:8787`, keeping everything in memo
 **महत्त्वाचे:**
 - सीक्रेट आणि Cloudflare लॉगिन कंपनीचे आहेत.
 - दर महिन्याला ऑफिस फोनची पूर्ण फाइल हेड क्वार्टरच्या लॅपटॉपवर ठेवा.
+
+**नवीन फोनसाठी लॉगिन कोड:**
+1. लोक → व्यक्ती → **नवीन फोनसाठी लॉगिन कोड** → मोबाइल नंबर टाका.
+2. 6 अंकी कोड **फोन कॉलवर** सांगा.
+3. तो कोड एकदाच आणि 2 दिवस चालतो. 5 चुकीच्या प्रयत्नांनंतर तो पुसला जातो.
+
+**सूचना (अलर्ट):**
+- `node vapid.mjs` चालवा आणि त्यात दिलेल्या आज्ञा चालवा.
+- SOS किंवा कोणतीही सुरक्षा घटना (धोका, इजा) नोंदल्यास ऑफिस फोनला लगेच सूचना जाते.
+- इतर बातमीची सूचना 10 मिनिटांत एकदाच येते.
+- सूचनेत कोणतेही नाव किंवा माहिती नसते.

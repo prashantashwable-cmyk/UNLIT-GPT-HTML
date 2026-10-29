@@ -2262,6 +2262,20 @@ const L = {
   err_server_url: ['Type the full server address, starting with https://', 'पूरा सर्वर पता लिखें, https:// से शुरू', 'संपूर्ण सर्व्हर पत्ता लिहा, https:// ने सुरू'],
   err_server_secret: ['The setup secret is not right.', 'सेटअप सीक्रेट सही नहीं है।', 'सेटअप सीक्रेट बरोबर नाही.'],
   err_server_down: ['Could not reach the server. Check the address and the internet.', 'सर्वर तक नहीं पहुँचे। पता और इंटरनेट जाँचें।', 'सर्व्हरपर्यंत पोहोचलो नाही. पत्ता आणि इंटरनेट तपासा.'],
+  code_title: ['Login code for a new phone', 'नए फ़ोन के लिए लॉगिन कोड', 'नवीन फोनसाठी लॉगिन कोड'],
+  code_say: ['The person types their mobile number and this code on their new phone. Their data comes from the company server, locked with the code.', 'व्यक्ति अपने नए फ़ोन पर अपना मोबाइल नंबर और यह कोड डालेगा। उनका डेटा कंपनी सर्वर से, इस कोड के ताले में आएगा।', 'व्यक्ती त्यांच्या नवीन फोनवर मोबाइल नंबर आणि हा कोड टाकेल. त्यांचा डेटा कंपनी सर्व्हरवरून, या कोडच्या कुलुपात येईल.'],
+  code_make: ['Make the code', 'कोड बनाएँ', 'कोड तयार करा'],
+  code_show: ['Code for {n}', '{n} के लिए कोड', '{n} साठी कोड'],
+  code_tell: ['Tell them this code on a phone call. It works once and only for 2 days. Do not send it in the same message as the app link.', 'यह कोड फ़ोन कॉल पर बताएँ। यह एक बार और सिर्फ़ 2 दिन चलेगा। इसे ऐप लिंक वाले संदेश में न भेजें।', 'हा कोड फोन कॉलवर सांगा. तो एकदाच आणि फक्त 2 दिवस चालेल. तो ॲप लिंकच्या संदेशात पाठवू नका.'],
+  code_have: ['I have a login code from the office', 'मेरे पास ऑफिस का लॉगिन कोड है', 'माझ्याकडे ऑफिसचा लॉगिन कोड आहे'],
+  code_login_say: ['Type the server address, your mobile number and the 6-digit code the office told you.', 'सर्वर का पता, अपना मोबाइल नंबर और ऑफिस का बताया 6 अंकों का कोड डालें।', 'सर्व्हरचा पत्ता, तुमचा मोबाइल नंबर आणि ऑफिसने सांगितलेला 6 अंकी कोड टाका.'],
+  f_code: ['6-digit code', '6 अंकों का कोड', '6 अंकी कोड'],
+  code_open: ['Get my data', 'मेरा डेटा लाएँ', 'माझा डेटा आणा'],
+  code_wrong: ['Wrong code. {n} tries left.', 'गलत कोड। {n} कोशिशें बाकी।', 'चुकीचा कोड. {n} प्रयत्न बाकी.'],
+  code_gone: ['No code for this number, or it has expired or was used. Ask the office for a new one.', 'इस नंबर का कोड नहीं है, या समय खत्म/इस्तेमाल हो चुका। ऑफिस से नया माँगें।', 'या नंबरसाठी कोड नाही, किंवा मुदत संपली/वापरला गेला. ऑफिसकडे नवीन मागा.'],
+  code_ok: ['Your data is on this phone. Now choose your name and enter your PIN.', 'आपका डेटा इस फ़ोन पर आ गया। अब अपना नाम चुनें और PIN डालें।', 'तुमचा डेटा या फोनवर आला. आता तुमचे नाव निवडा आणि PIN टाका.'],
+  err_code_big: ['Too much data for a code. Send their file instead.', 'कोड के लिए डेटा बहुत ज़्यादा है। उनकी फ़ाइल भेजें।', 'कोडसाठी डेटा खूप जास्त आहे. त्यांची फाइल पाठवा.'],
+  srv_needed: ['Turn on the company server first (Me → Company server).', 'पहले कंपनी सर्वर चालू करें (मैं → कंपनी सर्वर)।', 'आधी कंपनी सर्व्हर सुरू करा (मी → कंपनी सर्व्हर).'],
   ck_obstacle: ['Work stuck', 'काम अटका', 'काम अडले'],
   ck_followup: ['Follow-up', 'फ़ॉलो-अप', 'पाठपुरावा'],
   ck_plan: ['Work plan', 'काम की योजना', 'कामाचे नियोजन'],
@@ -3774,7 +3788,7 @@ const Sync = {
     this.soon();
   },
   /* send records in pieces small enough for the server, each piece signed and locked */
-  async send(c, to, auth, pack, raw) {
+  async send(c, to, auth, pack, raw, wake) {
     const groups = [], media = {};
     let g = [], n = 0;
     for (const ev of pack.events) {
@@ -3784,13 +3798,27 @@ const Sync = {
       g.push(ev); n += sz;
     }
     if (g.length) groups.push(g);
-    for (const evs of groups) {
+    for (const [gi, evs] of groups.entries()) {
       const part = await finishPack(Object.assign({}, pack, { events: evs, media: {} }));
       for (const ev of evs) for (const e of (ev.data && ev.data.ev) || []) if (e.m && media[e.m]) part.media[e.m] = media[e.m];
-      const r = await this.api(c, '/send/' + to, auth, 'POST', { blob: await this.lock(raw, JSON.stringify(part)) });
+      const r = await this.api(c, '/send/' + to, auth, 'POST', Object.assign({ blob: await this.lock(raw, JSON.stringify(part)) }, wake && gi === groups.length - 1 ? { wake } : {}));
       if (!r.ok) return r;
     }
     return { ok: true };
+  },
+  /* safety alarms wake phones at once; other news at most every 10 minutes (the server spaces them) */
+  wakeFor(evs, uid) { return evs.some(e => ['SOS_RAISED', 'INCIDENT_RAISED'].includes(e.type)) ? 'urgent' : evs.some(e => e.by !== uid) ? 'normal' : null; },
+  async pushSub(c, auth) {
+    try {
+      if (!('serviceWorker' in navigator) || !('PushManager' in window) || typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
+      const at = (App.set.pushAt || {})[App.mode]; if (at && Date.now() - at < 12 * 3600e3) return;
+      const reg = await navigator.serviceWorker.getRegistration(); if (!reg) return;
+      const k = await this.api(c, '/vapid', auth); if (!k.ok) return;
+      const key = Uint8Array.from(atob(k.body.key.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((k.body.key.length + 3) % 4)), x => x.charCodeAt(0));
+      const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: key });
+      const r = await this.api(c, '/push-sub', auth, 'POST', { endpoint: sub.endpoint });
+      if (r.ok) { App.set.pushAt = Object.assign({}, App.set.pushAt, { [App.mode]: Date.now() }); saveSettings(); }
+    } catch (e) { /* alerts are a help; sync works without them */ }
   },
   async pull(c, box, auth, keyOf) {
     for (let round = 0; round < 20; round++) {
@@ -3822,26 +3850,58 @@ const Sync = {
         for (const uid of (c.boxes || []).filter(x => !want.includes(x))) { const x = await this.api(c, '/box/' + uid, auth, 'DELETE'); if (x.ok) c.boxes = c.boxes.filter(y => y !== uid); }
         if (r.ok) r = await this.pull(c, 'inbox', auth, m => this.keyFor(ck, m.from));
         /* this phone's own new records go to the other office phones */
-        if (r.ok) { const seen = has('inbox'), p = exportPack('full'); p.events = p.events.filter(e => e.dev === App.set.dev && !seen.has(e.id)); if (p.events.length) { r = await this.send(c, 'inbox', auth, p, await this.keyFor(ck, 'office')); if (r.ok) mark('inbox', p.events.map(e => e.id)); } }
+        if (r.ok) { const seen = has('inbox'), p = exportPack('full'); p.events = p.events.filter(e => e.dev === App.set.dev && !seen.has(e.id)); if (p.events.length) { r = await this.send(c, 'inbox', auth, p, await this.keyFor(ck, 'office'), this.wakeFor(p.events, App.me.uid)); if (r.ok) mark('inbox', p.events.map(e => e.id)); } }
         /* each person's box gets what their file would have, only what is new for them */
+        if (r.ok) await this.pushSub(c, auth);
         for (const uid of c.boxes || []) {
           if (!r.ok) break;
           const seen = has(uid), p = exportPack('person', uid); p.events = p.events.filter(e => !seen.has(e.id));
-          if (p.events.length) { r = await this.send(c, uid, auth, p, await this.keyFor(ck, uid)); if (r.ok) mark(uid, p.events.map(e => e.id)); }
+          if (p.events.length) { r = await this.send(c, uid, auth, p, await this.keyFor(ck, uid), this.wakeFor(p.events, uid)); if (r.ok) mark(uid, p.events.map(e => e.id)); }
         }
       } else {
         const auth = { tok: c.tok, box: c.box }, raw = unb64(c.k);
         r = await this.pull(c, c.box, auth, () => raw);
         if (r.ok && App.me.uid === c.box) {
           const seen = has('inbox'), p = exportPack('person', c.box); p.events = p.events.filter(e => e.by === c.box && !seen.has(e.id));
-          if (p.events.length) { r = await this.send(c, 'inbox', auth, p, raw); if (r.ok) mark('inbox', p.events.map(e => e.id)); }
+          if (p.events.length) { r = await this.send(c, 'inbox', auth, p, raw, this.wakeFor(p.events, '')); if (r.ok) mark('inbox', p.events.map(e => e.id)); }
         }
+        if (r.ok) await this.pushSub(c, auth);
       }
       await KV.set(App.ns + 'syncSent', sent);
       if (r.ok) { c.last = nowISO(); this.state = { st: 'ok' }; } else this.state = { st: r.status === 401 ? 'revoked' : 'err' };
       await this.save(c);
     } catch (e) { this.state = { st: 'err' }; } finally { this.busy = false; }
     if (['me', 'server'].includes(App.route.name) && !W) render();
+  },
+  /* one-time login code: the person's file waits on the server, locked with a key made slowly from the code */
+  async codeKey(code, id) { const k = await crypto.subtle.importKey('raw', new TextEncoder().encode(String(code)), 'PBKDF2', false, ['deriveBits']); return new Uint8Array(await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: new TextEncoder().encode(id), iterations: 150000, hash: 'SHA-256' }, k, 256)); },
+  inviteId: phone => sha256('aiec-invite|' + phone10(phone)),
+  async invite(uid, phone) {
+    const c = this.cfg(), ck = c && c.role === 'office' && await this.ck();
+    if (!ck) return { err: 'srv_needed' };
+    if (!validPhone(phone || '')) return { err: 'err_phone' };
+    const pack = await finishPack(exportPack('person', uid)); pack.sync = await this.creds('person', uid);
+    const code = String(100000 + (crypto.getRandomValues(new Uint32Array(1))[0] % 900000)), id = await this.inviteId(phone), salt = rid(16);
+    const blob = await this.lock(await this.codeKey(code, id), JSON.stringify(pack));
+    if (blob.length > 880000) return { err: 'err_code_big' };
+    const r = await this.api(c, '/invite/' + id, { tok: await this.tokenFor(ck, 'office') }, 'PUT', { blob, salt, codeHash: await sha256(salt + '|' + code), exp: new Date(Date.now() + 2 * 864e5).toISOString() });
+    return r.ok ? { code } : { err: 'err_server_down' };
+  },
+  async openCode(url, phone, code) {
+    url = String(url || '').trim().replace(/\/+$/, '');
+    if (!/^https?:\/\/[^\s/]+/.test(url)) return { err: 'err_server_url' };
+    if (!validPhone(phone || '')) return { err: 'err_phone' };
+    if (!/^\d{6}$/.test(String(code || '').trim())) return { err: 'code_gone' };
+    const id = await this.inviteId(phone);
+    let r, j = {};
+    try { r = await fetch(url + '/invite/' + id + '/open', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code: String(code).trim() }) }); j = await r.json().catch(() => ({})); } catch (e) { return { err: 'err_server_down' }; }
+    if (r.status === 403) return { err: 'code_wrong', n: j.left || 0 };
+    if (!r.ok) return { err: r.status === 404 ? 'code_gone' : 'err_server_down' };
+    let txt; try { txt = await this.unlock(await this.codeKey(String(code).trim(), id), j.blob); } catch (e) { return { err: 'code_gone' }; }
+    const res = await importText(txt);
+    if (!res.ok) return { err: 'imp_bad' };
+    App.set.lastSrv = url; await saveSettings();
+    return { ok: true, role: (S.users[(JSON.parse(txt) || {}).for] || {}).role };
   },
   soon() { clearTimeout(this.soonT); this.soonT = setTimeout(() => this.tick(), 2500); },
   start() { setInterval(() => this.tick(), 60000); window.addEventListener('online', () => this.tick()); document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') this.tick(); }); },
@@ -6468,7 +6528,7 @@ function render() {
   const r = App.route;
   App.pageSay = ''; App.pageHelp = '';
   let h;
-  const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr', 'splash', 'gate', 'door', 'enquiry', 'joinReq', 'reqSent'].includes(r.name);
+  const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr', 'splash', 'gate', 'door', 'enquiry', 'joinReq', 'reqSent', 'codeLogin'].includes(r.name);
   try { h = gated ? SCREENS.install() : (SCREENS[r.name] || SCREENS.home)(r.p || {}); }
   catch (e) { console.error(e); h = `<main class="wrap"><div class="err">⚠️ ${esc(e.message)}</div><button class="btn btn-p" data-a="nav" data-v="home">🏠 ${t('nav_home')}</button></main>`; }
   const banner = App.mode === 'practice' ? `<div class="practice">🎓 ${t('practice_banner')}</div>` : '';
@@ -8337,12 +8397,19 @@ SCREENS.door = ({ kind }) => {
   const tile = (a, v, i, l, sub) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span><span>${t(l)}${sub ? `<br><small>${t(sub)}</small>` : ''}</span></button>`;
   const people = list.length ? `<p class="say">👤 ${t('door_pick_you')}</p>${users.length > 8 ? formInp('uq', 'search') : ''}<div class="tiles one">${list.map(u => `<button class="tile" data-a="loginUser" data-v="${u.uid}"><span class="i">${ROLE_ICON[u.role]}</span><span>${esc(u.name)}<br><small>${t('r_' + u.role)}</small></span></button>`).join('')}</div><div style="height:12px"></div>` : '';
   let body;
-  if (kind === 'cust') { App.pageSay = t('door_cust'); body = people + `<div class="tiles one">${tile('nav', 'join', '📂', 'cust_have_file', 'cust_have_file_d')}${tile('nav', 'enquiry', '📞', 'cust_new_enq', 'cust_new_enq_d')}</div>`; }
-  else if (kind === 'staff') { App.pageSay = t('door_staff'); body = people + `<div class="tiles one">${tile('nav', 'join', '📂', 'staff_open_file')}</div><p class="small muted center">🧰 ${t('staff_new_here')}</p><button class="btn" data-a="door" data-v="join">🧰 ${t('door_join')}</button>`; }
+  if (kind === 'cust') { App.pageSay = t('door_cust'); body = people + `<div class="tiles one">${tile('nav', 'codeLogin', '🔑', 'code_have')}${tile('nav', 'join', '📂', 'cust_have_file', 'cust_have_file_d')}${tile('nav', 'enquiry', '📞', 'cust_new_enq', 'cust_new_enq_d')}</div>`; }
+  else if (kind === 'staff') { App.pageSay = t('door_staff'); body = people + `<div class="tiles one">${tile('nav', 'codeLogin', '🔑', 'code_have')}${tile('nav', 'join', '📂', 'staff_open_file')}</div><p class="small muted center">🧰 ${t('staff_new_here')}</p><button class="btn" data-a="door" data-v="join">🧰 ${t('door_join')}</button>`; }
   else { App.pageSay = t('join_pick'); body = (App.joinLink ? `<div class="okbox">🏢 ${t('gate_join_for', { n: esc(App.joinLink.org) })}</div>` : '') + `<p class="say">${t('join_pick')}</p><div class="tiles">${JOIN_ROLES.map(([r, i]) => `<button class="tile" data-a="joinRole" data-v="${r}"><span class="i">${i}</span>${t('jr_' + r)}</button>`).join('')}</div>`; }
   return topBar(t(kind === 'cust' ? 'door_cust' : kind === 'staff' ? 'door_staff' : 'door_join'), { back: true }) + `<main class="wrap">${body}${App.mode === 'practice' ? `<div class="note">🎓 ${t('practice_pin')}</div>` : ''}</main>`;
 };
 function officeNoField() { const f = App.form; if (f.rqOffice == null) f.rqOffice = (App.joinLink && App.joinLink.office) || S.config.officeNumber || ''; return formInp('rqOffice', 'f_office_no', { type: 'tel', mode: 'tel', max: 15 }); }
+SCREENS.codeLogin = () => {
+  const f = App.form; if (f.clUrl == null) f.clUrl = (App.joinLink && App.joinLink.srv) || App.set.lastSrv || '';
+  App.pageSay = t('code_login_say');
+  return topBar(t('code_have'), { back: true }) + `<main class="wrap"><p class="say">🔑 ${t('code_login_say')}</p>
+    ${formInp('clUrl', 'srv_url', { type: 'url' })}${formInp('clPhone', 'f_mobile', { type: 'tel', mode: 'tel', max: 13 })}${formInp('clCode', 'f_code', { mode: 'numeric', max: 6, big: true })}<div id="ferr"></div></main>
+    <div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="codeOpen">📥 ${t('code_open')}</button></div></div>`;
+};
 SCREENS.joinReq = ({ role }) => {
   const f = App.form; f.rqRole = role;
   App.pageSay = t('jr_say');
@@ -8389,9 +8456,10 @@ function reqDecode(text) {
 function parseJoin(hash) {
   if (!/^#j=1/.test(hash || '')) return null;
   const q = new URLSearchParams(hash.slice(1));
-  return { org: (q.get('n') || '').slice(0, 60), office: (q.get('o') || '').replace(/[^\d+]/g, '').slice(0, 15) };
+  const srv = (q.get('s') || '').slice(0, 200);
+  return { org: (q.get('n') || '').slice(0, 60), office: (q.get('o') || '').replace(/[^\d+]/g, '').slice(0, 15), srv: /^https:\/\/[^\s]+$/.test(srv) ? srv : '' };
 }
-const joinUrl = () => location.href.split('#')[0].split('?')[0] + '#' + new URLSearchParams({ j: '1', n: S.org ? S.org.name : '', o: S.config.officeNumber || '' }).toString();
+const joinUrl = () => location.href.split('#')[0].split('?')[0] + '#' + new URLSearchParams(Object.assign({ j: '1', n: S.org ? S.org.name : '', o: S.config.officeNumber || '' }, Sync.cfg() ? { s: Sync.cfg().url } : {})).toString();
 SCREENS.joinlink = () => {
   if (!['owner', 'admin'].includes(App.me.role)) return SCREENS.home();
   App.pageSay = t('join_link_say');
@@ -9266,6 +9334,12 @@ function userAddSheet() {
     <div class="card center" style="margin-top:12px"><div class="small muted">${t('new_pin_is')}</div><div style="font-size:2.2rem;font-weight:800;letter-spacing:6px">${f.nuPin}</div><div class="small">${t('pin_tell')}</div></div>
     <button class="btn btn-ok btn-big" data-a="userSave">✅ ${t('save')}</button><div class="note">ℹ️ ${t('customer_add_note')}</div>`);
 }
+function codeSheet() {
+  const f = App.form, x = S.users[f.codeUid]; if (!x) return;
+  sheet(`<h2>📱 ${t('code_title')}</h2><p class="small">${t('code_say')}</p>` + (f.codeOut
+    ? `<div class="card center"><p>${t('code_show', { n: esc(x.name) })}</p><div style="font:800 2.4rem/1.2 monospace;letter-spacing:.25em">${esc(f.codeOut)}</div></div><div class="warnbox">📞 ${t('code_tell')}</div>`
+    : `${formInp('codePhone', 'f_mobile', { type: 'tel', mode: 'tel', max: 13 })}<button class="btn btn-ok btn-big" data-a="codeMake">🔑 ${t('code_make')}</button>`));
+}
 function userSheet(uid) {
   const x = S.users[uid]; if (!x) return;
   const roles = ROLES.filter(r => r !== 'customer' && (App.me.role === 'owner' || r !== 'owner'));
@@ -9273,7 +9347,7 @@ function userSheet(uid) {
   sheet(`<h2>${ROLE_ICON[x.role]} ${esc(x.name)}</h2><p class="muted">${t('r_' + x.role)} · ${x.active ? t('active') : t('blocked')}</p>
     ${!self && !locked && x.role !== 'customer' ? `<div class="small" style="font-weight:800;margin-bottom:6px">${t('change_role')}</div><div class="tiles">${roles.map(r => `<button class="tile ${x.role === r ? 'on' : ''}" data-a="userRole" data-v="${uid}|${r}" style="min-height:76px"><span class="i">${ROLE_ICON[r]}</span>${t('r_' + r)}</button>`).join('')}</div>` : ''}
     ${x.role === 'tech' && !self ? `<div class="small" style="font-weight:800;margin:10px 0 6px">🏢 ${t('r_partner')}</div><div class="tiles one">${usersOf('partner').map(c => `<button class="tile ${x.company === c.uid ? 'on' : ''}" data-a="userCo" data-v="${uid}|${c.uid}" style="min-height:60px"><span class="i">🏢</span>${esc(c.name)}</button>`).join('')}</div>` : ''}
-    ${!locked ? `<div class="stack" style="margin-top:12px"><button class="btn" data-a="userPin" data-v="${uid}">🔢 ${t('reset_pin')}</button>${!self ? `<button class="btn ${x.active ? 'btn-bad' : 'btn-ok'}" data-a="userActive" data-v="${uid}">${x.active ? '⛔ ' + t('block_user') : '✅ ' + t('unblock_user')}</button>` : ''}</div>` : `<div class="note">${t('err_role', { roles: t('r_owner') })}</div>`}`);
+    ${!locked ? `<div class="stack" style="margin-top:12px">${!self && x.active && !['owner', 'admin'].includes(x.role) && Sync.cfg() && Sync.cfg().role === 'office' ? `<button class="btn btn-p" data-a="codeFor" data-v="${uid}">📱 ${t('code_title')}</button>` : ''}<button class="btn" data-a="userPin" data-v="${uid}">🔢 ${t('reset_pin')}</button>${!self ? `<button class="btn ${x.active ? 'btn-bad' : 'btn-ok'}" data-a="userActive" data-v="${uid}">${x.active ? '⛔ ' + t('block_user') : '✅ ' + t('unblock_user')}</button>` : ''}</div>` : `<div class="note">${t('err_role', { roles: t('r_owner') })}</div>`}`);
 }
 /* ---------- owner: business rules ---------- */
 SCREENS.server = () => {
@@ -10300,7 +10374,7 @@ const Notify = {
     document.addEventListener('pointerdown', () => this.unlock(), true);
     /* the message never stays in the way: it goes away when the person scrolls */
     window.addEventListener('scroll', () => { if (this.bannerOld()) this.hide(); }, { passive: true });
-    if (navigator.serviceWorker) navigator.serviceWorker.addEventListener('message', e => { if (e.data && e.data.aiec === 'openTasks' && App.me) go('home'); });
+    if (navigator.serviceWorker) navigator.serviceWorker.addEventListener('message', e => { if (e.data && e.data.aiec === 'openTasks' && App.me) go('home'); if (e.data && e.data.aiec === 'sync') Sync.tick(); });
     this.setupBackground();
   }
 };
@@ -10861,6 +10935,13 @@ const ACT = {
   srvOn: async () => { const f = App.form, e = await Sync.enable(f.srvUrl, f.srvSecret); if (e) { const el = $('#ferr'); if (el) el.innerHTML = `<div class="err">${t(e)}</div>`; toast(t(e), true); return; } App.form = {}; toast(t('saved_item')); render(); },
   srvOff: async () => { await Sync.disable(); render(); },
   srvNow: async () => { await Sync.tick(); render(); },
+  codeFor: v => { const x = S.users[v], P = x && x.projectId ? S.projects[x.projectId] : null; App.form.codeUid = v; App.form.codePhone = ((S.workers[v] || {}).profile || {}).phone || (P && P.contact.phone) || ''; App.form.codeOut = null; codeSheet(); },
+  codeMake: async () => { const f = App.form, r = await Sync.invite(f.codeUid, f.codePhone); if (r.err) { toast(t(r.err), true); return; } f.codeOut = r.code; codeSheet(); },
+  codeOpen: async () => {
+    const f = App.form, r = await Sync.openCode(f.clUrl, f.clPhone, f.clCode);
+    if (r.err) { const el = $('#ferr'); const m = t(r.err, { n: r.n }); if (el) el.innerHTML = `<div class="err">${m}</div>`; toast(m, true); return; }
+    App.form = {}; toast(t('code_ok')); go('door', { kind: r.role === 'customer' ? 'cust' : 'staff' }, { replace: true });
+  },
   splashSkip: () => { clearTimeout(App.splashT); go('gate', {}, { replace: true }); },
   door: v => { App.form = {}; go('door', { kind: v }); },
   joinRole: v => { App.form = { rqRole: v }; go('joinReq', { role: v }); },

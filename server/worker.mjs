@@ -8,5 +8,6 @@ export default {
   /* once a day: remove old rate counters */
   async scheduled(event, env) {
     await env.DB.prepare("DELETE FROM meta WHERE k LIKE 'rate|%' AND k < ?").bind('rate|~').run();
+    await env.DB.prepare('DELETE FROM invites WHERE exp < ?').bind(new Date().toISOString()).run();
   }
 };

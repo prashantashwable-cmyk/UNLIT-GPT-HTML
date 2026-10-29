@@ -1,6 +1,6 @@
 /* Offline support when the app is served over https (for example GitHub Pages).
    Opening AIEC-Elevator-OS.html directly from the phone works without this file. */
-const CACHE = 'aiec-os-v39';
+const CACHE = 'aiec-os-v40';
 const NOTIFY = 'aiec-notify';
 const SHELL = ['./', './index.html', './AIEC-Elevator-OS.html', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png'];
 
@@ -17,6 +17,16 @@ self.addEventListener('fetch', e => {
     fetch(e.request).then(r => { const copy = r.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)); return r; })
       .catch(() => caches.match(e.request).then(m => m || caches.match('./AIEC-Elevator-OS.html')))
   );
+});
+
+/* push from the company server: it carries no text, it only says there is new work. Open apps sync at once. */
+self.addEventListener('push', e => {
+  e.waitUntil((async () => {
+    const open = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    open.forEach(c => c.postMessage({ aiec: 'sync' }));
+    if (open.some(x => x.visibilityState === 'visible')) return;
+    await self.registration.showNotification('AIEC', { body: 'नवीन काम · नया काम · New work', tag: 'aiec-push', icon: 'icon-192.png', badge: 'icon-192.png', renotify: true, vibrate: [200, 100, 200] });
+  })());
 });
 
 /* tapping a notification opens the app on the task list */

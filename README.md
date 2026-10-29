@@ -31,7 +31,14 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
 * **Removing a person** deletes their box and stops their phone at once.
 * **What stays the same:** the rules are still checked on every phone, as before. Files, paste and the offline flows keep working.
 * **Setting it up:** the server itself runs on the company's own Cloudflare account; setup steps are in `server/README.md` (English and Marathi).
-* **Not in this stage:** login by SMS code, alerts that wake a closed app, photo storage and backups on the server come in later stages.
+* **A new phone without a file:**
+  * The office makes a one-time 6-digit **login code** (Users → the person → Login code for a new phone) and tells it on a call.
+  * The person types the server address, their mobile number and the code. Their data comes down locked with the code.
+  * The code works once, for 2 days, and is deleted after 5 wrong tries. There is no SMS, so no SMS cost or DLT registration.
+* **Alerts:** connected phones that allow notifications are woken by the server.
+  * An SOS or a safety incident wakes the office at once; other news at most every 10 minutes.
+  * An alert carries no text or names. The details load when the person opens the app with their PIN.
+* **Not yet:** the business rules are checked on the phones, not on the server. Photo storage and nightly backups on the server come in later stages.
 
 ### Front door: who can get in, and how
 The app opens with the animated AIEC logo (tap to skip; skipped for "reduce motion", lift QR stickers and join links), then one screen with the language choice and three doors. If one person used the phone before, "Continue as …" goes straight to their PIN.
