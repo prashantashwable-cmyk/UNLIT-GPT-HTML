@@ -1,5 +1,5 @@
 # AIEC company server - free plan, nothing to create by hand.
-# Cloudflare Workers -> Create -> Connect GitHub -> this repository, root folder "server", then Deploy.
+# Cloudflare Workers -> Create -> Connect GitHub -> this repository, production branch "main", root folder "server", then Deploy.
 name = "aiec-server"
 main = "do.mjs"
 compatibility_date = "2025-04-01"

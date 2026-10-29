@@ -15,7 +15,7 @@ This uses Cloudflare's free plan (Workers + one Durable Object with its own smal
 1. Make sure the **Cloudflare Workers and Pages** app on GitHub can see this repository: GitHub → Settings → Applications → Cloudflare → *Only select repositories* → `UNLIT-GPT-HTML`.
 2. In Cloudflare go to **Workers & Pages → Create → Connect GitHub**, choose `UNLIT-GPT-HTML`, and fill in:
    - **Project name:** `aiec-server`.
-   - **Production branch:** `ccr-941b528b-js9mxg`.
+   - **Production branch:** `main`.
    - **Root directory (path):** `server`. This field is under *Advanced settings* or *Build settings*.
    - **Build command:** leave empty. **Deploy command:** `npx wrangler deploy` (the default).
 3. Press **Deploy**. When it finishes, it shows the address, like `https://aiec-server.<your-name>.workers.dev`. Open `<that address>/health`; it should show `"ok":true`.

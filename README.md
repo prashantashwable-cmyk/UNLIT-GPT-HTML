@@ -30,7 +30,7 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
 * **Each person's box:** it gets exactly what their file would have, so partner companies, technicians and suppliers still never receive customer contacts or prices. A person's file carries only their own connection, never the company key.
 * **Removing a person** deletes their box and stops their phone at once.
 * **What stays the same:** the rules are still checked on every phone, as before. Files, paste and the offline flows keep working.
-* **Setting it up (free, from a phone):** in Cloudflare choose Workers & Pages → Create → Connect GitHub. Pick this repository, set the root directory to `server`, and deploy.
+* **Setting it up (free, from a phone):** in Cloudflare choose Workers & Pages → Create → Connect GitHub. Pick this repository, choose the production branch `main`, set the root directory to `server`, and deploy.
   * There is no database to create, no card and no secret.
   * On the Head Quarter phone, type the address in Me → Company server and turn it on. The first office phone claims the server.
   * Details are in `server/README.md`.
