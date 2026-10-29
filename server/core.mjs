@@ -179,7 +179,9 @@ export async function handle(req, env, store) {
     }
     if (req.method === 'GET' && parts[0] === 'boxes') {
       if (!who.office) return json(403, { error: 'office_only' });
-      return json(200, { boxes: await store.listBoxes() });
+      const ids = await store.listBoxes(), out = [];
+      for (const id of ids) out.push({ id, seen: await store.getMeta('seen|' + id) });
+      return json(200, { boxes: out });
     }
 
     /* put an encrypted message into a box */
@@ -201,6 +203,7 @@ export async function handle(req, env, store) {
       const box = parts[1];
       if (!who.office && box !== who.box) return json(403, { error: 'not_your_box' });
       const after = Math.max(0, parseInt(url.searchParams.get('after') || '0', 10) || 0);
+      if (!who.office) await store.setMeta('seen|' + box, new Date().toISOString());
       const msgs = await store.listMsgs(box, after, PAGE);
       return json(200, { msgs, more: msgs.length === PAGE });
     }

@@ -52,6 +52,14 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const B2 = await pb.evaluate(() => Object.keys(S.projects).length);
   assert(await pc.evaluate(n => Object.keys(S.projects).length < n, B2), 'and only their own jobs');
 
+  /* Head Quarter sees whose phone is not syncing */
+  await pa.evaluate(() => { App.phonesSeen = null; App.phonesAsked = false; go('server'); }); await pa.waitForTimeout(800);
+  const ph = await pa.$eval('main', m => m.innerText);
+  const leadName = await pa.evaluate(uid => S.users[uid].name, LEAD);
+  assert(/Phones/.test(ph) && new RegExp(leadName + '\\s*\\n?\\s*✅').test(ph), 'the office sees the technician\'s phone synced');
+  assert(/Never connected/.test(ph) && await pa.$('main [data-a="codeFor"]'), 'people whose phone never connected are shown, with a button to make their login code');
+  assert(/Ready check/.test(ph) && /⚠️ Server address starts with https/.test(ph), 'the ready check says a plain http address will not do for stickers');
+
   /* who may do what on the server */
   const tok = await pc.evaluate(() => Sync.cfg().tok);
   const call = (path, o) => fetch(url + path, o).then(r => r.status);

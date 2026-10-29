@@ -40,6 +40,18 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await ev(`(p => p.status === "confirmed" && /^STMT /.test(p.hist[p.hist.length - 1].ref))(S.projects["AIEC-P007"].payments.find(p => p.id === "${tok.id}"))`), 'Confirm marks the payment as found in the bank, with the statement line as the reference');
   assert(!(await page.$$('[data-a="reconOk"]')).length, 'the confirmed one leaves the list');
 
+  /* the job number from the UPI payment note is enough, even with no UTR and a later date */
+  assert(await page.evaluate(() => /tn=AIEC-P004\+ARR/.test(upiLink(S.projects['AIEC-P004'], { purpose: 'arrival', amount: 5 }))), 'the UPI link puts the job number and a short purpose code in the payment note');
+  const later = new Date(Date.parse(d2) + 10 * 864e5).toISOString().slice(0, 10);
+  const csv2 = ['Date,Narration,Deposit Amt.', `${dmy(later)},UPI/CR/412233/RAHUL S/AIEC-P004 ARR,${amt}.00`, `${dmy(later)},UPI/CR/99/SOMEONE/AIEC-P004 ARR,${amt + 1}.00`].join('\n');
+  const f2 = path.join(os.tmpdir(), 'aiec-stmt2-' + process.pid + '.csv'); fs.writeFileSync(f2, csv2);
+  await page.evaluate(() => { loginAs(S.users.PFIN); go('recon'); }); await page.waitForTimeout(100);
+  await page.setInputFiles('#reconFile', f2); await page.waitForTimeout(500); fs.unlinkSync(f2);
+  assert((await page.$$('[data-a="reconOk"][data-v^="AIEC-P004|PAY-R1|"]')).length === 1 && /Job number in the bank text/.test(await page.innerText('main')), 'a bank line with the job number is matched to that job\'s waiting payment');
+  assert(/AIEC-P004 ARR,|SOMEONE/.test(await page.innerText('main')) && (await page.$$('[data-a="reconOk"]')).length === 1, 'the job number alone is not enough when the amount differs');
+  await page.click('[data-a="reconOk"][data-v^="AIEC-P004|PAY-R1|"]'); await page.waitForTimeout(400);
+  assert(await ev('S.projects["AIEC-P004"].payments.find(p => p.id === "PAY-R1").status === "confirmed"'), 'confirmed by a person, as always');
+
   /* sales records payments, so it does not open the bank match */
   await page.evaluate(() => { loginAs(S.users.PSALES); go('recon'); }); await page.waitForTimeout(100);
   assert(!(await page.$('#reconFile')), 'the bank match is for Finance and the office only');

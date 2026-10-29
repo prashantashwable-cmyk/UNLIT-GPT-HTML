@@ -46,7 +46,8 @@ One downloadable HTML file (`AIEC-Elevator-OS.html`) that runs on any Android ph
   * "Lift stopped" wakes the office at once.
   * The office sees **Resident reports** on its home screen and opens a ticket in one tap.
   * Calling stays the first step for someone trapped.
-* **Not yet:** the business rules are checked on the phones, not on the server.
+* **Phones and ready check (Head Quarter / Admin):** the Company server screen shows when each person's phone last took its updates (⚠️ after 2 days, ⛔ never connected), with a button to make their login code. A short check lists what is still missing: an https address, the recovery code, a recent backup, the office number.
+* **Why the server does not check the business rules:** the server cannot read the data (it is locked on the phones), so it cannot check the rules on it. This is a deliberate choice for privacy. Every phone checks every record, and the office phones refuse a forged or out-of-role record when it arrives, as with files.
 
 ### Front door: who can get in, and how
 The app opens with the animated AIEC logo (tap to skip; skipped for "reduce motion", lift QR stickers and join links), then one screen with the language choice and three doors. If one person used the phone before, "Continue as …" goes straight to their PIN.
@@ -219,7 +220,7 @@ Every lift job has one project ID (e.g. `AIEC-2610-K7Q`). Every action — a pho
   * Finance pays it with the bank reference. Paying waits until the customer's own payment for the material is found in the bank, so the company does not pay before it is paid. The person who approved a bill does not also pay it (the Head Quarter can pay in place of Finance only for a bill someone else approved).
   * The supplier sees only its own bills and their status. Paid bills are in the payments spreadsheet as money out.
 * **Bank statement match (Finance and office):** **Me → Bank statement match** loads a bank statement saved as CSV.
-  * The file is read on the phone and not stored. Credits are matched to customer payments waiting to be checked: first by the UPI/UTR reference in the bank text, then by the same amount within 3 days.
+  * The file is read on the phone and not stored. Credits are matched to customer payments waiting to be checked: first by the UPI/UTR reference in the bank text, then by the same amount within 3 days. A bank line that carries the job number (the UPI payment link puts the job number and a short purpose code such as ARR in the payment note) is matched to that job's waiting payment of the same amount, even without a UTR.
   * Each match is only a suggestion: a person presses **Confirm** (this marks the payment found in the bank, with the statement line as the reference) or **Not this**. Bank lines that match nothing are listed for a person to look at. Someone cannot confirm a payment they recorded themselves.
 
 ### Ticket urgency, time limits, lift QR sticker

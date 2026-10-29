@@ -1309,6 +1309,8 @@ const L = {
   recon_read: ['{n} credit lines read from {name}', '{name} से {n} जमा लाइनें पढ़ीं', '{name} मधून {n} जमा ओळी वाचल्या'],
   recon_suggest: ['Suggested matches', 'सुझाए मिलान', 'सुचवलेल्या जुळण्या'],
   recon_by_ref: ['Reference matches', 'रेफ़रेंस मिला', 'संदर्भ जुळला'],
+  recon_by_note: ['Job number in the bank text', 'बैंक टेक्स्ट में जॉब नंबर', 'बँकेच्या मजकुरात जॉब क्रमांक'],
+  pay_note_keep: ['Do not change the payment note in your UPI app: it carries your job number, so the office finds your payment faster.', 'UPI ऐप में भुगतान नोट न बदलें: उसमें आपका जॉब नंबर है, इससे ऑफिस आपका भुगतान जल्दी ढूँढता है।', 'UPI ॲपमधील पेमेंट नोट बदलू नका: त्यात तुमचा जॉब क्रमांक आहे, त्यामुळे ऑफिस तुमचे पेमेंट लवकर शोधते.'],
   recon_by_amount: ['Same amount and date — check carefully', 'वही राशि और तारीख — ध्यान से जाँचें', 'तीच रक्कम आणि तारीख — काळजीपूर्वक तपासा'],
   recon_app: ['In the app', 'ऐप में', 'ॲपमध्ये'],
   recon_bank: ['In the bank', 'बैंक में', 'बँकेत'],
@@ -2277,6 +2279,21 @@ const L = {
   err_code_big: ['Too much data for a code. Send their file instead.', 'कोड के लिए डेटा बहुत ज़्यादा है। उनकी फ़ाइल भेजें।', 'कोडसाठी डेटा खूप जास्त आहे. त्यांची फाइल पाठवा.'],
   srv_needed: ['Turn on the company server first (Me → Company server).', 'पहले कंपनी सर्वर चालू करें (मैं → कंपनी सर्वर)।', 'आधी कंपनी सर्व्हर सुरू करा (मी → कंपनी सर्व्हर).'],
   bk_title: ['Backup', 'बैकअप', 'बॅकअप'],
+  ph_title: ['Phones', 'फ़ोन', 'फोन'],
+  ph_note: ['When each person\'s phone last took its updates. Make a login code for anyone not connected.', 'हर व्यक्ति के फ़ोन ने आखिरी बार कब अपडेट लिए। जो जुड़े नहीं, उनके लिए लॉगिन कोड बनाएँ।', 'प्रत्येकाच्या फोनने शेवटचे अपडेट केव्हा घेतले. जे जोडलेले नाहीत त्यांच्यासाठी लॉगिन कोड तयार करा.'],
+  ph_never: ['Never connected', 'कभी नहीं जुड़ा', 'कधीच जोडले नाही'],
+  ph_days: ['Not synced for {n} days', '{n} दिन से सिंक नहीं', '{n} दिवस सिंक नाही'],
+  rd_title: ['Ready check', 'तैयारी जाँच', 'तयारी तपासणी'],
+  rd_https: ['Server address starts with https', 'सर्वर पता https से शुरू', 'सर्व्हर पत्ता https ने सुरू'],
+  rd_https_fix: ['needed for stickers and join links', 'स्टिकर और जुड़ने के लिंक के लिए ज़रूरी', 'स्टिकर आणि जोडणी लिंकसाठी आवश्यक'],
+  rd_code: ['Recovery code made', 'रिकवरी कोड बना', 'रिकव्हरी कोड तयार'],
+  rd_code_fix: ['Head Quarter makes it below', 'हेड क्वार्टर नीचे बनाए', 'हेड क्वार्टर खाली तयार करेल'],
+  rd_backup: ['Backup in the last 3 days', 'पिछले 3 दिनों में बैकअप', 'मागील 3 दिवसांत बॅकअप'],
+  rd_backup_fix: ['press Back up now', 'अभी बैकअप लें दबाएँ', 'आत्ता बॅकअप घ्या दाबा'],
+  rd_office: ['Office number set', 'ऑफिस नंबर सेट', 'ऑफिस नंबर सेट'],
+  rd_office_fix: ['Business rules → office number', 'बिज़नेस नियम → ऑफिस नंबर', 'व्यवसाय नियम → ऑफिस नंबर'],
+  rd_people: ['Everyone\'s phone connected', 'सबके फ़ोन जुड़े', 'सर्वांचे फोन जोडलेले'],
+  rd_people_fix: ['see Phones below', 'नीचे फ़ोन देखें', 'खाली फोन पाहा'],
   bk_none: ['No backup yet. Make the recovery code to start nightly backups.', 'अभी कोई बैकअप नहीं। रात के बैकअप शुरू करने के लिए रिकवरी कोड बनाएँ।', 'अजून बॅकअप नाही. रात्रीचे बॅकअप सुरू करण्यासाठी रिकव्हरी कोड तयार करा.'],
   bk_last: ['Last backup: {t}', 'आखिरी बैकअप: {t}', 'शेवटचा बॅकअप: {t}'],
   bk_old: ['The last backup is more than 3 days old.', 'आखिरी बैकअप 3 दिन से पुराना है।', 'शेवटचा बॅकअप 3 दिवसांपेक्षा जुना आहे.'],
@@ -4001,6 +4018,13 @@ const Sync = {
     }
     await KV.set(App.ns + 'reports', list.slice(0, 200)); App.reports = list;
     return { ok: true };
+  },
+  /* when each person's phone last took its updates (the office sees who is not syncing) */
+  async phones() {
+    const c = this.cfg(), ck = c && c.role === 'office' && await this.ck(); if (!ck) return null;
+    const r = await this.api(c, '/boxes', { tok: await this.tokenFor(ck, 'office') }); if (!r.ok) return null;
+    const out = {}; for (const b of r.body.boxes || []) { if (typeof b === 'string') out[b] = null; else out[b.id] = b.seen || null; }
+    App.phonesSeen = out; return out;
   },
   soon() { clearTimeout(this.soonT); this.soonT = setTimeout(() => this.tick(), 2500); },
   start() { setInterval(() => this.tick(), 60000); window.addEventListener('online', () => this.tick()); document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') this.tick(); }); },
@@ -7937,9 +7961,11 @@ function reconMatches(lines, skip) {
   const pend = visibleProjects(App.me).flatMap(P => P.payments.filter(p => p.status === 'pending').map(p => ({ P, p })));
   const used = new Set(), out = [];
   /* a payment marked "Not this" is not suggested again, so its bank line shows as unmatched */
-  for (const kind of ['ref', 'amount']) for (const L of lines) {
+  /* job number in the bank text (from the UPI payment note): same amount, and the purpose code when the job has more than one waiting payment */
+  const byNote = (P, p, L) => { const tx = norm(L.text); if (!tx.includes(norm(P.id)) || +p.amount !== L.amount) return false; const many = P.payments.filter(x => x.status === 'pending').length > 1; return !many || tx.includes(norm(P.id) + (PAY_CODE[p.purpose] || '')) || new RegExp('\\b' + (PAY_CODE[p.purpose] || '#') + '\\b').test(String(L.text).toUpperCase()); };
+  for (const kind of ['ref', 'note', 'amount']) for (const L of lines) {
     if (used.has('L' + L.i)) continue;
-    const hit = pend.find(({ p }) => !used.has(p.id) && !(skip && skip.has(p.id)) && (kind === 'ref' ? norm(p.ref).length >= 6 && norm(L.text).includes(norm(p.ref)) : +p.amount === L.amount && Math.abs(Date.parse(L.date) - Date.parse(p.t.slice(0, 10))) <= 3 * 864e5));
+    const hit = pend.find(({ P, p }) => !used.has(p.id) && !(skip && skip.has(p.id)) && (kind === 'ref' ? norm(p.ref).length >= 6 && norm(L.text).includes(norm(p.ref)) : kind === 'note' ? byNote(P, p, L) : +p.amount === L.amount && Math.abs(Date.parse(L.date) - Date.parse(p.t.slice(0, 10))) <= 3 * 864e5));
     if (hit) { used.add('L' + L.i); used.add(hit.p.id); out.push({ kind, line: L, P: hit.P, p: hit.p }); }
   }
   return { out, freeLines: lines.filter(L => !used.has('L' + L.i)), freePays: pend.filter(({ p }) => !used.has(p.id)) };
@@ -7951,7 +7977,7 @@ SCREENS.recon = () => {
   return topBar(t('recon_title'), { back: true }) + `<main class="wrap"><div class="note">🏦 ${t('recon_note')}</div>
     <label class="btn btn-p btn-big" for="reconFile">📥 ${t('recon_load')}</label><input id="reconFile" type="file" accept=".csv,text/csv,text/plain" style="display:none" data-a-change="recon">
     ${R ? `<p class="small muted">${t('recon_read', { n: R.lines.length, name: esc(R.name) })}</p>
-      <h2 class="sec">✅ ${t('recon_suggest')} (${m.out.length})</h2>${m.out.map(x => `<div class="card"><span class="chip ${x.kind === 'ref' ? 'c-ok' : 'c-warn'}">${t(x.kind === 'ref' ? 'recon_by_ref' : 'recon_by_amount')}</span>
+      <h2 class="sec">✅ ${t('recon_suggest')} (${m.out.length})</h2>${m.out.map(x => `<div class="card"><span class="chip ${x.kind === 'amount' ? 'c-warn' : 'c-ok'}">${t('recon_by_' + x.kind)}</span>
         ${kv([['recon_app', `${esc(x.P.id)} · ${t('pay_' + x.p.purpose)} · <b>${money(x.p.amount)}</b> · ${esc(x.p.ref || '')} · ${fmtD(x.p.t)}`], ['recon_bank', `${fmtD(x.line.date)} · <b>${money(x.line.amount)}</b> · ${esc(x.line.text)}`]])}
         <div class="row wrapw">${mine(x.p) ? `<span class="small muted">${t('err_same_person')}</span>` : `<button class="btn btn-sm btn-ok" data-a="reconOk" data-v="${x.P.id}|${x.p.id}|${x.line.i}">✅ ${t('recon_confirm')}</button>`}<button class="btn btn-sm" data-a="reconSkip" data-v="${x.p.id}">✖ ${t('recon_not_this')}</button></div></div>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}
       <h2 class="sec">❓ ${t('recon_free_bank')} (${m.freeLines.length})</h2><div class="card">${m.freeLines.slice(0, 30).map(L => `<div class="small">${fmtD(L.date)} · ${money(L.amount)} · ${esc(L.text)}</div>`).join('') || '—'}</div>
@@ -8772,7 +8798,9 @@ function payDue(P) {
   const k = PURPOSES.find(x => PAY_STAGE[x] === P.stage && P.schedule && P.schedule[x] && !payConfirmed(P, x) && (x !== 'cabin' || sopNext(P) >= CABIN_STEP));
   return k ? { purpose: k, amount: P.schedule[k], pay: activePay(P, k) } : null;
 }
-const upiLink = (P, due) => `upi://pay?${new URLSearchParams({ pa: S.config.payUpi, pn: S.config.payName || S.org.name, am: String(due.amount), cu: 'INR', tn: P.id + ' ' + due.purpose })}`;
+/* the payment note carries the job number and a short purpose code; many banks show it in the statement, so the bank match can find the job */
+const PAY_CODE = { token: 'TOK', arrival: 'ARR', cabin: 'CAB', final: 'FIN' };
+const upiLink = (P, due) => `upi://pay?${new URLSearchParams({ pa: S.config.payUpi, pn: S.config.payName || S.org.name, am: String(due.amount), cu: 'INR', tn: P.id + ' ' + (PAY_CODE[due.purpose] || due.purpose) })}`;
 function payCard(P, full) {
   const due = payDue(P), c = S.config; if (!due) return '';
   const last = [...P.payments].reverse().find(x => x.purpose === due.purpose);
@@ -8781,7 +8809,7 @@ function payCard(P, full) {
   const have = c.payUpi || (c.payAcc && c.payIfsc);
   let qr = ''; if (full && c.payUpi) { try { qr = `<div class="center" style="margin:8px 0"><div style="display:inline-block;background:#fff;padding:6px">${QR.svg(upiLink(P, due), 220)}</div><p class="small muted">${t('pay_qr_note')}</p></div>`; } catch (e) { qr = ''; } }
   return `<div class="card"><h3>💳 ${t('pay_title')}</h3>${kv([['pay_for', t('pay_' + due.purpose) + ' · ' + esc(P.id)], ['amount', `<b style="font-size:1.3rem">${money(due.amount)}</b>`]])}${st}
-    ${!have ? `<div class="warnbox">⚠️ ${t('pay_no_details')}</div>` : full ? `${c.payUpi ? `<a class="btn btn-ok btn-big" href="${esc(upiLink(P, due))}">📱 ${t('pay_upi_app')}</a>${qr}${kv([['pay_upi_id', `<b>${esc(c.payUpi)}</b>`]])}` : ''}
+    ${!have ? `<div class="warnbox">⚠️ ${t('pay_no_details')}</div>` : full ? `${c.payUpi ? `<a class="btn btn-ok btn-big" href="${esc(upiLink(P, due))}">📱 ${t('pay_upi_app')}</a><p class="small muted">🧾 ${t('pay_note_keep')}</p>${qr}${kv([['pay_upi_id', `<b>${esc(c.payUpi)}</b>`]])}` : ''}
       ${c.payAcc && c.payIfsc ? `<h3 style="margin-top:10px">🏦 ${t('pay_bank')}</h3>${kv([['pay_acc_name', esc(c.payName || S.org.name)], ['pay_bank_name', esc(c.payBank)], ['pay_acc', `<b>${esc(c.payAcc)}</b>`], ['pay_ifsc', `<b>${esc(c.payIfsc)}</b>`], ['pay_remark', `<b>${esc(P.id)}</b>`]])}` : ''}
       <div class="warnbox">🔐 ${t('pay_safe')}</div>` : `<button class="btn btn-p btn-big" data-a="payInfo" data-v="${P.id}">💳 ${t('pay_how')}</button>`}
     ${full && App.me.role === 'customer' && !due.pay && have ? `<button class="btn btn-p btn-big" data-a="wizOpen" data-v="custPaid|${P.id}|purpose|${due.purpose}">✅ ${t('pay_i_paid')}</button>` : ''}</div>`;
@@ -9450,6 +9478,19 @@ function userSheet(uid) {
     ${!locked ? `<div class="stack" style="margin-top:12px">${!self && x.active && !['owner', 'admin'].includes(x.role) && Sync.cfg() && Sync.cfg().role === 'office' ? `<button class="btn btn-p" data-a="codeFor" data-v="${uid}">📱 ${t('code_title')}</button>` : ''}<button class="btn" data-a="userPin" data-v="${uid}">🔢 ${t('reset_pin')}</button>${!self ? `<button class="btn ${x.active ? 'btn-bad' : 'btn-ok'}" data-a="userActive" data-v="${uid}">${x.active ? '⛔ ' + t('block_user') : '✅ ' + t('unblock_user')}</button>` : ''}</div>` : `<div class="note">${t('err_role', { roles: t('r_owner') })}</div>`}`);
 }
 /* ---------- owner: business rules ---------- */
+function phonesCard() {
+  const seen = App.phonesSeen; if (!seen) { if (!App.phonesAsked) { App.phonesAsked = true; Sync.phones().then(() => { if (App.route.name === 'server') render(); }); } return ''; }
+  const people = Object.values(S.users).filter(u => u.active && !['owner', 'admin'].includes(u.role)).sort((a, b) => String(seen[a.uid] || '').localeCompare(String(seen[b.uid] || '')));
+  const row = u => { const s = seen[u.uid], d = s ? Math.floor((Date.now() - Date.parse(s)) / 864e5) : null;
+    return `<div class="list-item"><span class="grow">${ROLE_ICON[u.role]} ${esc(u.name)}<br><span class="small ${!s || d >= 2 ? '' : 'muted'}">${!s ? '⛔ ' + t('ph_never') : d >= 2 ? '⚠️ ' + t('ph_days', { n: d }) : '✅ ' + t('srv_state_ok', { t: fmtD(s, true) })}</span></span>${!s || d >= 2 ? `<button class="btn btn-sm" data-a="codeFor" data-v="${u.uid}">📱</button>` : ''}</div>`; };
+  return `<div class="card"><h3>📱 ${t('ph_title')}</h3><p class="small muted">${t('ph_note')}</p>${people.map(row).join('') || `<p class="muted">${t('nothing_here')}</p>`}<button class="btn btn-sm" data-a="phonesRefresh">🔄 ${t('srv_now')}</button></div>`;
+}
+function readyCard(c) {
+  const seen = App.phonesSeen || {}, last = (App.set.bkLast || {})[App.mode];
+  const people = Object.values(S.users).filter(u => u.active && !['owner', 'admin'].includes(u.role));
+  const items = [[/^https:\/\//.test(c.url), 'rd_https'], [!!(App.set.bkCode || {})[App.mode], 'rd_code'], [!!last && Date.now() - Date.parse(last) < 3 * 864e5, 'rd_backup'], [!!S.config.officeNumber, 'rd_office'], [!!App.phonesSeen && people.every(u => seen[u.uid]), 'rd_people']];
+  return `<div class="card"><h3>🧭 ${t('rd_title')}</h3>${items.map(([ok, k]) => `<div class="small" style="margin:4px 0">${ok ? '✅' : '⚠️'} ${t(k)}${ok ? '' : ` <span class="muted">· ${t(k + '_fix')}</span>`}</div>`).join('')}</div>`;
+}
 function backupCard() {
   const last = (App.set.bkLast || {})[App.mode], code = (App.set.bkCode || {})[App.mode], own = App.me.role === 'owner';
   return `<div class="card"><h3>🗄️ ${t('bk_title')}</h3>${last ? `<p>${t('bk_last', { t: fmtD(last, true) })}</p>${Date.now() - Date.parse(last) > 3 * 864e5 ? `<div class="warnbox">⚠️ ${t('bk_old')}</div>` : ''}` : `<div class="warnbox">⚠️ ${t('bk_none')}</div>`}
@@ -9478,7 +9519,7 @@ SCREENS.server = () => {
     <div class="card"><b>${Sync.line()}</b>${c && c.role === 'office' ? `<p class="small muted">${t('srv_people', { n: (c.boxes || []).length })} · ${esc(c.url)}</p>` : c ? `<p class="small muted">${esc(c.url)}</p>` : ''}
       ${c ? `<div class="row wrapw" style="margin-top:8px"><button class="btn btn-p" data-a="srvNow">🔄 ${t('srv_now')}</button>${office ? `<button class="btn" data-a="srvOff">⏹ ${t('srv_off')}</button>` : ''}</div>` : ''}</div>
     ${office && !c ? `<div class="card">${formInp('srvUrl', 'srv_url', { type: 'url' })}${formInp('srvSecret', 'srv_secret', { type: 'password' })}<div id="ferr"></div><button class="btn btn-ok btn-big" data-a="srvOn">☁️ ${t('srv_on')}</button></div>` : ''}
-    ${office && c ? backupCard() : ''}${office ? `<div class="note">📤 ${t('srv_how')}</div>` : ''}<p class="small muted">${t('srv_note')}</p></main>` + nav('me');
+    ${office && c && c.role === 'office' ? readyCard(c) + phonesCard() : ''}${office && c ? backupCard() : ''}${office ? `<div class="note">📤 ${t('srv_how')}</div>` : ''}<p class="small muted">${t('srv_note')}</p></main>` + nav('me');
 };
 SCREENS.rules = () => {
   const own = App.me.role === 'owner';
@@ -11067,6 +11108,7 @@ const ACT = {
     App.form = {}; toast(t('code_ok')); go('door', { kind: r.role === 'customer' ? 'cust' : 'staff' }, { replace: true });
   },
   bkCode: async () => { if (App.me.role !== 'owner') return; const had = (App.set.bkCode || {})[App.mode], code = await Sync.newRecovery(); sheet(`<h2>🔐 ${t('bk_code_title')}</h2><div class="card center"><div style="font:800 1.5rem/1.5 monospace;letter-spacing:.06em;word-break:break-all">${esc(code)}</div></div><div class="warnbox">📝 ${t('bk_code_tell')}</div>${had ? `<p class="small">${t('bk_code_new_note')}</p>` : ''}`); Sync.backup(true).then(() => { if (App.route.name === 'server') render(); }); },
+  phonesRefresh: async () => { await Sync.phones(); render(); },
   bkNow: async () => { const r = await Sync.backup(true); toast(t(r.ok ? 'bk_done' : 'srv_state_err'), !r.ok); render(); },
   rsGo: async () => { const f = App.form, r = await Sync.restore(f.rsUrl, f.rsSecret, f.rsCode); if (r.err) { const el = $('#ferr'); if (el) el.innerHTML = `<div class="err">${t(r.err)}</div>`; toast(t(r.err), true); return; } App.form = {}; toast(t('rs_ok', { n: r.n })); go('door', { kind: 'staff' }, { replace: true }); },
   splashSkip: () => { clearTimeout(App.splashT); go('gate', {}, { replace: true }); },
