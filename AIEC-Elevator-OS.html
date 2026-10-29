@@ -2276,6 +2276,24 @@ const L = {
   code_ok: ['Your data is on this phone. Now choose your name and enter your PIN.', 'आपका डेटा इस फ़ोन पर आ गया। अब अपना नाम चुनें और PIN डालें।', 'तुमचा डेटा या फोनवर आला. आता तुमचे नाव निवडा आणि PIN टाका.'],
   err_code_big: ['Too much data for a code. Send their file instead.', 'कोड के लिए डेटा बहुत ज़्यादा है। उनकी फ़ाइल भेजें।', 'कोडसाठी डेटा खूप जास्त आहे. त्यांची फाइल पाठवा.'],
   srv_needed: ['Turn on the company server first (Me → Company server).', 'पहले कंपनी सर्वर चालू करें (मैं → कंपनी सर्वर)।', 'आधी कंपनी सर्व्हर सुरू करा (मी → कंपनी सर्व्हर).'],
+  bk_title: ['Backup', 'बैकअप', 'बॅकअप'],
+  bk_none: ['No backup yet. Make the recovery code to start nightly backups.', 'अभी कोई बैकअप नहीं। रात के बैकअप शुरू करने के लिए रिकवरी कोड बनाएँ।', 'अजून बॅकअप नाही. रात्रीचे बॅकअप सुरू करण्यासाठी रिकव्हरी कोड तयार करा.'],
+  bk_last: ['Last backup: {t}', 'आखिरी बैकअप: {t}', 'शेवटचा बॅकअप: {t}'],
+  bk_old: ['The last backup is more than 3 days old.', 'आखिरी बैकअप 3 दिन से पुराना है।', 'शेवटचा बॅकअप 3 दिवसांपेक्षा जुना आहे.'],
+  bk_make_code: ['Make the recovery code', 'रिकवरी कोड बनाएँ', 'रिकव्हरी कोड तयार करा'],
+  bk_new_code: ['Make a new recovery code', 'नया रिकवरी कोड बनाएँ', 'नवीन रिकव्हरी कोड तयार करा'],
+  bk_now: ['Back up now', 'अभी बैकअप लें', 'आत्ता बॅकअप घ्या'],
+  bk_code_title: ['Your recovery code', 'आपका रिकवरी कोड', 'तुमचा रिकव्हरी कोड'],
+  bk_code_tell: ['Write this code on paper now and keep it with the setup secret, away from the office phones. It is shown only once. With the server address, the setup secret and this code, a new phone can bring back the whole company even if every office phone is lost. Nobody, not even the server, can open a backup without it.', 'यह कोड अभी कागज़ पर लिखें और सेटअप सीक्रेट के साथ, ऑफिस फ़ोनों से दूर रखें। यह सिर्फ़ एक बार दिखेगा। सर्वर का पता, सेटअप सीक्रेट और यह कोड हो, तो सारे ऑफिस फ़ोन खो जाने पर भी नया फ़ोन पूरी कंपनी वापस ला सकता है। इसके बिना कोई भी, सर्वर भी, बैकअप नहीं खोल सकता।', 'हा कोड आत्ता कागदावर लिहा आणि सेटअप सीक्रेटसोबत, ऑफिस फोनपासून दूर ठेवा. तो फक्त एकदाच दिसेल. सर्व्हरचा पत्ता, सेटअप सीक्रेट आणि हा कोड असल्यास सर्व ऑफिस फोन हरवले तरी नवीन फोन संपूर्ण कंपनी परत आणू शकतो. याशिवाय कोणीही, सर्व्हरसुद्धा, बॅकअप उघडू शकत नाही.'],
+  bk_code_new_note: ['A new code is used for backups from now on. Keep the old code too, for older backups.', 'अब से नए कोड से बैकअप होंगे। पुराने बैकअप के लिए पुराना कोड भी रखें।', 'आतापासून नवीन कोडने बॅकअप होतील. जुन्या बॅकअपसाठी जुना कोडही ठेवा.'],
+  bk_done: ['Backup saved on the server.', 'बैकअप सर्वर पर सेव हुआ।', 'बॅकअप सर्व्हरवर जतन झाला.'],
+  rs_title: ['Restore the company from backup', 'बैकअप से कंपनी वापस लाएँ', 'बॅकअपमधून कंपनी परत आणा'],
+  rs_say: ['For a new office phone when the old ones are lost. Type the server address, the setup secret and the recovery code that Head Quarter kept on paper.', 'पुराने खो जाने पर नए ऑफिस फ़ोन के लिए। सर्वर का पता, सेटअप सीक्रेट और हेड क्वार्टर का कागज़ पर रखा रिकवरी कोड डालें।', 'जुने हरवल्यावर नवीन ऑफिस फोनसाठी. सर्व्हरचा पत्ता, सेटअप सीक्रेट आणि हेड क्वार्टरने कागदावर ठेवलेला रिकव्हरी कोड टाका.'],
+  f_rcode: ['Recovery code', 'रिकवरी कोड', 'रिकव्हरी कोड'],
+  rs_go: ['Restore', 'वापस लाएँ', 'परत आणा'],
+  rs_ok: ['The company is back on this phone ({n} records). Log in with your PIN.', 'कंपनी इस फ़ोन पर वापस आई ({n} रिकॉर्ड)। अपने PIN से लॉगिन करें।', 'कंपनी या फोनवर परत आली ({n} नोंदी). तुमच्या PIN ने लॉगिन करा.'],
+  rs_none: ['There is no backup on this server yet.', 'इस सर्वर पर अभी कोई बैकअप नहीं।', 'या सर्व्हरवर अजून बॅकअप नाही.'],
+  rs_bad_code: ['This recovery code does not open the backup.', 'यह रिकवरी कोड बैकअप नहीं खोलता।', 'हा रिकव्हरी कोड बॅकअप उघडत नाही.'],
   ck_obstacle: ['Work stuck', 'काम अटका', 'काम अडले'],
   ck_followup: ['Follow-up', 'फ़ॉलो-अप', 'पाठपुरावा'],
   ck_plan: ['Work plan', 'काम की योजना', 'कामाचे नियोजन'],
@@ -3776,13 +3794,13 @@ const Sync = {
   /* the sync details a file carries: the full office file carries the company key; a person's file only that person's box */
   async creds(kind, uid) {
     const c = this.cfg(), ck = c && c.role === 'office' && await this.ck(); if (!ck) return null;
-    if (kind === 'full') return { url: c.url, ck: b64(ck) };
+    if (kind === 'full') { const bk = await KV.get(App.ns + 'bk'); return Object.assign({ url: c.url, ck: b64(ck) }, bk ? { bk } : {}); }
     if (kind === 'person' && uid && S.users[uid] && !['owner', 'admin'].includes(S.users[uid].role)) return { url: c.url, box: uid, tok: await this.tokenFor(ck, uid), k: b64(await this.keyFor(ck, uid)) };
     return null;
   },
   async adopt(pack) {
     const x = pack.sync; if (!x || !/^https?:\/\//.test(x.url || '')) return;
-    if (pack.kind === 'full' && x.ck) { await KV.set(App.ns + 'ck', x.ck); await this.save({ url: x.url, role: 'office', cur: 0, boxes: [] }); }
+    if (pack.kind === 'full' && x.ck) { await KV.set(App.ns + 'ck', x.ck); if (x.bk) await KV.set(App.ns + 'bk', x.bk); await this.save({ url: x.url, role: 'office', cur: 0, boxes: [] }); }
     else if (pack.kind === 'person' && x.box && x.box === pack.for && x.tok && x.k) await this.save({ url: x.url, role: 'person', box: x.box, tok: x.tok, k: x.k, cur: 0 });
     else return;
     this.soon();
@@ -3868,6 +3886,7 @@ const Sync = {
         if (r.ok) await this.pushSub(c, auth);
       }
       await KV.set(App.ns + 'syncSent', sent);
+      if (r.ok && c.role === 'office') { const b = await this.backup(false); if (!b.ok) r = b; }
       if (r.ok) { c.last = nowISO(); this.state = { st: 'ok' }; } else this.state = { st: r.status === 401 ? 'revoked' : 'err' };
       await this.save(c);
     } catch (e) { this.state = { st: 'err' }; } finally { this.busy = false; }
@@ -3902,6 +3921,49 @@ const Sync = {
     if (!res.ok) return { err: 'imp_bad' };
     App.set.lastSrv = url; await saveSettings();
     return { ok: true, role: (S.users[(JSON.parse(txt) || {}).for] || {}).role };
+  },
+  /* ---------- locked backups: the key comes only from the recovery code Head Quarter keeps on paper ---------- */
+  async bkKey(code) { const k = await crypto.subtle.importKey('raw', new TextEncoder().encode(String(code || '').toUpperCase().replace(/[^A-Z0-9]/g, '')), 'PBKDF2', false, ['deriveBits']); return new Uint8Array(await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: new TextEncoder().encode('aiec-backup-v1'), iterations: 200000, hash: 'SHA-256' }, k, 256)); },
+  async newRecovery() {
+    const code = rid(24).match(/.{4}/g).join('-');
+    await KV.set(App.ns + 'bk', b64(await this.bkKey(code)));
+    App.set.bkCode = Object.assign({}, App.set.bkCode, { [App.mode]: nowISO() }); await saveSettings();
+    return code;
+  },
+  async backup(force) {
+    const c = this.cfg(), ck = c && c.role === 'office' && await this.ck(), bk = await KV.get(App.ns + 'bk');
+    if (!ck || !bk) return { ok: true, none: true };
+    const auth = { tok: await this.tokenFor(ck, 'office') };
+    const list = await this.api(c, '/backups', auth); if (!list.ok) return list;
+    const last = (list.body.backups || [])[0];
+    if (last) { App.set.bkLast = Object.assign({}, App.set.bkLast, { [App.mode]: last.t }); }
+    if (!force && last && Date.now() - Date.parse(last.t) < 20 * 3600e3) return { ok: true, skipped: true };
+    const pack = await finishPack(exportPack('full')); pack.sync = await this.creds('full');
+    for (const ev of pack.events) for (const e of (ev.data && ev.data.ev) || []) if (e.m && !pack.media[e.m]) { const v = await getMedia(e.m); if (v) pack.media[e.m] = v; }
+    const blob = await this.lock(unb64(bk), JSON.stringify(pack)), d = new Date(), id = 'B' + d.toISOString().replace(/[-:]/g, '').slice(0, 15), size = 6 * 1024 * 1024, n = Math.ceil(blob.length / size);
+    for (let i = 0; i < n; i++) {
+      try { const r = await fetch(c.url + '/backups/' + id + '/' + i, { method: 'PUT', headers: { Authorization: 'Bearer ' + auth.tok, 'Content-Type': 'text/plain' }, body: blob.slice(i * size, (i + 1) * size) }); if (!r.ok) return { ok: false, status: r.status }; } catch (e) { return { ok: false, status: 0 }; }
+    }
+    const r = await this.api(c, '/backups/' + id + '/meta', auth, 'PUT', { parts: n, size: blob.length });
+    if (r.ok) { App.set.bkLast = Object.assign({}, App.set.bkLast, { [App.mode]: nowISO() }); await saveSettings(); }
+    return r;
+  },
+  async restore(url, secret, code) {
+    url = String(url || '').trim().replace(/\/+$/, '');
+    if (!/^https?:\/\/[^\s/]+/.test(url)) return { err: 'err_server_url' };
+    const get = async path => { const r = await fetch(url + path, { headers: { 'X-Admin-Secret': secret || '' } }); return r; };
+    let r; try { r = await get('/backups'); } catch (e) { return { err: 'err_server_down' }; }
+    if (r.status === 403) return { err: 'err_server_secret' };
+    if (!r.ok) return { err: 'err_server_down' };
+    const last = ((await r.json()).backups || [])[0]; if (!last) return { err: 'rs_none' };
+    let blob = '';
+    for (let i = 0; i < last.parts; i++) { const x = await get('/backups/' + last.id + '/' + i); if (!x.ok) return { err: 'err_server_down' }; blob += await x.text(); }
+    let txt; try { txt = await this.unlock(await this.bkKey(code), blob); } catch (e) { return { err: 'rs_bad_code' }; }
+    const res = await importText(txt);
+    if (!res.ok) return { err: 'imp_bad' };
+    await KV.set(App.ns + 'bk', b64(await this.bkKey(code)));
+    App.set.bkLast = Object.assign({}, App.set.bkLast, { [App.mode]: last.t }); await saveSettings();
+    return { ok: true, n: res.added };
   },
   soon() { clearTimeout(this.soonT); this.soonT = setTimeout(() => this.tick(), 2500); },
   start() { setInterval(() => this.tick(), 60000); window.addEventListener('online', () => this.tick()); document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') this.tick(); }); },
@@ -6528,7 +6590,7 @@ function render() {
   const r = App.route;
   App.pageSay = ''; App.pageHelp = '';
   let h;
-  const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr', 'splash', 'gate', 'door', 'enquiry', 'joinReq', 'reqSent', 'codeLogin'].includes(r.name);
+  const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr', 'splash', 'gate', 'door', 'enquiry', 'joinReq', 'reqSent', 'codeLogin', 'restore'].includes(r.name);
   try { h = gated ? SCREENS.install() : (SCREENS[r.name] || SCREENS.home)(r.p || {}); }
   catch (e) { console.error(e); h = `<main class="wrap"><div class="err">⚠️ ${esc(e.message)}</div><button class="btn btn-p" data-a="nav" data-v="home">🏠 ${t('nav_home')}</button></main>`; }
   const banner = App.mode === 'practice' ? `<div class="practice">🎓 ${t('practice_banner')}</div>` : '';
@@ -8387,7 +8449,7 @@ SCREENS.gate = () => {
     ${mr && !S.users[mr.uid] ? `<div class="note" style="text-align:left">📨 ${t('gate_my_req', { d: fmtD(mr.t) })}</div>` : ''}
     <p class="say">${t('gate_say')}</p>
     <div style="text-align:left">${[[1, 'cust', '🏠', 'door_cust'], [2, 'join', '🧰', 'door_join'], [3, 'staff', '👷', 'door_staff']].map(([n, k, i, l]) => `<button class="door d${n}" data-a="door" data-v="${k}"><span class="i" aria-hidden="true">${i}</span><span><b>${t(l)}</b><small>${t(l + '_d')}</small></span><span aria-hidden="true" style="margin-left:auto;font-size:1.4rem">›</span></button>`).join('')}</div>
-    <div class="row wrapw" style="justify-content:center;margin-top:6px">${!S.org && App.mode === 'real' ? `<button class="btn btn-sm" data-a="nav" data-v="newOrg">👑 ${t('gate_new_company')}</button>` : ''}<button class="btn btn-sm" data-a="practice">🎓 ${t('setup_practice')}</button><button class="btn btn-sm" data-a="nav" data-v="join">📂 ${t('gate_open_file')}</button><button class="btn btn-sm" data-a="nav" data-v="intro">❓ ${t('gate_how')}</button>${App.installEvt ? `<button class="btn btn-sm" data-a="install">📲 ${t('install_app')}</button>` : ''}</div>
+    <div class="row wrapw" style="justify-content:center;margin-top:6px">${!S.org && App.mode === 'real' ? `<button class="btn btn-sm" data-a="nav" data-v="newOrg">👑 ${t('gate_new_company')}</button><button class="btn btn-sm" data-a="nav" data-v="restore">🗄️ ${t('rs_title')}</button>` : ''}<button class="btn btn-sm" data-a="practice">🎓 ${t('setup_practice')}</button><button class="btn btn-sm" data-a="nav" data-v="join">📂 ${t('gate_open_file')}</button><button class="btn btn-sm" data-a="nav" data-v="intro">❓ ${t('gate_how')}</button>${App.installEvt ? `<button class="btn btn-sm" data-a="install">📲 ${t('install_app')}</button>` : ''}</div>
     ${storageNote()}</main>`;
 };
 const JOIN_ROLES = [['tech', '🔧'], ['sales', '🤝'], ['field', '🚶'], ['qc', '🔍'], ['finance', '💰'], ['supplier', '🏭'], ['partner', '🏢']];
@@ -9350,6 +9412,17 @@ function userSheet(uid) {
     ${!locked ? `<div class="stack" style="margin-top:12px">${!self && x.active && !['owner', 'admin'].includes(x.role) && Sync.cfg() && Sync.cfg().role === 'office' ? `<button class="btn btn-p" data-a="codeFor" data-v="${uid}">📱 ${t('code_title')}</button>` : ''}<button class="btn" data-a="userPin" data-v="${uid}">🔢 ${t('reset_pin')}</button>${!self ? `<button class="btn ${x.active ? 'btn-bad' : 'btn-ok'}" data-a="userActive" data-v="${uid}">${x.active ? '⛔ ' + t('block_user') : '✅ ' + t('unblock_user')}</button>` : ''}</div>` : `<div class="note">${t('err_role', { roles: t('r_owner') })}</div>`}`);
 }
 /* ---------- owner: business rules ---------- */
+function backupCard() {
+  const last = (App.set.bkLast || {})[App.mode], code = (App.set.bkCode || {})[App.mode], own = App.me.role === 'owner';
+  return `<div class="card"><h3>🗄️ ${t('bk_title')}</h3>${last ? `<p>${t('bk_last', { t: fmtD(last, true) })}</p>${Date.now() - Date.parse(last) > 3 * 864e5 ? `<div class="warnbox">⚠️ ${t('bk_old')}</div>` : ''}` : `<div class="warnbox">⚠️ ${t('bk_none')}</div>`}
+    <div class="row wrapw">${code || last ? `<button class="btn" data-a="bkNow">🗄️ ${t('bk_now')}</button>` : ''}${own ? `<button class="btn ${code ? '' : 'btn-p'}" data-a="bkCode">🔐 ${t(code ? 'bk_new_code' : 'bk_make_code')}</button>` : ''}</div></div>`;
+}
+SCREENS.restore = () => {
+  App.pageSay = t('rs_say');
+  return topBar(t('rs_title'), { back: true }) + `<main class="wrap"><p class="say">🗄️ ${t('rs_say')}</p>
+    ${formInp('rsUrl', 'srv_url', { type: 'url' })}${formInp('rsSecret', 'srv_secret', { type: 'password' })}${formInp('rsCode', 'f_rcode', { big: true })}<div id="ferr"></div></main>
+    <div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="rsGo">🗄️ ${t('rs_go')}</button></div></div>`;
+};
 SCREENS.server = () => {
   const u = App.me, office = ['owner', 'admin'].includes(u.role), c = Sync.cfg(), f = App.form;
   App.pageSay = t('srv_say');
@@ -9357,7 +9430,7 @@ SCREENS.server = () => {
     <div class="card"><b>${Sync.line()}</b>${c && c.role === 'office' ? `<p class="small muted">${t('srv_people', { n: (c.boxes || []).length })} · ${esc(c.url)}</p>` : c ? `<p class="small muted">${esc(c.url)}</p>` : ''}
       ${c ? `<div class="row wrapw" style="margin-top:8px"><button class="btn btn-p" data-a="srvNow">🔄 ${t('srv_now')}</button>${office ? `<button class="btn" data-a="srvOff">⏹ ${t('srv_off')}</button>` : ''}</div>` : ''}</div>
     ${office && !c ? `<div class="card">${formInp('srvUrl', 'srv_url', { type: 'url' })}${formInp('srvSecret', 'srv_secret', { type: 'password' })}<div id="ferr"></div><button class="btn btn-ok btn-big" data-a="srvOn">☁️ ${t('srv_on')}</button></div>` : ''}
-    ${office ? `<div class="note">📤 ${t('srv_how')}</div>` : ''}<p class="small muted">${t('srv_note')}</p></main>` + nav('me');
+    ${office && c ? backupCard() : ''}${office ? `<div class="note">📤 ${t('srv_how')}</div>` : ''}<p class="small muted">${t('srv_note')}</p></main>` + nav('me');
 };
 SCREENS.rules = () => {
   const own = App.me.role === 'owner';
@@ -10942,6 +11015,9 @@ const ACT = {
     if (r.err) { const el = $('#ferr'); const m = t(r.err, { n: r.n }); if (el) el.innerHTML = `<div class="err">${m}</div>`; toast(m, true); return; }
     App.form = {}; toast(t('code_ok')); go('door', { kind: r.role === 'customer' ? 'cust' : 'staff' }, { replace: true });
   },
+  bkCode: async () => { if (App.me.role !== 'owner') return; const had = (App.set.bkCode || {})[App.mode], code = await Sync.newRecovery(); sheet(`<h2>🔐 ${t('bk_code_title')}</h2><div class="card center"><div style="font:800 1.5rem/1.5 monospace;letter-spacing:.06em;word-break:break-all">${esc(code)}</div></div><div class="warnbox">📝 ${t('bk_code_tell')}</div>${had ? `<p class="small">${t('bk_code_new_note')}</p>` : ''}`); Sync.backup(true).then(() => { if (App.route.name === 'server') render(); }); },
+  bkNow: async () => { const r = await Sync.backup(true); toast(t(r.ok ? 'bk_done' : 'srv_state_err'), !r.ok); render(); },
+  rsGo: async () => { const f = App.form, r = await Sync.restore(f.rsUrl, f.rsSecret, f.rsCode); if (r.err) { const el = $('#ferr'); if (el) el.innerHTML = `<div class="err">${t(r.err)}</div>`; toast(t(r.err), true); return; } App.form = {}; toast(t('rs_ok', { n: r.n })); go('door', { kind: 'staff' }, { replace: true }); },
   splashSkip: () => { clearTimeout(App.splashT); go('gate', {}, { replace: true }); },
   door: v => { App.form = {}; go('door', { kind: v }); },
   joinRole: v => { App.form = { rqRole: v }; go('joinReq', { role: v }); },

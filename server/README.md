@@ -1,4 +1,4 @@
-# AIEC company server (automatic sync, login codes, alerts)
+# AIEC company server (automatic sync, login codes, alerts, backups)
 
 The company server is a locked mailbox. Phones lock (encrypt) every update before sending it, so the server never sees names, prices or photos. It decides only who may put into and take from each box:
 
@@ -22,20 +22,22 @@ The rules are still checked on every phone, as before. If the server is off, fil
 3. Make the database:
    `npx wrangler d1 create aiec-mailbox`
    Copy the `database_id` it prints into `wrangler.toml` (replace `PASTE-YOUR-DATABASE-ID-HERE`).
-4. Make the tables:
+4. Make the storage for backups (free up to 10 GB):
+   `npx wrangler r2 bucket create aiec-backup`
+5. Make the tables:
    `npx wrangler d1 execute aiec-mailbox --remote --file=schema.sql`
-5. Choose a long **setup secret** (at least 20 letters and numbers). Write it on paper and keep it safe. Then store it on Cloudflare:
+6. Choose a long **setup secret** (at least 20 letters and numbers). Write it on paper and keep it safe. Then store it on Cloudflare:
    `npx wrangler secret put ADMIN_SECRET`
    It is never written in any file.
-6. Make the keys for alerts (once) and store them on Cloudflare. The command prints the keys and the exact commands to run:
+7. Make the keys for alerts (once) and store them on Cloudflare. The command prints the keys and the exact commands to run:
    `node vapid.mjs`
-7. Put the server online:
+8. Put the server online:
    `npx wrangler deploy`
    It prints the server address, like `https://aiec-mailbox.<your-name>.workers.dev`.
    Later you can attach your own domain (for example `sync.allindiaelevators.in`) in the Cloudflare dashboard.
-8. Check it: open `<server address>/health` in a browser. It should show `"ok":true` and `"push":true`.
+9. Check it: open `<server address>/health` in a browser. It should show `"ok":true` and `"push":true`.
 
-If you set the server up before alerts and login codes were added, run step 4 again (it only adds the new tables) and step 6, then `npx wrangler deploy`.
+If you set the server up before alerts, login codes and backups were added, run steps 4, 5 and 7 (they only add what is new), then `npx wrangler deploy`.
 
 ## Turn it on in the app
 
@@ -68,6 +70,14 @@ How the code is protected:
   - other news wakes a phone at most once every 10 minutes.
 - **Only real phone push services are called** (Google, Apple, Mozilla, Microsoft).
 
+## Backups and the recovery code
+
+- **Make the recovery code (Head Quarter only):** Me → Company server → **Make the recovery code**. Write the code on paper at once, and keep it with the setup secret, away from the office phones. It is shown only once.
+- **Nightly backups:** from then on an office phone uploads a locked backup of the whole company (records and photos) once a day. The newest 7 are kept.
+- **Who can open a backup:** nobody without the recovery code, not even the server or Cloudflare.
+- **If every office phone is lost:** on a new phone, choose **Restore the company from backup** on the first screen. Type the server address, the setup secret and the recovery code. The whole company comes back, and the phone becomes an office phone on the server again.
+- **Changing the code:** a new code is used from then on. Keep the old code too for older backups.
+
 ## Try it on a laptop first
 
 `ADMIN_SECRET=choose-a-secret node local.mjs 8787`
@@ -77,10 +87,7 @@ This runs the same server at `http://127.0.0.1:8787`, keeping everything in memo
 ## Keep it safe
 
 - The setup secret and the Cloudflare login belong to the company. Give a developer their own Cloudflare login that you can remove.
-- **If every office phone is lost:**
-  - The company key is gone with them, so nobody can open the locked messages on the server.
-  - Keep a monthly backup file from the office phone (Me → share data → full file) on the Head Quarter laptop.
-  - To start again, load that file on a new office phone, then turn the server on again with the setup secret.
+- **If every office phone is lost:** restore from the nightly backup with the recovery code (see Backups). Also keep a monthly full file from the office phone (Me → share data → full file) on the Head Quarter laptop, as a second copy outside the server.
 - Messages older than 120 days are deleted from the server. The phones keep everything.
 
 ## Limits
@@ -124,3 +131,9 @@ This runs the same server at `http://127.0.0.1:8787`, keeping everything in memo
 - SOS किंवा कोणतीही सुरक्षा घटना (धोका, इजा) नोंदल्यास ऑफिस फोनला लगेच सूचना जाते.
 - इतर बातमीची सूचना 10 मिनिटांत एकदाच येते.
 - सूचनेत कोणतेही नाव किंवा माहिती नसते.
+
+**बॅकअप आणि रिकव्हरी कोड:**
+- `npx wrangler r2 bucket create aiec-backup` चालवा.
+- हेड क्वार्टर: मी → कंपनी सर्व्हर → **रिकव्हरी कोड तयार करा**. कोड कागदावर लिहून सेटअप सीक्रेटसोबत सुरक्षित ठेवा. तो एकदाच दिसतो.
+- दररोज संपूर्ण कंपनीचा कुलूपबंद बॅकअप सर्व्हरवर जातो. शेवटचे 7 ठेवले जातात.
+- सर्व ऑफिस फोन हरवले तर: नवीन फोनवर पहिल्या स्क्रीनवर **बॅकअपमधून कंपनी परत आणा** निवडा. सर्व्हर पत्ता, सेटअप सीक्रेट आणि रिकव्हरी कोड टाका.

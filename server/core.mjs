@@ -50,7 +50,7 @@ function same(a, b) {
   for (let i = 0; i < Math.max(a.length, b.length); i++) d |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0);
   return d === 0;
 }
-const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS', 'Access-Control-Allow-Headers': 'Authorization,Content-Type,X-Box', 'Access-Control-Max-Age': '86400' };
+const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS', 'Access-Control-Allow-Headers': 'Authorization,Content-Type,X-Box,X-Admin-Secret', 'Access-Control-Max-Age': '86400' };
 const json = (status, body) => new Response(JSON.stringify(body), { status, headers: Object.assign({ 'Content-Type': 'application/json' }, CORS) });
 
 /* who is calling: the office (office token) or one person (their box id + token) */
@@ -63,6 +63,17 @@ async function caller(req, store) {
   if (!ID.test(id)) return null;
   const box = await store.getBox(id);
   return box && same(h, box.hash) ? { office: false, box: id } : null;
+}
+
+async function backupRead(parts, store) {
+  if (!parts[1]) {
+    const metas = [];
+    for (const k of (await store.listObj('bk/')).filter(k => k.endsWith('/meta'))) { const v = await store.getObj(k); if (v) metas.push(JSON.parse(v)); }
+    return json(200, { backups: metas.sort((a, b) => a.id < b.id ? 1 : -1) });
+  }
+  if (!/^B\d{8}T\d{6}$/.test(parts[1]) || !/^\d{1,3}$/.test(parts[2] || '')) return json(400, { error: 'bad_request' });
+  const v = await store.getObj('bk/' + parts[1] + '/' + parts[2]);
+  return v ? new Response(v, { status: 200, headers: Object.assign({ 'Content-Type': 'text/plain' }, CORS) }) : json(404, { error: 'not_found' });
 }
 
 export async function handle(req, env, store) {
@@ -98,6 +109,14 @@ export async function handle(req, env, store) {
       return json(200, { blob: inv.blob });
     }
 
+    /* restoring after every office phone is lost: the setup secret opens the list of locked backups (the recovery code, kept only on paper, opens them) */
+    const adm = req.headers.get('X-Admin-Secret');
+    if (adm != null && req.method === 'GET' && parts[0] === 'backups') {
+      if (!(await store.allow('admin-secret', 20))) return json(429, { error: 'too_many' });
+      if (!env.ADMIN_SECRET || !same(await sha256hex(adm), await sha256hex(env.ADMIN_SECRET))) return json(403, { error: 'bad_secret' });
+      return backupRead(parts, store);
+    }
+
     const who = await caller(req, store);
     if (!who) return json(401, { error: 'not_allowed' });
     if (!(await store.allow(who.box, PER_MIN))) return json(429, { error: 'too_many' });
@@ -124,6 +143,27 @@ export async function handle(req, env, store) {
       if (typeof ep !== 'string' || ep.length > 600 || !pushHostOk(ep, env)) return json(400, { error: 'bad_endpoint' });
       if (req.method === 'DELETE') { await store.delSub(ep); return json(200, { ok: true }); }
       await store.putSub(ep, who.box); return json(200, { ok: true });
+    }
+    /* locked backups of the whole company, made by an office phone; the newest 7 are kept */
+    if (parts[0] === 'backups') {
+      if (!who.office) return json(403, { error: 'office_only' });
+      if (req.method === 'GET') return backupRead(parts, store);
+      if (req.method === 'PUT' && /^B\d{8}T\d{6}$/.test(parts[1] || '') && parts[2] != null) {
+        const text = await req.text();
+        if (parts[2] === 'meta') {
+          let m; try { m = JSON.parse(text); } catch (e) { return json(400, { error: 'bad_request' }); }
+          if (!(m.parts > 0 && m.parts < 400)) return json(400, { error: 'bad_request' });
+          for (let i = 0; i < m.parts; i++) if (!(await store.getObj('bk/' + parts[1] + '/' + i))) return json(400, { error: 'missing_part' });
+          await store.putObj('bk/' + parts[1] + '/meta', JSON.stringify({ id: parts[1], parts: m.parts, size: +m.size || 0, t: new Date().toISOString() }));
+          const ids = (await store.listObj('bk/')).filter(k => k.endsWith('/meta')).map(k => k.split('/')[1]).sort().reverse();
+          for (const old of ids.slice(7)) for (const k of await store.listObj('bk/' + old + '/')) await store.delObj(k);
+          return json(200, { ok: true });
+        }
+        if (!/^\d{1,3}$/.test(parts[2]) || !text.length || text.length > 8 * 1024 * 1024 || !/^[A-Za-z0-9+/=.]+$/.test(text)) return json(413, { error: 'bad_part' });
+        await store.putObj('bk/' + parts[1] + '/' + parts[2], text);
+        return json(200, { ok: true });
+      }
+      return json(400, { error: 'bad_request' });
     }
     if (req.method === 'GET' && parts[0] === 'boxes') {
       if (!who.office) return json(403, { error: 'office_only' });
@@ -160,10 +200,14 @@ export async function handle(req, env, store) {
 
 /* storage kept in memory: used by the tests and for trying the server on a laptop */
 export function memoryStore() {
-  const meta = new Map(), boxes = new Map(), msgs = [], hits = new Map(), invites = new Map(), subs = new Map();
+  const meta = new Map(), boxes = new Map(), msgs = [], hits = new Map(), invites = new Map(), subs = new Map(), objs = new Map();
   let seq = 0;
   return {
-    msgs, invites, subs, meta,
+    msgs, invites, subs, meta, objs,
+    async putObj(k, v) { objs.set(k, v); },
+    async getObj(k) { return objs.has(k) ? objs.get(k) : null; },
+    async listObj(prefix) { return [...objs.keys()].filter(k => k.startsWith(prefix)); },
+    async delObj(k) { objs.delete(k); },
     async putSub(ep, box) { subs.set(ep, box); },
     async delSub(ep) { subs.delete(ep); },
     async listSubs(box) { return [...subs].filter(([, b]) => b === box).map(([endpoint]) => ({ endpoint })); },
@@ -184,8 +228,13 @@ export function memoryStore() {
 }
 
 /* storage on Cloudflare D1 (see schema.sql) */
-export function d1Store(db) {
+export function d1Store(db, bucket) {
   return {
+    /* backups live in an R2 bucket (big files); without one they cannot be made */
+    async putObj(k, v) { if (!bucket) throw new Error('no_bucket'); await bucket.put(k, v); },
+    async getObj(k) { if (!bucket) return null; const o = await bucket.get(k); return o ? await o.text() : null; },
+    async listObj(prefix) { if (!bucket) return []; const out = []; let cur; do { const r = await bucket.list({ prefix, cursor: cur }); out.push(...r.objects.map(o => o.key)); cur = r.truncated ? r.cursor : null; } while (cur); return out; },
+    async delObj(k) { if (bucket) await bucket.delete(k); },
     async getInvite(id) { return await db.prepare('SELECT blob, salt, codeHash, exp, tries FROM invites WHERE id = ?').bind(id).first(); },
     async putInvite(id, v) { await db.prepare('INSERT INTO invites (id, blob, salt, codeHash, exp, tries) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET blob = excluded.blob, salt = excluded.salt, codeHash = excluded.codeHash, exp = excluded.exp, tries = excluded.tries').bind(id, v.blob, v.salt, v.codeHash, v.exp, v.tries || 0).run(); },
     async delInvite(id) { await db.prepare('DELETE FROM invites WHERE id = ?').bind(id).run(); },

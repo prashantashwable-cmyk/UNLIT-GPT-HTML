@@ -7,6 +7,10 @@ binding = "DB"
 database_name = "aiec-mailbox"
 database_id = "PASTE-YOUR-DATABASE-ID-HERE"
 
+[[r2_buckets]]
+binding = "BACKUP"
+bucket_name = "aiec-backup"
+
 [triggers]
 crons = ["17 21 * * *"]
 
