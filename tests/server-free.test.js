@@ -17,7 +17,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await pa.evaluate(() => { App.set.lang = 'en'; LANG = 'en'; App.set.introDone = true; App.set.guide = false; enterPractice(); }); await pa.waitForTimeout(6000);
   await pa.evaluate(() => { loginAs(S.users.POWNER); ACT.permsDone(); Notify.hide(); go('server'); }); await pa.waitForTimeout(150);
   assert(/only if one was set on Cloudflare/.test(await pa.innerText('main')), 'the setup secret is marked as not needed');
-  await pa.fill('[data-f="srvUrl"]', url); await pa.click('[data-a="srvOn"]'); await pa.waitForTimeout(3000);
+  await pa.fill('[data-f="srvUrl"]', url); await pa.click('[data-a="srvOn"]');
+  await pa.waitForFunction(() => Sync.cfg() && !Sync.busy, null, { timeout: 60000 }).catch(() => { });
   assert(await pa.evaluate(() => Sync.cfg() && Sync.cfg().role === 'office'), 'the first office phone claims the server without any secret');
 
   /* another company (a different office key) cannot take it over */
@@ -38,7 +39,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
 
   /* backup and restore with the recovery code only */
   await pa.evaluate(() => go('server')); await pa.waitForTimeout(100);
-  await pa.click('[data-a="bkCode"]'); await pa.waitForTimeout(5000);
+  await pa.click('[data-a="bkCode"]');
+  await pa.waitForFunction(() => /^[A-Z0-9]{4}(-[A-Z0-9]{4}){5}$/.test((document.querySelector('#ov .card div') || {}).textContent || ''), null, { timeout: 60000 }).catch(() => { });
   const code = await pa.evaluate(() => (document.querySelector('#ov .card div') || {}).textContent || '');
   assert(/^[A-Z0-9]{4}(-[A-Z0-9]{4}){5}$/.test(code), 'Head Quarter gets the recovery code; the first backup goes up');
   await pa.evaluate(() => closeSheet());

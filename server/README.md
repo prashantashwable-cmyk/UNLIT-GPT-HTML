@@ -8,7 +8,15 @@ The company server is a locked mailbox. Phones lock (encrypt) every update befor
 
 The rules are still checked on every phone, as before. If the server is off, files and paste keep working.
 
-## One-tap setup (easiest)
+## Supabase (in use now)
+
+The company server runs on Supabase's free plan at `https://ycyvtdrtkdrnnkiszrxf.supabase.co/functions/v1/aiec` (project `aiec-server`, Mumbai). `server.json` next to the app holds this address, so phones fill it in by themselves.
+
+- **Code:** `supabase.ts` (the Edge Function `aiec`, "Verify JWT" off) with `core.mjs` and `pgstore.mjs`. The tables are in the schema `aiec_live`, made once with `pgTables('aiec_live')` from `pgstore.mjs`. Supabase's public data API cannot see them.
+- **Testing on the real engine:** deploy `supabase-test.ts` as `aiec-test`. Every test run gets its own empty schema (`.../aiec-test/t_<run>`), so the live tables are never touched. Switch it off again afterwards.
+- **Free plan:** Supabase pauses a free project after about a week with no use. Daily use keeps it awake. If it is paused, open the Supabase dashboard and press Restore; nothing is lost.
+
+## One-tap setup on Cloudflare (another free way)
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/prashantashwable-cmyk/UNLIT-GPT-HTML/tree/main/server)
 
