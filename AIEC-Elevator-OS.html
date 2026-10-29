@@ -4031,7 +4031,9 @@ const Sync = {
     App.phonesSeen = out; return out;
   },
   soon() { clearTimeout(this.soonT); this.soonT = setTimeout(() => this.tick(), 2500); },
-  start() { setInterval(() => this.tick(), 60000); window.addEventListener('online', () => this.tick()); document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') this.tick(); }); },
+  /* every minute while the app is open on screen; in the background every 10 minutes (alerts wake it sooner), which keeps
+     the free server plan's monthly allowance */
+  start() { setInterval(() => { if (document.hidden && Date.now() - (this.lastRun || 0) < 10 * 60000) return; this.lastRun = Date.now(); this.tick(); }, 60000); window.addEventListener('online', () => this.tick()); document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') this.tick(); }); },
   line() {
     const c = this.cfg(); if (!c) return `☁️ ${t('srv_none')}`;
     const st = this.state && this.state.st;
