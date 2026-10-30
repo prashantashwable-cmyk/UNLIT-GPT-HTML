@@ -39,6 +39,7 @@ img{max-width:100%}
 :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .top{position:sticky;top:0;z-index:20;background:var(--graph);color:#fff;display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:6px 8px;min-height:62px}
 .top h1{font-size:1.08rem;margin:0 4px;flex:1 1 90px;line-height:1.2;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:400px){.top{gap:3px;padding:6px 5px}.top h1{flex-basis:56px;font-size:1rem}.ib{min-width:38px;padding:0 4px}}
 .ib{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:12px;min-width:42px;min-height:48px;padding:0 7px;display:inline-flex;align-items:center;justify-content:center;gap:4px;font-size:1rem;font-weight:600;flex:none}
 .badge{background:var(--gold);color:#111;border-radius:999px;font-size:.75rem;font-weight:800;padding:1px 7px;min-width:22px;text-align:center}
 .practice{background:repeating-linear-gradient(45deg,#ffe08a,#ffe08a 12px,#ffd04d 12px,#ffd04d 24px);color:#3a2b00;text-align:center;font-weight:800;padding:6px 10px;font-size:.9rem}
@@ -2157,7 +2158,7 @@ const L = {
   ck_question: ['Question', 'सवाल', 'प्रश्न'],
   ck_approval: ['Ask approval', 'मंज़ूरी माँगें', 'मंजुरी मागा'],
   all_work: ['Everyone\'s open work', 'सबके खुले काम', 'सर्वांची उघडी कामे'],
-  all_work_sub: ['View only: the Admin runs the day', 'सिर्फ़ देखने के लिए: दिन का काम Admin चलाते हैं', 'फक्त पाहण्यासाठी: रोजचे काम Admin चालवतात'],
+  all_work_sub: ['View only: the Admin runs the day', 'सिर्फ़ देखने के लिए: दिन का काम एडमिन चलाते हैं', 'फक्त पाहण्यासाठी: रोजचे काम ॲडमिन चालवतात'],
   all_work_note: ['Every open task by role, longest waiting first. The Head Quarter is not given day-to-day tasks while there is an Admin; anything stuck past the last reminder comes to you as an escalation.', 'भूमिका के अनुसार हर खुला काम, सबसे पुराना पहले। Admin होने पर Head Quarter को रोज़ का काम नहीं मिलता; आखिरी याद के बाद भी अटका काम आपको एस्केलेशन के रूप में आएगा।', 'भूमिकेनुसार प्रत्येक उघडे काम, सर्वात जुने आधी. Admin असताना हेड क्वार्टरला रोजची कामे मिळत नाहीत; शेवटच्या आठवणीनंतरही अडलेले काम तुम्हाकडे एस्केलेशन म्हणून येईल.'],
   sp_tag: ['Lifts made simple', 'लिफ्ट का काम आसान', 'लिफ्टचे काम सोपे'],
   gate_say: ['Who are you? Choose one door.', 'आप कौन हैं? एक दरवाज़ा चुनें।', 'तुम्ही कोण? एक दरवाजा निवडा.'],
@@ -2350,6 +2351,15 @@ const L = {
   eq_done_ok: ['Accepted. Lead {id} is with Sales; the customer\'s phone opens the app by itself.', 'स्वीकार। लीड {id} सेल्स के पास; ग्राहक का फ़ोन अपने-आप ऐप खोलेगा।', 'स्वीकारले. लीड {id} सेल्सकडे; ग्राहकाचा फोन आपोआप ॲप उघडेल.'],
   eq_c_known: ['This number or place is already a site: {ids}', 'यह नंबर या जगह पहले से साइट है: {ids}', 'हा नंबर किंवा जागा आधीच साइट आहे: {ids}'],
   eq_c_new: ['New number and place', 'नया नंबर और जगह', 'नवा नंबर आणि जागा'],
+  pm_title: ['Before you start', 'शुरू करने से पहले', 'सुरू करण्याआधी'],
+  pm_say: ['Two things, then you can start.', 'दो बातें, फिर आप शुरू कर सकते हैं।', 'दोन गोष्टी, मग तुम्ही सुरू करू शकता.'],
+  pm_priv_short: ['Your details are used only for the company\'s work and stay inside the company. You can ask the office to see or correct them.', 'आपकी जानकारी सिर्फ़ कंपनी के काम के लिए है और कंपनी के अंदर ही रहती है। आप ऑफिस से इसे देखने या सुधारने को कह सकते हैं।', 'तुमची माहिती फक्त कंपनीच्या कामासाठी आहे आणि कंपनीतच राहते. ती पाहण्यासाठी किंवा दुरुस्त करण्यासाठी ऑफिसला सांगू शकता.'],
+  pm_full: ['Read the full privacy notice', 'पूरी गोपनीयता सूचना पढ़ें', 'संपूर्ण गोपनीयता सूचना वाचा'],
+  pm_later: ['Camera, location and microphone: the phone asks only when you press that button.', 'कैमरा, लोकेशन और माइक: फ़ोन सिर्फ़ तब पूछेगा जब आप वह बटन दबाएँगे।', 'कॅमेरा, ठिकाण आणि माइक: तुम्ही ते बटण दाबल्यावरच फोन विचारेल.'],
+  pm_alerts: ['Allow alerts so you hear about new work', 'अलर्ट चालू करें ताकि नए काम की खबर मिले', 'नव्या कामाची खबर मिळावी म्हणून सूचना चालू करा'],
+  pm_start: ['I agree. Start', 'मैं सहमत हूँ। शुरू करें', 'मला मान्य आहे. सुरू करा'],
+  group_tap: ['Same job {n} times · tap to see each', 'एक जैसा काम {n} बार · हर एक देखने के लिए टैप करें', 'सारखे काम {n} वेळा · प्रत्येक पाहण्यासाठी टॅप करा'],
+  po_send: ['Send my answer', 'मेरा जवाब भेजें', 'माझे उत्तर पाठवा'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -8036,9 +8046,9 @@ WIZ.mhandCust = {
 };
 /* ---------- purchase order, representative, part claims ---------- */
 WIZ.poAccept = {
-  title: 'tk_accept_po', save: 'save', noDraft: true, init: P => ({ ok: '', date: P.po ? P.po.needBy : addDays(7), reason: '' }),
+  title: 'tk_accept_po', save: 'po_send', saveIcon: '📨', noDraft: true, init: P => ({ ok: '', date: P.po ? P.po.needBy : addDays(7), reason: '' }),
   steps: [
-    { id: 'look', icon: '📑', say: 's_po_look', body: (c, P) => `<div class="card">${docPO(P)}</div>` + tiles('ok', [['yes', '✅', 'po_accept'], ['no', '✋', 'po_decline']], 'one'), check: c => c.ok ? null : 'err_choose' },
+    { id: 'look', icon: '📑', say: 's_po_look', body: (c, P) => tiles('ok', [['yes', '✅', 'po_accept'], ['no', '✋', 'po_decline']], 'one') + `<div class="card" style="margin-top:12px">${docPO(P)}</div>`, check: c => c.ok ? null : 'err_choose' },
     { id: 'date', icon: '📅', say: 's_po_date', skip: c => c.ok !== 'yes', body: () => dateTiles('date'), check: c => /^\d{4}-\d\d-\d\d$/.test(c.date) && c.date >= todayStr() ? null : 'err_date' },
     { id: 'why', icon: '✋', say: 's_po_why', skip: c => c.ok !== 'no', body: () => inp('reason', 'f_reason', { area: true, mic: true }), check: c => c.reason.trim() ? null : 'err_reason' }
   ],
@@ -9003,21 +9013,19 @@ function privacyCard(full) {
     <p class="small muted">${t('pn_law')}</p>${acc ? `<div class="okbox">✅ ${t('pn_accepted', { t: fmtD(acc.t, true) })}</div>` : full ? '' : `<p class="small"><b>${t('pn_next')}</b></p>`}</div>`;
 }
 SCREENS.privacy = () => topBar(t('pn_title'), { back: true }) + `<main class="wrap">${privacyCard(true)}${App.me && !(S.privacy && S.privacy[App.me.uid]) && App.mode === 'real' ? `<button class="btn btn-p btn-big" data-a="privacyOk">✅ ${t('pn_ok')}</button>` : ''}</main>` + nav('me');
+/* the first screen after the first login: short, two things only; camera, location and mic are asked when first used */
 SCREENS.perms = () => {
-  App.pageSay = t('s_perms');
-  const needCam = ['field', 'sales', 'qc', 'supplier', 'tech', 'customer'].includes(App.me.role);
-  return topBar(t('perms_title'), {}) + `<main class="wrap"><p class="say">${t('s_perms')}</p>
-    <div class="card"><h3>📍 ${t('perm_loc')}</h3><p class="small">${t('perm_loc_d')}</p><button class="btn" data-a="askGps">📍 ${t('allow_now')}</button></div>
-    ${needCam ? `<div class="card"><h3>📷 ${t('perm_cam')}</h3><p class="small">${t('perm_cam_d')}</p><button class="btn" data-a="askCam">📷 ${t('allow_now')}</button></div>` : ''}
-    <div class="card"><h3>🎤 ${t('perm_mic')}</h3><p class="small">${t('perm_mic_d')}</p></div>
-    ${privacyCard()}
-    <div class="card"><h3>🔔 ${t('perm_notify')}</h3><p class="small">${t('perm_notify_d')}</p>${Notify.perm() === 'default' ? `<button class="btn" data-a="ntfAllow">🔔 ${t('allow_now')}</button>` : Notify.perm() === 'granted' ? `<div class="okbox">✅ ${t('ntf_perm_ok')}</div>` : ''}</div></main>
-    <div class="foot"><div class="foot-in"><button class="btn btn-p btn-big" data-a="permsDone">${t('next')} →</button></div></div>`;
+  App.pageSay = t('pm_say');
+  return topBar(t('pm_title'), {}) + `<main class="wrap"><p class="say">${t('pm_say')}</p>
+    <div class="card"><h3>🔐 ${t('pn_title')}</h3><p>${t('pm_priv_short')}</p>${fold('pmfull', t('pm_full'), privacyCard(true), { icon: '📄' })}</div>
+    <div class="note">📷📍🎤 ${t('pm_later')}</div>
+    <div class="card"><h3>🔔 ${t('perm_notify')}</h3><p class="small">${t('pm_alerts')}</p>${Notify.perm() === 'default' ? `<button class="btn" data-a="ntfAllow">🔔 ${t('allow_now')}</button>` : Notify.perm() === 'granted' ? `<div class="okbox">✅ ${t('ntf_perm_ok')}</div>` : ''}</div></main>
+    <div class="foot"><div class="foot-in"><button class="btn btn-p btn-big" data-a="permsDone">✅ ${t('pm_start')}</button></div></div>`;
 };
 
 /* ---------- home ---------- */
 function hero(u) {
-  return `<div class="hero"><div class="row"><span style="font-size:2.2rem" aria-hidden="true">${ROLE_ICON[u.role]}</span><div class="grow"><b style="font-size:1.15rem">${esc(t('hello', { name: u.name }))}</b><br><span class="muted">${t('r_' + u.role)} · ${esc(S.org.name)}</span></div></div>${u.role === 'tech' ? `<div style="margin-top:6px">${memberChip(u.uid)}</div>` : ''}</div>`;
+  return `<div class="hero"><div class="row"><span style="font-size:2.2rem" aria-hidden="true">${ROLE_ICON[u.role]}</span><div class="grow"><b style="font-size:1.15rem">${esc(t('hello', { name: u.name }))}</b><br><span class="muted">${t('r_' + u.role)} · ${esc(S.org.name)}</span></div></div>${u.role === 'tech' && u.company ? `<div style="margin-top:6px">${memberChip(u.uid)}</div>` : ''}</div>`;
 }
 SCREENS.home = () => {
   const u = App.me;
@@ -9040,9 +9048,9 @@ SCREENS.home = () => {
   if (adm || isBackup(u.uid)) h += excBanner();
   if (adm) h += escBanner();
   if (hot.length) h += `<h2 class="sec">⚠️ ${t('urgent_now')} (${hot.length})</h2>` + taskList(hot);
-  if (rest.length) h += fold('tasks', t(hot.length ? 'other_work' : 'my_tasks'), rest.map(([n, i]) => taskCard(n, i)).join(''), { icon: '📋', count: rest.length, sub: t('fold_tap') });
+  if (rest.length) h += fold('tasks', t(hot.length ? 'other_work' : 'my_tasks'), taskUnits(rest).join(''), { icon: '📋', count: rest.length, sub: t('fold_tap') });
   if (!onboarding(u.uid).ready) { const ob = onboarding(u.uid), lv = escLevel(daysSince(u.t), 'onboarding');
-    h += fold('onb', t('onb_title'), onbCard(u.uid, { short: true, bare: true }), { icon: '🪪', sub: t('onb_progress', { n: ob.done, m: ob.total }), open: lv >= 2, alert: lv >= 2 }); }
+    h += fold('onb', t('onb_title'), onbCard(u.uid, { short: true, bare: true }), { icon: '🪪', sub: t('onb_progress', { n: ob.done, m: ob.total }), open: lv >= 2 || daysSince(u.t) < 7, alert: lv >= 2 }); }
   if (u.role === 'owner' && hasAdmin()) { const aw = allOpenWork(); h += fold('allwork', t('all_work'), allWorkCard(aw), { icon: '👀', count: aw.length, sub: t('all_work_sub') }); }
   if (jqWho(u) && pendingEnqs().length) h += `<button class="task" data-a="eqList"><span class="ti">🛗</span><span class="grow" style="flex:1;min-width:0"><b>${t('eq_title')} (${pendingEnqs().length})</b><br><span class="small muted">${t('jq_home_sub')}</span></span></button>`;
   if (jqWho(u) && pendingJoins().length) h += `<button class="task" data-a="nav" data-v="joins"><span class="ti">🧰</span><span class="grow" style="flex:1;min-width:0"><b>${t('jq_title')} (${pendingJoins().length})</b><br><span class="small muted">${t('jq_home_sub')}</span></span></button>`;
@@ -9064,9 +9072,16 @@ function fold(key, title, body, o = {}) {
   return `<details class="fold" data-fold="${key}" ${open ? 'open' : ''}><summary><span class="i" aria-hidden="true">${o.icon || '📁'}</span><span class="grow"><b>${esc(title)}</b>${o.sub ? `<span class="small muted">${esc(o.sub)}</span>` : ''}</span>${o.count != null ? `<span class="chip ${o.alert ? 'c-warn' : 'c-mute'}">${o.count}</span>` : ''}<span class="chev" aria-hidden="true">▾</span></summary><div class="fold-in">${body}</div></details>`;
 }
 /* long lists show the first 8; the rest is one tap away */
+/* the same kind of job three or more times shows once, with how many; one tap opens them */
+function taskUnits(pairs) {
+  const groups = []; for (const p of pairs) { const g = groups.find(x => x.k === p[0].k); if (g) g.items.push(p); else groups.push({ k: p[0].k, items: [p] }); }
+  return groups.flatMap(g => g.items.length >= 3 && !(App.form.openGroups || []).includes(g.k)
+    ? [`<button class="task" data-a="taskGroup" data-v="${g.k}"><span class="ti">${TASK_ICON[g.k] || '📋'}</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_' + g.k)} (${g.items.length})</b><br><span class="small muted">${t('group_tap', { n: g.items.length })}</span></span><span aria-hidden="true">▾</span></button>`]
+    : g.items.map(([n, i]) => taskCard(n, i)));
+}
 function taskList(pairs) {
-  const all = App.form.allTasks || pairs.length <= 8, list = all ? pairs : pairs.slice(0, 8);
-  return list.map(([n, i]) => taskCard(n, i)).join('') + (pairs.length > 8 ? `<button class="btn" data-a="allTasks">${all ? '▲ ' + t('show_less') : '▼ ' + t('show_all_n', { n: pairs.length })}</button>` : '');
+  const units = taskUnits(pairs), all = App.form.allTasks || units.length <= 8, list = all ? units : units.slice(0, 8);
+  return list.join('') + (units.length > 8 ? `<button class="btn" data-a="allTasks">${all ? '▲ ' + t('show_less') : '▼ ' + t('show_all_n', { n: units.length })}</button>` : '');
 }
 function shiftCard() {
   const sh = S.shifts[App.me.uid];
@@ -10881,7 +10896,7 @@ const Notify = {
   /* compare my task list with what I have already been told about */
   check(opt = {}) {
     const u = App.me; if (!u || App.locked || !S.org) return [];
-    const tasks = myTasks(u), key = 'seen_' + App.mode + '_' + u.uid, seen = new Set(App.set[key] || []);
+    const tasks = myTasks(u), key = 'seen_' + App.mode + '_' + u.uid, firstLook = !App.set[key], seen = new Set(App.set[key] || []);
     const fresh = tasks.filter(n => !seen.has(this.sig(n)));
     App.set[key] = tasks.map(n => this.sig(n));
     /* critical items (SOS, person trapped, unsafe lift, emergency part claim) ring again at every check, even in quiet hours, until this person taps "I am on it" */
@@ -10891,7 +10906,8 @@ const Notify = {
     if (crit.length !== had && App.route && App.route.name !== 'wiz') render();
     this.badge(tasks.length); this.schedule(u);
     this.celebrate(u);
-    if (opt.silent || !fresh.length) { saveSettings(); return []; }
+    /* the first look on this phone only remembers: a new person is not greeted by a pop-up of every open job */
+    if (opt.silent || firstLook || !fresh.length) { saveSettings(); return []; }
     const rank = n => ['task', 'urgent', 'alarm'].indexOf(this.kind(n)), top = fresh.slice().sort((a, b) => rank(b) - rank(a))[0], kind = this.kind(top);
     const what = t('tk_' + (top.k === 'escalated' ? top.ref : top.k)), where = top.pid || (top.uid ? userName(top.uid) : '');
     const title = fresh.length === 1 ? t(top.k === 'escalated' ? 'ntf_esc' : 'ntf_new', { task: what }) : t('ntf_many', { n: fresh.length });
@@ -11554,6 +11570,7 @@ const ACT = {
   custNewSite: () => wiz('custLead', null),
   eqList: () => go('joins', { kind: 'enq' }),
   custNewGuest: () => wiz('custLead', null, { guest: true }),
+  taskGroup: v => { App.form.openGroups = uniq((App.form.openGroups || []).concat(v)); render(); },
   jqOpen: v => { App.form = {}; go('joinCheck', { rid: v }); },
   jqZoom: v => sheet(`<img data-m="${v}" alt="" style="width:100%;border-radius:10px">`),
   jcRole: v => { App.form.jcRole = v; render(); },

@@ -15,15 +15,15 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
 
   await page.evaluate(() => { loginAs(S.users.PSALES); ACT.permsDone(); }); await page.waitForTimeout(1300);
   let l = await log();
-  assert(l.length === 1 && /new tasks for you|New work/.test(l[0].title), 'logging in announces the waiting work once: ' + (l[0] && l[0].title));
-  assert(await page.$('#ntf .ntf'), 'a message appears at the top of the screen');
-  assert((await page.evaluate(() => Notify.check())).length === 0 && (await log()).length === 1, 'nothing new → no second sound');
+  assert(l.length === 0 && !(await page.$('#ntf .ntf')), 'the first login on a phone only remembers the open work: no pop-up covers the screen');
+  assert((await page.evaluate(() => Notify.check())).length === 0 && (await log()).length === 0, 'nothing new → no sound');
 
   /* new work arriving from another phone */
   await page.evaluate(async () => { await window.__lead('AIEC-PX1'); });
   const fresh = await page.evaluate(() => Notify.check().map(n => n.k));
   l = await log();
-  assert(fresh.includes('review_lead') && l.length === 2 && l[1].kind === 'task' && /Check new lead|review/i.test(l[1].title + l[1].body), 'a new lead for Sales rings the "new task" sound: ' + l[1].title);
+  assert(fresh.includes('review_lead') && l.length === 1 && l[0].kind === 'task' && /Check new lead|review/i.test(l[0].title + l[0].body), 'a new lead for Sales rings the "new task" sound: ' + (l[0] && l[0].title));
+  assert(await page.$('#ntf .ntf'), 'a message appears at the top of the screen');
 
   /* the same work moving up the escalation ladder rings again, louder */
   await page.evaluate(() => { loginAs(S.users.POWNER); ACT.permsDone(); }); await page.waitForTimeout(1300);
