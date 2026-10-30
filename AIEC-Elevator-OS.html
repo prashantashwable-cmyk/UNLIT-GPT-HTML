@@ -2351,6 +2351,7 @@ const L = {
   eq_done_ok: ['Accepted. Lead {id} is with Sales; the customer\'s phone opens the app by itself.', 'स्वीकार। लीड {id} सेल्स के पास; ग्राहक का फ़ोन अपने-आप ऐप खोलेगा।', 'स्वीकारले. लीड {id} सेल्सकडे; ग्राहकाचा फोन आपोआप ॲप उघडेल.'],
   eq_c_known: ['This number or place is already a site: {ids}', 'यह नंबर या जगह पहले से साइट है: {ids}', 'हा नंबर किंवा जागा आधीच साइट आहे: {ids}'],
   eq_c_new: ['New number and place', 'नया नंबर और जगह', 'नवा नंबर आणि जागा'],
+  pm_consent: ['Tapping "I agree. Start" records that you agree to this privacy notice (Digital Personal Data Protection Act, 2023).', '"मैं सहमत हूँ। शुरू करें" दबाने से दर्ज होता है कि आप इस गोपनीयता सूचना से सहमत हैं (डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023)।', '"मला मान्य आहे. सुरू करा" दाबल्यावर तुम्ही या गोपनीयता सूचनेस मान्यता दिल्याची नोंद होते (डिजिटल वैयक्तिक डेटा संरक्षण अधिनियम, 2023).'],
   pm_title: ['Before you start', 'शुरू करने से पहले', 'सुरू करण्याआधी'],
   pm_say: ['Two things, then you can start.', 'दो बातें, फिर आप शुरू कर सकते हैं।', 'दोन गोष्टी, मग तुम्ही सुरू करू शकता.'],
   pm_priv_short: ['Your details are used only for the company\'s work and stay inside the company. You can ask the office to see or correct them.', 'आपकी जानकारी सिर्फ़ कंपनी के काम के लिए है और कंपनी के अंदर ही रहती है। आप ऑफिस से इसे देखने या सुधारने को कह सकते हैं।', 'तुमची माहिती फक्त कंपनीच्या कामासाठी आहे आणि कंपनीतच राहते. ती पाहण्यासाठी किंवा दुरुस्त करण्यासाठी ऑफिसला सांगू शकता.'],
@@ -9043,7 +9044,7 @@ SCREENS.privacy = () => topBar(t('pn_title'), { back: true }) + `<main class="wr
 SCREENS.perms = () => {
   App.pageSay = t('pm_say');
   return topBar(t('pm_title'), {}) + `<main class="wrap"><p class="say">${t('pm_say')}</p>
-    <div class="card"><h3>🔐 ${t('pn_title')}</h3><p>${t('pm_priv_short')}</p>${fold('pmfull', t('pm_full'), privacyCard(true), { icon: '📄' })}</div>
+    <div class="card"><h3>🔐 ${t('pn_title')}</h3><p>${t('pm_priv_short')}</p>${fold('pmfull', t('pm_full'), privacyCard(true), { icon: '📄' })}<p class="small"><b>${t('pm_consent')}</b></p></div>
     <div class="note">📷📍🎤 ${t('pm_later')}</div>
     <div class="card"><h3>🔔 ${t('perm_notify')}</h3><p class="small">${t('pm_alerts')}</p>${Notify.perm() === 'default' ? `<button class="btn" data-a="ntfAllow">🔔 ${t('allow_now')}</button>` : Notify.perm() === 'granted' ? `<div class="okbox">✅ ${t('ntf_perm_ok')}</div>` : ''}</div></main>
     <div class="foot"><div class="foot-in"><button class="btn btn-p btn-big" data-a="permsDone">✅ ${t('pm_start')}</button></div></div>`;

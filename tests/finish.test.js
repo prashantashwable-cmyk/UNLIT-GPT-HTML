@@ -68,7 +68,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await pb.waitForTimeout(1500);
   await pb.evaluate(() => { App.set.permsSeen = {}; loginAs(App.me); }); await pb.waitForTimeout(200);
   const pt = await pb.innerText('main');
-  assert(/Privacy notice/.test(pt) && /Digital Personal Data Protection Act, 2023/.test(pt) && /Tapping Next records/.test(pt), 'the first-login screen shows the privacy notice');
+  assert(/Privacy notice/.test(pt) && /Digital Personal Data Protection Act, 2023/.test(pt) && /Tapping "I agree\. Start" records/.test(pt) && /stay inside the company/.test(pt), 'the first-login screen shows the privacy notice in short, the law, and what tapping records');
   await pb.evaluate(() => ACT.permsDone()); await pb.waitForTimeout(800);
   assert(await pb.evaluate(() => S.privacy && S.privacy[App.me.uid] && S.privacy[App.me.uid].v === PRIVACY_V && EVENTS.some(e => e.type === 'PRIVACY_ACCEPTED' && e.sig)), 'reading it is a signed record');
   await pb.evaluate(() => go('privacy')); await pb.waitForTimeout(150);
