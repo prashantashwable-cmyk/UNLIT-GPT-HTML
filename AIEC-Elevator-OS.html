@@ -2360,6 +2360,27 @@ const L = {
   pm_start: ['I agree. Start', 'मैं सहमत हूँ। शुरू करें', 'मला मान्य आहे. सुरू करा'],
   group_tap: ['Same job {n} times · tap to see each', 'एक जैसा काम {n} बार · हर एक देखने के लिए टैप करें', 'सारखे काम {n} वेळा · प्रत्येक पाहण्यासाठी टॅप करा'],
   po_send: ['Send my answer', 'मेरा जवाब भेजें', 'माझे उत्तर पाठवा'],
+  calm_t: ['This is a practice company', 'यह अभ्यास कंपनी है', 'ही सराव कंपनी आहे'],
+  calm_d: ['Some work here is late on purpose, so you can see what happens. Nothing is real, nobody is blamed. Try one job from start to end.', 'यहाँ कुछ काम जानबूझकर देर से है, ताकि आप देख सकें क्या होता है। कुछ भी असली नहीं, किसी पर दोष नहीं। एक काम शुरू से अंत तक करके देखें।', 'इथे काही काम मुद्दाम उशिरा आहे, म्हणजे काय होते ते पाहता येईल. काहीही खरे नाही, कोणालाही दोष नाही. एक काम सुरुवातीपासून शेवटपर्यंत करून पाहा.'],
+  calm_try: ['Try my first job', 'मेरा पहला काम करके देखें', 'माझे पहिले काम करून पाहा'],
+  calm_ok: ['Got it', 'समझ गया', 'समजले'],
+  fw_title: ['Your first week', 'आपका पहला हफ़्ता', 'तुमचा पहिला आठवडा'],
+  fw_contact: ['If you are stuck, call', 'अटकें तो फ़ोन करें', 'अडलात तर फोन करा'],
+  fw_buddy: ['Your buddy (helps you this week)', 'आपका साथी (इस हफ़्ते मदद करेगा)', 'तुमचा सोबती (या आठवड्यात मदत करेल)'],
+  fw_site: ['Your first site', 'आपकी पहली साइट', 'तुमची पहिली साइट'],
+  fw_no_site: ['The office will give you your first site. Meanwhile finish the steps below.', 'ऑफिस आपको पहली साइट देगा। तब तक नीचे के कदम पूरे करें।', 'ऑफिस तुम्हाला पहिली साइट देईल. तोपर्यंत खालचे टप्पे पूर्ण करा.'],
+  read_aloud: ['Read aloud', 'पढ़कर सुनाएँ', 'वाचून दाखवा'],
+  nw_title: ['New people (first 2 weeks)', 'नए लोग (पहले 2 हफ़्ते)', 'नवीन लोक (पहिले 2 आठवडे)'],
+  nw_sub: ['Who has started, who is stuck', 'किसने शुरू किया, कौन अटका है', 'कोणी सुरू केले, कोण अडले आहे'],
+  nw_used: ['Has used the app', 'ऐप इस्तेमाल किया', 'ॲप वापरले'],
+  nw_not_used: ['Has not used the app yet', 'अभी ऐप इस्तेमाल नहीं किया', 'अजून ॲप वापरले नाही'],
+  nw_days: ['Joined {n} day(s) ago', '{n} दिन पहले जुड़े', '{n} दिवसांपूर्वी जोडले'],
+  nw_steps: ['First-week steps {n}/{m}', 'पहले हफ़्ते के कदम {n}/{m}', 'पहिल्या आठवड्याचे टप्पे {n}/{m}'],
+  nw_stuck: ['Stuck for {n} days', '{n} दिन से अटके', '{n} दिवसांपासून अडले'],
+  nw_buddy: ['Buddy', 'साथी', 'सोबती'],
+  nw_pick_buddy: ['Pick a buddy', 'साथी चुनें', 'सोबती निवडा'],
+  tk_help_newbie: ['Help the new person get started', 'नए व्यक्ति को शुरू करने में मदद करें', 'नव्या व्यक्तीला सुरुवात करायला मदत करा'],
+  ev_BUDDY_SET: ['Buddy chosen for a new person', 'नए व्यक्ति के लिए साथी चुना', 'नव्या व्यक्तीसाठी सोबती निवडला'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5876,6 +5897,7 @@ const RULES = {
   },
   PRIVACY_ACCEPTED: { roles: ROLES, check: (S, ev) => need(+ev.data.v === PRIVACY_V, 'err_fill') },
   /* people, training and pay */
+  BUDDY_SET: { roles: ['owner', 'admin'], check: (S, ev) => { const d = ev.data, x = S.users[d.uid], b = S.users[d.buddy]; return !x || !b || !b.active || d.uid === d.buddy ? 'err_no_user' : null; } },
   WORKER_PROFILE: {
     roles: STAFF, check: (S, ev, u) => {
       const x = S.users[ev.data.uid];
@@ -6341,6 +6363,7 @@ function apply(S, ev) {
       if (d.decision === 'approve') { const inner = innerEvent(r, ev); apply(S, inner); }
       break;
     }
+    case 'BUDDY_SET': worker(d.uid).buddy = d.buddy; break;
     case 'WORKER_PROFILE': { const w = worker(d.uid); if (d.stripped) w.profile.filled = true; ['phone', 'area', 'skills', 'availability'].forEach(k => { if (d[k] !== undefined) w.profile[k] = k === 'phone' ? phone10(d[k]) : d[k]; }); w.profile.t = ev.t; break; }
     case 'DOC_VERIFIED': { const w = worker(d.uid); w.docs[d.doc] = d.status; (w.docLog = w.docLog || []).push({ doc: d.doc, status: d.status, note: d.note || '', by: ev.by, t: ev.t }); break; }
     case 'TRIAL_RESULT': { const w = worker(d.uid); (w.trials = w.trials || []).push({ pid: ev.pid, ok: d.ok, note: d.note || '', by: ev.by, t: ev.t }); break; }
@@ -6529,6 +6552,8 @@ function globalNeeds(u, all) {
   for (const id of S.sosOrder) { const x = S.sos[id]; if (x.open) add('sos', ['admin', 'owner', 'partner'], { sid: id, uid: x.by, uids: [companyOf(x.by)], not: x.by, urgent: true, pid: null, sosPid: x.pid }); }
   const up = (n, from, id) => { const e = escFor(n, from, id); if (e) out.push(e); };
   for (const id of S.approvalOrder) { const r = S.approvals[id]; if (r.status === 'pending') { add('second_approval', ['owner', 'admin'], { aid: id, not: r.by, urgent: true }); const b = backupNow(); if (b && b !== r.by) add('second_approval', [roleOf(b)], { aid: id, uids: [b], urgent: true }); } }
+  /* a buddy is asked to help when the new person has done nothing for 2 days in their first 2 weeks */
+  for (const x of newPeople()) { const b = (S.workers[x.uid] || {}).buddy; if (b && S.users[b] && S.users[b].active && newStuck(x) >= 2) add('help_newbie', [roleOf(b)], { uid: x.uid, uids: [b], since: EVENTS.filter(e => e.by === x.uid).map(e => e.t).sort().pop() || x.t }); }
   for (const id of S.enqOrder || []) { const e = S.enquiries[id]; if (e && e.open) add('new_enquiry', ['sales', 'admin', 'owner'], { eid: id, since: e.t }); }
   /* records with a phone-clock jump wait for an office decision (one item for all of them) */
   { const g = openClockGaps(); if (g.length) add('clock_gap', ['admin', 'owner'], { n: g.length }); }
@@ -7187,6 +7212,7 @@ function nextLine(P) {
   return isMine(n, App.me) ? t('next_you', { task: t('tk_' + n.k) }) : t('next_who', { who: rolesTxt(n.roles), task: t('tk_' + n.k) });
 }
 const TASK_ICON = {
+  help_newbie: '🤝',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
@@ -7201,7 +7227,7 @@ function taskCard(n, i) {
   const sub = cm ? ' · ' + (cm.due ? fmtD(cm.due) + (cm.time ? ' ' + cm.time : '') + ' · ' : '') + esc(cm.text.slice(0, 40)) : ['approve_invoice', 'pay_invoice'].includes(n.k) && P ? ' · ' + ((P.invoices || []).find(i => i.id === n.iid) || {}).no + ' · ' + money(invPayable((P.invoices || []).find(i => i.id === n.iid) || {})) : n.k === 'review_checkin' && P ? ' · ' + userName(n.uid) + ' · ' + (((P.checkins || {})[n.day] || {})[n.uid] || {}).dist + ' m' : n.sev && ['assign_ticket', 'work_ticket', 'sla_breach'].includes(n.k) ? ' · ' + SEVERITIES[sevRank(n.sev)][1] + ' ' + t('sev_' + n.sev) : ['decide_claim', 'send_claim', 'receive_claim'].includes(n.k) && P && claimOf(P, n.cid) ? ' · ' + t(claimOf(P, n.cid).line) + ' · ' + t('clk_' + claimOf(P, n.cid).kind) : n.k === 'po_late' ? ' · ' + fmtD(n.date) : n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
   if (!P || n.k === 'job_open') {
     const info = n.k === 'job_open' && S.posts[n.postId] ? jobTitle(S.posts[n.postId]) + ' · 📍 ' + S.posts[n.postId].card.area : n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
-      : n.k === 'clock_gap' ? t('clock_n', { n: n.n }) : n.k === 'day_close' ? t('day_close_sub', { n: officeQueue().length }) : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'access_alert' ? userName(n.uid) + ' · ' + t(n.why, { n: n.n }) : n.k === 'sos' ? userName(n.uid) + ' · ' + fmtD(S.sos[n.sid].t, true) + (n.sosPid ? ' · ' + n.sosPid : '') : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
+      : n.k === 'clock_gap' ? t('clock_n', { n: n.n }) : n.k === 'day_close' ? t('day_close_sub', { n: officeQueue().length }) : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'access_alert' ? userName(n.uid) + ' · ' + t(n.why, { n: n.n }) : n.k === 'sos' ? userName(n.uid) + ' · ' + fmtD(S.sos[n.sid].t, true) + (n.sosPid ? ' · ' + n.sosPid : '') : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.k === 'help_newbie' ? userName(n.uid) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
     return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
@@ -7586,7 +7612,7 @@ WIZ.fixlead = {
   steps: [
     {
       id: 'why', icon: '↩️', say: 's_fix_why',
-      body: (c, P) => `<div class="warnbox"><b>${t('rr_' + P.returned.reason)}</b>${P.returned.note ? '<br>' + esc(P.returned.note) : ''}<br><small>${userTag(P.returned.by)} · ${fmtD(P.returned.t, true)}</small></div>` + photoSlot('more', 'ph_more', 0, { tag: 'fix' })
+      body: (c, P) => `<div class="warnbox"><b>${t('rr_' + P.returned.reason)}</b>${P.returned.note ? '<br>' + esc(P.returned.note) + ` <button class="btn btn-sm" data-a="sayText" data-v="${esc(t('rr_' + P.returned.reason) + '. ' + P.returned.note)}" aria-label="${esc(t('read_aloud'))}">🔊</button>` : ''}<br><small>${userTag(P.returned.by)} · ${fmtD(P.returned.t, true)}</small></div>` + photoSlot('more', 'ph_more', 0, { tag: 'fix' })
     },
     { id: 'contact', icon: '📞', say: 's_fix_contact', body: () => inp('name', 'f_contact_name', { mic: true }) + inp('phone', 'f_phone', { type: 'tel', mode: 'numeric', mic: 'digits', big: true }) + inp('address', 'f_address', { area: true, mic: true }), check: c => !c.phone || validPhone(c.phone) ? null : 'err_phone' },
     { id: 'note', icon: '📝', say: 's_fix_note', body: () => inp('note', 'f_note', { area: true, mic: true, opt: true }) }
@@ -9027,6 +9053,25 @@ SCREENS.perms = () => {
 function hero(u) {
   return `<div class="hero"><div class="row"><span style="font-size:2.2rem" aria-hidden="true">${ROLE_ICON[u.role]}</span><div class="grow"><b style="font-size:1.15rem">${esc(t('hello', { name: u.name }))}</b><br><span class="muted">${t('r_' + u.role)} · ${esc(S.org.name)}</span></div></div>${u.role === 'tech' && u.company ? `<div style="margin-top:6px">${memberChip(u.uid)}</div>` : ''}</div>`;
 }
+/* ---------- a new person's first week: who to call, their buddy, their first site; the office sees who is stuck ---------- */
+function firstWeekCard(u) {
+  const adm = Object.values(S.users).find(x => x.active && x.role === 'admin') || Object.values(S.users).find(x => x.active && x.role === 'owner');
+  const ph = uid => ((S.workers[uid] || {}).profile || {}).phone || '', b = (S.workers[u.uid] || {}).buddy, bu = b && S.users[b];
+  const site = visibleProjects(u).find(P => !P.done && P.stage !== 'lost' && (P.tech === u.uid || (P.crew || []).includes(u.uid) || P.sales === u.uid || P.qc === u.uid));
+  const call = (x, label) => x ? `<div class="row wrapw" style="margin:6px 0"><span class="grow">${label}: <b>${esc(x.name)}</b></span>${ph(x.uid) || (x === adm && S.config.officeNumber) ? `<a class="btn btn-sm btn-p" href="tel:+91${esc(ph(x.uid) || S.config.officeNumber)}">📞 ${esc(ph(x.uid) || S.config.officeNumber)}</a>` : ''}</div>` : '';
+  return `<div class="card"><h3 style="margin-top:0">👋 ${t('fw_title')}</h3>${call(adm, t('fw_contact'))}${call(bu, t('fw_buddy'))}
+    ${site ? `<div class="okbox">📍 ${t('fw_site')}: <b>${esc(site.id)}</b> · ${esc(site.site.address)}${site.site.gps ? ` <a class="btn btn-sm" href="${mapsLink(site.site.gps)}" target="_blank" rel="noopener">🗺️ ${t('open_map')}</a>` : ''}</div>` : `<p class="small muted">${t('fw_no_site')}</p>`}</div>`;
+}
+const usedApp = uid => EVENTS.some(e => e.by === uid);
+const newPeople = () => Object.values(S.users).filter(x => x.active && STAFF.includes(x.role) && !['owner', 'admin'].includes(x.role) && daysSince(x.t) < 14);
+/* days with nothing done by the person: since they joined, or since their last action */
+const newStuck = x => { const last = EVENTS.filter(e => e.by === x.uid).map(e => e.t).sort().pop(); return daysSince(last || x.t); };
+function newPersonRow(x) {
+  const ob = onboarding(x.uid), b = (S.workers[x.uid] || {}).buddy, st = newStuck(x);
+  return `<div class="card"><div class="row wrapw"><b class="grow">${ROLE_ICON[x.role]} ${esc(x.name)}</b><span class="chip ${usedApp(x.uid) ? 'c-ok' : 'c-warn'}">${t(usedApp(x.uid) ? 'nw_used' : 'nw_not_used')}</span></div>
+    <p class="small muted" style="margin:4px 0">${t('nw_days', { n: daysSince(x.t) })} · ${t('nw_steps', { n: ob.done, m: ob.total })}${st >= 2 ? ` · <b style="color:var(--bad)">${t('nw_stuck', { n: st })}</b>` : ''}</p>
+    <div class="row wrapw">${b && S.users[b] ? `<span class="chip c-info">🤝 ${t('nw_buddy')}: ${esc(S.users[b].name)}</span>` : ''}<button class="btn btn-sm" data-a="buddyPick" data-v="${x.uid}">🤝 ${t('nw_pick_buddy')}</button>${((S.workers[x.uid] || {}).profile || {}).phone ? `<a class="btn btn-sm" href="tel:+91${esc(S.workers[x.uid].profile.phone)}">📞</a>` : ''}</div></div>`;
+}
 SCREENS.home = () => {
   const u = App.me;
   if (u.role === 'customer') return customerHome();
@@ -9038,6 +9083,8 @@ SCREENS.home = () => {
   /* the main screen shows only what needs attention now; everything else is folded away and opens with one tap */
   const idx = tasks.map((n, i) => [n, i]), hot = idx.filter(([n]) => isHot(n)), rest = idx.filter(([n]) => !isHot(n));
   let h = topBar(t('nav_home')) + `<main class="wrap">${hero(u)}`;
+  if (App.mode === 'practice' && !(App.set.calmSeen || {})[u.uid]) h += `<div class="card"><b>🎓 ${t('calm_t')}</b><p class="small">${t('calm_d')}</p><div class="row wrapw"><button class="btn btn-p" data-a="calmTry">▶ ${t('calm_try')}</button><button class="btn" data-a="calmOk">${t('calm_ok')}</button></div></div>`;
+  if (!adm && STAFF.includes(u.role) && daysSince(u.t) < 7) h += firstWeekCard(u);
   if (u.role === 'field') h += shiftCard();
   if (u.role === 'tech') { const open = visibleProjects(u).filter(P => checkedIn(P, safeDay(), u.uid) && !(((P.dayEnds || {})[safeDay()] || {})[u.uid]));
     open.forEach(P => { h += `<button class="task" style="margin-top:10px" data-a="wizOpen" data-v="techEnd|${P.id}"><span class="ti">🏁</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_end_day')}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span></span><span class="go">▶</span></button>`; }); }
@@ -9052,6 +9099,7 @@ SCREENS.home = () => {
   if (!onboarding(u.uid).ready) { const ob = onboarding(u.uid), lv = escLevel(daysSince(u.t), 'onboarding');
     h += fold('onb', t('onb_title'), onbCard(u.uid, { short: true, bare: true }), { icon: '🪪', sub: t('onb_progress', { n: ob.done, m: ob.total }), open: lv >= 2 || daysSince(u.t) < 7, alert: lv >= 2 }); }
   if (u.role === 'owner' && hasAdmin()) { const aw = allOpenWork(); h += fold('allwork', t('all_work'), allWorkCard(aw), { icon: '👀', count: aw.length, sub: t('all_work_sub') }); }
+  if (jqWho(u) && newPeople().length) h += fold('newpeople', t('nw_title'), newPeople().map(newPersonRow).join(''), { icon: '👋', count: newPeople().length, sub: t('nw_sub'), alert: newPeople().some(x => newStuck(x) >= 2) });
   if (jqWho(u) && pendingEnqs().length) h += `<button class="task" data-a="eqList"><span class="ti">🛗</span><span class="grow" style="flex:1;min-width:0"><b>${t('eq_title')} (${pendingEnqs().length})</b><br><span class="small muted">${t('jq_home_sub')}</span></span></button>`;
   if (jqWho(u) && pendingJoins().length) h += `<button class="task" data-a="nav" data-v="joins"><span class="ti">🧰</span><span class="grow" style="flex:1;min-width:0"><b>${t('jq_title')} (${pendingJoins().length})</b><br><span class="small muted">${t('jq_home_sub')}</span></span></button>`;
   if (adm && openReports().length) { const n = openReports().length, urgent = openReports().some(x => x.problem === 'stopped'); h += `<button class="task ${urgent ? 'urgent' : ''}" data-a="nav" data-v="reports"><span class="ti">📨</span><span class="grow" style="flex:1;min-width:0"><b>${t('rp_title')} (${n})</b><br><span class="small muted">${t('rp_say')}</span></span></button>`; }
@@ -9430,7 +9478,7 @@ function projChat(P) {
     return `<div class="bubble ${mineM ? 'mine' : ''}"><div class="small"><b>${userTag(m.by)}</b> · ${fmtD(m.t, true)} ${m.kind !== 'message' ? `<span class="chip ${m.open ? 'c-warn' : 'c-ok'}">${t('ck_' + m.kind)}${m.toRole ? ' → ' + t('r_' + m.toRole) : ''} · ${m.open ? t('open') : t('closed')}</span>` : m.toRole === 'customer' ? `<span class="chip c-info">→ ${t('r_customer')}</span>` : ''}</div>
       ${m.source === 'outside' ? `<span class="chip c-mute">📞 ${t('outside_summary')}</span>` : ''}
       ${m.replyTo ? `<div class="small muted">↪ ${esc((P.chat.find(x => x.id === m.replyTo) || {}).text || '').slice(0, 50)}</div>` : ''}
-      <div>${esc(OUTSIDERS.includes(App.me.role) ? maskContact(m.text) : m.text)}</div>${evGrid(m.ev)}${chatExtra(m, P)}
+      <div>${esc(OUTSIDERS.includes(App.me.role) ? maskContact(m.text) : m.text)}${(m.text || '').trim() ? ` <button class="btn btn-sm" data-a="sayText" data-v="${esc(OUTSIDERS.includes(App.me.role) ? maskContact(m.text) : m.text)}" aria-label="${esc(t('read_aloud'))}">🔊</button>` : ''}</div>${evGrid(m.ev)}${chatExtra(m, P)}
       ${m.decision ? `<div class="chip ${m.decision.decision === 'approve' ? 'c-ok' : 'c-bad'}">${t('dec_' + m.decision.decision)} · ${userName(m.decision.by)}${m.decision.reason ? ': ' + esc(m.decision.reason) : ''}</div>` : ''}
       ${canReply ? `<button class="btn btn-sm" data-a="chatReply" data-v="${m.id}">↪ ${t('reply')}</button>` : ''}${mineM && canUndo(m.id) ? ` <button class="btn btn-sm" data-a="undo" data-v="${m.id}">↩️ ${t('undo_short')}</button>` : ''}
       ${canDecide ? `<div class="row" style="margin-top:6px"><button class="btn btn-sm btn-ok" data-a="chatDecide" data-v="${m.id}|approve">✅ ${t('dec_approve')}</button><button class="btn btn-sm btn-bad" data-a="chatDecide" data-v="${m.id}|reject">❌ ${t('dec_reject')}</button></div>` : ''}</div>`;
@@ -11434,6 +11482,7 @@ function openTask(n) {
     pay_dispute: () => wiz('payAnswer', null, { uid: n.uid, week: n.week }), training: () => wiz('train', null, { module: n.module }),
     onb_profile: () => wiz('wprofile', null, { uid: n.uid }), check_docs: () => go('worker', { uid: n.uid }),
     rate_work: () => wiz('rate', pid, { ref: n.ref, about: n.ref === 'handover' ? doneLead(P) : P.service[n.ref.split(':')[1]].by }), rate_crew: () => wiz('rateCrew', pid, { uid: n.uid }),
+    help_newbie: () => { const x = S.users[n.uid], ph = ((S.workers[n.uid] || {}).profile || {}).phone; sheet(`<h2>🤝 ${t('tk_help_newbie')}</h2><p><b>${esc(x.name)}</b> · ${t('r_' + x.role)} · ${t('nw_stuck', { n: newStuck(x) })}</p>${ph ? `<a class="btn btn-p btn-big" href="tel:+91${esc(ph)}">📞 ${esc(ph)}</a>` : ''}${onbCard(n.uid, { short: true })}`); },
     promotion_ready: () => wiz('promote', null, { uid: n.uid }), strike_appeal: () => wiz('decide', null, { uid: n.uid, sid: n.sid }),
     reassign_work: () => go('project', { pid, tab: 'info' }), backup_due: () => go('data'), approve_member: () => go('worker', { uid: n.uid }), link_company: () => ACT.userOpen(n.uid), licence_renew: () => go('worker', { uid: n.uid }), fill_team: () => wiz('team', pid), approve_key: () => ACT.keySheet(n.uid + '|' + n.kid), job_open: () => go('jobs', {}), pick_applicant: () => wiz('pick', pid, { postId: n.postId }), post_nobody: () => go('posts'), post_job: () => wiz('post', pid, { kind: n.kind || 'lead' }),
     review_meeting: () => wiz('reviewMeet', null, { uid: n.uid, k: n.k }), suspend_review: () => wiz('reviewMeet', null, { uid: n.uid, k: n.k }), spot_check: () => wiz('spot', pid, { step: n.step })
@@ -11514,6 +11563,11 @@ function newPin() { const six = +S.config.pinDigits === 6, r = crypto.getRandomV
 const ACT = {
   nav: v => { Voice.stop(); if (MAIN_TABS.includes(v) && App.me) { App.stack = []; W = null; App.route = { name: 'home', p: {} }; if (v === 'home') { render(); window.scrollTo(0, 0); } else go(v); } else go(v); },
   back: () => { if (!App.locked) back(); },
+  sayText: v => Voice.say(v),
+  calmOk: () => { App.set.calmSeen = Object.assign({}, App.set.calmSeen, { [App.me.uid]: true }); saveSettings(); render(); },
+  calmTry: () => { App.set.calmSeen = Object.assign({}, App.set.calmSeen, { [App.me.uid]: true }); saveSettings(); if ((App.tasks || []).length) ACT.openTask('0'); else if (['field', 'sales'].includes(App.me.role)) ACT.addSite(); else render(); },
+  buddySet: v => { const [uid, b] = v.split('|'); perform('BUDDY_SET', null, { uid, buddy: b }).then(r => { if (r.ok) { closeSheet(); toast(t('saved_item')); render(); } }); },
+  buddyPick: v => sheet(`<h2>🤝 ${t('nw_pick_buddy')}</h2><div class="tiles one">${Object.values(S.users).filter(x => x.active && x.uid !== v && STAFF.includes(x.role) && x.role !== 'owner' && daysSince(x.t) >= 14).map(x => `<button class="tile" data-a="buddySet" data-v="${v}|${x.uid}"><span class="i">${ROLE_ICON[x.role]}</span>${esc(x.name)}<br><small>${t('r_' + x.role)}</small></button>`).join('')}</div>`),
   sayPage: () => Voice.say(App.pageSay || ($('main') ? $('main').innerText.slice(0, 400) : '')),
   help: () => sheet(helpHtml()),
   helpChat: () => { const pid = pidHere(); closeSheet(); App.form.ck = 'question'; go('project', { pid, tab: 'chat' }); },
