@@ -2382,6 +2382,17 @@ const L = {
   nw_pick_buddy: ['Pick a buddy', 'साथी चुनें', 'सोबती निवडा'],
   tk_help_newbie: ['Help the new person get started', 'नए व्यक्ति को शुरू करने में मदद करें', 'नव्या व्यक्तीला सुरुवात करायला मदत करा'],
   ev_BUDDY_SET: ['Buddy chosen for a new person', 'नए व्यक्ति के लिए साथी चुना', 'नव्या व्यक्तीसाठी सोबती निवडला'],
+  cl_mine: ['My site details', 'मेरी साइट की जानकारी', 'माझ्या साइटची माहिती'],
+  cl_sent_what: ['What you sent', 'आपने क्या भेजा', 'तुम्ही काय पाठवले'],
+  cl_change: ['Change my details', 'मेरी जानकारी बदलें', 'माझी माहिती बदला'],
+  cl_locked: ['Sales is working on it. To change something, ask in chat.', 'सेल्स इस पर काम कर रहा है। कुछ बदलना हो तो चैट में पूछें।', 'सेल्स यावर काम करत आहे. काही बदलायचे असल्यास चॅटमध्ये विचारा.'],
+  cl_changed: ['Your changes are saved. Sales sees them.', 'आपके बदलाव सेव हो गए। सेल्स इन्हें देखेगा।', 'तुमचे बदल जतन झाले. सेल्स ते पाहील.'],
+  cl_more_ph: ['More photos (if you want)', 'और फोटो (चाहें तो)', 'आणखी फोटो (हवे असल्यास)'],
+  s_cl_more_ph: ['Add more photos if something was not clear. You can also skip.', 'कुछ साफ़ नहीं था तो और फोटो जोड़ें। चाहें तो छोड़ दें।', 'काही स्पष्ट नसेल तर आणखी फोटो जोडा. हवे तर सोडून द्या.'],
+  by_customer_changed: ['Changed by the customer on {t}', 'ग्राहक ने {t} को बदला', 'ग्राहकाने {t} रोजी बदलले'],
+  jq_st_replaced: ['Replaced by a newer request', 'नए अनुरोध से बदला गया', 'नव्या विनंतीने बदलली'],
+  eq_changed: ['The person changed their details and sent again', 'व्यक्ति ने जानकारी बदलकर फिर भेजा', 'व्यक्तीने माहिती बदलून पुन्हा पाठवली'],
+  ev_LEAD_EDITED: ['Site details changed by the customer', 'ग्राहक ने साइट की जानकारी बदली', 'ग्राहकाने साइटची माहिती बदलली'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4168,6 +4179,7 @@ const Sync = {
             if (x.kind === 'enq') { for (const p of x.photos) { p.hash = await sha256(p.data); p.m = await putMedia(p.data); delete p.data; } }
             else { x.photo = await putMedia(x.photo); x.idPhoto = await putMedia(x.idPhoto); }
             x.got = m.t; list.unshift(x);
+            const old = x.prev && list.find(y => y.rid === x.prev && y.phone === x.phone); if (old && !S.joins[old.rid]) old.st = 'replaced';
           }
         } catch (e) { /* a request this phone cannot open is skipped */ }
         c.jcur = m.seq;
@@ -5079,6 +5091,8 @@ const RULES = {
       return null;
     }
   },
+  /* a customer may change the site they entered until Sales accepts it */
+  LEAD_EDITED: { roles: ['customer'], project: true, check: (S, ev, u, P) => P.customer !== u.uid || !P.lead.bySelf ? 'err_access' : !['new', 'returned'].includes(P.stage) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : !ev.data.gps && !(ev.data.address || '').trim() ? 'err_location_or_address' : null },
   LEAD_INFO_ADDED: { roles: ['field', 'sales', 'admin'], project: true, open: true, stages: OPEN_STAGES, check: (S, ev) => need(ev_(ev.data).length || (ev.data.note || '').trim() || ev.data.phone, 'err_fill') },
   LEAD_ACCEPTED: {
     roles: ['sales', 'admin'], project: true, stages: ['new'], check: (S, ev, u) => {
@@ -6056,6 +6070,10 @@ function apply(S, ev) {
       P = S.projects[ev.pid] = newProject(ev); S.order.unshift(ev.pid);
       if (d.bySelf && S.users[ev.by] && S.users[ev.by].role === 'customer') { const x = S.users[ev.by]; P.customer = x.uid; if (x.projectId !== P.id) x.projects = uniq((x.projects || []).concat(P.id)); }
       if (d.enquiry && S.enquiries[d.enquiry] && S.enquiries[d.enquiry].open) Object.assign(S.enquiries[d.enquiry], { open: false, closedBy: ev.by, closedT: ev.t, pid: ev.pid });
+      break;
+    case 'LEAD_EDITED':
+      Object.assign(P.site, { address: d.address || '', landmark: d.landmark || '', gps: d.gps || P.site.gps });
+      Object.assign(P.lead, { tower: d.tower || '', shaft: d.shaft || P.lead.shaft, floors: d.floors === undefined ? P.lead.floors : d.floors, bType: d.bType || P.lead.bType, need: d.need || P.lead.need, edited: ev.t });
       break;
     case 'LEAD_INFO_ADDED':
       P.extra.push({ t: ev.t, by: ev.by, note: d.note || '', phone: d.phone ? phone10(d.phone) : '', name: d.name || '', ev: ev_(d).map(e => e.id), newInfo: !!d.newInfo });
@@ -7527,11 +7545,17 @@ WIZ.lead = {
 const custPhone = u => ((S.workers[u.uid] || {}).profile || {}).phone || custJobs(u).map(id => S.projects[id].contact.phone).find(Boolean) || '';
 WIZ.custLead = {
   title: 'cl_title', save: 'cl_send', saveIcon: '📨',
-  init: (P, o) => { const phone = App.me ? custPhone(App.me) : '', name = App.me ? App.me.name || '' : ''; return { guest: !!(o && o.guest), pin1: '', pin2: '', b: [], s: [], x: [], gps: null, address: '', landmark: '', tower: '', name, phone, skipMe: validPhone(phone) && !!name.trim(), shaft: '', floors: 0, floorsUnknown: false, bType: '', need: '' }; },
+  init: (P, o) => {
+    /* changing what was sent: a stranger's saved copy, or the customer's own site before Sales accepts it */
+    const j = o && o.guest && o.edit && myJoin(), f = j && j.form;
+    if (f) return Object.assign({ guest: true, pin1: '', pin2: '', b: [], s: [], x: [], gps: null, address: '', landmark: '', tower: '', name: '', phone: '', skipMe: false, shaft: '', floors: 0, floorsUnknown: false, bType: '', need: '' }, f, { guest: true, pin1: '', pin2: '', skipMe: false, prevRid: j.rid });
+    if (o && o.edit && P) return { editPid: P.id, b: [], s: [], x: [], gps: P.site.gps, address: P.site.address, landmark: P.site.landmark || '', tower: P.lead.tower || '', name: P.contact.name, phone: P.contact.phone, skipMe: true, shaft: P.lead.shaft, floors: P.lead.floors || 0, floorsUnknown: P.lead.floors == null, bType: P.lead.bType || '', need: P.lead.need || '' };
+    const phone = App.me ? custPhone(App.me) : '', name = App.me ? App.me.name || '' : ''; return { guest: !!(o && o.guest), pin1: '', pin2: '', b: [], s: [], x: [], gps: null, address: '', landmark: '', tower: '', name, phone, skipMe: validPhone(phone) && !!name.trim(), shaft: '', floors: 0, floorsUnknown: false, bType: '', need: '' }; },
   onStart: WIZ.lead.onStart,
   steps: [
-    WIZ.lead.steps.find(x => x.id === 'b'),
-    WIZ.lead.steps.find(x => x.id === 's'),
+    Object.assign({}, WIZ.lead.steps.find(x => x.id === 'b'), { skip: ctx => !!ctx.editPid }),
+    Object.assign({}, WIZ.lead.steps.find(x => x.id === 's'), { skip: ctx => !!ctx.editPid }),
+    { id: 'x', icon: '📷', say: 's_cl_more_ph', skip: ctx => !ctx.editPid, body: () => photoSlot('x', 'cl_more_ph', 0, { tag: 'context' }) },
     WIZ.lead.steps.find(x => x.id === 'loc'),
     { id: 'q', icon: '❓', say: 's_cl_more',
       body: () => `<h3>${t('q_shaft_ready')}</h3>` + tiles('shaft', [['yes', '✅', 'yes'], ['no', '❌', 'no'], ['unknown', '🤷', 'not_sure']], 'three') +
@@ -7550,6 +7574,10 @@ WIZ.custLead = {
   ],
   async finish(ctx) {
     if (ctx.guest) return await enqSend(ctx) ? { ok: true, go: () => go('myReq', {}, { replace: true }) } : { ok: false, err: 'jq_srv_fail' };
+    if (ctx.editPid) {
+      const r = await run([['LEAD_EDITED', ctx.editPid, { ev: ctx.x, gps: ctx.gps, address: ctx.address.trim(), landmark: ctx.landmark.trim(), tower: ctx.tower.trim(), shaft: ctx.shaft, floors: ctx.floorsUnknown ? null : ctx.floors, bType: ctx.bType, need: ctx.need }]]);
+      return r.ok ? { ok: true, toast: 'cl_changed', go: () => go('home', {}, { replace: true }) } : r;
+    }
     let pid; do { pid = 'AIEC-' + todayStr().slice(2, 4) + todayStr().slice(5, 7) + '-' + rid(3); } while (S.projects[pid]);
     const r = await run([['LEAD_CREATED', pid, { bySelf: true, ev: [...ctx.b, ...ctx.s, ...ctx.x], gps: ctx.gps, address: ctx.address.trim(), addressSource: ctx.addrSrc === 'gps' && ctx.address === ctx.addrSuggest ? 'gps_lookup' : 'typed',
       landmark: ctx.landmark.trim(), tower: ctx.tower.trim(), name: ctx.name.trim(), phone: phone10(ctx.phone), shaft: ctx.shaft, floors: ctx.floorsUnknown ? null : ctx.floors, bType: ctx.bType, need: ctx.need, contactRole: 'owner' }]]);
@@ -7589,6 +7617,7 @@ function leadSummary(P) {
       ['added_by', userTag(P.createdBy) + ' · ' + fmtD(P.t, true)], ['note', esc(P.lead.note)]])}
     <div style="margin-top:8px"><span class="chip ${leadScore(P) >= 80 ? 'c-ok' : 'c-warn'}">📊 ${t('complete_pct', { n: leadScore(P) })}</span></div>
     ${P.lead.dupOf.length ? `<div class="warnbox">👯 ${t('dup_warning', { ids: P.lead.dupOf.join(', ') })}</div>` : ''}
+    ${P.lead.edited ? `<div class="warnbox">✏️ ${t('by_customer_changed', { t: fmtD(P.lead.edited, true) })}</div>` : ''}
     ${P.lead.bySelf ? `<div class="note">🏠 ${t('by_customer')}${P.lead.bType ? ' · ' + t('bt_' + P.lead.bType) : ''}${P.lead.need ? ' · ' + t('nd_' + P.lead.need) : ''}</div>` : ''}
     ${P.lead.bySelf && App.me.role !== 'customer' ? (ds => ds.length ? `<div class="warnbox">👯 ${t('cl_dup_office', { ids: ds.map(x => x.id).join(', ') })}</div>` : '')(findDuplicates({ phone: P.contact.phone, gps: P.site.gps, tower: P.lead.tower }).filter(x => x.id !== P.id)) : ''}
     ${fl.length ? `<div class="warnbox">🤖 ${t('auto_check')}: ${esc(fl.join(' · '))}<br><small>${t('auto_check_note')}</small></div>` : ''}
@@ -8805,10 +8834,11 @@ async function enqSend(ctx) {
     const rq = 'R' + rid(8), salt = rid(8) + rid(8), secret = rid(24);
     const o = { v: 2, kind: 'enq', rid: rq, t: nowISO(), name: ctx.name.trim().slice(0, 60), phone: phone10(ctx.phone), salt, pin: await pinHash(ctx.pin1, salt), pinLen: ctx.pin1.length, secret,
       address: ctx.address.trim().slice(0, 200), landmark: ctx.landmark.trim().slice(0, 80), tower: ctx.tower.trim().slice(0, 40), gps: ctx.gps ? { lat: +ctx.gps.lat, lng: +ctx.gps.lng, acc: +ctx.gps.acc || 0 } : null,
-      shaft: ctx.shaft, floors: ctx.floorsUnknown ? null : +ctx.floors, bType: ctx.bType, need: ctx.need, photos };
+      shaft: ctx.shaft, floors: ctx.floorsUnknown ? null : +ctx.floors, bType: ctx.bType, need: ctx.need, photos, prev: ctx.prevRid || undefined };
     const r = await fetch(url + '/request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ blob: await Sync.seal(key, o) }) });
     if (!r.ok) return false;
-    await setMyJoin({ url, secret, rid: rq, kind: 'enq', role: 'customer', name: o.name, sent: nowISO(), uid: 'U' + rq.slice(1), form: null });
+    const keep = {}; for (const k of ['b', 's', 'x', 'gps', 'address', 'landmark', 'tower', 'name', 'phone', 'shaft', 'floors', 'floorsUnknown', 'bType', 'need']) keep[k] = ctx[k];
+    await setMyJoin({ url, secret, rid: rq, kind: 'enq', role: 'customer', name: o.name, sent: nowISO(), uid: 'U' + rq.slice(1), form: keep });
     return true;
   } catch (e) { return false; }
 }
@@ -8820,7 +8850,8 @@ function enqCheck(o) {
   if (!str(o.address, 200) || !str(o.landmark, 80) || !str(o.tower, 40) || !gpsOk(o.gps) || (!o.gps && !(o.address || '').trim())) return null;
   if (!['yes', 'no', 'unknown'].includes(o.shaft) || !['new', 'old'].includes(o.bType) || !['3m', '6m', 'later'].includes(o.need) || !(o.floors == null || (o.floors >= 0 && o.floors <= 60))) return null;
   if (!Array.isArray(o.photos) || o.photos.length < 2 || o.photos.length > 4 || !o.photos.every(p => p && img(p.data) && str(p.label, 20) && str(p.t, 30) && gpsOk(p.gps))) return null;
-  const x = {}; for (const k of ['rid', 'name', 'phone', 'salt', 'pin', 'pinLen', 'secret', 'address', 'landmark', 'tower', 'gps', 'shaft', 'floors', 'bType', 'need']) if (o[k] !== undefined) x[k] = o[k];
+  if (o.prev && !/^R[A-Z0-9]{8}$/.test(o.prev)) return null;
+  const x = {}; for (const k of ['rid', 'name', 'phone', 'salt', 'pin', 'pinLen', 'secret', 'address', 'landmark', 'tower', 'gps', 'shaft', 'floors', 'bType', 'need', 'prev']) if (o[k] !== undefined) x[k] = o[k];
   x.kind = 'enq'; x.phone = phone10(o.phone); x.t = typeof o.t === 'string' ? o.t.slice(0, 30) : nowISO(); x.photos = o.photos.map(p => ({ data: p.data, label: p.label || '', t: p.t || x.t, gps: p.gps || null }));
   return x;
 }
@@ -8864,8 +8895,17 @@ SCREENS.myReq = () => {
   return topBar(t('jq_my'), { back: true }) + `<main class="wrap"><p class="say">📨 ${t('jq_my_say')}</p>
     <div class="card"><b>${esc(j.name)}</b> · ${t(j.kind === 'enq' ? 'cl_new_lift' : 'jr_' + j.role)}<div style="height:6px"></div>
       ${step(true, t('jq_st_sent', { d: fmtD(j.sent, true) }))}${step(!!j.st, t('jq_st_check'), !j.st)}${step(j.st === 'ok', t(j.st === 'more' ? 'jq_st_more' : j.st === 'no' ? 'jq_st_no' : 'jq_st_ok'))}</div>
-    ${res}${j.st !== 'ok' ? `<button class="btn" style="margin-top:12px" data-a="myReqCancel">🗑️ ${t('jq_cancel')}</button>` : ''}</main>`;
+    ${res}${!j.st && j.form ? `<button class="btn btn-big" style="margin-top:10px" data-a="myReqFix">✏️ ${t('cl_change')}</button>` : ''}
+    ${j.kind === 'enq' && j.form ? enqSentCard(j.form) : ''}
+    ${j.st !== 'ok' ? `<button class="btn" style="margin-top:12px" data-a="myReqCancel">🗑️ ${t('jq_cancel')}</button>` : ''}</main>`;
 };
+/* the new customer sees exactly what they sent */
+function enqSentCard(f) {
+  const ph = [...(f.b || []), ...(f.s || []), ...(f.x || [])].filter(e => e && e.m);
+  return `<div class="card"><h3 style="margin-top:0">📋 ${t('cl_sent_what')}</h3>${ph.length ? `<div class="photos">${ph.map(e => thumb(e)).join('')}</div>` : ''}
+    ${kv([['your_name', esc(f.name || '')], ['f_mobile', esc(f.phone || '')], ['f_address', esc(f.address || '')], ['f_landmark', esc(f.landmark || '')], ['q_shaft_ready', f.shaft ? t(f.shaft === 'unknown' ? 'not_sure' : f.shaft) : ''],
+      ['q_floors', f.floorsUnknown ? t('not_sure') : String(f.floors == null ? '' : f.floors)], ['q_btype', f.bType ? t('bt_' + f.bType) : ''], ['q_need', f.need ? t('nd_' + f.need) : '']])}</div>`;
+}
 /* check the private answer box (the app does this every minute while a request waits) */
 async function myReqPoll() {
   const j = myJoin(); if (!j || j.st || App.jqBusy) return;
@@ -9164,6 +9204,9 @@ function customerHome() {
     ${payCard(P)}
     ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
     ${P.done && allowed('TICKET_OPENED', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="ticket|${P.id}">🚨 ${t('ticket_new')}</button>` : ''}
+    ${P.lead.bySelf && P.customer === u.uid ? fold('cmine', t('cl_mine'), `<div class="photos">${P.evidence.map(id => S.evidence[id]).filter(e => e && e.kind === 'photo').map(e => thumb(e)).join('')}</div>
+      ${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark || '')], ['q_shaft_ready', t(P.lead.shaft === 'unknown' ? 'not_sure' : P.lead.shaft)], ['q_floors', P.lead.floors == null ? t('not_sure') : String(P.lead.floors)], ['q_btype', P.lead.bType ? t('bt_' + P.lead.bType) : ''], ['q_need', P.lead.need ? t('nd_' + P.lead.need) : '']])}
+      ${['new', 'returned'].includes(P.stage) ? `<button class="btn btn-p" data-a="custEditSite" data-v="${P.id}">✏️ ${t('cl_change')}</button>` : `<p class="small muted">🔒 ${t('cl_locked')}</p>`}`, { icon: '🏗️', open: ['new', 'returned'].includes(P.stage) }) : ''}
     ${fold('cdocs', t('papers_help'), `<div class="tiles">${q ? tile('openDocP', P.id + '|quote', '📄', 'doc_quote') : ''}${P.agreement ? tile('openDocP', P.id + '|agreement', '✍️', 'doc_agreement') : ''}
       ${tile('openProjectTab', P.id + '|money', '💰', 'tab_money')}${['site_prep', 'site_fix'].includes(P.stage) ? tile('openCl', P.id + '|' + (P.stage === 'site_prep' ? 'prep' : 'sitefix'), '🧱', 'site_checklist') : ''}
       ${tile('openProjectTab', P.id + '|chat', '❓', 'ask_question')}${tile('openProjectTab', P.id + '|chat', '😟', 'complaint')}${P.done ? tile('openDocP', P.id + '|handover', '🔑', 'doc_handover') : ''}${P.drawings ? tile('openDrawings', P.id, '📐', 'dwg_title') : ''}</div>`, { icon: '📄', sub: t('fold_tap') })}
@@ -9923,7 +9966,7 @@ SCREENS.joinCheck = ({ rid }) => {
   const pic = m => m ? `<img data-m="${m}" data-a="jqZoom" data-v="${m}" alt="" style="width:46%;max-width:220px;aspect-ratio:1;object-fit:cover;border-radius:12px;border:1px solid var(--line);cursor:zoom-in">` : '';
   const checks = jqChecks(x).map(([ok, txt]) => `<div style="margin:4px 0">${ok ? '✅' : '⚠️'} ${txt}</div>`).join('');
   const decide = st ? `<div class="${st === 'ok' ? 'okbox' : st === 'more' ? 'warnbox' : 'err'}">${t('jq_st_' + st)}${d && d.note ? ': ' + esc(d.note) : ''}${d ? ' · ' + esc(userName(d.by)) + ' · ' + fmtD(d.t, true) : ''}</div>
-      ${x.secret ? `<button class="btn" data-a="jqResend" data-v="${x.rid}">📨 ${t('jq_resend')}</button>` : ''}${st === 'ok' && d && d.uid && S.users[d.uid] ? `<button class="btn" data-a="userOpen" data-v="${d.uid}">👤 ${esc(S.users[d.uid].name)}</button>` : ''}`
+      ${x.secret && st !== 'replaced' ? `<button class="btn" data-a="jqResend" data-v="${x.rid}">📨 ${t('jq_resend')}</button>` : ''}${st === 'ok' && d && d.uid && S.users[d.uid] ? `<button class="btn" data-a="userOpen" data-v="${d.uid}">👤 ${esc(S.users[d.uid].name)}</button>` : ''}`
     : `<h3>${t('jq_role_give')}</h3><div class="tiles">${JOIN_ROLES.map(([r, i]) => `<button class="tile ${f.jcRole === r ? 'on' : ''}" data-a="jcRole" data-v="${r}" aria-pressed="${f.jcRole === r}"><span class="i">${i}</span>${t('jr_' + r)}</button>`).join('')}</div>
       <button class="btn btn-big ${f.jcCalled ? 'btn-ok' : ''}" style="margin-top:10px;text-align:left" data-a="jcCalled" aria-pressed="${!!f.jcCalled}">${f.jcCalled ? '☑️' : '⬜'} ${t('jq_called')}</button>
       ${formInp('jcNote', 'jq_note', { mic: true })}<div id="ferr"></div>
@@ -9947,12 +9990,12 @@ function enqCheckScreen(x) {
   const checks = [[validPhone(x.phone), t('jq_c_phone_ok')], [!known.length, known.length ? t('eq_c_known', { ids: known.map(P => P.id).join(', ') }) : t('eq_c_new')], [daysSince(x.got || x.t) < 3, t('jq_c_age', { n: daysSince(x.got || x.t) })]];
   const pics = (x.photos || []).filter(p => p.m).map(p => `<img data-m="${p.m}" data-a="jqZoom" data-v="${p.m}" alt="" style="width:46%;max-width:220px;aspect-ratio:1;object-fit:cover;border-radius:12px;border:1px solid var(--line);cursor:zoom-in">`).join('');
   const decide = st ? `<div class="${st === 'ok' ? 'okbox' : 'err'}">${t('jq_st_' + st)}${d && d.note ? ': ' + esc(d.note) : ''}${d ? ' · ' + esc(userName(d.by)) + ' · ' + fmtD(d.t, true) : ''}</div>
-      <button class="btn" data-a="jqResend" data-v="${x.rid}">📨 ${t('jq_resend')}</button>${d && d.uid && S.users[d.uid] && custJobs(S.users[d.uid])[0] ? `<button class="btn" data-a="openProject" data-v="${custJobs(S.users[d.uid])[0]}">🛗 ${esc(custJobs(S.users[d.uid])[0])}</button>` : ''}`
+      ${st !== 'replaced' ? `<button class="btn" data-a="jqResend" data-v="${x.rid}">📨 ${t('jq_resend')}</button>` : ''}${d && d.uid && S.users[d.uid] && custJobs(S.users[d.uid])[0] ? `<button class="btn" data-a="openProject" data-v="${custJobs(S.users[d.uid])[0]}">🛗 ${esc(custJobs(S.users[d.uid])[0])}</button>` : ''}`
     : `${formInp('jcNote', 'jq_note', { mic: true })}<div id="ferr"></div>
       <button class="btn btn-ok btn-big" data-a="jqOk" data-v="${x.rid}">✅ ${t('eq_ok')}</button>
       <button class="btn btn-bad" style="margin-top:8px" data-a="jqNo" data-v="${x.rid}">❌ ${t('eq_no')}</button>`;
   return topBar(t('jq_check_t'), { back: true }) + `<main class="wrap">
-    <div class="card"><h2 style="margin:0">${esc(x.name)}</h2><p class="muted" style="margin:4px 0">🛗 ${t('cl_new_lift')}</p>
+    <div class="card"><h2 style="margin:0">${esc(x.name)}</h2><p class="muted" style="margin:4px 0">🛗 ${t('cl_new_lift')}</p>${x.prev ? `<div class="note">🔁 ${t('eq_changed')}</div>` : ''}
       <div class="row wrapw" style="gap:8px">${pics}</div>${pics ? `<p class="small muted">${t('jq_photo_tap')}</p>` : ''}
       <div class="row wrapw"><a class="btn btn-p" href="tel:+91${esc(x.phone)}">📞 ${esc(x.phone)}</a><a class="btn" href="https://wa.me/91${esc(x.phone)}" target="_blank" rel="noopener">💬 WhatsApp</a>${x.gps ? `<a class="btn" href="${mapsLink(x.gps)}" target="_blank" rel="noopener">🗺️ ${t('open_map')}</a>` : ''}</div>
       ${kv([['f_address', esc(x.address || '')], ['f_landmark', esc(x.landmark || '')], ['f_tower', esc(x.tower || '')], ['q_shaft_ready', t(x.shaft === 'unknown' ? 'not_sure' : x.shaft)], ['q_floors', x.floors == null ? t('not_sure') : String(x.floors)], ['q_btype', t('bt_' + x.bType)], ['q_need', t('nd_' + x.need)]])}</div>
@@ -11620,9 +11663,10 @@ const ACT = {
   jrSkill: v => { const a = App.form.rqSkills = App.form.rqSkills || []; const i = a.indexOf(v); if (i < 0) a.push(v); else a.splice(i, 1); render(); },
   myReqCheck: async () => { await myReqPoll(); const j = myJoin(); if (j && !j.st) toast(t('jq_st_check')); },
   myReqIn: () => { const j = myJoin(); if (j && S.users[j.uid]) loginAs(S.users[j.uid]); },
-  myReqFix: () => { const j = myJoin(); if (!j) return; if (j.kind === 'enq') { wiz('custLead', null, { guest: true }); return; } App.form = Object.assign({}, j.form || {}, { rqNote: j.note || '', rqPrev: j.rid }); go('joinReq', { role: j.role }); },
+  myReqFix: () => { const j = myJoin(); if (!j) return; if (j.kind === 'enq') { wiz('custLead', null, { guest: true, edit: true }); return; } App.form = Object.assign({}, j.form || {}, { rqNote: j.note || '', rqPrev: j.rid }); go('joinReq', { role: j.role }); },
   myReqCancel: async () => { if (!confirm(t('jq_cancel') + '?')) return; await setMyJoin(null); go('gate', {}, { replace: true }); },
   custNewSite: () => wiz('custLead', null),
+  custEditSite: v => wiz('custLead', v, { edit: true }),
   eqList: () => go('joins', { kind: 'enq' }),
   custNewGuest: () => wiz('custLead', null, { guest: true }),
   taskGroup: v => { App.form.openGroups = uniq((App.form.openGroups || []).concat(v)); render(); },

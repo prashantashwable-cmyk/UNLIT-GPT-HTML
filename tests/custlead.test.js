@@ -46,13 +46,27 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(/Plot 7, Baner Road/.test(await main(pa)) && await pa.$(`[data-a="custSite"][data-v="${pid}"]`), 'the page now shows the new site, and the customer can switch between their sites');
   assert(await pa.evaluate(() => Object.values(S.projects).filter(P => custJobs(S.users.PCUST).includes(P.id)).length === 2), 'the customer sees only their own two sites');
 
+  /* the customer can see what they sent and change it until Sales accepts it */
+  await pa.evaluate(p => { App.set.custSite = { PCUST: p }; go('home'); }, pid); await pa.waitForTimeout(200);
+  assert(/My site details/.test(await main(pa)) && await pa.$(`[data-a="custEditSite"][data-v="${pid}"]`), 'the customer sees their site details with "Change my details"');
+  await pa.click(`[data-a="custEditSite"][data-v="${pid}"]`); await pa.waitForTimeout(300);
+  assert(await pa.evaluate(() => W.ctx.address === 'Plot 7, Baner Road, Pune' && W.ctx.floors === 6 && W.sid === 'x'), 'the steps open filled in, starting with "more photos"');
+  await photo(pa, 'x'); await next(pa); await next(pa);
+  await pa.evaluate(() => { W.ctx.floors = 8; }); await pick(pa, 'need', '6m'); await next(pa);
+  assert(await pa.evaluate(() => W.sid === 'review'), 'their name and number are not asked again');
+  await next(pa); await pa.waitForTimeout(500);
+  assert(await pa.evaluate(p => { const P = S.projects[p]; return P.lead.floors === 8 && P.lead.need === '6m' && P.lead.edited && P.evidence.filter(id => S.evidence[id].kind === 'photo').length === 3; }, pid), 'the change and the extra photo are saved on the site');
+
   /* Sales checks it like any new lead */
   await pa.evaluate(() => { loginAs(S.users.PSALES); Notify.hide(); });
   assert(await pa.evaluate(p => myTasks(App.me).some(x => x.pid === p), pid), 'Sales gets the customer\'s site to check');
   await pa.evaluate(p => wiz('review', p), pid); await pa.waitForTimeout(300);
   const ps = await main(pa);
   assert(/Entered by the customer in the app/.test(ps) && /Maybe the same site as/.test(ps), 'Sales sees it was entered by the customer and a warning that the number matches another site');
+  assert(/Changed by the customer/.test(ps), 'Sales sees the customer changed it');
   assert(await pa.evaluate(p => S.projects[p].createdBy === 'PCUST', pid), 'no rider gets lead credit for it');
+  await pa.evaluate(p => { W = null; perform('LEAD_ACCEPTED', p, {}, { as: 'PSALES', quiet: true }); loginAs(S.users.PCUST); App.set.custSite = { PCUST: p }; go('home'); }, pid); await pa.waitForTimeout(300);
+  assert(!(await pa.$(`[data-a="custEditSite"][data-v="${pid}"]`)) && /Sales is working on it/.test(await pa.evaluate(() => document.querySelector('main').textContent)), 'after Sales accepts, the details are read-only');
   await pa.evaluate(() => { W = null; go('home'); });
 
   /* a customer with no lift yet sees the rider-style start page */
@@ -73,12 +87,20 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   });
   await next(pb); await pb.waitForTimeout(slow(2000));
   assert(await pb.evaluate(() => App.route.name) === 'myReq' && /New lift/.test(await main(pb)), 'the enquiry is sent and the person waits on "My request"');
+  assert(/What you sent/.test(await main(pb)) && /Plot 7, Baner Road/.test(await main(pb)) && await pb.$$eval('main .photos img', xs => xs.length) >= 2, 'they see what they sent, with the photos');
+  await pb.click('[data-a="myReqFix"]'); await pb.waitForTimeout(300);
+  assert(await pb.evaluate(() => W && W.ctx.address === 'Plot 7, Baner Road, Pune' && W.ctx.b.length === 1 && W.ctx.name === 'Asha Deshmukh'), 'Change my details opens the steps filled in');
+  await next(pb); await next(pb); await next(pb);
+  await pb.evaluate(() => { W.ctx.floors = 9; }); await next(pb);
+  await pb.fill('#f_pin1', '1357'); await pb.fill('#f_pin2', '1357'); await pb.waitForTimeout(60); await next(pb); await next(pb); await pb.waitForTimeout(slow(2000));
+  assert(await pb.evaluate(() => App.route.name === 'myReq' && myJoin().form.floors === 9), 'the changed request is sent');
 
   await syncNow(pa); await pa.evaluate(() => go('home')); await pa.waitForTimeout(200);
-  assert(/New lift enquiries from the app \(1\)/.test(await main(pa)), 'Admin\'s home shows the new-lift enquiry');
+  assert(/New lift enquiries from the app \(1\)/.test(await main(pa)), 'Admin\'s home shows the new-lift enquiry once (the older one is replaced)');
+  assert(await pa.evaluate(() => App.joinReqs.filter(x => x.kind === 'enq').length === 2 && App.joinReqs.some(x => x.st === 'replaced')), 'the first one is marked "Replaced by a newer request"');
   await pa.click('[data-a="eqList"]'); await pa.waitForTimeout(150); await pa.click('[data-a="jqOpen"]'); await pa.waitForTimeout(400);
   const eq = await main(pa);
-  assert(/Asha Deshmukh/.test(eq) && /Plot 7, Baner Road/.test(eq) && /New building/.test(eq) && /Within 3 months/.test(eq), 'Admin sees the place, building type and timing');
+  assert(/Asha Deshmukh/.test(eq) && /Plot 7, Baner Road/.test(eq) && /New building/.test(eq) && /Within 3 months/.test(eq) && /changed their details/.test(eq) && /\b9\b/.test(eq), 'Admin sees the newest details (9 floors), building type and timing');
   assert(await pa.$$eval('main img[data-m]', xs => xs.filter(x => x.src.startsWith('data:image')).length) >= 2, 'and the photos');
   assert(/already a site/.test(eq), 'the same place as the old customer\'s new site is flagged');
   await pa.click('[data-a="jqOk"]'); await pa.waitForTimeout(slow(1500));
