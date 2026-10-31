@@ -86,9 +86,8 @@ h2.sec{font-size:1.05rem;margin:18px 2px 8px}
 .nav button .i{font-size:1.5rem;line-height:1.1}
 .nav button.on{color:var(--ink);border-top-color:var(--gold);background:var(--gold-l)}
 .tbar{display:block;margin-top:6px}.tbar .tbl{display:block;font-size:.8rem;line-height:1.3;color:var(--muted)}
-.tbar .tb{display:block;position:relative;height:10px;border-radius:5px;background:var(--line);margin:4px 0 6px}.tbar .tb>i{display:block;height:100%;border-radius:5px;background:var(--ok)}
-.tbar .tb>em{position:absolute;top:-4px;width:3px;height:18px;border-radius:2px;background:var(--ink);transform:translateX(-50%)}
-.tbar.tp-warn .tb>i{background:var(--warn)}.tbar.tp-bad .tb>i{background:var(--bad)}.tbar.tp-pause .tb>i{background:var(--muted)}.tbar.tp-bad .tbl b{color:var(--bad)}.tbar.tp-warn .tbl b{color:var(--warn)}
+.tbar .tb{display:block;height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin:3px 0 6px}.tbar .tb>i{display:block;height:100%;border-radius:4px;background:var(--ok)}
+.tbar .tw>i{background:var(--info)}.tbar .t-warn>i{background:var(--warn)}.tbar .t-bad>i{background:var(--bad)}.tbar .t-pause>i{background:var(--muted)}.tbar.tp-bad .tbl b{color:var(--bad)}.tbar.tp-warn .tbl b{color:var(--warn)}
 .task{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:16px;padding:12px;min-height:78px;margin-bottom:10px;color:var(--ink)}
 .task .ti{width:54px;height:54px;border-radius:14px;background:var(--gold-l);display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex:none}
 .task b{display:block;font-size:1.02rem}
@@ -7464,15 +7463,17 @@ function timeOf(n, P) {
   if (d >= lim) return { pct: 100, label: t('tb_over_late', { n: Math.floor(d - lim) + 1 }), who };
   return { pct: d / lim * 100, label: t('tb_day', { d: day, m: lim }) + ' · ' + (who ? t('tb_then', { who }) : t('tb_then_late')) };
 }
-/* one bar for both: the fill is the work done, the dark line is the time used. Fill past the line = on time; line past
-   the fill = behind; line at the end = late. Paused work is grey and never red. */
+/* two bars on every responsibility, always together: progress above (work done), deadline below (time used against the
+   limit). Work behind the clock shows "behind time"; past the limit "late"; blocked or on-hold work is grey "Paused", never red. */
 function paceBar(wp, wtxt, tm) {
-  const tp = tm && !tm.paused ? Math.max(0, Math.min(100, tm.pct)) : null;
-  const pace = tm && tm.paused ? 'pause' : tm && tm.pct >= 100 ? 'bad' : tp != null && wp < tp ? 'warn' : 'ok';
-  const ttxt = !tm ? t('tb_nolimit') : tm.paused ? '⏸ ' + esc(tm.paused) : '⏳ ' + esc(tm.label);
-  const ptxt = { ok: tm ? t('tb_on_pace') : '', warn: t('tb_behind'), bad: t('tb_late'), pause: '' }[pace], label = `🧩 ${wtxt} · ${ttxt}${ptxt ? ' · ' + ptxt : ''}`;
-  return `<span class="tbar tp-${pace}" title="${esc(t('tb_legend'))}"><span class="tbl">🧩 ${wtxt} · ${ttxt}${ptxt ? ` · <b>${pace === 'ok' ? '✅' : pace === 'warn' ? '⚠️' : '🔴'} ${ptxt}</b>` : ''}</span>`
-    + `<span class="tb" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${wp}" aria-label="${esc(label)}"><i style="width:${Math.max(3, Math.min(100, wp))}%"></i>${tp != null ? `<em style="left:${tp}%"></em>` : ''}</span></span>`;
+  const tp = tm && !tm.paused ? Math.max(0, Math.min(100, tm.pct)) : 0;
+  const pace = tm && tm.paused ? 'pause' : tm && tm.pct >= 100 ? 'bad' : tm && wp < tp ? 'warn' : 'ok';
+  const ttxt = !tm ? t('tb_nolimit') : tm.paused ? '⏸ ' + esc(tm.paused) : esc(tm.label);
+  const ptxt = { ok: tm ? t('tb_on_pace') : '', warn: t('tb_behind'), bad: t('tb_late'), pause: '' }[pace];
+  const bar = (cls, pct, label) => `<span class="tb ${cls}" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(Math.min(100, pct))}" aria-label="${esc(label)}"><i style="width:${Math.max(pct > 0 ? 3 : 0, Math.min(100, pct))}%"></i></span>`;
+  const tcls = pace === 'pause' ? 't-pause' : tp >= 100 || pace === 'bad' ? 't-bad' : tp >= 50 ? 't-warn' : 't-ok';
+  return `<span class="tbar tp-${pace}"><span class="tbl">🧩 ${wtxt}</span>${bar('tw', wp, wtxt)}`
+    + `<span class="tbl">⏳ ${ttxt}${ptxt ? ` · <b>${pace === 'ok' ? '✅' : pace === 'warn' ? '⚠️' : '🔴'} ${ptxt}</b>` : ''}</span>${bar(tcls, pace === 'pause' ? 100 : tp, ttxt)}</span>`;
 }
 function taskBars(n, P) {
   const w = workOf(n, P), tm = timeOf(n, P), wp = w && w.t ? Math.round(w.d / w.t * 100) : 0;

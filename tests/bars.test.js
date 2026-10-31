@@ -23,8 +23,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(!badL.length, 'every bar says it in words, not only colour' + (badL.length ? ': ' + badL.slice(0, 4).join(' / ') : ''));
 
   const one = await page.evaluate(() => { loginAs(S.users.PSALES); ACT.permsDone(); Notify.hide(); App.form = {}; go('home');
-    const cards = [...document.querySelectorAll('main .task[data-a="openTask"]')]; return cards.every(c => c.querySelectorAll('.tbar').length === 1 && c.querySelectorAll('.tbar .tb').length === 1) && cards.some(c => c.querySelector('.tb > em')) && cards.every(c => /done|Not started/.test(c.querySelector('.tbl').textContent)); });
-  assert(one, 'each task shows ONE bar carrying both: the fill is work done, the line is time used');
+    const cards = [...document.querySelectorAll('main .task[data-a="openTask"]')]; return cards.length && cards.every(c => { const b = [...c.querySelectorAll('.tbar .tb')], l = [...c.querySelectorAll('.tbar .tbl')]; return b.length === 2 && b[0].classList.contains('tw') && /^🧩/.test(l[0].textContent) && /^⏳/.test(l[1].textContent); }); });
+  assert(one, 'every task shows two bars together: progress above, deadline below');
   const pace = await page.evaluate(() => [paceBar(60, 'x', { pct: 40, label: 'Day 2 of 5' }), paceBar(20, 'x', { pct: 60, label: 'Day 3 of 5' }), paceBar(20, 'x', { pct: 100, label: 'over' }), paceBar(20, 'x', { paused: 'P' })].map(h => /tp-(\w+)/.exec(h)[1]));
   assert(JSON.stringify(pace) === '["ok","warn","bad","pause"]', 'work ahead of time = on time, behind = behind, past the limit = late, blocked = paused: ' + pace);
   /* honest work bars */
@@ -60,7 +60,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* customer: job % and their own clock, without office escalation words */
   await page.evaluate(() => { loginAs(S.users.PCUST); ACT.permsDone(); Notify.hide(); go('home'); }); await page.waitForTimeout(300);
   const ct = await page.innerText('main');
-  assert(/Job \d+% done · ⏳ (Day \d+ of \d+|\d+ day\(s\) over)/.test(ct) && !/then goes to|now also with/.test(ct), 'the customer sees how far the job is, and their own time without office escalation');
+  assert(/Job \d+% done\s*⏳ (Day \d+ of \d+|\d+ day\(s\) over)/.test(ct) && !/then goes to|now also with/.test(ct), 'the customer sees how far the job is, and their own time without office escalation');
   await page.evaluate(() => { loginAs(S.users.PADMIN); go('project', { pid: Object.values(S.projects).find(x => x.stage === 'installing').id }); }); await page.waitForTimeout(300);
   assert(/Job \d+% done/.test(await page.innerText('body')), 'the project page shows the whole job %');
 
