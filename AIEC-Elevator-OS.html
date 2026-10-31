@@ -2418,6 +2418,15 @@ const L = {
   svc_pick: ['Choose the service lead', 'सर्विस प्रमुख चुनें', 'सर्व्हिस प्रमुख निवडा'],
   svc_clear: ['No one (QC decides)', 'कोई नहीं (QC तय करे)', 'कोणी नाही (QC ठरवेल)'],
   ev_SERVICE_LEAD_SET: ['Service lead chosen', 'सर्विस प्रमुख चुना', 'सर्व्हिस प्रमुख निवडला'],
+  pr_link: ['Forgot PIN? Use the recovery code', 'PIN भूल गए? रिकवरी कोड से बदलें', 'PIN विसरलात? रिकव्हरी कोड वापरा'],
+  pr_title: ['New PIN with the recovery code', 'रिकवरी कोड से नया PIN', 'रिकव्हरी कोडने नवा PIN'],
+  pr_say: ['Type the recovery code Head Quarter wrote on paper, then choose a new PIN.', 'हेड क्वार्टर ने कागज़ पर लिखा रिकवरी कोड लिखें, फिर नया PIN चुनें।', 'हेड क्वार्टरने कागदावर लिहिलेला रिकव्हरी कोड टाका, मग नवा PIN निवडा.'],
+  pr_code: ['Recovery code (24 letters and numbers)', 'रिकवरी कोड (24 अक्षर और अंक)', 'रिकव्हरी कोड (24 अक्षरे आणि अंक)'],
+  pr_go: ['Set the new PIN', 'नया PIN सेट करें', 'नवा PIN सेट करा'],
+  pr_wrong: ['This recovery code does not match. {n} tries left.', 'यह रिकवरी कोड मेल नहीं खाता। {n} कोशिश बाकी।', 'हा रिकव्हरी कोड जुळत नाही. {n} प्रयत्न बाकी.'],
+  pr_locked: ['Too many wrong tries. Try again after {n} minutes.', 'बहुत गलत कोशिशें। {n} मिनट बाद फिर कोशिश करें।', 'खूप चुकीचे प्रयत्न. {n} मिनिटांनी पुन्हा प्रयत्न करा.'],
+  pr_none: ['This phone has no recovery key, so the PIN cannot be reset here. Use the other office phone, or restore the company on a phone with the recovery code.', 'इस फ़ोन में रिकवरी चाबी नहीं है, इसलिए यहाँ PIN नहीं बदल सकता। दूसरे ऑफिस फ़ोन का उपयोग करें, या रिकवरी कोड से किसी फ़ोन पर कंपनी वापस लाएँ।', 'या फोनमध्ये रिकव्हरी किल्ली नाही, त्यामुळे इथे PIN बदलता येत नाही. दुसरा ऑफिस फोन वापरा, किंवा रिकव्हरी कोडने एखाद्या फोनवर कंपनी परत आणा.'],
+  pr_done: ['New PIN saved. Remember it.', 'नया PIN सेव हो गया। इसे याद रखें।', 'नवा PIN जतन झाला. तो लक्षात ठेवा.'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -9108,7 +9117,16 @@ SCREENS.pin = ({ uid }) => {
     <p class="say">🔢 ${t('enter_pin')}</p><div class="dots" aria-label="${n}/${len}">${Array.from({ length: len }, (_, i) => i).map(i => `<i class="${i < n ? 'f' : ''}"></i>`).join('')}</div>
     ${wait ? `<div class="err">${t('locked', { n: wait })}</div>` : App.form.pinErr ? `<div class="err">${esc(App.form.pinErr)}</div>` : ''}
     <div class="pinpad">${['1', '2', '3', '4', '5', '6', '7', '8', '9', '⌫', '0', '✓'].map(k => `<button data-a="pinKey" data-v="${k}" ${wait ? 'disabled' : ''} aria-label="${k === '⌫' ? t('remove') : k === '✓' ? t('ok') : k}">${k}</button>`).join('')}</div>
+    ${u.role === 'owner' ? `<button class="btn btn-sm" style="margin-top:14px" data-a="pinRecover" data-v="${u.uid}">🔑 ${t('pr_link')}</button>` : ''}
     ${App.locked ? `<button class="btn" style="margin-top:14px" data-a="logout">🚪 ${t('not_me')}</button>` : ''}</main>`;
+};
+/* Head Quarter forgot the PIN: the recovery code on paper proves it is them (nobody else, not even Admin or the server, can reset it) */
+SCREENS.pinRecover = ({ uid }) => {
+  const u = S.users[uid]; if (!u || u.role !== 'owner') return SCREENS.login();
+  App.pageSay = t('pr_say');
+  return topBar(t('pr_title'), { back: true }) + `<main class="wrap"><p class="say">🔑 ${t('pr_say')}</p><div class="card"><b>${ROLE_ICON[u.role]} ${esc(u.name)}</b></div>
+    ${App.form.prNone ? `<div class="warnbox">⚠️ ${t('pr_none')}</div>` : `${formInp('prCode', 'pr_code', { max: 40 })}${formInp('prPin1', 'new_pin', { type: 'password', mode: 'numeric', max: 6, big: true })}${formInp('prPin2', 'repeat_pin', { type: 'password', mode: 'numeric', max: 6, big: true })}<div id="ferr"></div>`}</main>
+    ${App.form.prNone ? '' : `<div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="pinRecoverGo" data-v="${u.uid}">🔑 ${t('pr_go')}</button></div></div>`}`;
 };
 /* privacy notice: what is kept about the person, why, who sees it, for how long, and whom to ask */
 function privacyCard(full) {
@@ -11857,6 +11875,25 @@ const ACT = {
     App.form = {}; loginAs(S.users[uid]);
   },
   loginUser: v => { App.form.pin = ''; App.form.pinErr = ''; go('pin', { uid: v }); },
+  pinRecover: async v => { App.form = { prNone: !(await KV.get(App.ns + 'bk')) }; go('pinRecover', { uid: v }); },
+  pinRecoverGo: async v => {
+    const f = App.form, u = S.users[v], bad = k => { const el = $('#ferr'); if (el) el.innerHTML = `<div class="err">${k}</div>`; toast(k, true); };
+    const bk = await KV.get(App.ns + 'bk'); if (!u || u.role !== 'owner' || !bk) { f.prNone = true; render(); return; }
+    const lk = Object.assign({ tries: 0, until: 0 }, (App.set.prLock || {})[App.mode]);
+    if (lk.until > Date.now()) return bad(t('pr_locked', { n: Math.ceil((lk.until - Date.now()) / 60000) }));
+    const len = +S.config.pinDigits === 6 ? 6 : 0;
+    if (!(len ? /^\d{6}$/ : /^\d{4,6}$/).test(f.prPin1 || '')) return bad(t('err_pin_len'));
+    if (f.prPin1 !== f.prPin2) return bad(t('err_pin_match'));
+    if (b64(await Sync.bkKey(f.prCode || '')) !== bk) {
+      lk.tries++; if (lk.tries >= 5) { lk.until = Date.now() + 15 * 60000; lk.tries = 0; }
+      App.set.prLock = Object.assign({}, App.set.prLock, { [App.mode]: lk }); saveSettings();
+      return bad(lk.until > Date.now() ? t('pr_locked', { n: 15 }) : t('pr_wrong', { n: 5 - lk.tries }));
+    }
+    App.set.prLock = Object.assign({}, App.set.prLock, { [App.mode]: null }); saveSettings();
+    const salt = rid(10), r = await perform('USER_UPDATED', null, { uid: v, pin: await pinHash(f.prPin1, salt), salt, pinLen: f.prPin1.length }, { as: v, quiet: true });
+    if (!r.ok) return bad(t(r.err && r.err.k ? r.err.k : r.err || 'err_generic', r.err && r.err.v));
+    App.form = {}; toast(t('pr_done')); loginAs(S.users[v]);
+  },
   pinKey: async v => {
     const uid = App.route.p.uid, f = App.form, len = (S.users[uid] && S.users[uid].pinLen) || 4; f.pin = f.pin || '';
     if (v === '⌫') { f.pin = f.pin.slice(0, -1); render(); return; }
