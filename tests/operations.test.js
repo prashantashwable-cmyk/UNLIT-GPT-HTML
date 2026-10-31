@@ -31,8 +31,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
 
   /* 9. AMC: ticket lifecycle, service visit, renewal */
   const tid = await P('AIEC-P001', 'P.tickets[0].id');
+  assert(await page.evaluate(() => myTasks(S.users.PQC).some(n => n.k === 'assign_ticket') && !myTasks(S.users.PSALES).some(n => n.k === 'assign_ticket')), 'QC (no service lead chosen) gets the "choose who fixes" task, not Sales');
   await page.evaluate(() => loginAs(S.users.PADMIN));
-  assert(await page.evaluate(() => myTasks(App.me).some(n => n.k === 'assign_ticket')), 'admin gets the "choose who fixes" task');
   assert((await act('TICKET_ASSIGNED', 'AIEC-P001', { tid, uid: 'PTECH', due: '2099-01-01' }, 'PADMIN')).ok, 'ticket assigned to technician');
   await page.evaluate(() => loginAs(S.users.PTECH));
   assert(await page.evaluate(() => myTasks(App.me).some(n => n.k === 'work_ticket')), 'technician gets the "fix the problem" task');

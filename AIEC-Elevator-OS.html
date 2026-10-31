@@ -2411,6 +2411,13 @@ const L = {
   wj_who_row: ['{d} in total · {n} step(s)', 'कुल {d} · {n} कदम', 'एकूण {d} · {n} टप्पे'],
   wj_in_stage: ['{d} in "{s}"', '"{s}" में {d}', '"{s}" मध्ये {d}'],
   wj_home: ['Slowest step (30 days): {s} · {d} · waits on {r}', 'सबसे धीमा कदम (30 दिन): {s} · {d} · {r} पर रुकता है', 'सर्वात संथ टप्पा (30 दिवस): {s} · {d} · {r} वर थांबते'],
+  svc_title: ['Service lead (fault tickets)', 'सर्विस प्रमुख (खराबी की शिकायतें)', 'सर्व्हिस प्रमुख (बिघाड तक्रारी)'],
+  svc_say: ['One person decides who fixes each lift fault. Without one, QC does it; without QC, Admin.', 'हर लिफ्ट खराबी कौन ठीक करेगा, यह एक व्यक्ति तय करता है। कोई न हो तो QC, QC न हो तो एडमिन।', 'प्रत्येक लिफ्ट बिघाड कोण दुरुस्त करेल हे एक व्यक्ती ठरवते. कोणी नसेल तर QC, QC नसेल तर ॲडमिन.'],
+  svc_none: ['Not chosen: QC decides', 'चुना नहीं: QC तय करता है', 'निवडले नाही: QC ठरवते'],
+  svc_none_admin: ['Not chosen: Admin decides', 'चुना नहीं: एडमिन तय करता है', 'निवडले नाही: ॲडमिन ठरवते'],
+  svc_pick: ['Choose the service lead', 'सर्विस प्रमुख चुनें', 'सर्व्हिस प्रमुख निवडा'],
+  svc_clear: ['No one (QC decides)', 'कोई नहीं (QC तय करे)', 'कोणी नाही (QC ठरवेल)'],
+  ev_SERVICE_LEAD_SET: ['Service lead chosen', 'सर्विस प्रमुख चुना', 'सर्व्हिस प्रमुख निवडला'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4453,6 +4460,11 @@ function materialList(req) {
 }
 
 /* ---------- state ---------- */
+/* fault tickets after handover belong to the service lead; without one to QC; without QC to Admin (never to Sales) */
+const svcLead = () => S.serviceLead && S.users[S.serviceLead] && S.users[S.serviceLead].active ? S.serviceLead : '';
+const hasQc = () => Object.values(S.users).some(u => u.active && u.role === 'qc');
+const svcRoles = () => svcLead() ? [roleOf(svcLead())] : hasQc() ? ['qc'] : ['admin', 'owner'];
+const isSvcOwner = u => ['admin', 'owner'].includes(u.role) || (svcLead() ? u.uid === svcLead() : u.role === 'qc');
 function emptyState() {
   return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
     templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], enquiries: {}, enqOrder: [], joins: {}, reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {}, lastAt: {}, undone: {} };
@@ -4464,6 +4476,8 @@ let EVENTS = [];
 function canSee(u, P) {
   if (!u || !P) return false;
   if (u.role !== 'customer' && P.tickets && P.tickets.some(x => x.owner === u.uid)) return true;
+  /* the service lead sees lifts with an open fault ticket, to decide who fixes it */
+  if (u.role !== 'customer' && S.serviceLead === u.uid && P.tickets && P.tickets.some(x => x.status === 'open')) return true;
   switch (u.role) {
     case 'owner': case 'admin': case 'finance': return true;
     case 'field': return P.createdBy === u.uid || P.contributors.includes(u.uid);
@@ -5695,7 +5709,8 @@ const RULES = {
     }
   },
   TICKET_SEVERITY: {
-    roles: ['admin', 'owner', 'sales'], project: true, check: (S, ev, u, P) => {
+    roles: ['admin', 'owner', 'sales', 'qc', 'tech'], project: true, check: (S, ev, u, P) => {
+      if (!isSvcOwner(u) && u.role !== 'sales') return 'err_access';
       const x = ticketOf(P, ev.data.tid);
       if (!x || x.status === 'closed') return 'err_already';
       if (!SEVERITIES.some(s => s[0] === ev.data.sev) || ev.data.sev === x.sev || (ev.data.sev === 'trapped' && x.kind !== 'breakdown')) return 'err_choose';
@@ -5704,7 +5719,9 @@ const RULES = {
   },
   LIFT_QR_SET: { roles: ['admin', 'owner'], project: true, stages: ['amc'], check: (S, ev, u, P) => need(P.lift && (ev.data.label || '').trim().length >= 2 && ev.data.label.trim().length <= 30, 'err_fill') },
   TICKET_ASSIGNED: {
-    roles: ['admin', 'owner', 'sales'], project: true, check: (S, ev, u, P) => {
+    roles: ['admin', 'owner', 'sales', 'qc', 'tech'], project: true, check: (S, ev, u, P) => {
+      /* Sales may still (older records stay valid), but the task now goes to the service lead */
+      if (!isSvcOwner(u) && u.role !== 'sales') return 'err_access';
       const x = ticketOf(P, ev.data.tid);
       if (!x || x.status === 'closed') return 'err_already';
       if (!isActive(ev.data.uid) || !['tech', 'sales', 'admin', 'qc'].includes(roleOf(ev.data.uid))) return 'err_pick_person';
@@ -5930,6 +5947,7 @@ const RULES = {
   },
   PRIVACY_ACCEPTED: { roles: ROLES, check: (S, ev) => need(+ev.data.v === PRIVACY_V, 'err_fill') },
   /* people, training and pay */
+  SERVICE_LEAD_SET: { roles: ['owner', 'admin'], check: (S, ev) => { const d = ev.data; return d.uid === '' ? null : !S.users[d.uid] || !S.users[d.uid].active || !['qc', 'tech', 'sales', 'admin'].includes(S.users[d.uid].role) ? 'err_pick_person' : null; } },
   BUDDY_SET: { roles: ['owner', 'admin'], check: (S, ev) => { const d = ev.data, x = S.users[d.uid], b = S.users[d.buddy]; return !x || !b || !b.active || d.uid === d.buddy ? 'err_no_user' : null; } },
   WORKER_PROFILE: {
     roles: STAFF, check: (S, ev, u) => {
@@ -6400,6 +6418,7 @@ function apply(S, ev) {
       if (d.decision === 'approve') { const inner = innerEvent(r, ev); apply(S, inner); }
       break;
     }
+    case 'SERVICE_LEAD_SET': S.serviceLead = d.uid || ''; break;
     case 'BUDDY_SET': worker(d.uid).buddy = d.buddy; break;
     case 'WORKER_PROFILE': { const w = worker(d.uid); if (d.stripped) w.profile.filled = true; ['phone', 'area', 'skills', 'availability'].forEach(k => { if (d[k] !== undefined) w.profile[k] = k === 'phone' ? phone10(d[k]) : d[k]; }); w.profile.t = ev.t; break; }
     case 'DOC_VERIFIED': { const w = worker(d.uid); w.docs[d.doc] = d.status; (w.docLog = w.docLog || []).push({ doc: d.doc, status: d.status, note: d.note || '', by: ev.by, t: ev.t }); break; }
@@ -6558,7 +6577,7 @@ function needs(P) {
   if (passedQc(P) && leadAt(P, passEntry(P))) crewAt(P, passEntry(P)).filter(x => !S.reviews.some(r => r.src === 'lead' && r.pid === P.id && r.uid === x)).forEach(x => add('rate_crew', ['tech'], { uids: [leadAt(P, passEntry(P))], uid: x }));
   for (const x of P.tickets) {
     const sev = x.sev || 'routine', late = ticketLate(x), hot = ['trapped', 'unsafe', 'breakdown'].includes(sev), alarm = ['trapped', 'unsafe'].includes(sev) && !['resolved', 'closed'].includes(x.status);
-    if (x.status === 'open') add('assign_ticket', ['admin', 'owner', 'sales'], { tid: x.id, sev, urgent: hot || late, alarm, uids: [P.sales], since: x.t });
+    if (x.status === 'open') add('assign_ticket', alarm || late ? uniq(svcRoles().concat(['admin', 'owner'])) : svcRoles(), { tid: x.id, sev, urgent: hot || late, alarm, uids: svcLead() ? [svcLead()] : [], since: x.t });
     else if (['assigned', 'in_progress'].includes(x.status)) add('work_ticket', [roleOf(x.owner) || 'admin'], { uids: [x.owner], tid: x.id, sev, urgent: hot || late, alarm, overdue: late || (x.due && x.due < todayStr()), since: x.due ? addDays(1, new Date(x.due + 'T12:00:00')) + 'T00:00:00' : null });
     if (late && !['resolved', 'closed'].includes(x.status)) add('sla_breach', ['admin', 'owner'], { tid: x.id, sev, since: new Date(ticketDue(x)).toISOString() });
     else if (x.status === 'resolved') add('confirm_ticket', P.customer ? ['customer'] : ['admin', 'owner'], { uids: [P.customer], tid: x.id });
@@ -9936,7 +9955,7 @@ SCREENS.about = () => topBar(t('about_privacy'), { back: true }) + `<main class=
 SCREENS.users = () => {
   if (!['owner', 'admin'].includes(App.me.role)) return SCREENS.home();
   const us = Object.values(S.users).sort((a, b) => ROLES.indexOf(a.role) - ROLES.indexOf(b.role));
-  return topBar(t('users'), { back: true }) + `<main class="wrap"><button class="btn btn-p btn-big" data-a="userAdd">➕ ${t('add_person')}</button><div class="row wrapw" style="margin:10px 0 12px"><button class="btn" data-a="nav" data-v="joins">🧰 ${t('jq_title')}${pendingJoins().length ? ' (' + pendingJoins().length + ')' : ''}</button><button class="btn" data-a="nav" data-v="paste">📥 ${t('paste_title')}</button><button class="btn" data-a="nav" data-v="joinlink">🔗 ${t('join_link')}</button><button class="btn" data-a="nav" data-v="enquiries">📞 ${t('enq_list')}</button></div>
+  return topBar(t('users'), { back: true }) + `<main class="wrap"><button class="btn btn-p btn-big" data-a="userAdd">➕ ${t('add_person')}</button><div class="row wrapw" style="margin:10px 0 12px"><button class="btn" data-a="svcPick">🛠️ ${t('svc_title')}: ${svcLead() ? esc(userName(svcLead())) : t(hasQc() ? 'svc_none' : 'svc_none_admin')}</button><button class="btn" data-a="nav" data-v="joins">🧰 ${t('jq_title')}${pendingJoins().length ? ' (' + pendingJoins().length + ')' : ''}</button><button class="btn" data-a="nav" data-v="paste">📥 ${t('paste_title')}</button><button class="btn" data-a="nav" data-v="joinlink">🔗 ${t('join_link')}</button><button class="btn" data-a="nav" data-v="enquiries">📞 ${t('enq_list')}</button></div>
     ${us.map(x => `<button class="task" data-a="userOpen" data-v="${x.uid}"><span class="ti">${ROLE_ICON[x.role]}</span><span style="flex:1"><b>${esc(x.name)}</b><span class="small muted">${t('r_' + x.role)}${x.projectId ? ' · ' + esc(x.projectId) : ''}</span><br>${x.active ? `<span class="chip c-ok">${t('active')}</span>` : `<span class="chip c-bad">${t('blocked')}</span>`}</span><span class="go">▶</span></button>`).join('')}</main>` + nav('me');
 };
 function userAddSheet() {
@@ -11733,6 +11752,8 @@ const ACT = {
   myReqIn: () => { const j = myJoin(); if (j && S.users[j.uid]) loginAs(S.users[j.uid]); },
   myReqFix: () => { const j = myJoin(); if (!j) return; if (j.kind === 'enq') { wiz('custLead', null, { guest: true, edit: true }); return; } App.form = Object.assign({}, j.form || {}, { rqNote: j.note || '', rqPrev: j.rid }); go('joinReq', { role: j.role }); },
   myReqCancel: async () => { if (!confirm(t('jq_cancel') + '?')) return; await setMyJoin(null); go('gate', {}, { replace: true }); },
+  svcPick: () => sheet(`<h2>🛠️ ${t('svc_pick')}</h2><p class="small">${t('svc_say')}</p><div class="tiles one">${Object.values(S.users).filter(x => x.active && ['qc', 'tech', 'sales', 'admin'].includes(x.role)).map(x => `<button class="tile ${svcLead() === x.uid ? 'on' : ''}" data-a="svcSet" data-v="${x.uid}"><span class="i">${ROLE_ICON[x.role]}</span>${esc(x.name)}<br><small>${t('r_' + x.role)}</small></button>`).join('')}<button class="tile" data-a="svcSet" data-v=""><span class="i">🔍</span>${t('svc_clear')}</button></div>`),
+  svcSet: v => perform('SERVICE_LEAD_SET', null, { uid: v || '' }).then(r => { if (r.ok) { closeSheet(); toast(t('saved_item')); render(); } }),
   waitsPeriod: v => { App.form.wjDays = +v; render(); },
   custNewSite: () => wiz('custLead', null),
   custEditSite: v => wiz('custLead', v, { edit: true }),
