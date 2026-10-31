@@ -2393,6 +2393,24 @@ const L = {
   jq_st_replaced: ['Replaced by a newer request', 'नए अनुरोध से बदला गया', 'नव्या विनंतीने बदलली'],
   eq_changed: ['The person changed their details and sent again', 'व्यक्ति ने जानकारी बदलकर फिर भेजा', 'व्यक्तीने माहिती बदलून पुन्हा पाठवली'],
   ev_LEAD_EDITED: ['Site details changed by the customer', 'ग्राहक ने साइट की जानकारी बदली', 'ग्राहकाने साइटची माहिती बदलली'],
+  wj_quick: ['Quick steps (under 1 day)', 'जल्दी होने वाले कदम (1 दिन से कम)', 'झटपट होणारे टप्पे (1 दिवसापेक्षा कमी)'],
+  wj_title: ['Where jobs wait', 'काम कहाँ रुकता है', 'काम कुठे थांबते'],
+  wj_say: ['How long each step takes, and who it waits on. Fix the slowest step first.', 'हर कदम में कितना समय लगता है और किस पर रुकता है। सबसे धीमा कदम पहले सुधारें।', 'प्रत्येक टप्प्याला किती वेळ लागतो आणि कोणावर थांबते. सर्वात संथ टप्पा आधी सुधारा.'],
+  wj_30: ['30 days', '30 दिन', '30 दिवस'],
+  wj_90: ['90 days', '90 दिन', '90 दिवस'],
+  wj_all: ['All', 'सब', 'सर्व'],
+  wj_slow: ['Slowest steps', 'सबसे धीमे कदम', 'सर्वात संथ टप्पे'],
+  wj_now: ['Waiting now', 'अभी रुके हुए', 'आता थांबलेले'],
+  wj_who: ['Who jobs waited on most', 'काम सबसे ज़्यादा किस पर रुका', 'काम सर्वात जास्त कोणावर थांबले'],
+  wj_money: ['Money: from due to confirmed', 'पैसा: देय से पक्का होने तक', 'पैसे: देय पासून पक्के होईपर्यंत'],
+  wj_row: ['{n} job(s) · average {a} · longest {m}', '{n} काम · औसत {a} · सबसे लंबा {m}', '{n} कामे · सरासरी {a} · सर्वात जास्त {m}'],
+  wj_waits_on: ['waits on {r}', '{r} पर रुकता है', '{r} वर थांबते'],
+  wj_days: ['{n} days', '{n} दिन', '{n} दिवस'],
+  wj_lt1: ['under 1 day', '1 दिन से कम', '1 दिवसापेक्षा कमी'],
+  wj_none: ['No step finished in this period yet.', 'इस समय में अभी कोई कदम पूरा नहीं हुआ।', 'या काळात अजून कोणताही टप्पा पूर्ण झाला नाही.'],
+  wj_who_row: ['{d} in total · {n} step(s)', 'कुल {d} · {n} कदम', 'एकूण {d} · {n} टप्पे'],
+  wj_in_stage: ['{d} in "{s}"', '"{s}" में {d}', '"{s}" मध्ये {d}'],
+  wj_home: ['Slowest step (30 days): {s} · {d} · waits on {r}', 'सबसे धीमा कदम (30 दिन): {s} · {d} · {r} पर रुकता है', 'सर्वात संथ टप्पा (30 दिवस): {s} · {d} · {r} वर थांबते'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -9094,6 +9112,55 @@ SCREENS.perms = () => {
 function hero(u) {
   return `<div class="hero"><div class="row"><span style="font-size:2.2rem" aria-hidden="true">${ROLE_ICON[u.role]}</span><div class="grow"><b style="font-size:1.15rem">${esc(t('hello', { name: u.name }))}</b><br><span class="muted">${t('r_' + u.role)} · ${esc(S.org.name)}</span></div></div>${u.role === 'tech' && u.company ? `<div style="margin-top:6px">${memberChip(u.uid)}</div>` : ''}</div>`;
 }
+/* ---------- where jobs wait: every stage change is dated and signed, so the days each step took, and whose action moved
+   the job on, can be added up. Head Quarter and Admin fix the slowest step instead of the loudest. ---------- */
+const wjDays = d => d < 1 ? t('wj_lt1') : t('wj_days', { n: Math.round(d * 10) / 10 });
+const wjRole = uid => roleOf(uid) ? t('r_' + roleOf(uid)) : t('system');
+function stageWaits(days) {
+  const from = days ? Date.now() - days * 864e5 : 0, st = {}, who = {}, money = {}, ms = x => new Date(x).getTime();
+  for (const P of Object.values(S.projects)) {
+    const h = P.hist || [];
+    for (let i = 0; i < h.length - 1; i++) {
+      const end = ms(h[i + 1].t); if (end < from) continue;
+      const d = Math.max(0, (end - ms(h[i].t)) / 864e5), by = h[i + 1].by, r = roleOf(by) || 'system';
+      const x = st[h[i].s] = st[h[i].s] || { s: h[i].s, n: 0, sum: 0, max: 0, maxPid: '', by: {} };
+      x.n++; x.sum += d; if (d >= x.max) { x.max = d; x.maxPid = P.id; } x.by[r] = (x.by[r] || 0) + d;
+      if (S.users[by]) { const w = who[by] = who[by] || { uid: by, days: 0, n: 0 }; w.days += d; w.n++; }
+    }
+    for (const pay of P.payments || []) {
+      const ok = (pay.hist || []).find(z => z.status === 'confirmed'), due = h.find(z => z.s === PAY_STAGE[pay.purpose]);
+      if (!ok || !due || ms(ok.t) < from) continue;
+      const d = Math.max(0, (ms(ok.t) - ms(due.t)) / 864e5), m = money[pay.purpose] = money[pay.purpose] || { n: 0, sum: 0, max: 0 };
+      m.n++; m.sum += d; m.max = Math.max(m.max, d);
+    }
+  }
+  const stages = Object.values(st).map(x => Object.assign(x, { avg: x.sum / x.n, role: Object.entries(x.by).sort((a, b) => b[1] - a[1])[0][0] })).sort((a, b) => b.avg - a.avg);
+  return { stages, who: Object.values(who).sort((a, b) => b.days - a.days), money };
+}
+const waitNow = () => Object.values(S.projects).filter(P => !['lost', 'amc'].includes(P.stage) && !P.done).map(P => ({ P, days: Math.max(0, (Date.now() - new Date(P.since || P.t).getTime()) / 864e5), n: mainNeed(P) })).sort((a, b) => b.days - a.days);
+const waitsWho = n => !n ? '—' : (n.uids || []).filter(id => S.users[id]).map(userName).join(', ') || rolesTxt(n.roles);
+SCREENS.waits = () => {
+  if (!['owner', 'admin'].includes(App.me.role)) return SCREENS.home();
+  const days = App.form.wjDays === undefined ? 30 : App.form.wjDays, w = stageWaits(days), top = w.stages.length ? w.stages[0].avg || 1 : 1;
+  App.pageSay = t('wj_say');
+  const chip = (v, l) => `<button class="btn btn-sm ${days === v ? 'btn-p' : ''}" data-a="waitsPeriod" data-v="${v}" aria-pressed="${days === v}">${t(l)}</button>`;
+  const stageRow = x => `<div class="card" style="padding:10px 12px"><div class="row"><b class="grow">${(STAGES[x.s] || [0, '•'])[1]} ${esc(stName(x.s))}</b><b>${wjDays(x.avg)}</b></div>
+    <div style="height:8px;background:var(--line);border-radius:6px;margin:6px 0"><i style="display:block;height:8px;border-radius:6px;background:${x.avg >= S.config.escalateDays ? 'var(--bad)' : x.avg >= S.config.remindDays ? 'var(--warn, #d9a400)' : 'var(--ok)'};width:${Math.max(4, Math.round(x.avg / top * 100))}%"></i></div>
+    <div class="small muted">${t('wj_row', { n: x.n, a: wjDays(x.avg), m: wjDays(x.max) })} (${esc(x.maxPid)}) · ${t('wj_waits_on', { r: x.role === 'system' ? t('system') : t('r_' + x.role) })}</div></div>`;
+  const now = waitNow().slice(0, 15).map(({ P, days: d, n }) => `<button class="task" data-a="openProject" data-v="${P.id}"><span class="ti">${(STAGES[P.stage] || [0, '•'])[1]}</span><span class="grow" style="flex:1;min-width:0"><b>${esc(P.id)} · ${t('wj_in_stage', { d: wjDays(d), s: stName(P.stage) })}</b><br><span class="small muted">${esc(t('waiting_for', { who: waitsWho(n) }))}</span></span></button>`).join('');
+  const who = w.who.slice(0, 8).map(x => `<div class="list-item"><span class="grow">${ROLE_ICON[roleOf(x.uid)] || ''} <b>${esc(userName(x.uid))}</b> · ${t('r_' + roleOf(x.uid))}</span><span class="small">${t('wj_who_row', { d: wjDays(x.days), n: x.n })}</span></div>`).join('');
+  const money = PURPOSES.filter(k => w.money[k]).map(k => `<div class="list-item"><span class="grow">${t('pay_' + k)}</span><span class="small">${t('wj_row', { n: w.money[k].n, a: wjDays(w.money[k].sum / w.money[k].n), m: wjDays(w.money[k].max) })}</span></div>`).join('');
+  return topBar(t('wj_title'), { back: true }) + `<main class="wrap"><p class="say">⏳ ${t('wj_say')}</p>
+    <div class="row wrapw" style="margin-bottom:10px">${chip(30, 'wj_30')}${chip(90, 'wj_90')}${chip(0, 'wj_all')}</div>
+    <h2 class="sec">🐢 ${t('wj_slow')}</h2>${w.stages.length ? w.stages.filter(x => x.avg >= 1).map(stageRow).join('') + (w.stages.some(x => x.avg < 1) ? fold('wjquick', t('wj_quick'), w.stages.filter(x => x.avg < 1).map(stageRow).join(''), { icon: '⚡', count: w.stages.filter(x => x.avg < 1).length }) : '') : `<div class="card muted">${t('wj_none')}</div>`}
+    <h2 class="sec">⏳ ${t('wj_now')}</h2>${now || `<div class="card muted">${t('no_tasks')}</div>`}
+    ${who ? `<h2 class="sec">👤 ${t('wj_who')}</h2><div class="card">${who}</div>` : ''}
+    ${money ? `<h2 class="sec">💰 ${t('wj_money')}</h2><div class="card">${money}</div>` : ''}</main>`;
+};
+function waitsLine() {
+  const x = stageWaits(30).stages[0]; if (!x) return '';
+  return `<button class="btn" style="margin-top:10px;text-align:left" data-a="nav" data-v="waits">⏳ ${t('wj_home', { s: stName(x.s), d: wjDays(x.avg), r: x.role === 'system' ? t('system') : t('r_' + x.role) })}</button>`;
+}
 /* ---------- a new person's first week: who to call, their buddy, their first site; the office sees who is stuck ---------- */
 function firstWeekCard(u) {
   const adm = Object.values(S.users).find(x => x.active && x.role === 'admin') || Object.values(S.users).find(x => x.active && x.role === 'owner');
@@ -9144,6 +9211,7 @@ SCREENS.home = () => {
   if (jqWho(u) && pendingEnqs().length) h += `<button class="task" data-a="eqList"><span class="ti">🛗</span><span class="grow" style="flex:1;min-width:0"><b>${t('eq_title')} (${pendingEnqs().length})</b><br><span class="small muted">${t('jq_home_sub')}</span></span></button>`;
   if (jqWho(u) && pendingJoins().length) h += `<button class="task" data-a="nav" data-v="joins"><span class="ti">🧰</span><span class="grow" style="flex:1;min-width:0"><b>${t('jq_title')} (${pendingJoins().length})</b><br><span class="small muted">${t('jq_home_sub')}</span></span></button>`;
   if (adm && openReports().length) { const n = openReports().length, urgent = openReports().some(x => x.problem === 'stopped'); h += `<button class="task ${urgent ? 'urgent' : ''}" data-a="nav" data-v="reports"><span class="ti">📨</span><span class="grow" style="flex:1;min-width:0"><b>${t('rp_title')} (${n})</b><br><span class="small muted">${t('rp_say')}</span></span></button>`; }
+  if (adm) h += waitsLine();
   if (adm) { const qn = queueRows().filter(r => r.n).length;
     h += fold('queues', t('queues'), queuesCard(true), { icon: '🗂️', count: qn, alert: qn > 0, sub: t('fold_tap') });
     h += fold('dash', t(u.role === 'owner' ? 'owner_dash' : 'admin_dash'), dashboard(true), { icon: '📊', sub: t('fold_tap') }); }
@@ -9814,7 +9882,7 @@ SCREENS.me = () => {
       <button class="btn" style="margin-top:10px" data-a="testVoice">▶ ${t('voice_test')}</button>
       ${'speechSynthesis' in window ? (Voice.has('mr') ? `<div class="okbox">✅ ${t('voice_mr_ok')}</div>` : `<div class="warnbox">⚠️ ${t('voice_mr_missing')}</div>`) : `<div class="warnbox">⚠️ ${t('no_tts')}</div>`}</div>
     <div class="tiles one">${`<button class="tile" data-a="nav" data-v="notify"><span class="i">🔔</span><span>${t('ntf_title')}<br><small>${t(Notify.set().sound ? 'ntf_sound_on' : 'ntf_sound_off')}</small></span></button>`}</div>`, { icon: '⚙️', sub: t('me_settings_d') })}
-    ${group('📱', 'me_app', tile('nav', 'data', '📤', 'share_data') + tile('nav', 'perm', '🔐', 'what_can_i_do') + tile('nav', 'supbills', '🧾', 'inv_title', r === 'supplier') + tile('nav', 'server', '☁️', 'srv_title') + tile('nav', 'recon', '🏦', 'recon_title', ['finance', 'owner', 'admin'].includes(r)) + tile('nav', 'stattracker', '📜', 'stat_tracker', ['owner', 'admin', 'qc'].includes(r)) + tile('nav', 'privacy', '🔏', 'pn_title') + tile('intro', '', '🎬', 'watch_intro') + tile('nav', 'about', 'ℹ️', 'about_privacy')
+    ${group('📱', 'me_app', tile('nav', 'data', '📤', 'share_data') + tile('nav', 'perm', '🔐', 'what_can_i_do') + tile('nav', 'supbills', '🧾', 'inv_title', r === 'supplier') + tile('nav', 'server', '☁️', 'srv_title') + tile('nav', 'recon', '🏦', 'recon_title', ['finance', 'owner', 'admin'].includes(r)) + tile('nav', 'waits', '⏳', 'wj_title', ['owner', 'admin'].includes(r)) + tile('nav', 'stattracker', '📜', 'stat_tracker', ['owner', 'admin', 'qc'].includes(r)) + tile('nav', 'privacy', '🔏', 'pn_title') + tile('intro', '', '🎬', 'watch_intro') + tile('nav', 'about', 'ℹ️', 'about_privacy')
       + (App.installEvt ? tile('install', '', '📲', 'install_app') : '') + (App.mode === 'practice' ? tile('resetPractice', '', '♻️', 'reset_practice') + tile('exitPractice', '', '🚪', 'exit_practice') : ''))}
     ${!App.installEvt ? (standalone ? `<div class="okbox" style="margin-top:10px">📲 ${t('installed_ok')}</div>` : `<p class="small muted">📲 ${t('install_hint')}</p>`) : ''}
     <button class="btn btn-bad" style="margin-top:14px" data-a="logout">🚪 ${t('logout')}</button>
@@ -11665,6 +11733,7 @@ const ACT = {
   myReqIn: () => { const j = myJoin(); if (j && S.users[j.uid]) loginAs(S.users[j.uid]); },
   myReqFix: () => { const j = myJoin(); if (!j) return; if (j.kind === 'enq') { wiz('custLead', null, { guest: true, edit: true }); return; } App.form = Object.assign({}, j.form || {}, { rqNote: j.note || '', rqPrev: j.rid }); go('joinReq', { role: j.role }); },
   myReqCancel: async () => { if (!confirm(t('jq_cancel') + '?')) return; await setMyJoin(null); go('gate', {}, { replace: true }); },
+  waitsPeriod: v => { App.form.wjDays = +v; render(); },
   custNewSite: () => wiz('custLead', null),
   custEditSite: v => wiz('custLead', v, { edit: true }),
   eqList: () => go('joins', { kind: 'enq' }),
