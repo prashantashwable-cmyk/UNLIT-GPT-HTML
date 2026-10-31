@@ -6577,7 +6577,7 @@ function needs(P) {
   if (passedQc(P) && leadAt(P, passEntry(P))) crewAt(P, passEntry(P)).filter(x => !S.reviews.some(r => r.src === 'lead' && r.pid === P.id && r.uid === x)).forEach(x => add('rate_crew', ['tech'], { uids: [leadAt(P, passEntry(P))], uid: x }));
   for (const x of P.tickets) {
     const sev = x.sev || 'routine', late = ticketLate(x), hot = ['trapped', 'unsafe', 'breakdown'].includes(sev), alarm = ['trapped', 'unsafe'].includes(sev) && !['resolved', 'closed'].includes(x.status);
-    if (x.status === 'open') add('assign_ticket', alarm || late ? uniq(svcRoles().concat(['admin', 'owner'])) : svcRoles(), { tid: x.id, sev, urgent: hot || late, alarm, uids: svcLead() ? [svcLead()] : [], since: x.t });
+    if (x.status === 'open') add('assign_ticket', alarm ? uniq(svcRoles().concat(['admin', 'owner', 'sales'])) : late ? uniq(svcRoles().concat(['admin', 'owner'])) : svcRoles(), { tid: x.id, sev, urgent: hot || late, alarm, uids: svcLead() ? [svcLead()] : [], since: x.t });
     else if (['assigned', 'in_progress'].includes(x.status)) add('work_ticket', [roleOf(x.owner) || 'admin'], { uids: [x.owner], tid: x.id, sev, urgent: hot || late, alarm, overdue: late || (x.due && x.due < todayStr()), since: x.due ? addDays(1, new Date(x.due + 'T12:00:00')) + 'T00:00:00' : null });
     if (late && !['resolved', 'closed'].includes(x.status)) add('sla_breach', ['admin', 'owner'], { tid: x.id, sev, since: new Date(ticketDue(x)).toISOString() });
     else if (x.status === 'resolved') add('confirm_ticket', P.customer ? ['customer'] : ['admin', 'owner'], { uids: [P.customer], tid: x.id });
