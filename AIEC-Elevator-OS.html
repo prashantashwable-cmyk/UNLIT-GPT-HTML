@@ -85,8 +85,10 @@ h2.sec{font-size:1.05rem;margin:18px 2px 8px}
 .nav button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:66px;border:0;background:none;color:var(--muted);font-size:.76rem;font-weight:700;gap:2px;border-top:4px solid transparent;padding:4px 2px}
 .nav button .i{font-size:1.5rem;line-height:1.1}
 .nav button.on{color:var(--ink);border-top-color:var(--gold);background:var(--gold-l)}
-.tbar{display:block;margin-top:6px}.tbar .tbl{display:block;font-size:.8rem;line-height:1.25;color:var(--muted)}.tbar .tb{display:block;height:6px;border-radius:4px;background:var(--line);overflow:hidden;margin:2px 0 5px}.tbar .tb>i{display:block;height:100%;background:var(--ok)}
-.tbar .tw>i{background:var(--info)}.tbar .t-warn>i{background:var(--warn)}.tbar .t-bad>i{background:var(--bad)}.tbar .t-pause>i{background:var(--muted)}
+.tbar{display:block;margin-top:6px}.tbar .tbl{display:block;font-size:.8rem;line-height:1.3;color:var(--muted)}
+.tbar .tb{display:block;position:relative;height:10px;border-radius:5px;background:var(--line);margin:4px 0 6px}.tbar .tb>i{display:block;height:100%;border-radius:5px;background:var(--ok)}
+.tbar .tb>em{position:absolute;top:-4px;width:3px;height:18px;border-radius:2px;background:var(--ink);transform:translateX(-50%)}
+.tbar.tp-warn .tb>i{background:var(--warn)}.tbar.tp-bad .tb>i{background:var(--bad)}.tbar.tp-pause .tb>i{background:var(--muted)}.tbar.tp-bad .tbl b{color:var(--bad)}.tbar.tp-warn .tbl b{color:var(--warn)}
 .task{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:16px;padding:12px;min-height:78px;margin-bottom:10px;color:var(--ink)}
 .task .ti{width:54px;height:54px;border-radius:14px;background:var(--gold-l);display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex:none}
 .task b{display:block;font-size:1.02rem}
@@ -2513,6 +2515,13 @@ const L = {
   cfg_costDismantle: ['Cost to remove an old lift, ₹', 'पुरानी लिफ्ट हटाने का खर्च, ₹', 'जुनी लिफ्ट काढण्याचा खर्च, ₹'],
   q_job: ['Job', 'काम', 'काम'],
   job_soc_note: ['For a housing society, keep the committee\'s written approval with the agreement. The old lift\'s licence and the new permission must both be in order.', 'हाउसिंग सोसाइटी के लिए कमेटी की लिखित मंज़ूरी करार के साथ रखें। पुरानी लिफ्ट का लाइसेंस और नई अनुमति दोनों ठीक हों।', 'हाउसिंग सोसायटीसाठी समितीची लेखी मंजुरी करारासोबत ठेवा. जुन्या लिफ्टचा परवाना आणि नवी परवानगी दोन्ही व्यवस्थित असावे.'],
+  tb_one: ['Not started (1 step)', 'शुरू नहीं (1 कदम)', 'सुरू नाही (1 टप्पा)'],
+  tb_pct: ['{p}% done', '{p}% पूरा', '{p}% पूर्ण'],
+  tb_on_pace: ['on time', 'समय पर', 'वेळेवर'],
+  tb_behind: ['behind time', 'समय से पीछे', 'वेळेपेक्षा मागे'],
+  tb_late: ['late', 'देर', 'उशीर'],
+  tb_nolimit: ['no time limit', 'कोई समय सीमा नहीं', 'वेळ मर्यादा नाही'],
+  tb_legend: ['Bar = work done · line = time used', 'पट्टी = हुआ काम · रेखा = बीता समय', 'पट्टी = झालेले काम · रेषा = गेलेला वेळ'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -7451,21 +7460,29 @@ function timeOf(n, P) {
   /* who it goes to: the same level the escalation chip shows (after the limit), or the next one (before it) */
   const lv = Math.max(n.level || 0, escLevel(Math.floor(d), onb ? 'onboarding' : n.k)), at = d >= lim ? Math.max(2, lv) : 2;
   const up = n.k === 'escalated' ? (n.level >= 3 ? null : ['owner']) : n.roles ? escUp(n, at) || (at < 3 ? escUp(n, 3) : null) : null, who = up ? rolesTxt(up) : '';
-  if (d >= lim) return { pct: 100, label: who ? t('tb_over', { n: Math.floor(d - lim) + 1, who }) : t('tb_over_late', { n: Math.floor(d - lim) + 1 }) };
+  /* after the limit the escalation tag already says who has it now; the bar only says how late */
+  if (d >= lim) return { pct: 100, label: t('tb_over_late', { n: Math.floor(d - lim) + 1 }), who };
   return { pct: d / lim * 100, label: t('tb_day', { d: day, m: lim }) + ' · ' + (who ? t('tb_then', { who }) : t('tb_then_late')) };
 }
+/* one bar for both: the fill is the work done, the dark line is the time used. Fill past the line = on time; line past
+   the fill = behind; line at the end = late. Paused work is grey and never red. */
+function paceBar(wp, wtxt, tm) {
+  const tp = tm && !tm.paused ? Math.max(0, Math.min(100, tm.pct)) : null;
+  const pace = tm && tm.paused ? 'pause' : tm && tm.pct >= 100 ? 'bad' : tp != null && wp < tp ? 'warn' : 'ok';
+  const ttxt = !tm ? t('tb_nolimit') : tm.paused ? '⏸ ' + esc(tm.paused) : '⏳ ' + esc(tm.label);
+  const ptxt = { ok: tm ? t('tb_on_pace') : '', warn: t('tb_behind'), bad: t('tb_late'), pause: '' }[pace], label = `🧩 ${wtxt} · ${ttxt}${ptxt ? ' · ' + ptxt : ''}`;
+  return `<span class="tbar tp-${pace}" title="${esc(t('tb_legend'))}"><span class="tbl">🧩 ${wtxt} · ${ttxt}${ptxt ? ` · <b>${pace === 'ok' ? '✅' : pace === 'warn' ? '⚠️' : '🔴'} ${ptxt}</b>` : ''}</span>`
+    + `<span class="tb" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${wp}" aria-label="${esc(label)}"><i style="width:${Math.max(3, Math.min(100, wp))}%"></i>${tp != null ? `<em style="left:${tp}%"></em>` : ''}</span></span>`;
+}
 function taskBars(n, P) {
-  const w = workOf(n, P), tm = timeOf(n, P);
-  if (!w && !tm) return '';
-  const wp = w && w.t ? Math.round(w.d / w.t * 100) : 0;
-  const bar = (cls, pct, label) => `<span class="tbl">${label}</span><span class="tb ${cls}" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(Math.min(100, pct))}" aria-label="${esc(label)}"><i style="width:${Math.max(3, Math.min(100, pct))}%"></i></span>`;
-  return `<span class="tbar">${w ? bar('tw', wp, '🧩 ' + t('tb_work', { d: w.d, t: w.t, p: wp })) : ''}${tm ? (tm.paused ? bar('t-pause', 100, '⏸ ' + esc(tm.paused)) : bar(tm.pct >= 100 ? 't-bad' : tm.pct >= 50 ? 't-warn' : 't-ok', tm.pct, (tm.pct >= 100 ? '🔴 ' : tm.pct >= 50 ? '⏳ ' : '✅ ') + esc(tm.label))) : ''}</span>`;
+  const w = workOf(n, P), tm = timeOf(n, P), wp = w && w.t ? Math.round(w.d / w.t * 100) : 0;
+  return paceBar(wp, w ? t('tb_work', { d: w.d, t: w.t, p: wp }) : t('tb_one'), tm);
 }
 /* the whole job: how far along it is (stage order) */
 const jobPct = P => P.stage === 'lost' ? 0 : P.stage === 'amc' || P.done ? 100 : Math.max(0, Math.round(stageIdx(P.stage) / stageIdx('amc') * 100));
 function jobBars(P) {
-  const p = jobPct(P), d = Math.max(0, (Date.now() - Date.parse(P.since || P.t)) / 864e5);
-  return `<span class="tbar"><span class="tbl">🛗 ${t('tb_job', { p })}</span><span class="tb tw" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${p}"><i style="width:${Math.max(3, p)}%"></i></span><span class="tbl">🕒 ${t('tb_in_step', { d: wjDays(d) })}</span></span>`;
+  const p = jobPct(P), n = !P.done && P.stage !== 'lost' ? mainNeed(P) : null;
+  return paceBar(p, t('tb_job', { p }), n ? timeOf(n, P) : null);
 }
 function taskCard(n, i) {
   const P = S.projects[n.pid];

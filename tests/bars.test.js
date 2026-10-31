@@ -19,9 +19,14 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   });
   const total = Object.values(roles).reduce((a, r) => a + r.cards, 0), barred = Object.values(roles).reduce((a, r) => a + r.withBar, 0);
   assert(total > 20 && barred / total >= 0.9, `task cards carry bars across all roles (${barred} of ${total})`);
-  const badL = Object.values(roles).flatMap(r => r.labels).filter(l => l && !/Day \d+ of \d+|day\(s\) over|h of \d+ h|Time limit passed|Paused|done ·|[Ll]icen/.test(l));
+  const badL = Object.values(roles).flatMap(r => r.labels).filter(l => l && !/Day \d+ of \d+|day\(s\) over|h of \d+ h|Time limit passed|Paused|done ·|[Ll]icen|no time limit/.test(l));
   assert(!badL.length, 'every bar says it in words, not only colour' + (badL.length ? ': ' + badL.slice(0, 4).join(' / ') : ''));
 
+  const one = await page.evaluate(() => { loginAs(S.users.PSALES); ACT.permsDone(); Notify.hide(); App.form = {}; go('home');
+    const cards = [...document.querySelectorAll('main .task[data-a="openTask"]')]; return cards.every(c => c.querySelectorAll('.tbar').length === 1 && c.querySelectorAll('.tbar .tb').length === 1) && cards.some(c => c.querySelector('.tb > em')) && cards.every(c => /done|Not started/.test(c.querySelector('.tbl').textContent)); });
+  assert(one, 'each task shows ONE bar carrying both: the fill is work done, the line is time used');
+  const pace = await page.evaluate(() => [paceBar(60, 'x', { pct: 40, label: 'Day 2 of 5' }), paceBar(20, 'x', { pct: 60, label: 'Day 3 of 5' }), paceBar(20, 'x', { pct: 100, label: 'over' }), paceBar(20, 'x', { paused: 'P' })].map(h => /tp-(\w+)/.exec(h)[1]));
+  assert(JSON.stringify(pace) === '["ok","warn","bad","pause"]', 'work ahead of time = on time, behind = behind, past the limit = late, blocked = paused: ' + pace);
   /* honest work bars */
   const w = await page.evaluate(() => {
     const P = Object.values(S.projects).find(x => x.stage === 'installing'), H = Object.values(S.projects).find(x => x.stage === 'handover');
@@ -38,7 +43,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
     return { a, late, esc: S.config.escalateDays };
   });
   assert(Math.round(tm.a.pct) === Math.round(1.5 / tm.esc * 100) && /Day 2 of 3 · then goes to Admin/.test(tm.a.label), 'day 2 of 3 days, then it goes to Admin: ' + tm.a.label);
-  assert(tm.late.pct === 100 && /2 day\(s\) over · now also with Admin/.test(tm.late.label), 'after the limit it says how late and who has it now: ' + tm.late.label);
+  assert(tm.late.pct === 100 && /2 day\(s\) over/.test(tm.late.label) && tm.late.who === 'Admin', 'after the limit it says how late (the escalation tag says who has it now): ' + tm.late.label);
   const tk = await page.evaluate(() => { const P = S.projects['AIEC-P001'], x = P.tickets.find(y => y.status === 'open' && ticketDue(y)); return x ? timeOf({ k: 'assign_ticket', tid: x.id, roles: ['qc'] }, P).label : 'none'; });
   assert(/h of \d+ h|Time limit passed|none/.test(tk), 'a fault ticket uses its time limit in hours: ' + tk);
   const ins = await page.evaluate(() => { const P = Object.values(S.projects).find(x => x.stage === 'installing'); return timeOf({ k: 'install', roles: ['tech'] }, P); });
@@ -55,7 +60,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* customer: job % and their own clock, without office escalation words */
   await page.evaluate(() => { loginAs(S.users.PCUST); ACT.permsDone(); Notify.hide(); go('home'); }); await page.waitForTimeout(300);
   const ct = await page.innerText('main');
-  assert(/Job \d+% done/.test(ct) && /In this step/.test(ct) && !/then goes to|now also with/.test(ct), 'the customer sees how far the job is, and their own time without office escalation');
+  assert(/Job \d+% done · ⏳ (Day \d+ of \d+|\d+ day\(s\) over)/.test(ct) && !/then goes to|now also with/.test(ct), 'the customer sees how far the job is, and their own time without office escalation');
   await page.evaluate(() => { loginAs(S.users.PADMIN); go('project', { pid: Object.values(S.projects).find(x => x.stage === 'installing').id }); }); await page.waitForTimeout(300);
   assert(/Job \d+% done/.test(await page.innerText('body')), 'the project page shows the whole job %');
 
