@@ -2498,6 +2498,12 @@ const L = {
   ev_SAFETY_COUNTERSIGNED: ['Safety check counter-signed by the builder', 'बिल्डर ने सुरक्षा जाँच पर प्रति-हस्ताक्षर किए', 'बिल्डरने सुरक्षा तपासणीवर प्रतिस्वाक्षरी केली'],
   cust_paused_safety: ['Work is paused today for a safety check. Your technician is safe. It resumes as soon as the check is cleared.', 'आज सुरक्षा जाँच के लिए काम रुका है। आपका तकनीशियन सुरक्षित है। जाँच पूरी होते ही काम फिर शुरू होगा।', 'आज सुरक्षा तपासणीसाठी काम थांबले आहे. तुमचा तंत्रज्ञ सुरक्षित आहे. तपासणी पूर्ण होताच काम पुन्हा सुरू होईल.'],
   cust_paused_wait: ['Work is paused: waiting for {who}. We will tell you when it resumes.', 'काम रुका है: {who} का इंतज़ार। फिर शुरू होने पर बताएँगे।', 'काम थांबले आहे: {who} ची प्रतीक्षा. पुन्हा सुरू झाल्यावर कळवू.'],
+  mp_sunday: ['You will get {a} on Sunday, {d}', 'आपको रविवार, {d} को {a} मिलेंगे', 'तुम्हाला रविवारी, {d} रोजी {a} मिळतील'],
+  mp_week: ['This week so far: {a} (checked after Sunday)', 'इस हफ़्ते अब तक: {a} (रविवार के बाद जाँच)', 'या आठवड्यात आतापर्यंत: {a} (रविवारनंतर तपासणी)'],
+  mp_wait: ['Waiting for the office to approve: {a}', 'ऑफिस की मंज़ूरी का इंतज़ार: {a}', 'ऑफिसच्या मंजुरीची प्रतीक्षा: {a}'],
+  mp_paid: ['Last paid: {a} on {d}', 'आखिरी भुगतान: {d} को {a}', 'शेवटचे पैसे: {d} रोजी {a}'],
+  mp_company: ['Your work this week is worth {a}. {c} pays you.', 'इस हफ़्ते आपके काम की कीमत {a}। आपको {c} भुगतान करती है।', 'या आठवड्यात तुमच्या कामाची किंमत {a}. तुम्हाला {c} पैसे देते.'],
+  mp_none: ['No paid work yet this week.', 'इस हफ़्ते अभी कोई भुगतान वाला काम नहीं।', 'या आठवड्यात अजून पैसे मिळणारे काम नाही.'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -9386,6 +9392,18 @@ function waitsLine() {
   const x = stageWaits(30).stages[0]; if (!x) return '';
   return `<button class="btn" style="margin-top:10px;text-align:left" data-a="nav" data-v="waits">⏳ ${t('wj_home', { s: stName(x.s), d: wjDays(x.avg), r: x.role === 'system' ? t('system') : t('r_' + x.role) })}</button>`;
 }
+/* ---------- money in one line: what the person will get and when, not a ledger ---------- */
+function nextSunday() { const z = new Date(Date.now() + CO_TZ), d = (7 - z.getUTCDay()) % 7; z.setUTCDate(z.getUTCDate() + d); return z.toISOString().slice(0, 10); }
+function moneyLine(u) {
+  if (!['tech', 'qc'].includes(u.role)) return '';
+  const now = weekKey(nowISO()), mine = earnings(u.uid), thisWeek = mine.filter(e => weekKey(e.t) === now);
+  if (u.role === 'tech' && companyOf(u.uid)) { const a = sum(thisWeek.filter(e => companyAt(u.uid, e.t)).map(e => e.amount)); return `<div class="card"><b style="font-size:1.1rem">💰 ${t('mp_company', { a: money(a), c: esc(userName(companyOf(u.uid))) })}</b></div>`; }
+  const ws = weeksFor(u.uid), due = ws.filter(w => w.pay && w.pay.status === 'approved').reduce((a, w) => a + (+w.pay.amount || 0), 0);
+  const wait = ws.filter(w => w.week < now && (!w.pay || w.pay.status === 'open')).reduce((a, w) => a + w.total, 0), cur = (ws.find(w => w.week === now) || { total: 0 }).total;
+  const paid = ws.filter(w => w.pay && w.pay.status === 'paid').sort((a, b) => a.pay.paidAt < b.pay.paidAt ? 1 : -1)[0];
+  return `<div class="card"><b style="font-size:1.15rem">💰 ${due ? t('mp_sunday', { a: money(due), d: fmtD(nextSunday()) }) : cur ? t('mp_week', { a: money(cur) }) : t('mp_none')}</b>
+    ${due && cur ? `<div class="small muted">${t('mp_week', { a: money(cur) })}</div>` : ''}${wait ? `<div class="small muted">⏳ ${t('mp_wait', { a: money(wait) })}</div>` : ''}${paid ? `<div class="small muted">✅ ${t('mp_paid', { a: money(paid.pay.amount), d: fmtD(paid.pay.paidAt) })}</div>` : ''}</div>`;
+}
 /* ---------- a new person's first week: who to call, their buddy, their first site; the office sees who is stuck ---------- */
 function firstWeekCard(u) {
   const adm = Object.values(S.users).find(x => x.active && x.role === 'admin') || Object.values(S.users).find(x => x.active && x.role === 'owner');
@@ -9419,6 +9437,7 @@ SCREENS.home = () => {
   if (App.mode === 'practice' && !(App.set.calmSeen || {})[u.uid]) h += `<div class="card"><b>🎓 ${t('calm_t')}</b><p class="small">${t('calm_d')}</p><div class="row wrapw"><button class="btn btn-p" data-a="calmTry">▶ ${t('calm_try')}</button><button class="btn" data-a="calmOk">${t('calm_ok')}</button></div></div>`;
   if (!adm && STAFF.includes(u.role) && daysSince(u.t) < 7) h += firstWeekCard(u);
   if (u.role === 'field') h += shiftCard();
+  h += moneyLine(u);
   if (u.role === 'tech') { const open = visibleProjects(u).filter(P => checkedIn(P, safeDay(), u.uid) && !(((P.dayEnds || {})[safeDay()] || {})[u.uid]));
     open.forEach(P => { h += `<button class="task" style="margin-top:10px" data-a="wizOpen" data-v="techEnd|${P.id}"><span class="ti">🏁</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_end_day')}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span></span><span class="go">▶</span></button>`; }); }
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))}${tasks[0].pid ? ' · ' + esc(tasks[0].pid) : ''}</p>`;
