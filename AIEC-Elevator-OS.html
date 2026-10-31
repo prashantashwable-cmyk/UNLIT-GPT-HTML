@@ -2485,6 +2485,19 @@ const L = {
   earn_qc_recheck: ['QC re-check', 'QC दोबारा जाँच', 'QC पुन्हा तपासणी'],
   ev_QC_RECHECK_DONE: ['Second QC re-checked a passed lift', 'दूसरे QC ने पास लिफ्ट दोबारा जाँची', 'दुसऱ्या QC ने पास लिफ्ट पुन्हा तपासली'],
   ev_QC_RECHECK_REVIEWED: ['Office reviewed a QC disagreement', 'ऑफिस ने QC असहमति देखी', 'ऑफिसने QC असहमती पाहिली'],
+  b_near_miss: ['Safety watcher: reported a near miss', 'सुरक्षा प्रहरी: बाल-बाल बचने की सूचना दी', 'सुरक्षा रक्षक: थोडक्यात वाचल्याची माहिती दिली'],
+  b_near_miss_d: ['Thank you. A near miss never counts against you.', 'धन्यवाद। बाल-बाल बचने की सूचना कभी आपके ख़िलाफ़ नहीं गिनी जाती।', 'धन्यवाद. थोडक्यात वाचल्याची माहिती कधीही तुमच्याविरुद्ध धरली जात नाही.'],
+  cs_title: ['Site engineer counter-signs', 'साइट इंजीनियर के प्रति-हस्ताक्षर', 'साइट इंजिनिअरची प्रतिस्वाक्षरी'],
+  cs_btn: ['Get today\'s safety check counter-signed', 'आज की सुरक्षा जाँच पर प्रति-हस्ताक्षर लें', 'आजच्या सुरक्षा तपासणीवर प्रतिस्वाक्षरी घ्या'],
+  s_cs: ['Show today\'s safety check to the builder\'s site engineer. They write their name and sign. A log the builder signed is proof both sides agreed.', 'आज की सुरक्षा जाँच बिल्डर के साइट इंजीनियर को दिखाएँ। वे नाम लिखकर हस्ताक्षर करें। बिल्डर का हस्ताक्षर दोनों की सहमति का सबूत है।', 'आजची सुरक्षा तपासणी बिल्डरच्या साइट इंजिनिअरला दाखवा. ते नाव लिहून सही करतील. बिल्डरची सही दोघांच्या सहमतीचा पुरावा आहे.'],
+  cs_name: ['Site engineer\'s name', 'साइट इंजीनियर का नाम', 'साइट इंजिनिअरचे नाव'],
+  cs_sig: ['Site engineer\'s signature', 'साइट इंजीनियर के हस्ताक्षर', 'साइट इंजिनिअरची सही'],
+  cs_seen: ['I have seen today\'s safety check', 'मैंने आज की सुरक्षा जाँच देख ली', 'मी आजची सुरक्षा तपासणी पाहिली'],
+  cs_done: ['Counter-signed by {n} · {t}', '{n} के प्रति-हस्ताक्षर · {t}', '{n} यांची प्रतिस्वाक्षरी · {t}'],
+  cs_missing: ['Not counter-signed by the builder', 'बिल्डर के प्रति-हस्ताक्षर नहीं', 'बिल्डरची प्रतिस्वाक्षरी नाही'],
+  ev_SAFETY_COUNTERSIGNED: ['Safety check counter-signed by the builder', 'बिल्डर ने सुरक्षा जाँच पर प्रति-हस्ताक्षर किए', 'बिल्डरने सुरक्षा तपासणीवर प्रतिस्वाक्षरी केली'],
+  cust_paused_safety: ['Work is paused today for a safety check. Your technician is safe. It resumes as soon as the check is cleared.', 'आज सुरक्षा जाँच के लिए काम रुका है। आपका तकनीशियन सुरक्षित है। जाँच पूरी होते ही काम फिर शुरू होगा।', 'आज सुरक्षा तपासणीसाठी काम थांबले आहे. तुमचा तंत्रज्ञ सुरक्षित आहे. तपासणी पूर्ण होताच काम पुन्हा सुरू होईल.'],
+  cust_paused_wait: ['Work is paused: waiting for {who}. We will tell you when it resumes.', 'काम रुका है: {who} का इंतज़ार। फिर शुरू होने पर बताएँगे।', 'काम थांबले आहे: {who} ची प्रतीक्षा. पुन्हा सुरू झाल्यावर कळवू.'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4900,7 +4913,9 @@ function badgesOf(uid) {
   if (best >= 5) out.push('b_streak5');
   if (S.reviews.filter(r => r.uid === uid && r.src === 'customer' && r.stars === 5).length >= 10) out.push('b_five_star10');
   const u = S.users[uid]; if (u && all.length && daysSince(u.t) >= 90 && !strikesOf(uid).length) out.push('b_clean90');
-  if (lead.length >= 3 && !lead.some(P => P.incidents.length)) out.push('b_safety');
+  /* a near miss never counts against anyone: reporting one is rewarded, so problems are told before they hurt someone */
+  if (lead.length >= 3 && !lead.some(P => P.incidents.some(i => i.type !== 'near_miss'))) out.push('b_safety');
+  if (Object.values(S.projects).some(P => P.incidents.some(i => i.type === 'near_miss' && i.by === uid))) out.push('b_near_miss');
   const lr = S.reviews.filter(r => r.uid === uid && r.src === 'lead' && daysSince(r.t) <= 30);
   if (lr.length >= 3 && lr.every(r => r.stars === 5)) out.push('b_top_crew');
   return out;
@@ -5651,6 +5666,14 @@ const RULES = {
     }
   },
   /* a passed lift picked at random is re-checked by a second QC, so passing quickly does not pay */
+  /* the builder's site engineer counter-signs the day's safety check (in person on the technician's phone, or the customer in their app) */
+  SAFETY_COUNTERSIGNED: { roles: ['tech', 'customer'], project: true, check: (S, ev, u, P) => {
+    const x = (P.safety || {})[ev.data.day];
+    if (!x || x.status !== 'ok') return 'err_safety_check';
+    if (x.counter) return 'err_already';
+    if (u.role === 'customer') return P.customer === u.uid ? null : 'err_access';
+    if (P.tech !== u.uid && !(P.crew || []).includes(u.uid)) return 'err_access';
+    return !(ev.data.signer || '').trim() ? 'err_fill' : ev_(ev.data, 'sign').length ? null : 'err_sign'; } },
   QC_RECHECK_DONE: { roles: ['qc'], project: true, check: (S, ev, u, P) => !P.recheck || P.recheck.done ? 'err_already' : u.uid === P.recheck.first || P.tech === u.uid || (P.crew || []).includes(u.uid) ? 'err_own_job'
     : !['pass', 'fail'].includes(ev.data.result) ? 'err_choose' : ev_(ev.data).length < 1 ? { k: 'err_photos', v: { n: 1 } } : ev.data.result === 'fail' && !(ev.data.note || '').trim() ? 'err_reason' : null },
   QC_RECHECK_REVIEWED: { roles: ['owner', 'admin'], project: true, check: (S, ev, u, P) => !P.recheck || !P.recheck.done || P.recheck.done.result !== 'fail' || P.recheck.reviewed ? 'err_already' : need((ev.data.note || '').trim(), 'err_reason') },
@@ -6377,6 +6400,7 @@ function apply(S, ev) {
       break;
     case 'BLOCKER_RESOLVED': { const b = P.blockers.find(x => x.id === d.bid); b.open = false; b.resolution = { t: ev.t, by: ev.by, note: d.note }; break; }
     case 'INSPECTION_REQUESTED': setStage(P, 'qc_final', ev); break;
+    case 'SAFETY_COUNTERSIGNED': P.safety[d.day].counter = { by: ev.by, t: ev.t, signer: d.signer || userName(ev.by), sig: (ev_(d, 'sign')[0] || {}).id || null }; break;
     case 'QC_RECHECK_DONE': P.recheck.done = { by: ev.by, t: ev.t, result: d.result, note: d.note || '', ev: ev_(d).map(e => e.id) }; break;
     case 'QC_RECHECK_REVIEWED': P.recheck.reviewed = { by: ev.by, t: ev.t, note: d.note }; break;
     case 'QC_FINAL_RESULT': {
@@ -8504,7 +8528,7 @@ WIZ.incident = {
 WIZ.incidentNew = {
   title: 'report_incident', save: 'send_problem', saveIcon: '🚨', init: (P, o) => ({ type: o.type || '', note: '', witnesses: '', action: '', ph: [] }),
   steps: [
-    { id: 'type', icon: '🚨', say: 's_inc_type', body: c => tiles('type', INC_TYPES.map(([k, i]) => [k, i, 'inc_' + k, 'inc_' + k + '_d']), 'one') + (STOP_TYPES.includes(c.type) ? `<div class="err" style="font-size:1.1rem">🛑 ${t('inc_stops_work')}</div>` : ''), check: c => c.type ? null : 'err_choose' },
+    { id: 'type', icon: '🚨', say: 's_inc_type', body: c => tiles('type', INC_TYPES.map(([k, i]) => [k, i, 'inc_' + k, 'inc_' + k + '_d']), 'one') + (STOP_TYPES.includes(c.type) ? `<div class="err" style="font-size:1.1rem">🛑 ${t('inc_stops_work')}</div>` : '') + (c.type === 'near_miss' ? `<div class="okbox">🙏 ${t('b_near_miss_d')}</div>` : ''), check: c => c.type ? null : 'err_choose' },
     { id: 'what', icon: '📝', say: 's_incident_new', body: () => inp('note', 'f_problem', { area: true, mic: true }) + inp('action', 'f_inc_action', { area: true, mic: true, opt: true }) + inp('witnesses', 'f_inc_witness', { mic: true, opt: true }), check: c => c.note.trim() ? null : 'err_fill' },
     { id: 'ph', icon: '📷', say: 's_inc_photo', body: () => photoSlot('ph', 'ph_incident', 0, { video: true, tag: 'incident' }) }
   ],
@@ -8666,6 +8690,11 @@ function statCard(P) {
     ['stat_licence', l ? `${d != null && d < 0 ? '❌' : d != null && d <= (S.config.licWarnDays || 60) ? '⚠️' : '✅'} ${esc(l.no)} · ${esc(l.holder)} · ${t('lic_expiry')}: ${fmtD(l.expiry)}` : '—']];
   return `<div class="card"><h3>📜 ${t('stat_title')}</h3>${kv(rows)}${P.stage === 'handover' && S.config.licenceGate && !liftLicenceOk(P) ? `<div class="warnbox">📜 ${t('stat_needed')}</div>` : ''}<p class="small muted">${t('stat_note')}</p>${['owner', 'admin', 'qc'].includes(App.me.role) ? `<button class="btn btn-sm" data-a="nav" data-v="stattracker">📋 ${t('stat_tracker')}</button>` : ''}</div>`;
 }
+WIZ.countersign = {
+  title: 'cs_title', save: 'save', noDraft: true, init: () => ({ signer: '', sig: null }),
+  steps: [{ id: 'cs', icon: '✍️', say: 's_cs', body: () => inp('signer', 'cs_name', { mic: true }) + signSlot('sig', 'cs_sig'), check: c => !c.signer.trim() ? 'err_fill' : c.sig ? null : 'err_sign' }],
+  async finish(c, P) { const r = await run([['SAFETY_COUNTERSIGNED', P.id, { day: W.opts.day, signer: c.signer.trim(), ev: [c.sig] }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
 WIZ.recheck = {
   title: 'rc_title', save: 'save', noDraft: true, init: () => ({ result: '', note: '', ph: [] }),
   steps: [{ id: 'r', icon: '🔁', say: 's_rc',
@@ -8827,7 +8856,9 @@ SCREENS.safetylog = ({ pid }) => {
   const cards = Object.keys(days).sort().reverse().map(d => { const x = (P.safety || {})[d], y = days[d];
     return `<div class="card"><h3>📅 ${fmtD(d)}</h3>
       ${x ? (x.prev || []).map(o => `<div class="err">🦺 ${t('safety_rejected')} · ${userTag(o.by)} · ${fmtD(o.t, true)}${o.reviews.filter(r => !r.ok).map(r => `<br><span class="small">🛑 ${userTag(r.by)}${cust ? '' : ' · ' + esc(r.note)}</span>`).join('')}</div>`).join('') : ''}
-      ${x ? `<div class="${x.status === 'rejected' ? 'err' : 'okbox'}">🦺 ${t(x.status === 'rejected' ? 'safety_rejected' : 'safety_done')} · ${userTag(x.by)} · ${fmtD(x.t, true)}</div>${evGrid(x.ev)}${x.reviews.map(r => `<div class="small">${r.ok ? '✅' : '🛑'} ${userTag(r.by)} · ${fmtD(r.t, true)}${r.note && !cust ? ' · ' + esc(r.note) : ''}</div>`).join('')}${canReview(d) ? `<button class="btn btn-sm noprint" style="margin-top:6px" data-a="wizOpen" data-v="safetyReview|${P.id}|day|${d}">🦺 ${t('tk_review_safety')}</button>` : ''}`
+      ${x ? `<div class="${x.status === 'rejected' ? 'err' : 'okbox'}">🦺 ${t(x.status === 'rejected' ? 'safety_rejected' : 'safety_done')} · ${userTag(x.by)} · ${fmtD(x.t, true)}</div>${evGrid(x.ev)}
+        ${x.status === 'ok' ? (x.counter ? `<div class="small">✍️ ${t('cs_done', { n: esc(x.counter.signer), t: fmtD(x.counter.t, true) })}</div>${x.counter.sig ? `<img class="sigimg" data-m="${(S.evidence[x.counter.sig] || {}).m}" alt="" style="max-height:60px">` : ''}`
+          : cust && P.customer === u.uid ? `<button class="btn btn-sm noprint" data-a="csSeen" data-v="${P.id}|${d}">✍️ ${t('cs_seen')}</button>` : `<div class="small muted">✍️ ${t('cs_missing')}</div>`) : ''}${x.reviews.map(r => `<div class="small">${r.ok ? '✅' : '🛑'} ${userTag(r.by)} · ${fmtD(r.t, true)}${r.note && !cust ? ' · ' + esc(r.note) : ''}</div>`).join('')}${canReview(d) ? `<button class="btn btn-sm noprint" style="margin-top:6px" data-a="wizOpen" data-v="safetyReview|${P.id}|day|${d}">🦺 ${t('tk_review_safety')}</button>` : ''}`
         : y.sop.length ? `<div class="warnbox">🦺 ${t('safety_none')}</div>` : ''}
       ${y.sop.length ? `<div class="small">🔧 ${y.sop.map(n => (n + 1) + '. ' + t('sop_' + SOP[n][0])).join(', ')}</div>` : ''}
       ${y.inc.map(i => `<div class="err">${(INC_TYPES.find(z => z[0] === i.type) || ['', '🆘'])[1]} ${t('inc_' + i.type)} · ${fmtD(i.t, true)}${cust ? '' : '<br>' + esc(i.note) + (i.action ? '<br>🧯 ' + esc(i.action) : '')}</div>`).join('')}
@@ -9446,6 +9477,13 @@ function fieldScore() {
 }
 const custJobs = u => uniq([u.projectId].concat(u.projects || [])).filter(id => S.projects[id]);
 const custPid = u => { const js = custJobs(u), c = (App.set.custSite || {})[u.uid]; return js.includes(c) ? c : js[0]; };
+/* when work stops, the customer is told gently why, so a quiet tracker does not look like being cheated */
+function custPause(P) {
+  if (!['arrived', 'installing', 'install_fix'].includes(P.stage)) return '';
+  if (openIncidents(P).length || (safetyWhyNot(P) === 'err_work_stopped')) return `<div class="warnbox">🦺 ${t('cust_paused_safety')}</div>`;
+  const b = P.blockers.find(x => x.open); if (b) return `<div class="note">⏸ ${t('cust_paused_wait', { who: t('r_' + b.role) })}</div>`;
+  return '';
+}
 function customerHome() {
   const u = App.me, P = S.projects[custPid(u)], js = custJobs(u);
   if (!P) {
@@ -9461,7 +9499,7 @@ function customerHome() {
   App.pageSay = t('cust_say', { stage: stName(P.stage), next: nextLine(P) });
   const q = [...P.quotes].reverse().find(x => x.sent);
   const tile = (a, v, i, l) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`;
-  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}<div class="card"><b>${esc(P.id)}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
+  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}<div class="card"><b>${esc(P.id)}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>${custPause(P)}${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
     ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + tasks.map((n, i) => taskCard(n, i)).join('') : ''}
     ${payCard(P)}
     ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
@@ -9619,6 +9657,7 @@ function projActions(P) {
   add('INCIDENT_RAISED', 'incidentNew', '🚨', 'report_incident', OPEN_STAGES.includes(P.stage));
   if (u.role === 'tech' && (P.tech === u.uid || (P.crew || []).includes(u.uid)) && allowed('SITE_CHECKED_IN', P) && !checkedIn(P, safeDay(), u.uid)) a.push(`<button class="btn btn-p" data-a="wizOpen" data-v="checkin|${P.id}">📍 ${t('tk_site_checkin')}</button>`);
   if (u.role === 'tech' && checkedIn(P, safeDay(), u.uid) && !(((P.dayEnds || {})[safeDay()] || {})[u.uid])) a.push(`<button class="btn" data-a="wizOpen" data-v="techEnd|${P.id}">🏁 ${t('tk_end_day')}</button>`);
+  { const sd = (P.safety || {})[safeDay()]; if (u.role === 'tech' && P.tech === u.uid && sd && sd.status === 'ok' && !sd.counter) a.push(`<button class="btn" data-a="csOpen" data-v="${P.id}">✍️ ${t('cs_btn')}</button>`); }
   if (u.role === 'tech' && P.tech === u.uid && allowed('SAFETY_CHECKED', P) && safetyWhyNot(P) === 'err_safety_check') a.push(`<button class="btn btn-p" data-a="wizOpen" data-v="safety|${P.id}">🦺 ${t('tk_safety_check')}</button>`);
   if (stageIdx(P.stage) >= stageIdx('arrived') && P.stage !== 'lost') a.push(`<button class="btn" data-a="safetyLog" data-v="${P.id}">🦺 ${t('safety_log')}</button>`);
   add('SURPRISE_SET', 'surpriseSet', '🕵️', 'surprise_set', !(P.surprise && !P.surprise.done));
@@ -11941,6 +11980,8 @@ const ACT = {
   myReqIn: () => { const j = myJoin(); if (j && S.users[j.uid]) loginAs(S.users[j.uid]); },
   myReqFix: () => { const j = myJoin(); if (!j) return; if (j.kind === 'enq') { wiz('custLead', null, { guest: true, edit: true }); return; } App.form = Object.assign({}, j.form || {}, { rqNote: j.note || '', rqPrev: j.rid }); go('joinReq', { role: j.role }); },
   myReqCancel: async () => { if (!confirm(t('jq_cancel') + '?')) return; await setMyJoin(null); go('gate', {}, { replace: true }); },
+  csOpen: v => wiz('countersign', v, { day: safeDay() }),
+  csSeen: async v => { const [pid, day] = v.split('|'); const r = await perform('SAFETY_COUNTERSIGNED', pid, { day, signer: App.me.name }); if (r.ok) { toast(t('saved_item')); render(); } },
   stlPick: () => sheet(`<h2>📜 ${t('stl_pick')}</h2><p class="small">${t('stl_say')}</p><div class="tiles one">${Object.values(S.users).filter(x => x.active && ['qc', 'sales', 'finance', 'admin'].includes(x.role)).map(x => `<button class="tile ${statLead() === x.uid ? 'on' : ''}" data-a="stlSet" data-v="${x.uid}"><span class="i">${ROLE_ICON[x.role]}</span>${esc(x.name)}<br><small>${t('r_' + x.role)}</small></button>`).join('')}<button class="tile" data-a="stlSet" data-v=""><span class="i">🛡️</span>${t('stl_clear')}</button></div>`),
   stlSet: v => perform('STAT_LEAD_SET', null, { uid: v || '' }).then(r => { if (r.ok) { closeSheet(); toast(t('saved_item')); render(); } }),
   svcPick: () => sheet(`<h2>🛠️ ${t('svc_pick')}</h2><p class="small">${t('svc_say')}</p><div class="tiles one">${Object.values(S.users).filter(x => x.active && ['qc', 'tech', 'sales', 'admin'].includes(x.role)).map(x => `<button class="tile ${svcLead() === x.uid ? 'on' : ''}" data-a="svcSet" data-v="${x.uid}"><span class="i">${ROLE_ICON[x.role]}</span>${esc(x.name)}<br><small>${t('r_' + x.role)}</small></button>`).join('')}<button class="tile" data-a="svcSet" data-v=""><span class="i">🔍</span>${t('svc_clear')}</button></div>`),
