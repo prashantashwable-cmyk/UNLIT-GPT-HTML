@@ -85,6 +85,8 @@ h2.sec{font-size:1.05rem;margin:18px 2px 8px}
 .nav button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:66px;border:0;background:none;color:var(--muted);font-size:.76rem;font-weight:700;gap:2px;border-top:4px solid transparent;padding:4px 2px}
 .nav button .i{font-size:1.5rem;line-height:1.1}
 .nav button.on{color:var(--ink);border-top-color:var(--gold);background:var(--gold-l)}
+.tbar{display:block;margin-top:6px}.tbar .tbl{display:block;font-size:.8rem;line-height:1.25;color:var(--muted)}.tbar .tb{display:block;height:6px;border-radius:4px;background:var(--line);overflow:hidden;margin:2px 0 5px}.tbar .tb>i{display:block;height:100%;background:var(--ok)}
+.tbar .tw>i{background:var(--info)}.tbar .t-warn>i{background:var(--warn)}.tbar .t-bad>i{background:var(--bad)}.tbar .t-pause>i{background:var(--muted)}
 .task{display:flex;gap:12px;align-items:center;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:16px;padding:12px;min-height:78px;margin-bottom:10px;color:var(--ink)}
 .task .ti{width:54px;height:54px;border-radius:14px;background:var(--gold-l);display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex:none}
 .task b{display:block;font-size:1.02rem}
@@ -2427,6 +2429,19 @@ const L = {
   pr_locked: ['Too many wrong tries. Try again after {n} minutes.', 'बहुत गलत कोशिशें। {n} मिनट बाद फिर कोशिश करें।', 'खूप चुकीचे प्रयत्न. {n} मिनिटांनी पुन्हा प्रयत्न करा.'],
   pr_none: ['This phone has no recovery key, so the PIN cannot be reset here. Use the other office phone, or restore the company on a phone with the recovery code.', 'इस फ़ोन में रिकवरी चाबी नहीं है, इसलिए यहाँ PIN नहीं बदल सकता। दूसरे ऑफिस फ़ोन का उपयोग करें, या रिकवरी कोड से किसी फ़ोन पर कंपनी वापस लाएँ।', 'या फोनमध्ये रिकव्हरी किल्ली नाही, त्यामुळे इथे PIN बदलता येत नाही. दुसरा ऑफिस फोन वापरा, किंवा रिकव्हरी कोडने एखाद्या फोनवर कंपनी परत आणा.'],
   pr_done: ['New PIN saved. Remember it.', 'नया PIN सेव हो गया। इसे याद रखें।', 'नवा PIN जतन झाला. तो लक्षात ठेवा.'],
+  tb_work: ['{d} of {t} done · {p}%', '{t} में से {d} पूरे · {p}%', '{t} पैकी {d} पूर्ण · {p}%'],
+  tb_day: ['Day {d} of {m}', 'दिन {d} / {m}', 'दिवस {d} / {m}'],
+  tb_hours: ['{d} h of {m} h', '{m} घंटे में से {d} घंटे', '{m} तासांपैकी {d} तास'],
+  tb_then: ['then goes to {who}', 'फिर {who} के पास जाएगा', 'मग {who} कडे जाईल'],
+  tb_then_late: ['then marked late', 'फिर देर से माना जाएगा', 'मग उशीर मानला जाईल'],
+  tb_over: ['{n} day(s) over · now also with {who}', '{n} दिन ज़्यादा · अब {who} के पास भी', '{n} दिवस जास्त · आता {who} कडेही'],
+  tb_over_late: ['{n} day(s) over', '{n} दिन ज़्यादा', '{n} दिवस जास्त'],
+  tb_over_h: ['Time limit passed', 'समय सीमा निकल गई', 'वेळ मर्यादा संपली'],
+  tb_paused: ['Paused: waiting for {who}', 'रुका: {who} का इंतज़ार', 'थांबले: {who} ची प्रतीक्षा'],
+  tb_hold: ['Paused: the job is on hold', 'रुका: काम होल्ड पर है', 'थांबले: काम होल्डवर आहे'],
+  tb_plan: ['installation plan', 'इंस्टॉलेशन योजना', 'इन्स्टॉलेशन योजना'],
+  tb_job: ['Job {p}% done', 'काम {p}% पूरा', 'काम {p}% पूर्ण'],
+  tb_in_step: ['In this step: {d}', 'इस कदम में: {d}', 'या टप्प्यात: {d}'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -6628,7 +6643,7 @@ function globalNeeds(u, all) {
     for (const x of Object.values(S.users).filter(y => ['tech', 'qc', 'partner', 'field'].includes(y.role) && (y.active || weeksFor(y.uid).some(w => !w.pay || w.pay.status !== 'paid')))) {
       for (const w of weeksFor(x.uid)) {
         const id = x.uid + '|' + w.week;
-        if (!w.pay || w.pay.status === 'open') { if (w.week < weekKey(nowISO()) && w.total > 0) up(add('approve_pay', ['owner', 'admin'], { uid: x.uid, week: w.week }), addDays(7, new Date(w.week + 'T12:00:00')) + 'T00:00:00', id); }
+        if (!w.pay || w.pay.status === 'open') { if (w.week < weekKey(nowISO()) && w.total > 0) up(add('approve_pay', ['owner', 'admin'], { uid: x.uid, week: w.week, since: addDays(7, new Date(w.week + 'T12:00:00')) + 'T00:00:00' }), addDays(7, new Date(w.week + 'T12:00:00')) + 'T00:00:00', id); }
         else if (w.pay.status === 'approved') up(add('pay_tech', ['finance'], { uid: x.uid, week: w.week, not: w.pay.approvedBy }), w.pay.approvedAt, id);
         if (w.pay && w.pay.dispute && w.pay.dispute.open) up(add('pay_dispute', ['owner', 'admin'], { uid: x.uid, week: w.week, urgent: true }), w.pay.dispute.t, id);
       }
@@ -6678,7 +6693,7 @@ function globalNeeds(u, all) {
     const st = ladderStatus(x.uid);
     if (st.ready) add('promotion_ready', st.next === 'qc' ? ['owner'] : ['admin', 'owner'], { uid: x.uid, to: st.next, not: x.uid });
     const sk = strikesOf(x.uid), n = sk.filter(k => k.active).reduce((a, k) => a + k.n, 0);
-    sk.filter(k => k.appeal && !k.decision).forEach(k => add('strike_appeal', roleOf(k.by) === 'admin' && Object.values(S.users).filter(y => y.active && y.role === 'admin').length < 2 ? ['owner'] : ['admin', 'owner'], { uid: x.uid, sid: k.id, not: k.by }));
+    sk.filter(k => k.appeal && !k.decision).forEach(k => add('strike_appeal', roleOf(k.by) === 'admin' && Object.values(S.users).filter(y => y.active && y.role === 'admin').length < 2 ? ['owner'] : ['admin', 'owner'], { uid: x.uid, sid: k.id, not: k.by, since: (k.appeal && k.appeal.t) || k.t }));
     const last = sk.filter(k => k.active)[0], held = last && S.reviewsHeld.some(h => h.uid === x.uid && h.t > last.t);
     if (n >= 3 && !held) add(n >= 4 ? 'suspend_review' : 'review_meeting', ['admin', 'owner'], { uid: x.uid, not: x.uid, urgent: true });
   }
@@ -7286,6 +7301,58 @@ const TASK_ICON = {
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
 function projTitle(P) { if (App.me && OUTSIDERS.includes(App.me.role)) return (P.site.address || '').split(/[,\n]/)[0] || areaOf(P) || P.id; return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
+/* ---------- two bars on every responsibility: work done (only when the work has parts) and time used against the real limit ---------- */
+const STEP_TASKS = ['install', 'safety_check', 'site_checkin', 'request_inspection', 'wait_cabin_pay', 'peer_check', 'fix_install'];
+const PAY_TASKS = ['pay_now', 'record_payment', 'verify_payment'];
+function workOf(n, P) {
+  if (P && STEP_TASKS.includes(n.k) && n.k !== 'fix_install') return { d: sopNext(P), t: SOP.length };
+  if (P && ['prepare_site', 'request_qc'].includes(n.k) && P.stage === 'site_prep') return { d: PREP_ITEMS.filter(([k]) => P.prep[k]).length, t: PREP_ITEMS.length };
+  if (P && ['fix_site', 'fix_install'].includes(n.k)) { const sc = n.k === 'fix_site' ? 'site' : 'install', all = P.corrections.filter(c => c.scope === sc); if (all.length) return { d: all.filter(c => c.done).length, t: all.length }; }
+  if (P && ['sign_handover', 'complete_handover'].includes(n.k)) return { d: SLOTS.filter(x => P.hand[x]).length, t: SLOTS.length };
+  if (P && PAY_TASKS.includes(n.k) && P.schedule) { const ks = PURPOSES.filter(k => P.schedule[k]); if (ks.length) return { d: ks.filter(k => payConfirmed(P, k)).length, t: ks.length }; }
+  if (['training', 'onb_profile', 'check_docs', 'help_newbie'].includes(n.k)) { const ob = onboarding(n.uid || (App.me && App.me.uid)); if (ob.total) return { d: ob.done, t: ob.total }; }
+  return null;
+}
+function timeOf(n, P) {
+  const now = Date.now(), cust = App.me && App.me.role === 'customer';
+  if (P && onHold(P)) return { paused: t('tb_hold') };
+  if (P && STEP_TASKS.concat(['material_handover']).includes(n.k)) {
+    const b = P.blockers.find(x => x.open); if (b) return { paused: t('tb_paused', { who: t('r_' + b.role) }) };
+    if (openIncidents(P).length) return { paused: t('tb_paused', { who: rolesTxt(['admin']) }) };
+  }
+  /* a fault ticket: its own time limit in hours */
+  const tk = P && n.tid && ticketOf(P, n.tid);
+  if (tk && ticketDue(tk)) { const a = Date.parse(tk.t), b = ticketDue(tk), used = (now - a) / (b - a);
+    return { pct: used * 100, label: used >= 1 ? t('tb_over_h') : t('tb_hours', { d: Math.floor((now - a) / 3600e3), m: Math.round((b - a) / 3600e3) }) }; }
+  /* installation: the plan in days */
+  if (P && STEP_TASKS.includes(n.k) && n.k !== 'fix_install') { const h = (P.hist || []).find(x => x.s === 'installing'); if (h && S.config.installDays) { const d = (now - Date.parse(h.t)) / 864e5, m = +S.config.installDays;
+    return { pct: d / m * 100, label: t('tb_day', { d: Math.min(Math.floor(d) + 1, 999), m }) + ' · ' + t('tb_plan') }; } }
+  /* a licence running out: the bar fills as the expiry comes closer */
+  if (n.k === 'licence_renew' && n.n != null) { const m = +S.config.licWarnDays || 60; return { pct: (m - n.n) / m * 100, label: n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n }) }; }
+  const from = n.since || (P && P.since) || (n.days != null ? new Date(Date.now() - n.days * 864e5).toISOString() : null); if (!from) return null;
+  const c = S.config, onb = ['training', 'onb_profile'].includes(n.k), lim = n.k === 'escalated' ? +c.escOwnerDays : onb ? +c.onbDays : +c.escalateDays;
+  if (!(lim > 0)) return null;
+  const d = Math.max(0, (now - Date.parse(from)) / 864e5), day = Math.floor(d) + 1;
+  if (cust) return { pct: d / lim * 100, label: d >= lim ? t('tb_over_late', { n: Math.floor(d - lim) + 1 }) : t('tb_day', { d: day, m: lim }) };
+  /* who it goes to: the same level the escalation chip shows (after the limit), or the next one (before it) */
+  const lv = Math.max(n.level || 0, escLevel(Math.floor(d), onb ? 'onboarding' : n.k)), at = d >= lim ? Math.max(2, lv) : 2;
+  const up = n.k === 'escalated' ? (n.level >= 3 ? null : ['owner']) : n.roles ? escUp(n, at) || (at < 3 ? escUp(n, 3) : null) : null, who = up ? rolesTxt(up) : '';
+  if (d >= lim) return { pct: 100, label: who ? t('tb_over', { n: Math.floor(d - lim) + 1, who }) : t('tb_over_late', { n: Math.floor(d - lim) + 1 }) };
+  return { pct: d / lim * 100, label: t('tb_day', { d: day, m: lim }) + ' · ' + (who ? t('tb_then', { who }) : t('tb_then_late')) };
+}
+function taskBars(n, P) {
+  const w = workOf(n, P), tm = timeOf(n, P);
+  if (!w && !tm) return '';
+  const wp = w && w.t ? Math.round(w.d / w.t * 100) : 0;
+  const bar = (cls, pct, label) => `<span class="tbl">${label}</span><span class="tb ${cls}" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(Math.min(100, pct))}" aria-label="${esc(label)}"><i style="width:${Math.max(3, Math.min(100, pct))}%"></i></span>`;
+  return `<span class="tbar">${w ? bar('tw', wp, '🧩 ' + t('tb_work', { d: w.d, t: w.t, p: wp })) : ''}${tm ? (tm.paused ? bar('t-pause', 100, '⏸ ' + esc(tm.paused)) : bar(tm.pct >= 100 ? 't-bad' : tm.pct >= 50 ? 't-warn' : 't-ok', tm.pct, (tm.pct >= 100 ? '🔴 ' : tm.pct >= 50 ? '⏳ ' : '✅ ') + esc(tm.label))) : ''}</span>`;
+}
+/* the whole job: how far along it is (stage order) */
+const jobPct = P => P.stage === 'lost' ? 0 : P.stage === 'amc' || P.done ? 100 : Math.max(0, Math.round(stageIdx(P.stage) / stageIdx('amc') * 100));
+function jobBars(P) {
+  const p = jobPct(P), d = Math.max(0, (Date.now() - Date.parse(P.since || P.t)) / 864e5);
+  return `<span class="tbar"><span class="tbl">🛗 ${t('tb_job', { p })}</span><span class="tb tw" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${p}"><i style="width:${Math.max(3, p)}%"></i></span><span class="tbl">🕒 ${t('tb_in_step', { d: wjDays(d) })}</span></span>`;
+}
 function taskCard(n, i) {
   const P = S.projects[n.pid];
   const cm = CHAT_TASKS.includes(n.k) && P ? P.chat.find(x => x.id === n.mid) : null;
@@ -7294,11 +7361,11 @@ function taskCard(n, i) {
     const info = n.k === 'job_open' && S.posts[n.postId] ? jobTitle(S.posts[n.postId]) + ' · 📍 ' + S.posts[n.postId].card.area : n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
       : n.k === 'clock_gap' ? t('clock_n', { n: n.n }) : n.k === 'day_close' ? t('day_close_sub', { n: officeQueue().length }) : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'access_alert' ? userName(n.uid) + ' · ' + t(n.why, { n: n.n }) : n.k === 'sos' ? userName(n.uid) + ' · ' + fmtD(S.sos[n.sid].t, true) + (n.sosPid ? ' · ' + n.sosPid : '') : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.k === 'help_newbie' ? userName(n.uid) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
     return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
-    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}</span><span class="go" aria-hidden="true">▶</span></button>`;
+    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}${taskBars(n, null)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
   return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}${esc(sub)}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span><br>
-    ${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${n.overdue ? `<span class="chip c-bad">⏰ ${t('overdue')}</span> ` : ''}<span class="chip c-mute">🕒 ${t('days_n', { n: n.days != null ? n.days : daysSince(P.since) })}</span> ${escChip(n)}${n.k === 'escalated' && n.who ? ` <span class="chip c-warn">${esc(t('waiting_for', { who: escWho(n) }))}</span>` : ''}</span><span class="go" aria-hidden="true">▶</span></button>`;
+    ${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${n.overdue ? `<span class="chip c-bad">⏰ ${t('overdue')}</span> ` : ''}<span class="chip c-mute">🕒 ${t('days_n', { n: n.days != null ? n.days : daysSince(P.since) })}</span> ${escChip(n)}${n.k === 'escalated' && n.who ? ` <span class="chip c-warn">${esc(t('waiting_for', { who: escWho(n) }))}</span>` : ''}${taskBars(n, P)}</span><span class="go" aria-hidden="true">▶</span></button>`;
 }
 /* escalation level as words and an icon, never colour alone */
 function escChip(n) {
@@ -9184,7 +9251,7 @@ SCREENS.waits = () => {
   const stageRow = x => `<div class="card" style="padding:10px 12px"><div class="row"><b class="grow">${(STAGES[x.s] || [0, '•'])[1]} ${esc(stName(x.s))}</b><b>${wjDays(x.avg)}</b></div>
     <div style="height:8px;background:var(--line);border-radius:6px;margin:6px 0"><i style="display:block;height:8px;border-radius:6px;background:${x.avg >= S.config.escalateDays ? 'var(--bad)' : x.avg >= S.config.remindDays ? 'var(--warn, #d9a400)' : 'var(--ok)'};width:${Math.max(4, Math.round(x.avg / top * 100))}%"></i></div>
     <div class="small muted">${t('wj_row', { n: x.n, a: wjDays(x.avg), m: wjDays(x.max) })} (${esc(x.maxPid)}) · ${t('wj_waits_on', { r: x.role === 'system' ? t('system') : t('r_' + x.role) })}</div></div>`;
-  const now = waitNow().slice(0, 15).map(({ P, days: d, n }) => `<button class="task" data-a="openProject" data-v="${P.id}"><span class="ti">${(STAGES[P.stage] || [0, '•'])[1]}</span><span class="grow" style="flex:1;min-width:0"><b>${esc(P.id)} · ${t('wj_in_stage', { d: wjDays(d), s: stName(P.stage) })}</b><br><span class="small muted">${esc(t('waiting_for', { who: waitsWho(n) }))}</span></span></button>`).join('');
+  const now = waitNow().slice(0, 15).map(({ P, days: d, n }) => `<button class="task" data-a="openProject" data-v="${P.id}"><span class="ti">${(STAGES[P.stage] || [0, '•'])[1]}</span><span class="grow" style="flex:1;min-width:0"><b>${esc(P.id)} · ${t('wj_in_stage', { d: wjDays(d), s: stName(P.stage) })}</b><br><span class="small muted">${esc(t('waiting_for', { who: waitsWho(n) }))}</span>${n ? taskBars(n, P) : ''}</span></button>`).join('');
   const who = w.who.slice(0, 8).map(x => `<div class="list-item"><span class="grow">${ROLE_ICON[roleOf(x.uid)] || ''} <b>${esc(userName(x.uid))}</b> · ${t('r_' + roleOf(x.uid))}</span><span class="small">${t('wj_who_row', { d: wjDays(x.days), n: x.n })}</span></div>`).join('');
   const money = PURPOSES.filter(k => w.money[k]).map(k => `<div class="list-item"><span class="grow">${t('pay_' + k)}</span><span class="small">${t('wj_row', { n: w.money[k].n, a: wjDays(w.money[k].sum / w.money[k].n), m: wjDays(w.money[k].max) })}</span></div>`).join('');
   return topBar(t('wj_title'), { back: true }) + `<main class="wrap"><p class="say">⏳ ${t('wj_say')}</p>
@@ -9304,7 +9371,7 @@ function customerHome() {
   App.pageSay = t('cust_say', { stage: stName(P.stage), next: nextLine(P) });
   const q = [...P.quotes].reverse().find(x => x.sent);
   const tile = (a, v, i, l) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`;
-  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}<div class="card"><b>${esc(P.id)}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}</div>${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
+  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}<div class="card"><b>${esc(P.id)}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
     ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + tasks.map((n, i) => taskCard(n, i)).join('') : ''}
     ${payCard(P)}
     ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
@@ -9442,7 +9509,7 @@ SCREENS.project = ({ pid, tab }) => {
   App.pageSay = `${P.id}. ${stName(P.stage)}. ${nextLine(P)}`;
   App.tasks = mine;
   const body = { info: projInfo, timeline: projTimeline, chat: projChat, photos: projPhotos, money: projMoney, docs: projDocs }[tab] || projInfo;
-  return topBar(P.id + ' · ' + projTitle(P), { back: true }) + `<div class="wrap" style="padding-bottom:0"><div class="card">${phaseBar(P)}<div style="margin-top:8px">${stageChip(P)} <span class="chip c-mute">🕒 ${t('days_n', { n: daysSince(P.since) })}</span></div>
+  return topBar(P.id + ' · ' + projTitle(P), { back: true }) + `<div class="wrap" style="padding-bottom:0"><div class="card">${phaseBar(P)}${jobBars(P)}<div style="margin-top:8px">${stageChip(P)} <span class="chip c-mute">🕒 ${t('days_n', { n: daysSince(P.since) })}</span></div>
     <p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${mine.map((n, i) => `<button class="btn btn-p" style="margin-top:8px" data-a="openTask" data-v="${i}">▶ ${esc(t('tk_' + n.k))}${n.slot ? ' · ' + t('slot_' + n.slot) : ''}</button>`).join('')}</div></div>
     <div class="tabs">${tabs.map(([k, i, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-v="${k}">${i} ${t(l)}</button>`).join('')}</div>
     <main class="wrap" style="padding-top:4px">${body(P)}</main>` + nav('projects');
