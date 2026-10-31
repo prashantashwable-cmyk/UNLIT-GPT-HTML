@@ -2504,6 +2504,15 @@ const L = {
   mp_paid: ['Last paid: {a} on {d}', 'आखिरी भुगतान: {d} को {a}', 'शेवटचे पैसे: {d} रोजी {a}'],
   mp_company: ['Your work this week is worth {a}. {c} pays you.', 'इस हफ़्ते आपके काम की कीमत {a}। आपको {c} भुगतान करती है।', 'या आठवड्यात तुमच्या कामाची किंमत {a}. तुम्हाला {c} पैसे देते.'],
   mp_none: ['No paid work yet this week.', 'इस हफ़्ते अभी कोई भुगतान वाला काम नहीं।', 'या आठवड्यात अजून पैसे मिळणारे काम नाही.'],
+  s_need_job: ['New lift, or replacing an old lift? Housing societies often replace a 20-year-old lift.', 'नई लिफ्ट या पुरानी लिफ्ट बदलनी है? हाउसिंग सोसाइटी अक्सर 20 साल पुरानी लिफ्ट बदलती हैं।', 'नवी लिफ्ट की जुनी लिफ्ट बदलायची? हाउसिंग सोसायट्या अनेकदा 20 वर्षे जुनी लिफ्ट बदलतात.'],
+  job_new: ['New lift', 'नई लिफ्ट', 'नवी लिफ्ट'],
+  job_new_d: ['No lift there today', 'अभी वहाँ लिफ्ट नहीं है', 'आज तिथे लिफ्ट नाही'],
+  job_replace: ['Replace an old lift', 'पुरानी लिफ्ट बदलना', 'जुनी लिफ्ट बदलणे'],
+  job_replace_d: ['Remove the old lift and install a new one (society or old building)', 'पुरानी लिफ्ट हटाकर नई लगाना (सोसाइटी या पुरानी बिल्डिंग)', 'जुनी लिफ्ट काढून नवी बसवणे (सोसायटी किंवा जुनी इमारत)'],
+  ql_dismantle: ['Removing the old lift (dismantling and disposal)', 'पुरानी लिफ्ट हटाना (खोलना और निपटान)', 'जुनी लिफ्ट काढणे (उघडणे आणि विल्हेवाट)'],
+  cfg_costDismantle: ['Cost to remove an old lift, ₹', 'पुरानी लिफ्ट हटाने का खर्च, ₹', 'जुनी लिफ्ट काढण्याचा खर्च, ₹'],
+  q_job: ['Job', 'काम', 'काम'],
+  job_soc_note: ['For a housing society, keep the committee\'s written approval with the agreement. The old lift\'s licence and the new permission must both be in order.', 'हाउसिंग सोसाइटी के लिए कमेटी की लिखित मंज़ूरी करार के साथ रखें। पुरानी लिफ्ट का लाइसेंस और नई अनुमति दोनों ठीक हों।', 'हाउसिंग सोसायटीसाठी समितीची लेखी मंजुरी करारासोबत ठेवा. जुन्या लिफ्टचा परवाना आणि नवी परवानगी दोन्ही व्यवस्थित असावे.'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4450,7 +4459,7 @@ const TRAIN = [['qc', [], [2, 1, 0]], ['app', ['field', 'sales', 'finance', 'qc'
   ['lead', ['field', 'sales'], [2, 0, 1]], ['install', ['tech', 'qc'], [0, 2, 1]], ['customer', ['sales', 'tech', 'finance'], [1, 2, 0]]];
 const DEFAULT_TEMPLATES = ['intro', 'quote', 'followup', 'payment', 'prep', 'visit', 'renewal'];
 const DEFAULT_CONFIG = {
-  costAuto: 300000, costManual: 220000, costPerStop: 40000, costSS: 50000,
+  costAuto: 300000, costManual: 220000, costPerStop: 40000, costSS: 50000, costDismantle: 30000,
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 8, adminDiscountLimit: 18, minMargin: 20, negStep: 5,
@@ -4465,7 +4474,7 @@ const DEFAULT_CONFIG = {
 };
 /* every number belongs to a rule group that the Owner must approve */
 const RULE_GROUPS = {
-  pricing: ['costAuto', 'costManual', 'costPerStop', 'costSS', 'cap4', 'cap6', 'cap8', 'cap10', 'cap13', 'install', 'transport', 'gst'],
+  pricing: ['costAuto', 'costManual', 'costPerStop', 'costSS', 'costDismantle', 'cap4', 'cap6', 'cap8', 'cap10', 'cap13', 'install', 'transport', 'gst'],
   margins: ['targetMargin', 'salesDiscountLimit', 'adminDiscountLimit', 'minMargin', 'negStep'],
   token: ['token'],
   milestones: ['tokenMode', 'arrivalPct', 'cabinPct'],
@@ -4510,7 +4519,7 @@ function calcQuote(cfg, req, discountPct) {
   const extra = Math.max(0, (+req.stops || 2) - 2) * cfg.costPerStop;
   const cap = +cfg['cap' + req.capacity] || 0;
   const fin = req.finish === 'ss' ? cfg.costSS : 0;
-  const parts = [['ql_lift', base], ['ql_stops', extra], ['ql_cap', cap], ['ql_finish', fin], ['ql_install', cfg.install], ['ql_transport', cfg.transport]];
+  const parts = [['ql_lift', base], ['ql_stops', extra], ['ql_cap', cap], ['ql_finish', fin], ['ql_install', cfg.install], ['ql_transport', cfg.transport], ['ql_dismantle', req.job === 'replace' ? +cfg.costDismantle || 0 : 0]];
   const cost = sum(parts.map(p => p[1]));
   const k = 1 / (1 - cfg.targetMargin / 100);
   const lines = parts.filter(p => p[1] > 0).map(p => [p[0], r100(p[1] * k)]);
@@ -5254,6 +5263,7 @@ const RULES = {
   REQ_SAVED: {
     roles: ['sales'], project: true, stages: ['contacted', 'requirements', 'quoted'], check: (S, ev) => {
       const r = ev.data.req || {};
+      if (r.job != null && !['new', 'replace'].includes(r.job)) return 'err_choose';
       return need(r.use && r.stops >= 2 && r.capacity && r.type && r.finish, 'err_fill');
     }
   },
@@ -7912,8 +7922,9 @@ WIZ.call = {
 /* ---------- Sales: requirements ---------- */
 WIZ.needs = {
   title: 'tk_write_needs', save: 'save_needs',
-  init: P => Object.assign({ use: '', stops: P.lead.floors ? Math.max(2, Math.min(30, P.lead.floors)) : 4, capacity: '', type: '', finish: '', shaft: P.lead.shaft === 'unknown' ? '' : P.lead.shaft, power: '', timeline: '' }, P.req || {}),
+  init: P => Object.assign({ job: P.lead.bType === 'old' && P.lead.bySelf ? '' : 'new', use: '', stops: P.lead.floors ? Math.max(2, Math.min(30, P.lead.floors)) : 4, capacity: '', type: '', finish: '', shaft: P.lead.shaft === 'unknown' ? '' : P.lead.shaft, power: '', timeline: '' }, P.req || {}),
   steps: [
+    { id: 'job', icon: '♻️', say: 's_need_job', body: c => tiles('job', [['new', '🆕', 'job_new', 'job_new_d'], ['replace', '♻️', 'job_replace', 'job_replace_d']], 'one') + (c.job === 'replace' ? `<div class="note">🏘️ ${t('job_soc_note')}</div>` : ''), check: c => c.job ? null : 'err_choose' },
     { id: 'use', icon: '🏢', say: 's_need_use', body: () => tiles('use', [['house', '🏠', 'use_house'], ['apartment', '🏢', 'use_apartment'], ['hospital', '🏥', 'use_hospital'], ['shop', '🏬', 'use_shop'], ['other', '🏭', 'use_other']]), check: c => c.use ? null : 'err_choose' },
     { id: 'stops', icon: '🔢', say: 's_need_stops', body: () => stepper('stops', 2, 30) + `<p class="note">💡 ${t('stops_hint')}</p>`, check: c => c.stops >= 2 ? null : 'err_number' },
     { id: 'cap', icon: '👥', say: 's_need_cap', body: () => tiles('capacity', [['4', '👤', 'cap_4'], ['6', '👥', 'cap_6'], ['8', '👨‍👩‍👦', 'cap_8'], ['10', '👨‍👩‍👧‍👦', 'cap_10'], ['13', '🏥', 'cap_13']]), check: c => c.capacity ? null : 'err_choose' },
@@ -7929,14 +7940,14 @@ WIZ.needs = {
     { id: 'review', icon: '✅', say: 's_need_review', body: c => `<div class="card">${reqKv(c)}</div>` }
   ],
   async finish(c, P) {
-    const req = { use: c.use, stops: +c.stops, capacity: c.capacity, type: c.type, finish: c.finish, shaft: c.shaft, power: c.power, timeline: c.timeline };
+    const req = { job: c.job || 'new', use: c.use, stops: +c.stops, capacity: c.capacity, type: c.type, finish: c.finish, shaft: c.shaft, power: c.power, timeline: c.timeline };
     const r = await run([['REQ_SAVED', P.id, { req }]]);
     return r.ok ? doneRes(P.id, 'what_needs_saved') : r;
   }
 };
 function reqKv(r) {
   if (!r) return '';
-  return kv([['q_use', t('use_' + r.use)], ['q_stops', r.stops], ['q_cap', t('cap_' + r.capacity)], ['q_type', t('type_' + r.type)], ['q_finish', t('fin_' + r.finish)],
+  return kv([['q_job', r.job ? t('job_' + r.job) : ''], ['q_use', t('use_' + r.use)], ['q_stops', r.stops], ['q_cap', t('cap_' + r.capacity)], ['q_type', t('type_' + r.type)], ['q_finish', t('fin_' + r.finish)],
     ['q_shaft_ready', r.shaft ? t(r.shaft === 'unknown' ? 'not_sure' : r.shaft) : ''], ['q_power3', r.power ? t(r.power === 'unknown' ? 'not_sure' : r.power) : ''], ['q_timeline', r.timeline ? t('tl_' + r.timeline) : '']]);
 }
 /* ---------- Sales: quotation ---------- */

@@ -113,6 +113,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await startTask('call_customer'); await pick('channel', 'call'); await next(); await pick('outcome', 'interested'); await next(); await fill('note', 'Wants lift before Diwali'); await next(); await doneOk('call');
   assert(await stage(pid) === 'contacted', 'contacted');
   await startTask('write_needs');
+  assert(await page.evaluate(() => W.ctx.job === 'new'), 'a rider\'s lead starts as a new lift'); await pick('job', 'new'); await next();
   await pick('use', 'apartment'); await next(); await next(); await pick('capacity', '6'); await next(); await pick('type', 'auto'); await next(); await pick('finish', 'ss'); await next();
   await pick('shaft', 'yes'); await pick('power', 'yes'); await pick('timeline', '1m'); await next(); await next(); await doneOk('needs');
   await startTask('make_quote');
