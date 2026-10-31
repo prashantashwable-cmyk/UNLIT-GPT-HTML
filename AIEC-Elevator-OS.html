@@ -2470,6 +2470,21 @@ const L = {
   tr_none: ['Nothing (explain why)', 'कुछ नहीं (कारण लिखें)', 'काही नाही (कारण लिहा)'],
   err_trade: ['Choose what the customer gives in return for the discount.', 'छूट के बदले ग्राहक क्या देता है, चुनें।', 'सवलतीच्या बदल्यात ग्राहक काय देतो ते निवडा.'],
   q_traded: ['Given in return: {x}', 'बदले में: {x}', 'बदल्यात: {x}'],
+  cfg_qcRecheckPct: ['Passed final inspections re-checked by a second QC, %', 'दूसरे QC से दोबारा जाँची जाने वाली पास अंतिम जाँचें, %', 'दुसऱ्या QC कडून पुन्हा तपासल्या जाणाऱ्या पास अंतिम तपासण्या, %'],
+  err_own_company: ['A QC cannot inspect work done by their own company.', 'QC अपनी ही कंपनी के काम की जाँच नहीं कर सकता।', 'QC स्वतःच्या कंपनीच्या कामाची तपासणी करू शकत नाही.'],
+  tk_qc_recheck: ['Re-check a passed lift (random check)', 'पास हुई लिफ्ट दोबारा जाँचें (अचानक जाँच)', 'पास झालेली लिफ्ट पुन्हा तपासा (अचानक तपासणी)'],
+  tk_recheck_failed: ['Second QC did not agree: review', 'दूसरे QC ने सहमति नहीं दी: देखें', 'दुसऱ्या QC ने सहमती दिली नाही: पाहा'],
+  rc_title: ['Second QC re-check', 'दूसरे QC की दोबारा जाँच', 'दुसऱ्या QC ची पुन्हा तपासणी'],
+  s_rc: ['This lift was passed by another inspector and picked at random. Check it again on site, honestly.', 'यह लिफ्ट दूसरे इंस्पेक्टर ने पास की और अचानक चुनी गई। साइट पर ईमानदारी से दोबारा जाँचें।', 'ही लिफ्ट दुसऱ्या इन्स्पेक्टरने पास केली आणि अचानक निवडली. साइटवर प्रामाणिकपणे पुन्हा तपासा.'],
+  rc_agree: ['I agree: it passes', 'मैं सहमत: पास है', 'मी सहमत: पास आहे'],
+  rc_disagree: ['I do not agree', 'मैं सहमत नहीं', 'मी सहमत नाही'],
+  rc_photo: ['Photos of what you checked', 'जो जाँचा उसकी फोटो', 'जे तपासले त्याचे फोटो'],
+  rc_done: ['Re-check saved', 'दोबारा जाँच सेव', 'पुन्हा तपासणी जतन'],
+  rc_review: ['Reviewed', 'देख लिया', 'पाहिले'],
+  rc_review_note: ['What was done about it', 'इस पर क्या किया गया', 'यावर काय केले'],
+  earn_qc_recheck: ['QC re-check', 'QC दोबारा जाँच', 'QC पुन्हा तपासणी'],
+  ev_QC_RECHECK_DONE: ['Second QC re-checked a passed lift', 'दूसरे QC ने पास लिफ्ट दोबारा जाँची', 'दुसऱ्या QC ने पास लिफ्ट पुन्हा तपासली'],
+  ev_QC_RECHECK_REVIEWED: ['Office reviewed a QC disagreement', 'ऑफिस ने QC असहमति देखी', 'ऑफिसने QC असहमती पाहिली'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4425,7 +4440,7 @@ const DEFAULT_CONFIG = {
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
-  rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, spotTrainee: 50, spotTech: 20, spotSenior: 5,
+  rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, qcRecheckPct: 10, spotTrainee: 50, spotTech: 20, spotSenior: 5,
   postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
@@ -4982,6 +4997,7 @@ function earnings(uid) {
     /* repairs: paid to the person who fixed it once the customer or office confirms the fix */
     P.tickets.forEach(x => { const h = x.status === 'closed' && x.owner === uid && [...x.hist].reverse().find(y => y.status === 'closed'); if (h) out.push({ t: h.t, pid: P.id, what: 'earn_repair', amount: r(c.payAmcVisit, h.t) }); });
     P.qcFinal.concat(P.qcSite).forEach(x => { if (x.by === uid) out.push({ t: x.t, pid: P.id, what: 'earn_qc_insp', amount: c.payQcInspection }); });
+    if (P.recheck && P.recheck.done && P.recheck.done.by === uid) out.push({ t: P.recheck.done.t, pid: P.id, what: 'earn_qc_recheck', amount: c.payQcInspection });
   }
   return out.sort((a, b) => a.t < b.t ? -1 : 1);
 }
@@ -5618,6 +5634,8 @@ const RULES = {
     roles: ['qc'], project: true, stages: ['qc_final'], check: (S, ev, u, P) => {
       const d = ev.data;
       if (P.tech === u.uid || (P.crew || []).includes(u.uid)) return 'err_own_job';
+      /* never the installing crew's own company (records made before this rule stay valid) */
+      if (ev.t >= PERMIT_GATE_FROM && companyOf(u.uid) && companyOf(u.uid) === companyOf(P.tech)) return 'err_own_company';
       if (P.qc && P.qc !== u.uid && isActive(P.qc)) return 'err_not_your_qc';
       if (d.stars != null && ![1, 2, 3, 4, 5].includes(+d.stars)) return 'err_stars';
       if (d.cause != null && !['work', 'material', 'site'].includes(d.cause)) return 'err_choose';
@@ -5632,6 +5650,10 @@ const RULES = {
       return need(['pass', 'fail'].includes(d.outcome), 'err_choose');
     }
   },
+  /* a passed lift picked at random is re-checked by a second QC, so passing quickly does not pay */
+  QC_RECHECK_DONE: { roles: ['qc'], project: true, check: (S, ev, u, P) => !P.recheck || P.recheck.done ? 'err_already' : u.uid === P.recheck.first || P.tech === u.uid || (P.crew || []).includes(u.uid) ? 'err_own_job'
+    : !['pass', 'fail'].includes(ev.data.result) ? 'err_choose' : ev_(ev.data).length < 1 ? { k: 'err_photos', v: { n: 1 } } : ev.data.result === 'fail' && !(ev.data.note || '').trim() ? 'err_reason' : null },
+  QC_RECHECK_REVIEWED: { roles: ['owner', 'admin'], project: true, check: (S, ev, u, P) => !P.recheck || !P.recheck.done || P.recheck.done.result !== 'fail' || P.recheck.reviewed ? 'err_already' : need((ev.data.note || '').trim(), 'err_reason') },
   HANDOVER_SIGNED: {
     roles: ['customer', 'tech', 'qc'], project: true, stages: ['handover'], check: (S, ev, u, P) => {
       const s = ev.data.slot;
@@ -6355,7 +6377,10 @@ function apply(S, ev) {
       break;
     case 'BLOCKER_RESOLVED': { const b = P.blockers.find(x => x.id === d.bid); b.open = false; b.resolution = { t: ev.t, by: ev.by, note: d.note }; break; }
     case 'INSPECTION_REQUESTED': setStage(P, 'qc_final', ev); break;
+    case 'QC_RECHECK_DONE': P.recheck.done = { by: ev.by, t: ev.t, result: d.result, note: d.note || '', ev: ev_(d).map(e => e.id) }; break;
+    case 'QC_RECHECK_REVIEWED': P.recheck.reviewed = { by: ev.by, t: ev.t, note: d.note }; break;
     case 'QC_FINAL_RESULT': {
+      if (d.outcome === 'pass' && +S.config.qcRecheckPct > 0 && Object.values(S.users).some(x => x.active && x.role === 'qc' && x.uid !== ev.by) && [...String(ev.id)].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) % 1000, 7) % 100 < +S.config.qcRecheckPct) P.recheck = { first: ev.by, t: ev.t, done: null };
       const items = (d.items || []).filter(x => (x.text || '').trim()).map((x, i) => ({ id: ev.id + '-' + i, scope: 'install', text: x.text, due: x.due || '', role: 'tech', done: null, t: ev.t }));
       P.qc = ev.by;
       P.qcFinal.push({ t: ev.t, by: ev.by, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), note: d.note || '', ev: ev_(d).map(e => e.id), stars: d.stars ? +d.stars : null, cause: d.outcome === 'fail' ? (d.cause || 'work') : null, crit: d.crit || null, earthVal: d.earthVal || '', lead: P.tech || null, crew: (P.crew || []).slice(), partner: P.partner || null });
@@ -6652,6 +6677,8 @@ function needs(P) {
     if (late && !['resolved', 'closed'].includes(x.status)) add('sla_breach', ['admin', 'owner'], { tid: x.id, sev, since: new Date(ticketDue(x)).toISOString() });
     else if (x.status === 'resolved') add('confirm_ticket', P.customer ? ['customer'] : ['admin', 'owner'], { uids: [P.customer], tid: x.id });
   }
+  if (P.recheck && !P.recheck.done) add('qc_recheck', ['qc'], { not: P.recheck.first, since: P.recheck.t });
+  if (P.recheck && P.recheck.done && P.recheck.done.result === 'fail' && !P.recheck.reviewed) add('recheck_failed', ['admin', 'owner'], { urgent: true, since: P.recheck.done.t });
   coverTasks(P, out);
   /* escalation ladder: the main next step counts from the day the stage began, other work from its own date */
   const main = out.find(x => !['chat_obstacle', 'chat_obstacle_late', 'chat_followup', 'chat_appt', 'appt_today', 'plan_today', 'mhand_cust_wait', 'approve_invoice', 'pay_invoice', 'review_checkin', 'sla_breach', 'po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
@@ -7338,6 +7365,7 @@ function nextLine(P) {
   return isMine(n, App.me) ? t('next_you', { task: t('tk_' + n.k) }) : t('next_who', { who: rolesTxt(n.roles), task: t('tk_' + n.k) });
 }
 const TASK_ICON = {
+  qc_recheck: '🔁', recheck_failed: '⚠️',
   help_newbie: '🤝', wait_permit: '📜',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
@@ -8638,6 +8666,21 @@ function statCard(P) {
     ['stat_licence', l ? `${d != null && d < 0 ? '❌' : d != null && d <= (S.config.licWarnDays || 60) ? '⚠️' : '✅'} ${esc(l.no)} · ${esc(l.holder)} · ${t('lic_expiry')}: ${fmtD(l.expiry)}` : '—']];
   return `<div class="card"><h3>📜 ${t('stat_title')}</h3>${kv(rows)}${P.stage === 'handover' && S.config.licenceGate && !liftLicenceOk(P) ? `<div class="warnbox">📜 ${t('stat_needed')}</div>` : ''}<p class="small muted">${t('stat_note')}</p>${['owner', 'admin', 'qc'].includes(App.me.role) ? `<button class="btn btn-sm" data-a="nav" data-v="stattracker">📋 ${t('stat_tracker')}</button>` : ''}</div>`;
 }
+WIZ.recheck = {
+  title: 'rc_title', save: 'save', noDraft: true, init: () => ({ result: '', note: '', ph: [] }),
+  steps: [{ id: 'r', icon: '🔁', say: 's_rc',
+    body: (c, P) => { const q = lastPass(P); return `<div class="card">${kv([['tk_final_inspect', q ? '✅ ' + fmtD(q.t) + ' · ' + esc(userName(q.by)) : '—'], ['f_address', esc(P.site.address)]])}</div>`
+      + tiles('result', [['pass', '✅', 'rc_agree'], ['fail', '❌', 'rc_disagree']], 'one') + photoSlot('ph', 'rc_photo', 1, { tag: 'recheck' }) + inp('note', 'f_note', { area: true, mic: true }); },
+    check: c => !c.result ? 'err_choose' : !c.ph.length ? { k: 'err_photos', v: { n: 1 } } : c.result === 'fail' && !c.note.trim() ? 'err_reason' : null }],
+  async finish(c, P) { const r = await run([['QC_RECHECK_DONE', P.id, { result: c.result, note: c.note.trim(), ev: c.ph }]]); return r.ok ? doneRes(P.id, 'rc_done') : r; }
+};
+WIZ.recheckReview = {
+  title: 'tk_recheck_failed', save: 'rc_review', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'r', icon: '⚠️', say: 'tk_recheck_failed',
+    body: (c, P) => `<div class="warnbox">❌ ${esc(userName(P.recheck.done.by))}: ${esc(P.recheck.done.note)}</div>${evGrid(P.recheck.done.ev)}<p class="small">${t('tk_final_inspect')}: ${esc(userName(P.recheck.first))}</p>` + inp('note', 'rc_review_note', { area: true, mic: true }),
+    check: c => c.note.trim() ? null : 'err_reason' }],
+  async finish(c, P) { const r = await run([['QC_RECHECK_REVIEWED', P.id, { note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
 WIZ.statutory = {
   title: 'stat_title', save: 'save', noDraft: true,
   init: (P, o) => ({ item: o.item || '', no: '', date: todayStr(), result: '', note: '', holder: P.partner ? userName(P.partner) : (S.org ? S.org.name : ''), expiry: '', ph: [] }),
@@ -11758,6 +11801,7 @@ function openTask(n) {
     onb_profile: () => wiz('wprofile', null, { uid: n.uid }), check_docs: () => go('worker', { uid: n.uid }),
     rate_work: () => wiz('rate', pid, { ref: n.ref, about: n.ref === 'handover' ? doneLead(P) : P.service[n.ref.split(':')[1]].by }), rate_crew: () => wiz('rateCrew', pid, { uid: n.uid }),
     wait_permit: () => go('project', { pid }),
+    qc_recheck: () => wiz('recheck', pid), recheck_failed: () => wiz('recheckReview', pid),
     help_newbie: () => { const x = S.users[n.uid], ph = ((S.workers[n.uid] || {}).profile || {}).phone; sheet(`<h2>🤝 ${t('tk_help_newbie')}</h2><p><b>${esc(x.name)}</b> · ${t('r_' + x.role)} · ${t('nw_stuck', { n: newStuck(x) })}</p>${ph ? `<a class="btn btn-p btn-big" href="tel:+91${esc(ph)}">📞 ${esc(ph)}</a>` : ''}${onbCard(n.uid, { short: true })}`); },
     promotion_ready: () => wiz('promote', null, { uid: n.uid }), strike_appeal: () => wiz('decide', null, { uid: n.uid, sid: n.sid }),
     reassign_work: () => go('project', { pid, tab: 'info' }), backup_due: () => go('data'), approve_member: () => go('worker', { uid: n.uid }), link_company: () => ACT.userOpen(n.uid), licence_renew: () => go('worker', { uid: n.uid }), fill_team: () => wiz('team', pid), approve_key: () => ACT.keySheet(n.uid + '|' + n.kid), job_open: () => go('jobs', {}), pick_applicant: () => wiz('pick', pid, { postId: n.postId }), post_nobody: () => go('posts'), post_job: () => wiz('post', pid, { kind: n.kind || 'lead' }),
