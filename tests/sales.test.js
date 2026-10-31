@@ -30,20 +30,20 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert((await act('COUNTER_OFFER', P, { amount: Math.round(total * 0.9) , note: 'Builder next door paid less' }, 'PSALES')).ok, 'Sales records the customer\'s offer');
   await page.evaluate(async P => { loginAs(S.users.PSALES); ACT.permsDone(); Notify.hide(); await wiz('quote', P); }, P); await page.waitForTimeout(200);
   const qtxt = await page.innerText('main');
-  assert(/Price talks so far/.test(qtxt) && /Customer offered/.test(qtxt) && /about 10% discount needed/.test(qtxt) && await page.$('[data-a="discSet"][data-v="10"]'), 'the quotation screen shows earlier quotes, the customer\'s offer, the discount it needs and the ladder steps');
+  assert(/Price talks so far/.test(qtxt) && /Customer offered/.test(qtxt) && /about 10% discount needed/.test(qtxt) && await page.$('[data-a="discSet"][data-v="5"]'), 'the quotation screen shows earlier quotes, the customer\'s offer, the discount it needs and the ladder steps');
   assert(!(await page.$('[data-a="discSet"][data-v="35"]')), 'the ladder stops at the Sales discount limit');
 
   /* validity */
   await page.evaluate(P => { lastQuote(S.projects[P]).sent.t = new Date(Date.now() - 40 * 864e5).toISOString(); }, P);
   assert((await act('DEAL_WON', P, {}, 'PSALES')).err === 'err_quote_expired', 'an expired quotation cannot be won');
   assert(await ev(`myTasks(S.users.PSALES).some(n => n.k === "requote" && n.pid === "${P}")`), 'Sales is asked to make a new quotation');
-  await act('QUOTE_CREATED', P, { discountPct: 10, reason: 'Matching customer offer' }, 'PSALES'); await act('QUOTE_SENT', P, { channel: 'visit' }, 'PSALES');
+  await act('QUOTE_CREATED', P, { discountPct: 5, reason: 'Matching customer offer', trade: 'reference' }, 'PSALES'); await act('QUOTE_SENT', P, { channel: 'visit' }, 'PSALES');
   assert((await act('DEAL_WON', P, {}, 'PSALES')).ok, 'a fresh quotation can be won');
 
   /* below the margin floor */
   const P9 = 'AIEC-P009';
   await page.evaluate(P9 => { const x = S.projects[P9]; x.stage = 'quoted'; x.lost = null; }, P9);
-  assert((await act('QUOTE_CREATED', P9, { discountPct: 70, reason: 'Big builder, many towers' }, 'PSALES')).ok && await ev(`S.projects["${P9}"].stage`) === 'quote_approval', 'a deep discount goes for approval');
+  assert((await act('QUOTE_CREATED', P9, { discountPct: 70, reason: 'Big builder, many towers', trade: 'reference' }, 'PSALES')).ok && await ev(`S.projects["${P9}"].stage`) === 'quote_approval', 'a deep discount goes for approval');
   assert(await ev(`lastQuote(S.projects["${P9}"]).margin < S.config.minMargin`), '…it is below the margin floor');
   assert((await act('QUOTE_DECISION', P9, { decision: 'approve', reason: 'ok' }, 'PADMIN')).err === 'err_role', 'the Admin cannot approve a price below the floor');
   assert((await act('QUOTE_DECISION', P9, { decision: 'approve', reason: 'Strategic customer' }, 'POWNER')).ok && await ev(`S.projects["${P9}"].stage`) === 'quote_approval', 'the Owner\'s approval waits for a second person');

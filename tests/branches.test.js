@@ -42,15 +42,15 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* the Owner's own discount needs no approval; below the floor nobody can approve, so the Owner withdraws and quotes again */
   await step('call_customer', 'POWNER', 'CONTACT_LOGGED', { channel: 'call', outcome: 'interested', note: '' });
   await step('write_needs', 'POWNER', 'REQ_SAVED', { req: { use: 'apartment', stops: 5, capacity: '6', type: 'auto', finish: 'ss', shaft: 'yes', power: 'yes', timeline: '3m' } });
-  await step('make_quote', 'POWNER', 'QUOTE_CREATED', { discountPct: 35, reason: 'Repeat customer' });
+  await step('make_quote', 'POWNER', 'QUOTE_CREATED', { discountPct: 35, reason: 'Repeat customer', trade: 'amc' });
   assert(await stage() === 'quote_ready', 'the Owner\'s own discount (above the margin floor) needs no approval');
   await step('send_quote', 'POWNER', 'QUOTE_SENT', { channel: 'visit' });
-  await step('get_decision', 'POWNER', 'QUOTE_CREATED', { discountPct: 75, reason: 'Customer insists' });
+  await step('get_decision', 'POWNER', 'QUOTE_CREATED', { discountPct: 75, reason: 'Customer insists', trade: 'none' });
   assert(await stage() === 'quote_approval', 'a price below the margin floor waits for a second person');
   assert((await page.evaluate(p => perform('QUOTE_DECISION', p, { decision: 'approve' }, { as: 'POWNER', quiet: true }).then(r => r.err), pid)) === 'err_same_person', 'the Owner cannot approve his own price below the floor');
   await step('withdraw_quote', 'POWNER', 'QUOTE_DECISION', { decision: 'reject', reason: 'Too low; offer 30% instead' });
   assert(await stage() === 'requirements', 'with nobody else to approve, the Owner withdraws it and the job is not stuck');
-  await step('make_quote', 'POWNER', 'QUOTE_CREATED', { discountPct: 30, reason: 'Final offer' });
+  await step('make_quote', 'POWNER', 'QUOTE_CREATED', { discountPct: 30, reason: 'Final offer', trade: 'advance' });
   await step('send_quote', 'POWNER', 'QUOTE_SENT', { channel: 'visit' });
   await step('get_decision', 'POWNER', 'DEAL_WON', {});
   await step('prepare_agreement', 'POWNER', 'AGREEMENT_PREPARED', {});

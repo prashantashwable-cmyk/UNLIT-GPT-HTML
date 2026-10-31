@@ -2459,6 +2459,17 @@ const L = {
   cert_sign: ['Signature and stamp of the approved contractor', 'स्वीकृत कॉन्ट्रैक्टर के हस्ताक्षर और मुहर', 'मान्यताप्राप्त कंत्राटदाराची सही आणि शिक्का'],
   cert_use: ['Attach this to the application for the licence to work the lift.', 'इसे लिफ्ट चलाने के लाइसेंस के आवेदन के साथ लगाएँ।', 'हे लिफ्ट चालवण्याच्या परवान्याच्या अर्जासोबत जोडा.'],
   cert_permit: ['Permission to erect', 'लगाने की अनुमति', 'उभारणी परवानगी'],
+  cfg_adminDiscountLimit: ['Max discount Admin can approve % (above: Head Quarter)', 'एडमिन की अधिकतम मंज़ूर छूट % (ऊपर: हेड क्वार्टर)', 'ॲडमिनची कमाल मंजूर सवलत % (वर: हेड क्वार्टर)'],
+  why_over_admin: ['above {lim}%: only Head Quarter can approve', '{lim}% से ऊपर: सिर्फ़ हेड क्वार्टर मंज़ूर कर सकता है', '{lim}% पेक्षा जास्त: फक्त हेड क्वार्टर मंजूर करू शकते'],
+  q_trade: ['What the customer gives in return', 'बदले में ग्राहक क्या देता है', 'बदल्यात ग्राहक काय देतो'],
+  q_trade_note: ['A discount is given only for something of value, so the first price stays believable.', 'छूट सिर्फ़ किसी कीमती चीज़ के बदले, ताकि पहली कीमत भरोसेमंद रहे।', 'सवलत फक्त मौल्यवान गोष्टीच्या बदल्यात, म्हणजे पहिली किंमत विश्वासार्ह राहते.'],
+  tr_advance: ['Bigger advance', 'ज़्यादा अग्रिम', 'जास्त आगाऊ रक्कम'],
+  tr_amc: ['Signs the AMC', 'AMC पर हस्ताक्षर', 'AMC वर सही'],
+  tr_siteDate: ['Fixed site-ready date', 'साइट तैयार होने की पक्की तारीख', 'साइट तयार होण्याची पक्की तारीख'],
+  tr_reference: ['Reference site we can show', 'रेफ़रेंस साइट जो दिखा सकें', 'दाखवता येईल अशी रेफरन्स साइट'],
+  tr_none: ['Nothing (explain why)', 'कुछ नहीं (कारण लिखें)', 'काही नाही (कारण लिहा)'],
+  err_trade: ['Choose what the customer gives in return for the discount.', 'छूट के बदले ग्राहक क्या देता है, चुनें।', 'सवलतीच्या बदल्यात ग्राहक काय देतो ते निवडा.'],
+  q_traded: ['Given in return: {x}', 'बदले में: {x}', 'बदल्यात: {x}'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4408,7 +4419,7 @@ const DEFAULT_CONFIG = {
   costAuto: 300000, costManual: 220000, costPerStop: 40000, costSS: 50000,
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
-  targetMargin: 60, salesDiscountLimit: 30, minMargin: 20, negStep: 5,
+  targetMargin: 60, salesDiscountLimit: 8, adminDiscountLimit: 18, minMargin: 20, negStep: 5,
   token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
@@ -4421,7 +4432,7 @@ const DEFAULT_CONFIG = {
 /* every number belongs to a rule group that the Owner must approve */
 const RULE_GROUPS = {
   pricing: ['costAuto', 'costManual', 'costPerStop', 'costSS', 'cap4', 'cap6', 'cap8', 'cap10', 'cap13', 'install', 'transport', 'gst'],
-  margins: ['targetMargin', 'salesDiscountLimit', 'minMargin', 'negStep'],
+  margins: ['targetMargin', 'salesDiscountLimit', 'adminDiscountLimit', 'minMargin', 'negStep'],
   token: ['token'],
   milestones: ['tokenMode', 'arrivalPct', 'cabinPct'],
   paydetails: ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc'],
@@ -4477,6 +4488,7 @@ function calcQuote(cfg, req, discountPct) {
   const margin = price > 0 ? Math.round((price - cost) / price * 1000) / 10 : 0;
   const why = [];
   if (d > cfg.salesDiscountLimit) why.push('over_limit');
+  if (d > (cfg.adminDiscountLimit == null ? 100 : cfg.adminDiscountLimit)) why.push('over_admin');
   if (margin < cfg.minMargin) why.push('below_floor');
   return { lines, cost, list, discountPct: d, discount, price, gstPct: cfg.gst, gst, total, margin, why, needsApproval: why.length > 0 };
 }
@@ -4562,6 +4574,7 @@ const statOf = P => P.statutory || {};
 const statLead = () => S.statLead && S.users[S.statLead] && S.users[S.statLead].active ? S.statLead : '';
 const statRoles = () => statLead() ? uniq([roleOf(statLead())]) : ['admin', 'owner'];
 const isStatOwner = u => ['admin', 'owner'].includes(u.role) || u.uid === statLead();
+const TRADES = [['advance', '💰'], ['amc', '🛠️'], ['siteDate', '📅'], ['reference', '⭐'], ['none', '✏️']];
 const PERMIT_GATE_FROM = '2026-10-31T00:00:00.000Z';
 const permitMissing = P => !!S.config.permitGate && !statOf(P).permit;
 const liftLicenceOk = (P, at) => { const l = statOf(P).licence; return !!(l && l.no && l.expiry >= (at ? safeDay(at) : todayStr())); };
@@ -5213,6 +5226,8 @@ const RULES = {
       const d = +ev.data.discountPct;
       if (!(d >= 0 && d <= 90)) return 'err_number';
       if (d > 0 && !(ev.data.reason || '').trim()) return 'err_reason';
+      /* a discount is traded for something of value (quotes made before this rule stay valid) */
+      if (d > 0 && ev.t >= PERMIT_GATE_FROM && !TRADES.some(([k]) => k === ev.data.trade)) return 'err_trade';
       return null;
     }
   },
@@ -5222,7 +5237,7 @@ const RULES = {
       if (!q) return 'err_no_req';
       if (q.by === u.uid && ev.data.decision !== 'reject') return 'err_same_person';
       if (!['approve', 'reject'].includes(ev.data.decision)) return 'err_choose';
-      if (ev.data.decision === 'approve' && q.margin < S.config.minMargin && u.role !== 'owner') return { k: 'err_role', v: { roles: rolesTxt(['owner']) } };
+      if (ev.data.decision === 'approve' && (q.margin < S.config.minMargin || (q.why || []).includes('over_admin')) && u.role !== 'owner') return { k: 'err_role', v: { roles: rolesTxt(['owner']) } };
       if (ev.data.decision === 'reject' && !(ev.data.reason || '').trim()) return 'err_reason';
       return null;
     }
@@ -6192,7 +6207,7 @@ function apply(S, ev) {
     case 'QUOTE_CREATED': {
       const q = calcQuote(priceCfg(ev.t), P.req, d.discountPct);
       if (roleOf(ev.by) === 'owner' && q.margin >= S.config.minMargin) q.needsApproval = false;
-      Object.assign(q, { v: P.quotes.length + 1, t: ev.t, by: ev.by, rv: rateVersion(ev.t), reason: d.reason || '', req: clone(P.req), status: q.needsApproval ? 'pending' : 'auto', validity: S.config.validityDays });
+      Object.assign(q, { v: P.quotes.length + 1, t: ev.t, by: ev.by, rv: rateVersion(ev.t), reason: d.reason || '', trade: d.trade || '', req: clone(P.req), status: q.needsApproval ? 'pending' : 'auto', validity: S.config.validityDays });
       P.quotes.push(q);
       setStage(P, q.needsApproval ? 'quote_approval' : 'quote_ready', ev);
       break;
@@ -6535,7 +6550,7 @@ function needs(P) {
     case 'accepted': add('call_customer', ['sales'], { uids: [P.sales] }); break;
     case 'contacted': add('write_needs', ['sales'], { uids: [P.sales] }); break;
     case 'requirements': add('make_quote', ['sales'], { uids: [P.sales] }); break;
-    case 'quote_approval': add('approve_quote', ['owner', 'admin'], { not: q && q.by, urgent: true });
+    case 'quote_approval': add('approve_quote', q && (q.margin < S.config.minMargin || (q.why || []).includes('over_admin')) ? ['owner'] : ['owner', 'admin'], { not: q && q.by, urgent: true });
       /* nobody else can approve (e.g. the Owner alone made a price below the floor): the maker withdraws it and makes a new one */
       if (q && !Object.values(S.users).some(x => x.active && x.uid !== q.by && ['owner', 'admin'].includes(x.role)) && !backupNow()) add('withdraw_quote', [roleOf(q.by)], { uids: [q.by], urgent: true });
       break;
@@ -7906,20 +7921,21 @@ function quoteBox(q, internal) {
     <tr><td>${t('q_gst', { n: q.gstPct })}</td><td style="text-align:right">${money(q.gst)}</td></tr>
     <tr><td><b>${t('q_total')}</b></td><td style="text-align:right;font-size:1.15rem"><b>${money(q.total)}</b></td></tr></table>
     ${internal ? `<div style="margin-top:8px"><span class="chip ${q.margin >= S.config.minMargin ? 'c-info' : 'c-bad'}">🔒 ${t('q_margin', { n: q.margin })}</span>
-      ${q.needsApproval ? `<span class="chip c-warn">⏳ ${t('q_needs_approval')}</span><div class="small muted" style="margin-top:4px">${q.why.map(w => t('why_' + w, { lim: S.config.salesDiscountLimit, min: S.config.minMargin })).join(' · ')}</div>` : `<span class="chip c-ok">✅ ${t('q_within_rules')}</span>`}</div>` : ''}`;
+      ${q.needsApproval ? `<span class="chip c-warn">⏳ ${t('q_needs_approval')}</span><div class="small muted" style="margin-top:4px">${q.why.map(w => t('why_' + w, { lim: w === 'over_admin' ? S.config.adminDiscountLimit : S.config.salesDiscountLimit, min: S.config.minMargin })).join(' · ')}</div>` : `<span class="chip c-ok">✅ ${t('q_within_rules')}</span>`}
+      ${q.discount && q.trade ? `<div class="small" style="margin-top:4px">🤝 ${t('q_traded', { x: t('tr_' + q.trade) })}${q.reason ? ' · ' + esc(q.reason) : ''}</div>` : ''}</div>` : ''}`;
 }
 WIZ.quote = {
   title: 'tk_make_quote', save: 'save_quote', saveIcon: '📄',
-  init: () => ({ discountPct: 0, reason: '' }),
+  init: () => ({ discountPct: 0, reason: '', trade: '' }),
   steps: [
     {
       id: 'price', icon: '🧮', say: 's_quote_price',
       body: (c, P) => `<div class="card">${reqKv(P.req)}</div>${negHistory(P)}<div class="card" id="qbox">${quoteBox(calcQuote(priceCfg(), P.req, c.discountPct), true)}</div>${negLadder(P, c)}
         <h3>${t('q_discount')}</h3><div class="stepper"><button data-a="disc" data-v="-5">−5</button><output style="font-size:2.2rem">${c.discountPct}%</output><button data-a="disc" data-v="5">+5</button></div>
         <div class="row" style="justify-content:center"><button class="btn btn-sm" data-a="disc" data-v="-1">−1%</button><button class="btn btn-sm" data-a="disc" data-v="1">+1%</button></div>
-        ${c.discountPct > 0 ? inp('reason', 'f_discount_reason', { mic: true }) : ''}
+        ${c.discountPct > 0 ? `<h3>🤝 ${t('q_trade')}</h3><p class="small muted">${t('q_trade_note')}</p>` + tiles('trade', TRADES.map(([k, i]) => [k, i, 'tr_' + k]), 'one') + inp('reason', 'f_discount_reason', { mic: true }) : ''}
         <div class="note">📏 ${t('margin_def')}<br>${ruleChip('pricing')} ${ruleChip('margins')}</div>`,
-      check: c => c.discountPct > 0 && !(c.reason || '').trim() ? 'err_reason' : null
+      check: c => c.discountPct > 0 && !c.trade ? 'err_trade' : c.discountPct > 0 && !(c.reason || '').trim() ? 'err_reason' : null
     },
     {
       id: 'review', icon: '📄', say: 's_quote_review',
@@ -7927,7 +7943,7 @@ WIZ.quote = {
     }
   ],
   async finish(c, P) {
-    const r = await run([['QUOTE_CREATED', P.id, { discountPct: c.discountPct, reason: c.reason }]]);
+    const r = await run([['QUOTE_CREATED', P.id, Object.assign({ discountPct: c.discountPct, reason: c.reason }, c.discountPct > 0 ? { trade: c.trade } : {})]]);
     if (!r.ok) return r;
     const q = lastQuote(S.projects[P.id]);
     return doneRes(P.id, q.needsApproval ? 'what_quote_pending' : 'what_quote_ready', { v: q.v });
