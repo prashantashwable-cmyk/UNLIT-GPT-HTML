@@ -2521,6 +2521,15 @@ const L = {
   tb_late: ['late', 'देर', 'उशीर'],
   tb_nolimit: ['no time limit', 'कोई समय सीमा नहीं', 'वेळ मर्यादा नाही'],
   tb_legend: ['Bar = work done · line = time used', 'पट्टी = हुआ काम · रेखा = बीता समय', 'पट्टी = झालेले काम · रेषा = गेलेला वेळ'],
+  tb_valid: ['Quote valid {n} more days', 'कोटेशन {n} दिन और मान्य', 'कोटेशन आणखी {n} दिवस वैध'],
+  tb_expired: ['Quote validity over', 'कोटेशन की मान्यता खत्म', 'कोटेशनची वैधता संपली'],
+  tb_need_by: ['Needed by {d}', '{d} तक चाहिए', '{d} पर्यंत हवे'],
+  tb_finished: ['Finished', 'पूरा हुआ', 'पूर्ण झाले'],
+  tb_visits: ['{a} of {b} service visits done', '{b} में से {a} सर्विस विज़िट पूरी', '{b} पैकी {a} सर्व्हिस भेटी पूर्ण'],
+  tb_next_visit: ['Next visit {d} · {n} days left', 'अगली विज़िट {d} · {n} दिन बाकी', 'पुढची भेट {d} · {n} दिवस बाकी'],
+  tb_ticket_steps: ['Step {a} of {b}: {s}', '{b} में से चरण {a}: {s}', '{b} पैकी पायरी {a}: {s}'],
+  tb_stat_items: ['{a} of {b} legal papers recorded', '{b} में से {a} कानूनी कागज़ दर्ज', '{b} पैकी {a} कायदेशीर कागद नोंदवले'],
+  tb_decided: ['Decided', 'फ़ैसला हो गया', 'निर्णय झाला'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -7451,8 +7460,15 @@ function timeOf(n, P) {
     return { pct: d / m * 100, label: t('tb_day', { d: Math.min(Math.floor(d) + 1, 999), m }) + ' · ' + t('tb_plan') }; } }
   /* a licence running out: the bar fills as the expiry comes closer */
   if (n.k === 'licence_renew' && n.n != null) { const m = +S.config.licWarnDays || 60; return { pct: (m - n.n) / m * 100, label: n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n }) }; }
-  const from = n.since || (P && P.since) || (n.days != null ? new Date(Date.now() - n.days * 864e5).toISOString() : null); if (!from) return null;
-  const c = S.config, onb = ['training', 'onb_profile'].includes(n.k), lim = n.k === 'escalated' ? +c.escOwnerDays : onb ? +c.onbDays : +c.escalateDays;
+  /* natural deadlines: a sent quote runs to its validity date, an order to its need-by (or promised) date */
+  const span = (a, b, lab) => { const used = (now - a) / Math.max(1, b - a); return { pct: used * 100, label: lab(Math.ceil((b - now) / 864e5)) }; };
+  const q = P && n.k === 'get_decision' ? lastQuote(P) : null;
+  if (q && q.sent && q.sent.t && quoteValidTill(q)) return span(Date.parse(q.sent.t), Date.parse(quoteValidTill(q) + 'T23:59:00'), d => d > 0 ? t('tb_valid', { n: d }) : t('tb_expired'));
+  if (P && P.po && ['accept_po', 'dispatch'].includes(n.k)) { const by = (n.k === 'dispatch' && P.po.accepted && P.po.accepted.date) || P.po.needBy;
+    if (by) return span(Date.parse(P.po.t), Date.parse(by + 'T23:59:00'), d => t('tb_need_by', { d: fmtD(by) }) + (d < 0 ? ' · ' + t('tb_over_late', { n: -d }) : '')); }
+  const onbU = ['training', 'onb_profile', 'check_docs'].includes(n.k) && S.users[n.uid || (n.uids || [])[0]];
+  const from = n.since || (onbU && onbU.t) || (P && P.since) || (n.days != null ? new Date(Date.now() - n.days * 864e5).toISOString() : null); if (!from) return null;
+  const c = S.config, onb = ['training', 'onb_profile', 'check_docs'].includes(n.k), lim = n.k === 'escalated' ? +c.escOwnerDays : onb ? +c.onbDays : +c.escalateDays;
   if (!(lim > 0)) return null;
   const d = Math.max(0, (now - Date.parse(from)) / 864e5), day = Math.floor(d) + 1;
   if (cust) return { pct: d / lim * 100, label: d >= lim ? t('tb_over_late', { n: Math.floor(d - lim) + 1 }) : t('tb_day', { d: day, m: lim }) };
@@ -7466,14 +7482,15 @@ function timeOf(n, P) {
 /* two bars on every responsibility, always together: progress above (work done), deadline below (time used against the
    limit). Work behind the clock shows "behind time"; past the limit "late"; blocked or on-hold work is grey "Paused", never red. */
 function paceBar(wp, wtxt, tm) {
+  if (tm && tm.fin) tm = { pct: 0, label: tm.fin, fin: 1 };
   const tp = tm && !tm.paused ? Math.max(0, Math.min(100, tm.pct)) : 0;
-  const pace = tm && tm.paused ? 'pause' : tm && tm.pct >= 100 ? 'bad' : tm && wp < tp ? 'warn' : 'ok';
+  const pace = tm && tm.fin ? 'fin' : tm && tm.paused ? 'pause' : tm && tm.pct >= 100 ? 'bad' : tm && wp < tp ? 'warn' : 'ok';
   const ttxt = !tm ? t('tb_nolimit') : tm.paused ? '⏸ ' + esc(tm.paused) : esc(tm.label);
-  const ptxt = { ok: tm ? t('tb_on_pace') : '', warn: t('tb_behind'), bad: t('tb_late'), pause: '' }[pace];
+  const ptxt = { ok: tm ? t('tb_on_pace') : '', warn: t('tb_behind'), bad: t('tb_late'), pause: '', fin: '' }[pace];
   const bar = (cls, pct, label) => `<span class="tb ${cls}" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(Math.min(100, pct))}" aria-label="${esc(label)}"><i style="width:${Math.max(pct > 0 ? 3 : 0, Math.min(100, pct))}%"></i></span>`;
-  const tcls = pace === 'pause' ? 't-pause' : tp >= 100 || pace === 'bad' ? 't-bad' : tp >= 50 ? 't-warn' : 't-ok';
+  const tcls = pace === 'fin' ? 't-ok' : pace === 'pause' ? 't-pause' : tp >= 100 || pace === 'bad' ? 't-bad' : tp >= 50 ? 't-warn' : 't-ok';
   return `<span class="tbar tp-${pace}"><span class="tbl">🧩 ${wtxt}</span>${bar('tw', wp, wtxt)}`
-    + `<span class="tbl">⏳ ${ttxt}${ptxt ? ` · <b>${pace === 'ok' ? '✅' : pace === 'warn' ? '⚠️' : '🔴'} ${ptxt}</b>` : ''}</span>${bar(tcls, pace === 'pause' ? 100 : tp, ttxt)}</span>`;
+    + `<span class="tbl">⏳ ${ttxt}${ptxt ? ` · <b>${pace === 'ok' ? '✅' : pace === 'warn' ? '⚠️' : '🔴'} ${ptxt}</b>` : ''}</span>${bar(tcls, pace === 'pause' || pace === 'fin' ? 100 : tp, ttxt)}</span>`;
 }
 function taskBars(n, P) {
   const w = workOf(n, P), tm = timeOf(n, P), wp = w && w.t ? Math.round(w.d / w.t * 100) : 0;
@@ -7483,7 +7500,39 @@ function taskBars(n, P) {
 const jobPct = P => P.stage === 'lost' ? 0 : P.stage === 'amc' || P.done ? 100 : Math.max(0, Math.round(stageIdx(P.stage) / stageIdx('amc') * 100));
 function jobBars(P) {
   const p = jobPct(P), n = !P.done && P.stage !== 'lost' ? mainNeed(P) : null;
-  return paceBar(p, t('tb_job', { p }), n ? timeOf(n, P) : null);
+  return paceBar(p, t('tb_job', { p }), n ? timeOf(n, P) : P.stage === 'lost' ? { fin: t('st_lost') } : P.done || P.stage === 'amc' ? { fin: '✅ ' + t('tb_finished') } : null);
+}
+/* a person's first steps: steps done against the first-week limit */
+function onbBars(uid) {
+  const ob = onboarding(uid), u = S.users[uid]; if (!ob.total || !u) return '';
+  const pct = Math.round(ob.done / ob.total * 100), lim = +S.config.onbDays || 0, d = Math.max(0, (Date.now() - Date.parse(u.t)) / 864e5);
+  const tm = ob.ready ? { fin: '✅ ' + t('onb_ready') } : lim > 0 ? { pct: d / lim * 100, label: d >= lim ? t('tb_over_late', { n: Math.floor(d - lim) + 1 }) : t('tb_day', { d: Math.floor(d) + 1, m: lim }) } : null;
+  return paceBar(pct, t('onb_progress', { n: ob.done, m: ob.total }) + ' · ' + pct + '%', tm);
+}
+/* a fault ticket: its steps (open → assigned → working → fixed → closed) against its hours */
+const TICKET_STEPS = ['open', 'assigned', 'in_progress', 'resolved', 'closed'];
+function ticketBars(x, P) {
+  const i = Math.max(0, TICKET_STEPS.indexOf(x.status)), pct = Math.round(i / (TICKET_STEPS.length - 1) * 100), open = !['resolved', 'closed'].includes(x.status);
+  const tm = !open ? { fin: ticketLate(x) ? t('sla_was_late') : t('sla_in_time') } : ticketDue(x) ? timeOf({ k: 'work_ticket', tid: x.id }, P) : (x.sev || '') === 'trapped' ? { pct: 100, label: t('sla_now') } : timeOf({ k: 'work_ticket', since: x.t, roles: ['admin'] }, P);
+  return paceBar(pct, t('tb_ticket_steps', { a: i + 1, b: TICKET_STEPS.length, s: t('ts_' + x.status) }), tm);
+}
+/* service visits: visits done against the next visit's date */
+function amcBars(P) {
+  const v = P.done.amc.visits, done = v.filter((d, i) => P.service[i]).length, i = v.findIndex((d, j) => !P.service[j]);
+  if (i < 0) return paceBar(100, t('tb_visits', { a: done, b: v.length }), { fin: '✅ ' + t('tb_finished') });
+  const a = Date.parse((i ? v[i - 1] : safeDay(P.done.t || P.since)) + 'T12:00:00'), b = Date.parse(v[i] + 'T23:59:00'), dd = Math.ceil((b - Date.now()) / 864e5);
+  return paceBar(Math.round(done / v.length * 100), t('tb_visits', { a: done, b: v.length }), { pct: (Date.now() - a) / Math.max(1, b - a) * 100, label: dd >= 0 ? t('tb_next_visit', { d: fmtD(v[i]), n: dd }) : t('tb_over_late', { n: -dd }) });
+}
+/* legal papers: permit, inspection, licence recorded, against the licence expiry */
+function statBars(P) {
+  const st = statOf(P), have = [st.permit, st.inspection && st.inspection.result === 'pass', st.licence].filter(Boolean).length, d = liftLicenceDays(P), m = +S.config.licWarnDays || 60;
+  const tm = d == null ? null : d < 0 ? { pct: 100, label: t('lic_expired') } : { pct: (m - Math.min(m, d)) / m * 100, label: t('lic_days', { n: d }) };
+  return paceBar(Math.round(have / 3 * 100), t('tb_stat_items', { a: have, b: 3 }), tm);
+}
+/* a join or enquiry request: decided or not, against the office's reply limit */
+function reqBars(x, st) {
+  const lim = +S.config.escalateDays || 3, d = Math.max(0, (Date.now() - (Date.parse(x.got || x.t) || Date.now())) / 864e5);
+  return paceBar(st ? 100 : 0, t('tb_one'), st ? { fin: '✅ ' + t('tb_decided') } : { pct: d / lim * 100, label: d >= lim ? t('tb_over_late', { n: Math.floor(d - lim) + 1 }) : t('tb_day', { d: Math.floor(d) + 1, m: lim }) });
 }
 function taskCard(n, i) {
   const P = S.projects[n.pid];
@@ -7511,7 +7560,7 @@ function escChip(n) {
 const escWho = n => (n.whoUids || []).length ? n.whoUids.map(userName).join(', ') : rolesTxt(n.who || []);
 function projCard(P) {
   return `<button class="task" data-a="openProject" data-v="${P.id}"><span class="ti" aria-hidden="true">${STAGES[P.stage][1]}</span>
-    <span style="flex:1;min-width:0"><b>${esc(P.id)} · ${esc(projTitle(P))}</b><span class="small muted">${esc((P.site.address || '').slice(0, 60))}</span><br>${stageChip(P)} ${waitLine(P)}</span><span class="go" aria-hidden="true">▶</span></button>`;
+    <span style="flex:1;min-width:0"><b>${esc(P.id)} · ${esc(projTitle(P))}</b><span class="small muted">${esc((P.site.address || '').slice(0, 60))}</span><br>${stageChip(P)} ${waitLine(P)}${jobBars(P)}</span><span class="go" aria-hidden="true">▶</span></button>`;
 }
 function thumb(e, o = {}) {
   if (!e) return '';
@@ -8709,7 +8758,7 @@ SCREENS.stattracker = ({ f }) => {
   App.pageSay = t('stat_tracker');
   return topBar(t('stat_tracker'), { back: true }) + `<main class="wrap"><p class="small muted">${t('stat_tracker_note')}</p>
     <div class="row wrapw">${['all', 'exp', 'miss'].map(k => `<button class="btn btn-sm ${f === k ? 'btn-p' : ''}" data-a="statF" data-v="${k}" aria-pressed="${f === k}">${t('st_f_' + k)} (${cnt[k]})</button>`).join('')}</div>
-    ${rows.map(({ P, st, d, miss }) => `<div class="card"><div class="row wrapw"><b class="stid" style="white-space:nowrap">${esc(P.id)}</b>${stageChip(P)}${licChip(d)}</div><p class="small muted">${esc(P.site.address)}</p>
+    ${rows.map(({ P, st, d, miss }) => `<div class="card"><div class="row wrapw"><b class="stid" style="white-space:nowrap">${esc(P.id)}</b>${stageChip(P)}${licChip(d)}</div><p class="small muted">${esc(P.site.address)}</p>${statBars(P)}
       ${kv([['stat_permit', st.permit ? `✅ ${esc(st.permit.no)} · ${fmtD(st.permit.date)}` : '—'], ['stat_inspection', st.inspection ? `${st.inspection.result === 'pass' ? '✅' : '❌'} ${fmtD(st.inspection.date)}` : '—'],
         ['stat_licence', st.licence ? `${esc(st.licence.no)} · ${esc(st.licence.holder)} · ${t('lic_expiry')}: ${fmtD(st.licence.expiry)}` : '—']])}
       ${miss.length ? `<div class="warnbox">📄 ${t('stat_missing')}: ${miss.map(k => t(k)).join(', ')}</div>` : ''}
@@ -8723,7 +8772,7 @@ function statCard(P) {
   const rows = [['stat_permit', st.permit ? `✅ ${esc(st.permit.no)} · ${fmtD(st.permit.date)}` : '—'],
     ['stat_inspection', i ? `${i.result === 'pass' ? '✅' : '❌'} ${fmtD(i.date)}${i.note ? ' · ' + esc(i.note) : ''}` : '—'],
     ['stat_licence', l ? `${d != null && d < 0 ? '❌' : d != null && d <= (S.config.licWarnDays || 60) ? '⚠️' : '✅'} ${esc(l.no)} · ${esc(l.holder)} · ${t('lic_expiry')}: ${fmtD(l.expiry)}` : '—']];
-  return `<div class="card"><h3>📜 ${t('stat_title')}</h3>${kv(rows)}${P.stage === 'handover' && S.config.licenceGate && !liftLicenceOk(P) ? `<div class="warnbox">📜 ${t('stat_needed')}</div>` : ''}<p class="small muted">${t('stat_note')}</p>${['owner', 'admin', 'qc'].includes(App.me.role) ? `<button class="btn btn-sm" data-a="nav" data-v="stattracker">📋 ${t('stat_tracker')}</button>` : ''}</div>`;
+  return `<div class="card"><h3>📜 ${t('stat_title')}</h3>${statBars(P)}${kv(rows)}${P.stage === 'handover' && S.config.licenceGate && !liftLicenceOk(P) ? `<div class="warnbox">📜 ${t('stat_needed')}</div>` : ''}<p class="small muted">${t('stat_note')}</p>${['owner', 'admin', 'qc'].includes(App.me.role) ? `<button class="btn btn-sm" data-a="nav" data-v="stattracker">📋 ${t('stat_tracker')}</button>` : ''}</div>`;
 }
 WIZ.countersign = {
   title: 'cs_title', save: 'save', noDraft: true, init: () => ({ signer: '', sig: null }),
@@ -9449,7 +9498,7 @@ const newStuck = x => { const last = EVENTS.filter(e => e.by === x.uid).map(e =>
 function newPersonRow(x) {
   const ob = onboarding(x.uid), b = (S.workers[x.uid] || {}).buddy, st = newStuck(x);
   return `<div class="card"><div class="row wrapw"><b class="grow">${ROLE_ICON[x.role]} ${esc(x.name)}</b><span class="chip ${usedApp(x.uid) ? 'c-ok' : 'c-warn'}">${t(usedApp(x.uid) ? 'nw_used' : 'nw_not_used')}</span></div>
-    <p class="small muted" style="margin:4px 0">${t('nw_days', { n: daysSince(x.t) })} · ${t('nw_steps', { n: ob.done, m: ob.total })}${st >= 2 ? ` · <b style="color:var(--bad)">${t('nw_stuck', { n: st })}</b>` : ''}</p>
+    <p class="small muted" style="margin:4px 0">${t('nw_days', { n: daysSince(x.t) })} · ${t('nw_steps', { n: ob.done, m: ob.total })}${st >= 2 ? ` · <b style="color:var(--bad)">${t('nw_stuck', { n: st })}</b>` : ''}</p>${onbBars(x.uid)}
     <div class="row wrapw">${b && S.users[b] ? `<span class="chip c-info">🤝 ${t('nw_buddy')}: ${esc(S.users[b].name)}</span>` : ''}<button class="btn btn-sm" data-a="buddyPick" data-v="${x.uid}">🤝 ${t('nw_pick_buddy')}</button>${((S.workers[x.uid] || {}).profile || {}).phone ? `<a class="btn btn-sm" href="tel:+91${esc(S.workers[x.uid].profile.phone)}">📞</a>` : ''}</div></div>`;
 }
 SCREENS.home = () => {
@@ -10312,7 +10361,7 @@ SCREENS.joins = ({ kind }) => {
   const u = App.me; if (!['owner', 'admin'].includes(u.role)) return SCREENS.home();
   const enq = kind === 'enq'; App.pageSay = t(enq ? 'eq_say' : 'jq_say');
   const c = Sync.cfg(), all = (App.joinReqs || []).filter(x => (x.kind === 'enq') === enq), open = all.filter(x => !jqStatus(x)), done = all.filter(x => jqStatus(x)).slice(0, 30);
-  const card = x => `<button class="task" data-a="jqOpen" data-v="${x.rid}"><span class="ti">${enq ? '🛗' : (JOIN_ROLES.find(([r]) => r === x.role) || [])[1] || '🧰'}</span><span class="grow" style="flex:1;min-width:0"><b>${esc(x.co && ['supplier', 'partner'].includes(x.role) ? x.co + ' · ' + x.name : x.name)}</b><br><span class="small muted">${enq ? esc((x.address || '').slice(0, 40)) : t('jr_' + x.role)} · ${esc(x.phone)} · ${fmtD(x.got || x.t)}${jqStatus(x) ? ' · ' + t('jq_st_' + jqStatus(x)) : ''}</span></span></button>`;
+  const card = x => `<button class="task" data-a="jqOpen" data-v="${x.rid}"><span class="ti">${enq ? '🛗' : (JOIN_ROLES.find(([r]) => r === x.role) || [])[1] || '🧰'}</span><span class="grow" style="flex:1;min-width:0"><b>${esc(x.co && ['supplier', 'partner'].includes(x.role) ? x.co + ' · ' + x.name : x.name)}</b><br><span class="small muted">${enq ? esc((x.address || '').slice(0, 40)) : t('jr_' + x.role)} · ${esc(x.phone)} · ${fmtD(x.got || x.t)}${jqStatus(x) ? ' · ' + t('jq_st_' + jqStatus(x)) : ''}</span>${reqBars(x, jqStatus(x))}</span></button>`;
   return topBar(t(enq ? 'eq_title' : 'jq_title'), { back: true }) + `<main class="wrap"><p class="say">${enq ? '🛗' : '🧰'} ${t(enq ? 'eq_say' : 'jq_say')}</p>
     ${!c || c.role !== 'office' ? `<div class="warnbox">☁️ ${t('srv_needed')}</div>` : c.pubOther ? `<div class="warnbox">⚠️ ${t('jq_other_key')}</div>` : ''}
     ${open.map(card).join('') || `<div class="card center muted">${t('jq_none')}</div>`}
@@ -10822,13 +10871,13 @@ function amcCard(P) {
     const sv = x.sev || 'routine', sevChip = `<span class="chip ${sevRank(sv) <= 1 ? 'c-bad' : sevRank(sv) <= 3 ? 'c-warn' : 'c-mute'}">${SEVERITIES[sevRank(sv)][1]} ${t('sev_' + sv)}</span>`;
     const clock = due == null ? (sv === 'trapped' && open ? ` <span class="chip c-bad">🆘 ${t('sla_now')}</span>` : '') : open ? ` <span class="chip ${late ? 'c-bad' : 'c-info'}">⏱️ ${late ? t('sla_late', { h: Math.ceil((Date.now() - due) / 3600e3) }) : t('sla_left', { h: Math.max(1, Math.ceil((due - Date.now()) / 3600e3)) })}</span>` : late ? ` <span class="chip c-warn">⏱️ ${t('sla_was_late')}</span>` : ` <span class="chip c-ok">⏱️ ${t('sla_in_time')}</span>`;
     return `<div class="list-item" style="display:block"><b>${TICKET_KINDS.find(k => k[0] === x.kind)[1]} ${t('tkind_' + x.kind)}</b> ${sevChip}${x.repeat ? ` <span class="chip c-warn">🔁 ${t('sev_repeat')}</span>` : ''}${clock} <span class="chip ${x.status === 'closed' ? 'c-ok' : x.status === 'resolved' ? 'c-info' : 'c-warn'}">${t('ts_' + x.status)}</span> <span class="small muted">${(TICKET_SRC.find(k => k[0] === x.src) || ['', ''])[1]}</span>
-      <div class="small">${esc(x.text)}</div><div class="small muted">${userName(x.by)} · ${fmtD(x.t, true)}${x.owner ? ' · 👤 ' + esc(userName(x.owner)) : ''}${x.due ? ' · 📅 ' + fmtD(x.due) : ''}${x.due && x.due < todayStr() && x.status !== 'closed' && x.status !== 'resolved' ? ' · <b style="color:var(--bad)">' + t('overdue') + '</b>' : ''}</div>
+      ${ticketBars(x, P)}<div class="small">${esc(x.text)}</div><div class="small muted">${userName(x.by)} · ${fmtD(x.t, true)}${x.owner ? ' · 👤 ' + esc(userName(x.owner)) : ''}${x.due ? ' · 📅 ' + fmtD(x.due) : ''}${x.due && x.due < todayStr() && x.status !== 'closed' && x.status !== 'resolved' ? ' · <b style="color:var(--bad)">' + t('overdue') + '</b>' : ''}</div>
       ${x.hist.length > 1 ? `<details class="small"><summary>${t('history')}</summary>${x.hist.map(h => `<div>${fmtD(h.t, true)} · ${h.status === 'sev' ? t('sev_' + h.from) + ' → ' + t('sev_' + h.to) : t('ts_' + h.status)} · ${esc(userName(h.by))} ${esc(h.note || '')}</div>`).join('')}</details>` : ''}
       ${btns.length ? `<div class="row wrapw" style="margin-top:6px">${btns.join('')}</div>` : ''}</div>`;
   }).join('');
   const out = P.amcEnded || (P.amcEnd && P.amcEnd < todayStr());
   return `<div class="card"><h3>🛠️ ${t('amc_title')}</h3>${out ? `<div class="warnbox">🛑 ${t('amc_out')}${P.amcEnded ? ' · ' + esc(P.amcEnded.reason) : ''}</div>` : ''}${kv([['amc_until', P.amcEnd ? fmtD(P.amcEnd) : ''], ['warranty', t('months_n', { n: P.done.warrantyMonths })]])}
-    <h3 style="margin-top:10px">${t('amc_visits')}</h3>${visits}
+    <h3 style="margin-top:10px">${t('amc_visits')}</h3>${P.done.amc.visits.length ? amcBars(P) : ''}${visits}
     ${P.renewals.length ? `<div class="small muted" style="margin-top:6px">${P.renewals.map(r => `♻️ ${fmtD(r.t)} · ${r.years} ${t('years')} · ${money(r.amount)} · ${esc(userName(r.by))}`).join('<br>')}</div>` : ''}
     ${allowed('AMC_RENEWED', P) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="renew|${P.id}">♻️ ${t('tk_amc_renew')}</button>` : ''}
     ${P.lift && ['owner', 'admin', 'sales', 'qc'].includes(u.role) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="liftQr" data-v="${P.id}">🔳 ${t('lift_qr')} · ${esc(P.lift.code)}</button>` : ''}
@@ -11031,7 +11080,7 @@ function onbCard(uid, opt = {}) {
   const me = uid === App.me.uid, nextSelf = ob.steps.find(x => !x.done && x.who === 'self');
   const chip = ob.ready ? `<span class="chip c-ok">✅ ${t('onb_ready')}</span>` : `<span class="chip c-info">${t('onb_progress', { n: ob.done, m: ob.total })}</span>`;
   return `<div class="card">${opt.bare ? '' : `<div class="row"><h3 class="grow" style="margin:0">🪪 ${t('onb_title')}</h3>${chip}</div>`}
-    <div class="bar" style="margin:8px 0"><span class="b"><i style="width:${pct}%"></i></span><b>${pct}%</b></div>
+    ${onbBars(uid)}
     ${opt.short ? '' : ob.steps.map(x => `<div class="list-item small"><span>${x.done ? '✅' : x.bad ? '❌' : '⬜'}</span><span class="grow">${esc(onbStepText(x))}</span><span class="chip c-mute">${x.who === 'office' ? '🏢 ' + t('onb_who_office') : '🙋 ' + t(me ? 'onb_who_you' : 'onb_who_person')}</span></div>`).join('')}
     ${!ob.ready && lv ? `<div class="${lv >= 2 ? 'warnbox' : 'note'}" style="margin-top:8px">${escChip({ level: lv })} ${t('onb_waiting', { n: days })}</div>` : ''}
     ${me && nextSelf ? `<button class="btn btn-p" style="margin-top:8px" data-a="wizOpen" data-v="${nextSelf.k === 'profile' ? 'wprofile||uid|' + uid : 'train||module|' + nextSelf.module}">▶ ${t('onb_next')}</button>` : ''}
@@ -11090,7 +11139,7 @@ SCREENS.escalations = () => {
       <div class="list-item small"><span>🪪</span><span class="grow">${t('esc_rule4', { n: c.onbDays, m: c.onbDays * 2 })}</span></div>
       <div style="margin-top:6px">${ruleChip('control')}</div></div>
     <h2 class="sec">⏫ ${t('esc_open')} (${list.length})</h2>${list.map((n, i) => taskCard(n, i)).join('') || `<div class="card center">✅ ${t('esc_none')}</div>`}
-    ${rem.length ? `<h2 class="sec">⏰ ${t('esc_reminders')} (${rem.length})</h2><div class="card">${rem.slice(0, 20).map(n => `<div class="list-item small"><span>${TASK_ICON[n.k] || '▶'}</span><span class="grow"><b>${esc(t('tk_' + n.k))}</b>${n.pid ? ' · ' + esc(n.pid) : ''}<br><span class="muted">${esc(escWho({ whoUids: (n.uids || []).filter(Boolean), who: n.roles }))} · ${t('days_n', { n: n.days })}</span></span></div>`).join('')}</div>` : ''}
+    ${rem.length ? `<h2 class="sec">⏰ ${t('esc_reminders')} (${rem.length})</h2><div class="card">${rem.slice(0, 20).map(n => `<div class="list-item small"><span>${TASK_ICON[n.k] || '▶'}</span><span class="grow"><b>${esc(t('tk_' + n.k))}</b>${n.pid ? ' · ' + esc(n.pid) : ''}<br><span class="muted">${esc(escWho({ whoUids: (n.uids || []).filter(Boolean), who: n.roles }))} · ${t('days_n', { n: n.days })}</span>${taskBars(n, S.projects[n.pid])}</span></div>`).join('')}</div>` : ''}
     ${S.escLog.length ? `<h2 class="sec">🧾 ${t('esc_recent')}</h2><div class="card">${S.escLog.slice(0, 15).map(x => `<div class="list-item small" style="display:block">${ESC_ICON[x.action]} <b>${esc(t('tk_' + x.ref))}</b>${x.pid ? ' · ' + esc(x.pid) : ''} · ${t('esc_' + x.action)}${x.uid ? ' → ' + esc(userName(x.uid)) : ''}<br><span class="muted">${esc(userName(x.by))} · ${fmtD(x.t, true)} · 📅 ${fmtD(x.until)} · ${esc(x.note)}</span></div>`).join('')}</div>` : ''}
   </main>` + nav('me');
 };
@@ -11216,7 +11265,7 @@ function allWorkCard(list) {
   const by = {}; for (const n of list) for (const r of n.roles.slice(0, 1)) (by[r] = by[r] || []).push(n);
   return `<p class="small muted">${t('all_work_note')}</p>` + (Object.keys(by).length ? Object.entries(by).map(([r, xs]) => `<h3>${ROLE_ICON[r] || ''} ${t('r_' + r)} (${xs.length})</h3>${xs.slice(0, 15).map(n => {
     const who = (n.uids || []).filter(Boolean).map(id => userName(id)).join(', ');
-    return `<div class="list-item"><span class="grow">${TASK_ICON[n.k] || '▶'} ${esc(t('tk_' + n.k))}${n.pid ? ' · ' + esc(n.pid) : ''}<br><span class="small muted">${who ? esc(who) + ' · ' : ''}${t('days_n', { n: n.age })}</span></span>${n.pid ? `<button class="btn btn-sm" data-a="openProject" data-v="${n.pid}">📂</button>` : ''}</div>`; }).join('')}`).join('') : `<p class="muted">${t('nothing_here')}</p>`);
+    return `<div class="list-item"><span class="grow">${TASK_ICON[n.k] || '▶'} ${esc(t('tk_' + n.k))}${n.pid ? ' · ' + esc(n.pid) : ''}<br><span class="small muted">${who ? esc(who) + ' · ' : ''}${t('days_n', { n: n.age })}</span>${taskBars(n, S.projects[n.pid])}</span>${n.pid ? `<button class="btn btn-sm" data-a="openProject" data-v="${n.pid}">📂</button>` : ''}</div>`; }).join('')}`).join('') : `<p class="muted">${t('nothing_here')}</p>`);
 }
 function officeQueue() {
   const seen = new Set(), out = [];

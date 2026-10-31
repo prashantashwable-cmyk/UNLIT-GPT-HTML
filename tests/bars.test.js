@@ -19,7 +19,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   });
   const total = Object.values(roles).reduce((a, r) => a + r.cards, 0), barred = Object.values(roles).reduce((a, r) => a + r.withBar, 0);
   assert(total > 20 && barred / total >= 0.9, `task cards carry bars across all roles (${barred} of ${total})`);
-  const badL = Object.values(roles).flatMap(r => r.labels).filter(l => l && !/Day \d+ of \d+|day\(s\) over|h of \d+ h|Time limit passed|Paused|done ·|[Ll]icen|no time limit/.test(l));
+  const badL = Object.values(roles).flatMap(r => r.labels).filter(l => l && !/Day \d+ of \d+|day\(s\) over|h of \d+ h|Time limit passed|Paused|done ·|[Ll]icen|no time limit|Quote valid|validity over|Needed by/.test(l));
   assert(!badL.length, 'every bar says it in words, not only colour' + (badL.length ? ': ' + badL.slice(0, 4).join(' / ') : ''));
 
   const one = await page.evaluate(() => { loginAs(S.users.PSALES); ACT.permsDone(); Notify.hide(); App.form = {}; go('home');
@@ -63,6 +63,35 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(/Job \d+% done\s*⏳ (Day \d+ of \d+|\d+ day\(s\) over)/.test(ct) && !/then goes to|now also with/.test(ct), 'the customer sees how far the job is, and their own time without office escalation');
   await page.evaluate(() => { loginAs(S.users.PADMIN); go('project', { pid: Object.values(S.projects).find(x => x.stage === 'installing').id }); }); await page.waitForTimeout(300);
   assert(/Job \d+% done/.test(await page.innerText('body')), 'the project page shows the whole job %');
+
+  /* the same two bars on every responsibility, everywhere it is shown */
+  const places = await page.evaluate(() => {
+    const two = el => !!el && !!el.querySelector('.tbar') && [...el.querySelectorAll('.tbar')].every(b => b.querySelectorAll('.tb').length === 2), out = {};
+    loginAs(S.users.PADMIN); ACT.permsDone(); Notify.hide(); App.form = {}; go('projects');
+    const pc = [...document.querySelectorAll('#plist .task')]; out.projects = pc.length > 0 && pc.every(two);
+    const A = Object.values(S.projects).find(P => P.done && P.done.amc.visits.length);
+    if (A) { const d = document.createElement('div'); d.innerHTML = amcCard(A); out.amc = two(d); out.tickets = [...d.querySelectorAll('.list-item[style*="block"]')].every(two); } else out.amc = out.tickets = 'none';
+    const tk = { id: 'TX', status: 'assigned', sev: 'breakdown', t: new Date(Date.now() - 2 * 3600e3).toISOString(), hist: [] }, d2 = document.createElement('div'); d2.innerHTML = ticketBars(tk, A || Object.values(S.projects)[0]);
+    out.ticketStep = /Step 2 of 5/.test(d2.textContent);
+    go('stattracker', {}); const sc = [...document.querySelectorAll('main .card')].filter(c => c.querySelector('.stid')); out.stat = sc.length ? sc.every(two) : 'none';
+    const newbie = Object.values(S.users).find(u => u.active && onboarding(u.uid).total); if (newbie) { const d3 = document.createElement('div'); d3.innerHTML = onbCard(newbie.uid); out.onb = two(d3); } else out.onb = 'none';
+    const x = { rid: 'R1', role: 'tech', name: 'Ravi', phone: '9876543210', t: new Date(Date.now() - 1.2 * 864e5).toISOString() }, d4 = document.createElement('div'); d4.innerHTML = reqBars(x, '');
+    out.req = two(d4) && /Day 2 of/.test(d4.textContent);
+    const all = []; for (const P of Object.values(S.projects)) for (const n of needs(P)) all.push(n); const d5 = document.createElement('div'); d5.innerHTML = allWorkCard(all.slice(0, 10));
+    out.allWork = [...d5.querySelectorAll('.list-item')].every(two);
+    /* natural deadlines: a sent quote runs to its validity date, an order to its need-by date */
+    const Q0 = Object.values(S.projects).find(P => lastQuote(P)), Q = Q0 && Object.assign({}, Q0, { holds: [], quotes: Q0.quotes.slice(0, -1).concat([Object.assign({}, lastQuote(Q0), { sent: { t: new Date(Date.now() - 5 * 864e5).toISOString() }, validity: 30 })]) });
+    out.quote = Q ? timeOf({ k: 'get_decision', roles: ['sales'] }, Q).label : 'none';
+    const O = Object.values(S.projects).find(P => P.po && P.stage === 'material_order');
+    out.po = O ? timeOf({ k: O.po.accepted ? 'dispatch' : 'accept_po', roles: ['supplier'] }, O).label : 'none';
+    out.fin = /tp-fin/.test(jobBars(Object.values(S.projects).find(P => P.done) || { stage: 'amc', done: {} }));
+    return out;
+  });
+  for (const k of ['projects', 'amc', 'tickets', 'stat', 'onb', 'req', 'allWork']) assert(places[k] === true || places[k] === 'none', 'two bars on ' + k + ': ' + places[k]);
+  assert(places.ticketStep, 'a ticket shows its steps (assigned = step 2 of 5)');
+  assert(/Quote valid 2[56] more days/.test(places.quote), 'a sent quote counts down to its validity date: ' + places.quote);
+  assert(/Needed by|none/.test(places.po), 'a purchase order counts down to its need-by date: ' + places.po);
+  assert(places.fin, 'finished work shows a full green "Finished" bar');
 
   for (const lang of ['hi', 'mr']) { await page.evaluate(l => { LANG = l; App.set.lang = l; loginAs(S.users.PTECH); go('home'); }, lang); await page.waitForTimeout(150);
     if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)) throw new Error('sideways scroll ' + lang); }
