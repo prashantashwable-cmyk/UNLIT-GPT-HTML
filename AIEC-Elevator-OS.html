@@ -229,6 +229,8 @@ details.fold>.fold-in{padding:0 12px 12px}details.fold>.fold-in>.card:first-chil
 .map{width:100%;height:auto;background:#e8eee4;border-radius:var(--r);border:1px solid var(--line);display:block}
 table.mx{border-collapse:collapse;font-size:.76rem;width:100%}
 table.mx td,table.mx th{border:1px solid var(--line);padding:4px 3px;text-align:center}
+/* long words (amounts, UPI IDs, codes) wrap instead of pushing the screen sideways on phones with wide fonts */
+table.mx{table-layout:fixed}table.mx td,table.mx th{overflow-wrap:anywhere;word-break:break-word}.list-item>*,.kv dd,.kv dt{min-width:0;overflow-wrap:anywhere}
 table.mx td:first-child{text-align:left}
 .list-item{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
 .list-item:last-child{border-bottom:0}
