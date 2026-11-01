@@ -76,13 +76,13 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert((await hand(swapped)).ok, 'the handover is saved with a swapped part');
   assert(await ev(`(P => P.serialHold && P.serialHold.bad.join() === "${k0}" && !P.serialHold.ok)(S.projects["${A}"])`), 'the swapped part is caught');
   if (await ev(`S.projects["${A}"].stage !== "installing"`)) await page.evaluate(A => { const P = S.projects[A]; P.stage = 'installing'; }, A);
-  assert((await tasks(tech, A)).includes('wait_serial') && (await tasks('PADMIN', A)).includes('serial_mismatch'), 'installation waits; the office is asked to check the parts');
+  assert(await page.evaluate(([tech, A]) => myWaits(S.users[tech]).some(n => n.k === 'wait_serial' && n.pid === A), [tech, A]) && (await tasks('PADMIN', A)).includes('serial_mismatch'), 'installation waits; the office is asked to check the parts');
   assert((await act('SOP_STEP_DONE', A, { step: 0, isc: await ev('iscYes(0)'), ev: await photos(1) }, tech)).err === 'err_serial_mismatch', 'the first installation step is held');
   await page.evaluate(A => { loginAs(S.users.PADMIN); ACT.permsDone(); Notify.hide(); wiz('serialFix', A); }, A); await page.waitForTimeout(250);
   const sf = await page.innerText('#app');
   assert(sf.includes(sent[k0]) && sf.includes('XYZ-999'), 'the office sees what was sent and what was found');
   assert((await act('SERIAL_RESOLVED', A, {}, 'PADMIN')).err === 'err_reason' && (await act('SERIAL_RESOLVED', A, { note: 'Supplier sent the right machine; label misprinted, confirmed by call' }, 'PADMIN')).ok, 'the office settles it with a reason');
-  assert(!(await tasks(tech, A)).includes('wait_serial'), 'then installation can start');
+  assert(!(await page.evaluate(([tech, A]) => myWaits(S.users[tech]).some(n => n.k === 'wait_serial' && n.pid === A), [tech, A])), 'then installation can start');
 
   /* legal papers */
   const past = await ev('addDays(-2)'), soon = await ev('addDays(10)'), far = await ev('addDays(300)');

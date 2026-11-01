@@ -51,6 +51,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
 
   /* repeated jobs are grouped */
   await page.evaluate(() => { loginAs(S.users.PADMIN); Notify.hide(); App.form = {}; go('home'); }); await page.waitForTimeout(300);
+  await page.evaluate(() => { const d = document.querySelector('details[data-fold="tasks"]'); if (d) d.open = true; }); await page.waitForTimeout(100);
   const grouped = await page.evaluate(() => [...document.querySelectorAll('[data-a="taskGroup"]')].map(b => b.dataset.v));
   assert(grouped.length >= 1, 'the same job three or more times shows once with a count: ' + grouped.join(','));
   await page.click(`[data-a="taskGroup"][data-v="${grouped[0]}"]`); await page.waitForTimeout(200);

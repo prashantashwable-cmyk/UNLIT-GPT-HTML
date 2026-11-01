@@ -122,6 +122,7 @@ textarea.in{min-height:96px;resize:vertical}
 .photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
 .ph-th{position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;background:#ccc;border:0;padding:0;display:block;width:100%}
 .ph-th img{width:100%;height:100%;object-fit:cover;display:block}
+img[data-m]{background:var(--line)} img[data-m]:not([src]){min-height:90px} .sigimg{aspect-ratio:3/1;object-fit:contain;max-width:100%}
 .ph-th .x{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.7);color:#fff;border:0;border-radius:50%;width:36px;height:36px;font-size:1rem}
 .ph-th .flag{position:absolute;bottom:3px;left:3px;font-size:.7rem;padding:1px 6px}
 .ph-th .vid{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2rem;color:#fff;text-shadow:0 1px 4px #000}
@@ -2702,6 +2703,50 @@ const L = {
   err_members: ['Write at least 2 different names, and a quorum between 1 and the number of members.', 'कम से कम 2 अलग नाम लिखें, और कोरम 1 से सदस्यों की संख्या तक।', 'किमान 2 वेगवेगळी नावे लिहा, आणि कोरम 1 ते सदस्यसंख्येपर्यंत.'],
   ev_SOC_SET: ['Society committee set', 'सोसायटी समिति बनी', 'सोसायटी समिती तयार'],
   ev_SOC_APPROVED: ['Committee member approved', 'समिति सदस्य ने मंज़ूरी दी', 'समिती सदस्याने मंजुरी दिली'],
+  err_cfg_range: ['Allowed: {a} to {b}.', 'अनुमति: {a} से {b} तक।', 'परवानगी: {a} ते {b}.'],
+  cfg_range: ['allowed {a}–{b}', 'अनुमति {a}–{b}', 'परवानगी {a}–{b}'],
+  err_cfg_order: ['Check the order: {x}.', 'क्रम जाँचें: {x}।', 'क्रम तपासा: {x}.'],
+  cfg_order_esc: ['reminder ≤ Admin ≤ Head Quarter days', 'रिमाइंडर ≤ एडमिन ≤ हेड क्वार्टर दिन', 'रिमाइंडर ≤ ॲडमिन ≤ हेड क्वार्टर दिवस'],
+  cfg_order_margin: ['lowest margin ≤ starting margin', 'न्यूनतम मार्जिन ≤ शुरुआती मार्जिन', 'किमान मार्जिन ≤ सुरुवातीचे मार्जिन'],
+  cfg_order_civil: ['civil low ≤ civil high', 'सिविल कम ≤ सिविल ज़्यादा', 'सिव्हिल कमी ≤ सिव्हिल जास्त'],
+  cfg_order_disc: ['Sales discount ≤ Admin discount', 'सेल्स छूट ≤ एडमिन छूट', 'सेल्स सवलत ≤ ॲडमिन सवलत'],
+  cfg_sundayWork: ['Sunday is a working day (1 = yes, 0 = no)', 'रविवार काम का दिन है (1 = हाँ, 0 = नहीं)', 'रविवार कामाचा दिवस आहे (1 = होय, 0 = नाही)'],
+  cfg_holidays: ['Holidays (dates like 2026-11-14, separated by commas)', 'छुट्टियाँ (तारीखें जैसे 2026-11-14, कॉमा से अलग)', 'सुट्ट्या (तारखा उदा. 2026-11-14, स्वल्पविरामाने वेगळ्या)'],
+  wk_days_note: ['Days are counted as working days: Sundays and holidays are not counted.', 'दिन काम के दिनों में गिने जाते हैं: रविवार और छुट्टियाँ नहीं गिनी जातीं।', 'दिवस कामाच्या दिवसांत मोजले जातात: रविवार व सुट्ट्या मोजल्या जात नाहीत.'],
+  waiting_t: ['Waiting for others', 'दूसरों का इंतज़ार', 'इतरांची वाट'],
+  waiting_sub: ['Nothing for you to do here yet; you will get a task when it is your turn.', 'अभी यहाँ आपको कुछ नहीं करना; आपकी बारी आने पर काम मिलेगा।', 'इथे अजून तुम्हाला काही करायचे नाही; तुमची पाळी आल्यावर काम मिळेल.'],
+  hs_why: ['Why is the customer signing on your phone?', 'ग्राहक आपके फ़ोन पर क्यों साइन कर रहे हैं?', 'ग्राहक तुमच्या फोनवर का सही करत आहेत?'],
+  hsw_noapp: ['Customer has no app', 'ग्राहक के पास ऐप नहीं', 'ग्राहकाकडे ॲप नाही'],
+  hsw_phone: ['Customer\'s phone not working', 'ग्राहक का फ़ोन काम नहीं कर रहा', 'ग्राहकाचा फोन चालत नाही'],
+  hsw_paper: ['Customer prefers to sign on paper', 'ग्राहक कागज़ पर साइन करना चाहते हैं', 'ग्राहकाला कागदावर सही करायची आहे'],
+  hs_paper_ph: ['Photo of the customer\'s signature on paper', 'कागज़ पर ग्राहक के हस्ताक्षर की फ़ोटो', 'कागदावरील ग्राहकाच्या सहीचा फोटो'],
+  hs_on_tech: ['signed on the technician\'s phone', 'टेक्नीशियन के फ़ोन पर साइन', 'तंत्रज्ञाच्या फोनवर सही'],
+  err_hs_reason: ['Choose why, and add a photo of the customer\'s paper signature.', 'कारण चुनें, और ग्राहक के कागज़ी हस्ताक्षर की फ़ोटो जोड़ें।', 'कारण निवडा, आणि ग्राहकाच्या कागदी सहीचा फोटो जोडा.'],
+  wk_tech_signed: ['Handovers signed on the technician\'s phone', 'टेक्नीशियन के फ़ोन पर साइन हुए हैंडओवर', 'तंत्रज्ञाच्या फोनवर सही झालेली हस्तांतरणे'],
+  ly_title: ['When did the customer say yes?', 'ग्राहक ने कब हाँ कहा?', 'ग्राहकाने कधी होकार दिला?'],
+  ly_note: ['The quotation has expired. If the customer agreed on or before {d} (and not more than 7 days ago), record that date: the deal is won at the quoted price and both dates are kept.', 'कोटेशन की मान्यता खत्म हो गई। अगर ग्राहक ने {d} तक हाँ कहा था (और 7 दिन से ज़्यादा पहले नहीं), वह तारीख दर्ज करें: सौदा उसी कीमत पर जीता जाएगा और दोनों तारीखें रहेंगी।', 'कोटेशनची वैधता संपली. ग्राहकाने {d} पर्यंत होकार दिला असेल (आणि 7 दिवसांपेक्षा जास्त आधी नाही), ती तारीख नोंदवा: सौदा त्याच किमतीत जिंकला जाईल आणि दोन्ही तारखा राहतील.'],
+  err_late_yes: ['The customer\'s yes must be within the quotation\'s validity and not more than 7 days ago. Make a new quotation.', 'ग्राहक की हाँ कोटेशन की मान्यता में और 7 दिन से ज़्यादा पुरानी नहीं होनी चाहिए। नया कोटेशन बनाएँ।', 'ग्राहकाचा होकार कोटेशनच्या वैधतेत आणि 7 दिवसांपेक्षा जुना नसावा. नवीन कोटेशन बनवा.'],
+  ly_won_on: ['customer agreed on {d}', 'ग्राहक ने {d} को हाँ कहा', 'ग्राहकाने {d} रोजी होकार दिला'],
+  prio_more: ['+{n} more need attention · tap to see all', '+{n} और पर ध्यान चाहिए · सब देखने के लिए टैप करें', '+{n} आणखींकडे लक्ष हवे · सर्व पाहण्यासाठी टॅप करा'],
+  prio_one: ['The most serious open item', 'सबसे गंभीर खुला काम', 'सर्वात गंभीर उघडे काम'],
+  prio_all: ['Needs attention now — all', 'अभी ध्यान दें — सभी', 'आता लक्ष द्या — सर्व'],
+  prio_see_all: ['See all', 'सभी देखें', 'सर्व पहा'],
+  sec_arrange: ['Arrange my home', 'मेरा होम व्यवस्थित करें', 'माझे होम लावा'],
+  sec_arrange_d: ['Pin up to 3 sections to the top. The rest follow in the order most useful for your role.', 'ऊपर 3 तक भाग पिन करें। बाकी आपकी भूमिका के लिए सबसे उपयोगी क्रम में।', 'वर 3 पर्यंत विभाग पिन करा. बाकी तुमच्या भूमिकेसाठी सर्वात उपयोगी क्रमाने.'],
+  sec_pinned: ['Pinned', 'पिन किया', 'पिन केले'],
+  sec_max: ['You can pin up to 3 sections.', 'आप 3 तक भाग पिन कर सकते हैं।', 'तुम्ही 3 पर्यंत विभाग पिन करू शकता.'],
+  gsearch: ['Find a job: number, name, mobile or lift code', 'काम खोजें: नंबर, नाम, मोबाइल या लिफ्ट कोड', 'काम शोधा: क्रमांक, नाव, मोबाईल किंवा लिफ्ट कोड'],
+  gsearch_none: ['No job matches.', 'कोई काम नहीं मिला।', 'कोणतेही काम जुळले नाही.'],
+  sy_title: ['Since yesterday', 'कल से', 'कालपासून'],
+  sy_pay: ['{n} payment(s) confirmed', '{n} भुगतान पुष्ट', '{n} पेमेंट पक्के'],
+  sy_tk: ['{n} ticket(s) closed', '{n} टिकट बंद', '{n} तिकिटे बंद'],
+  sy_leads: ['{n} new lead(s)', '{n} नई लीड', '{n} नवीन लीड'],
+  sy_people: ['{n} new person/request(s)', '{n} नए व्यक्ति/अनुरोध', '{n} नवीन व्यक्ती/विनंत्या'],
+  sy_late: ['{n} job(s) now late (escalated)', '{n} काम अब देरी में (एस्केलेट)', '{n} कामे आता उशिरा (एस्केलेट)'],
+  sy_won: ['{n} deal(s) won', '{n} सौदे जीते', '{n} सौदे जिंकले'],
+  sy_hand: ['{n} lift(s) handed over', '{n} लिफ्ट सौंपी', '{n} लिफ्ट हस्तांतरित'],
+  sy_quiet: ['Nothing new since yesterday.', 'कल से कुछ नया नहीं।', 'कालपासून काही नवीन नाही.'],
+  last_refused: ['Not saved', 'सेव नहीं हुआ', 'जतन झाले नाही'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4604,8 +4649,28 @@ const PRE_WON = ['new', 'returned', 'accepted', 'contacted', 'requirements', 'qu
 const SALES_TALK = ['accepted', 'contacted', 'requirements', 'quote_ready', 'quoted'];
 const OPEN_STAGES = STAGE_ORDER.filter(s => s !== 'lost' && s !== 'amc');
 const stageIdx = s => STAGE_ORDER.indexOf(s);
-const TEXT_CFG = ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc'];
-const TEXT_CFG_RE = { payUpi: /^[\w.\-]{2,}@[a-zA-Z]{2,}$/, payName: /^[^<>]{2,60}$/, payBank: /^[^<>]{2,60}$/, payAcc: /^\d{6,20}$/, payIfsc: /^[A-Z]{4}0[A-Z0-9]{6}$/ };
+const TEXT_CFG = ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc', 'holidays'];
+/* the lowest and highest value each business-rule number may take: checked by the rule, not only by the input box */
+const CFG_LIMITS = (() => {
+  const L = {}, set = (keys, a, b) => keys.forEach(k => { L[k] = [a, b]; });
+  set(['costAuto', 'costManual'], 10000, 10000000); set(['costPerStop', 'costSS', 'costDismantle', 'cap4', 'cap6', 'cap8', 'cap10', 'cap13', 'install', 'transport'], 0, 5000000);
+  set(['gst'], 0, 28); set(['targetMargin'], 1, 90); set(['minMargin'], 0, 90); set(['salesDiscountLimit', 'adminDiscountLimit'], 0, 50); set(['negStep'], 1, 25);
+  set(['token'], 0, 500000); set(['arrivalPct', 'cabinPct', 'leadWonPct', 'cancelBefore', 'cancelAfter', 'dupCommission', 'qcRecheckPct', 'spotTrainee', 'spotTech', 'spotSenior'], 0, 100);
+  set(['tokenMode', 'dailySafety', 'licenceGate', 'permitGate', 'peerCheck', 'checkinGate', 'dualControl', 'requireTraining', 'sundayWork'], 0, 1);
+  set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'civilMin', 'civilMax'], 0, 2000000);
+  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['poDays'], 1, 120);
+  set(['lvHelperJobs', 'lvTechJobs', 'lvSeniorJobs', 'lvQcJobs', 'lvHelperReviews', 'lvTechReviews', 'lvSeniorReviews', 'lvQcReviews', 'partnerBigJobs'], 0, 500);
+  set(['lvHelperStars', 'lvTechStars', 'lvSeniorStars', 'lvQcStars', 'partnerBigStars'], 0, 5); set(['lvTechTrust', 'lvSeniorTrust', 'lvQcTrust', 'lvSeniorPass', 'lvQcPass'], 0, 100);
+  set(['lvHelperDays', 'lvTechDays', 'lvSeniorDays'], 0, 3650); set(['strikeDays'], 1, 3650); set(['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior'], 0, 300);
+  set(['postWarnDays'], 0, 60); set(['maxOpenApps', 'maxActiveJobs'], 1, 50); set(['pinDigits'], 4, 6); set(['partnerMaxStrikes'], 1, 50); set(['licWarnDays'], 1, 365);
+  set(['tolWidth', 'tolDepth', 'tolPit', 'tolHead'], 300, 10000); set(['accessAlert'], 1, 1000); set(['geoRadius'], 20, 5000); set(['safetyRetest'], 0, 60);
+  set(['slaUnsafe', 'slaBreakdown', 'slaRepeat', 'slaRoutine'], 1, 720); set(['remindDays'], 0, 60); set(['escalateDays'], 1, 90); set(['escOwnerDays'], 1, 180); set(['onbDays'], 1, 90);
+  return L;
+})();
+/* rules that must stay in order with another rule; checked with the new value in place */
+const CFG_ORDER = [['remindDays', 'escalateDays', 'cfg_order_esc'], ['escalateDays', 'escOwnerDays', 'cfg_order_esc'], ['minMargin', 'targetMargin', 'cfg_order_margin'], ['civilMin', 'civilMax', 'cfg_order_civil'], ['salesDiscountLimit', 'adminDiscountLimit', 'cfg_order_disc']];
+const LIMITS_FROM = '2026-11-01T16:00:00.000Z';
+const TEXT_CFG_RE = { holidays: /^(\d{4}-\d\d-\d\d)(\s*,\s*\d{4}-\d\d-\d\d)*$/, payUpi: /^[\w.\-]{2,}@[a-zA-Z]{2,}$/, payName: /^[^<>]{2,60}$/, payBank: /^[^<>]{2,60}$/, payAcc: /^\d{6,20}$/, payIfsc: /^[A-Z]{4}0[A-Z0-9]{6}$/ };
 const PAY_STAGE = { token: 'signed', arrival: 'arrived', cabin: 'installing', final: 'final_pay' };
 /* the cabin payment is due before the car (cabin) step */
 const CABIN_STEP = 5;
@@ -4689,7 +4754,7 @@ const DEFAULT_CONFIG = {
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, qcRecheckPct: 10, spotTrainee: 50, spotTech: 20, spotSenior: 5,
   postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
-  remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
+  remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, sundayWork: 0, holidays: '', dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
 const RULE_GROUPS = {
@@ -4702,7 +4767,7 @@ const RULE_GROUPS = {
   install: ['installDays', 'poDays', 'poAnswerHours', 'geoRadius', 'checkinGate'],
   service: ['warrantyMonths', 'amcVisits', 'validityDays', 'civilMin', 'civilMax', 'cancelBefore', 'cancelAfter'],
   dup: ['dupCommission', 'refReward'],
-  control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'dualControl', 'requireTraining'],
+  control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'sundayWork', 'holidays', 'dualControl', 'requireTraining'],
   ladder: ['lvHelperJobs', 'lvHelperStars', 'lvHelperReviews', 'lvHelperDays', 'lvTechJobs', 'lvTechStars', 'lvTechReviews', 'lvTechTrust', 'lvTechDays',
     'lvSeniorJobs', 'lvSeniorPass', 'lvSeniorStars', 'lvSeniorReviews', 'lvSeniorTrust', 'lvSeniorDays', 'lvQcJobs', 'lvQcPass', 'lvQcStars', 'lvQcReviews', 'lvQcTrust', 'strikeDays'],
   market: ['postWarnDays', 'maxOpenApps', 'maxActiveJobs'],
@@ -4847,7 +4912,9 @@ const heldDays = (P, from, to) => (P.holds || []).filter(h => h.from).reduce((a,
 /* installation days used: from material handover to the given time, minus approved hold days */
 const installUsed = (P, to) => P.mhand ? Math.max(0, Math.floor((Date.parse(to || nowISO()) - Date.parse(P.mhand.t)) / 864e5 - heldDays(P, P.mhand.t, to || nowISO()))) : null;
 /* co-worker check: a step that needs another technician's look, still waiting */
-const peerWaiting = P => S.config.peerCheck ? PEER_STEPS.filter(i => P.sop[i] && !((P.peer || {})[i] || {}).ok) : [];
+/* a co-worker check needs someone else who may do it; a company with nobody else (one technician, no QC) is not held up forever */
+const peerAny = P => Object.values(S.users).some(u => u.active && u.uid !== P.tech && !peerWhyNot(u.uid, P));
+const peerWaiting = P => S.config.peerCheck && peerAny(P) ? PEER_STEPS.filter(i => P.sop[i] && !((P.peer || {})[i] || {}).ok) : [];
 function peerWhyNot(uid, P) {
   const u = S.users[uid]; if (!u || !u.active) return 'err_access';
   if (u.role === 'qc') return null;
@@ -5170,6 +5237,17 @@ function spotDue() {
   return out;
 }
 /* escalation ladder: 1 = reminder to the person, 2 = Admin, 3 = Owner (days are business rules) */
+/* working days: Sundays (unless the Owner made Sunday a working day) and the Owner's holidays are not counted */
+const holidaySet = () => new Set(String(S.config.holidays || '').split(',').map(x => x.trim()).filter(Boolean));
+const offDay = (d, hs) => (!+S.config.sundayWork && new Date(d + 'T12:00:00Z').getUTCDay() === 0) || hs.has(d);
+/* working days between two moments, counted in the company's time zone (fractions kept) */
+function workDays(from, to = Date.now()) {
+  let a = typeof from === 'number' ? from : Date.parse(from); if (!(a < to)) return 0;
+  const hs = holidaySet(); let ms = 0, guard = 0;
+  while (a < to && guard++ < 4000) { const d = coDay(a), next = Date.parse(d + 'T00:00:00Z') - CO_TZ + 864e5, end = Math.min(next, to); if (!offDay(d, hs)) ms += end - a; a = end; }
+  return ms / 864e5;
+}
+const workDaysSince = iso => Math.floor(workDays(iso));
 function escLevel(days, k) {
   const c = S.config, o = k === 'onboarding' ? [Math.ceil(c.onbDays / 2), c.onbDays, c.onbDays * 2] : [c.remindDays, c.escalateDays, c.escOwnerDays];
   return days >= o[2] ? 3 : days >= o[1] ? 2 : days >= o[0] ? 1 : 0;
@@ -5200,7 +5278,7 @@ function escUp(n, lv) {
 /* marks a waiting task with its level and returns the "work is stuck" task for the next level up, if any */
 function escFor(n, from, id) {
   const key = escKey(n.pid, n.k, id), ack = S.escAck[key];
-  const days = daysSince(ack && ack.reset && ack.reset > from ? ack.reset : from);
+  const days = workDaysSince(ack && ack.reset && ack.reset > from ? ack.reset : from);
   let lv = escLevel(days, n.k);
   if (ack && ack.n >= 2 && lv >= 2) lv = 3; /* the office acted twice and it is still stuck: Owner */
   n.level = Math.max(n.level || 0, lv); n.days = days;
@@ -5322,7 +5400,7 @@ const canUndo = id => !!App.me && !undoWhyNot(S, id, App.me.uid, nowISO());
 /* small teams: when no other active person holds the Sales, Finance or QC role a step needs, the Admin may do it (and gets the task); the Head Quarter only when there is no Admin;
    with such a person in the team the usual separation stays. Physical work (technician, supplier, partner, field) is never covered. */
 const COVER_ROLES = ['sales', 'finance', 'qc'];
-const COVER_EV = ['SUP_INVOICE_PAID', 'LEAD_ACCEPTED', 'LEAD_RETURNED', 'CONTACT_LOGGED', 'FOLLOWUP_SET', 'REQ_SAVED', 'QUOTE_CREATED', 'QUOTE_SENT', 'DEAL_WON', 'COUNTER_OFFER', 'AGREEMENT_PREPARED', 'AGREEMENT_SIGNED',
+const COVER_EV = ['LEAD_INFO_ADDED', 'SUP_INVOICE_PAID', 'LEAD_ACCEPTED', 'LEAD_RETURNED', 'CONTACT_LOGGED', 'FOLLOWUP_SET', 'REQ_SAVED', 'QUOTE_CREATED', 'QUOTE_SENT', 'DEAL_WON', 'COUNTER_OFFER', 'AGREEMENT_PREPARED', 'AGREEMENT_SIGNED',
   'PAYMENT_RECORDED', 'PAYMENT_STATUS', 'PREP_ITEM_DONE', 'QC_REQUESTED', 'QC_SITE_RESULT', 'QC_FINAL_RESULT', 'SURPRISE_DONE', 'VARIATION_SIGNED', 'VARIATION_DECLINED', 'REFUND_PROPOSED', 'REFUND_PAID', 'PAY_PAID', 'CUSTOMER_RATED', 'HANDOVER_SIGNED', 'CORRECTION_DONE'];
 /* the person a same-person rule keeps out (the one who recorded a payment, proposed a refund or approved pay) */
 function coverExcl(S, ev, P) {
@@ -5420,8 +5498,15 @@ const RULES = {
       if (!(d.key in DEFAULT_CONFIG)) return 'err_fill';
       if (d.from != null && (!isRateKey(d.key) || !/^\d{4}-\d\d-\d\d$/.test(d.from) || d.from < safeDay(ev.t))) return 'err_date';
       if (d.key === 'sosNumber' || d.key === 'officeNumber') return /^(\+?\d{3,15})?$/.test(String(d.value)) ? null : 'err_phone';
-      if (TEXT_CFG.includes(d.key)) return typeof d.value === 'string' && d.value.length <= 60 && (!d.value || TEXT_CFG_RE[d.key].test(d.value)) ? null : 'err_pay_detail';
-      return (typeof d.value === 'number' && isFinite(d.value) && d.value >= 0) ? null : 'err_number';
+      if (TEXT_CFG.includes(d.key)) return typeof d.value === 'string' && d.value.length <= (d.key === 'holidays' ? 600 : 60) && (!d.value || TEXT_CFG_RE[d.key].test(d.value)) ? null : 'err_pay_detail';
+      if (!(typeof d.value === 'number' && isFinite(d.value) && d.value >= 0)) return 'err_number';
+      /* settings saved before limits existed stay valid */
+      if (ev.t >= LIMITS_FROM) {
+        const lim = CFG_LIMITS[d.key]; if (lim && (d.value < lim[0] || d.value > lim[1])) return { k: 'err_cfg_range', v: { a: lim[0], b: lim[1] } };
+        const nv = Object.assign({}, S.config, { [d.key]: d.value }), bad = CFG_ORDER.find(([a, b]) => (a === d.key || b === d.key) && +nv[a] > +nv[b]);
+        if (bad) return { k: 'err_cfg_order', v: { x: t(bad[2]) } };
+      }
+      return null;
     }
   },
   SHIFT_STARTED: { roles: ['field'], check: (S, ev) => need(ev.data.safe === true, 'err_safe') },
@@ -5545,7 +5630,12 @@ const RULES = {
     }
   },
   QUOTE_SENT: { roles: ['sales'], project: true, stages: ['quote_ready'] },
-  DEAL_WON: { roles: ['sales'], project: true, stages: ['quoted'], check: (S, ev, u, P) => quoteExpired(lastQuote(P), ev.t) ? 'err_quote_expired' : null },
+  DEAL_WON: { roles: ['sales'], project: true, stages: ['quoted'], check: (S, ev, u, P) => {
+    const q = lastQuote(P); if (!quoteExpired(q, ev.t)) return null;
+    /* a customer who said yes before the expiry (recorded within 7 days) still wins at the quoted price */
+    const a = ev.data.agreedOn; if (!a) return 'err_quote_expired';
+    return /^\d{4}-\d\d-\d\d$/.test(a) && a >= safeDay(q.sent.t) && a <= quoteValidTill(q) && a <= safeDay(ev.t) && a >= safeDay(Date.parse(ev.t) - 7 * 864e5) ? null : 'err_late_yes';
+  } },
   /* refund after a cancelled job: Finance works it out from the cancellation rules, the Owner decides, Finance pays */
   REFUND_PROPOSED: { roles: ['finance'], project: true, stages: ['lost'], check: (S, ev, u, P) => !(P.lost && P.lost.reason === 'cancelled') || !paidTotal(P) || (P.refund && P.refund.status !== 'rejected') ? 'err_already' : !(+ev.data.amount >= 0 && +ev.data.amount <= paidTotal(P)) ? 'err_amount' : +ev.data.amount !== refundSuggest(P, ev.data.deduct || {}) && !(ev.data.note || '').trim() ? 'err_reason' : null },
   REFUND_DECIDED: { roles: ['owner', 'admin'], project: true, check: (S, ev, u, P) => !P.refund || P.refund.status !== 'proposed' ? 'err_already' : ev.data.ok === false ? need((ev.data.note || '').trim(), 'err_reason') : need(ev.data.ok === true, 'err_choose') },
@@ -5969,6 +6059,8 @@ const RULES = {
       if (!SLOTS.includes(s)) return 'err_choose';
       if (P.hand[s]) return 'err_already';
       if (s === 'customer' && !(u.role === 'customer' || (u.role === 'tech' && P.tech === u.uid))) return 'err_access';
+      /* the customer signing on the technician's phone: a reason and a photo of their signature on paper (records before this rule stay valid) */
+      if (s === 'customer' && u.role !== 'customer' && ev.t >= LIMITS_FROM && (!['noapp', 'phone', 'paper'].includes(ev.data.why) || ev_(ev.data, 'photo').length < 1)) return 'err_hs_reason';
       if (s === 'tech' && !(u.role === 'tech' && P.tech === u.uid)) return { k: 'err_role', v: { roles: rolesTxt(['tech']) } };
       if (s === 'qc' && P.qc && P.qc !== u.uid && isActive(P.qc)) return 'err_not_your_qc';
       if (s === 'qc' && u.role !== 'qc' && !ownerCovers(S, RULES.HANDOVER_SIGNED, ev, u, P)) return { k: 'err_role', v: { roles: rolesTxt(['qc']) } };
@@ -6586,7 +6678,7 @@ function apply(S, ev) {
     case 'OPT_OUT': { const o = P.optOut = P.optOut || {}; (d.channel === 'all' ? ['call', 'whatsapp'] : [d.channel]).forEach(c => { o[c] = { t: ev.t, by: ev.by, note: d.note || '' }; }); break; }
     case 'COUNTER_OFFER': (P.counters = P.counters || []).push({ amount: +d.amount, note: d.note || '', by: ev.by, t: ev.t, qv: (lastQuote(P) || {}).v }); break;
     case 'QUOTE_SENT': { const q = lastQuote(P); q.sent = { t: ev.t, by: ev.by, channel: d.channel }; setStage(P, 'quoted', ev); break; }
-    case 'DEAL_WON': { const q = lastQuote(P); q.accepted = { t: ev.t, by: ev.by }; P.schedule = paySchedule(S.config, q.total); P.schedule.quoteV = q.v; P.followUp = null; setStage(P, 'won', ev); break; }
+    case 'DEAL_WON': { const q = lastQuote(P); q.accepted = Object.assign({ t: ev.t, by: ev.by }, d.agreedOn ? { on: d.agreedOn } : {}); P.schedule = paySchedule(S.config, q.total); P.schedule.quoteV = q.v; P.followUp = null; setStage(P, 'won', ev); break; }
     case 'DEAL_LOST': P.lost = { reason: d.reason, note: d.note || '', by: ev.by, t: ev.t }; P.followUp = null; setStage(P, 'lost', ev); break;
     case 'PROJECT_CANCELLED': {
       P.lost = { reason: 'cancelled', note: d.reason, by: ev.by, t: ev.t, from: P.stage }; P.followUp = null;
@@ -6738,7 +6830,7 @@ function apply(S, ev) {
       setStage(P, d.outcome === 'pass' ? 'final_pay' : 'install_fix', ev);
       break;
     }
-    case 'HANDOVER_SIGNED': P.hand[d.slot] = { t: ev.t, by: ev.by, signer: d.signer, sig: ev_(d, 'sign')[0].id, inPerson: d.slot === 'customer' && roleOf(ev.by) !== 'customer' }; break;
+    case 'HANDOVER_SIGNED': P.hand[d.slot] = { t: ev.t, by: ev.by, signer: d.signer, sig: ev_(d, 'sign')[0].id, inPerson: d.slot === 'customer' && roleOf(ev.by) !== 'customer', why: d.why || '', paper: (ev_(d, 'photo')[0] || {}).id || null }; break;
     case 'HANDOVER_COMPLETED': {
       const start = ev.t.slice(0, 10), n = Math.max(1, S.config.amcVisits), gap = Math.round(365 / n);
       P.done = { team: { lead: leadAt(P, passEntry(P)), crew: crewAt(P, passEntry(P)).slice(), partner: (passEntry(P) || {}).partner || P.partner || null }, t: ev.t, by: ev.by, warrantyMonths: S.config.warrantyMonths, amc: { start, visits: Array.from({ length: n }, (_, i) => addDays(gap * (i + 1), new Date(ev.t))) } };
@@ -6966,7 +7058,7 @@ function needs(P) {
       if (q && !Object.values(S.users).some(x => x.active && x.uid !== q.by && ['owner', 'admin'].includes(x.role)) && !backupNow()) add('withdraw_quote', [roleOf(q.by)], { uids: [q.by], urgent: true });
       break;
     case 'quote_ready': add('send_quote', ['sales'], { uids: [P.sales] }); break;
-    case 'quoted': add(quoteExpired(q) ? 'requote' : 'get_decision', ['sales'], { uids: [P.sales], urgent: quoteExpired(q) }); break;
+    case 'quoted': add(quoteExpired(q) && quoteValidTill(q) < addDays(-7) ? 'requote' : 'get_decision', ['sales'], { uids: [P.sales], urgent: quoteExpired(q) }); break;
     case 'won': add('prepare_agreement', ['sales'], { uids: [P.sales] }); break;
     case 'agreement': add('sign_agreement', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
     case 'signed': payNeed('token'); break;
@@ -7073,11 +7165,13 @@ function needs(P) {
   if (P.recheck && !P.recheck.done) add('qc_recheck', ['qc'], { not: P.recheck.first, since: P.recheck.t });
   if (P.recheck && P.recheck.done && P.recheck.done.result === 'fail' && !P.recheck.reviewed) add('recheck_failed', ['admin', 'owner'], { urgent: true, since: P.recheck.done.t });
   coverTasks(P, out);
+  /* waiting for someone else is information for the waiting person, not a task they could act on */
+  for (const n of out) if (WAIT_TASKS.includes(n.k)) n.info = true;
   /* escalation ladder: the main next step counts from the day the stage began, other work from its own date */
-  const main = out.find(x => !['chat_obstacle', 'chat_obstacle_late', 'chat_followup', 'chat_appt', 'appt_today', 'plan_today', 'mhand_cust_wait', 'approve_invoice', 'pay_invoice', 'review_checkin', 'sla_breach', 'po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
+  const main = out.find(x => !['chat_obstacle', 'chat_obstacle_late', 'chat_followup', 'chat_appt', 'appt_today', 'plan_today', 'mhand_cust_wait', 'approve_invoice', 'pay_invoice', 'review_checkin', 'sla_breach', 'po_late', 'decide_claim', 'send_claim', 'receive_claim', 'wait_peer', 'wait_cabin_pay', 'wait_permit', 'wait_serial', 'resolve_blocker', 'resolve_incident', 'answer', 'follow_up', 'assign_ticket', 'work_ticket', 'confirm_ticket', 'amc_visit', 'amc_renew'].includes(x.k));
   if (main && OPEN_STAGES.includes(P.stage) && !main.since) Object.assign(main, { since: lastHoldEnd(P) > P.since ? lastHoldEnd(P) : P.since, escId: P.stage });
   const blocked = P.blockers.some(b => b.open) || P.incidents.some(i => i.open) || onHold(P);
-  for (const n of out.slice()) if (n.since && !(blocked && n === main)) { const e = escFor(n, n.since, n.escId || n.bid || n.iid || n.tid || n.mid || n.payId || n.visit); if (e) out.push(e); }
+  for (const n of out.slice()) if (n.since && !n.info && !(blocked && n === main)) { const e = escFor(n, n.since, n.escId || n.bid || n.iid || n.tid || n.mid || n.payId || n.visit); if (e) out.push(e); }
   return out;
 }
 function coverTasks(P, out) {
@@ -7184,9 +7278,12 @@ function isMine(n, u) {
   return ids.length ? ids.includes(u.uid) : true;
 }
 function visibleProjects(u) { return S.order.map(id => S.projects[id]).filter(P => canSee(u, P)); }
+const WAIT_TASKS = ['wait_peer', 'wait_permit', 'wait_serial', 'wait_cabin_pay'];
+/* things a person is waiting for (shown as information, never counted as their work) */
+function myWaits(u) { const out = []; for (const P of visibleProjects(u)) for (const n of needs(P)) if (n.info && isMine(n, u)) out.push(n); return out; }
 function myTasks(u) {
   const out = [];
-  for (const P of visibleProjects(u)) for (const n of needs(P)) if (isMine(n, u)) out.push(n);
+  for (const P of visibleProjects(u)) for (const n of needs(P)) if (!n.info && isMine(n, u)) out.push(n);
   out.push(...globalNeeds(u));
   const w = n => (n.urgent ? 0 : 2) + (n.overdue ? -1 : 0) - (n.level || 0) + (n.k === 'training' ? 3 : 0);
   const since = n => n.pid && S.projects[n.pid] ? S.projects[n.pid].since : '9';
@@ -7315,7 +7412,7 @@ async function perform(type, pid, data, opt = {}) {
     return r;
   }
   if (err) { if (!opt.quiet) toast(errText(err), true); return { ok: false, err }; }
-  apply(S, ev); EVENTS.push(ev);
+  apply(S, ev); EVENTS.push(ev); App.lastErr = null;
   if (type === 'UNDONE') S = rebuild(EVENTS);
   if (UNDOABLE.includes(type) && !opt.as) App.lastDone = ev.id;
   if (!opt.noSave) { await saveAll(); if (App.me) Notify.check({ silent: true }); Sync.soon(); if (EVENTS.length - snapK >= SNAP_EVERY) setTimeout(() => snapSave(), 500); }
@@ -7413,7 +7510,7 @@ function render() {
   document.body.classList.toggle('guard', guard);
   const wm = guard ? `<div class="wm" aria-hidden="true">${Array.from({ length: 24 }, () => `<span>${esc(App.me.name)} · ${esc(App.me.uid.slice(-4))} · ${todayStr()}</span>`).join('')}</div>` : '';
   const cr = App.me && (App.critOpen || []).length && !gated ? `<div class="critbar noprint" role="alert"><span style="font-size:1.4rem">🚨</span><b class="grow">${t('crit_title', { n: App.critOpen.length })}: ${esc(t('tk_' + App.critOpen[0].k))}${App.critOpen[0].pid ? ' · ' + esc(App.critOpen[0].pid) : ''}</b><button class="btn btn-sm" data-a="critGo">▶ ${t('open')}</button><button class="btn btn-sm" data-a="critAck">✋ ${t('crit_ack')}</button></div>` : '';
-  $('#app').innerHTML = banner + cr + h + sos + wm;
+  $('#app').innerHTML = banner + cr + errBar() + h + sos + wm;
   Wake.sync();
   if (sos) bindSos();
   document.documentElement.lang = LANG;
@@ -7434,11 +7531,14 @@ function loadImages(root) {
 /* ---------- toast / sheets ---------- */
 let toastTimer;
 function toast(msg, bad) {
+  /* a refusal stays at the top of the screen until the next saved action (or ✕), so the reason is never lost */
+  if (bad && App.me) { App.lastErr = { msg: String(msg), t: Date.now() }; const b = $('#errbar'); if (b) b.outerHTML = errBar(); else { const a = $('#app'); if (a && a.firstChild) a.insertAdjacentHTML('afterbegin', errBar()); } }
   const el = $('#toast');
   el.innerHTML = `<div class="toast ${bad ? 'bad' : ''}">${bad ? '⚠️ ' : '✅ '}${esc(msg)}</div>`;
   clearTimeout(toastTimer); toastTimer = setTimeout(() => { el.innerHTML = ''; }, bad ? 5000 : 3000);
   if (bad && App.set.autoRead) Voice.say(msg);
 }
+const errBar = () => App.lastErr && App.me ? `<div id="errbar" class="noprint" role="alert" style="background:#fdecea;color:#7a1010;border-bottom:2px solid var(--bad);padding:8px 12px;display:flex;gap:8px;align-items:center"><b>⚠️ ${t('last_refused')}:</b><span class="grow">${esc(App.lastErr.msg)}</span><button class="ib" data-a="errClose" aria-label="✕">✕</button></div>` : '';
 function sheet(html) {
   $('#ov').innerHTML = `<div class="sheet" data-a="sheetBg"><div class="sheet-in" role="dialog" aria-modal="true">${html}<button class="btn" style="margin-top:12px" data-a="closeSheet">✖ ${t('close')}</button></div></div>`;
   App.ovClose = closeSheet;
@@ -7826,7 +7926,7 @@ function timeOf(n, P) {
   const from = n.since || (onbU && onbU.t) || (P && P.since) || (n.days != null ? new Date(Date.now() - n.days * 864e5).toISOString() : null); if (!from) return null;
   const c = S.config, onb = ['training', 'onb_profile', 'check_docs'].includes(n.k), lim = n.k === 'escalated' ? +c.escOwnerDays : onb ? +c.onbDays : +c.escalateDays;
   if (!(lim > 0)) return null;
-  const d = Math.max(0, (now - Date.parse(from)) / 864e5), day = Math.floor(d) + 1;
+  const d = workDays(from, now), day = Math.floor(d) + 1;
   if (cust) return { pct: d / lim * 100, label: d >= lim ? t('tb_over_late', { n: Math.floor(d - lim) + 1 }) : t('tb_day', { d: day, m: lim }) };
   /* who it goes to: the same level the escalation chip shows (after the limit), or the next one (before it) */
   const lv = Math.max(n.level || 0, escLevel(Math.floor(d), onb ? 'onboarding' : n.k)), at = d >= lim ? Math.max(2, lv) : 2;
@@ -7901,8 +8001,13 @@ function taskCard(n, i) {
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}${taskBars(n, null)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
   return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
-    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}${esc(sub)}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span><br>
-    ${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${n.overdue ? `<span class="chip c-bad">⏰ ${t('overdue')}</span> ` : ''}<span class="chip c-mute">🕒 ${t('days_n', { n: n.days != null ? n.days : daysSince(P.since) })}</span> ${escChip(n)}${n.k === 'escalated' && n.who ? ` <span class="chip c-warn">${esc(t('waiting_for', { who: escWho(n) }))}</span>` : ''}${taskBars(n, P)}</span><span class="go" aria-hidden="true">▶</span></button>`;
+    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + (n.k === 'escalated' ? n.ref : n.k)))}${esc(sub)}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span>${whyNow(n)}${taskBars(n, P)}</span><span class="go" aria-hidden="true">▶</span></button>`;
+}
+/* the third line of a task card: one reason why it matters now (or nothing) */
+function whyNow(n) {
+  const c = n.k === 'escalated' ? `${escChip(n)}${n.who ? ` <span class="chip c-warn">${esc(t('waiting_for', { who: escWho(n) }))}</span>` : ''}`
+    : n.level ? escChip(n) : n.overdue ? `<span class="chip c-bad">⏰ ${t('overdue')}</span>` : n.urgent ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span>` : '';
+  return c ? '<br>' + c : '';
 }
 /* escalation level as words and an icon, never colour alone */
 function escChip(n) {
@@ -8469,11 +8574,14 @@ WIZ.send = {
 };
 WIZ.decision = {
   title: 'tk_get_decision', save: 'save',
-  init: () => ({ dec: '', due: '', reason: '' }),
+  init: () => ({ dec: '', due: '', reason: '', agreedOn: '' }),
   steps: [
     { id: 'dec', icon: '🤝', say: 's_decision', body: (c, P) => (quoteExpired(lastQuote(P)) ? `<div class="err">⏰ ${t('quote_expired', { d: fmtD(quoteValidTill(lastQuote(P))) })}</div>` : `<div class="note">⏰ ${t('quote_valid_till', { d: fmtD(quoteValidTill(lastQuote(P))) })}</div>`) + negHistory(P) + `<div class="card">${quoteBox(lastQuote(P), false)}</div>` + contactButtons(P, 'quote') + tiles('dec', [['yes', '🎉', 'dec_yes'], ['lower', '💬', 'dec_lower'], ['later', '⏰', 'dec_later'], ['no', '🙁', 'dec_no']], 'one'), check: c => c.dec ? null : 'err_choose' },
     { id: 'when', icon: '📅', say: 's_call_when', skip: c => c.dec !== 'later', body: () => dateTiles('due'), check: c => /^\d{4}-\d\d-\d\d$/.test(c.due) ? null : 'err_date' },
     { id: 'lost', icon: '🙁', say: 's_lost_why', skip: c => c.dec !== 'no', body: () => tiles('reason', LOST_REASONS, 'one'), check: c => c.reason ? null : 'err_reason' },
+    { id: 'lateyes', icon: '📅', say: 'ly_title', skip: (c, P) => c.dec !== 'yes' || !quoteExpired(lastQuote(P)),
+      body: (c, P) => `<div class="note">${t('ly_note', { d: fmtD(quoteValidTill(lastQuote(P))) })}</div>` + inp('agreedOn', 'ly_title', { type: 'date' }),
+      check: (c, P) => { const q = lastQuote(P), a = c.agreedOn; return /^\d{4}-\d\d-\d\d$/.test(a) && a >= safeDay(q.sent.t) && a <= quoteValidTill(q) && a <= todayStr() && a >= addDays(-7) ? null : 'err_late_yes'; } },
     {
       id: 'yes', icon: '🎉', say: 's_decision_yes', skip: c => c.dec !== 'yes',
       body: (c, P) => { const q = lastQuote(P), s = paySchedule(S.config, q.total); return `<div class="card">${kv([['q_total', money(q.total)], ['pay_token', money(s.token)], ['pay_arrival', money(s.arrival)], ['pay_final', money(s.final)]])}<div style="margin-top:6px">${ruleChip('token')} ${ruleChip('milestones')}</div></div>`; }
@@ -8481,8 +8589,7 @@ WIZ.decision = {
   ],
   async finish(c, P) {
     if (c.dec === 'lower') return { ok: true, go: () => wiz('counter', P.id) };
-    if (c.dec === 'yes' && quoteExpired(lastQuote(P))) return { ok: false, err: 'err_quote_expired' };
-    const r = c.dec === 'yes' ? await run([['DEAL_WON', P.id, {}]]) : c.dec === 'later' ? await run([['FOLLOWUP_SET', P.id, { due: c.due }]]) : await run([['DEAL_LOST', P.id, { reason: c.reason }]]);
+    const r = c.dec === 'yes' ? await run([['DEAL_WON', P.id, quoteExpired(lastQuote(P)) ? { agreedOn: c.agreedOn } : {}]]) : c.dec === 'later' ? await run([['FOLLOWUP_SET', P.id, { due: c.due }]]) : await run([['DEAL_LOST', P.id, { reason: c.reason }]]);
     return r.ok ? doneRes(P.id, { yes: 'what_won', later: 'what_followup', no: 'what_lost' }[c.dec]) : r;
   }
 };
@@ -9387,13 +9494,17 @@ WIZ.qcfinal = {
 /* ---------- Handover signatures ---------- */
 WIZ.hsign = {
   title: 'tk_sign_handover', save: 'save_signature', saveIcon: '✍️',
-  init: (P, o) => ({ consent: false, signer: o.slot === 'customer' ? P.contact.name : App.me.name, sig: null }),
+  init: (P, o) => ({ consent: false, signer: o.slot === 'customer' ? P.contact.name : App.me.name, sig: null, why: '', paper: [] }),
   steps: [
+    { id: 'why', icon: '📱', say: 'hs_why', skip: () => !(W.opts.slot === 'customer' && App.me.role !== 'customer'),
+      body: () => tiles('why', [['noapp', '📵', 'hsw_noapp'], ['phone', '📴', 'hsw_phone'], ['paper', '📝', 'hsw_paper']], 'one') + photoSlot('paper', 'hs_paper_ph', 1, { tag: 'handover' }),
+      check: c => c.why && c.paper.length ? null : 'err_hs_reason' },
     { id: 'read', icon: '🔑', say: () => t('s_hs_' + W.opts.slot), body: (c, P) => `<div class="card">${handoverSummary(P)}</div>` + toggleTile('consent', '⬜', 'hs_consent_' + W.opts.slot), check: c => c.consent ? null : 'err_consent' },
     { id: 'name', icon: '👤', say: 's_sign_name', body: () => inp('signer', 'f_signer_name', { mic: true }), check: c => (c.signer || '').trim() ? null : 'err_fill' },
     { id: 'sign', icon: '✍️', say: 's_sign_pad', body: () => signSlot('sig', 'slot_' + W.opts.slot) + (W.opts.slot === 'customer' && App.me.role !== 'customer' ? `<div class="note">${t('in_person_note')}</div>` : ''), check: c => c.sig ? null : 'err_sign' }
   ],
-  async finish(c) { const r = await run([['HANDOVER_SIGNED', W.pid, { slot: W.opts.slot, consent: true, signer: c.signer.trim(), ev: [c.sig] }]]); return r.ok ? backToList(W.pid, 'handover', 'saved_signature') : r; }
+  async finish(c) { const proxy = W.opts.slot === 'customer' && App.me.role !== 'customer';
+    const r = await run([['HANDOVER_SIGNED', W.pid, Object.assign({ slot: W.opts.slot, consent: true, signer: c.signer.trim(), ev: [c.sig].concat(proxy ? c.paper : []) }, proxy ? { why: c.why } : {})]]); return r.ok ? backToList(W.pid, 'handover', 'saved_signature') : r; }
 };
 /* ---------- project-page actions ---------- */
 WIZ.correct = {
@@ -9944,29 +10055,87 @@ SCREENS.home = () => {
     open.forEach(P => { h += `<button class="task" style="margin-top:10px" data-a="wizOpen" data-v="techEnd|${P.id}"><span class="ti">🏁</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_end_day')}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span></span><span class="go">▶</span></button>`; }); }
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))}${tasks[0].pid ? ' · ' + esc(tasks[0].pid) : ''}</p>`;
   else h += `<div class="card center"><div class="big-i">☕</div><b>${t('no_tasks')}</b><p class="muted">${t(u.role === 'field' ? 'no_tasks_field' : 'no_tasks_other')}</p></div>`;
+  { const ws = myWaits(u); if (ws.length) h += `<div class="note" style="margin-top:10px"><b>⏳ ${t('waiting_t')}</b>${ws.map(n => `<div class="small">${esc(t('tk_' + n.k))}${n.pid ? ' · ' + esc(n.pid) : ''}</div>`).join('')}<span class="small muted">${t('waiting_sub')}</span></div>`; }
   if (u.role === 'field' || u.role === 'sales') h += `<button class="btn btn-big ${tasks.length ? '' : 'btn-p'}" style="margin-top:12px" data-a="addSite"><span class="i">➕</span>${t('add_site')}</button>`;
   if (adm && Object.keys(S.users).length < 3) h += `<div class="warnbox" style="margin-top:12px">👥 ${t('add_team_hint')}<br><button class="btn btn-p" style="margin-top:8px" data-a="nav" data-v="users">➕ ${t('add_person')}</button></div>`;
-  if (adm || isBackup(u.uid)) h += excBanner();
-  if (adm) h += escBanner();
-  if (hot.length) h += `<h2 class="sec">⚠️ ${t('urgent_now')} (${hot.length})</h2>` + taskList(hot);
-  if (rest.length) h += fold('tasks', t(hot.length ? 'other_work' : 'my_tasks'), taskUnits(rest).join(''), { icon: '📋', count: rest.length, sub: t('fold_tap') });
-  if (!onboarding(u.uid).ready) { const ob = onboarding(u.uid), lv = escLevel(daysSince(u.t), 'onboarding');
+  if (adm) {
+    /* office home: what changed, one urgent strip, one search, then sections in the person's order */
+    h = h.replace('<main class="wrap">' + hero(u), '<main class="wrap">' + hero(u) + sinceYesterday());
+    h += prioStrip(u, hot) + gsearch();
+  } else {
+    if (isBackup(u.uid)) h += excBanner();
+    if (hot.length) h += `<h2 class="sec">⚠️ ${t('urgent_now')} (${hot.length})</h2>` + taskList(hot);
+  }
+  const secs = [];
+  if (adm && tasks.length) secs.push(['tasks', fold('tasks', t('my_tasks'), taskList(idx), { icon: '📋', count: tasks.length, alert: hot.length > 0, sub: t('fold_tap') })]);
+  else if (rest.length) h += fold('tasks', t(hot.length ? 'other_work' : 'my_tasks'), taskUnits(rest).join(''), { icon: '📋', count: rest.length, sub: t('fold_tap') });
+  if (!onboarding(u.uid).ready) { const ob = onboarding(u.uid), lv = escLevel(workDaysSince(u.t), 'onboarding');
     h += fold('onb', t('onb_title'), onbCard(u.uid, { short: true, bare: true }), { icon: '🪪', sub: t('onb_progress', { n: ob.done, m: ob.total }), open: lv >= 2 || daysSince(u.t) < 7, alert: lv >= 2 }); }
+  const hs = h.length;
   if (u.role === 'owner' && hasAdmin()) { const aw = allOpenWork(); h += fold('allwork', t('all_work'), allWorkCard(aw), { icon: '👀', count: aw.length, sub: t('all_work_sub') }); }
   if (jqWho(u) && newPeople().length) h += fold('newpeople', t('nw_title'), newPeople().map(newPersonRow).join(''), { icon: '👋', count: newPeople().length, sub: t('nw_sub'), alert: newPeople().some(x => newStuck(x) >= 2) });
   if (jqWho(u) && pendingEnqs().length) h += `<button class="task" data-a="eqList"><span class="ti">🛗</span><span class="grow" style="flex:1;min-width:0"><b>${t('eq_title')} (${pendingEnqs().length})</b><br><span class="small muted">${t('jq_home_sub')}</span></span></button>`;
   if (jqWho(u) && pendingJoins().length) h += `<button class="task" data-a="nav" data-v="joins"><span class="ti">🧰</span><span class="grow" style="flex:1;min-width:0"><b>${t('jq_title')} (${pendingJoins().length})</b><br><span class="small muted">${t('jq_home_sub')}</span></span></button>`;
   if (adm && openReports().length) { const n = openReports().length, urgent = openReports().some(x => x.problem === 'stopped'); h += `<button class="task ${urgent ? 'urgent' : ''}" data-a="nav" data-v="reports"><span class="ti">📨</span><span class="grow" style="flex:1;min-width:0"><b>${t('rp_title')} (${n})</b><br><span class="small muted">${t('rp_say')}</span></span></button>`; }
-  if (adm) h += waitsLine();
   if (adm) { const qn = queueRows().filter(r => r.n).length;
-    h += fold('queues', t('queues'), queuesCard(true), { icon: '🗂️', count: qn, alert: qn > 0, sub: t('fold_tap') });
-    h += fold('dash', t(u.role === 'owner' ? 'owner_dash' : 'admin_dash'), dashboard(true), { icon: '📊', sub: t('fold_tap') }); }
+    /* the office sections collected above are put in the person's order (pinned first) */
+    const mid = h.slice(hs); h = h.slice(0, hs);
+    const take = (re) => { const m = mid.match(re); return m ? m[0] : ''; };
+    secs.push(['allwork', take(/<details class="fold" data-fold="allwork"[\s\S]*?<\/details>/)], ['newpeople', take(/<details class="fold" data-fold="newpeople"[\s\S]*?<\/details>/)],
+      ['enq', take(/<button class="task" data-a="eqList"[\s\S]*?<\/button>/)], ['joins', take(/<button class="task" data-a="nav" data-v="joins"[\s\S]*?<\/button>/)],
+      ['reports', take(/<button class="task[^"]*" data-a="nav" data-v="reports"[\s\S]*?<\/button>/)], ['waits', waitsLine()],
+      ['queues', excBanner() + fold('queues', t('queues'), queuesCard(true), { icon: '🗂️', count: qn, alert: qn > 0, sub: t('fold_tap') })],
+      ['dash', fold('dash', t(u.role === 'owner' ? 'owner_dash' : 'admin_dash'), dashboard(true), { icon: '📊', sub: t('fold_tap') })]);
+    h += orderSecs(u, secs) + `<button class="btn btn-sm" style="margin-top:12px" data-a="arrange">📌 ${t('sec_arrange')}</button>`; }
   if (['partner', 'qc'].includes(u.role)) { const n = myOpenJobs(u.uid).length; h += `<button class="task" style="margin-top:12px" data-a="nav" data-v="jobs"><span class="ti">🧰</span><span class="grow" style="flex:1;min-width:0"><b>${t('jobs_title')}</b><span class="small muted">${t(n ? 'jobs_n' : 'jobs_none_short', { n })}</span></span>${n ? `<span class="chip c-info">${n}</span>` : ''}<span class="go">▶</span></button>`; }
   if (gradeOf(u.uid)) { const st = ladderStatus(u.uid);
     h += fold('ladder', t('ladder_title'), ladderCard(u.uid, { short: true, bare: true }), { icon: GRADE_ICON[st.grade], sub: t('gr_' + st.grade) + (st.next ? ' → ' + t('gr_' + st.next) + ' · ' + t(st.ready ? 'ladder_ready_short' : 'ladder_left', { n: st.left }) : ''), open: st.left === 1 || st.ready, alert: st.ready }); }
   if (u.role === 'field') h += fold('score', t('my_score_t'), fieldScore(), { icon: '🏅' });
   return h + '</main>' + nav('home');
 };
+/* one strip for everything urgent: the most serious open item and how many more (the SOS button stays where it is) */
+function prioItems(u, hot) {
+  const adm = ['owner', 'admin'].includes(u.role), q = officeLike(u) ? officeQueue() : [], es = adm ? allEscalations().list : [], seen = new Set(), out = [];
+  const push = (n, sev, go, task) => { const key = (n.pid || '') + '|' + (n.k === 'escalated' ? n.ref : n.k) + '|' + (n.tid || n.uid || ''); if (seen.has(key)) return; seen.add(key); out.push({ n, sev, go, task }); };
+  q.filter(n => n.exc === 'critical').forEach(n => push(n, 4, 'exceptions'));
+  es.filter(n => n.level >= 3).forEach(n => push(n, 3, 'escalations'));
+  hot.filter(([n]) => n.urgent && (n.alarm || n.level >= 2)).forEach(([n, i]) => push(n, 3, null, i));
+  es.filter(n => n.level < 3).forEach(n => push(n, 2, 'escalations'));
+  q.filter(n => n.exc === 'high').forEach(n => push(n, 2, 'exceptions'));
+  hot.forEach(([n, i]) => push(n, 1, null, i));
+  return out;
+}
+const prioBtn = (x, extra = '') => `<button class="task ${x.sev >= 3 ? 'urgent' : ''}" ${x.task != null ? `data-a="openTask" data-v="${x.task}"` : `data-a="nav" data-v="${x.go}"`}><span class="ti">${x.sev >= 4 ? '🔴' : x.sev >= 3 ? '⏫' : x.sev >= 2 ? '🟠' : '⚠️'}</span><span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + (x.n.k === 'escalated' ? x.n.ref : x.n.k)))}${x.n.pid ? ' · ' + esc(x.n.pid) : ''}</b>${extra}</span><span class="go">▶</span></button>`;
+function prioStrip(u, hot) {
+  const items = prioItems(u, hot); App.prioHot = hot; if (!items.length) return '';
+  return `<div id="prio" style="margin-top:12px">${prioBtn(items[0], `<span class="small muted">${items.length > 1 ? '' : t('prio_one')}</span>`)}${items.length > 1 ? `<button class="btn btn-sm" style="margin-top:4px" data-a="prioAll">⚠️ ${t('prio_more', { n: items.length - 1 })}</button>` : ''}</div>`;
+}
+/* office home sections: each person may pin up to 3 to the top; the rest follow the order most useful for the role */
+const SEC_ORDER = { owner: ['dash', 'queues', 'tasks', 'reports', 'enq', 'joins', 'allwork', 'newpeople', 'waits', 'onb'], admin: ['queues', 'tasks', 'reports', 'enq', 'joins', 'newpeople', 'waits', 'allwork', 'dash', 'onb'] };
+const homeSecKeys = u => SEC_ORDER[u.role] || [];
+const secTitle = k => ({ dash: t(App.me.role === 'owner' ? 'owner_dash' : 'admin_dash'), queues: t('queues'), tasks: t('my_tasks'), reports: t('rp_title'), enq: t('eq_title'), joins: t('jq_title'), allwork: t('all_work'), newpeople: t('nw_title'), waits: t('wj_title'), onb: t('onb_title') })[k] || k;
+function orderSecs(u, secs) {
+  const pins = (App.set.pins || {})[u.uid] || [], ord = homeSecKeys(u), rank = k => pins.includes(k) ? pins.indexOf(k) - 100 : ord.indexOf(k) < 0 ? 99 : ord.indexOf(k);
+  return secs.filter(x => x[1]).sort((a, b) => rank(a[0]) - rank(b[0])).map(x => x[1]).join('');
+}
+/* one search for the office: job number, customer name, mobile, address or lift code */
+function gsearch() {
+  const q = String(App.form.gq || '').trim().toLowerCase(), digits = q.replace(/\D/g, '');
+  let res = '';
+  if (q.length >= 2) {
+    const hit = visibleProjects(App.me).filter(P => [P.id, P.contact.name, P.site.address, P.lift && P.lift.code].join(' ').toLowerCase().includes(q) || (digits.length >= 4 && String(P.contact.phone || '').includes(digits)));
+    res = hit.length ? hit.slice(0, 8).map(projCard).join('') : `<p class="muted small">${t('gsearch_none')}</p>`;
+  }
+  return formInp('gq', 'gsearch', { mode: 'search' }) + `<div id="gres">${res}</div>`;
+}
+/* what changed since yesterday: one line each, only what happened */
+function sinceYesterday() {
+  const from = coDay(Date.now() - 864e5), evs = EVENTS.filter(e => safeDay(e.t) >= from), n = f => evs.filter(f).length;
+  const late = allEscalations().list.length;
+  const rows = [['💰', 'sy_pay', n(e => e.type === 'PAYMENT_STATUS' && e.data.status === 'confirmed')], ['🎉', 'sy_won', n(e => e.type === 'DEAL_WON')], ['🔑', 'sy_hand', n(e => e.type === 'HANDOVER_COMPLETED')],
+    ['🎫', 'sy_tk', n(e => e.type === 'TICKET_CLOSED' && e.data.ok !== false)], ['🆕', 'sy_leads', n(e => e.type === 'LEAD_CREATED')], ['👋', 'sy_people', n(e => e.type === 'USER_ADDED' || e.type === 'JOIN_DECIDED')], ['⏫', 'sy_late', late]].filter(r => r[2]);
+  return `<div class="card" id="sy"><h3 style="margin:0 0 6px">🗓️ ${t('sy_title')}</h3>${rows.length ? rows.map(([i, k, c]) => `<div class="small">${i} ${t(k, { n: c })}</div>`).join('') : `<p class="small muted" style="margin:0">${t('sy_quiet')}</p>`}</div>`;
+}
 /* needs attention now: urgent, overdue or escalated (the rest can wait in a folded list) */
 const isHot = n => !!(n.urgent || n.overdue || (n.level || 0) >= 2 || n.k === 'escalated');
 /* a section that opens and closes with one tap; the app remembers how each person left it */
@@ -10170,12 +10339,12 @@ SCREENS.project = ({ pid, tab }) => {
   const tabs = [['info', '📋', 'tab_info'], ['timeline', '🕒', 'tab_timeline'], ['chat', '💬', 'chat'], ['photos', '📷', 'tab_photos']];
   if (seeF(u, 'money')) tabs.push(['money', '💰', 'tab_money']);
   tabs.push(['docs', '📄', 'tab_docs']);
-  const mine = needs(P).filter(n => isMine(n, u));
+  const all = needs(P).filter(n => isMine(n, u)), mine = all.filter(n => !n.info), waits = all.filter(n => n.info);
   App.pageSay = `${P.id}. ${stName(P.stage)}. ${nextLine(P)}`;
   App.tasks = mine;
   const body = { info: projInfo, timeline: projTimeline, chat: projChat, photos: projPhotos, money: projMoney, docs: projDocs }[tab] || projInfo;
   return topBar(P.id + ' · ' + projTitle(P), { back: true }) + `<div class="wrap" style="padding-bottom:0"><div class="card">${phaseBar(P)}${jobBars(P)}<div style="margin-top:8px">${stageChip(P)} <span class="chip c-mute">🕒 ${t('days_n', { n: daysSince(P.since) })}</span></div>
-    <p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${mine.map((n, i) => `<button class="btn btn-p" style="margin-top:8px" data-a="openTask" data-v="${i}">▶ ${esc(t('tk_' + n.k))}${n.slot ? ' · ' + t('slot_' + n.slot) : ''}</button>`).join('')}</div></div>
+    <p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${waits.map(n => `<span class="chip c-info" style="margin-top:8px">⏳ ${esc(t('tk_' + n.k))}</span>`).join(' ')}${mine.map((n, i) => `<button class="btn btn-p" style="margin-top:8px" data-a="openTask" data-v="${i}">▶ ${esc(t('tk_' + n.k))}${n.slot ? ' · ' + t('slot_' + n.slot) : ''}</button>`).join('')}</div></div>
     <div class="tabs">${tabs.map(([k, i, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-v="${k}">${i} ${t(l)}</button>`).join('')}</div>
     <main class="wrap" style="padding-top:4px">${body(P)}</main>` + nav('projects');
 };
@@ -10437,7 +10606,7 @@ SCREENS.cl = ({ pid, kind }) => {
     title = t('tk_install');
     const nx = sopNext(P), done = Object.keys(P.sop).length;
     App.pageSay = nx < SOP.length ? t('s_sop_next', { n: nx + 1, step: t('sop_' + SOP[nx][0]) }) : t('s_sop_all');
-    body = `<div class="stepline"><span>${done} / ${SOP.length} ${t('done_word')}</span>${P.mhand ? `<span class="chip ${installUsed(P) > S.config.installDays ? 'c-bad' : 'c-info'}">🎯 ${t('target_days', { n: installUsed(P), m: S.config.installDays })}</span>` : ''}</div><div class="prog"><i style="width:${done / SOP.length * 100}%"></i></div>
+    body = needs(P).filter(n => n.info && isMine(n, u)).map(n => `<div class="note">⏳ ${esc(t('tk_' + n.k))}<br><span class="small muted">${t('waiting_sub')}</span></div>`).join('') + `<div class="stepline"><span>${done} / ${SOP.length} ${t('done_word')}</span>${P.mhand ? `<span class="chip ${installUsed(P) > S.config.installDays ? 'c-bad' : 'c-info'}">🎯 ${t('target_days', { n: installUsed(P), m: S.config.installDays })}</span>` : ''}</div><div class="prog"><i style="width:${done / SOP.length * 100}%"></i></div>
       <div class="note">📜 ${t('sop_disclaimer')}</div>` + (nx < SOP.length && safetyWhyNot(P) ? `<div class="err">${safetyWhyNot(P) === 'err_work_stopped' ? '🛑 ' + t('work_stopped') : `🦺 ${t('err_safety_check')}${P.tech === u.uid ? `<br><button class="btn btn-p" style="margin-top:8px" data-a="wizOpen" data-v="safety|${P.id}">🦺 ${t('tk_safety_check')}</button>` : ''}`}</div>` : '') +
       SOP.map(([k, i], n) => { const blk = P.blockers.find(b => b.open && b.step === n); const st = P.sop[n] ? 'done' : n === nx ? 'cur' : 'lock';
         return `<button class="cl-item ${st}" data-a="clItem" data-v="sop|${n}" ${st === 'lock' ? 'aria-disabled="true"' : ''}><span class="st">${P.sop[n] ? '✅' : blk ? '⛔' : n === nx ? '▶️' : '🔒'}</span><span class="grow"><b>${n + 1}. ${i} ${t('sop_' + k)}</b>${PEER_STEPS.includes(n) && S.config.peerCheck && P.sop[n] ? `<br><span class="small">${((P.peer || {})[n] || {}).ok ? '👀 ✅ ' + t('peer_done', { name: userName(P.peer[n].by) }) : '👀 ⏳ ' + t('peer_waiting')}</span>` : ''}${blk ? `<br><span class="small" style="color:var(--bad)">⛔ ${t('br_' + blk.reason)} → ${t('r_' + blk.role)}</span>` : ''}</span></button>`; }).join('');
@@ -10626,7 +10795,7 @@ function docCert(P) {
     <p class="small">📎 ${t('cert_use')}</p>`;
 }
 function docHandover(P) {
-  const sigs = SLOTS.map(s => P.hand[s] ? `<td style="width:33%"><img class="sigimg" data-m="${S.evidence[P.hand[s].sig].m}" alt=""><br><b>${esc(P.hand[s].signer)}</b><br><span class="small">${t('slot_' + s)} · ${fmtD(P.hand[s].t)}</span></td>` : `<td>${t('slot_' + s)}: —</td>`).join('');
+  const sigs = SLOTS.map(s => P.hand[s] ? `<td style="width:33%"><img class="sigimg" data-m="${S.evidence[P.hand[s].sig].m}" alt=""><br><b>${esc(P.hand[s].signer)}</b><br><span class="small">${t('slot_' + s)} · ${fmtD(P.hand[s].t)}${s === 'customer' && P.hand[s].inPerson ? '<br>📱 ' + t('hs_on_tech') + (P.hand[s].why ? ' · ' + t('hsw_' + P.hand[s].why) : '') : ''}</span></td>` : `<td>${t('slot_' + s)}: —</td>`).join('');
   return docHead(P, t('doc_handover'), `${P.id}-HO`) + handoverSummary(P) +
     `<h3>${t('checks_done')}</h3><ul style="padding-left:20px">${QC_FINAL_CHECKS.map(k => `<li>${t('qcf_' + k)}: ${(([...P.qcFinal].reverse()[0] || {}).checks || {})[k] === 'pass' ? '✅' : '—'}</li>`).join('')}</ul>
     <h3>${t('signatures')}</h3><table><tr>${sigs}</tr></table>
@@ -10973,7 +11142,7 @@ SCREENS.rules = () => {
   App.pageSay = t('s_rules');
   return topBar(t('business_rules'), { back: true }) + `<main class="wrap">${App.me.role === 'owner' ? hqCard() : ''}<div class="note">📏 ${t('s_rules')}</div>${Object.entries(RULE_GROUPS).map(([gk, keys]) => `<div class="card"><div class="row wrapw"><h3 class="grow" style="margin:0;min-width:55%">${t('rg_' + gk)}</h3>${ruleChip(gk)}</div>
     <p class="small muted">${t('rg_' + gk + '_d')}</p>${S.config.approved[gk] ? `<p class="small">✅ ${userName(S.config.approved[gk].by)} · ${fmtD(S.config.approved[gk].t, true)}</p>` : ''}
-    ${keys.map(k => own ? `<div class="field"><label for="${fid('cfg.' + k)}"><b>${t('cfg_' + k)}</b></label><input class="in" ${['sosNumber', 'officeNumber'].includes(k) ? 'type="tel" inputmode="tel"' : TEXT_CFG.includes(k) ? `type="text" ${k === 'payAcc' ? 'inputmode="numeric"' : ''}` : 'type="number" min="0" inputmode="decimal"'} id="${fid('cfg.' + k)}" data-f="cfg.${k}" value="${S.config[k]}"></div>` : `<div class="list-item"><span class="grow">${t('cfg_' + k)}</span><b>${S.config[k]}</b></div>`).join('')}
+    ${keys.map(k => own ? `<div class="field"><label for="${fid('cfg.' + k)}"><b>${t('cfg_' + k)}</b></label><input class="in" ${['sosNumber', 'officeNumber'].includes(k) ? 'type="tel" inputmode="tel"' : TEXT_CFG.includes(k) ? `type="text" ${k === 'payAcc' ? 'inputmode="numeric"' : ''}` : `type="number" min="${(CFG_LIMITS[k] || [0])[0]}" ${CFG_LIMITS[k] ? 'max="' + CFG_LIMITS[k][1] + '"' : ''} inputmode="decimal"`} id="${fid('cfg.' + k)}" data-f="cfg.${k}" value="${esc(String(S.config[k]))}">${CFG_LIMITS[k] ? `<span class="small muted">${t('cfg_range', { a: CFG_LIMITS[k][0], b: CFG_LIMITS[k][1] })}</span>` : ''}</div>` : `<div class="list-item"><span class="grow">${t('cfg_' + k)}</span><b>${S.config[k]}</b></div>`).join('')}
     ${RATE_GROUPS.includes(gk) ? rateBlock(gk, own) : ''}
     ${own ? `<div class="row"><button class="btn" data-a="cfgSave" data-v="${gk}">💾 ${t('save')}</button>${S.config.approved[gk] ? '' : `<button class="btn btn-ok" data-a="cfgApprove" data-v="${gk}">✅ ${t('approve_rule')}</button>`}</div>` : ''}</div>`).join('')}
     ${!own ? `<p class="small muted">${t('rules_owner_only')}</p>` : ''}</main>` + nav('me');
@@ -11601,7 +11770,7 @@ function onbStepText(x) { return x.k === 'profile' ? t('onb_step_profile') : x.k
 function onbCard(uid, opt = {}) {
   const ob = onboarding(uid);
   if (!ob.total) return '';
-  const days = daysSince(S.users[uid].t), lv = ob.ready ? 0 : escLevel(days, 'onboarding'), pct = Math.round(ob.done / ob.total * 100);
+  const days = workDaysSince(S.users[uid].t), lv = ob.ready ? 0 : escLevel(days, 'onboarding'), pct = Math.round(ob.done / ob.total * 100);
   const me = uid === App.me.uid, nextSelf = ob.steps.find(x => !x.done && x.who === 'self');
   const chip = ob.ready ? `<span class="chip c-ok">✅ ${t('onb_ready')}</span>` : `<span class="chip c-info">${t('onb_progress', { n: ob.done, m: ob.total })}</span>`;
   return `<div class="card">${opt.bare ? '' : `<div class="row"><h3 class="grow" style="margin:0">🪪 ${t('onb_title')}</h3>${chip}</div>`}
@@ -11683,7 +11852,7 @@ function weekSummary(end) {
     from, end,
     leads: n('LEAD_CREATED'), accepted: n('LEAD_ACCEPTED'), quotes: n('QUOTE_SENT'), won: wonEv.length, wonValue: sum(wonEv.map(e => (acc(Pof(e)) || { total: 0 }).total)), lost: n('DEAL_LOST') + n('PROJECT_CANCELLED'),
     paid: sum(payOk), refunds: sum(refunds),
-    installStart: n('MATERIAL_HANDED'), handovers: n('HANDOVER_COMPLETED'), qcPass: qcEv.filter(e => e.data.outcome === 'pass').length, qcAll: qcEv.length,
+    installStart: n('MATERIAL_HANDED'), handovers: n('HANDOVER_COMPLETED'), techSigned: evs.filter(e => e.type === 'HANDOVER_SIGNED' && e.data.slot === 'customer' && roleOf(e.by) !== 'customer').length, qcPass: qcEv.filter(e => e.data.outcome === 'pass').length, qcAll: qcEv.length,
     tkOpened: n('TICKET_OPENED'), tkClosed: tkClosed.length, tkInTime: tkClosed.filter(x => ticketDue(x) != null && !ticketLate(x)).length, tkLateNow: Object.values(S.projects).flatMap(P => P.tickets).filter(x => !['resolved', 'closed'].includes(x.status) && ticketLate(x)).length,
     incidents: n('INCIDENT_RAISED'), sos: n('SOS_RAISED'), safety: n('SAFETY_CHECKED'),
     approvals: n('APPROVAL_DECIDED'), stageBack: n('STAGE_BACK'), disputes: n('DISPUTE_SET'), holds: n('HOLD_DECIDED'), clock: clockGaps().filter(g => safeDay(g.t) >= from && safeDay(g.t) <= end).length,
@@ -11722,7 +11891,7 @@ SCREENS.weekly = ({ end } = {}) => {
     <p><b>${fmtD(w.from)} – ${fmtD(w.end)}</b></p>
     ${card('🧲', 'wk_sales', [row('wk_leads', w.leads + ' / ' + w.accepted), row('wk_quotes', w.quotes), ['wk_won', w.won + ' · ' + money(w.wonValue)], row('wk_lost', w.lost)])}
     ${card('💰', 'wk_money', [['wk_paid', money(w.paid)], ['wk_refunds', money(w.refunds)]])}
-    ${card('🔧', 'wk_work', [row('wk_installs', w.installStart + ' / ' + w.handovers), row('wk_qc', w.qcPass + ' / ' + w.qcAll)])}
+    ${card('🔧', 'wk_work', [row('wk_installs', w.installStart + ' / ' + w.handovers), row('wk_qc', w.qcPass + ' / ' + w.qcAll), row('wk_tech_signed', String(w.techSigned))])}
     ${card('🎫', 'wk_service', [row('wk_tickets', w.tkOpened + ' / ' + w.tkClosed + ' (' + w.tkInTime + ' ' + t('sla_in_time') + ')'), row('wk_late_now', w.tkLateNow)])}
     ${card('🦺', 'wk_safety', [row('wk_incidents', w.incidents + ' · SOS ' + w.sos), row('wk_safety_checks', w.safety)])}
     ${card('⚖️', 'wk_control', [row('wk_overrides', w.approvals + ' · ' + t('stage_back') + ' ' + w.stageBack + ' · ' + t('dispute_set') + ' ' + w.disputes + ' · ' + t('hold_put') + ' ' + w.holds), row('wk_closes', w.closes + ' / 7'), row('clock_title', w.clock)])}
@@ -12545,6 +12714,13 @@ const ACT = {
   nav: v => { Voice.stop(); if (MAIN_TABS.includes(v) && App.me) { App.stack = []; W = null; App.route = { name: 'home', p: {} }; if (v === 'home') { render(); window.scrollTo(0, 0); } else go(v); } else go(v); },
   back: () => { if (!App.locked) back(); },
   sayText: v => Voice.say(v),
+  errClose: () => { App.lastErr = null; const b = $('#errbar'); if (b) b.remove(); },
+  pinSec: v => { const p = Object.assign({}, App.set.pins), mine = (p[App.me.uid] || []).slice(), i = mine.indexOf(v);
+    if (i >= 0) mine.splice(i, 1); else if (mine.length >= 3) return toast(t('sec_max'), true); else mine.push(v);
+    p[App.me.uid] = mine; App.set.pins = p; saveSettings(); closeSheet && closeSheet(); render(); ACT.arrange(); },
+  arrange: () => { const mine = (App.set.pins || {})[App.me.uid] || [];
+    sheet(`<h2>📌 ${t('sec_arrange')}</h2><p class="small muted">${t('sec_arrange_d')}</p>` + homeSecKeys(App.me).map(k => `<button class="list-item" style="width:100%;background:none;border:0;text-align:left" data-a="pinSec" data-v="${k}" aria-pressed="${mine.includes(k)}"><span>${mine.includes(k) ? '📌' : '⬜'}</span><span class="grow">${esc(secTitle(k))}</span>${mine.includes(k) ? `<span class="chip c-info">${t('sec_pinned')}</span>` : ''}</button>`).join('')); },
+  prioAll: () => sheet(`<h2>⚠️ ${t('prio_all')}</h2>` + prioItems(App.me, App.prioHot || []).map(x => prioBtn(x)).join('')),
   calmOk: () => { App.set.calmSeen = Object.assign({}, App.set.calmSeen, { [App.me.uid]: true }); saveSettings(); render(); },
   calmTry: () => { App.set.calmSeen = Object.assign({}, App.set.calmSeen, { [App.me.uid]: true }); saveSettings(); if ((App.tasks || []).length) ACT.openTask('0'); else if (['field', 'sales'].includes(App.me.role)) ACT.addSite(); else render(); },
   buddySet: v => { const [uid, b] = v.split('|'); perform('BUDDY_SET', null, { uid, buddy: b }).then(r => { if (r.ok) { closeSheet(); toast(t('saved_item')); render(); } }); },
@@ -13048,7 +13224,7 @@ document.addEventListener('input', e => {
   }
   if (el.dataset.f) {
     App.form[el.dataset.f] = el.type === 'checkbox' ? el.checked : el.value;
-    if (['pq', 'uq', 'aq', 'excq'].includes(el.dataset.f)) rerenderKeep(el.id);
+    if (['pq', 'uq', 'aq', 'excq', 'gq'].includes(el.dataset.f)) rerenderKeep(el.id);
   }
 });
 /* remember which folded sections each person keeps open */
@@ -13132,7 +13308,7 @@ async function seedPractice() {
     installing: P => peerWaiting(P).length ? [Object.values(S.users).find(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).uid, 'PEER_CHECKED', { step: peerWaiting(P)[0], ok: true }] : sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? (+S.config.checkinGate && !checkedIn(P, safeDay(nextAt())) ? [P.tech, 'SITE_CHECKED_IN', { day: safeDay(nextAt()), gps: P.site.gps }] : [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }]) : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), isc: iscYes(sopNext(P)), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
     qc_final: P => ['qc', 'QC_FINAL_RESULT', { checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), crit: Object.fromEntries(QC_CRITICAL.map(k => [k, 'pass'])), earthVal: '0.8 Ω', outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)].concat(QC_CRITICAL.map(k => Object.assign(ph('work', P.site.gps), { label: 'crit_' + k }))) }],
     final_pay: P => payStep(P, 'final'),
-    handover: P => { const s = SLOTS.find(x => !P.hand[x]); return s ? [s === 'qc' ? 'qc' : P.tech, 'HANDOVER_SIGNED', { slot: s, consent: true, signer: s === 'customer' ? P.contact.name : userName(U[s]), ev: [ph('sign')] }]
+    handover: P => { const s = SLOTS.find(x => !P.hand[x]); return s ? [s === 'qc' ? 'qc' : P.tech, 'HANDOVER_SIGNED', Object.assign({ slot: s, consent: true, signer: s === 'customer' ? P.contact.name : userName(U[s]), ev: [ph('sign')].concat(s === 'customer' ? [Object.assign(ph('work', P.site.gps), { label: 'handover' })] : []) }, s === 'customer' ? { why: 'noapp' } : {})]
       : !statOf(P).inspection ? ['admin', 'STATUTORY_SET', { item: 'inspection', date: safeDay(nextAt()), result: 'pass', note: 'Lift Inspector, Pune' }]
       : !statOf(P).licence ? ['admin', 'STATUTORY_SET', { item: 'licence', no: 'PUNE/LIFT/' + P.id.slice(-3) + '/2026', holder: userName(U.partner), expiry: addDays(365, new Date(nextAt())) }]
       : ['admin', 'HANDOVER_COMPLETED', {}]; }

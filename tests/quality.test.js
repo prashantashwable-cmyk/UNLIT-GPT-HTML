@@ -18,7 +18,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await act('SAFETY_CHECKED', H, { ev: await ev(`SAFETY_ITEMS.map(([k]) => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'safe_' + k, t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }))`) }, 'PSENIOR');
   while (await ev(`sopNext(S.projects["${H}"])`) < 9) assert((await step()).ok, 'step ' + await ev(`sopNext(S.projects["${H}"])`) + ' done');
   assert((await step()).err === 'err_peer_check', 'after the doors step, the next step waits for a co-worker\'s check');
-  assert((await tasks('PSENIOR', H)).includes('wait_peer') && (await tasks('PTECH', H)).includes('peer_check'), 'the lead waits; another technician of the company gets "check a co-worker\'s step"');
+  assert(!(await tasks('PSENIOR', H)).includes('wait_peer') && await ev('myWaits(S.users.PSENIOR).some(n => n.k === "wait_peer")') && (await tasks('PTECH', H)).includes('peer_check'), 'the lead sees "waiting" as information (not a task they cannot do); another technician of the company gets "check a co-worker\'s step"');
   assert(await ev(`canSee(S.users.PTECH, S.projects["${H}"]) && peerWhyNot("PSENIOR", S.projects["${H}"]) === "err_own_job" && peerWhyNot("PHELP", S.projects["${H}"]) === "err_cant_lead"`), 'the checker can open the job; the lead cannot check his own step and a Helper is not senior enough');
   assert((await act('PEER_CHECKED', H, { step: 8, ok: false }, 'PTECH')).err === 'err_reason', '"not right" needs a reason');
   assert((await act('PEER_CHECKED', H, { step: 8, ok: false, note: 'Interlock on 3rd floor not closing' }, 'PTECH')).ok && await ev(`sopNext(S.projects["${H}"])`) === 8, 'not right: the step must be done again');

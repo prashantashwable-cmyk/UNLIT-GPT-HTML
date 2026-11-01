@@ -237,7 +237,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   assert(await stage(pid) === 'installing', 'installing');
   /* no installation before the permission to erect is recorded */
   await login('Tara Tech');
-  assert(await page.evaluate(() => App.tasks[0] && App.tasks[0].k === 'wait_permit'), 'the technician waits: permission to erect not recorded yet');
+  assert(await page.evaluate(() => myWaits(App.me).some(n => n.k === 'wait_permit')), 'the technician waits: permission to erect not recorded yet');
   await login('Adam Admin');
   assert(await page.evaluate(p => App.tasks.some(n => n.k === 'record_permit' && n.pid === p && n.urgent), pid), 'Admin has an urgent "record the permit" task');
   await page.evaluate(p => wiz('statutory', p, { item: 'permit' }), pid); await W8(250);

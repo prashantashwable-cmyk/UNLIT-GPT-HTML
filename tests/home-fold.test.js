@@ -8,7 +8,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await page.evaluate(() => { loginAs(S.users.POWNER); ACT.permsDone(); Notify.hide(); }); await page.waitForTimeout(200);
   const vis = sel => page.evaluate(sel => [...document.querySelectorAll(sel)].filter(e => e.checkVisibility()).length, sel);
   const hot = await page.evaluate(() => App.tasks.filter(isHot).length), all = await page.evaluate(() => App.tasks.length);
-  assert(await vis('main > .task[data-a="openTask"]') === Math.min(hot, 8), `only urgent work is shown open (${hot} of ${all})`);
+  assert(await vis('main > .task[data-a="openTask"]') === 0 && (hot ? await vis('#prio .task') === 1 : true), `the office home shows one urgent strip, not a list of alarms (${hot} urgent of ${all})`);
   assert(await page.evaluate(() => ['tasks', 'queues', 'dash'].every(k => { const d = document.querySelector(`details[data-fold="${k}"]`); return d && !d.open; })), 'other work, queues and the dashboard start folded');
   assert(await vis('.kpis') === 0, 'dashboard numbers are hidden until opened');
   await page.click('details[data-fold="dash"] > summary'); await page.waitForTimeout(150);
@@ -18,7 +18,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await page.click('details[data-fold="tasks"] > summary'); await page.waitForTimeout(150);
   const n = await vis('details[data-fold="tasks"] .task');
   await page.locator('details[data-fold="tasks"] .task').first().click(); await page.waitForTimeout(250);
-  assert(n === all - hot && await page.evaluate(() => App.route.name !== 'home' || !!W), 'folded work opens like any other task');
+  assert(n === Math.min(all, 8) && await page.evaluate(() => App.route.name !== 'home' || !!W), 'folded work opens like any other task');
   /* Owner and Admin have different lists */
   const oa = await page.evaluate(() => { const f = u => myTasks(S.users[u]).filter(n => n.k !== 'escalated').map(n => n.k + '|' + (n.pid || n.uid || '') + '|' + (n.week || '')); return { o: f('POWNER'), a: f('PADMIN') }; });
   assert(oa.a.length && !oa.o.some(x => oa.a.includes(x)), 'Head Quarter and Admin never get the same task: ' + oa.o.map(x => x.split('|')[0]).join(',') + ' / ' + oa.a.map(x => x.split('|')[0]).join(','));

@@ -5,6 +5,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
 (async () => {
   const { page, browser, errors } = await launch({ viewport: { width: 360, height: 760 } });
   await page.evaluate(() => { App.set.lang = 'en'; LANG = 'en'; App.set.introDone = true; App.set.guide = false; enterPractice(); }); await page.waitForTimeout(6000);
+  /* this test is about the bar maths: count every day (working days are tested in bizlogic) */
+  await page.evaluate(() => { S.config.sundayWork = 1; });
 
   /* every task card of every role carries a bar with words */
   const roles = await page.evaluate(() => {
