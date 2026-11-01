@@ -83,14 +83,15 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
     const Q0 = Object.values(S.projects).find(P => lastQuote(P)), Q = Q0 && Object.assign({}, Q0, { holds: [], quotes: Q0.quotes.slice(0, -1).concat([Object.assign({}, lastQuote(Q0), { sent: { t: new Date(Date.now() - 5 * 864e5).toISOString() }, validity: 30 })]) });
     out.quote = Q ? timeOf({ k: 'get_decision', roles: ['sales'] }, Q).label : 'none';
     const O = Object.values(S.projects).find(P => P.po && P.stage === 'material_order');
-    out.po = O ? timeOf({ k: O.po.accepted ? 'dispatch' : 'accept_po', roles: ['supplier'] }, O).label : 'none';
+    out.acc = !!(O && O.po.accepted); out.po = O ? timeOf({ k: O.po.accepted ? 'dispatch' : 'accept_po', roles: ['supplier'] }, O).label : 'none';
     out.fin = /tp-fin/.test(jobBars(Object.values(S.projects).find(P => P.done) || { stage: 'amc', done: {} }));
     return out;
   });
   for (const k of ['projects', 'amc', 'tickets', 'stat', 'onb', 'req', 'allWork']) assert(places[k] === true || places[k] === 'none', 'two bars on ' + k + ': ' + places[k]);
+  const O_ACC = places.acc;
   assert(places.ticketStep, 'a ticket shows its steps (assigned = step 2 of 5)');
   assert(/Quote valid 2[56] more days/.test(places.quote), 'a sent quote counts down to its validity date: ' + places.quote);
-  assert(/Needed by|none/.test(places.po), 'a purchase order counts down to its need-by date: ' + places.po);
+  assert(O_ACC ? /Needed by/.test(places.po) : /h of 24 h|Time limit passed/.test(places.po), 'an order counts the supplier\'s 24 hours to answer, then the need-by date: ' + places.po);
   assert(places.fin, 'finished work shows a full green "Finished" bar');
 
   for (const lang of ['hi', 'mr']) { await page.evaluate(l => { LANG = l; App.set.lang = l; loginAs(S.users.PTECH); go('home'); }, lang); await page.waitForTimeout(150);

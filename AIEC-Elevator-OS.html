@@ -2612,6 +2612,94 @@ const L = {
   err_wallet_expired: ['A legal paper (BOCW, ESIC or safety training) of this person has ended. Renew it first.', 'इस व्यक्ति का कानूनी कागज़ (BOCW, ESIC या सुरक्षा प्रशिक्षण) खत्म हो गया। पहले नवीनीकरण करें।', 'या व्यक्तीचा कायदेशीर कागद (BOCW, ESIC किंवा सुरक्षा प्रशिक्षण) संपला आहे. आधी नूतनीकरण करा.'],
   tk_legal_renew: ['Renew legal papers (BOCW / ESIC / safety)', 'कानूनी कागज़ नवीनीकरण (BOCW / ESIC / सुरक्षा)', 'कायदेशीर कागद नूतनीकरण (BOCW / ESIC / सुरक्षा)'],
   ev_LEGAL_SET: ['Legal paper recorded', 'कानूनी कागज़ दर्ज', 'कायदेशीर कागद नोंदवला'],
+  cfg_civilMin: ['Civil work estimate, low (₹)', 'सिविल काम अनुमान, कम (₹)', 'सिव्हिल काम अंदाज, कमी (₹)'],
+  cfg_civilMax: ['Civil work estimate, high (₹)', 'सिविल काम अनुमान, ज़्यादा (₹)', 'सिव्हिल काम अंदाज, जास्त (₹)'],
+  cfg_cancelBefore: ['Kept on cancelling before material is ordered (% of paid)', 'मटेरियल ऑर्डर से पहले रद्द करने पर कटौती (जमा का %)', 'मटेरियल ऑर्डरपूर्वी रद्द केल्यास वजावट (भरलेल्याचा %)'],
+  cfg_cancelAfter: ['Kept on cancelling after material is ordered (% of paid)', 'मटेरियल ऑर्डर के बाद रद्द करने पर कटौती (जमा का %)', 'मटेरियल ऑर्डरनंतर रद्द केल्यास वजावट (भरलेल्याचा %)'],
+  q_assume: ['Assumed until the site check', 'साइट जाँच तक माना गया', 'साइट तपासणीपर्यंत गृहीत'],
+  q_assume_shaft: ['Shaft and pit of standard size for this lift; the final size comes from the site check.', 'इस लिफ्ट के लिए सामान्य आकार का शाफ्ट और पिट; अंतिम माप साइट जाँच से।', 'या लिफ्टसाठी सामान्य आकाराचा शाफ्ट व खड्डा; अंतिम माप साइट तपासणीतून.'],
+  q_assume_height: ['Floor-to-floor height about 3.0 m.', 'मंज़िल से मंज़िल ऊँचाई लगभग 3.0 मी।', 'मजला ते मजला उंची सुमारे 3.0 मी.'],
+  q_assume_power: ['3-phase power will be brought to the lift by you.', 'लिफ्ट तक 3-फ़ेज़ बिजली आप लाएँगे।', 'लिफ्टपर्यंत थ्री-फेज वीज तुम्ही आणाल.'],
+  q_assume_shaft_new: ['The shaft is not ready yet: civil work below is needed first.', 'शाफ्ट अभी तैयार नहीं: पहले नीचे लिखा सिविल काम ज़रूरी।', 'शाफ्ट अजून तयार नाही: आधी खालील सिव्हिल काम आवश्यक.'],
+  q_civil_range: ['Civil work is not in this price. It usually costs {a} to {b}, paid to your own contractor.', 'सिविल काम इस कीमत में नहीं है। आमतौर पर {a} से {b} लगते हैं, जो आप अपने ठेकेदार को देते हैं।', 'सिव्हिल काम या किमतीत नाही. साधारणपणे {a} ते {b} खर्च येतो, जो तुम्ही तुमच्या कंत्राटदाराला देता.'],
+  ag_cancel_nums: ['If you cancel before the material is ordered, {a}% of what you paid is kept and the rest is returned. After the material is ordered, {b}% of what you paid is kept.', 'मटेरियल ऑर्डर से पहले रद्द करने पर जमा राशि का {a}% रखा जाएगा, बाकी लौटाया जाएगा। मटेरियल ऑर्डर के बाद जमा राशि का {b}% रखा जाएगा।', 'मटेरियल ऑर्डरपूर्वी रद्द केल्यास भरलेल्या रकमेपैकी {a}% ठेवले जाईल, उरलेले परत. मटेरियल ऑर्डरनंतर भरलेल्या रकमेपैकी {b}% ठेवले जाईल.'],
+  var_compare: ['Agreed price {a} → new price {b} ({c})', 'तय कीमत {a} → नई कीमत {b} ({c})', 'ठरलेली किंमत {a} → नवी किंमत {b} ({c})'],
+  doc_warranty: ['Warranty card', 'वारंटी कार्ड', 'वॉरंटी कार्ड'],
+  doc_bundle: ['All my papers (one file)', 'मेरे सभी कागज़ (एक फ़ाइल)', 'माझे सर्व कागद (एक फाइल)'],
+  wc_from_to: ['From {a} to {b}', '{a} से {b} तक', '{a} पासून {b} पर्यंत'],
+  wc_left: ['{n} days of warranty left', 'वारंटी के {n} दिन बाकी', 'वॉरंटीचे {n} दिवस बाकी'],
+  wc_over: ['Warranty ended on {d}', 'वारंटी {d} को खत्म', 'वॉरंटी {d} रोजी संपली'],
+  wc_covered: ['Covered', 'शामिल', 'समाविष्ट'],
+  wc_covered_text: ['Parts that fail in normal use, and the work to replace them: machine, controller, door operator, safety devices, wiring fitted by us.', 'सामान्य उपयोग में खराब होने वाले पुर्ज़े और बदलने का काम: मशीन, कंट्रोलर, डोर ऑपरेटर, सुरक्षा उपकरण, हमारी लगाई वायरिंग।', 'सामान्य वापरात बिघडणारे भाग व बदलण्याचे काम: मशीन, कंट्रोलर, डोअर ऑपरेटर, सुरक्षा उपकरणे, आम्ही केलेली वायरिंग.'],
+  wc_not: ['Not covered', 'शामिल नहीं', 'समाविष्ट नाही'],
+  wc_not_text: ['Damage from misuse, water, fire or power surges; civil work; changes made by others; consumables like bulbs.', 'गलत उपयोग, पानी, आग या बिजली के झटके से नुकसान; सिविल काम; दूसरों के किए बदलाव; बल्ब जैसी चीज़ें।', 'चुकीचा वापर, पाणी, आग किंवा विजेच्या झटक्याने नुकसान; सिव्हिल काम; इतरांनी केलेले बदल; बल्बसारख्या वस्तू.'],
+  wc_call: ['Who to call', 'किसे फ़ोन करें', 'कोणाला फोन करायचा'],
+  wc_parts: ['Serial numbers (for claims)', 'सीरियल नंबर (दावे के लिए)', 'सिरियल क्रमांक (दाव्यासाठी)'],
+  wc_claim: ['Raise a warranty claim', 'वारंटी दावा करें', 'वॉरंटी दावा करा'],
+  bd_service: ['Service history', 'सर्विस इतिहास', 'सर्व्हिस इतिहास'],
+  bd_legal: ['Government papers', 'सरकारी कागज़', 'सरकारी कागद'],
+  bd_note: ['These papers stay in the app after the job is closed. Print or save as PDF to keep a copy.', 'काम बंद होने के बाद भी ये कागज़ ऐप में रहते हैं। कॉपी रखने के लिए प्रिंट या PDF सेव करें।', 'काम बंद झाल्यावरही हे कागद ॲपमध्ये राहतात. प्रत ठेवण्यासाठी प्रिंट किंवा PDF सेव्ह करा.'],
+  tkind_warranty: ['Warranty claim', 'वारंटी दावा', 'वॉरंटी दावा'],
+  tkind_warranty_d: ['A part failed while under warranty', 'वारंटी के समय कोई पुर्ज़ा खराब हुआ', 'वॉरंटी काळात एखादा भाग बिघडला'],
+  err_warranty_over: ['The warranty for this lift has ended.', 'इस लिफ्ट की वारंटी खत्म हो चुकी है।', 'या लिफ्टची वॉरंटी संपली आहे.'],
+  late_with_you: ['you', 'आप', 'तुम्ही'],
+  late_title: ['Running {n} days late', '{n} दिन देरी', '{n} दिवस उशीर'],
+  late_why: ['Now waiting for: {what} · with {who}', 'अभी रुका है: {what} · {who} के पास', 'आता थांबले आहे: {what} · {who} कडे'],
+  late_you: ['This step is with you. Please finish it so work can go on.', 'यह कदम आपके पास है। कृपया पूरा करें ताकि काम आगे बढ़े।', 'ही पायरी तुमच्याकडे आहे. काम पुढे जाण्यासाठी कृपया पूर्ण करा.'],
+  late_office: ['The office has been told and is following it up. You don\'t need to call.', 'ऑफ़िस को बता दिया गया है और वह देख रहा है। आपको फ़ोन करने की ज़रूरत नहीं।', 'ऑफिसला कळवले आहे आणि ते पाठपुरावा करत आहे. फोन करण्याची गरज नाही.'],
+  cfg_poAnswerHours: ['Hours the supplier has to accept or decline an order', 'ऑर्डर मानने या मना करने के लिए सप्लायर के घंटे', 'ऑर्डर स्वीकारण्यास किंवा नाकारण्यास पुरवठादाराचे तास'],
+  tk_po_silent: ['Supplier has not answered the order — call or change supplier', 'सप्लायर ने ऑर्डर का जवाब नहीं दिया — फ़ोन करें या सप्लायर बदलें', 'पुरवठादाराने ऑर्डरला उत्तर दिले नाही — फोन करा किंवा पुरवठादार बदला'],
+  sup_score: ['On time {p}% of {n} orders · answers in about {h} h', '{n} ऑर्डर में {p}% समय पर · लगभग {h} घंटे में जवाब', '{n} ऑर्डरपैकी {p}% वेळेवर · सुमारे {h} तासांत उत्तर'],
+  sup_new: ['New supplier — no orders yet', 'नया सप्लायर — अभी कोई ऑर्डर नहीं', 'नवीन पुरवठादार — अजून ऑर्डर नाही'],
+  sup_low: ['below 85%: give fewer new orders', '85% से कम: कम नए ऑर्डर दें', '85% पेक्षा कमी: कमी नवीन ऑर्डर द्या'],
+  sup_card: ['Supplier record', 'सप्लायर रिकॉर्ड', 'पुरवठादार नोंद'],
+  sup_card_note: ['Counted from orders: dispatched on or before the promised date, and hours taken to accept.', 'ऑर्डर से गिना: वादे की तारीख तक भेजा या नहीं, और मानने में लगे घंटे।', 'ऑर्डरवरून मोजले: वचन दिलेल्या तारखेपर्यंत पाठवले का, आणि स्वीकारण्यास लागलेले तास.'],
+  insp_points: ['Points the Inspector failed', 'इंस्पेक्टर ने जिन बिंदुओं पर फ़ेल किया', 'निरीक्षकाने नापास केलेले मुद्दे'],
+  insp_owner: ['Who must fix it', 'किसे ठीक करना है', 'कोणी दुरुस्त करायचे'],
+  insp_rework_by: ['fix by: {who}', 'ठीक करेगा: {who}', 'दुरुस्ती: {who}'],
+  tk_inspection_rework: ['Government inspection failed — fix the points', 'सरकारी इंस्पेक्शन फ़ेल — बिंदु ठीक करें', 'सरकारी तपासणी नापास — मुद्दे दुरुस्त करा'],
+  cfg_refReward: ['Thank-you for a referral, paid when their material is ordered (₹)', 'रेफ़रल का धन्यवाद, उनका मटेरियल ऑर्डर होने पर (₹)', 'रेफरलचे आभार, त्यांचे मटेरियल ऑर्डर झाल्यावर (₹)'],
+  rf_title: ['Know someone who needs a lift?', 'किसी को लिफ्ट चाहिए?', 'कोणाला लिफ्ट हवी आहे?'],
+  rf_code: ['Your referral code: {c}', 'आपका रेफ़रल कोड: {c}', 'तुमचा रेफरल कोड: {c}'],
+  rf_reward: ['You get {a} when their lift material is ordered.', 'उनकी लिफ्ट का मटेरियल ऑर्डर होने पर आपको {a} मिलेंगे।', 'त्यांच्या लिफ्टचे मटेरियल ऑर्डर झाल्यावर तुम्हाला {a} मिळतील.'],
+  rf_thanks: ['We will thank you when their lift material is ordered.', 'उनकी लिफ्ट का मटेरियल ऑर्डर होने पर हम आपका धन्यवाद करेंगे।', 'त्यांच्या लिफ्टचे मटेरियल ऑर्डर झाल्यावर आम्ही तुमचे आभार मानू.'],
+  rf_share: ['Share on WhatsApp', 'WhatsApp पर भेजें', 'WhatsApp वर पाठवा'],
+  rf_msg: ['We got our lift from {co}. Ask them for a quote and tell them my referral code {c}. Phone: {ph}', 'हमने {co} से लिफ्ट लगवाई। उनसे कोटेशन माँगें और मेरा रेफ़रल कोड {c} बताएँ। फ़ोन: {ph}', 'आम्ही {co} कडून लिफ्ट बसवली. त्यांच्याकडे कोटेशन मागा आणि माझा रेफरल कोड {c} सांगा. फोन: {ph}'],
+  rf_yours: ['Your referrals', 'आपके रेफ़रल', 'तुमचे रेफरल'],
+  rf_wait: ['reward when material is ordered', 'मटेरियल ऑर्डर होने पर इनाम', 'मटेरियल ऑर्डर झाल्यावर बक्षीस'],
+  rf_due: ['reward due', 'इनाम देना है', 'बक्षीस द्यायचे'],
+  rf_paid: ['thank-you given', 'धन्यवाद दिया', 'आभार दिले'],
+  rf_set: ['Record a referral code', 'रेफ़रल कोड दर्ज करें', 'रेफरल कोड नोंदवा'],
+  rf_set_say: ['Type the code the customer was given by a friend (it is on the friend\'s lift sticker).', 'ग्राहक को दोस्त से मिला कोड लिखें (दोस्त की लिफ्ट के स्टिकर पर है)।', 'ग्राहकाला मित्राकडून मिळालेला कोड लिहा (मित्राच्या लिफ्टच्या स्टिकरवर आहे).'],
+  rf_from: ['Referred by {who} ({p})', '{who} ({p}) द्वारा रेफ़र', '{who} ({p}) यांनी रेफर केले'],
+  rf_given_note: ['How it was given (e.g. paid by UPI, ref no.)', 'कैसे दिया (जैसे UPI से, रेफ़ नंबर)', 'कसे दिले (उदा. UPI ने, संदर्भ क्र.)'],
+  tk_referral_reward: ['Give the referral thank-you', 'रेफ़रल धन्यवाद दें', 'रेफरलचे आभार द्या'],
+  err_ref_code: ['No finished lift has this referral code.', 'इस रेफ़रल कोड वाली कोई पूरी लिफ्ट नहीं।', 'हा रेफरल कोड असलेली पूर्ण लिफ्ट नाही.'],
+  err_ref_not_yet: ['The thank-you is given only after this job\'s material is ordered.', 'धन्यवाद इस काम का मटेरियल ऑर्डर होने के बाद ही।', 'आभार या कामाचे मटेरियल ऑर्डर झाल्यानंतरच.'],
+  ev_REFERRAL_SET: ['Referral recorded', 'रेफ़रल दर्ज', 'रेफरल नोंदवला'],
+  ev_REFERRAL_REWARDED: ['Referral thank-you given', 'रेफ़रल धन्यवाद दिया', 'रेफरलचे आभार दिले'],
+  sc_member: ['Member', 'सदस्य', 'सदस्य'],
+  sc_title: ['Society committee approval', 'सोसायटी समिति की मंज़ूरी', 'सोसायटी समितीची मंजुरी'],
+  sc_progress: ['{a} of {b} approvals needed', '{b} में से {a} मंज़ूरी', '{b} पैकी {a} मंजुऱ्या'],
+  sc_ok: ['Quorum reached — the agreement can be signed', 'कोरम पूरा — समझौते पर साइन हो सकता है', 'कोरम पूर्ण — करारावर सही करता येईल'],
+  sc_setup: ['Set up committee', 'समिति बनाएँ', 'समिती तयार करा'],
+  sc_members: ['Committee members (one name per line)', 'समिति सदस्य (हर लाइन में एक नाम)', 'समिती सदस्य (प्रत्येक ओळीत एक नाव)'],
+  sc_quorum: ['Approvals needed (quorum)', 'ज़रूरी मंज़ूरी (कोरम)', 'आवश्यक मंजुऱ्या (कोरम)'],
+  sc_record: ['Record a member\'s approval', 'सदस्य की मंज़ूरी दर्ज करें', 'सदस्याची मंजुरी नोंदवा'],
+  sc_who: ['Which member is approving?', 'कौन सदस्य मंज़ूरी दे रहा है?', 'कोणता सदस्य मंजुरी देत आहे?'],
+  sc_sign: ['Member\'s signature', 'सदस्य के हस्ताक्षर', 'सदस्याची सही'],
+  sc_note: ['Each member signs for themselves, with name and time. One member cannot sign for another.', 'हर सदस्य खुद हस्ताक्षर करता है, नाम और समय के साथ। एक सदस्य दूसरे के लिए साइन नहीं कर सकता।', 'प्रत्येक सदस्य स्वतः सही करतो, नाव व वेळेसह. एक सदस्य दुसऱ्यासाठी सही करू शकत नाही.'],
+  doc_resolution: ['Committee resolution', 'समिति प्रस्ताव', 'समिती ठराव'],
+  res_text: ['The managing committee of the society at {site} approves the lift work quoted by {co} for {total}.', '{site} की सोसायटी की प्रबंध समिति {co} के {total} के लिफ्ट कोटेशन को मंज़ूरी देती है।', '{site} येथील सोसायटीची व्यवस्थापन समिती {co} यांच्या {total} च्या लिफ्ट कोटेशनला मंजुरी देते.'],
+  res_result: ['{a} of {b} members approved; {q} needed. Result: {r}', '{b} में से {a} सदस्यों ने मंज़ूरी दी; {q} ज़रूरी। नतीजा: {r}', '{b} पैकी {a} सदस्यांनी मंजुरी दिली; {q} आवश्यक. निकाल: {r}'],
+  res_pass: ['passed', 'पारित', 'मंजूर'],
+  res_open: ['not yet passed', 'अभी पारित नहीं', 'अजून मंजूर नाही'],
+  res_note: ['Made from the approvals recorded in the app (name, time and signature of each member). Not typed by hand.', 'ऐप में दर्ज मंज़ूरियों से बना (हर सदस्य का नाम, समय और हस्ताक्षर)। हाथ से टाइप नहीं।', 'ॲपमध्ये नोंदलेल्या मंजुऱ्यांवरून तयार (प्रत्येक सदस्याचे नाव, वेळ व सही). हाताने टाइप केलेले नाही.'],
+  tk_soc_approvals: ['Collect committee approvals', 'समिति की मंज़ूरियाँ लें', 'समितीच्या मंजुऱ्या घ्या'],
+  err_quorum: ['The society committee has not reached its quorum yet.', 'सोसायटी समिति का कोरम अभी पूरा नहीं।', 'सोसायटी समितीचा कोरम अजून पूर्ण नाही.'],
+  err_members: ['Write at least 2 different names, and a quorum between 1 and the number of members.', 'कम से कम 2 अलग नाम लिखें, और कोरम 1 से सदस्यों की संख्या तक।', 'किमान 2 वेगवेगळी नावे लिहा, आणि कोरम 1 ते सदस्यसंख्येपर्यंत.'],
+  ev_SOC_SET: ['Society committee set', 'सोसायटी समिति बनी', 'सोसायटी समिती तयार'],
+  ev_SOC_APPROVED: ['Committee member approved', 'समिति सदस्य ने मंज़ूरी दी', 'समिती सदस्याने मंजुरी दिली'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -2874,7 +2962,7 @@ const L = {
   rg_install: ['Installation target', 'इंस्टॉलेशन लक्ष्य', 'इन्स्टॉलेशन लक्ष्य'],
   rg_install_d: ['Planning target in days from material handover. Not a penalty.', 'सामान सौंपने से दिनों में योजना लक्ष्य। जुर्माना नहीं।', 'साहित्य सुपूर्द केल्यापासून दिवसांतील नियोजन लक्ष्य. दंड नाही.'],
   rg_service: ['Warranty & service', 'वारंटी और सर्विस', 'वॉरंटी आणि सर्व्हिस'],
-  rg_service_d: ['Warranty months, AMC visits per year and quotation validity days.', 'वारंटी महीने, साल में AMC विज़िट और कोटेशन मान्य दिन।', 'वॉरंटी महिने, वर्षाला AMC भेटी आणि कोटेशन वैधता दिवस.'],
+  rg_service_d: ['Warranty months, AMC visits per year, quotation validity days, the civil-work estimate printed on quotes, and what is kept if a customer cancels.', 'वारंटी महीने, साल में AMC विज़िट, कोटेशन मान्य दिन, कोटेशन पर छपा सिविल काम अनुमान, और रद्द करने पर कितना रखा जाता है।', 'वॉरंटी महिने, वर्षाला AMC भेटी, कोटेशन वैधता दिवस, कोटेशनवर छापलेला सिव्हिल काम अंदाज, आणि रद्द केल्यास किती ठेवले जाते.'],
   rg_dup: ['Duplicate-lead commission', 'दोहरी लीड कमीशन', 'दुहेरी लीड कमिशन'],
   rg_dup_d: ['% commission for useful updates to an existing lead. Define eligible cases before use.', 'पुरानी लीड में काम की जानकारी पर % कमीशन। उपयोग से पहले नियम तय करें।', 'जुन्या लीडमधील उपयोगी माहितीसाठी % कमिशन. वापरापूर्वी पात्र प्रकरणे ठरवा.'],
   cfg_costAuto: ['Cost: automatic lift (2 stops), ₹', 'लागत: ऑटोमैटिक लिफ्ट (2 स्टॉप), ₹', 'खर्च: ऑटोमॅटिक लिफ्ट (2 थांबे), ₹'],
@@ -4546,6 +4634,10 @@ function iscWhyNot(d) {
 const LEGAL = ['bocw', 'esic', 'safety'];
 const legalOf = uid => (S.workers[uid] || {}).legal || {};
 const legalEnded = (uid, at) => LEGAL.filter(k => legalOf(uid)[k] && legalOf(uid)[k].expiry < safeDay(at || nowISO()));
+const refProject = code => { const c = String(code || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); return c ? Object.values(S.projects).find(P => P.done && P.lift && P.lift.code.toUpperCase().replace(/[^A-Z0-9]/g, '') === c) || null : null; };
+const referredBy = pid => Object.values(S.projects).filter(P => P.referral && P.referral.from === pid);
+const socCount = P => P.society ? Object.keys(P.society.approvals).length : 0;
+const socOk = P => !P.society || socCount(P) >= P.society.quorum;
 const normSerial = v => String(v || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
 const SOP = [['sitesafe', '🦺'], ['plumb', '📏'], ['brackets', '🔩'], ['rails', '🛤️'], ['machine', '⚙️'], ['car', '🛗'], ['cwt', '🧱'], ['ropes', '🪢'], ['doors', '🚪'], ['wiring', '🔌'], ['safetydev', '🛡️'], ['test', '▶️']];
 const QC_SITE_CHECKS = ['plumb', 'pit_dry', 'power3', 'barricade', 'access'];
@@ -4567,7 +4659,9 @@ const STAGE_BACK = { site_ok: 'qc_site', material_order: 'site_ok', dispatched: 
 const SLOTS = ['customer', 'tech', 'qc'];
 const BLOCK_REASONS = [['material', '📦', 'supplier'], ['site', '🏗️', 'sales'], ['power', '⚡', 'sales'], ['help', '🙋', 'admin'], ['safety', '⚠️', 'admin']];
 const AMC_CHECKS = ['ride', 'doors', 'alarm', 'brake', 'ropes', 'oil', 'pit'];
-const TICKET_KINDS = [['breakdown', '🚨'], ['complaint', '😟'], ['request', '🙋']];
+const TICKET_KINDS = [['breakdown', '🚨'], ['complaint', '😟'], ['request', '🙋'], ['warranty', '🛡️']];
+const warrantyEnd = P => P.done ? addDays((P.done.warrantyMonths || 12) * 30, new Date(P.done.t)) : null;
+const inWarranty = (P, at) => !!P.done && safeDay(at || nowISO()) <= warrantyEnd(P);
 /* how serious a ticket is, most serious first; "repeat" is set by the app when a fault comes back within 30 days */
 const SEVERITIES = [['trapped', '🆘'], ['unsafe', '⚠️'], ['breakdown', '🚨'], ['repeat', '🔁'], ['routine', '🔧']];
 const sevRank = k => Math.max(0, SEVERITIES.findIndex(x => x[0] === k));
@@ -4585,7 +4679,7 @@ const DEFAULT_CONFIG = {
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 8, adminDiscountLimit: 18, minMargin: 20, negStep: 5,
-  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, dupCommission: 10,
+  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, refReward: 0, poAnswerHours: 24, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
@@ -4602,9 +4696,9 @@ const RULE_GROUPS = {
   milestones: ['tokenMode', 'arrivalPct', 'cabinPct'],
   paydetails: ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc'],
   fieldpay: ['payLeadValid', 'leadWonPct'],
-  install: ['installDays', 'poDays', 'geoRadius', 'checkinGate'],
-  service: ['warrantyMonths', 'amcVisits', 'validityDays'],
-  dup: ['dupCommission'],
+  install: ['installDays', 'poDays', 'poAnswerHours', 'geoRadius', 'checkinGate'],
+  service: ['warrantyMonths', 'amcVisits', 'validityDays', 'civilMin', 'civilMax', 'cancelBefore', 'cancelAfter'],
+  dup: ['dupCommission', 'refReward'],
   control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'dualControl', 'requireTraining'],
   ladder: ['lvHelperJobs', 'lvHelperStars', 'lvHelperReviews', 'lvHelperDays', 'lvTechJobs', 'lvTechStars', 'lvTechReviews', 'lvTechTrust', 'lvTechDays',
     'lvSeniorJobs', 'lvSeniorPass', 'lvSeniorStars', 'lvSeniorReviews', 'lvSeniorTrust', 'lvSeniorDays', 'lvQcJobs', 'lvQcPass', 'lvQcStars', 'lvQcReviews', 'lvQcTrust', 'strikeDays'],
@@ -5357,6 +5451,38 @@ const RULES = {
   /* a customer may change the site they entered until Sales accepts it */
   LEAD_EDITED: { roles: ['customer'], project: true, check: (S, ev, u, P) => P.customer !== u.uid || !P.lead.bySelf ? 'err_access' : !['new', 'returned'].includes(P.stage) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : !ev.data.gps && !(ev.data.address || '').trim() ? 'err_location_or_address' : null },
   LEAD_INFO_ADDED: { roles: ['field', 'sales', 'admin'], project: true, open: true, stages: OPEN_STAGES, check: (S, ev) => need(ev_(ev.data).length || (ev.data.note || '').trim() || ev.data.phone, 'err_fill') },
+  /* a referral: the code on a finished customer's lift sticker, recorded on a new job; thanks only once that job's material is ordered */
+  REFERRAL_SET: {
+    roles: ['sales', 'admin', 'owner'], project: true, stages: OPEN_STAGES, check: (S, ev, u, P) => {
+      if (P.referral) return 'err_already';
+      const R = refProject(ev.data.code);
+      return R && R.id !== P.id ? null : 'err_ref_code';
+    }
+  },
+  REFERRAL_REWARDED: {
+    roles: ['admin', 'owner'], project: true, check: (S, ev, u, P) => {
+      if (!P.referral || P.referral.paid) return 'err_already';
+      if (P.stage === 'lost' || stageIdx(P.stage) < stageIdx('material_order')) return 'err_ref_not_yet';
+      return need((ev.data.note || '').trim(), 'err_reason');
+    }
+  },
+  /* a housing society: the committee's members and quorum; each member's approval is signed with name and time */
+  SOC_SET: {
+    roles: ['sales', 'admin', 'owner'], project: true, check: (S, ev, u, P) => {
+      if (P.stage === 'lost' || stageIdx(P.stage) >= stageIdx('signed')) return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      const m = (ev.data.members || []).map(x => String(x).trim()).filter(Boolean), q = +ev.data.quorum;
+      return m.length >= 2 && m.length <= 60 && new Set(m.map(x => x.toLowerCase())).size === m.length && Number.isInteger(q) && q >= 1 && q <= m.length ? null : 'err_members';
+    }
+  },
+  SOC_APPROVED: {
+    roles: ['sales', 'admin', 'owner', 'customer'], project: true, check: (S, ev, u, P) => {
+      if (u.role === 'customer' && P.customer !== u.uid) return 'err_access';
+      if (!P.society || P.stage === 'lost' || stageIdx(P.stage) >= stageIdx('signed')) return 'err_already';
+      if (!P.society.members.includes(ev.data.name)) return 'err_choose';
+      if (P.society.approvals[ev.data.name]) return 'err_already';
+      return need(ev_(ev.data, 'sign').length >= 1, 'err_sign');
+    }
+  },
   LEAD_ACCEPTED: {
     roles: ['sales', 'admin'], project: true, stages: ['new'], check: (S, ev, u) => {
       if (u.role === 'admin') return need(roleOf(ev.data.salesUid) === 'sales' && isActive(ev.data.salesUid), 'err_pick_sales');
@@ -5433,6 +5559,7 @@ const RULES = {
   AGREEMENT_SIGNED: {
     roles: ['customer', 'sales'], project: true, stages: ['agreement'], check: (S, ev, u, P) => {
       if (u.role === 'sales' && P.sales !== u.uid) return 'err_access';
+      if (P.society && ev.t >= ISC_FROM && !socOk(P)) return 'err_quorum';
       if (ev.data.consent !== true) return 'err_consent';
       if (!(ev.data.signer || '').trim()) return 'err_fill';
       return need(ev_(ev.data, 'sign').length >= 1, 'err_sign');
@@ -5861,6 +5988,11 @@ const RULES = {
       if (d.item === 'inspection') {
         if (stageIdx(P.stage) < stageIdx('qc_final') && P.stage !== 'amc') return { k: 'err_stage', v: { stage: stName(P.stage) } };
         if (!ok(d.date) || !['pass', 'fail'].includes(d.result)) return 'err_fill';
+        if (d.result === 'fail' && !(d.note || '').trim()) return 'err_items';
+        if (d.result === 'fail' && ev.t >= ISC_FROM) {
+          if (!['tech', 'supplier', 'admin'].includes(d.owner)) return 'err_choose';
+          if (d.points != null && (!Array.isArray(d.points) || d.points.some(n => !ISC.some(x => x[0] === n)))) return 'err_choose';
+        }
         return d.result === 'fail' ? need((d.note || '').trim(), 'err_items') : null;
       }
       if (d.item === 'licence') {
@@ -5963,6 +6095,7 @@ const RULES = {
       if (P.stage === 'lost') return { k: 'err_stage', v: { stage: stName(P.stage) } };
       if (!TICKET_KINDS.some(k => k[0] === ev.data.kind)) return 'err_choose';
       if (ev.data.kind === 'breakdown' && P.stage !== 'amc') return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      if (ev.data.kind === 'warranty' && !inWarranty(P, ev.t)) return 'err_warranty_over';
       if (ev.data.sev != null && !SEVERITIES.some(x => x[0] === ev.data.sev && x[0] !== 'repeat')) return 'err_choose';
       if (ev.data.sev === 'trapped' && ev.data.kind !== 'breakdown') return 'err_choose';
       if (ev.data.src != null && !TICKET_SRC.some(x => x[0] === ev.data.src)) return 'err_choose';
@@ -6704,6 +6837,11 @@ function apply(S, ev) {
     case 'SERVICE_LEAD_SET': S.serviceLead = d.uid || ''; break;
     case 'BUDDY_SET': worker(d.uid).buddy = d.buddy; break;
     case 'WORKER_PROFILE': { const w = worker(d.uid); if (d.stripped) w.profile.filled = true; ['phone', 'area', 'skills', 'availability'].forEach(k => { if (d[k] !== undefined) w.profile[k] = k === 'phone' ? phone10(d[k]) : d[k]; }); w.profile.t = ev.t; break; }
+    case 'REFERRAL_SET': { const R = refProject(d.code); P.referral = { from: R.id, code: R.lift.code, t: ev.t, by: ev.by, paid: null }; break; }
+    case 'REFERRAL_REWARDED': P.referral.paid = { t: ev.t, by: ev.by, note: d.note.trim(), amount: +S.config.refReward || 0 }; break;
+    case 'SOC_SET': { const old = (P.society || {}).approvals || {}, members = d.members.map(x => String(x).trim()).filter(Boolean);
+      P.society = { members, quorum: +d.quorum, t: ev.t, by: ev.by, approvals: Object.fromEntries(Object.entries(old).filter(([k]) => members.includes(k))) }; break; }
+    case 'SOC_APPROVED': P.society.approvals[d.name] = { t: ev.t, by: ev.by, sig: ev_(d, 'sign')[0].id }; break;
     case 'LEGAL_SET': { const w = worker(d.uid); w.legal = w.legal || {}; w.legal[d.k] = { no: d.no.trim(), expiry: d.expiry, t: ev.t, by: ev.by }; break; }
     case 'SERIAL_RESOLVED': P.serialHold.ok = { t: ev.t, by: ev.by, note: d.note.trim() }; break;
     case 'DOC_VERIFIED': { const w = worker(d.uid); w.docs[d.doc] = d.status; (w.docLog = w.docLog || []).push({ doc: d.doc, status: d.status, note: d.note || '', by: ev.by, t: ev.t }); break; }
@@ -6784,7 +6922,9 @@ function needs(P) {
       break;
     case 'material_order':
       if (P.po && P.po.declined) { add('po_declined', ['admin', 'owner'], { urgent: true, since: P.po.declined.t }); break; }
-      if (P.po && !P.po.accepted) { add('accept_po', ['supplier'], { uids: [P.supplier] }); break; }
+      if (P.po && !P.po.accepted) { add('accept_po', ['supplier'], { uids: [P.supplier] });
+        if (+S.config.poAnswerHours > 0 && Date.now() - Date.parse(P.po.t) > +S.config.poAnswerHours * 3600e3) add('po_silent', ['admin', 'owner'], { urgent: true, since: P.po.t });
+        break; }
       { const late = P.po && P.po.accepted && P.po.accepted.date < todayStr();
         add('dispatch', ['supplier'], { uids: [P.supplier], urgent: late, overdue: late });
         if (late) add('po_late', ['admin', 'owner'], { date: P.po.accepted.date, since: P.po.accepted.date + 'T23:59:00' }); }
@@ -6820,6 +6960,9 @@ function needs(P) {
   if (P.stage === 'amc' && !P.amcEnded && statOf(P).licence) { const d = liftLicenceDays(P); if (d != null && d <= (S.config.licWarnDays || 60)) add('lift_licence_due', statRoles(), { uids: statLead() ? [statLead()] : [], n: d, urgent: d <= 7, since: statOf(P).licence.expiry + 'T12:00:00' }); }
   for (const h of P.holds || []) { if (h.status === 'pending') add('hold_request', ['admin', 'owner'], { hid: h.id, urgent: true, since: h.t }); if (h.status === 'active') add('hold_end', ['admin', 'owner'], { hid: h.id }); }
   if (P.dispute) add('dispute_open', ['owner', 'admin']);
+  if (P.referral && !P.referral.paid && P.stage !== 'lost' && stageIdx(P.stage) >= stageIdx('material_order')) add('referral_reward', ['admin', 'owner'], { since: P.referral.t });
+  if (P.society && !socOk(P) && P.stage !== 'lost' && stageIdx(P.stage) < stageIdx('signed') && stageIdx(P.stage) >= stageIdx('quoted')) add('soc_approvals', P.customer ? ['sales', 'customer'] : ['sales'], { uids: [P.sales, P.customer], since: P.society.t });
+  { const ins = statOf(P).inspection; if (ins && ins.result === 'fail' && ins.owner && P.stage !== 'lost') add('inspection_rework', [ins.owner], { uids: ins.owner === 'tech' ? [P.tech] : ins.owner === 'supplier' ? [P.supplier] : [], urgent: true, since: ins.t }); }
   for (const x of P.invoices || []) {
     if (x.status === 'submitted') add('approve_invoice', ['admin', 'owner'], { iid: x.id, since: x.t });
     else if (x.status === 'approved' && custCleared(P)) add('pay_invoice', ['finance'], { iid: x.id, not: x.okBy, since: x.okT });
@@ -7563,7 +7706,7 @@ function nextLine(P) {
 }
 const TASK_ICON = {
   qc_recheck: '🔁', recheck_failed: '⚠️',
-  help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪',
+  help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
@@ -7604,6 +7747,8 @@ function timeOf(n, P) {
   const span = (a, b, lab) => { const used = (now - a) / Math.max(1, b - a); return { pct: used * 100, label: lab(Math.ceil((b - now) / 864e5)) }; };
   const q = P && n.k === 'get_decision' ? lastQuote(P) : null;
   if (q && q.sent && q.sent.t && quoteValidTill(q)) return span(Date.parse(q.sent.t), Date.parse(quoteValidTill(q) + 'T23:59:00'), d => d > 0 ? t('tb_valid', { n: d }) : t('tb_expired'));
+  if (P && P.po && n.k === 'accept_po' && +S.config.poAnswerHours > 0) { const a = Date.parse(P.po.t), b = a + +S.config.poAnswerHours * 3600e3, used = (now - a) / (b - a);
+    return { pct: used * 100, label: used >= 1 ? t('tb_over_h') : t('tb_hours', { d: Math.floor((now - a) / 3600e3), m: +S.config.poAnswerHours }) }; }
   if (P && P.po && ['accept_po', 'dispatch'].includes(n.k)) { const by = (n.k === 'dispatch' && P.po.accepted && P.po.accepted.date) || P.po.needBy;
     if (by) return span(Date.parse(P.po.t), Date.parse(by + 'T23:59:00'), d => t('tb_need_by', { d: fmtD(by) }) + (d < 0 ? ' · ' + t('tb_over_late', { n: -d }) : '')); }
   const onbU = ['training', 'onb_profile', 'check_docs'].includes(n.k) && S.users[n.uid || (n.uids || [])[0]];
@@ -8410,6 +8555,18 @@ WIZ.qcsite = {
 };
 /* ---------- Admin: release drawings & assign team ---------- */
 const usersOf = role => Object.values(S.users).filter(u => u.role === role && u.active);
+/* a supplier's record: dispatched on or before the promised date, and hours taken to accept an order */
+function supScore(uid) {
+  const ps = Object.values(S.projects), done = ps.filter(P => P.dispatch && P.dispatch.by === uid && P.po && P.po.accepted);
+  const onTime = done.filter(P => safeDay(P.dispatch.t) <= P.po.accepted.date).length;
+  const ans = ps.filter(P => P.po && P.po.accepted && P.po.accepted.by === uid).map(P => (Date.parse(P.po.accepted.t) - Date.parse(P.po.t)) / 3600e3);
+  return { n: done.length, pct: done.length ? Math.round(onTime / done.length * 100) : null, h: ans.length ? Math.max(1, Math.round(sum(ans) / ans.length)) : null };
+}
+const supLine = uid => { const s = supScore(uid); return s.n ? t('sup_score', { p: s.pct, n: s.n, h: s.h == null ? '—' : s.h }) + (s.pct < 85 ? ' · ⚠️ ' + t('sup_low') : '') : t('sup_new'); };
+function supCard(uid) {
+  const s = supScore(uid);
+  return `<div class="card"><h3>🏭 ${t('sup_card')}</h3>${s.n ? `<div class="bar"><span class="lb">✅ %</span><span class="b"><i style="width:${s.pct}%"></i></span><b>${s.pct}%</b></div>` : ''}<p>${esc(supLine(uid))}</p><p class="small muted">${t('sup_card_note')}</p></div>`;
+}
 function personTiles(key, role) {
   if (role === 'tech' && W && W.pid) {
     /* only people allowed to lead a job of this size; best fair stars first */
@@ -8421,7 +8578,7 @@ function personTiles(key, role) {
   }
   const list = usersOf(role);
   if (!list.length) return `<div class="warnbox">${t('no_person_role', { role: t('r_' + role) })}</div>${['owner', 'admin'].includes(App.me.role) ? `<button class="btn btn-p" data-a="nav" data-v="users">👥 ${t('users')}</button>` : ''}`;
-  return tiles(key, list.map(u => [u.uid, ROLE_ICON[role], u.name]), 'one') + (role === 'tech' ? `<div class="small">${list.map(u => `${esc(u.name)}: ${authChip(u.uid)}`).join('<br>')}</div>${S.config.requireTraining ? `<p class="small muted">${t('auth_required')}</p>` : ''}` : '');
+  return tiles(key, list.map(u => [u.uid, ROLE_ICON[role], u.name].concat(role === 'supplier' ? [supLine(u.uid)] : [])), 'one') + (role === 'tech' ? `<div class="small">${list.map(u => `${esc(u.name)}: ${authChip(u.uid)}`).join('<br>')}</div>${S.config.requireTraining ? `<p class="small muted">${t('auth_required')}</p>` : ''}` : '');
 }
 WIZ.release = {
   title: 'tk_release', save: 'release_now', saveIcon: '📐',
@@ -8858,9 +9015,15 @@ function varCard(P) {
   const v = P.variation; if (!v) return '';
   const money = seeF(App.me, 'money');
   return `<div class="card"><h3>📐 ${t('var_title')}</h3><div class="${v.status === 'signed' ? 'okbox' : 'warnbox'}">${t('var_st_' + v.status)}</div>
-    <p class="small">${t('meas_low', { list: (v.low || []).map(m => t('meas_' + m) + ' ' + v.meas[m] + ' mm').join(', ') })}</p>${v.note && money ? `<p>${esc(v.note)}</p>` : ''}${v.amount != null && money ? `<p><b>${t('var_amount')}: ${money ? (v.amount >= 0 ? '+' : '−') + moneyFmt(Math.abs(v.amount)) : ''}</b></p>` : ''}</div>`;
+    <p class="small">${t('meas_low', { list: (v.low || []).map(m => t('meas_' + m) + ' ' + v.meas[m] + ' mm').join(', ') })}</p>${v.note && money ? `<p>${esc(v.note)}</p>` : ''}${v.amount != null && money ? `<p><b>${t('var_amount')}: ${money ? (v.amount >= 0 ? '+' : '−') + moneyFmt(Math.abs(v.amount)) : ''}</b></p>${varCompare(P)}` : ''}</div>`;
 }
 const moneyFmt = n => money(n);
+/* the agreed price and the new price side by side, so the customer sees exactly what changes */
+function varCompare(P) {
+  const v = P.variation, q = P.quotes.find(x => x.accepted) || lastQuote(P); if (!v || v.amount == null || !q) return '';
+  const pct = q.total ? Math.round(v.amount / q.total * 1000) / 10 : 0;
+  return `<div class="note">⚖️ ${t('var_compare', { a: money(q.total), b: money(q.total + v.amount), c: (pct >= 0 ? '+' : '') + pct + '%' })}</div>`;
+}
 WIZ.variation = {
   title: 'tk_make_variation', save: 'send', noDraft: true, init: () => ({ note: '', amount: '0' }),
   steps: [{ id: 'v', icon: '📐', say: 's_variation', body: (c, P) => varCard(P) + inp('note', 'var_what', { area: true, mic: true }) + inp('amount', 'var_amount', { type: 'number', mode: 'numeric' }) + `<p class="small muted">${t('var_amount_note')}</p>`,
@@ -8943,7 +9106,7 @@ function statCard(P) {
   if (stageIdx(P.stage) < stageIdx('signed') || P.stage === 'lost') return '';
   const st = statOf(P), l = st.licence, d = liftLicenceDays(P), i = st.inspection;
   const rows = [['stat_permit', st.permit ? `✅ ${esc(st.permit.no)} · ${fmtD(st.permit.date)}` : '—'],
-    ['stat_inspection', i ? `${i.result === 'pass' ? '✅' : '❌'} ${fmtD(i.date)}${i.note ? ' · ' + esc(i.note) : ''}` : '—'],
+    ['stat_inspection', i ? `${i.result === 'pass' ? '✅' : '❌'} ${fmtD(i.date)}${i.note ? ' · ' + esc(i.note) : ''}${i.result === 'fail' && (i.points || []).length ? '<br>' + i.points.map(n => '📋 ' + n + '. ' + esc(t('isc_' + n))).join('<br>') : ''}${i.result === 'fail' && i.owner ? '<br>🛠️ ' + t('insp_rework_by', { who: t('r_' + i.owner) }) : ''}` : '—'],
     ['stat_licence', l ? `${d != null && d < 0 ? '❌' : d != null && d <= (S.config.licWarnDays || 60) ? '⚠️' : '✅'} ${esc(l.no)} · ${esc(l.holder)} · ${t('lic_expiry')}: ${fmtD(l.expiry)}` : '—']];
   return `<div class="card"><h3>📜 ${t('stat_title')}</h3>${statBars(P)}${kv(rows)}${P.stage === 'handover' && S.config.licenceGate && !liftLicenceOk(P) ? `<div class="warnbox">📜 ${t('stat_needed')}</div>` : ''}<p class="small muted">${t('stat_note')}</p>${['owner', 'admin', 'qc'].includes(App.me.role) ? `<button class="btn btn-sm" data-a="nav" data-v="stattracker">📋 ${t('stat_tracker')}</button>` : ''}</div>`;
 }
@@ -8969,16 +9132,18 @@ WIZ.recheckReview = {
 };
 WIZ.statutory = {
   title: 'stat_title', save: 'save', noDraft: true,
-  init: (P, o) => ({ item: o.item || '', no: '', date: todayStr(), result: '', note: '', holder: P.partner ? userName(P.partner) : (S.org ? S.org.name : ''), expiry: '', ph: [] }),
+  init: (P, o) => ({ item: o.item || '', no: '', date: todayStr(), result: '', note: '', points: [], owner: '', holder: P.partner ? userName(P.partner) : (S.org ? S.org.name : ''), expiry: '', ph: [] }),
   steps: [
     { id: 'item', icon: '📜', say: 's_stat_item', skip: () => !!W.opts.item, body: () => tiles('item', STAT_ITEMS.map(([k, i]) => [k, i, 'stat_' + k]), 'one'), check: c => c.item ? null : 'err_choose' },
     { id: 'd', icon: '📝', say: c => t('s_stat_' + c.item), body: c => c.item === 'permit' ? inp('no', 'stat_no') + inp('date', 'stat_date', { type: 'date' }) + photoSlot('ph', 'stat_photo', 0, { tag: 'permit' })
-        : c.item === 'inspection' ? inp('date', 'stat_date', { type: 'date' }) + tiles('result', [['pass', '✅', 'stat_pass'], ['fail', '❌', 'stat_fail']], 'one') + inp('note', c.result === 'fail' ? 'stat_fixes' : 'f_note', { area: true, mic: true, opt: c.result !== 'fail' }) + photoSlot('ph', 'stat_photo', 0, { tag: 'inspection' })
+        : c.item === 'inspection' ? inp('date', 'stat_date', { type: 'date' }) + tiles('result', [['pass', '✅', 'stat_pass'], ['fail', '❌', 'stat_fail']], 'one') + inp('note', c.result === 'fail' ? 'stat_fixes' : 'f_note', { area: true, mic: true, opt: c.result !== 'fail' })
+          + (c.result === 'fail' ? `<h3>${t('insp_owner')}</h3>` + tiles('owner', [['tech', ROLE_ICON.tech, 'r_tech'], ['supplier', ROLE_ICON.supplier, 'r_supplier'], ['admin', ROLE_ICON.admin, 'r_admin']], 'three')
+            + `<h3>${t('insp_points')}</h3><div class="card">${ISC.filter(x => x[1] >= 0).map(([n]) => `<button class="list-item" style="width:100%;background:none;border:0;text-align:left" data-a="toggleIn" data-k="points" data-v="${n}" aria-pressed="${c.points.includes(String(n))}"><span>${c.points.includes(String(n)) ? '☑️' : '⬜'}</span><span class="grow small">${n}. ${esc(t('isc_' + n))}</span></button>`).join('')}</div>` : '') + photoSlot('ph', 'stat_photo', 0, { tag: 'inspection' })
         : inp('no', 'lic_no') + inp('holder', 'lic_holder', { mic: true }) + inp('expiry', 'lic_expiry', { type: 'date' }) + photoSlot('ph', 'stat_photo', 0, { tag: 'licence' }) + `<div class="note">${t('stat_holder_note')}</div>`,
-      check: c => c.item === 'inspection' ? (!c.result ? 'err_choose' : c.result === 'fail' && !c.note.trim() ? 'err_items' : null) : c.item === 'licence' ? (!c.no.trim() || !c.holder.trim() ? 'err_fill' : /^\d{4}-\d\d-\d\d$/.test(c.expiry) ? null : 'err_date') : (!c.no.trim() ? 'err_fill' : null) }
+      check: c => c.item === 'inspection' ? (!c.result ? 'err_choose' : c.result === 'fail' && !c.note.trim() ? 'err_items' : c.result === 'fail' && !c.owner ? 'err_choose' : null) : c.item === 'licence' ? (!c.no.trim() || !c.holder.trim() ? 'err_fill' : /^\d{4}-\d\d-\d\d$/.test(c.expiry) ? null : 'err_date') : (!c.no.trim() ? 'err_fill' : null) }
   ],
   async finish(c, P) {
-    const data = c.item === 'permit' ? { no: c.no.trim(), date: c.date } : c.item === 'inspection' ? { date: c.date, result: c.result, note: c.note.trim() } : { no: c.no.trim(), holder: c.holder.trim(), expiry: c.expiry };
+    const data = c.item === 'permit' ? { no: c.no.trim(), date: c.date } : c.item === 'inspection' ? Object.assign({ date: c.date, result: c.result, note: c.note.trim() }, c.result === 'fail' ? { owner: c.owner, points: c.points.map(Number) } : {}) : { no: c.no.trim(), holder: c.holder.trim(), expiry: c.expiry };
     const r = await run([['STATUTORY_SET', P.id, Object.assign({ item: c.item, ev: c.ph }, data)]]); return r.ok ? doneRes(P.id, 'what_stat_saved') : r;
   }
 };
@@ -9624,7 +9789,11 @@ const waitsWho = n => !n ? '—' : (n.uids || []).filter(id => S.users[id]).map(
 /* inspector points answered "No" most often, overall and by lead technician */
 function iscWeak() {
   const byN = {}, byT = {};
-  for (const P of Object.values(S.projects)) for (const [n, x] of Object.entries(P.isc || {})) if (x.a === 'no') { byN[n] = (byN[n] || 0) + 1; (byT[x.by] = byT[x.by] || {})[n] = (byT[x.by][n] || 0) + 1; }
+  const hit = (n, by) => { byN[n] = (byN[n] || 0) + 1; (byT[by] = byT[by] || {})[n] = (byT[by][n] || 0) + 1; };
+  for (const P of Object.values(S.projects)) {
+    for (const [n, x] of Object.entries(P.isc || {})) if (x.a === 'no') hit(n, x.by);
+    for (const h of (statOf(P).history || [])) if (h.item === 'inspection' && h.result === 'fail' && P.tech) for (const n of h.points || []) hit(String(n), P.tech);
+  }
   const top = Object.entries(byN).sort((a, b) => b[1] - a[1]).slice(0, 5);
   if (!top.length) return '';
   const mx = top[0][1];
@@ -9765,6 +9934,21 @@ function custPause(P) {
   const b = P.blockers.find(x => x.open); if (b) return `<div class="note">⏸ ${t('cust_paused_wait', { who: t('r_' + b.role) })}</div>`;
   return '';
 }
+function warrantyLine(P) {
+  const end = warrantyEnd(P), left = Math.round((new Date(end + 'T12:00:00') - new Date(todayStr() + 'T12:00:00')) / 864e5);
+  return `<div class="card"><div class="row wrapw"><b class="grow">🛡️ ${left >= 0 ? t('wc_left', { n: left }) : t('wc_over', { d: fmtD(end) })}</b><button class="btn btn-sm" data-a="openDocP" data-v="${P.id}|warranty">${t('doc_warranty')}</button></div>
+    ${left >= 0 && allowed('TICKET_OPENED', P) ? `<button class="btn" style="margin-top:8px" data-a="wizOpen" data-v="ticket|${P.id}|kind|warranty">🛡️ ${t('wc_claim')}</button>` : ''}</div>`;
+}
+/* a late job tells the customer why and with whom, before they have to ask */
+function lateCard(P) {
+  if (P.done || P.stage === 'lost' || custPause(P) || onHold(P)) return '';
+  const inst = installUsed(P), planLate = inst != null && S.config.installDays ? inst - +S.config.installDays : 0;
+  const n = mainNeed(P), tm = n ? timeOf(n, P) : null, lim = +S.config.escalateDays || 3;
+  const stepLate = tm && !tm.paused && tm.pct >= 100 && n.since ? Math.floor((Date.now() - Date.parse(n.since)) / 864e5) - lim : 0;
+  const late = Math.max(planLate, stepLate); if (late < 3 || !n) return '';
+  const you = (n.roles || []).includes('customer');
+  return `<div class="warnbox"><b>⏰ ${t('late_title', { n: late })}</b><br>${t('late_why', { what: t('tk_' + n.k), who: you ? t('late_with_you') : rolesTxt((n.roles || []).filter(r => r !== 'customer')) })}<br><span class="small">${t(you ? 'late_you' : 'late_office')}</span></div>`;
+}
 function customerHome() {
   const u = App.me, P = S.projects[custPid(u)], js = custJobs(u);
   if (!P) {
@@ -9784,13 +9968,14 @@ function customerHome() {
     ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + tasks.map((n, i) => taskCard(n, i)).join('') : ''}
     ${payCard(P)}
     ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
+    ${lateCard(P)}${P.done ? warrantyLine(P) : ''}${P.society && !P.done ? socCard(P) : ''}${custRefCard(P)}
     ${P.done && allowed('TICKET_OPENED', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="ticket|${P.id}">🚨 ${t('ticket_new')}</button>` : ''}
     ${P.lead.bySelf && P.customer === u.uid ? fold('cmine', t('cl_mine'), `<div class="photos">${P.evidence.map(id => S.evidence[id]).filter(e => e && e.kind === 'photo').map(e => thumb(e)).join('')}</div>
       ${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark || '')], ['q_shaft_ready', t(P.lead.shaft === 'unknown' ? 'not_sure' : P.lead.shaft)], ['q_floors', P.lead.floors == null ? t('not_sure') : String(P.lead.floors)], ['q_btype', P.lead.bType ? t('bt_' + P.lead.bType) : ''], ['q_need', P.lead.need ? t('nd_' + P.lead.need) : '']])}
       ${['new', 'returned'].includes(P.stage) ? `<button class="btn btn-p" data-a="custEditSite" data-v="${P.id}">✏️ ${t('cl_change')}</button>` : `<p class="small muted">🔒 ${t('cl_locked')}</p>`}`, { icon: '🏗️', open: ['new', 'returned'].includes(P.stage) }) : ''}
     ${fold('cdocs', t('papers_help'), `<div class="tiles">${q ? tile('openDocP', P.id + '|quote', '📄', 'doc_quote') : ''}${P.agreement ? tile('openDocP', P.id + '|agreement', '✍️', 'doc_agreement') : ''}
       ${tile('openProjectTab', P.id + '|money', '💰', 'tab_money')}${['site_prep', 'site_fix'].includes(P.stage) ? tile('openCl', P.id + '|' + (P.stage === 'site_prep' ? 'prep' : 'sitefix'), '🧱', 'site_checklist') : ''}
-      ${tile('openProjectTab', P.id + '|chat', '❓', 'ask_question')}${tile('openProjectTab', P.id + '|chat', '😟', 'complaint')}${P.done ? tile('openDocP', P.id + '|handover', '🔑', 'doc_handover') : ''}${lastPass(P) ? tile('openDocP', P.id + '|cert', '📜', 'doc_cert') : ''}${P.drawings ? tile('openDrawings', P.id, '📐', 'dwg_title') : ''}</div>`, { icon: '📄', sub: t('fold_tap') })}
+      ${tile('openProjectTab', P.id + '|chat', '❓', 'ask_question')}${tile('openProjectTab', P.id + '|chat', '😟', 'complaint')}${P.done ? tile('openDocP', P.id + '|handover', '🔑', 'doc_handover') + tile('openDocP', P.id + '|warranty', '🛡️', 'doc_warranty') + tile('openDocP', P.id + '|bundle', '🗂️', 'doc_bundle') : ''}${lastPass(P) ? tile('openDocP', P.id + '|cert', '📜', 'doc_cert') : ''}${P.drawings ? tile('openDrawings', P.id, '📐', 'dwg_title') : ''}</div>`, { icon: '📄', sub: t('fold_tap') })}
     ${P.done ? fold('camc', t('amc_title'), amcCard(P), { icon: '🛠️', open: P.tickets.some(x => x.status !== 'closed'), count: P.tickets.filter(x => x.status !== 'closed').length || null, alert: true }) : ''}${!P.done && allowed('TICKET_OPENED', P) ? `<button class="btn" data-a="wizOpen" data-v="ticket|${P.id}">🎫 ${t('ticket_new')}</button>` : ''}
     <button class="btn btn-sm" style="margin-top:14px" data-a="custNewSite">➕ ${t('cl_another')}</button></main>` + nav('home');
 }
@@ -9973,7 +10158,7 @@ function projInfo(P) {
   const sopN = Object.keys(P.sop).length;
   const target = installUsed(P);
   const cancelled = P.lost && P.lost.reason === 'cancelled' ? `<div class="err">⛔ ${t('cancelled_on', { d: fmtD(P.lost.t) })}: ${esc(P.lost.note)}${P.payments.some(x => x.status === 'confirmed') ? '<br>🏦 ' + t('refund_note') : ''}</div>` : '';
-  return cancelled + open + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
+  return cancelled + open + socCard(P) + refCard(P) + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
       ['gps', P.site.gps ? `<a href="${mapsLink(P.site.gps)}" target="_blank" rel="noopener">${P.site.gps.lat}, ${P.site.gps.lng}</a> · <a href="${dirLink(P.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a>` : t('no')]])}</div>
     ${OUTSIDERS.includes(u.role) ? maskedContact(P) : `<div class="card"><h3>👤 ${t('contact')}</h3>${kv([['f_contact_name', esc(P.contact.name)], ['f_phone', seeF(u, 'phone') ? (P.contact.phone ? `<a href="tel:+91${P.contact.phone}">📞 ${esc(P.contact.phone)}</a>` : t('i_no_phone')) : '🔒 ' + t('hidden')]])}
       ${P.corrected.length ? `<details style="margin-top:6px"><summary class="small">✏️ ${t('corrections_history')} (${P.corrected.length})</summary>${P.corrected.map(c => `<div class="small">${fmtD(c.t, true)} · ${userTag(c.by)} · ${t(c.field === 'address' ? 'f_address' : c.field === 'phone' ? 'f_phone' : 'f_contact_name')}: <s>${esc(c.old)}</s> → <b>${esc(c.val)}</b> (${esc(c.reason)})</div>`).join('')}</details>` : ''}</div>`}
@@ -10144,7 +10329,8 @@ function projDocs(P) {
   const qs = App.me.role === 'customer' ? P.quotes.filter(q => q.sent) : P.quotes;
   if (qs.length && seeF(App.me, 'money')) items.push(['quote', '📄', 'doc_quote']);
   if (P.agreement && seeF(App.me, 'money')) items.push(['agreement', '✍️', 'doc_agreement']);
-  if (P.done) items.push(['handover', '🔑', 'doc_handover']);
+  if (P.done) items.push(['handover', '🔑', 'doc_handover'], ['warranty', '🛡️', 'doc_warranty']);
+  if (P.done && (['owner', 'admin', 'qc', 'customer'].includes(App.me.role) || App.me.uid === statLead())) items.push(['bundle', '🗂️', 'doc_bundle']);
   if (P.po && ['owner', 'admin', 'supplier'].includes(App.me.role)) items.push(['po', '📑', 'doc_po']);
   const dw = P.drawings ? `<button class="tile" data-a="openDrawings" data-v="${P.id}"><span class="i">📐</span>${t('dwg_title')}${drawLock(P, App.me) ? ' 🔒' : ''}</button>` : '';
   return items.length || dw ? `<div class="tiles one">${items.map(([k, i, l]) => `<button class="tile" data-a="openDoc" data-v="${k}"><span class="i">${i}</span>${t(l)}</button>`).join('')}${dw}</div>` : `<div class="card center">${t('no_docs_yet')}</div>`;
@@ -10326,10 +10512,20 @@ function docQuote(P, v) {
     <h3>${t('price')}</h3><table>${q.lines.map(([k, val]) => `<tr><td>${t(k)}</td><td class="r">${money(val)}</td></tr>`).join('')}<tr><td><b>${t('q_list')}</b></td><td class="r">${money(q.list)}</td></tr>
     ${q.discount ? `<tr><td>${t('q_discount')} (${q.discountPct}%)</td><td class="r">− ${money(q.discount)}</td></tr>` : ''}<tr><td>${t('q_price')}</td><td class="r">${money(q.price)}</td></tr><tr><td>${t('q_gst', { n: q.gstPct })}</td><td class="r">${money(q.gst)}</td></tr><tr><td><b>${t('q_total')}</b></td><td class="r"><b>${money(q.total)}</b></td></tr></table>
     <h3>${t('pay_schedule')}</h3><table><tr><td>${t('pay_token')}</td><td class="r">${money(s.token)}</td></tr><tr><td>${t('pay_arrival')}</td><td class="r">${money(s.arrival)}</td></tr><tr><td>${t('pay_final')}</td><td class="r">${money(s.final)}</td></tr></table>
-    <h3>${t('scope')}</h3><p>${t('scope_text')}</p><h3>${t('exclusions')}</h3><p>${t('exclusions_text')}</p><h3>${t('delivery')}</h3><p>${t('delivery_text', { n: S.config.installDays })}</p>
+    <h3>${t('q_assume')}</h3><ul style="padding-left:20px">${quoteAssumptions(P, q).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+    <h3>${t('scope')}</h3><p>${t('scope_text')}</p><h3>${t('exclusions')}</h3><p>${t('exclusions_text')}</p>${civilLine()}<h3>${t('delivery')}</h3><p>${t('delivery_text', { n: S.config.installDays })}</p>
     <p class="small">${t('approval_status')}: <b>${t('qs_' + q.status)}</b>${q.decision ? ' · ' + userName(q.decision.by) + ' · ' + fmtD(q.decision.t) : ''} · ${t('version')} ${q.v} · ${userName(q.by)} · ${fmtD(q.t, true)}</p>
     ${Object.keys(RULE_GROUPS).some(gk => ['pricing', 'token', 'milestones'].includes(gk) && !S.config.approved[gk]) ? `<p class="small" style="color:var(--warn)">⚠️ ${t('doc_rules_proposed')}</p>` : ''}`;
 }
+/* what the price stands on until the site check, printed so nothing is hidden */
+function quoteAssumptions(P, q) {
+  const r = q.req || {}, measured = (P.qcSite || []).some(x => x.meas), out = [];
+  if (!measured) out.push(t(r.shaft === 'no' ? 'q_assume_shaft_new' : 'q_assume_shaft'), t('q_assume_height'));
+  if (r.power !== 'yes') out.push(t('q_assume_power'));
+  return out.length ? out : [t('q_assume_shaft')];
+}
+const civilLine = () => +S.config.civilMax > 0 ? `<p>${t('q_civil_range', { a: money(+S.config.civilMin || 0), b: money(+S.config.civilMax) })}</p>` : '';
+const cancelText = () => (+S.config.cancelBefore || +S.config.cancelAfter) ? t('ag_cancel_nums', { a: +S.config.cancelBefore || 0, b: +S.config.cancelAfter || 0 }) + ' ' + t('ag_cancel_text') : t('ag_cancel_text');
 function agreeKeyPoints(P) {
   const q = P.quotes.find(x => x.v === (P.agreement && P.agreement.quoteV)) || lastQuote(P), s = P.schedule || paySchedule(S.config, q.total);
   return `<ul style="padding-left:20px;margin:0">${[t('ak_lift', { stops: q.req.stops, cap: t('cap_' + q.req.capacity), type: t('type_' + q.req.type), fin: t('fin_' + q.req.finish) }), t('ak_price', { total: money(q.total) }),
@@ -10339,7 +10535,7 @@ function docAgreement(P, preview) {
   const sg = P.agreement && P.agreement.signed;
   return (preview ? '' : docHead(P, t('doc_agreement'), `${P.id}-AG`)) + `<p>${esc(t('ag_parties', { company: S.org.name, name: P.contact.name, site: P.site.address }))}</p>${agreeKeyPoints(P)}
     <h3>${t('ag_customer_duties')}</h3><ul style="padding-left:20px">${PREP_ITEMS.map(([k]) => `<li>${t('prep_' + k)}</li>`).join('')}</ul>
-    <h3>${t('ag_company_duties')}</h3><p>${t('ag_company_text')}</p><h3>${t('ag_cancel')}</h3><p>${t('ag_cancel_text')}</p>
+    <h3>${t('ag_company_duties')}</h3><p>${t('ag_company_text')}</p><h3>${t('ag_cancel')}</h3><p>${esc(cancelText())}</p>
     <p class="small" style="color:var(--warn)">⚖️ ${t('legal_template')}</p>
     ${sg ? `<h3>${t('signature')}</h3><img class="sigimg" data-m="${S.evidence[sg.sig].m}" alt=""><p class="small">${esc(sg.signer)} · ${fmtD(sg.t, true)}${sg.inPerson ? ' · ' + t('in_presence', { name: userName(sg.by) }) : ''}</p>` : ''}`;
 }
@@ -10366,16 +10562,90 @@ function docHandover(P) {
     ${P.done ? `<h3>${t('warranty')}</h3><p>${t('warranty_until', { d: fmtD(addDays(P.done.warrantyMonths * 30, new Date(P.done.t))) })}</p><h3>${t('amc_visits')}</h3><ul style="padding-left:20px">${P.done.amc.visits.map(d => `<li>${fmtD(d)}</li>`).join('')}</ul>` : ''}
     <h3>${t('noc')}</h3><p>${t('noc_text')}</p>`;
 }
+/* referral: who sent this customer (office), and the customer's own code and referrals */
+function refCard(P) {
+  const u = App.me; if (u.role === 'customer') return '';
+  if (P.referral) { const R = S.projects[P.referral.from];
+    return `<div class="card"><h3>🎁 ${t('rf_yours')}</h3><p>${t('rf_from', { who: esc(R ? R.contact.name : '—'), p: esc(P.referral.from) })} · ${t(P.referral.paid ? 'rf_paid' : stageIdx(P.stage) >= stageIdx('material_order') ? 'rf_due' : 'rf_wait')}</p></div>`; }
+  return allowed('REFERRAL_SET', P) ? `<button class="btn btn-sm" style="margin-bottom:10px" data-a="wizOpen" data-v="refSet|${P.id}">🎁 ${t('rf_set')}</button>` : '';
+}
+function custRefCard(P) {
+  if (!P.done || !P.lift) return '';
+  const code = P.lift.code, off = S.config.officeNumber || '', msg = t('rf_msg', { co: S.org.name, c: code, ph: off || '—' }), mine = referredBy(P.id);
+  return `<div class="card"><h3>🎁 ${t('rf_title')}</h3><p><b>${t('rf_code', { c: esc(code) })}</b></p><p class="small">${+S.config.refReward > 0 ? t('rf_reward', { a: money(+S.config.refReward) }) : t('rf_thanks')}</p>
+    <a class="btn btn-ok" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">💬 ${t('rf_share')}</a>
+    ${mine.length ? `<h3 style="margin-top:10px">${t('rf_yours')}</h3>${mine.map(R => `<div class="list-item small"><span class="grow">${esc(R.id)} · ${stName(R.stage)}</span><span class="chip ${R.referral.paid ? 'c-ok' : 'c-info'}">${t(R.referral.paid ? 'rf_paid' : stageIdx(R.stage) >= stageIdx('material_order') ? 'rf_due' : 'rf_wait')}</span></div>`).join('')}` : ''}</div>`;
+}
+/* society committee: approvals needed, who approved and when, the resolution made from them */
+function socCard(P) {
+  const u = App.me, can = ['sales', 'admin', 'owner'].includes(u.role) && allowed('SOC_SET', P);
+  if (!P.society) return can ? `<button class="btn btn-sm" style="margin-bottom:10px" data-a="wizOpen" data-v="socSet|${P.id}">🏘️ ${t('sc_setup')}</button>` : '';
+  const sc = P.society, n = socCount(P), pct = Math.min(100, Math.round(n / sc.quorum * 100));
+  return `<div class="card"><h3>🏘️ ${t('sc_title')}</h3><div class="bar"><span class="lb">${t('sc_progress', { a: n, b: sc.quorum })}</span><span class="b"><i style="width:${pct}%"></i></span><b>${pct}%</b></div>
+    ${socOk(P) ? `<div class="okbox">✅ ${t('sc_ok')}</div>` : ''}
+    ${sc.members.map(m => { const a = sc.approvals[m]; return `<div class="list-item small"><span>${a ? '✅' : '⬜'}</span><span class="grow">${esc(m)}${a ? `<br><span class="muted">${fmtD(a.t, true)} · ${esc(userName(a.by))}</span>` : ''}</span></div>`; }).join('')}
+    <p class="small muted">${t('sc_note')}</p>
+    <div class="row wrapw">${allowed('SOC_APPROVED', P) && n < sc.members.length ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="socApprove|${P.id}">✍️ ${t('sc_record')}</button>` : ''}${can ? `<button class="btn btn-sm" data-a="wizOpen" data-v="socSet|${P.id}">✏️ ${t('sc_setup')}</button>` : ''}<button class="btn btn-sm" data-a="openDocP" data-v="${P.id}|resolution">📄 ${t('doc_resolution')}</button></div></div>`;
+}
+WIZ.refSet = {
+  title: 'rf_set', save: 'save', noDraft: true, init: () => ({ code: '' }),
+  steps: [{ id: 'c', icon: '🎁', say: 'rf_set_say', body: () => inp('code', 'rf_set', { big: true }), check: c => refProject(c.code) ? null : 'err_ref_code' }],
+  async finish(c, P) { const r = await run([['REFERRAL_SET', P.id, { code: c.code.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+WIZ.refReward = {
+  title: 'tk_referral_reward', save: 'save', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'r', icon: '🎁', say: 'tk_referral_reward', body: (c, P) => { const R = S.projects[P.referral.from]; return `<div class="card">${t('rf_from', { who: esc(R ? R.contact.name : '—'), p: esc(P.referral.from) })}${+S.config.refReward > 0 ? '<br><b>' + money(+S.config.refReward) + '</b>' : ''}</div>` + inp('note', 'rf_given_note', { area: true, mic: true }); },
+    check: c => c.note.trim() ? null : 'err_reason' }],
+  async finish(c, P) { const r = await run([['REFERRAL_REWARDED', P.id, { note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+WIZ.socSet = {
+  title: 'sc_setup', save: 'save', noDraft: true, init: P => ({ members: P.society ? P.society.members.join('\n') : '', quorum: P.society ? String(P.society.quorum) : '' }),
+  steps: [{ id: 's', icon: '🏘️', say: 'sc_note', body: () => inp('members', 'sc_members', { area: true, mic: true }) + inp('quorum', 'sc_quorum', { type: 'number', mode: 'numeric' }),
+    check: c => { const m = c.members.split('\n').map(x => x.trim()).filter(Boolean), q = +c.quorum; return m.length >= 2 && new Set(m.map(x => x.toLowerCase())).size === m.length && Number.isInteger(q) && q >= 1 && q <= m.length ? null : 'err_members'; } }],
+  async finish(c, P) { const r = await run([['SOC_SET', P.id, { members: c.members.split('\n').map(x => x.trim()).filter(Boolean), quorum: +c.quorum }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+WIZ.socApprove = {
+  title: 'sc_record', save: 'save', noDraft: true, init: () => ({ name: '', sig: null }),
+  steps: [
+    { id: 'w', icon: '🏘️', say: 'sc_who', body: (c, P) => tiles('name', P.society.members.filter(m => !P.society.approvals[m]).map(m => [m, '👤', m]), 'one'), check: c => c.name ? null : 'err_choose' },
+    { id: 's', icon: '✍️', say: 'sc_note', body: c => `<div class="note">${esc(c.name)}</div>` + signSlot('sig', 'sc_sign'), check: c => c.sig ? null : 'err_sign' }
+  ],
+  async finish(c, P) { const r = await run([['SOC_APPROVED', P.id, { name: c.name, ev: [c.sig] }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+function docResolution(P) {
+  const sc = P.society, q = P.quotes.find(x => x.accepted) || lastQuote(P), n = socCount(P);
+  return docHead(P, t('doc_resolution'), `${P.id}-RS`) + `<p>${esc(t('res_text', { site: P.site.address, co: S.org.name, total: q ? money(q.total) : '—' }))}</p>
+    <table><tr><th>#</th><th>${t('sc_member')}</th><th>${t('signature')}</th></tr>${sc.members.map((m, i) => { const a = sc.approvals[m]; return `<tr><td>${i + 1}</td><td>${esc(m)}</td><td>${a ? `<img class="sigimg" data-m="${(S.evidence[a.sig] || {}).m || ''}" alt=""><br><span class="small">${fmtD(a.t, true)}</span>` : '—'}</td></tr>`; }).join('')}</table>
+    <p><b>${t('res_result', { a: n, b: sc.members.length, q: sc.quorum, r: t(socOk(P) ? 'res_pass' : 'res_open') })}</b></p><p class="small">📎 ${t('res_note')}</p>`;
+}
+/* the warranty card: dates, what is and is not covered, who to call, serials for claims */
+function docWarranty(P) {
+  const end = warrantyEnd(P), lead = svcLead(), off = S.config.officeNumber || '', sm = (P.dispatch || {}).serialMap || {};
+  const left = Math.round((new Date(end + 'T12:00:00') - new Date(todayStr() + 'T12:00:00')) / 864e5);
+  return docHead(P, t('doc_warranty'), `${P.id}-WC`) + kv([['f_address', esc(P.site.address)], ['warranty', t('wc_from_to', { a: fmtD(P.done.t), b: fmtD(end) })], ['lift_qr', P.lift ? esc(P.lift.code) : '']])
+    + `<p><b>${left >= 0 ? t('wc_left', { n: left }) : t('wc_over', { d: fmtD(end) })}</b></p>
+    <h3>✅ ${t('wc_covered')}</h3><p>${t('wc_covered_text')}</p><h3>🚫 ${t('wc_not')}</h3><p>${t('wc_not_text')}</p>
+    <h3>📞 ${t('wc_call')}</h3><p>${lead ? esc(userName(lead)) + ' · ' + t('r_' + roleOf(lead)) : esc(S.org.name)}${off ? ' · ' + esc(off) : ''}</p>
+    ${Object.keys(sm).length ? `<h3>🔢 ${t('wc_parts')}</h3>${kv(Object.entries(sm).map(([k, v]) => [k, esc(v)]))}` : ''}`;
+}
+/* every paper of the lift in one printable file; nothing is removed when the job closes */
+function docBundle(P) {
+  const st = statOf(P), sv = P.done.amc.visits.map((d, i) => P.service[i] ? `<li>${fmtD(P.service[i].t)} · ${t('amc_visit_n', { n: i + 1 })} · ${esc(userName(P.service[i].by))}</li>` : '').join('')
+    + P.tickets.filter(x => x.status === 'closed').map(x => `<li>${fmtD(x.t)} · ${t('tkind_' + x.kind)} · ${esc(x.text)}</li>`).join('');
+  return docHandover(P) + '<hr>' + (lastPass(P) ? docCert(P) + '<hr>' : '') + docWarranty(P) + '<hr>'
+    + `<h2>${t('bd_legal')}</h2>${kv([['stat_permit', st.permit ? esc(st.permit.no) + ' · ' + fmtD(st.permit.date) : '—'], ['stat_inspection', st.inspection ? (st.inspection.result === 'pass' ? '✅ ' : '❌ ') + fmtD(st.inspection.date) : '—'], ['stat_licence', st.licence ? esc(st.licence.no) + ' · ' + t('lic_expiry') + ': ' + fmtD(st.licence.expiry) : '—'], ['f_drawings', P.drawings ? esc(P.drawings.ref) : '—']])}
+    <h2>${t('bd_service')}</h2>${sv ? `<ul style="padding-left:20px">${sv}</ul>` : `<p class="muted">${t('nothing_here')}</p>`}<p class="small">📎 ${t('bd_note')}</p>`;
+}
 SCREENS.doc = ({ pid, kind, v }) => {
   const P = S.projects[pid];
   if (!P || !canSee(App.me, P)) return SCREENS.home();
   if ((kind === 'quote' || kind === 'agreement') && !seeF(App.me, 'money')) return SCREENS.home();
   if (kind === 'po' && !['owner', 'admin', 'supplier'].includes(App.me.role)) return SCREENS.home();
-  if (kind === 'cert' && !['owner', 'admin', 'qc', 'customer'].includes(App.me.role) && App.me.uid !== statLead()) return SCREENS.home();
-  const ready = { quote: P.quotes.length > 0, agreement: !!P.agreement, handover: !!P.done, po: !!P.po, cert: !!lastPass(P) }[kind];
+  if (['cert', 'bundle'].includes(kind) && !['owner', 'admin', 'qc', 'customer'].includes(App.me.role) && App.me.uid !== statLead()) return SCREENS.home();
+  const ready = { quote: P.quotes.length > 0, agreement: !!P.agreement, handover: !!P.done, po: !!P.po, cert: !!lastPass(P), warranty: !!P.done, bundle: !!P.done, resolution: !!P.society }[kind];
   if (!ready) return topBar(t('doc_' + kind), { back: true }) + `<main class="wrap"><div class="card center">${t('no_docs_yet')}</div></main>`;
   if (kind === 'quote' && App.me.role === 'customer') { const sent = P.quotes.filter(q => q.sent); if (!sent.length) return SCREENS.home(); if (!sent.some(q => q.v === +v)) v = sent[sent.length - 1].v; }
-  const html = kind === 'quote' ? docQuote(P, v) : kind === 'agreement' ? docAgreement(P) : kind === 'po' ? docPO(P) : kind === 'cert' ? docCert(P) : docHandover(P);
+  const html = kind === 'quote' ? docQuote(P, v) : kind === 'agreement' ? docAgreement(P) : kind === 'po' ? docPO(P) : kind === 'cert' ? docCert(P) : kind === 'warranty' ? docWarranty(P) : kind === 'resolution' ? docResolution(P) : kind === 'bundle' ? docBundle(P) : docHandover(P);
   return topBar(t('doc_' + kind), { back: true }) + `<main class="wrap"><div class="row noprint" style="margin-bottom:10px"><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button><button class="btn" data-a="sayDoc">🔊 ${t('listen')}</button></div><div class="doc" id="docbody">${html}</div></main>`;
 };
 
@@ -11083,9 +11353,9 @@ WIZ.service = {
   }
 };
 WIZ.ticket = {
-  title: 'ticket_new', save: 'send', saveIcon: '🎫', init: () => ({ kind: '', sev: '', src: App.me.role === 'customer' ? 'app' : 'call', text: '', ph: [] }),
+  title: 'ticket_new', save: 'send', saveIcon: '🎫', init: (P, o) => ({ kind: (o && o.kind) || '', sev: '', src: App.me.role === 'customer' ? 'app' : 'call', text: '', ph: [] }),
   steps: [
-    { id: 'kind', icon: '🎫', say: 's_ticket_kind', body: (c, P) => (P.stage === 'amc' && (P.amcEnded || (P.amcEnd && P.amcEnd < todayStr())) ? `<div class="note">🛑 ${t('amc_out_paid')}</div>` : '') + tiles('kind', TICKET_KINDS.filter(k => k[0] !== 'breakdown' || P.stage === 'amc').map(([k, i]) => [k, i, 'tkind_' + k, 'tkind_' + k + '_d']), 'one'), check: c => c.kind ? null : 'err_choose' },
+    { id: 'kind', icon: '🎫', say: 's_ticket_kind', body: (c, P) => (P.stage === 'amc' && (P.amcEnded || (P.amcEnd && P.amcEnd < todayStr())) ? `<div class="note">🛑 ${t('amc_out_paid')}</div>` : '') + tiles('kind', TICKET_KINDS.filter(k => (k[0] !== 'breakdown' || P.stage === 'amc') && (k[0] !== 'warranty' || inWarranty(P))).map(([k, i]) => [k, i, 'tkind_' + k, 'tkind_' + k + '_d']), 'one'), check: c => c.kind ? null : 'err_choose' },
     {
       id: 'sev', icon: '🚦', say: 's_ticket_sev',
       body: c => tiles('sev', SEVERITIES.filter(([k]) => k !== 'repeat' && (k !== 'trapped' || c.kind === 'breakdown')).map(([k, i]) => [k, i, 'sev_' + k, 'sev_' + k + '_d']), 'one')
@@ -11215,7 +11485,7 @@ SCREENS.worker = ({ uid }) => {
   App.pageSay = t('s_worker');
   return topBar(uid === me.uid ? t('my_profile') : u.name, { back: true }) + `<main class="wrap">
     <div class="hero"><div class="row"><span style="font-size:2.2rem">${ROLE_ICON[u.role]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + u.role)}</span></div></div><div style="margin-top:6px">${authChip(uid)}</div></div>${onbCard(uid)}
-    ${u.role === 'partner' ? companyCard(uid) : ''}${u.role === 'tech' ? memberCard(uid) : ''}${legalCard(uid)}
+    ${u.role === 'partner' ? companyCard(uid) : ''}${u.role === 'tech' ? memberCard(uid) : ''}${u.role === 'supplier' ? supCard(uid) : ''}${legalCard(uid)}
     ${gradeOf(uid) ? ladderCard(uid, { short: true }) : ''}${trialCard(uid)}
     <div class="card"><h3>👤 ${t('profile')}</h3>${kv([['f_phone', esc(p.phone || '')], ['w_area', esc(p.area || '')], ['w_avail', p.availability ? t('av_' + p.availability) : ''], ['w_skills', (p.skills || []).map(x => t('skill_' + x)).join(', ')]])}
       ${u.role === 'customer' ? '' : `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="wprofile||uid|${uid}">✏️ ${t('edit')}</button>`}<p class="small muted">${t('w_privacy')}</p></div>
@@ -12120,7 +12390,7 @@ function openTask(n) {
     pay_dispute: () => wiz('payAnswer', null, { uid: n.uid, week: n.week }), training: () => wiz('train', null, { module: n.module }),
     onb_profile: () => wiz('wprofile', null, { uid: n.uid }), check_docs: () => go('worker', { uid: n.uid }),
     rate_work: () => wiz('rate', pid, { ref: n.ref, about: n.ref === 'handover' ? doneLead(P) : P.service[n.ref.split(':')[1]].by }), rate_crew: () => wiz('rateCrew', pid, { uid: n.uid }),
-    wait_permit: () => go('project', { pid }), wait_serial: () => go('project', { pid }), serial_mismatch: () => wiz('serialFix', pid), legal_renew: () => go('worker', { uid: n.uid }),
+    wait_permit: () => go('project', { pid }), wait_serial: () => go('project', { pid }), po_silent: () => go('project', { pid, tab: 'info' }), referral_reward: () => wiz('refReward', pid), soc_approvals: () => go('project', { pid, tab: 'info' }), inspection_rework: () => go('project', { pid, tab: 'info' }), serial_mismatch: () => wiz('serialFix', pid), legal_renew: () => go('worker', { uid: n.uid }),
     qc_recheck: () => wiz('recheck', pid), recheck_failed: () => wiz('recheckReview', pid),
     help_newbie: () => { const x = S.users[n.uid], ph = ((S.workers[n.uid] || {}).profile || {}).phone; sheet(`<h2>🤝 ${t('tk_help_newbie')}</h2><p><b>${esc(x.name)}</b> · ${t('r_' + x.role)} · ${t('nw_stuck', { n: newStuck(x) })}</p>${ph ? `<a class="btn btn-p btn-big" href="tel:+91${esc(ph)}">📞 ${esc(ph)}</a>` : ''}${onbCard(n.uid, { short: true })}`); },
     promotion_ready: () => wiz('promote', null, { uid: n.uid }), strike_appeal: () => wiz('decide', null, { uid: n.uid, sid: n.sid }),
