@@ -90,7 +90,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await step('safety_check', 'PTECH', 'SAFETY_CHECKED', { ev: await ev(`SAFETY_ITEMS.map(([k]) => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'safe_' + k, t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }))`) });
   for (let g = 0; g < 40 && !(await ev(`sopNext(S.projects["${pid}"]) >= SOP.length`)); g++) {
     if ((await page.evaluate(p => needs(S.projects[p]).map(x => x.k), pid)).includes('peer_check')) await step('peer_check', 'PSENIOR', 'PEER_CHECKED', { step: await ev(`peerWaiting(S.projects["${pid}"])[0]`), ok: true });
-    else await step('install', 'PTECH', 'SOP_STEP_DONE', { step: await ev(`sopNext(S.projects["${pid}"])`), ev: await ph(1) });
+    else await step('install', 'PTECH', 'SOP_STEP_DONE', { step: await ev(`sopNext(S.projects["${pid}"])`), isc: await ev(`iscYes(sopNext(S.projects["${pid}"]))`), ev: await ph(1) });
   }
   await step('request_inspection', 'PTECH', 'INSPECTION_REQUESTED', {});
 

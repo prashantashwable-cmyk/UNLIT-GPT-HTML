@@ -223,7 +223,10 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await login('Sam Sales'); await startTask('record_payment'); await pick('method', 'bank'); await next(); await fill('ref', 'NEFT778'); await next(); await next();
   await login('Fiona Finance'); await startTask('verify_payment'); await pick('status', 'confirmed'); await next(); await fill('ref', 'STMT-1002'); await next();
   await login('Tara Tech');
-  await startTask('material_handover'); await shot('material_handover'); await next(); await photo('store'); await next();
+  await startTask('material_handover'); await shot('material_handover'); await next();
+  assert(/Read the serial number/.test(await page.innerText('main')), 'the technician reads each serial number on site');
+  for (const k of ['m_machine', 'm_controller', 'm_governor']) if (mats.includes(k)) await fill('sn.' + k, k.slice(2, 5).toLowerCase() + ' 7781');
+  await shot('material_serials'); await next(); await photo('store'); await next();
   assert(!(await page.$('[data-a="sign"][data-k="csig"]')), 'the customer has the app: no customer signature on the technician\'s phone');
   await next(); await sign('tsig'); await next(); await doneOk('material counted');
   assert(await stage(pid) === 'arrived', 'installation waits for the customer\'s signature');
@@ -255,7 +258,10 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
       await login('Tara Tech'); await startTask('install');
     }
     await tap(page, `[data-a="clItem"][data-v="sop|${i}"]`, { wait: 250 });
+    /* the work photo first, then the inspector points of this step (Yes / No / Not here) */
     await photo('ph'); await next();
+    const pts = await page.evaluate(i => iscFor(i).map(x => x[0]), i);
+    if (pts.length) { for (const n of pts) await pick('isc.' + n, 'yes'); if (i === 9) await shot('sop_checklist'); await next(); }
     /* doors, wiring and safety devices: a co-worker (here the QC Inspector) checks the photos before the next step */
     if ([8, 9, 10].includes(i)) {
       await login('Quinn QC'); await startTask('peer_check'); await pick('ok', 'yes'); await next(); await doneOk('co-worker check');

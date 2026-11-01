@@ -2530,6 +2530,88 @@ const L = {
   tb_ticket_steps: ['Step {a} of {b}: {s}', '{b} में से चरण {a}: {s}', '{b} पैकी पायरी {a}: {s}'],
   tb_stat_items: ['{a} of {b} legal papers recorded', '{b} में से {a} कानूनी कागज़ दर्ज', '{b} पैकी {a} कायदेशीर कागद नोंदवले'],
   tb_decided: ['Decided', 'फ़ैसला हो गया', 'निर्णय झाला'],
+  isc_1: ['Shaft width and depth match the approved drawing', 'शाफ्ट की चौड़ाई और गहराई मंज़ूर ड्रॉइंग जैसी', 'शाफ्टची रुंदी व खोली मंजूर ड्रॉइंगप्रमाणे'],
+  isc_2: ['Pit depth and pit floor are right', 'पिट की गहराई और फ़र्श सही', 'खड्ड्याची खोली व तळ योग्य'],
+  isc_3: ['Headroom height is more than needed', 'हेडरूम की ऊँचाई ज़रूरत से ज़्यादा', 'हेडरूमची उंची आवश्यकतेपेक्षा जास्त'],
+  isc_4: ['Shaft is plumb (straight up) within limits', 'शाफ्ट सीधा (प्लंब) सीमा में', 'शाफ्ट उभा (प्लंब) मर्यादेत'],
+  isc_5: ['Pit has a water sump', 'पिट में पानी निकालने का गड्ढा (सम्प) है', 'खड्ड्यात पाणी साचण्याची व्यवस्था (सम्प) आहे'],
+  isc_6: ['Pit ladder and pit light are fitted', 'पिट की सीढ़ी और लाइट लगी है', 'खड्ड्यातील शिडी व प्रकाश व्यवस्थित'],
+  isc_7: ['Shaft has air vents and safety mesh', 'शाफ्ट में हवा और सुरक्षा जाली है', 'शाफ्टचे हवादारपण व संरक्षक जाळी'],
+  isc_8: ['No obstruction or building material in the shaft', 'शाफ्ट में कोई रुकावट या निर्माण सामान नहीं', 'शाफ्टमध्ये अडथळा किंवा बांधकामाचा माल नाही'],
+  isc_9: ['Machine and controller serials match the supplier\'s list', 'मशीन और कंट्रोलर के सीरियल सप्लायर की सूची से मिलते हैं', 'मशीन व कंट्रोलर सिरियल पुरवठादाराच्या यादीशी जुळतात'],
+  isc_10: ['Machine is fixed firmly with anti-vibration pads', 'मशीन मज़बूती से कंपन-रोधी पैड पर लगी है', 'मशीनची फिक्सिंग व कंपन-शोषक व्यवस्थित'],
+  isc_11: ['Governor rope and rope ends are right', 'गवर्नर रस्सी और रस्सी के सिरे सही', 'गव्हर्नर दोरी व दोरीची टोके बरोबर'],
+  isc_12: ['Counterweight guide rails are right', 'काउंटरवेट गाइड रेल सही', 'काउंटरवेट मार्गदर्शक रेल बरोबर'],
+  isc_13: ['Overspeed governor setting and trip test', 'ओवरस्पीड गवर्नर सेटिंग और ट्रिप टेस्ट', 'ओव्हरस्पीड गव्हर्नर सेटिंग व ट्रिप चाचणी'],
+  isc_14: ['Buffers and final limit switch tested', 'बफ़र और फ़ाइनल लिमिट स्विच की जाँच', 'बफर व अंतिम मर्यादा स्विच चाचणी'],
+  isc_15: ['Machine room / MRL unit has air and locked access', 'मशीन रूम / MRL यूनिट में हवा और ताला', 'मशीन रूम / MRL युनिटला हवा व कुलूपबंद प्रवेश'],
+  isc_16: ['Manual rescue tool and notice are on site', 'हाथ से बचाव का औज़ार और सूचना मौजूद', 'हाताने सुटकेचे साधन व सूचना फलक उपलब्ध'],
+  isc_17: ['Door interlock works at every floor', 'हर मंज़िल पर दरवाज़ा इंटरलॉक काम करता है', 'प्रत्येक मजल्यावर दरवाजा इंटरलॉक कार्यरत'],
+  isc_18: ['Door speed and re-open when blocked tested', 'दरवाज़े की गति और रुकने पर दोबारा खुलना जाँचा', 'दरवाजाचा वेग व अडकल्यास पुन्हा उघडणे तपासले'],
+  isc_19: ['Car doors and light curtain work', 'केबिन दरवाज़े और लाइट कर्टन काम करते हैं', 'केबिनचे दरवाजे व लाइट कर्टन कार्यरत'],
+  isc_20: ['Overload sensor and alarm work', 'ओवरलोड सेंसर और अलार्म काम करते हैं', 'ओव्हरलोड सेन्सर व अलार्म कार्यरत'],
+  isc_21: ['ARD (automatic rescue) battery test — must pass', 'ARD (स्वचालित बचाव) बैटरी टेस्ट — ज़रूरी', 'ARD (स्वयंचलित सुटका) बॅटरी चाचणी — अनिवार्य'],
+  isc_22: ['UCMP (car moving by itself) detection test — must pass', 'UCMP (केबिन का अपने आप चलना) टेस्ट — ज़रूरी', 'UCMP (केबिन आपोआप हलणे) शोध चाचणी — अनिवार्य'],
+  isc_23: ['Emergency alarm and intercom work', 'इमरजेंसी अलार्म और इंटरकॉम काम करते हैं', 'आपत्कालीन अलार्म व इंटरकॉम कार्यरत'],
+  isc_24: ['Emergency light lasts the needed time', 'इमरजेंसी लाइट ज़रूरी समय तक जलती है', 'आपत्कालीन दिवा आवश्यक वेळ चालतो'],
+  isc_25: ['Fireman\'s switch and fire notice', 'फ़ायरमैन स्विच और आग की सूचना', 'फायरमन्स स्विच व अग्निसुरक्षा सूचना'],
+  isc_26: ['Capacity plate and notices inside the car', 'केबिन में क्षमता प्लेट और सूचनाएँ', 'केबिनमध्ये क्षमता फलक व सूचना'],
+  isc_27: ['3-phase supply, earthing and own MCB', '3-फ़ेज़ बिजली, अर्थिंग और अलग MCB', 'थ्री-फेज वीज, अर्थिंग व स्वतंत्र MCB'],
+  isc_28: ['Controller earthing and surge protection', 'कंट्रोलर अर्थिंग और सर्ज सुरक्षा', 'कंट्रोलर अर्थिंग व सर्ज संरक्षण'],
+  isc_29: ['Wiring as per drawing, cables neatly run', 'वायरिंग ड्रॉइंग के अनुसार, केबल व्यवस्थित', 'वायरिंग ड्रॉइंगप्रमाणे, केबल व्यवस्थित'],
+  isc_30: ['Indicators and buttons work at every floor', 'हर मंज़िल पर इंडिकेटर और बटन काम करते हैं', 'प्रत्येक मजल्यावर इंडिकेटर व बटण कार्यरत'],
+  isc_31: ['Levelling accuracy tested at every floor', 'हर मंज़िल पर लेवलिंग की सटीकता जाँची', 'प्रत्येक मजल्यावर लेव्हलिंग अचूकता तपासली'],
+  isc_32: ['ARD works on power failure', 'बिजली जाने पर ARD काम करता है', 'वीज गेल्यावर ARD कार्यरत होते'],
+  isc_33: ['Controller settings saved and noted', 'कंट्रोलर सेटिंग सेव और दर्ज', 'कंट्रोलर सेटिंग सेव्ह व नोंद'],
+  isc_34: ['Remote monitoring connects (if fitted)', 'रिमोट मॉनिटरिंग जुड़ता है (अगर लगा हो)', 'रिमोट मॉनिटरिंग जोडले जाते (बसवले असल्यास)'],
+  isc_35: ['Load test (rated load + 25%)', 'लोड टेस्ट (रेटेड भार + 25%)', 'लोड चाचणी (रेटेड भार + 25%)'],
+  isc_36: ['Speed and travel time tested', 'गति और यात्रा समय जाँचा', 'वेग व प्रवास-वेळ तपासला'],
+  isc_37: ['Safety chain and landing/car buttons tested', 'सेफ़्टी चेन और बटन जाँचे', 'सुरक्षा साखळी व बटणे तपासली'],
+  isc_38: ['Rescue steps displayed on site', 'बचाव के चरण साइट पर लगे हैं', 'सुटकेची प्रक्रिया साइटवर लावलेली'],
+  isc_39: ['Part certificates (BIS / type test) in the file', 'पुर्ज़ों के प्रमाणपत्र (BIS / टाइप टेस्ट) फ़ाइल में', 'भागांची प्रमाणपत्रे (BIS / टाइप टेस्ट) फाइलमध्ये'],
+  isc_40: ['Permission to erect and state forms complete', 'लगाने की अनुमति और राज्य फ़ॉर्म पूरे', 'उभारणी परवानगी व राज्य फॉर्म पूर्ण'],
+  isc_41: ['Crew certificate, BOCW and ESIC valid', 'टीम का प्रमाणपत्र, BOCW और ESIC मान्य', 'टीमचे प्रमाणपत्र, BOCW व ESIC वैध'],
+  isc_42: ['Customer trained, handover signed, warranty card given', 'ग्राहक को सिखाया, हैंडओवर हस्ताक्षर, वारंटी कार्ड दिया', 'ग्राहकाला प्रशिक्षण, हस्तांतरण सही, हमी कार्ड दिले'],
+  isc_title: ['Inspector checklist (IS 17900)', 'इंस्पेक्टर चेकलिस्ट (IS 17900)', 'निरीक्षक चेकलिस्ट (IS 17900)'],
+  isc_say: ['Answer each point the inspector will check. "No" needs a note and becomes a problem to fix before inspection.', 'हर बिंदु का जवाब दें जो इंस्पेक्टर जाँचेगा। "नहीं" पर कारण लिखें; वह इंस्पेक्शन से पहले ठीक करनी होगी।', 'निरीक्षक तपासेल त्या प्रत्येक मुद्द्याचे उत्तर द्या. "नाही" असल्यास कारण लिहा; ते तपासणीपूर्वी दुरुस्त करावे लागेल.'],
+  isc_na: ['Not here', 'लागू नहीं', 'लागू नाही'],
+  isc_must: ['must pass', 'ज़रूरी', 'अनिवार्य'],
+  isc_why: ['What is wrong at this point', 'इस बिंदु पर क्या गलत है', 'या मुद्द्यावर काय चुकले'],
+  isc_progress: ['{a} of {b} inspector points checked', '{b} में से {a} इंस्पेक्टर बिंदु जाँचे', '{b} पैकी {a} निरीक्षक मुद्दे तपासले'],
+  isc_open: ['{n} point(s) to fix before inspection', 'इंस्पेक्शन से पहले {n} बिंदु ठीक करने हैं', 'तपासणीपूर्वी {n} मुद्दे दुरुस्त करायचे'],
+  isc_weak: ['Checklist points that fail most', 'सबसे ज़्यादा फ़ेल होने वाले बिंदु', 'सर्वाधिक नापास होणारे मुद्दे'],
+  isc_weak_note: ['Counted from "No" answers in installation steps. Train crews on the top points.', 'इंस्टॉलेशन चरणों के "नहीं" जवाबों से गिना। ऊपर के बिंदुओं पर टीम को सिखाएँ।', 'इन्स्टॉलेशन पायऱ्यांतील "नाही" उत्तरांवरून मोजले. वरच्या मुद्द्यांवर टीमला शिकवा.'],
+  isc_by_crew: ['By lead technician', 'लीड टेक्नीशियन के अनुसार', 'मुख्य तंत्रज्ञानुसार'],
+  err_isc_all: ['Answer every inspector point (Yes, No or Not here).', 'हर इंस्पेक्टर बिंदु का जवाब दें (हाँ, नहीं या लागू नहीं)।', 'प्रत्येक निरीक्षक मुद्द्याचे उत्तर द्या (होय, नाही किंवा लागू नाही).'],
+  err_isc_must: ['A "must pass" point cannot be "Not here".', '"ज़रूरी" बिंदु "लागू नहीं" नहीं हो सकता।', '"अनिवार्य" मुद्दा "लागू नाही" असू शकत नाही.'],
+  err_isc_note: ['Write what is wrong for each "No".', 'हर "नहीं" के लिए लिखें क्या गलत है।', 'प्रत्येक "नाही" साठी काय चुकले ते लिहा.'],
+  err_snags_open: ['Fix every open problem first (checklist "No" points).', 'पहले सभी खुली कमियाँ ठीक करें (चेकलिस्ट के "नहीं" बिंदु)।', 'आधी सर्व उघड्या त्रुटी दुरुस्त करा (चेकलिस्टचे "नाही" मुद्दे).'],
+  sn_say: ['Read the serial number on each part and type it. It is checked against what the supplier sent.', 'हर पुर्ज़े का सीरियल नंबर पढ़कर लिखें। सप्लायर के भेजे नंबर से मिलाया जाएगा।', 'प्रत्येक भागावरचा सिरियल क्रमांक वाचून लिहा. पुरवठादाराने पाठवलेल्याशी जुळवला जाईल.'],
+  sn_bad: ['Serial number does not match what the supplier sent: {p}', 'सीरियल नंबर सप्लायर के भेजे से नहीं मिलता: {p}', 'सिरियल क्रमांक पुरवठादाराने पाठवलेल्याशी जुळत नाही: {p}'],
+  sn_sent: ['Supplier sent', 'सप्लायर ने भेजा', 'पुरवठादाराने पाठवले'],
+  sn_found: ['Found on site', 'साइट पर मिला', 'साइटवर सापडले'],
+  sn_ok_note: ['How was it settled (e.g. supplier corrected the list, part replaced)', 'कैसे सुलझा (जैसे सप्लायर ने सूची सुधारी, पुर्ज़ा बदला)', 'कसे सुटले (उदा. पुरवठादाराने यादी दुरुस्त केली, भाग बदलला)'],
+  sn_held: ['Installation is held until the office settles the serial mismatch.', 'सीरियल का मेल न होना ऑफ़िस सुलझाए तब तक इंस्टॉलेशन रुका है।', 'सिरियल न जुळण्याचे ऑफिस निराकरण करेपर्यंत इन्स्टॉलेशन थांबले आहे.'],
+  tk_serial_mismatch: ['Serial numbers do not match — check the parts', 'सीरियल नंबर नहीं मिलते — पुर्ज़े जाँचें', 'सिरियल क्रमांक जुळत नाहीत — भाग तपासा'],
+  tk_wait_serial: ['Wait: office is checking a serial mismatch', 'रुकें: ऑफ़िस सीरियल की गड़बड़ी जाँच रहा है', 'थांबा: ऑफिस सिरियल न जुळणे तपासत आहे'],
+  err_serial_mismatch: ['A part serial number does not match what the supplier sent. The office must settle it first.', 'पुर्ज़े का सीरियल सप्लायर के भेजे से नहीं मिलता। पहले ऑफ़िस सुलझाए।', 'भागाचा सिरियल पुरवठादाराने पाठवलेल्याशी जुळत नाही. आधी ऑफिसने निराकरण करावे.'],
+  ev_SERIAL_RESOLVED: ['Serial mismatch settled', 'सीरियल की गड़बड़ी सुलझी', 'सिरियल न जुळणे सुटले'],
+  lg_title: ['Legal papers for site work', 'साइट काम के कानूनी कागज़', 'साइट कामाचे कायदेशीर कागद'],
+  lg_bocw: ['BOCW registration', 'BOCW पंजीकरण', 'BOCW नोंदणी'],
+  lg_esic: ['ESIC card', 'ESIC कार्ड', 'ESIC कार्ड'],
+  lg_safety: ['Safety training certificate', 'सुरक्षा प्रशिक्षण प्रमाणपत्र', 'सुरक्षा प्रशिक्षण प्रमाणपत्र'],
+  lg_days: ['A legal paper ends in {n} days', 'एक कानूनी कागज़ {n} दिन में खत्म', 'एक कायदेशीर कागद {n} दिवसांत संपेल'],
+  lg_gone: ['A legal paper has ended', 'एक कानूनी कागज़ खत्म हो गया', 'एक कायदेशीर कागद संपला'],
+  lg_none: ['not recorded', 'दर्ज नहीं', 'नोंदलेले नाही'],
+  lg_till: ['valid till {d}', '{d} तक मान्य', '{d} पर्यंत वैध'],
+  lg_ended: ['ended {d}', '{d} को खत्म', '{d} रोजी संपले'],
+  lg_note: ['If any recorded paper has ended, the person cannot be given new installation work or save installation steps until it is renewed.', 'कोई दर्ज कागज़ खत्म हो जाए तो नवीनीकरण तक उस व्यक्ति को नया इंस्टॉलेशन काम या चरण सेव नहीं मिलेगा।', 'नोंदलेला कोणताही कागद संपल्यास नूतनीकरण होईपर्यंत त्या व्यक्तीला नवे इन्स्टॉलेशन काम किंवा पायरी सेव्ह करता येणार नाही.'],
+  lg_record: ['Record a paper', 'कागज़ दर्ज करें', 'कागद नोंदवा'],
+  lg_no: ['Number', 'नंबर', 'क्रमांक'],
+  lg_exp: ['Valid till', 'कब तक मान्य', 'कधीपर्यंत वैध'],
+  err_wallet_expired: ['A legal paper (BOCW, ESIC or safety training) of this person has ended. Renew it first.', 'इस व्यक्ति का कानूनी कागज़ (BOCW, ESIC या सुरक्षा प्रशिक्षण) खत्म हो गया। पहले नवीनीकरण करें।', 'या व्यक्तीचा कायदेशीर कागद (BOCW, ESIC किंवा सुरक्षा प्रशिक्षण) संपला आहे. आधी नूतनीकरण करा.'],
+  tk_legal_renew: ['Renew legal papers (BOCW / ESIC / safety)', 'कानूनी कागज़ नवीनीकरण (BOCW / ESIC / सुरक्षा)', 'कायदेशीर कागद नूतनीकरण (BOCW / ESIC / सुरक्षा)'],
+  ev_LEGAL_SET: ['Legal paper recorded', 'कानूनी कागज़ दर्ज', 'कायदेशीर कागद नोंदवला'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4442,6 +4524,29 @@ const CLAIM_KINDS = [['damaged', '💥'], ['missing', '❓'], ['extra', '➕']];
 const REP_RELS = [['family', '👪'], ['secretary', '🏢'], ['manager', '🧑‍💼'], ['watchman', '💂'], ['other', '👤']];
 const CONTACT_ROLES = [['owner', '🏠'], ['builder', '🏗️'], ['manager', '🧑‍💼'], ['watchman', '💂'], ['other', '👤']];
 const PREP_ITEMS = [['shaft', '🧱'], ['pit', '⬇️'], ['power', '⚡'], ['clean', '🧹'], ['light', '💡'], ['barricade', '🚧']];
+/* inspector checklist (IS 17900 style, 42 points): [point, installation step where it is answered, 'm' = must pass].
+   Step -1 = recorded by the handover itself (training, signatures, warranty card). */
+const ISC = [[1, 1], [2, 1], [3, 1], [4, 1], [5, 0], [6, 0], [7, 0], [8, 0], [9, 4], [10, 4], [11, 7], [12, 3], [13, 10, 'm'], [14, 10, 'm'], [15, 4], [16, 11],
+  [17, 8, 'm'], [18, 8], [19, 8], [20, 10], [21, 10, 'm'], [22, 10, 'm'], [23, 9], [24, 9], [25, 9], [26, 5], [27, 9, 'm'], [28, 9], [29, 9], [30, 11], [31, 11],
+  [32, 11, 'm'], [33, 11], [34, 11], [35, 11, 'm'], [36, 11], [37, 11, 'm'], [38, 11], [39, 11], [40, 0], [41, 0], [42, -1]];
+/* records made before these rules started stay valid */
+const ISC_FROM = '2026-11-01T00:00:00.000Z';
+const iscFor = step => ISC.filter(x => x[1] === step);
+const iscYes = step => Object.fromEntries(iscFor(step).map(x => [x[0], 'yes']));
+function iscWhyNot(d) {
+  for (const [n, , m] of iscFor(d.step)) {
+    const a = (d.isc || {})[n];
+    if (!['yes', 'no', 'na'].includes(a)) return 'err_isc_all';
+    if (a === 'na' && m) return 'err_isc_must';
+    if (a === 'no' && !String((d.iscNote || {})[n] || '').trim()) return 'err_isc_note';
+  }
+  return null;
+}
+/* legal papers a site worker carries (BOCW, ESIC, safety training), each with an end date */
+const LEGAL = ['bocw', 'esic', 'safety'];
+const legalOf = uid => (S.workers[uid] || {}).legal || {};
+const legalEnded = (uid, at) => LEGAL.filter(k => legalOf(uid)[k] && legalOf(uid)[k].expiry < safeDay(at || nowISO()));
+const normSerial = v => String(v || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
 const SOP = [['sitesafe', '🦺'], ['plumb', '📏'], ['brackets', '🔩'], ['rails', '🛤️'], ['machine', '⚙️'], ['car', '🛗'], ['cwt', '🧱'], ['ropes', '🪢'], ['doors', '🚪'], ['wiring', '🔌'], ['safetydev', '🛡️'], ['test', '▶️']];
 const QC_SITE_CHECKS = ['plumb', 'pit_dry', 'power3', 'barricade', 'access'];
 const QC_SITE_MEAS = ['width', 'depth', 'pit', 'head'];
@@ -4738,6 +4843,7 @@ function techWhyNot(uid, at) {
   if (!u.memberOk) return 'err_member_pending';
   if (!isActive(u.company) || !licenceOk(u.company, at)) return 'err_licence';
   if (S.config.requireTraining && !isAuthorised(uid)) return 'err_not_authorised';
+  if (legalEnded(uid, at).length) return 'err_wallet_expired';
   return null;
 }
 /* level allows leading this job size and fewer than 3 active strikes */
@@ -5387,7 +5493,7 @@ const RULES = {
     }
   },
   CORRECTION_DONE: {
-    roles: ['customer', 'sales', 'tech'], project: true, stages: ['site_fix', 'install_fix'], check: (S, ev, u, P) => {
+    roles: ['customer', 'sales', 'tech'], project: true, stages: ['site_fix', 'install_fix', 'installing'], check: (S, ev, u, P) => {
       const c = P.corrections.find(x => x.id === ev.data.cid);
       if (!c || c.done) return 'err_already';
       if (c.scope === 'site' && u.role === 'tech') return { k: 'err_role', v: { roles: rolesTxt(['customer', 'sales']) } };
@@ -5487,8 +5593,12 @@ const RULES = {
         if (ev_(ev.data, 'photo').length < 1) return 'err_storage_photo';
       }
       if ((ev.data.items || []).length !== P.materials.length) return 'err_not_all';
+      if (ev.data.serialSeen && Object.keys((P.dispatch || {}).serialMap || {}).some(k => !normSerial(ev.data.serialSeen[k]))) return 'err_serial';
       return need(ev_(ev.data, 'sign').length >= (ev.data.custApp ? 1 : 2), 'err_sign');
     }
+  },
+  SERIAL_RESOLVED: {
+    roles: ['admin', 'owner'], project: true, check: (S, ev, u, P) => !P.serialHold || P.serialHold.ok ? 'err_already' : need((ev.data.note || '').trim(), 'err_reason')
   },
   MATERIAL_RECEIPT_SIGNED: {
     roles: ['customer'], project: true, stages: ['arrived'], check: (S, ev, u, P) => {
@@ -5506,6 +5616,11 @@ const RULES = {
       if (ev.data.step === 0 && ev.t >= PERMIT_GATE_FROM && permitMissing(P)) return 'err_permit_first';
       if (!gradeMayLead(u.uid, P)) return 'err_cant_lead';
       if (ev.data.step !== sopNext(P)) return 'err_order';
+      if (ev.t >= ISC_FROM) {
+        if (legalEnded(u.uid, ev.t).length) return 'err_wallet_expired';
+        if (ev.data.step === 0 && P.serialHold && !P.serialHold.ok) return 'err_serial_mismatch';
+        const iw = iscWhyNot(ev.data); if (iw) return iw;
+      }
       if (P.blockers.some(b => b.open && b.step === ev.data.step)) return 'err_blocker';
       if (openIncidents(P).length) return 'err_incident';
       const sw = safetyWhyNot(P, ev.t); if (sw) return sw;
@@ -5675,6 +5790,7 @@ const RULES = {
       if (P.tech !== u.uid) return 'err_access';
       if (stopIncidents(P).length) return 'err_work_stopped';
       if (peerWaiting(P).length) return 'err_peer_check';
+      if (P.stage === 'installing' && sopNext(P) >= SOP.length && openCorr(P, 'install').length) return 'err_snags_open';
       return P.stage === 'installing' ? need(sopNext(P) >= SOP.length, 'err_not_all') : need(!openCorr(P, 'install').length, 'err_not_all');
     }
   },
@@ -6110,6 +6226,14 @@ const RULES = {
       return need(DOCS.includes(ev.data.doc) && ['verified', 'rejected'].includes(ev.data.status) && (ev.data.status === 'verified' || (ev.data.note || '').trim()), 'err_reason');
     }
   },
+  LEGAL_SET: {
+    roles: ['owner', 'admin'], check: (S, ev, u) => {
+      const d = ev.data, x = S.users[d.uid];
+      if (!x || !['tech', 'partner', 'qc'].includes(x.role)) return 'err_no_user';
+      if (!LEGAL.includes(d.k) || !(d.no || '').trim()) return 'err_fill';
+      return need(/^\d{4}-\d\d-\d\d$/.test(d.expiry || ''), 'err_date');
+    }
+  },
   TRAINING_PASSED: {
     roles: STAFF, check: (S, ev, u) => {
       const m = TRAIN.find(x => x[0] === ev.data.module);
@@ -6419,6 +6543,9 @@ function apply(S, ev) {
     case 'ACCESS_REVIEWED': S.accessSeen[d.uid] = { upto: d.upto, by: ev.by, t: ev.t, note: d.note || '' }; break;
     case 'SOS_CLOSED': Object.assign(S.sos[d.sid], { open: false, closed: { t: ev.t, by: ev.by, note: d.note } }); break;
     case 'MATERIAL_HANDED': {
+      /* serials read on site against what the supplier sent: any difference holds installation until the office settles it */
+      if (d.serialSeen) { const sent = (P.dispatch || {}).serialMap || {}, bad = Object.keys(sent).filter(k => normSerial(sent[k]) !== normSerial(d.serialSeen[k]));
+        P.serialSeen = d.serialSeen; if (bad.length) P.serialHold = { t: ev.t, by: ev.by, bad, seen: d.serialSeen, ok: null }; }
       const sg = ev_(d, 'sign');
       P.mhand = d.custApp ? { t: ev.t, by: ev.by, items: d.items, custName: d.custName, custSig: null, techSig: sg[0].id, note: d.note || '', signer: 'contact', custody: false, storage: ev_(d, 'photo').map(e => e.id), wait: true }
         : { t: ev.t, by: ev.by, items: d.items, custName: d.custName, custSig: sg[0].id, techSig: sg[1].id, note: d.note || '', signer: d.signer || 'contact', custody: !!d.custody, storage: ev_(d, 'photo').map(e => e.id) };
@@ -6427,7 +6554,12 @@ function apply(S, ev) {
     }
     /* installation time counts from the customer's signature */
     case 'MATERIAL_RECEIPT_SIGNED': Object.assign(P.mhand, { custSig: ev_(d, 'sign')[0].id, custName: d.custName, custody: true, wait: false, techT: P.mhand.t, t: ev.t }); setStage(P, 'installing', ev); break;
-    case 'SOP_STEP_DONE': P.sop[d.step] = { t: ev.t, by: ev.by, note: d.note || '', ev: ev_(d).map(e => e.id) }; break;
+    case 'SOP_STEP_DONE': P.sop[d.step] = { t: ev.t, by: ev.by, note: d.note || '', ev: ev_(d).map(e => e.id) };
+      /* inspector points: each "No" becomes a problem to fix before the inspection can be asked */
+      if (d.isc) { P.isc = P.isc || {}; for (const [n] of iscFor(d.step)) { const a = d.isc[n]; if (!a) continue; const note = String((d.iscNote || {})[n] || '').trim();
+        P.isc[n] = { a, note, step: d.step, t: ev.t, by: ev.by };
+        if (a === 'no') P.corrections.push({ id: ev.id + '-isc' + n, scope: 'install', isc: n, text: note, due: '', role: 'tech', done: null, t: ev.t }); } }
+      break;
     case 'BLOCKER_RAISED':
       P.blockers.push({ id: ev.id, step: d.step == null ? null : d.step, reason: d.reason, role: d.role, note: d.note || '', t: ev.t, by: ev.by, open: true, ev: ev_(d).map(e => e.id) });
       break;
@@ -6572,6 +6704,8 @@ function apply(S, ev) {
     case 'SERVICE_LEAD_SET': S.serviceLead = d.uid || ''; break;
     case 'BUDDY_SET': worker(d.uid).buddy = d.buddy; break;
     case 'WORKER_PROFILE': { const w = worker(d.uid); if (d.stripped) w.profile.filled = true; ['phone', 'area', 'skills', 'availability'].forEach(k => { if (d[k] !== undefined) w.profile[k] = k === 'phone' ? phone10(d[k]) : d[k]; }); w.profile.t = ev.t; break; }
+    case 'LEGAL_SET': { const w = worker(d.uid); w.legal = w.legal || {}; w.legal[d.k] = { no: d.no.trim(), expiry: d.expiry, t: ev.t, by: ev.by }; break; }
+    case 'SERIAL_RESOLVED': P.serialHold.ok = { t: ev.t, by: ev.by, note: d.note.trim() }; break;
     case 'DOC_VERIFIED': { const w = worker(d.uid); w.docs[d.doc] = d.status; (w.docLog = w.docLog || []).push({ doc: d.doc, status: d.status, note: d.note || '', by: ev.by, t: ev.t }); break; }
     case 'TRIAL_RESULT': { const w = worker(d.uid); (w.trials = w.trials || []).push({ pid: ev.pid, ok: d.ok, note: d.note || '', by: ev.by, t: ev.t }); break; }
     case 'PRIVACY_ACCEPTED': (S.privacy = S.privacy || {})[ev.by] = { v: +d.v, t: ev.t }; break;
@@ -6661,6 +6795,8 @@ function needs(P) {
       else if (payNeed('arrival') && !openIncidents(P).length) add('material_handover', ['tech'], { uids: [P.tech] });
       break;
     case 'installing': if (permitMissing(P) && sopNext(P) === 0) { add('wait_permit', ['tech'], { uids: [P.tech] }); break; }
+      if (P.serialHold && !P.serialHold.ok && sopNext(P) === 0) { add('wait_serial', ['tech'], { uids: [P.tech], since: P.serialHold.t }); add('serial_mismatch', ['admin', 'owner'], { urgent: true, since: P.serialHold.t }); break; }
+      if (openCorr(P, 'install').length) { add('fix_install', ['tech'], { uids: [P.tech], since: openCorr(P, 'install')[0].t }); if (sopNext(P) >= SOP.length) break; }
       if (P.schedule && P.schedule.cabin && sopNext(P) >= CABIN_STEP && sopNext(P) < SOP.length && !payNeed('cabin')) { add('wait_cabin_pay', ['tech'], { uids: [P.tech] }); break; }
       if (peerWaiting(P).length) { add('peer_check', ['tech', 'qc'], { uids: Object.values(S.users).filter(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).map(x => x.uid), step: peerWaiting(P)[0], urgent: true }); add('wait_peer', ['tech'], { uids: [P.tech], step: peerWaiting(P)[0] }); break; }
       add(sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' ? (checkinNeeded(P) ? 'site_checkin' : 'safety_check') : sopNext(P) < SOP.length ? 'install' : 'request_inspection', ['tech'], { uids: [P.tech], urgent: sopNext(P) < SOP.length && safetyWhyNot(P) === 'err_safety_check' }); break;
@@ -6798,6 +6934,10 @@ function globalNeeds(u, all) {
   for (const x of Object.values(S.users).filter(y => y.active && y.role === 'tech')) {
     if (!x.company) add('link_company', ['admin', 'owner'], { uid: x.uid });
     else if (!x.memberOk) add('approve_member', ['admin', 'owner'], { uid: x.uid, not: x.company });
+  }
+  for (const x of Object.values(S.users).filter(y => y.active && ['tech', 'partner', 'qc'].includes(y.role))) {
+    const ends = LEGAL.map(k => legalOf(x.uid)[k]).filter(Boolean).map(l => Math.round((new Date(l.expiry + 'T12:00:00') - new Date(todayStr() + 'T12:00:00')) / 864e5));
+    if (ends.length && Math.min(...ends) <= 30) { const o = { uid: x.uid, n: Math.min(...ends), urgent: Math.min(...ends) <= 7 }; add('legal_renew', [x.role], Object.assign({ uids: [x.uid] }, o)); add('legal_renew', ['admin', 'owner'], o); }
   }
   for (const x of Object.values(S.users).filter(y => y.active && y.role === 'partner')) {
     const d = licDays(x.uid);
@@ -7423,7 +7563,7 @@ function nextLine(P) {
 }
 const TASK_ICON = {
   qc_recheck: '🔁', recheck_failed: '⚠️',
-  help_newbie: '🤝', wait_permit: '📜',
+  help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
@@ -7459,7 +7599,7 @@ function timeOf(n, P) {
   if (P && STEP_TASKS.includes(n.k) && n.k !== 'fix_install') { const h = (P.hist || []).find(x => x.s === 'installing'); if (h && S.config.installDays) { const d = (now - Date.parse(h.t)) / 864e5, m = +S.config.installDays;
     return { pct: d / m * 100, label: t('tb_day', { d: Math.min(Math.floor(d) + 1, 999), m }) + ' · ' + t('tb_plan') }; } }
   /* a licence running out: the bar fills as the expiry comes closer */
-  if (n.k === 'licence_renew' && n.n != null) { const m = +S.config.licWarnDays || 60; return { pct: (m - n.n) / m * 100, label: n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n }) }; }
+  if (['licence_renew', 'legal_renew'].includes(n.k) && n.n != null) { const lg = n.k === 'legal_renew', m = lg ? 30 : +S.config.licWarnDays || 60; return { pct: (m - n.n) / m * 100, label: n.n < 0 ? t(lg ? 'lg_gone' : 'lic_expired') : t(lg ? 'lg_days' : 'lic_days', { n: n.n }) }; }
   /* natural deadlines: a sent quote runs to its validity date, an order to its need-by (or promised) date */
   const span = (a, b, lab) => { const used = (now - a) / Math.max(1, b - a); return { pct: used * 100, label: lab(Math.ceil((b - now) / 864e5)) }; };
   const q = P && n.k === 'get_decision' ? lastQuote(P) : null;
@@ -7540,7 +7680,7 @@ function taskCard(n, i) {
   const sub = cm ? ' · ' + (cm.due ? fmtD(cm.due) + (cm.time ? ' ' + cm.time : '') + ' · ' : '') + esc(cm.text.slice(0, 40)) : ['approve_invoice', 'pay_invoice'].includes(n.k) && P ? ' · ' + ((P.invoices || []).find(i => i.id === n.iid) || {}).no + ' · ' + money(invPayable((P.invoices || []).find(i => i.id === n.iid) || {})) : n.k === 'review_checkin' && P ? ' · ' + userName(n.uid) + ' · ' + (((P.checkins || {})[n.day] || {})[n.uid] || {}).dist + ' m' : n.sev && ['assign_ticket', 'work_ticket', 'sla_breach'].includes(n.k) ? ' · ' + SEVERITIES[sevRank(n.sev)][1] + ' ' + t('sev_' + n.sev) : ['decide_claim', 'send_claim', 'receive_claim'].includes(n.k) && P && claimOf(P, n.cid) ? ' · ' + t(claimOf(P, n.cid).line) + ' · ' + t('clk_' + claimOf(P, n.cid).kind) : n.k === 'po_late' ? ' · ' + fmtD(n.date) : n.k === 'reassign_work' ? ' · ' + userName(n.uid) : ['job_open', 'pick_applicant', 'post_nobody'].includes(n.k) && S.posts[n.postId] ? ' · ' + jobTitle(S.posts[n.postId]) : n.k === 'post_job' ? ' · ' + t('jk_lead') : n.k === 'rate_crew' || n.k === 'spot_check' ? ' · ' + userName(n.uid) : n.k === 'rate_work' ? ' · ' + t(n.ref === 'handover' ? 'rate_handover' : 'rate_visit') : n.k === 'record_payment' || n.k === 'verify_payment' ? ` · ${t('pay_' + n.purpose)}` : n.k === 'sign_handover' ? ` · ${t('slot_' + n.slot)}` : n.k === 'escalated' ? ` · ${t('tk_' + n.ref)}` : '';
   if (!P || n.k === 'job_open') {
     const info = n.k === 'job_open' && S.posts[n.postId] ? jobTitle(S.posts[n.postId]) + ' · 📍 ' + S.posts[n.postId].card.area : n.k === 'second_approval' ? approvalText(S.approvals[n.aid]) : n.k === 'training' ? t('tr_' + n.module + '_t') : n.k === 'escalated' ? t('tk_' + n.ref) + (n.uid ? ' · ' + userName(n.uid) : '')
-      : n.k === 'clock_gap' ? t('clock_n', { n: n.n }) : n.k === 'day_close' ? t('day_close_sub', { n: officeQueue().length }) : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'access_alert' ? userName(n.uid) + ' · ' + t(n.why, { n: n.n }) : n.k === 'sos' ? userName(n.uid) + ' · ' + fmtD(S.sos[n.sid].t, true) + (n.sosPid ? ' · ' + n.sosPid : '') : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.k === 'help_newbie' ? userName(n.uid) : n.uid ? userName(n.uid) + ' · ' + weekLabel(n.week) : '';
+      : n.k === 'clock_gap' ? t('clock_n', { n: n.n }) : n.k === 'day_close' ? t('day_close_sub', { n: officeQueue().length }) : n.k === 'backup_due' ? t('backup_n', { n: n.n }) : n.k === 'access_alert' ? userName(n.uid) + ' · ' + t(n.why, { n: n.n }) : n.k === 'sos' ? userName(n.uid) + ' · ' + fmtD(S.sos[n.sid].t, true) + (n.sosPid ? ' · ' + n.sosPid : '') : n.k === 'licence_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lic_expired') : t('lic_days', { n: n.n })) : ['approve_member', 'link_company'].includes(n.k) ? userName(n.uid) + (companyOf(n.uid) ? ' · ' + userName(companyOf(n.uid)) : '') : ['onb_profile', 'check_docs', 'strike_appeal', 'review_meeting', 'suspend_review', 'approve_key'].includes(n.k) ? userName(n.uid) : n.k === 'promotion_ready' ? userName(n.uid) + ' → ' + t('gr_' + n.to) : n.k === 'help_newbie' ? userName(n.uid) : n.k === 'legal_renew' ? userName(n.uid) + ' · ' + (n.n < 0 ? t('lg_gone') : t('lg_days', { n: n.n })) : n.uid && n.week ? userName(n.uid) + ' · ' + weekLabel(n.week) : n.uid ? userName(n.uid) : '';
     return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}${taskBars(n, null)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
@@ -7608,10 +7748,11 @@ function stepper(key, min, max) {
 }
 function ynRow(key, label, vals = ['yes', 'no']) {
   const v = g(key);
-  const lab = vals[0] === 'pass' ? ['✅ ' + t('pass'), '❌ ' + t('fail')] : ['✅ ' + t('yes'), '❌ ' + t('no')];
-  return `<div class="check-row"><span class="q">${esc(t(label))}</span><span class="yn" role="group">
+  const lab = vals[0] === 'pass' ? ['✅ ' + t('pass'), '❌ ' + t('fail')] : ['✅ ' + t('yes'), '❌ ' + t('no'), '➖ ' + t('isc_na')];
+  return `<div class="check-row"><span class="q">${L[label] ? esc(t(label)) : label}</span><span class="yn" role="group">
     <button class="y ${v === vals[0] ? 'on' : ''}" data-a="pick" data-k="${key}" data-v="${vals[0]}" aria-pressed="${v === vals[0]}">${lab[0]}</button>
-    <button class="n ${v === vals[1] ? 'on' : ''}" data-a="pick" data-k="${key}" data-v="${vals[1]}" aria-pressed="${v === vals[1]}">${lab[1]}</button></span></div>`;
+    <button class="n ${v === vals[1] ? 'on' : ''}" data-a="pick" data-k="${key}" data-v="${vals[1]}" aria-pressed="${v === vals[1]}">${lab[1]}</button>${vals[2] ? `
+    <button class="n ${v === vals[2] ? 'on' : ''}" data-a="pick" data-k="${key}" data-v="${vals[2]}" aria-pressed="${v === vals[2]}">${lab[2]}</button>` : ''}</span></div>`;
 }
 function photoSlot(key, label, min, o = {}) {
   const arr = g(key) || [];
@@ -8352,6 +8493,9 @@ WIZ.mhand = {
         ${[['ok', '✅'], ['damaged', '💥'], ['missing', '❓']].map(([v, ic]) => `<button class="${c.items[i] === v ? 'on ' + (v === 'ok' ? 'y' : 'n') : ''}" data-a="pick" data-k="items.${i}" data-v="${v}" aria-label="${t('mi_' + v)}" aria-pressed="${c.items[i] === v}">${ic}</button>`).join('')}</span></div>`).join('')}</div>
         <p class="small muted">✅ ${t('mi_ok')} · 💥 ${t('mi_damaged')} · ❓ ${t('mi_missing')}</p>` + inp('note', 'f_note', { area: true, opt: true })
     },
+    { id: 'serial', icon: '🔢', say: 'sn_say', skip: (c, P) => !Object.keys((P.dispatch || {}).serialMap || {}).length,
+      body: (c, P) => `<p class="say">🔢 ${t('sn_say')}</p>` + Object.keys(P.dispatch.serialMap).map(k => inp('sn.' + k, k, { big: true })).join(''),
+      check: (c, P) => Object.keys(P.dispatch.serialMap).every(k => normSerial((c.sn || {})[k])) ? null : 'err_serial' },
     { id: 'store', icon: '🏚️', say: 's_mh_store', body: () => photoSlot('store', 'ph_storage', 1, { hint: 'ph_storage_hint', tag: 'storage' }), check: c => c.store.length ? null : 'err_storage_photo' },
     {
       id: 'cust', icon: '🏠', say: 's_mh_cust',
@@ -8366,10 +8510,32 @@ WIZ.mhand = {
     /* damaged or missing lines become part claims for the office and the supplier; installation can go on with the other parts */
     const claims = items.filter(x => x.status !== 'ok').map(x => ['CLAIM_RAISED', P.id, { cid: 'C-' + rid(5), line: x.k, kind: x.status, qty: x.q, note: t('mi_' + x.status) + (c.note.trim() ? ' · ' + c.note.trim() : ''), src: 'handover' }]);
     const app = custSignsApp(P, c.signer);
-    const r = await run(claims.concat([['MATERIAL_HANDED', P.id, Object.assign({ items, custName: c.custName.trim() || P.contact.name, signer: c.signer, custody: app ? false : c.custody, note: c.note, ev: (app ? [c.tsig] : [c.csig, c.tsig]).concat(c.store) }, app ? { custApp: true } : {})]]));
+    const r = await run(claims.concat([['MATERIAL_HANDED', P.id, Object.assign({ items, custName: c.custName.trim() || P.contact.name, signer: c.signer, custody: app ? false : c.custody, note: c.note, ev: (app ? [c.tsig] : [c.csig, c.tsig]).concat(c.store) }, app ? { custApp: true } : {}, Object.keys((P.dispatch || {}).serialMap || {}).length ? { serialSeen: Object.fromEntries(Object.keys(P.dispatch.serialMap).map(k => [k, String((c.sn || {})[k] || '').trim()])) } : {})]]));
     return r.ok ? doneRes(P.id, claims.length ? 'what_material_claims' : app ? 'what_mhand_tech_done' : 'what_material_handed', { n: claims.length }) : r;
   }
 };
+/* the office settles a serial mismatch found at the material handover */
+WIZ.serialFix = {
+  title: 'tk_serial_mismatch', save: 'save', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 's', icon: '🔢', say: 'sn_held', body: (c, P) => { const h = P.serialHold || { bad: [], seen: {} };
+      return `<div class="warnbox">🔢 ${t('sn_held')}</div><div class="card">${h.bad.map(k => `<div class="list-item" style="display:block"><b>${esc(t(k))}</b><br><span class="small">${t('sn_sent')}: <b>${esc((P.dispatch.serialMap || {})[k] || '—')}</b> · ${t('sn_found')}: <b style="color:var(--bad)">${esc(h.seen[k] || '—')}</b></span></div>`).join('')}</div>`
+        + `<p class="small">🚚 ${t('r_supplier')}: <b>${esc(userName(P.supplier))}</b></p>` + inp('note', 'sn_ok_note', { area: true, mic: true }); },
+    check: c => c.note.trim() ? null : 'err_reason' }],
+  async finish(c, P) { const r = await run([['SERIAL_RESOLVED', P.id, { note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+WIZ.legal = {
+  title: 'lg_record', save: 'save', noDraft: true, init: () => ({ k: '', no: '', expiry: '' }),
+  steps: [{ id: 'l', icon: '🪪', say: 'lg_note', body: () => tiles('k', LEGAL.map(k => [k, '🪪', 'lg_' + k]), 'three') + inp('no', 'lg_no', { big: true }) + inp('expiry', 'lg_exp', { type: 'date' }),
+    check: c => !c.k || !c.no.trim() ? 'err_fill' : /^\d{4}-\d\d-\d\d$/.test(c.expiry) ? null : 'err_date' }],
+  async finish(c) { const uid = W.opts.uid, r = await run([['LEGAL_SET', null, { uid, k: c.k, no: c.no.trim(), expiry: c.expiry }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('worker', { uid }, { replace: true }) } : r; }
+};
+function legalCard(uid) {
+  const u = S.users[uid]; if (!u || !['tech', 'partner', 'qc'].includes(u.role)) return '';
+  const adm = ['owner', 'admin'].includes(App.me.role), lg = legalOf(uid), today = todayStr();
+  return `<div class="card"><h3>🪪 ${t('lg_title')}</h3>${LEGAL.map(k => { const l = lg[k];
+      return `<div class="list-item"><span class="grow">${t('lg_' + k)}${l ? `<br><span class="small muted">${esc(l.no)}</span>` : ''}</span><span class="chip ${!l ? 'c-mute' : l.expiry < today ? 'c-bad' : l.expiry <= addDays(30) ? 'c-warn' : 'c-ok'}">${!l ? t('lg_none') : l.expiry < today ? '❌ ' + t('lg_ended', { d: fmtD(l.expiry) }) : t('lg_till', { d: fmtD(l.expiry) })}</span></div>`; }).join('')}
+    <p class="small muted">${t('lg_note')}</p>${adm ? `<button class="btn btn-sm" data-a="wizOpen" data-v="legal||uid|${uid}">➕ ${t('lg_record')}</button>` : ''}</div>`;
+}
 /* the customer checks the counted material on their own phone, accepts to keep it safe and signs */
 WIZ.custLink = {
   title: 'link_site', save: 'save', noDraft: true, init: () => ({ uid: '' }),
@@ -8561,15 +8727,22 @@ function docPO(P) {
 }
 /* ---------- Technician: SOP step ---------- */
 WIZ.sopstep = {
-  title: 'tk_install', save: 'step_done', saveIcon: '✅', init: () => ({ ph: [], note: '' }),
+  title: 'tk_install', save: 'step_done', saveIcon: '✅', init: () => ({ ph: [], note: '', isc: {}, iscNote: {} }),
   steps: [{
     id: 'do', icon: '🔧', say: () => t('sop_' + SOP[W.opts.step][0] + '_d'),
     body: () => { const [k, ic] = SOP[W.opts.step]; return `<div class="big-i">${ic}</div><h2 class="center">${W.opts.step + 1}. ${t('sop_' + k)}</h2><div class="warnbox">🦺 ${t('sop_safety')}</div>` +
       photoSlot('ph', 'ph_step', 1, { video: true, tag: 'sop_' + k }) + inp('note', 'f_note', { opt: true, mic: true }) +
       `<button class="btn btn-bad" data-a="raiseBlocker" data-v="${W.opts.step}">⛔ ${t('cant_do_step')}</button>`; },
     check: c => c.ph.length ? null : { k: 'err_photos', v: { n: 1 } }
+  }, {
+    id: 'isc', icon: '📋', say: 'isc_say', skip: () => !iscFor(W.opts.step).length,
+    body: c => `<h3>📋 ${t('isc_title')}</h3><p class="small muted">${t('isc_say')}</p><div class="card">` + iscFor(W.opts.step).map(([n, , m]) =>
+      ynRow('isc.' + n, `<b>${n}.</b> ${esc(t('isc_' + n))}${m ? ` <span class="chip c-warn">${t('isc_must')}</span>` : ''}`, m ? ['yes', 'no'] : ['yes', 'no', 'na'])
+      + (c.isc[n] === 'no' ? inp('iscNote.' + n, 'isc_why', { mic: true }) : '')).join('') + '</div>',
+    check: c => iscWhyNot({ step: W.opts.step, isc: c.isc, iscNote: c.iscNote })
   }],
-  async finish(c) { const r = await run([['SOP_STEP_DONE', W.pid, { step: W.opts.step, ev: c.ph, note: c.note }]]); return r.ok ? backToList(W.pid, 'sop') : r; }
+  async finish(c) { const isc = iscFor(W.opts.step).length ? { isc: c.isc, iscNote: Object.fromEntries(Object.entries(c.iscNote).filter(([n]) => c.isc[n] === 'no').map(([n, v]) => [n, String(v).trim()])) } : {};
+    const r = await run([['SOP_STEP_DONE', W.pid, Object.assign({ step: W.opts.step, ev: c.ph, note: c.note }, isc)]]); return r.ok ? backToList(W.pid, 'sop') : r; }
 };
 WIZ.blocker = {
   title: 'report_problem', save: 'send_problem', saveIcon: '⛔',
@@ -9448,6 +9621,17 @@ function stageWaits(days) {
 }
 const waitNow = () => Object.values(S.projects).filter(P => !['lost', 'amc'].includes(P.stage) && !P.done).map(P => ({ P, days: Math.max(0, (Date.now() - new Date(P.since || P.t).getTime()) / 864e5), n: mainNeed(P) })).sort((a, b) => b.days - a.days);
 const waitsWho = n => !n ? '—' : (n.uids || []).filter(id => S.users[id]).map(userName).join(', ') || rolesTxt(n.roles);
+/* inspector points answered "No" most often, overall and by lead technician */
+function iscWeak() {
+  const byN = {}, byT = {};
+  for (const P of Object.values(S.projects)) for (const [n, x] of Object.entries(P.isc || {})) if (x.a === 'no') { byN[n] = (byN[n] || 0) + 1; (byT[x.by] = byT[x.by] || {})[n] = (byT[x.by][n] || 0) + 1; }
+  const top = Object.entries(byN).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  if (!top.length) return '';
+  const mx = top[0][1];
+  return `<div class="card"><h3>📋 ${t('isc_weak')}</h3>${top.map(([n, c]) => `<div class="bar"><span class="lb">${n}. ${esc(t('isc_' + n))}</span><span class="b"><i style="width:${c / mx * 100}%"></i></span><b>${c}</b></div>`).join('')}
+    <h3 style="margin-top:8px">${t('isc_by_crew')}</h3>${Object.entries(byT).map(([uid, m]) => `<div class="list-item small"><span class="grow">${esc(userName(uid))}</span><span class="muted">${Object.entries(m).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([n, c]) => n + '×' + c).join(' · ')}</span></div>`).join('')}
+    <p class="small muted">${t('isc_weak_note')}</p></div>`;
+}
 SCREENS.waits = () => {
   if (!['owner', 'admin'].includes(App.me.role)) return SCREENS.home();
   const days = App.form.wjDays === undefined ? 30 : App.form.wjDays, w = stageWaits(days), top = w.stages.length ? w.stages[0].avg || 1 : 1;
@@ -9464,7 +9648,7 @@ SCREENS.waits = () => {
     <h2 class="sec">🐢 ${t('wj_slow')}</h2>${w.stages.length ? w.stages.filter(x => x.avg >= 1).map(stageRow).join('') + (w.stages.some(x => x.avg < 1) ? fold('wjquick', t('wj_quick'), w.stages.filter(x => x.avg < 1).map(stageRow).join(''), { icon: '⚡', count: w.stages.filter(x => x.avg < 1).length }) : '') : `<div class="card muted">${t('wj_none')}</div>`}
     <h2 class="sec">⏳ ${t('wj_now')}</h2>${now || `<div class="card muted">${t('no_tasks')}</div>`}
     ${who ? `<h2 class="sec">👤 ${t('wj_who')}</h2><div class="card">${who}</div>` : ''}
-    ${money ? `<h2 class="sec">💰 ${t('wj_money')}</h2><div class="card">${money}</div>` : ''}</main>`;
+    ${money ? `<h2 class="sec">💰 ${t('wj_money')}</h2><div class="card">${money}</div>` : ''}${iscWeak()}</main>`;
 };
 function waitsLine() {
   const x = stageWaits(30).stages[0]; if (!x) return '';
@@ -9988,7 +10172,7 @@ SCREENS.cl = ({ pid, kind }) => {
     title = t(kind === 'sitefix' ? 'tk_fix_site' : 'tk_fix_install');
     const list = P.corrections.filter(c => c.scope === sc);
     App.pageSay = t('s_fix_list');
-    body = `<p class="say">${t('s_fix_list')}</p>` + list.map(c => `<button class="cl-item ${c.done ? 'done' : ''}" data-a="clItem" data-v="fix|${c.id}"><span class="st">${c.done ? '✅' : '🛠️'}</span><span class="grow"><b>${esc(c.text)}</b>${c.due ? `<br><span class="small">📅 ${fmtD(c.due)}</span>` : ''}</span></button>`).join('');
+    body = `<p class="say">${t('s_fix_list')}</p>` + list.map(c => `<button class="cl-item ${c.done ? 'done' : ''}" data-a="clItem" data-v="fix|${c.id}"><span class="st">${c.done ? '✅' : '🛠️'}</span><span class="grow"><b>${c.isc ? '📋 ' + c.isc + '. ' + esc(t('isc_' + c.isc)) + ' — ' : ''}${esc(c.text)}</b>${c.due ? `<br><span class="small">📅 ${fmtD(c.due)}</span>` : ''}</span></button>`).join('');
     const ready = !openCorr(P, sc).length;
     if (ready && sc === 'site' && allowed('QC_REQUESTED', P)) action = `<button class="btn btn-ok btn-big" data-a="clAction" data-v="QC_REQUESTED">🔍 ${t('ask_qc_again')}</button>`;
     if (ready && sc === 'install' && allowed('INSPECTION_REQUESTED', P)) action = `<button class="btn btn-ok btn-big" data-a="clAction" data-v="INSPECTION_REQUESTED">🔍 ${t('tk_request_inspection')}</button>`;
@@ -10602,7 +10786,7 @@ function exportPack(kind, forUid, opts = {}) {
       || Object.values(P.service).some(x => x.by === forUid) || P.tickets.some(x => x.owner === forUid);
     const vis = new Set(Object.values(S.projects).filter(P => canSee(target, P) || worked(P)).map(P => P.id));
     /* everyone's level, documents and training travel to every staff phone, so level rules agree on all phones; private details are removed */
-    const LADDER = ['PROMOTED', 'DEMOTED', 'DOC_VERIFIED', 'TRAINING_PASSED', 'SKILL_CHECKED', 'WORKER_PROFILE'];
+    const LADDER = ['PROMOTED', 'DEMOTED', 'DOC_VERIFIED', 'LEGAL_SET', 'TRAINING_PASSED', 'SKILL_CHECKED', 'WORKER_PROFILE'];
     const ABOUT = ['STRIKE_DECIDED', 'REVIEW_HELD', 'PAY_APPROVED', 'PAY_PAID', 'PAY_DISPUTE_ANSWERED'];
     const staff = target.role !== 'customer', market = ['partner', 'tech', 'qc', 'owner', 'admin'].includes(target.role);
     const out = OUTSIDERS.includes(target.role), myCo = target.role === 'partner' ? forUid : target.company || null;
@@ -11031,7 +11215,7 @@ SCREENS.worker = ({ uid }) => {
   App.pageSay = t('s_worker');
   return topBar(uid === me.uid ? t('my_profile') : u.name, { back: true }) + `<main class="wrap">
     <div class="hero"><div class="row"><span style="font-size:2.2rem">${ROLE_ICON[u.role]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + u.role)}</span></div></div><div style="margin-top:6px">${authChip(uid)}</div></div>${onbCard(uid)}
-    ${u.role === 'partner' ? companyCard(uid) : ''}${u.role === 'tech' ? memberCard(uid) : ''}
+    ${u.role === 'partner' ? companyCard(uid) : ''}${u.role === 'tech' ? memberCard(uid) : ''}${legalCard(uid)}
     ${gradeOf(uid) ? ladderCard(uid, { short: true }) : ''}${trialCard(uid)}
     <div class="card"><h3>👤 ${t('profile')}</h3>${kv([['f_phone', esc(p.phone || '')], ['w_area', esc(p.area || '')], ['w_avail', p.availability ? t('av_' + p.availability) : ''], ['w_skills', (p.skills || []).map(x => t('skill_' + x)).join(', ')]])}
       ${u.role === 'customer' ? '' : `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="wprofile||uid|${uid}">✏️ ${t('edit')}</button>`}<p class="small muted">${t('w_privacy')}</p></div>
@@ -11936,7 +12120,7 @@ function openTask(n) {
     pay_dispute: () => wiz('payAnswer', null, { uid: n.uid, week: n.week }), training: () => wiz('train', null, { module: n.module }),
     onb_profile: () => wiz('wprofile', null, { uid: n.uid }), check_docs: () => go('worker', { uid: n.uid }),
     rate_work: () => wiz('rate', pid, { ref: n.ref, about: n.ref === 'handover' ? doneLead(P) : P.service[n.ref.split(':')[1]].by }), rate_crew: () => wiz('rateCrew', pid, { uid: n.uid }),
-    wait_permit: () => go('project', { pid }),
+    wait_permit: () => go('project', { pid }), wait_serial: () => go('project', { pid }), serial_mismatch: () => wiz('serialFix', pid), legal_renew: () => go('worker', { uid: n.uid }),
     qc_recheck: () => wiz('recheck', pid), recheck_failed: () => wiz('recheckReview', pid),
     help_newbie: () => { const x = S.users[n.uid], ph = ((S.workers[n.uid] || {}).profile || {}).phone; sheet(`<h2>🤝 ${t('tk_help_newbie')}</h2><p><b>${esc(x.name)}</b> · ${t('r_' + x.role)} · ${t('nw_stuck', { n: newStuck(x) })}</p>${ph ? `<a class="btn btn-p btn-big" href="tel:+91${esc(ph)}">📞 ${esc(ph)}</a>` : ''}${onbCard(n.uid, { short: true })}`); },
     promotion_ready: () => wiz('promote', null, { uid: n.uid }), strike_appeal: () => wiz('decide', null, { uid: n.uid, sid: n.sid }),
@@ -12603,8 +12787,8 @@ async function seedPractice() {
       : ['supplier', 'DISPATCHED', { packed: P.materials.map(m => m.k), seal: 'SEAL-' + P.id.slice(-3), vehicle: 'MH12 AB 1234', challan: 'DC/' + P.id.slice(-3) + '/26', serialMap: Object.fromEntries(P.materials.filter(m => SERIAL_ITEMS.includes(m.k)).map(m => [m.k, m.k.slice(2, 5).toUpperCase() + '-' + P.id.slice(-3) + '-' + (100 + SERIAL_ITEMS.indexOf(m.k))])), ev: [ph('work'), ph('work')] }],
     dispatched: P => [P.tech, 'ARRIVED', { gps: P.site.gps, sealSeen: 'SEAL-' + P.id.slice(-3), sealIntact: 'yes', condition: 'good', ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
     arrived: P => P.mhand && P.mhand.wait ? [P.customer, 'MATERIAL_RECEIPT_SIGNED', { custName: P.contact.name, custody: true, ev: [ph('sign')] }]
-      : payConfirmed(P, 'arrival') ? [P.tech, 'MATERIAL_HANDED', Object.assign({ items: P.materials.map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, signer: 'contact', custody: !custSignsApp(P, 'contact'), ev: (custSignsApp(P, 'contact') ? [ph('sign')] : [ph('sign'), ph('sign')]).concat([Object.assign(ph('site', P.site.gps), { label: 'storage' })]) }, custSignsApp(P, 'contact') ? { custApp: true } : {})] : payStep(P, 'arrival'),
-    installing: P => peerWaiting(P).length ? [Object.values(S.users).find(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).uid, 'PEER_CHECKED', { step: peerWaiting(P)[0], ok: true }] : sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? (+S.config.checkinGate && !checkedIn(P, safeDay(nextAt())) ? [P.tech, 'SITE_CHECKED_IN', { day: safeDay(nextAt()), gps: P.site.gps }] : [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }]) : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
+      : payConfirmed(P, 'arrival') ? [P.tech, 'MATERIAL_HANDED', Object.assign({ serialSeen: Object.assign({}, (P.dispatch || {}).serialMap), items: P.materials.map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, signer: 'contact', custody: !custSignsApp(P, 'contact'), ev: (custSignsApp(P, 'contact') ? [ph('sign')] : [ph('sign'), ph('sign')]).concat([Object.assign(ph('site', P.site.gps), { label: 'storage' })]) }, custSignsApp(P, 'contact') ? { custApp: true } : {})] : payStep(P, 'arrival'),
+    installing: P => peerWaiting(P).length ? [Object.values(S.users).find(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).uid, 'PEER_CHECKED', { step: peerWaiting(P)[0], ok: true }] : sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? (+S.config.checkinGate && !checkedIn(P, safeDay(nextAt())) ? [P.tech, 'SITE_CHECKED_IN', { day: safeDay(nextAt()), gps: P.site.gps }] : [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }]) : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), isc: iscYes(sopNext(P)), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
     qc_final: P => ['qc', 'QC_FINAL_RESULT', { checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), crit: Object.fromEntries(QC_CRITICAL.map(k => [k, 'pass'])), earthVal: '0.8 Ω', outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)].concat(QC_CRITICAL.map(k => Object.assign(ph('work', P.site.gps), { label: 'crit_' + k }))) }],
     final_pay: P => payStep(P, 'final'),
     handover: P => { const s = SLOTS.find(x => !P.hand[x]); return s ? [s === 'qc' ? 'qc' : P.tech, 'HANDOVER_SIGNED', { slot: s, consent: true, signer: s === 'customer' ? P.contact.name : userName(U[s]), ev: [ph('sign')] }]
@@ -12654,7 +12838,7 @@ async function seedPractice() {
       if (+S.config.checkinGate && !checkedIn(Ph, d0)) await SP('SITE_CHECKED_IN', hosp, { day: d0, gps: Ph.site.gps }, Ph.tech);
       else await SP('SAFETY_CHECKED', hosp, { ev: safePh(Ph) }, Ph.tech);
     }
-    await SP('SOP_STEP_DONE', hosp, { step: sopNext(S.projects[hosp]), ev: [ph('work', S.projects[hosp].site.gps)] }, S.projects[hosp].tech);
+    await SP('SOP_STEP_DONE', hosp, { step: sopNext(S.projects[hosp]), isc: iscYes(sopNext(S.projects[hosp])), ev: [ph('work', S.projects[hosp].site.gps)] }, S.projects[hosp].tech);
   }
   await SP('BLOCKER_RAISED', hosp, { step: null, reason: 'help', role: 'admin', note: 'Need extra scaffolding for top floor' }, S.projects[hosp].tech);
   await SP('HOLD_REQUESTED', sar, { reason: 'customer', note: 'Family function at the building for 3 days; customer asked to stop work', ev: [] }, S.projects[sar].tech);

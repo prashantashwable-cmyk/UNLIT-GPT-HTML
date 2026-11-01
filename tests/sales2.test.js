@@ -46,12 +46,12 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await page.evaluate(H => { S.projects[H].schedule.cabin = 50000; }, H);
   await act('SITE_CHECKED_IN', H, { day: await ev('safeDay()'), gps: await ev(`S.projects["${H}"].site.gps`) }, 'PSENIOR');
   await act('SAFETY_CHECKED', H, { ev: await photos(4, 'safe') }, 'PSENIOR');
-  assert(await ev(`sopNext(S.projects["${H}"])`) === 5 && (await act('SOP_STEP_DONE', H, { step: 5, ev: await photos(1) }, 'PSENIOR')).err === 'err_payment_gate', 'the cabin step waits for the cabin payment');
+  assert(await ev(`sopNext(S.projects["${H}"])`) === 5 && (await act('SOP_STEP_DONE', H, { step: 5, isc: await ev('iscYes(5)'), ev: await photos(1) }, 'PSENIOR')).err === 'err_payment_gate', 'the cabin step waits for the cabin payment');
   assert((await tasks('PSENIOR', H)).includes('wait_cabin_pay'), 'the technician sees "waiting for the cabin payment"');
   assert((await act('PAYMENT_RECORDED', H, { purpose: 'cabin', amount: 49000, method: 'upi', ref: 'UPI1' }, 'PSALES')).err === 'err_amount', 'the cabin payment must match the plan');
   assert((await act('PAYMENT_RECORDED', H, { payId: 'PAY-CAB1', purpose: 'cabin', amount: 50000, method: 'upi', ref: 'UPI1' }, 'PSALES')).ok, 'Sales records the cabin payment');
   const payId = await ev(`S.projects["${H}"].payments.find(p => p.purpose === "cabin").id`);
-  assert((await act('PAYMENT_STATUS', H, { payId, status: 'confirmed', ref: 'BANK-9' }, 'PFIN')).ok && (await act('SOP_STEP_DONE', H, { step: 5, ev: await photos(1) }, 'PSENIOR')).ok, 'once Finance confirms it, the cabin step can be done');
+  assert((await act('PAYMENT_STATUS', H, { payId, status: 'confirmed', ref: 'BANK-9' }, 'PFIN')).ok && (await act('SOP_STEP_DONE', H, { step: 5, isc: await ev('iscYes(5)'), ev: await photos(1) }, 'PSENIOR')).ok, 'once Finance confirms it, the cabin step can be done');
 
   /* receipt */
   await page.evaluate(([H, payId]) => { loginAs(S.users.PSALES); ACT.permsDone(); Notify.hide(); go('project', { pid: H, tab: 'money' }); }, [H, payId]); await page.waitForTimeout(200);

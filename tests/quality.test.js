@@ -9,7 +9,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const photos = (n, label) => ev(`Array.from({ length: ${n} }, () => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: '${label || 'work'}', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }))`);
   const tasks = (uid, pid) => page.evaluate(([uid, pid]) => myTasks(S.users[uid]).filter(n => !pid || n.pid === pid).map(n => n.k), [uid, pid]);
   const H = 'AIEC-P003';
-  const step = async () => act('SOP_STEP_DONE', H, { step: await ev(`sopNext(S.projects["${H}"])`), ev: await photos(1) }, 'PSENIOR');
+  const step = async () => act('SOP_STEP_DONE', H, { step: await ev(`sopNext(S.projects["${H}"])`), isc: await ev(`iscYes(sopNext(S.projects["${H}"]))`), ev: await photos(1) }, 'PSENIOR');
 
   assert(await ev('S.rejected.length === 0 && (S.projects["AIEC-P001"].peerLog || []).length === 3'), 'practice data: finished lifts had their 3 safety-critical steps checked by a co-worker');
 

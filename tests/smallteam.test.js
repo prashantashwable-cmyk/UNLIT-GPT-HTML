@@ -85,7 +85,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
     const n = await page.evaluate(p => needs(S.projects[p]).map(x => x.k), pid);
     if (n.includes('peer_check')) { const st = await ev(`peerWaiting(S.projects["${pid}"])[0]`); await step('peer_check', 'PSENIOR', 'PEER_CHECKED', { step: st, ok: true }); continue; }
     if (await ev(`sopNext(S.projects["${pid}"]) >= SOP.length`)) break;
-    await step('install', tech, 'SOP_STEP_DONE', { step: await ev(`sopNext(S.projects["${pid}"])`), ev: await ph(1) });
+    await step('install', tech, 'SOP_STEP_DONE', { step: await ev(`sopNext(S.projects["${pid}"])`), isc: await ev(`iscYes(sopNext(S.projects["${pid}"]))`), ev: await ph(1) });
   }
   await step('request_inspection', tech, 'INSPECTION_REQUESTED', {});
   await step('final_inspect', 'POWNER', 'QC_FINAL_RESULT', { checks: await ev('Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, "pass"]))'), crit: await ev('Object.fromEntries(QC_CRITICAL.map(k => [k, "pass"]))'), earthVal: '0.8 Ω', outcome: 'pass', stars: 5,

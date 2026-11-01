@@ -26,8 +26,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert((await act('MATERIAL_HANDED', H, { items, custName: 'Mr. Patil', signer: 'contact', custody: true, ev: (await sgn()).concat(await sgn(), await ev(`[{ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'storage', t: nowISO(), gps: null, hash: 'h' + rid(8) }]`)) }, tech)).err === 'err_cust_signs_app', 'the customer\'s signature is not taken on the technician\'s phone when the customer has the app');
 
   /* technician's wizard: no customer signature box */
-  await page.evaluate(async H => { loginAs(S.users[S.projects[H].tech]); ACT.permsDone(); Notify.hide(); await wiz('mhand', H); W.ctx.store = [{ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'storage', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }]; render(); }, H); await page.waitForTimeout(150);
-  await next(); await next();
+  await page.evaluate(async H => { loginAs(S.users[S.projects[H].tech]); ACT.permsDone(); Notify.hide(); await wiz('mhand', H); W.ctx.sn = Object.assign({}, (S.projects[H].dispatch || {}).serialMap); W.ctx.store = [{ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'storage', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }]; render(); }, H); await page.waitForTimeout(150);
+  await next(); await next(); await next();
   assert(/signs in their own app/.test(await page.innerText('main')) && !(await page.$('[data-a="sign"][data-k="csig"]')), 'the technician is told the customer signs in their own app; no customer signature box');
   await next(); await sign('tsig'); await next(); await page.waitForTimeout(300);
   assert(await ev(`(P => P.stage === "arrived" && P.mhand.wait && P.mhand.techSig && !P.mhand.custSig)(S.projects["${H}"])`), 'saved with the technician\'s signature; installation has not started');
