@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="theme-color" content="#23262f">
 <meta name="description" content="AIEC Elevator OS - lead to handover work manager for All India Elevators Company">
 <title>AIEC Elevator OS</title>
@@ -258,7 +259,8 @@ input[type=range].scale{width:100%;height:44px;accent-color:var(--graph)}
 </style>
 </head>
 <body>
-<div id="app" aria-live="polite"></div>
+<div id="app"><div class="splash" style="min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:600 1.1rem system-ui,sans-serif;color:#1b1f2a;background:#f4f2ed;text-align:center">
+<div style="font-size:3.4rem" aria-hidden="true">🛗</div><b style="font-size:1.4rem">AIEC Elevator OS</b><span>ALL INDIA ELEVATORS COMPANY</span><span role="status">लोड होत आहे… · लोड हो रहा है… · Loading…</span></div></div>
 <div id="ov"></div>
 <div id="toast" role="status" aria-live="assertive"></div>
 <script>
@@ -697,7 +699,6 @@ const L = {
   err_pick_sales: ['Choose a Sales person.', 'सेल्स व्यक्ति चुनें।', 'विक्री व्यक्ती निवडा.'],
   err_pick_supplier: ['Choose a supplier.', 'सप्लायर चुनें।', 'पुरवठादार निवडा.'],
   err_pick_tech: ['Choose a technician.', 'टेक्नीशियन चुनें।', 'तंत्रज्ञ निवडा.'],
-  err_pick_person: ['Choose a person with the right role.', 'सही भूमिका वाला व्यक्ति चुनें।', 'योग्य भूमिका असलेली व्यक्ती निवडा.'],
   err_no_req: ['Write lift needs first.', 'पहले लिफ्ट की ज़रूरत लिखें।', 'आधी लिफ्टची गरज लिहा.'],
   err_already: ['Already done.', 'पहले ही हो चुका है।', 'आधीच झाले आहे.'],
   err_dup_id: ['This project ID already exists.', 'यह प्रोजेक्ट ID पहले से है।', 'हा प्रकल्प ID आधीच आहे.'],
@@ -1073,7 +1074,6 @@ const L = {
   qo_fail: ['Failed', 'फेल', 'नापास'],
   s_qc_items: ['List each problem in simple words with a date.', 'हर समस्या आसान शब्दों में तारीख के साथ लिखें।', 'प्रत्येक समस्या सोप्या शब्दांत तारखेसह लिहा.'],
   f_item_text: ['What must be fixed', 'क्या ठीक करना है', 'काय दुरुस्त करायचे'],
-  f_due: ['By date', 'तारीख तक', 'तारखेपर्यंत'],
   add_item: ['Add another item', 'और काम जोड़ें', 'अजून काम जोडा'],
   s_qc_revisit: ['When will you visit again, and why?', 'आप दोबारा कब आएँगे और क्यों?', 'तुम्ही पुन्हा कधी याल आणि का?'],
   s_qc_review: ['Check and save the inspection.', 'जाँच देखें और सेव करें।', 'तपासणी पाहा आणि जतन करा.'],
@@ -2065,7 +2065,9 @@ const L = {
   sos_call_112: ['Emergency', 'आपातकाल', 'आणीबाणी'],
   sos_no_number: ['The Head Quarter has not set a company rescue number yet (Business rules → Site safety). Call 112.', 'हेड क्वार्टर ने अभी कंपनी बचाव नंबर नहीं डाला (व्यवसाय नियम → साइट सुरक्षा)। 112 पर कॉल करें।', 'हेड क्वार्टरने अजून कंपनी बचाव क्रमांक टाकलेला नाही (व्यवसाय नियम → साइट सुरक्षा). 112 ला फोन करा.'],
   sos_sms: ['Send my location by SMS', 'मेरी जगह SMS से भेजें', 'माझे ठिकाण SMS ने पाठवा'],
-  sos_limit: ['The office sees this SOS on their phone only after files are shared. Always call.', 'ऑफ़िस यह SOS अपने फ़ोन पर फ़ाइल शेयर होने के बाद ही देखता है। हमेशा कॉल करें।', 'फाइल शेअर झाल्यावरच ऑफिसला हे SOS त्यांच्या फोनवर दिसते. नेहमी फोन करा.'],
+  sos_limit: ['The office sees this SOS only when their app is open or next syncs — the app cannot ring a phone where it is closed. Always call.', 'ऑफ़िस यह SOS तभी देखता है जब उनका ऐप खुला हो या अगली बार सिंक हो — बंद ऐप वाले फ़ोन पर यह घंटी नहीं बजा सकता। हमेशा कॉल करें।', 'ऑफिसचे ॲप उघडे असेल किंवा पुढे सिंक होईल तेव्हाच त्यांना हे SOS दिसते — ॲप बंद असलेल्या फोनवर हे रिंग करू शकत नाही. नेहमी फोन करा.'],
+  err_newer_app: ['This record was made by a newer version of the app. Update the app on this phone to read it.', 'यह रिकॉर्ड ऐप के नए वर्ज़न से बना है। पढ़ने के लिए इस फ़ोन पर ऐप अपडेट करें।', 'ही नोंद ॲपच्या नवीन आवृत्तीने बनवली आहे. वाचण्यासाठी या फोनवर ॲप अपडेट करा.'],
+  loading: ['Loading…', 'लोड हो रहा है…', 'लोड होत आहे…'],
   sos_hold: ['Press and hold the SOS button for 1 second.', 'SOS बटन 1 सेकंड दबाकर रखें।', 'SOS बटण 1 सेकंद दाबून ठेवा.'],
   sos_hold_short: ['hold', 'दबाएँ', 'दाबा'],
   inc_seal_mismatch: ['Seal number does not match', 'सील नंबर मेल नहीं खाता', 'सील नंबर जुळत नाही'],
@@ -4145,7 +4147,8 @@ async function sigPayload(ev, ph) {
       const cut = ev.sig.ph2 && Object.prototype.hasOwnProperty.call(ev.sig.ph2, k);
       hs.push([k, cut ? ev.sig.ph2[k] : await sha256(keyHashSrc((ev.sig.pn || {})[k] || '', k, d[k]))]);
     }
-    return new TextEncoder().encode(JSON.stringify([2, ev.id, ev.n, ev.t, ev.by, ev.type, ev.pid, ev.dev, pub, hs]));
+    /* the record version is signed too; records made before versions existed keep their exact old payload */
+    return new TextEncoder().encode(JSON.stringify([2, ev.id, ev.n, ev.t, ev.by, ev.type, ev.pid, ev.dev, pub, hs].concat(ev.v != null ? [ev.v] : [])));
   }
   for (const k of Object.keys(d)) { if (k === 'stripped') continue; if (isPriv(ev.type, k)) priv[k] = d[k]; else pub[k] = d[k]; }
   if (ph == null && PRIVATE_KEYS[ev.type]) ph = await sha256(((ev.sig && ev.sig.pn) || '') + JSON.stringify(priv));
@@ -5401,7 +5404,8 @@ const RULES = {
   },
   /* the company chooses its own lead and crew on a job it holds */
   TEAM_SET: {
-    roles: ['owner', 'admin', 'partner'], project: true, check: (S, ev, u, P) => {
+    roles: ['owner', 'admin', 'partner'], project: true, gate: (S, u, P) => u.role === 'partner' && P.partner !== u.uid ? 'err_access' : P.stage === 'lost' || P.stage === 'amc' || stageIdx(P.stage) < stageIdx('signed') || passedQc(P) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => {
       const d = ev.data, co = u.role === 'partner' ? u.uid : companyOf(d.lead);
       if (u.role === 'partner' && P.partner !== u.uid) return 'err_access';
       if (P.stage === 'lost' || P.stage === 'amc' || stageIdx(P.stage) < stageIdx('signed') || passedQc(P)) return { k: 'err_stage', v: { stage: stName(P.stage) } };
@@ -5449,7 +5453,8 @@ const RULES = {
     }
   },
   /* a customer may change the site they entered until Sales accepts it */
-  LEAD_EDITED: { roles: ['customer'], project: true, check: (S, ev, u, P) => P.customer !== u.uid || !P.lead.bySelf ? 'err_access' : !['new', 'returned'].includes(P.stage) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : !ev.data.gps && !(ev.data.address || '').trim() ? 'err_location_or_address' : null },
+  LEAD_EDITED: { roles: ['customer'], project: true, gate: (S, u, P) => P.customer !== u.uid || !P.lead.bySelf ? 'err_access' : !['new', 'returned'].includes(P.stage) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => P.customer !== u.uid || !P.lead.bySelf ? 'err_access' : !['new', 'returned'].includes(P.stage) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : !ev.data.gps && !(ev.data.address || '').trim() ? 'err_location_or_address' : null },
   LEAD_INFO_ADDED: { roles: ['field', 'sales', 'admin'], project: true, open: true, stages: OPEN_STAGES, check: (S, ev) => need(ev_(ev.data).length || (ev.data.note || '').trim() || ev.data.phone, 'err_fill') },
   /* a referral: the code on a finished customer's lift sticker, recorded on a new job; thanks only once that job's material is ordered */
   REFERRAL_SET: {
@@ -5468,7 +5473,8 @@ const RULES = {
   },
   /* a housing society: the committee's members and quorum; each member's approval is signed with name and time */
   SOC_SET: {
-    roles: ['sales', 'admin', 'owner'], project: true, check: (S, ev, u, P) => {
+    roles: ['sales', 'admin', 'owner'], project: true, gate: (S, u, P) => P.stage === 'lost' || stageIdx(P.stage) >= stageIdx('signed') ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => {
       if (P.stage === 'lost' || stageIdx(P.stage) >= stageIdx('signed')) return { k: 'err_stage', v: { stage: stName(P.stage) } };
       const m = (ev.data.members || []).map(x => String(x).trim()).filter(Boolean), q = +ev.data.quorum;
       return m.length >= 2 && m.length <= 60 && new Set(m.map(x => x.toLowerCase())).size === m.length && Number.isInteger(q) && q >= 1 && q <= m.length ? null : 'err_members';
@@ -5552,7 +5558,8 @@ const RULES = {
   },
   DEAL_LOST: { roles: ['sales', 'admin', 'owner'], project: true, stages: PRE_WON, check: (S, ev) => need(ev.data.reason, 'err_reason') },
   PROJECT_CANCELLED: {
-    roles: ['owner'], project: true, check: (S, ev, u, P) => stageIdx(P.stage) < stageIdx('won') || ['lost', 'amc'].includes(P.stage) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : need((ev.data.reason || '').trim(), 'err_reason')
+    roles: ['owner'], project: true, gate: (S, u, P) => stageIdx(P.stage) < stageIdx('won') || ['lost', 'amc'].includes(P.stage) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => stageIdx(P.stage) < stageIdx('won') || ['lost', 'amc'].includes(P.stage) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : need((ev.data.reason || '').trim(), 'err_reason')
   },
   DEAL_REOPENED: { roles: ['admin', 'owner'], project: true, stages: ['lost'], check: (S, ev) => need((ev.data.reason || '').trim(), 'err_reason') },
   AGREEMENT_PREPARED: { roles: ['sales'], project: true, stages: ['won'] },
@@ -5566,7 +5573,8 @@ const RULES = {
     }
   },
   PAYMENT_RECORDED: {
-    roles: ['sales', 'finance', 'customer'], project: true, check: (S, ev, u, P) => {
+    roles: ['sales', 'finance', 'customer'], project: true, gate: (S, u, P) => u.role === 'customer' && P.customer !== u.uid ? 'err_access' : !Object.values(PAY_STAGE).includes(P.stage) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => {
       const d = ev.data;
       /* the customer can report "I have paid" for their own job, with the bank or UPI reference; the office checks it in the bank */
       if (u.role === 'customer' && (P.customer !== u.uid || d.method === 'cash')) return P.customer !== u.uid ? 'err_access' : 'err_choose';
@@ -5680,7 +5688,8 @@ const RULES = {
     }
   },
   INCIDENT_RAISED: {
-    roles: ['owner', 'admin', 'sales', 'finance', 'qc', 'supplier', 'tech', 'partner'], project: true, check: (S, ev, u, P) => {
+    roles: ['owner', 'admin', 'sales', 'finance', 'qc', 'supplier', 'tech', 'partner'], project: true, gate: (S, u, P) => !OPEN_STAGES.includes(P.stage) && P.stage !== 'amc' ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => {
       const ty = ev.data.type || 'other';
       if (!INC_TYPES.some(x => x[0] === ty)) return 'err_choose';
       if (!OPEN_STAGES.includes(P.stage) && !(P.stage === 'amc' && STOP_TYPES.includes(ty))) return { k: 'err_stage', v: { stage: stName(P.stage) } };
@@ -5821,7 +5830,8 @@ const RULES = {
   /* the lead's safety check at the start of each work day: 4 photos (helmet/harness, scaffolding, barricade, earthing) */
   /* supplier bills: the supplier sends its invoice for a dispatched order; the office approves (with deductions for approved part claims); Finance pays after the customer's payment for the material is found in the bank */
   SUPPLIER_INVOICE: {
-    roles: ['supplier'], project: true, check: (S, ev, u, P) => {
+    roles: ['supplier'], project: true, gate: (S, u, P) => P.supplier !== u.uid ? 'err_access' : !P.dispatch || P.stage === 'lost' ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => {
       const d = ev.data;
       if (P.supplier !== u.uid) return 'err_access';
       if (!P.dispatch || P.stage === 'lost') return { k: 'err_stage', v: { stage: stName(P.stage) } };
@@ -5971,7 +5981,8 @@ const RULES = {
   /* statutory records: erection permit, the Lift Inspector's visit, the lift licence */
   /* a new drawing version (photos of the pages); older versions stay in the record as replaced */
   DRAWING_ADDED: {
-    roles: ['admin', 'owner'], project: true, check: (S, ev, u, P) => {
+    roles: ['admin', 'owner'], project: true, gate: (S, u, P) => !P.drawings || P.stage === 'lost' ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => {
       if (!P.drawings || P.stage === 'lost') return { k: 'err_stage', v: { stage: stName(P.stage) } };
       const ref = (ev.data.ref || '').trim();
       if (!ref) return 'err_fill';
@@ -5980,7 +5991,8 @@ const RULES = {
     }
   },
   STATUTORY_SET: {
-    roles: ['owner', 'admin', 'qc', 'sales', 'finance'], project: true, check: (S, ev, u, P) => {
+    roles: ['owner', 'admin', 'qc', 'sales', 'finance'], project: true, gate: (S, u, P) => !isStatOwner(u) ? 'err_access' : P.stage === 'lost' || stageIdx(P.stage) < stageIdx('signed') ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => {
       if (!isStatOwner(u)) return 'err_access';
       const d = ev.data, ok = x => /^\d{4}-\d\d-\d\d$/.test(x || '');
       if (P.stage === 'lost' || stageIdx(P.stage) < stageIdx('signed')) return { k: 'err_stage', v: { stage: stName(P.stage) } };
@@ -6004,7 +6016,8 @@ const RULES = {
   },
   /* on hold: the lead, the company, Sales or the supplier ask; the office approves; the office can also hold directly */
   HOLD_REQUESTED: {
-    roles: ['owner', 'admin', 'sales', 'tech', 'partner', 'supplier'], project: true, check: (S, ev, u, P) => {
+    roles: ['owner', 'admin', 'sales', 'tech', 'partner', 'supplier'], project: true, gate: (S, u, P) => !OPEN_STAGES.includes(P.stage) || stageIdx(P.stage) < stageIdx('signed') ? { k: 'err_stage', v: { stage: stName(P.stage) } } : (u.role === 'tech' && P.tech !== u.uid) || (u.role === 'partner' && P.partner !== u.uid) ? 'err_access' : null,
+    check: (S, ev, u, P) => {
       if (!OPEN_STAGES.includes(P.stage) || stageIdx(P.stage) < stageIdx('signed')) return { k: 'err_stage', v: { stage: stName(P.stage) } };
       if ((P.holds || []).some(h => ['pending', 'active'].includes(h.status))) return 'err_hold_open';
       if (u.role === 'tech' && P.tech !== u.uid) return 'err_access';
@@ -6023,7 +6036,8 @@ const RULES = {
   HOLD_ENDED: { roles: ['owner', 'admin'], project: true, check: (S, ev, u, P) => need((P.holds || []).some(x => x.id === ev.data.hid && x.status === 'active'), 'err_already') },
   /* the office moves a job one stage back with a reason (for example to redo dispatch or an inspection) */
   STAGE_BACK: {
-    roles: ['owner', 'admin'], project: true, check: (S, ev, u, P) => !STAGE_BACK[P.stage] || STAGE_BACK[P.stage] !== ev.data.to ? { k: 'err_stage', v: { stage: stName(P.stage) } } : need((ev.data.reason || '').trim(), 'err_reason')
+    roles: ['owner', 'admin'], project: true, gate: (S, u, P) => !STAGE_BACK[P.stage] ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => !STAGE_BACK[P.stage] || STAGE_BACK[P.stage] !== ev.data.to ? { k: 'err_stage', v: { stage: stName(P.stage) } } : need((ev.data.reason || '').trim(), 'err_reason')
   },
   /* a dispute with the customer is marked; workers' confirmed pay keeps going */
   DISPUTE_SET: { roles: ['owner', 'admin', 'sales'], project: true, check: (S, ev, u, P) => P.dispute ? 'err_already' : need((ev.data.note || '').trim(), 'err_fill') },
@@ -6091,7 +6105,8 @@ const RULES = {
     }
   },
   TICKET_OPENED: {
-    roles: ['customer', 'sales', 'admin', 'owner', 'tech'], project: true, check: (S, ev, u, P) => {
+    roles: ['customer', 'sales', 'admin', 'owner', 'tech'], project: true, gate: (S, u, P) => P.stage === 'lost' ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => {
       if (P.stage === 'lost') return { k: 'err_stage', v: { stage: stName(P.stage) } };
       if (!TICKET_KINDS.some(k => k[0] === ev.data.kind)) return 'err_choose';
       if (ev.data.kind === 'breakdown' && P.stage !== 'amc') return { k: 'err_stage', v: { stage: stName(P.stage) } };
@@ -6103,7 +6118,8 @@ const RULES = {
     }
   },
   TICKET_SEVERITY: {
-    roles: ['admin', 'owner', 'sales', 'qc', 'tech'], project: true, check: (S, ev, u, P) => {
+    roles: ['admin', 'owner', 'sales', 'qc', 'tech'], project: true, gate: (S, u) => !isSvcOwner(u) && u.role !== 'sales' ? 'err_access' : null,
+    check: (S, ev, u, P) => {
       if (!isSvcOwner(u) && u.role !== 'sales') return 'err_access';
       const x = ticketOf(P, ev.data.tid);
       if (!x || x.status === 'closed') return 'err_already';
@@ -6113,7 +6129,8 @@ const RULES = {
   },
   LIFT_QR_SET: { roles: ['admin', 'owner'], project: true, stages: ['amc'], check: (S, ev, u, P) => need(P.lift && (ev.data.label || '').trim().length >= 2 && ev.data.label.trim().length <= 30, 'err_fill') },
   TICKET_ASSIGNED: {
-    roles: ['admin', 'owner', 'sales', 'qc', 'tech'], project: true, check: (S, ev, u, P) => {
+    roles: ['admin', 'owner', 'sales', 'qc', 'tech'], project: true, gate: (S, u) => !isSvcOwner(u) && u.role !== 'sales' ? 'err_access' : null,
+    check: (S, ev, u, P) => {
       /* Sales may still (older records stay valid), but the task now goes to the service lead */
       if (!isSvcOwner(u) && u.role !== 'sales') return 'err_access';
       const x = ticketOf(P, ev.data.tid);
@@ -6199,7 +6216,8 @@ const RULES = {
   JOB_CLOSED: { roles: ['admin', 'owner'], check: (S, ev, u) => { const p = S.posts[ev.data.postId]; if (!p || p.status !== 'open') return 'err_already'; return need((ev.data.reason || '').trim(), 'err_reason'); } },
   /* career ladder */
   CREW_ADDED: {
-    roles: ['admin', 'owner', 'tech', 'partner'], project: true, check: (S, ev, u, P) => {
+    roles: ['admin', 'owner', 'tech', 'partner'], project: true, gate: (S, u, P) => (u.role === 'tech' && !(P.tech === u.uid && gradeOf(u.uid) === 'senior')) || (u.role === 'partner' && P.partner !== u.uid) ? 'err_access' : !P.tech || ['lost', 'amc'].includes(P.stage) || stageIdx(P.stage) < stageIdx('material_order') || stageIdx(P.stage) >= stageIdx('final_pay') ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => {
       if (u.role === 'tech' && !(P.tech === u.uid && gradeOf(u.uid) === 'senior')) return 'err_access';
       if (u.role === 'partner' && P.partner !== u.uid) return 'err_access';
       if (!P.tech || ['lost', 'amc'].includes(P.stage) || stageIdx(P.stage) < stageIdx('material_order') || stageIdx(P.stage) >= stageIdx('final_pay')) return { k: 'err_stage', v: { stage: stName(P.stage) } };
@@ -6210,9 +6228,11 @@ const RULES = {
       return need(!(P.crew || []).includes(x.uid), 'err_already');
     }
   },
-  CREW_REMOVED: { roles: ['admin', 'owner', 'tech', 'partner'], project: true, check: (S, ev, u, P) => (u.role === 'tech' && !(P.tech === u.uid && gradeOf(u.uid) === 'senior')) || (u.role === 'partner' && P.partner !== u.uid) ? 'err_access' : passedQc(P) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : need((P.crew || []).includes(ev.data.uid), 'err_already') },
+  CREW_REMOVED: { roles: ['admin', 'owner', 'tech', 'partner'], project: true, gate: (S, u, P) => (u.role === 'tech' && !(P.tech === u.uid && gradeOf(u.uid) === 'senior')) || (u.role === 'partner' && P.partner !== u.uid) ? 'err_access' : passedQc(P) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => (u.role === 'tech' && !(P.tech === u.uid && gradeOf(u.uid) === 'senior')) || (u.role === 'partner' && P.partner !== u.uid) ? 'err_access' : passedQc(P) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : need((P.crew || []).includes(ev.data.uid), 'err_already') },
   CUSTOMER_RATED: {
-    roles: ['customer', 'sales'], project: true, check: (S, ev, u, P) => {
+    roles: ['customer', 'sales'], project: true, gate: (S, u, P) => u.role === 'sales' && (P.customer || P.sales !== u.uid) ? 'err_access' : null,
+    check: (S, ev, u, P) => {
       const d = ev.data, m = /^visit:(\d+)$/.exec(d.ref || '');
       if (u.role === 'sales' && (P.customer || P.sales !== u.uid || !(d.name || '').trim())) return 'err_access';
       const about = d.ref === 'handover' ? (P.done && doneLead(P)) : m && P.service[m[1]] ? P.service[m[1]].by : null;
@@ -6223,7 +6243,8 @@ const RULES = {
     }
   },
   CREW_RATED: {
-    roles: ['tech'], project: true, check: (S, ev, u, P) => {
+    roles: ['tech'], project: true, gate: (S, u, P) => !passedQc(P) || leadAt(P, passEntry(P)) !== u.uid ? 'err_access' : null,
+    check: (S, ev, u, P) => {
       const d = ev.data;
       if (!passedQc(P) || leadAt(P, passEntry(P)) !== u.uid || !crewAt(P, passEntry(P)).includes(d.uid)) return 'err_access';
       if (S.reviews.some(r => r.src === 'lead' && r.pid === P.id && r.uid === d.uid)) return 'err_already';
@@ -6293,7 +6314,8 @@ const RULES = {
     }
   },
   APPROVAL_DECIDED: {
-    roles: ['owner', 'admin', 'sales', 'finance', 'qc'], check: (S, ev, u) => {
+    roles: ['owner', 'admin', 'sales', 'finance', 'qc'], gate: (S, u, P, t) => !['owner', 'admin'].includes(u.role) && !isBackup(u.uid, t) ? { k: 'err_role', v: { roles: rolesTxt(['owner', 'admin']) } } : null,
+    check: (S, ev, u) => {
       if (!['owner', 'admin'].includes(u.role) && !isBackup(u.uid, ev.t)) return { k: 'err_role', v: { roles: rolesTxt(['owner', 'admin']) } };
       const r = S.approvals[ev.data.aid];
       if (!r || r.status !== 'pending') return 'err_already';
@@ -6318,7 +6340,8 @@ const RULES = {
   UNDONE: { roles: ROLES, check: (S, ev) => undoWhyNot(S, ev.data.target, ev.by, ev.t) },
   /* the day's close: open office items roll to tomorrow with a named person */
   DAY_CLOSED: {
-    roles: ['owner', 'admin', 'sales', 'finance', 'qc'], check: (S, ev, u) => {
+    roles: ['owner', 'admin', 'sales', 'finance', 'qc'], gate: (S, u, P, t) => !['owner', 'admin'].includes(u.role) && !isBackup(u.uid, t) ? { k: 'err_role', v: { roles: rolesTxt(['owner', 'admin']) } } : null,
+    check: (S, ev, u) => {
       if (!['owner', 'admin'].includes(u.role) && !isBackup(u.uid, ev.t)) return { k: 'err_role', v: { roles: rolesTxt(['owner', 'admin']) } };
       if (ev.data.day !== safeDay(ev.t)) return 'err_date';
       if (S.dayClose[ev.data.day]) return 'err_already';
@@ -6414,6 +6437,7 @@ const RULES = {
 
 /* returns null when the event is allowed, else an error key / {k,v} */
 function validate(S, ev) {
+  if (evV(ev) > EV_V) return 'err_newer_app';
   const R = RULES[ev.type];
   if (!R) return 'err_unknown';
   if (ev.type === 'ORG_CREATED') return S.org ? 'err_org_exists' : need(ev.data.orgId && ev.data.name, 'err_fill');
@@ -6432,6 +6456,8 @@ function validate(S, ev) {
     if (!R.open && !canSee(u, P)) return 'err_access';
     if (R.stages && !R.stages.includes(P.stage)) return { k: 'err_stage', v: { stage: stName(P.stage) } };
   }
+  /* who and at which stage, shared with allowed() so a button never shows for an action the rule then refuses */
+  if (R.gate && (!R.project || P)) { const g = R.gate(S, u, P, ev.t); if (g) return g; }
   /* a record with hidden fields (from an office file) was checked when it was made; its missing details cannot be checked again here */
   if (ev.cut && !App.liveCheck) return null;
   const err = R.check ? R.check(S, ev, u, P) : null;
@@ -6859,11 +6885,12 @@ function apply(S, ev) {
     for (const e of ev_(d)) { S.evidence[e.id] = Object.assign({}, e, { pid: ev.pid, by: ev.by, evt: ev.id, type: ev.type }); P.evidence.push(e.id); }
   } else for (const e of ev_(d)) S.evidence[e.id] = Object.assign({}, e, { by: ev.by, evt: ev.id, type: ev.type });
 }
+const sortEvents = events => events.sort((a, b) => a.t < b.t ? -1 : a.t > b.t ? 1 : (a.n || 0) - (b.n || 0) || (a.id < b.id ? -1 : 1));
 function rebuild(events, skip) {
   const st = emptyState();
   S = st; /* helpers such as roleOf() read the global state, so replay into it */
   const ok = [];
-  events.sort((a, b) => a.t < b.t ? -1 : a.t > b.t ? 1 : (a.n || 0) - (b.n || 0) || (a.id < b.id ? -1 : 1));
+  sortEvents(events);
   for (const ev of events) {
     /* second pass: records taken back are left out; their undo records were checked in the first pass */
     if (skip && skip.has(ev.id)) continue;
@@ -6874,6 +6901,36 @@ function rebuild(events, skip) {
   }
   if (!skip && Object.keys(st.undone).length) return rebuild(events, new Set(Object.keys(st.undone)));
   return st;
+}
+
+/* ---------- fast start: a saved snapshot of the rebuilt state ----------
+   Replaying every record on each start gets slow after a few years. Every SNAP_EVERY records the rebuilt state is saved
+   beside the records; on start the newest snapshot is restored and only newer records are replayed. The snapshot is used
+   only when it provably matches: same app (fingerprint of the whole script, so any rule change starts fresh), the same
+   records in the same order up to it (checksum of their ids), and no undo after it. Otherwise: full replay, as before. */
+const SNAP_EVERY = 300;
+const fnv = (str, h = 2166136261) => { for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619) >>> 0; return h; };
+let APP_FP = null;
+const appPrint = () => APP_FP || (APP_FP = (() => { const sc = [...document.scripts].map(x => x.textContent).sort((a, b) => b.length - a.length)[0] || ''; return fnv(sc).toString(36) + '.' + sc.length + '.' + EV_V; })());
+const idsHash = (events, k) => { let h = 2166136261; for (let i = 0; i < k; i++) h = fnv(events[i].id + '|', h); return h.toString(36); };
+function makeSnap(events, st) {
+  if (Object.keys(st.undone || {}).length || !events.length) return null;
+  const k = events.length;
+  return { k, last: events[k - 1].id, h: idsHash(events, k), fp: appPrint(), byId: Object.keys(st.byId), state: JSON.stringify(Object.assign({}, st, { byId: {} })) };
+}
+/* events must already be sorted; returns null when the snapshot cannot be trusted */
+function fromSnap(events, snap) {
+  if (!snap || snap.fp !== appPrint() || events.length < snap.k || !events[snap.k - 1] || events[snap.k - 1].id !== snap.last || idsHash(events, snap.k) !== snap.h) return null;
+  if (events.slice(snap.k).some(e => e.type === 'UNDONE')) return null;
+  const st = JSON.parse(snap.state), idx = new Map(events.map(e => [e.id, e]));
+  st.byId = {}; for (const id of snap.byId) { const e = idx.get(id); if (!e) return null; st.byId[id] = e; }
+  S = st;
+  for (const ev of events.slice(snap.k)) { const err = validate(st, ev); if (err) st.rejected.push({ ev, err }); else apply(st, ev); }
+  return st;
+}
+let snapK = 0;
+async function snapSave(force) {
+  try { if (!force && EVENTS.length - snapK < SNAP_EVERY) return; const sn = makeSnap(EVENTS, S); if (!sn) return; await KV.set(App.ns + 'snap', sn); snapK = sn.k; } catch (e) { /* a snapshot is only a speed-up */ }
 }
 
 /* Owner and Admin do not share the same to-do list: the Owner decides money and price, the Admin runs daily work.
@@ -7212,7 +7269,12 @@ async function loadEvents() {
 async function loadMode(mode) {
   App.mode = mode; App.ns = mode === 'practice' ? 'p:' : 'r:';
   EVENTS = await loadEvents();
-  S = rebuild(EVENTS);
+  sortEvents(EVENTS);
+  let snap = null; try { snap = await KV.get(App.ns + 'snap'); } catch (e) { snap = null; }
+  const fast = fromSnap(EVENTS, snap);
+  S = fast || rebuild(EVENTS); snapK = fast ? snap.k : 0;
+  App.startedFrom = fast ? 'snapshot' : 'replay';
+  setTimeout(() => snapSave(), 2000);
   App.archived = new Set((await KV.get(App.ns + 'archived')) || []); Sign.mine = {};
   App.joinReqs = (await KV.get(App.ns + 'joinReqs')) || [];
   savedSig = { ns: App.ns, sigs: [] };
@@ -7233,6 +7295,9 @@ async function getMedia(key) {
   return v;
 }
 /* ---------- the only way to change data ---------- */
+/* every record carries the version of the rules it was made under; a phone never guesses the meaning of a newer one */
+const EV_V = 1;
+const evV = ev => ev.v || 1;
 async function perform(type, pid, data, opt = {}) {
   const by = opt.as || (App.me && App.me.uid);
   let tt = opt.t || nowISO();
@@ -7240,7 +7305,7 @@ async function perform(type, pid, data, opt = {}) {
   /* keep records made in the same moment in order; a record from a phone whose clock ran far ahead must not drag new records into the future */
   if (!opt.t && last && tt <= last.t && Date.parse(last.t) - Date.now() < 60000) tt = new Date(new Date(last.t).getTime() + 1).toISOString();
   App.set.seq = (App.set.seq || 0) + 1;
-  const ev = { id: App.set.dev + '-' + rid(6), n: App.set.seq, t: tt, by, type, pid: pid || null, data: data || {}, dev: App.set.dev };
+  const ev = { id: App.set.dev + '-' + rid(6), n: App.set.seq, t: tt, by, type, pid: pid || null, data: data || {}, dev: App.set.dev, v: EV_V };
   if (App.mode === 'real') await Sign.sign(ev);
   App.liveCheck = true; let err; try { err = validate(S, ev); } finally { App.liveCheck = false; }
   if (err === 'err_needs_second' && type !== 'APPROVAL_REQUESTED') {
@@ -7253,7 +7318,7 @@ async function perform(type, pid, data, opt = {}) {
   apply(S, ev); EVENTS.push(ev);
   if (type === 'UNDONE') S = rebuild(EVENTS);
   if (UNDOABLE.includes(type) && !opt.as) App.lastDone = ev.id;
-  if (!opt.noSave) { await saveAll(); if (App.me) Notify.check({ silent: true }); Sync.soon(); }
+  if (!opt.noSave) { await saveAll(); if (App.me) Notify.check({ silent: true }); Sync.soon(); if (EVENTS.length - snapK >= SNAP_EVERY) setTimeout(() => snapSave(), 500); }
   return { ok: true, ev };
 }
 /* a quick pre-check used to show or hide buttons; perform() still validates fully */
@@ -7261,16 +7326,22 @@ function allowed(type, P) {
   const R = RULES[type], u = App.me;
   if (!R || !u || (!R.roles.includes(u.role) && !(u.role === 'owner' && COVER_EV.includes(type) && R.roles.some(r => COVER_ROLES.includes(r) && !Object.values(S.users).some(x => x.active && x.role === r))))) return false;
   if (P) { if (!R.open && !canSee(u, P)) return false; if (R.stages && !R.stages.includes(P.stage)) return false; }
+  if (R.gate && (!R.project || P) && R.gate(S, u, P || null, nowISO())) return false;
   return true;
 }
 
 /* ---------- navigation (hardware back button stays inside the app) ---------- */
+/* after moving to a new screen, keyboard and screen-reader focus starts at its title (not lost at the top of the page) */
+function focusTop() { try { const h = document.querySelector('#app header h1, #app main h1, #app main h2'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } } catch (e) { /* focus is a help, never a blocker */ } }
+/* HTML built from a template escapes every value unless it is marked raw(...): new code uses this so a name can never break a screen */
+const raw = x => ({ __raw: String(x) });
+const hx = (strs, ...vals) => strs.reduce((a, str, i) => a + str + (i < vals.length ? (vals[i] && vals[i].__raw != null ? vals[i].__raw : Array.isArray(vals[i]) ? vals[i].join('') : esc(vals[i] == null ? '' : String(vals[i]))) : ''), '');
 function go(name, p = {}, opt = {}) {
   if (App.me && ACCESS_ROLES.includes(App.me.role) && ACCESS_SCREENS[name]) { try { const a = ACCESS_SCREENS[name](p); if (a) logAccess(name, a[0], a[1]); } catch (e) { /* never block navigation */ } }
   if (!opt.replace && App.route && App.route.name !== 'boot') App.stack.push(App.route);
   if (App.stack.length > 40) App.stack.shift();
   App.route = { name, p };
-  render(); window.scrollTo(0, 0);
+  render(); window.scrollTo(0, 0); focusTop();
   if (App.set.autoRead && App.pageSay && !AFTER[name]) setTimeout(() => Voice.say(App.pageSay), 250);
 }
 function back() {
@@ -11142,7 +11213,7 @@ async function importText(text) {
   const before = S.rejected.length;
   const all = EVENTS.concat(fresh);
   S = rebuild(all); EVENTS = all;
-  await saveAll();
+  await saveAll(); snapK = 0; setTimeout(() => snapSave(), 2000);
   const rej = S.rejected.filter(r => fresh.some(f => f.id === r.ev.id)).length;
   if (pack.sync && ['owner', 'admin'].includes(packRole)) await Sync.adopt(pack);
   if (App.me) Notify.check();
@@ -12467,7 +12538,7 @@ async function exitPractice() {
   await loadMode('real'); App.me = null; App.stack = []; App.form = {}; W = null;
   go(S.org ? 'login' : 'setup', {}, { replace: true });
 }
-async function wipeNamespace(ns) { for (const k of await KV.keys(ns)) await KV.del(k); MEDIA.clear(); savedSig = { ns: null, sigs: [] }; Sign.mine = {}; App.archived = new Set(); }
+async function wipeNamespace(ns) { for (const k of await KV.keys(ns)) await KV.del(k); MEDIA.clear(); savedSig = { ns: null, sigs: [] }; snapK = 0; Sign.mine = {}; App.archived = new Set(); }
 function newPin() { const six = +S.config.pinDigits === 6, r = crypto.getRandomValues(new Uint32Array(1))[0]; return six ? String(100000 + (r % 900000)) : String(1000 + (r % 9000)); }
 
 const ACT = {
