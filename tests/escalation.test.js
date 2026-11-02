@@ -6,7 +6,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await page.evaluate(() => { App.set.lang = 'en'; LANG = 'en'; App.set.introDone = true; App.set.guide = false; });
   await page.evaluate(() => enterPractice()); await page.waitForTimeout(4500);
   /* this test is about the ladder itself: count every day (working days are tested in bizlogic) */
-  await page.evaluate(() => { S.config.sundayWork = 1; });
+  await page.evaluate(async () => { await perform('CONFIG_SET', null, { key: 'sundayWork', value: 1 }, { as: 'POWNER', quiet: true }); });
   const ev = f => page.evaluate(new Function('return (' + f + ')'));
   const act = (type, pid, data, as) => page.evaluate(([type, pid, data, as]) => perform(type, pid, data, { as, quiet: true }).then(r => ({ ok: r.ok, err: r.err })), [type, pid, data, as]);
   const tasksOf = uid => page.evaluate(uid => myTasks(S.users[uid]).map(n => ({ k: n.k, ref: n.ref, level: n.level || 0, uid: n.uid, pid: n.pid })), uid);

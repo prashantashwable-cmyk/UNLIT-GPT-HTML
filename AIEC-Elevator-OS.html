@@ -16,6 +16,11 @@
   --r:16px;--shadow:0 1px 2px rgba(0,0,0,.06),0 2px 8px rgba(0,0,0,.05);
 }
 /* colour themes (Me → Settings): dark for night work, high contrast for bright sun or weak eyes */
+:root[data-theme="color"]{--ink:#111827;--muted:#4b5563;--bg:#f5f7fb;--card:#fff;--line:#e3e8f0;--graph:#2f5bea;--graph2:#4f46e5;--gold:#f59e0b;--gold-l:#fff4db;--gold-d:#9a5b00;
+  --ok:#0f8a4a;--ok-bg:#e3f7ec;--warn:#b45309;--warn-bg:#fff2dd;--bad:#c81e1e;--bad-bg:#fde8e8;--info:#2f5bea;--info-bg:#e8eeff;--r:20px;--shadow:0 2px 10px rgba(47,91,234,.08),0 1px 2px rgba(0,0,0,.05)}
+:root[data-theme="color"] .task,:root[data-theme="color"] .tile,:root[data-theme="color"] .card{border-color:transparent}
+:root[data-theme="color"] .btn-p{background:linear-gradient(135deg,#2f5bea,#7c3aed);border-color:transparent;color:#fff}
+:root[data-theme="color"] .tbar .tw>i{background:linear-gradient(90deg,#2f5bea,#06b6d4)}
 :root[data-theme="dark"]{--ink:#eceff4;--muted:#aab2bf;--bg:#14161b;--card:#1f232b;--line:#3a404c;--gold-l:#3a3220;--gold-d:#e6c35a;
   --ok:#7fd99b;--ok-bg:#15301f;--warn:#f2bd63;--warn-bg:#3a2b0d;--bad:#ff8f86;--bad-bg:#3d1714;--info:#93bff2;--info-bg:#152740;--shadow:none}
 :root[data-theme="contrast"]{--ink:#000;--muted:#1d1d1d;--bg:#fff;--card:#fff;--line:#000;--gold:#8a6a00;--gold-l:#fff3c4;--gold-d:#4d3b00;
@@ -122,6 +127,7 @@ textarea.in{min-height:96px;resize:vertical}
 .photos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
 .ph-th{position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;background:#ccc;border:0;padding:0;display:block;width:100%}
 .ph-th img{width:100%;height:100%;object-fit:cover;display:block}
+.pidlink,.ulink[data-a]{background:none;border:0;padding:0;font:inherit;color:var(--info);text-decoration:underline;cursor:pointer;min-height:0}
 img[data-m]{background:var(--line)} img[data-m]:not([src]){min-height:90px} .sigimg{aspect-ratio:3/1;object-fit:contain;max-width:100%}
 .ph-th .x{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.7);color:#fff;border:0;border-radius:50%;width:36px;height:36px;font-size:1rem}
 .ph-th .flag{position:absolute;bottom:3px;left:3px;font-size:.7rem;padding:1px 6px}
@@ -2749,6 +2755,104 @@ const L = {
   sy_hand: ['{n} lift(s) handed over', '{n} लिफ्ट सौंपी', '{n} लिफ्ट हस्तांतरित'],
   sy_quiet: ['Nothing new since yesterday.', 'कल से कुछ नया नहीं।', 'कालपासून काही नवीन नाही.'],
   last_refused: ['Not saved', 'सेव नहीं हुआ', 'जतन झाले नाही'],
+  rg_contract: ['Contractor terms and pay reserve', 'कॉन्ट्रैक्टर शर्तें और भुगतान रिज़र्व', 'कंत्राटदार अटी आणि पेमेंट राखीव'],
+  rg_contract_d: ['Version of the contractor agreement people must accept, and an optional pay reserve. Keep the reserve at 0% unless your lawyer and CA approve it in writing.', 'लोगों को मानना होने वाला कॉन्ट्रैक्टर समझौते का वर्ज़न, और वैकल्पिक भुगतान रिज़र्व। वकील और CA लिखित मंज़ूरी न दें तब तक रिज़र्व 0% रखें।', 'लोकांनी स्वीकारायच्या कंत्राटदार कराराची आवृत्ती, आणि ऐच्छिक पेमेंट राखीव. वकील व CA लेखी मंजुरी देईपर्यंत राखीव 0% ठेवा.'],
+  cfg_reservePct: ['Pay reserve held each week, % (0 = pay all every week)', 'हर हफ़्ते रोका गया रिज़र्व, % (0 = हर हफ़्ते पूरा भुगतान)', 'दर आठवड्याला राखीव, % (0 = दर आठवड्याला पूर्ण पेमेंट)'],
+  cfg_reserveRelease: ['Reserve released each week, % of the balance', 'हर हफ़्ते रिज़र्व से वापसी, बैलेंस का %', 'दर आठवड्याला राखीवमधून परत, शिल्लकचा %'],
+  cfg_agreeVersion: ['Contractor agreement version', 'कॉन्ट्रैक्टर समझौता वर्ज़न', 'कंत्राटदार करार आवृत्ती'],
+  lg_insurance: ['Accident insurance', 'दुर्घटना बीमा', 'अपघात विमा'],
+  ld_title: ['My money: where every rupee is', 'मेरा पैसा: हर रुपया कहाँ है', 'माझे पैसे: प्रत्येक रुपया कुठे आहे'],
+  ld_pending: ['This week (still open)', 'इस हफ़्ते (अभी खुला)', 'या आठवड्यात (अजून उघडा)'],
+  ld_verified: ['Earned, waiting for the office to approve', 'कमाया, ऑफ़िस की मंज़ूरी बाकी', 'कमावले, ऑफिसची मंजुरी बाकी'],
+  ld_due: ['Approved, to be paid', 'मंज़ूर, भुगतान होना है', 'मंजूर, पेमेंट व्हायचे'],
+  ld_paid: ['Paid to the bank', 'बैंक में दिया', 'बँकेत दिले'],
+  ld_disputed: ['Weeks you questioned', 'जिन हफ़्तों पर सवाल किया', 'ज्या आठवड्यांवर प्रश्न विचारला'],
+  ld_reserve: ['Held in reserve (yours, not the company\'s)', 'रिज़र्व में (आपका, कंपनी का नहीं)', 'राखीव (तुमचे, कंपनीचे नाही)'],
+  ld_released: ['Released from reserve so far', 'अब तक रिज़र्व से वापस', 'आतापर्यंत राखीवमधून परत'],
+  ld_settled: ['Paid in final settlement', 'अंतिम हिसाब में दिया', 'अंतिम हिशोबात दिले'],
+  ld_rule_off: ['Every approved week is paid in full. Nothing is held back.', 'हर मंज़ूर हफ़्ता पूरा दिया जाता है। कुछ नहीं रोका जाता।', 'प्रत्येक मंजूर आठवडा पूर्ण दिला जातो. काहीही राखून ठेवले जात नाही.'],
+  ld_rule_on: ['{a}% of each approved week is held as your reserve; {b}% of your reserve balance is released every week. If you stop working with us, the whole balance is paid in the final settlement. It is never taken away.', 'हर मंज़ूर हफ़्ते का {a}% आपके रिज़र्व में रहता है; हर हफ़्ते बैलेंस का {b}% लौटाया जाता है। आप काम बंद करें तो पूरा बैलेंस अंतिम हिसाब में दिया जाता है। यह कभी काटा नहीं जाता।', 'प्रत्येक मंजूर आठवड्याचा {a}% तुमच्या राखीवमध्ये राहतो; दर आठवड्याला शिल्लकचा {b}% परत दिला जातो. तुम्ही काम थांबवल्यास पूर्ण शिल्लक अंतिम हिशोबात दिली जाते. ती कधीही कापली जात नाही.'],
+  ld_week_now: ['paid this week: {n}', 'इस हफ़्ते दिया: {n}', 'या आठवड्यात दिले: {n}'],
+  ld_week_held: ['held: {a} · released: {b}', 'रोका: {a} · लौटाया: {b}', 'राखले: {a} · परत: {b}'],
+  tk_settle_reserve: ['Pay the final settlement (reserve balance)', 'अंतिम हिसाब दें (रिज़र्व बैलेंस)', 'अंतिम हिशोब द्या (राखीव शिल्लक)'],
+  ld_settle: ['Pay the reserve balance', 'रिज़र्व बैलेंस दें', 'राखीव शिल्लक द्या'],
+  err_settle_amount: ['The settlement must be the whole reserve balance.', 'हिसाब पूरे रिज़र्व बैलेंस का होना चाहिए।', 'हिशोब पूर्ण राखीव शिल्लकचा असावा.'],
+  ev_RESERVE_SETTLED: ['Reserve paid in final settlement', 'अंतिम हिसाब में रिज़र्व दिया', 'अंतिम हिशोबात राखीव दिले'],
+  ct_title: ['Contractor agreement', 'कॉन्ट्रैक्टर समझौता', 'कंत्राटदार करार'],
+  ct_version: ['Version {v}', 'वर्ज़न {v}', 'आवृत्ती {v}'],
+  ct_p1: ['You work as an independent contractor (or your company does), not as an employee. You are paid for finished, checked work, not for hours.', 'आप (या आपकी कंपनी) स्वतंत्र कॉन्ट्रैक्टर के रूप में काम करते हैं, कर्मचारी नहीं। भुगतान पूरे और जाँचे काम का होता है, घंटों का नहीं।', 'तुम्ही (किंवा तुमची कंपनी) स्वतंत्र कंत्राटदार म्हणून काम करता, कर्मचारी म्हणून नाही. पेमेंट पूर्ण व तपासलेल्या कामाचे होते, तासांचे नाही.'],
+  ct_p2: ['You may accept or decline any job offer. Declining is never punished.', 'आप कोई भी काम ले सकते हैं या मना कर सकते हैं। मना करने पर कोई सज़ा नहीं।', 'तुम्ही कोणतेही काम घेऊ शकता किंवा नाकारू शकता. नाकारल्याबद्दल कोणतीही शिक्षा नाही.'],
+  ct_p3: ['Rates are the Owner-approved rates shown in the app on the day of the work. Pay is weekly, as shown in My money.', 'दर काम के दिन ऐप में दिखे हेड क्वार्टर-मंज़ूर दर हैं। भुगतान साप्ताहिक है, जैसा \'मेरा पैसा\' में दिखता है।', 'दर कामाच्या दिवशी ॲपमध्ये दिसणारे हेड क्वार्टर-मंजूर दर आहेत. पेमेंट साप्ताहिक, \'माझे पैसे\' मध्ये दिसते तसे.'],
+  ct_p4: ['Safety rules, the daily safety check and the installation steps must be followed. Unsafe work is stopped; the reason is written and can be appealed.', 'सुरक्षा नियम, रोज़ की सुरक्षा जाँच और इंस्टॉलेशन चरण मानने होंगे। असुरक्षित काम रोका जाता है; कारण लिखा जाता है और अपील हो सकती है।', 'सुरक्षा नियम, रोजची सुरक्षा तपासणी आणि इन्स्टॉलेशन पायऱ्या पाळाव्या लागतील. असुरक्षित काम थांबवले जाते; कारण लिहिले जाते आणि अपील करता येते.'],
+  ct_p5: ['Keep your BOCW, ESIC/insurance and licence (for companies) valid; the app reminds you before they end.', 'अपना BOCW, ESIC/बीमा और लाइसेंस (कंपनियों के लिए) मान्य रखें; खत्म होने से पहले ऐप याद दिलाता है।', 'तुमचे BOCW, ESIC/विमा आणि परवाना (कंपन्यांसाठी) वैध ठेवा; संपण्यापूर्वी ॲप आठवण करून देते.'],
+  ct_p6: ['Customer and supplier details are confidential. Do not take AIEC\'s customers or work directly.', 'ग्राहक और सप्लायर की जानकारी गोपनीय है। AIEC के ग्राहक या काम सीधे न लें।', 'ग्राहक व पुरवठादाराची माहिती गोपनीय आहे. AIEC चे ग्राहक किंवा काम थेट घेऊ नका.'],
+  ct_p7: ['Earned money is never taken away. If you stop working with us, everything due (including any reserve) is paid in the final settlement.', 'कमाया पैसा कभी नहीं काटा जाता। आप काम बंद करें तो सब बकाया (रिज़र्व सहित) अंतिम हिसाब में दिया जाता है।', 'कमावलेले पैसे कधीही कापले जात नाहीत. तुम्ही काम थांबवल्यास सर्व देय (राखीवसह) अंतिम हिशोबात दिले जाते.'],
+  ct_p8: ['Disagreements about pay, ratings or strikes are raised in the app and decided by someone who did not make the first decision.', 'भुगतान, रेटिंग या स्ट्राइक पर असहमति ऐप में उठाई जाती है और वह व्यक्ति फ़ैसला करता है जिसने पहला फ़ैसला नहीं किया।', 'पेमेंट, रेटिंग किंवा स्ट्राइकवरील मतभेद ॲपमध्ये मांडले जातात आणि पहिला निर्णय न घेतलेली व्यक्ती ठरवते.'],
+  ct_legal: ['Template. Your lawyer must review it before real use (labour, contract and tax law).', 'टेम्पलेट। असली उपयोग से पहले वकील जाँचें (श्रम, अनुबंध और कर कानून)।', 'टेम्पलेट. प्रत्यक्ष वापरापूर्वी वकिलाने तपासावे (कामगार, करार व कर कायदे).'],
+  ct_accept: ['I have read and accept this agreement', 'मैंने पढ़ा और मानता/मानती हूँ', 'मी वाचले आणि स्वीकारतो/स्वीकारते'],
+  ct_ok: ['Accepted version {v} on {d}', '{d} को वर्ज़न {v} माना', '{d} रोजी आवृत्ती {v} स्वीकारली'],
+  ct_needed: ['Not accepted yet (version {v})', 'अभी नहीं माना (वर्ज़न {v})', 'अजून स्वीकारले नाही (आवृत्ती {v})'],
+  tk_sign_contract: ['Read and accept the contractor agreement', 'कॉन्ट्रैक्टर समझौता पढ़ें और मानें', 'कंत्राटदार करार वाचा आणि स्वीकारा'],
+  err_contract: ['Accept the latest contractor agreement first (Me → Contractor agreement).', 'पहले नया कॉन्ट्रैक्टर समझौता मानें (मैं → कॉन्ट्रैक्टर समझौता)।', 'आधी नवीन कंत्राटदार करार स्वीकारा (मी → कंत्राटदार करार).'],
+  ev_CONTRACT_ACCEPTED: ['Contractor agreement accepted', 'कॉन्ट्रैक्टर समझौता माना', 'कंत्राटदार करार स्वीकारला'],
+  tv_title: ['Training videos', 'ट्रेनिंग वीडियो', 'प्रशिक्षण व्हिडिओ'],
+  tv_note: ['Paste a video link (https) for each lesson. It shows as a Watch button in the lesson.', 'हर पाठ के लिए वीडियो लिंक (https) डालें। पाठ में \'देखें\' बटन दिखेगा।', 'प्रत्येक धड्यासाठी व्हिडिओ लिंक (https) टाका. धड्यात \'पहा\' बटण दिसेल.'],
+  tv_watch: ['Watch the video', 'वीडियो देखें', 'व्हिडिओ पहा'],
+  err_url: ['Use a full https:// link.', 'पूरा https:// लिंक डालें।', 'पूर्ण https:// लिंक टाका.'],
+  ev_TRAINING_VIDEO_SET: ['Training video set', 'ट्रेनिंग वीडियो जोड़ा', 'प्रशिक्षण व्हिडिओ जोडला'],
+  ra_appeal: ['This rating is wrong — appeal', 'यह रेटिंग गलत है — अपील', 'हे रेटिंग चुकीचे आहे — अपील'],
+  ra_why: ['Why is this rating wrong?', 'यह रेटिंग गलत क्यों है?', 'हे रेटिंग चुकीचे का आहे?'],
+  ra_open: ['Appeal sent — the office will decide', 'अपील भेजी — ऑफ़िस फ़ैसला करेगा', 'अपील पाठवली — ऑफिस ठरवेल'],
+  ra_removed: ['Removed after appeal', 'अपील के बाद हटाया', 'अपीलनंतर काढले'],
+  ra_kept: ['Appeal not accepted: {n}', 'अपील नहीं मानी: {n}', 'अपील मान्य नाही: {n}'],
+  tk_rating_appeal: ['Decide a rating appeal', 'रेटिंग अपील पर फ़ैसला करें', 'रेटिंग अपीलवर निर्णय घ्या'],
+  ra_ok: ['Remove the rating', 'रेटिंग हटाएँ', 'रेटिंग काढा'],
+  ra_no: ['Keep the rating', 'रेटिंग रखें', 'रेटिंग ठेवा'],
+  ev_RATING_APPEALED: ['Rating appealed', 'रेटिंग पर अपील', 'रेटिंगवर अपील'],
+  ev_RATING_APPEAL_DECIDED: ['Rating appeal decided', 'रेटिंग अपील पर फ़ैसला', 'रेटिंग अपीलवर निर्णय'],
+  this_week: ['This week', 'इस हफ़्ते', 'या आठवड्यात'],
+  lb_companies: ['Partner companies', 'पार्टनर कंपनियाँ', 'भागीदार कंपन्या'],
+  lb_bonus: ['My bonus history', 'मेरा बोनस इतिहास', 'माझा बोनस इतिहास'],
+  lb_bonus_rule: ['A job that passes the final QC the first time earns the lead {a}. Bonuses come only from checked quality, never from speed.', 'जो काम पहली बार में फ़ाइनल QC पास करे, उसके लीड को {a} बोनस। बोनस सिर्फ़ जाँची गुणवत्ता से, कभी जल्दी से नहीं।', 'पहिल्याच वेळी अंतिम QC पास झालेल्या कामासाठी लीडला {a} बोनस. बोनस फक्त तपासलेल्या गुणवत्तेसाठी, वेगासाठी कधीच नाही.'],
+  rm_today: ['Today: {k} km · {n} sites', 'आज: {k} किमी · {n} साइट', 'आज: {k} किमी · {n} साइट'],
+  rm_month: ['This month: {k} km · {n} sites', 'इस महीने: {k} किमी · {n} साइट', 'या महिन्यात: {k} किमी · {n} साइट'],
+  rm_area: ['Area covered: {n} squares of ½ km', 'कवर किया क्षेत्र: ½ किमी के {n} वर्ग', 'फिरलेला भाग: ½ किमीचे {n} चौकोन'],
+  rm_next: ['Try here next', 'अगली बार यहाँ जाएँ', 'पुढे इथे जा'],
+  rm_next_d: ['Near places where good leads came from, not visited in 30 days.', 'जहाँ से अच्छी लीड आईं उनके पास, 30 दिन में नहीं गए।', 'जिथून चांगल्या लीड आल्या त्यांच्या जवळ, 30 दिवसांत न गेलेले.'],
+  rm_next_none: ['Visit more places: suggestions appear after your first good leads.', 'और जगह जाएँ: पहली अच्छी लीड के बाद सुझाव दिखेंगे।', 'आणखी ठिकाणी जा: पहिल्या चांगल्या लीडनंतर सूचना दिसतील.'],
+  rm_board: ['Riders, last 30 days (accepted leads)', 'राइडर, पिछले 30 दिन (मानी गई लीड)', 'रायडर, मागील 30 दिवस (स्वीकारलेल्या लीड)'],
+  mf_people: ['People', 'लोग', 'लोक'],
+  mf_late: ['Late jobs', 'देरी वाले काम', 'उशिराची कामे'],
+  mp_last: ['{who} · last seen {d}', '{who} · आखिरी बार {d}', '{who} · शेवटचे {d}'],
+  mp_nobody: ['Nobody has shared a place today yet.', 'आज अभी किसी ने जगह नहीं भेजी।', 'आज अजून कोणीही ठिकाण पाठवले नाही.'],
+  mp_role_all: ['Everyone', 'सभी', 'सर्व'],
+  safe_selfie: ['Selfie: you, ready and safe today', 'सेल्फ़ी: आप, आज तैयार और सुरक्षित', 'सेल्फी: तुम्ही, आज तयार आणि सुरक्षित'],
+  safe_selfie_d: ['Front camera: your face with helmet on. This is your own confirmation that the site is safe today.', 'सामने का कैमरा: हेलमेट पहने आपका चेहरा। यह आपकी पुष्टि है कि आज साइट सुरक्षित है।', 'पुढचा कॅमेरा: हेल्मेट घातलेला तुमचा चेहरा. आज साइट सुरक्षित आहे याची ही तुमची खात्री.'],
+  use_more: ['Use and take another', 'रखें और एक और लें', 'ठेवा आणि आणखी घ्या'],
+  th_color: ['Bright & colourful', 'चमकदार और रंगीन', 'उजळ आणि रंगीत'],
+  fs_title: ['Full screen', 'पूरी स्क्रीन', 'पूर्ण स्क्रीन'],
+  fs_on: ['Start in full screen', 'पूरी स्क्रीन में शुरू करें', 'पूर्ण स्क्रीनमध्ये सुरू करा'],
+  fs_note: ['The app fills the whole screen after your first tap (the phone needs a tap before it allows full screen). Swipe from the top edge to see the phone\'s bar.', 'पहले टैप के बाद ऐप पूरी स्क्रीन लेता है (फ़ोन पूरी स्क्रीन से पहले टैप माँगता है)। फ़ोन की पट्टी के लिए ऊपर से स्वाइप करें।', 'पहिल्या टॅपनंतर ॲप पूर्ण स्क्रीन घेते (पूर्ण स्क्रीनपूर्वी फोनला टॅप लागतो). फोनची पट्टी पाहण्यासाठी वरून स्वाइप करा.'],
+  pc_stars: ['{s} stars · {n} reviews', '{s} स्टार · {n} रिव्यू', '{s} स्टार · {n} रिव्ह्यू'],
+  pc_company: ['Company: {c}', 'कंपनी: {c}', 'कंपनी: {c}'],
+  pc_profile: ['Open profile', 'प्रोफ़ाइल खोलें', 'प्रोफाइल उघडा'],
+  rt_title: ['My day', 'मेरा दिन', 'माझा दिवस'],
+  rt_note: ['Ticks itself from what you did today.', 'आज आपने जो किया उससे अपने आप टिक होता है।', 'आज तुम्ही जे केले त्यावरून आपोआप टिक होते.'],
+  rt_shift_start: ['Start the shift (safe stop, location)', 'शिफ़्ट शुरू (सुरक्षित रुककर, जगह)', 'शिफ्ट सुरू (सुरक्षित थांबून, ठिकाण)'],
+  rt_sites: ['Add sites with photos ({n} today)', 'फ़ोटो के साथ साइट जोड़ें (आज {n})', 'फोटोसह साइट जोडा (आज {n})'],
+  rt_shift_end: ['End the shift', 'शिफ़्ट खत्म करें', 'शिफ्ट संपवा'],
+  rt_checkin: ['Check in at the site', 'साइट पर चेक-इन', 'साइटवर चेक-इन'],
+  rt_safety: ['Daily safety check with selfie', 'सेल्फ़ी के साथ रोज़ की सुरक्षा जाँच', 'सेल्फीसह रोजची सुरक्षा तपासणी'],
+  rt_work: ['Do and photograph today\'s work', 'आज का काम करें और फ़ोटो लें', 'आजचे काम करा आणि फोटो घ्या'],
+  rt_end_day: ['End of day: tidy site, report', 'दिन का अंत: साइट साफ़, रिपोर्ट', 'दिवसाचा शेवट: साइट नीट, अहवाल'],
+  rt_calls: ['Call or follow up leads', 'लीड को कॉल या फ़ॉलो-अप', 'लीडना कॉल किंवा पाठपुरावा'],
+  rt_quotes: ['Send quotations / record payments', 'कोटेशन भेजें / भुगतान दर्ज करें', 'कोटेशन पाठवा / पेमेंट नोंदवा'],
+  rt_urgent_clear: ['Nothing urgent left', 'कुछ ज़रूरी बाकी नहीं', 'काहीही तातडीचे बाकी नाही'],
+  rt_approvals: ['Approvals and pay decided', 'मंज़ूरी और भुगतान तय', 'मंजुऱ्या आणि पेमेंट ठरले'],
+  rt_day_close: ['Close the day', 'दिन बंद करें', 'दिवस बंद करा'],
+  rt_numbers: ['Look at this week\'s numbers', 'इस हफ़्ते के आँकड़े देखें', 'या आठवड्याचे आकडे पहा'],
+  rt_decisions: ['Decisions waiting for you: {n}', 'आपके फ़ैसले बाकी: {n}', 'तुमचे निर्णय बाकी: {n}'],
+  rt_inspect: ['Inspections planned for today done', 'आज की तय जाँचें पूरी', 'आजच्या ठरलेल्या तपासण्या पूर्ण'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4660,6 +4764,7 @@ const CFG_LIMITS = (() => {
   set(['token'], 0, 500000); set(['arrivalPct', 'cabinPct', 'leadWonPct', 'cancelBefore', 'cancelAfter', 'dupCommission', 'qcRecheckPct', 'spotTrainee', 'spotTech', 'spotSenior'], 0, 100);
   set(['tokenMode', 'dailySafety', 'licenceGate', 'permitGate', 'peerCheck', 'checkinGate', 'dualControl', 'requireTraining', 'sundayWork'], 0, 1);
   set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'civilMin', 'civilMax'], 0, 2000000);
+  set(['reservePct'], 0, 90); set(['reserveRelease'], 1, 100); set(['agreeVersion'], 1, 99);
   set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['poDays'], 1, 120);
   set(['lvHelperJobs', 'lvTechJobs', 'lvSeniorJobs', 'lvQcJobs', 'lvHelperReviews', 'lvTechReviews', 'lvSeniorReviews', 'lvQcReviews', 'partnerBigJobs'], 0, 500);
   set(['lvHelperStars', 'lvTechStars', 'lvSeniorStars', 'lvQcStars', 'partnerBigStars'], 0, 5); set(['lvTechTrust', 'lvSeniorTrust', 'lvQcTrust', 'lvSeniorPass', 'lvQcPass'], 0, 100);
@@ -4672,6 +4777,11 @@ const CFG_LIMITS = (() => {
 /* rules that must stay in order with another rule; checked with the new value in place */
 const CFG_ORDER = [['remindDays', 'escalateDays', 'cfg_order_esc'], ['escalateDays', 'escOwnerDays', 'cfg_order_esc'], ['minMargin', 'targetMargin', 'cfg_order_margin'], ['civilMin', 'civilMax', 'cfg_order_civil'], ['salesDiscountLimit', 'adminDiscountLimit', 'cfg_order_disc']];
 const LIMITS_FROM = '2026-11-01T16:00:00.000Z';
+/* records made before these rules started stay valid */
+const CONTRACT_FROM = '2026-11-02T14:00:00.000Z', PAYDEF_FROM = '2026-11-02T14:00:00.000Z';
+/* customer payment split: 70% when material arrives, 20% for the custom cabin, 10% at handover — for deals won from now on,
+   unless the Owner has set their own split */
+const payCfgAt = t => (S.config._paySet || (t || nowISO()) < PAYDEF_FROM) ? S.config : Object.assign({}, S.config, { arrivalPct: 70, cabinPct: 20 });
 const TEXT_CFG_RE = { holidays: /^(\d{4}-\d\d-\d\d)(\s*,\s*\d{4}-\d\d-\d\d)*$/, payUpi: /^[\w.\-]{2,}@[a-zA-Z]{2,}$/, payName: /^[^<>]{2,60}$/, payBank: /^[^<>]{2,60}$/, payAcc: /^\d{6,20}$/, payIfsc: /^[A-Z]{4}0[A-Z0-9]{6}$/ };
 const PAY_STAGE = { token: 'signed', arrival: 'arrived', cabin: 'installing', final: 'final_pay' };
 /* the cabin payment is due before the car (cabin) step */
@@ -4701,7 +4811,7 @@ function iscWhyNot(d) {
   return null;
 }
 /* legal papers a site worker carries (BOCW, ESIC, safety training), each with an end date */
-const LEGAL = ['bocw', 'esic', 'safety'];
+const LEGAL = ['bocw', 'esic', 'safety', 'insurance'];
 const legalOf = uid => (S.workers[uid] || {}).legal || {};
 const legalEnded = (uid, at) => LEGAL.filter(k => legalOf(uid)[k] && legalOf(uid)[k].expiry < safeDay(at || nowISO()));
 const refProject = code => { const c = String(code || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); return c ? Object.values(S.projects).find(P => P.done && P.lift && P.lift.code.toUpperCase().replace(/[^A-Z0-9]/g, '') === c) || null : null; };
@@ -4714,7 +4824,9 @@ const QC_SITE_CHECKS = ['plumb', 'pit_dry', 'power3', 'barricade', 'access'];
 const QC_SITE_MEAS = ['width', 'depth', 'pit', 'head'];
 const QC_FINAL_CHECKS = ['ride', 'level', 'doors', 'alarm', 'plate', 'safetydev', 'wiring'];
 /* safety: photos each work day, items QC must check one by one, kinds of incident, and the ones that stop all work on site */
-const SAFETY_ITEMS = [['ppe', '⛑️'], ['scaffold', '🪜'], ['barricade', '🚧'], ['earthing', '⚡']];
+const SAFETY_ITEMS = [['ppe', '⛑️'], ['scaffold', '🪜'], ['barricade', '🚧'], ['earthing', '⚡'], ['selfie', '🤳']];
+/* the selfie is asked for checks made from the day it was added; earlier checks stay valid with their four photos */
+const safetyNeeded = t => SAFETY_ITEMS.filter(([k]) => k !== 'selfie' || t >= CONTRACT_FROM);
 const QC_CRITICAL = ['earthing', 'brakes', 'governor', 'interlocks'];
 const INC_TYPES = [['hazard', '⚠️'], ['injury', '🩹'], ['near_miss', '😮'], ['equipment', '🔧'], ['other', '🚨']];
 const STOP_TYPES = ['hazard', 'sos', 'injury'];
@@ -4749,7 +4861,7 @@ const DEFAULT_CONFIG = {
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 8, adminDiscountLimit: 18, minMargin: 20, negStep: 5,
-  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, refReward: 0, poAnswerHours: 24, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
+  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
@@ -4769,6 +4881,7 @@ const RULE_GROUPS = {
   install: ['installDays', 'poDays', 'poAnswerHours', 'geoRadius', 'checkinGate'],
   service: ['warrantyMonths', 'amcVisits', 'validityDays', 'civilMin', 'civilMax', 'cancelBefore', 'cancelAfter'],
   dup: ['dupCommission', 'refReward'],
+  contract: ['agreeVersion', 'reservePct', 'reserveRelease'],
   control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'sundayWork', 'holidays', 'dualControl', 'requireTraining'],
   ladder: ['lvHelperJobs', 'lvHelperStars', 'lvHelperReviews', 'lvHelperDays', 'lvTechJobs', 'lvTechStars', 'lvTechReviews', 'lvTechTrust', 'lvTechDays',
     'lvSeniorJobs', 'lvSeniorPass', 'lvSeniorStars', 'lvSeniorReviews', 'lvSeniorTrust', 'lvSeniorDays', 'lvQcJobs', 'lvQcPass', 'lvQcStars', 'lvQcReviews', 'lvQcTrust', 'strikeDays'],
@@ -4848,7 +4961,7 @@ const hasQc = () => Object.values(S.users).some(u => u.active && u.role === 'qc'
 const svcRoles = () => svcLead() ? [roleOf(svcLead())] : hasQc() ? ['qc'] : ['admin', 'owner'];
 const isSvcOwner = u => ['admin', 'owner'].includes(u.role) || (svcLead() ? u.uid === svcLead() : u.role === 'qc');
 function emptyState() {
-  return { org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
+  return { settle: {}, contracts: {}, trainVideos: {}, ratingAppeals: {}, reviewsVoid: [], org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
     templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], enquiries: {}, enqOrder: [], joins: {}, reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {}, lastAt: {}, undone: {} };
 }
 let S = emptyState();
@@ -5337,6 +5450,31 @@ function payLines(uid) {
   if (u.role === 'partner') return membersOf(uid, true).flatMap(m => earnings(m).filter(e => companyAt(m, e.t) === uid).map(e => Object.assign({ who: m }, e))).sort((a, b) => a.t < b.t ? -1 : 1);
   return earnings(uid).filter(e => u.role !== 'tech' || !companyAt(uid, e.t));
 }
+/* the reserve a person has with us (theirs, never the company's): held − released − paid in settlement */
+const reserveBal = uid => Object.values(S.pay).filter(p => p.uid === uid).reduce((a, p) => a + (p.held || 0) - (p.release || 0), 0) - sum((S.settle[uid] || []).map(x => x.amount));
+const contractOk = uid => ((S.contracts || {})[uid] || {}).v >= +S.config.agreeVersion;
+/* every rupee in its place: open week, waiting for approval, approved, paid, questioned, reserve */
+function ledger(uid) {
+  const now = weekKey(nowISO()), L = { pending: 0, verified: 0, due: 0, paid: 0, disputed: 0, reserve: 0, released: 0, settled: sum((S.settle[uid] || []).map(x => x.amount)) };
+  for (const w of weeksFor(uid)) { const p = w.pay, pn = p ? (p.payNow != null ? p.payNow : p.amount) : 0;
+    if (!p || p.status === 'open') L[w.week >= now ? 'pending' : 'verified'] += w.total; else if (p.status === 'approved') L.due += pn; else if (p.status === 'paid') L.paid += pn;
+    if (p && p.dispute && p.dispute.open) L.disputed += w.total; if (p) { L.reserve += p.held || 0; L.released += p.release || 0; } }
+  L.outstanding = L.reserve - L.released - L.settled; return L;
+}
+function ledgerCard(uid) {
+  const L = ledger(uid), c = S.config, me = App.me;
+  const rows = [['ld_pending', L.pending], ['ld_verified', L.verified], ['ld_due', L.due], ['ld_paid', L.paid], ['ld_disputed', L.disputed]].concat(L.reserve || L.settled ? [['ld_reserve', L.outstanding], ['ld_released', L.released], ['ld_settled', L.settled]] : []);
+  return `<div class="card"><h3>💼 ${t('ld_title')}</h3>${rows.map(([k, v]) => `<div class="list-item small"><span class="grow">${t(k)}</span><b>${money(v)}</b></div>`).join('')}
+    <p class="small muted">${+c.reservePct > 0 ? t('ld_rule_on', { a: c.reservePct, b: c.reserveRelease }) : t('ld_rule_off')}</p>
+    ${me.role === 'finance' && L.outstanding > 0 ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="settle||uid|${uid}">🏦 ${t('ld_settle')} · ${money(L.outstanding)}</button>` : ''}</div>`;
+}
+function contractCard(uid) {
+  const u = S.users[uid]; if (!u || !['tech', 'partner', 'qc', 'field', 'supplier'].includes(u.role)) return '';
+  const c = (S.contracts || {})[uid], ok = contractOk(uid);
+  return `<div class="card"><div class="row wrapw"><b class="grow">📝 ${t('ct_title')}</b><span class="chip ${ok ? 'c-ok' : 'c-warn'}">${ok ? t('ct_ok', { v: c.v, d: fmtD(c.t) }) : t('ct_needed', { v: S.config.agreeVersion })}</span></div>
+    <button class="btn btn-sm" style="margin-top:6px" data-a="nav2" data-v="contract|${uid}">📄 ${t('open')}</button></div>`;
+}
+const contractText = () => `<h2>📝 ${t('ct_title')}</h2><p class="small">${t('ct_version', { v: S.config.agreeVersion })} · ${esc(S.org ? S.org.name : '')}</p><ol style="padding-left:20px">${[1, 2, 3, 4, 5, 6, 7, 8].map(i => `<li style="margin:6px 0">${t('ct_p' + i)}</li>`).join('')}</ol><p class="small" style="color:var(--warn)">⚖️ ${t('ct_legal')}</p>`;
 function weeksFor(uid) {
   const g = {};
   for (const e of payLines(uid)) { const k = weekKey(e.t); (g[k] = g[k] || { week: k, lines: [], total: 0 }).lines.push(e); g[k].total += e.amount; }
@@ -5402,7 +5540,7 @@ const canUndo = id => !!App.me && !undoWhyNot(S, id, App.me.uid, nowISO());
 /* small teams: when no other active person holds the Sales, Finance or QC role a step needs, the Admin may do it (and gets the task); the Head Quarter only when there is no Admin;
    with such a person in the team the usual separation stays. Physical work (technician, supplier, partner, field) is never covered. */
 const COVER_ROLES = ['sales', 'finance', 'qc'];
-const COVER_EV = ['LEAD_INFO_ADDED', 'SUP_INVOICE_PAID', 'LEAD_ACCEPTED', 'LEAD_RETURNED', 'CONTACT_LOGGED', 'FOLLOWUP_SET', 'REQ_SAVED', 'QUOTE_CREATED', 'QUOTE_SENT', 'DEAL_WON', 'COUNTER_OFFER', 'AGREEMENT_PREPARED', 'AGREEMENT_SIGNED',
+const COVER_EV = ['RESERVE_SETTLED', 'LEAD_INFO_ADDED', 'SUP_INVOICE_PAID', 'LEAD_ACCEPTED', 'LEAD_RETURNED', 'CONTACT_LOGGED', 'FOLLOWUP_SET', 'REQ_SAVED', 'QUOTE_CREATED', 'QUOTE_SENT', 'DEAL_WON', 'COUNTER_OFFER', 'AGREEMENT_PREPARED', 'AGREEMENT_SIGNED',
   'PAYMENT_RECORDED', 'PAYMENT_STATUS', 'PREP_ITEM_DONE', 'QC_REQUESTED', 'QC_SITE_RESULT', 'QC_FINAL_RESULT', 'SURPRISE_DONE', 'VARIATION_SIGNED', 'VARIATION_DECLINED', 'REFUND_PROPOSED', 'REFUND_PAID', 'PAY_PAID', 'CUSTOMER_RATED', 'HANDOVER_SIGNED', 'CORRECTION_DONE'];
 /* the person a same-person rule keeps out (the one who recorded a payment, proposed a refund or approved pay) */
 function coverExcl(S, ev, P) {
@@ -5983,7 +6121,7 @@ const RULES = {
       if (stopIncidents(P).length) return 'err_work_stopped';
       if (safetyOn(P, safeDay(ev.t))) return 'err_already';
       const labels = ev_(ev.data).map(e => e.label);
-      return need(SAFETY_ITEMS.every(([k]) => labels.includes('safe_' + k)), 'err_safety_photos');
+      return need(safetyNeeded(ev.t).every(([k]) => labels.includes('safe_' + k)), 'err_safety_photos');
     }
   },
   /* the partner company, QC or office looks at the photos; "not safe" stops work for that day until a new check */
@@ -6292,6 +6430,7 @@ const RULES = {
       if (!p || !postLive(p)) return 'err_post_closed';
       if (p.apps[u.uid] && !p.apps[u.uid].out) return 'err_already';
       if (openApps(u.uid) >= (S.config.maxOpenApps || 5)) return 'err_too_many_apps';
+      if (ev.t >= CONTRACT_FROM && !contractOk(u.uid)) return 'err_contract';
       const why = jobWhyNot(u.uid, p, ev.t);
       return why ? 'err_' + why : u.role === 'partner' ? teamWhyNot(u.uid, p, ev.data.team, ev.t) : null;
     }
@@ -6504,6 +6643,21 @@ const RULES = {
       return need(+d.computed >= 0 && +d.amount === +d.computed + (+d.adjust || 0) && +d.amount >= 0, 'err_amount');
     }
   },
+  RESERVE_SETTLED: {
+    roles: ['finance'], check: (S, ev) => { const d = ev.data, bal = reserveBal(d.uid); if (!S.users[d.uid]) return 'err_no_user';
+      if (!(bal > 0) || +d.amount !== bal) return 'err_settle_amount'; return need((d.ref || '').trim(), 'err_ref'); }
+  },
+  CONTRACT_ACCEPTED: { roles: ['tech', 'partner', 'qc', 'field', 'supplier'], check: (S, ev) => +ev.data.v !== +S.config.agreeVersion ? 'err_choose' : ev.data.consent !== true ? 'err_consent' : !(ev.data.signer || '').trim() ? 'err_fill' : need(ev_(ev.data, 'sign').length >= 1, 'err_sign') },
+  TRAINING_VIDEO_SET: { roles: ['owner', 'admin'], check: (S, ev) => !TRAIN.some(x => x[0] === ev.data.module) ? 'err_choose' : need(/^https:\/\/[^\s<>"']{4,300}$/.test(ev.data.url || ''), 'err_url') },
+  RATING_APPEALED: {
+    roles: ['tech', 'partner', 'qc', 'field', 'sales'], check: (S, ev, u) => { const r = S.reviews.find(x => x.id === ev.data.rid);
+      if (!r || (r.uid !== u.uid && !(u.role === 'partner' && companyAt(r.uid, r.t) === u.uid))) return 'err_access';
+      if (S.ratingAppeals[ev.data.rid]) return 'err_already'; return need((ev.data.reason || '').trim(), 'err_reason'); }
+  },
+  RATING_APPEAL_DECIDED: {
+    roles: ['owner', 'admin'], check: (S, ev, u) => { const a = S.ratingAppeals[ev.data.rid]; if (!a || a.decided) return 'err_already';
+      const r = S.reviews.find(x => x.id === ev.data.rid); if (r && r.by === u.uid) return 'err_same_person'; return need((ev.data.note || '').trim(), 'err_reason'); }
+  },
   PAY_PAID: {
     roles: ['finance'], check: (S, ev, u) => {
       const p = S.pay[ev.data.uid + '|' + ev.data.week];
@@ -6616,6 +6770,7 @@ function apply(S, ev) {
       else {
         if (d.value != null && isRateKey(d.key)) (S.priceLog[d.key] = S.priceLog[d.key] || []).push({ value: d.value, from: d.from || null, t: ev.t, by: ev.by, old: priceCfg(ev.t)[d.key] });
         if (d.value != null && !(d.from && d.from > safeDay(ev.t))) S.config[d.key] = d.value;
+        if (['arrivalPct', 'cabinPct'].includes(d.key)) S.config._paySet = true;
         delete S.config.approved[groupOf(d.key)];
       }
       break;
@@ -6680,7 +6835,7 @@ function apply(S, ev) {
     case 'OPT_OUT': { const o = P.optOut = P.optOut || {}; (d.channel === 'all' ? ['call', 'whatsapp'] : [d.channel]).forEach(c => { o[c] = { t: ev.t, by: ev.by, note: d.note || '' }; }); break; }
     case 'COUNTER_OFFER': (P.counters = P.counters || []).push({ amount: +d.amount, note: d.note || '', by: ev.by, t: ev.t, qv: (lastQuote(P) || {}).v }); break;
     case 'QUOTE_SENT': { const q = lastQuote(P); q.sent = { t: ev.t, by: ev.by, channel: d.channel }; setStage(P, 'quoted', ev); break; }
-    case 'DEAL_WON': { const q = lastQuote(P); q.accepted = Object.assign({ t: ev.t, by: ev.by }, d.agreedOn ? { on: d.agreedOn } : {}); P.schedule = paySchedule(S.config, q.total); P.schedule.quoteV = q.v; P.followUp = null; setStage(P, 'won', ev); break; }
+    case 'DEAL_WON': { const q = lastQuote(P); q.accepted = Object.assign({ t: ev.t, by: ev.by }, d.agreedOn ? { on: d.agreedOn } : {}); P.schedule = paySchedule(payCfgAt(ev.t), q.total); P.schedule.quoteV = q.v; P.followUp = null; setStage(P, 'won', ev); break; }
     case 'DEAL_LOST': P.lost = { reason: d.reason, note: d.note || '', by: ev.by, t: ev.t }; P.followUp = null; setStage(P, 'lost', ev); break;
     case 'PROJECT_CANCELLED': {
       P.lost = { reason: 'cancelled', note: d.reason, by: ev.by, t: ev.t, from: P.stage }; P.followUp = null;
@@ -6968,7 +7123,15 @@ function apply(S, ev) {
     case 'TRIAL_RESULT': { const w = worker(d.uid); (w.trials = w.trials || []).push({ pid: ev.pid, ok: d.ok, note: d.note || '', by: ev.by, t: ev.t }); break; }
     case 'PRIVACY_ACCEPTED': (S.privacy = S.privacy || {})[ev.by] = { v: +d.v, t: ev.t }; break;
     case 'TRAINING_PASSED': worker(ev.by).training[d.module] = { t: ev.t, score: +d.score }; break;
-    case 'PAY_APPROVED': S.pay[d.uid + '|' + d.week] = Object.assign(S.pay[d.uid + '|' + d.week] || {}, { uid: d.uid, week: d.week, status: 'approved', amount: +d.amount, computed: +d.computed, adjust: +d.adjust || 0, reason: d.reason || '', approvedBy: ev.by, approvedAt: ev.t }); break;
+    case 'PAY_APPROVED': { const opening = reserveBal(d.uid), held = Math.round(+d.amount * (+S.config.reservePct || 0) / 100), release = Math.round(opening * (+S.config.reserveRelease || 0) / 100);
+      S.pay[d.uid + '|' + d.week] = Object.assign(S.pay[d.uid + '|' + d.week] || {}, { uid: d.uid, week: d.week, status: 'approved', amount: +d.amount, computed: +d.computed, adjust: +d.adjust || 0, reason: d.reason || '', approvedBy: ev.by, approvedAt: ev.t,
+        opening, held, release, payNow: +d.amount - held + release }); break; }
+    case 'RESERVE_SETTLED': (S.settle[d.uid] = S.settle[d.uid] || []).push({ amount: +d.amount, ref: d.ref.trim(), note: d.note || '', by: ev.by, t: ev.t }); break;
+    case 'CONTRACT_ACCEPTED': S.contracts[ev.by] = { v: +d.v, t: ev.t, signer: d.signer, sig: (ev_(d, 'sign')[0] || {}).id || null }; break;
+    case 'TRAINING_VIDEO_SET': S.trainVideos[d.module] = d.url.trim(); break;
+    case 'RATING_APPEALED': S.ratingAppeals[d.rid] = { rid: d.rid, by: ev.by, reason: d.reason.trim(), t: ev.t, decided: null }; break;
+    case 'RATING_APPEAL_DECIDED': { const a = S.ratingAppeals[d.rid]; a.decided = { ok: !!d.ok, note: d.note.trim(), by: ev.by, t: ev.t };
+      if (d.ok) { const i = S.reviews.findIndex(r => r.id === d.rid); if (i >= 0) { S.reviewsVoid.push(Object.assign(S.reviews[i], { voidT: ev.t })); S.reviews.splice(i, 1); } } break; }
     case 'PAY_PAID': Object.assign(S.pay[d.uid + '|' + d.week], { status: 'paid', ref: d.ref, paidBy: ev.by, paidAt: ev.t }); break;
     case 'PAY_DISPUTED': { const k = d.uid + '|' + d.week; S.pay[k] = Object.assign(S.pay[k] || { uid: d.uid, week: d.week, status: 'open' }, { dispute: { open: true, reason: d.reason, t: ev.t } }); break; }
     case 'PAY_DISPUTE_ANSWERED': { const x = S.pay[d.uid + '|' + d.week].dispute; x.open = false; x.answer = d.note; x.answeredBy = ev.by; x.answeredAt = ev.t; break; }
@@ -7231,6 +7394,9 @@ function globalNeeds(u, all) {
     if (!x.company) add('link_company', ['admin', 'owner'], { uid: x.uid });
     else if (!x.memberOk) add('approve_member', ['admin', 'owner'], { uid: x.uid, not: x.company });
   }
+  for (const x of Object.values(S.users).filter(y => y.active && ['tech', 'partner', 'qc', 'field', 'supplier'].includes(y.role) && !contractOk(y.uid))) add('sign_contract', [x.role], { uids: [x.uid], uid: x.uid });
+  for (const x of Object.values(S.users).filter(y => !y.active && reserveBal(y.uid) > 0)) add('settle_reserve', ['finance'], { uid: x.uid, urgent: true });
+  for (const a of Object.values(S.ratingAppeals).filter(a => !a.decided)) add('rating_appeal', ['admin', 'owner'], { rid: a.rid, uid: a.by, since: a.t });
   for (const x of Object.values(S.users).filter(y => y.active && ['tech', 'partner', 'qc'].includes(y.role))) {
     const ends = LEGAL.map(k => legalOf(x.uid)[k]).filter(Boolean).map(l => Math.round((new Date(l.expiry + 'T12:00:00') - new Date(todayStr() + 'T12:00:00')) / 864e5));
     if (ends.length && Math.min(...ends) <= 30) { const o = { uid: x.uid, n: Math.min(...ends), urgent: Math.min(...ends) <= 7 }; add('legal_renew', [x.role], Object.assign({ uids: [x.uid] }, o)); add('legal_renew', ['admin', 'owner'], o); }
@@ -7325,7 +7491,30 @@ function fmtD(iso, time) {
 const money = n => '₹' + Math.round(+n || 0).toLocaleString('en-IN');
 const hiddenName = x => t('r_' + x.role) + ' #' + x.uid.slice(-3);
 const userName = uid => uid === 'system' ? t('system') : (S.users[uid] ? (S.users[uid].hidden ? hiddenName(S.users[uid]) : S.users[uid].name) : '—');
-const userTag = uid => S.users[uid] ? `${ROLE_ICON[S.users[uid].role]} ${esc(userName(uid))}` : '—';
+const userTag = uid => S.users[uid] ? `<span class="ulink" data-a="personOpen" data-v="${esc(uid)}" role="button" tabindex="0">${ROLE_ICON[S.users[uid].role]} ${esc(userName(uid))}</span>` : '—';
+const toggleSet = (key, label, on) => `<button class="btn btn-big ${on ? 'btn-ok' : ''}" style="text-align:left" data-a="setToggle" data-v="${key}" aria-pressed="${on}">${on ? '☑️' : '⬜'} ${t(label)}</button>`;
+/* tap a name: who this is, their level, stars and company (phone only for those allowed to see it) */
+function personCard(uid) {
+  const x = S.users[uid]; if (!x) return; const me = App.me, st = starsOf(uid), g = gradeOf(uid), co = companyOf(uid);
+  const office = ['owner', 'admin'].includes(me.role), ph = ((S.workers[uid] || {}).profile || {}).phone;
+  sheet(`<h2>${ROLE_ICON[x.role]} ${esc(x.name)}</h2><p class="muted">${t('r_' + x.role)}${g ? ' · ' + GRADE_ICON[g] + ' ' + t('gr_' + g) : ''}</p>
+    ${st.count ? `<p>⭐ ${t('pc_stars', { s: starTxt(st.fair), n: st.count })}</p>` : ''}${co ? `<p>🏢 ${t('pc_company', { c: esc(userName(co)) })}</p>` : ''}
+    ${ph && (office || (me.role !== 'customer' && !OUTSIDERS.includes(me.role) && seeF(me, 'phone'))) ? `<a class="btn" href="tel:+91${esc(ph)}">📞 ${esc(ph)}</a>` : ''}
+    ${office || uid === me.uid ? `<button class="btn btn-p" style="margin-top:8px" data-a="nav2" data-v="worker|${uid}">🪪 ${t('pc_profile')}</button>` : ''}`);
+}
+/* after every screen: job numbers in plain text become links (for jobs the person may open); names inside buttons stay plain */
+function linkify(root) {
+  if (!root || !App.me) return;
+  root.querySelectorAll('button .ulink, a .ulink').forEach(sp => sp.removeAttribute('data-a'));
+  const ids = visibleProjects(App.me).map(P => P.id); if (!ids.length) return;
+  const re = new RegExp('(' + ids.map(x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).sort((a, b) => b.length - a.length).join('|') + ')(?![\\w-])', 'g');
+  const re1 = new RegExp(re.source);
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.parentElement && n.parentElement.closest('button,a,input,textarea,select,svg,.doc,.pidlink,[data-nolink]') ? NodeFilter.FILTER_REJECT : re1.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP });
+  const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+  for (const n of nodes) { re.lastIndex = 0; const frag = document.createDocumentFragment(); let last = 0, m;
+    while ((m = re.exec(n.nodeValue))) { frag.append(n.nodeValue.slice(last, m.index)); const b = document.createElement('button'); b.className = 'pidlink'; b.dataset.a = 'openProject'; b.dataset.v = m[1]; b.textContent = m[1]; frag.append(b); last = m.index + m[1].length; }
+    frag.append(n.nodeValue.slice(last)); n.replaceWith(frag); }
+}
 
 const App = {
   mode: null, ns: '', me: null, route: { name: 'boot', p: {} }, stack: [], set: {}, form: {},
@@ -7485,7 +7674,10 @@ function isInstalled() {
 const installGate = () => App.mode === 'real' && !isInstalled() && !App.set.devNoInstallGate;
 /* screen scale 20%–150%: zooms the whole page; below 60% a normal-size reset button stays on screen */
 const getScale = () => Math.max(20, Math.min(150, Math.round(+App.set.scale || 100)));
-const THEMES = [['auto', '🌗'], ['light', '☀️'], ['dark', '🌙'], ['contrast', '🔲']];
+const THEMES = [['auto', '🌗'], ['light', '☀️'], ['color', '🌈'], ['dark', '🌙'], ['contrast', '🔲']];
+/* full screen: the phone allows it only after a tap, so the first tap of each start asks for it (when switched on) */
+function wantFull() { return App.set.fullscreen !== false && isInstalled(); }
+document.addEventListener('pointerdown', () => { try { if (wantFull() && !document.fullscreenElement && document.documentElement.requestFullscreen) document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(() => {}); } catch (e) { /* not allowed here */ } }, { passive: true });
 function applyTheme() {
   const th = App.set.theme || 'auto', dark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
   document.documentElement.dataset.theme = th === 'auto' ? (dark ? 'dark' : 'light') : th;
@@ -7513,6 +7705,7 @@ function render() {
   const wm = guard ? `<div class="wm" aria-hidden="true">${Array.from({ length: 24 }, () => `<span>${esc(App.me.name)} · ${esc(App.me.uid.slice(-4))} · ${todayStr()}</span>`).join('')}</div>` : '';
   const cr = App.me && (App.critOpen || []).length && !gated ? `<div class="critbar noprint" role="alert"><span style="font-size:1.4rem">🚨</span><b class="grow">${t('crit_title', { n: App.critOpen.length })}: ${esc(t('tk_' + App.critOpen[0].k))}${App.critOpen[0].pid ? ' · ' + esc(App.critOpen[0].pid) : ''}</b><button class="btn btn-sm" data-a="critGo">▶ ${t('open')}</button><button class="btn btn-sm" data-a="critAck">✋ ${t('crit_ack')}</button></div>` : '';
   $('#app').innerHTML = banner + cr + errBar() + h + sos + wm;
+  try { linkify($('#app main')); } catch (e) { /* links are a help, never a blocker */ }
   Wake.sync();
   if (sos) bindSos();
   document.documentElement.lang = LANG;
@@ -7653,7 +7846,7 @@ const Cam = {
     };
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { failBox(t('cam_unavailable')); wire(); return; }
     try {
-      this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 960 } }, audio: false });
+      this.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: o.front ? 'user' : 'environment' }, width: { ideal: 1280 }, height: { ideal: 960 } }, audio: false });
     } catch (e) { failBox(e && e.name === 'NotAllowedError' ? t('cam_denied') : t('cam_unavailable')); wire(); return; }
     const canVideo = o.video && window.MediaRecorder;
     shell(`<video autoplay playsinline muted></video>
@@ -7690,23 +7883,31 @@ const Cam = {
     $('#ov').innerHTML = `<div class="overlay" role="dialog" aria-modal="true"><div class="cam-top">${t('check_photo')}</div>
       ${isVideo ? `<video class="pv" controls src="${dataUrl}"></video>` : `<img class="pv" src="${dataUrl}" alt="">`}
       ${warn ? `<div class="warnbox" style="margin:0;border-radius:0">⚠️ ${esc(warn)}</div>` : ''}
-      <div class="cam-bar"><button class="btn" data-x="again">🔁 ${t('retake')}</button><button class="btn btn-ok" data-x="use">✅ ${t('use_photo')}</button></div></div>`;
+      <div class="cam-bar"><button class="btn" data-x="again">🔁 ${t('retake')}</button>${o.each && !isVideo ? `<button class="btn" data-x="more">➕ ${t('use_more')}</button>` : ''}<button class="btn btn-ok" data-x="use">✅ ${t('use_photo')}</button></div></div>`;
     $('#ov [data-x="again"]').onclick = () => this.start(o, resolve);
-    $('#ov [data-x="use"]').onclick = async () => {
+    const more = $('#ov [data-x="more"]');
+    if (more) more.onclick = async () => { const m = await this.make(o, dataUrl, isVideo, q, same, hash0); o.each(m); this.start(o, resolve); };
+    $('#ov [data-x="use"]').onclick = async () => { this.close(resolve, await this.make(o, dataUrl, isVideo, q, same, hash0)); };
+  },
+  async make(o, dataUrl, isVideo, q, same, hash0) {
+    {
       const meta = { id: 'E' + rid(10), m: '', kind: isVideo ? 'video' : 'photo', label: o.tag || '', t: nowISO(), gps: Geo.fresh(), hash: '', dev: devInfo(), q: { blur: !!q.blur, dark: !!q.dark, ah: q.ah || '', reused: !!same } };
       if (!meta.gps) { const g = await Promise.race([Geo.get(6000), new Promise(r => setTimeout(() => r(null), 6000))]); meta.gps = g; }
       /* photos carry a visible stamp (time, place, person, job); the stored hash is of the stamped photo, the original's hash is kept too */
       let data = dataUrl;
       if (!isVideo) { data = await stampPhoto(dataUrl, stampLines(meta)); meta.orig = hash0; meta.stamp = true; }
       meta.m = await putMedia(data); meta.hash = await sha256(data);
-      this.close(resolve, meta);
-    };
+      return meta;
+    }
   }
 };
+/* the address printed on a photo: the job's site, or the address being filled in (a new lead) */
+const stampAddr = pid => (pid && S.projects[pid] && S.projects[pid].site.address) || (W && W.ctx && typeof W.ctx.address === 'string' && W.ctx.address.trim()) || '';
 function stampLines(meta) {
   const u = App.me, pid = (W && W.pid) || (App.route && App.route.p && App.route.p.pid) || '', g = meta.gps;
   return [fmtD(meta.t, true) + (g ? ' · 📍 ' + (+g.lat).toFixed(5) + ', ' + (+g.lng).toFixed(5) + ' ±' + g.acc + ' m' : ' · 📍 —'),
-    (u ? u.name + ' · ' + t('r_' + u.role) : '') + (pid ? ' · ' + pid : ''), (S.org ? S.org.name : 'AIEC') + ' · ' + String(meta.dev || '').slice(0, 40)];
+    (u ? u.name + ' · ' + t('r_' + u.role) : '') + (pid ? ' · ' + pid : ''), (S.org ? S.org.name : 'AIEC') + ' · ' + String(meta.dev || '').slice(0, 40)]
+    .concat(stampAddr(pid) ? ['🏠 ' + stampAddr(pid).slice(0, 60)] : []);
 }
 function stampPhoto(dataUrl, lines) {
   return new Promise(res => {
@@ -7879,7 +8080,7 @@ function nextLine(P) {
 }
 const TASK_ICON = {
   qc_recheck: '🔁', recheck_failed: '⚠️',
-  help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', referral_reward: '🎁', soc_approvals: '🏘️',
+  help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
   inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
@@ -8082,7 +8283,7 @@ function photoSlot(key, label, min, o = {}) {
   return `<div class="card"><div class="row"><b class="grow">${esc(t(label))}</b><span class="chip ${arr.length >= min ? 'c-ok' : 'c-warn'}">📷 ${arr.length}${min ? ' / ' + min : ''}</span></div>
     ${arr.length ? `<div class="photos">${arr.map((e, i) => thumb(e, { rm: key, i })).join('')}</div>` : ''}
     ${o.hint ? `<p class="small muted">${esc(t(o.hint))}</p>` : ''}
-    <button class="btn ${arr.length >= min ? '' : 'btn-p'} btn-big" style="margin-top:8px" data-a="cam" data-k="${key}" data-v="${esc(t(label))}" data-tag="${esc(o.tag || key)}" ${o.video ? 'data-video="1"' : ''}><span class="i">📷</span>${t(arr.length ? 'take_another' : 'take_photo')}</button></div>`;
+    <button class="btn ${arr.length >= min ? '' : 'btn-p'} btn-big" style="margin-top:8px" data-a="cam" data-k="${key}" data-v="${esc(t(label))}" data-tag="${esc(o.tag || key)}" ${o.video ? 'data-video="1"' : ''} ${o.front ? 'data-front="1"' : ''}><span class="i">${o.front ? '🤳' : '📷'}</span>${t(arr.length ? 'take_another' : 'take_photo')}</button></div>`;
 }
 function signSlot(key, label) {
   const e = g(key);
@@ -8586,7 +8787,7 @@ WIZ.decision = {
       check: (c, P) => { const q = lastQuote(P), a = c.agreedOn; return /^\d{4}-\d\d-\d\d$/.test(a) && a >= safeDay(q.sent.t) && a <= quoteValidTill(q) && a <= todayStr() && a >= addDays(-7) ? null : 'err_late_yes'; } },
     {
       id: 'yes', icon: '🎉', say: 's_decision_yes', skip: c => c.dec !== 'yes',
-      body: (c, P) => { const q = lastQuote(P), s = paySchedule(S.config, q.total); return `<div class="card">${kv([['q_total', money(q.total)], ['pay_token', money(s.token)], ['pay_arrival', money(s.arrival)], ['pay_final', money(s.final)]])}<div style="margin-top:6px">${ruleChip('token')} ${ruleChip('milestones')}</div></div>`; }
+      body: (c, P) => { const q = lastQuote(P), s = paySchedule(payCfgAt(), q.total); return `<div class="card">${kv([['q_total', money(q.total)], ['pay_token', money(s.token)], ['pay_arrival', money(s.arrival)], ['pay_final', money(s.final)]])}<div style="margin-top:6px">${ruleChip('token')} ${ruleChip('milestones')}</div></div>`; }
     }
   ],
   async finish(c, P) {
@@ -9393,7 +9594,7 @@ WIZ.techEnd = {
 WIZ.safety = {
   title: 'tk_safety_check', save: 'safety_send', saveIcon: '🦺', init: () => Object.assign({ ok: false }, Object.fromEntries(SAFETY_ITEMS.map(([k]) => ['s_' + k, []]))),
   steps: [
-    { id: 'ph', icon: '🦺', say: 's_safety', body: () => SAFETY_ITEMS.map(([k, i]) => photoSlot('s_' + k, 'safe_' + k, 1, { tag: 'safe_' + k, hint: 'safe_' + k + '_d' })).join(''), check: c => SAFETY_ITEMS.every(([k]) => (c['s_' + k] || []).length) ? null : 'err_safety_photos' },
+    { id: 'ph', icon: '🦺', say: 's_safety', body: () => SAFETY_ITEMS.map(([k, i]) => photoSlot('s_' + k, 'safe_' + k, 1, { tag: 'safe_' + k, hint: 'safe_' + k + '_d', front: k === 'selfie' })).join(''), check: c => SAFETY_ITEMS.every(([k]) => (c['s_' + k] || []).length) ? null : 'err_safety_photos' },
     { id: 'ok', icon: '✅', say: 's_safety_ok', body: () => toggleTile('ok', '⛑️', 'safety_confirm') + `<div class="note">${t('safety_who_note')}</div>`, check: c => c.ok ? null : 'err_safety_confirm' }
   ],
   async finish(c, P) { const r = await run([['SAFETY_CHECKED', P.id, { ev: [].concat(...SAFETY_ITEMS.map(([k]) => c['s_' + k].map(e => Object.assign({}, e, { label: 'safe_' + k })))) }]]); return r.ok ? doneRes(P.id, 'what_safety_ok') : r; }
@@ -10052,7 +10253,7 @@ SCREENS.home = () => {
   if (App.mode === 'practice' && !(App.set.calmSeen || {})[u.uid]) h += `<div class="card"><b>🎓 ${t('calm_t')}</b><p class="small">${t('calm_d')}</p><div class="row wrapw"><button class="btn btn-p" data-a="calmTry">▶ ${t('calm_try')}</button><button class="btn" data-a="calmOk">${t('calm_ok')}</button></div></div>`;
   if (!adm && STAFF.includes(u.role) && daysSince(u.t) < 7) h += firstWeekCard(u);
   if (u.role === 'field') h += shiftCard();
-  h += moneyLine(u);
+  h += moneyLine(u) + routineCard(u);
   if (u.role === 'tech') { const open = visibleProjects(u).filter(P => checkedIn(P, safeDay(), u.uid) && !(((P.dayEnds || {})[safeDay()] || {})[u.uid]));
     open.forEach(P => { h += `<button class="task" style="margin-top:10px" data-a="wizOpen" data-v="techEnd|${P.id}"><span class="ti">🏁</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_end_day')}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span></span><span class="go">▶</span></button>`; }); }
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))}${tasks[0].pid ? ' · ' + esc(tasks[0].pid) : ''}</p>`;
@@ -10095,6 +10296,23 @@ SCREENS.home = () => {
   if (u.role === 'field') h += fold('score', t('my_score_t'), fieldScore(), { icon: '🏅' });
   return h + '</main>' + nav('home');
 };
+/* my day: a short routine per role that ticks itself from today's records */
+function routineCard(u) {
+  const from = new Date(Date.parse(coDay(Date.now()) + 'T00:00:00') - CO_TZ).toISOString(), mine = EVENTS.filter(e => e.by === u.uid && e.t >= from), did = (...ty) => mine.some(e => ty.includes(e.type)), cnt = ty => mine.filter(e => e.type === ty).length;
+  const hot = myTasks(u).filter(isHot).length;
+  const steps = {
+    field: [['rt_shift_start', did('SHIFT_STARTED')], ['rt_sites', cnt('LEAD_CREATED') >= 3, { n: cnt('LEAD_CREATED') }], ['rt_shift_end', did('SHIFT_ENDED')]],
+    tech: [['rt_checkin', did('SITE_CHECKED_IN')], ['rt_safety', did('SAFETY_CHECKED')], ['rt_work', did('SOP_STEP_DONE', 'SERVICE_DONE', 'CORRECTION_DONE', 'TICKET_UPDATED')], ['rt_end_day', did('DAY_ENDED_TECH')]],
+    sales: [['rt_calls', did('CONTACT_LOGGED', 'FOLLOWUP_SET')], ['rt_quotes', did('QUOTE_SENT', 'QUOTE_CREATED', 'PAYMENT_RECORDED', 'DEAL_WON')], ['rt_urgent_clear', !hot]],
+    qc: [['rt_inspect', !myTasks(u).some(n => ['inspect_site', 'final_inspect', 'qc_recheck'].includes(n.k) && isHot(n))], ['rt_urgent_clear', !hot]],
+    admin: [['rt_urgent_clear', !hot], ['rt_approvals', !myTasks(u).some(n => ['approve_quote', 'approve_pay', 'second_approval', 'approve_invoice'].includes(n.k))], ['rt_day_close', !!S.dayClose[safeDay()]]],
+    owner: [['rt_numbers', (App.set.seenWeekly || '') >= weekKey(nowISO())], ['rt_decisions', !myTasks(u).filter(n => n.k !== 'escalated').length, { n: myTasks(u).filter(n => n.k !== 'escalated').length }]]
+  }[u.role];
+  if (!steps) return '';
+  const done = steps.filter(x => x[1]).length;
+  return `<div class="card" id="routine"><div class="row"><b class="grow">🗓️ ${t('rt_title')}</b><span class="chip ${done === steps.length ? 'c-ok' : 'c-info'}">${done}/${steps.length}</span></div>
+    ${steps.map(([k, ok, v]) => `<div class="small">${ok ? '✅' : '⬜'} ${t(k, v || {})}</div>`).join('')}<p class="small muted" style="margin:4px 0 0">${t('rt_note')}</p></div>`;
+}
 /* one strip for everything urgent: the most serious open item and how many more (the SOS button stays where it is) */
 function prioItems(u, hot) {
   const adm = ['owner', 'admin'].includes(u.role), q = officeLike(u) ? officeQueue() : [], es = adm ? allEscalations().list : [], seen = new Set(), out = [];
@@ -10641,15 +10859,49 @@ SCREENS.done = p => {
 AFTER.done = () => { if (App.set.autoRead || guideOn()) setTimeout(() => Voice.say(App.pageSay), 250); };
 
 /* ---------- map (offline plot; tap a pin to open the project) ---------- */
+/* where someone has been: their own photo places and shift starts, in time order */
+function trackOf(uid, from) {
+  const pts = Object.values(S.evidence).filter(e => e.by === uid && e.gps && e.t >= from).map(e => ({ t: e.t, g: e.gps }))
+    .concat((S.shiftLog || []).filter(x => x.uid === uid && x.gps && x.t >= from).map(x => ({ t: x.t, g: x.gps })));
+  return pts.sort((a, b) => a.t < b.t ? -1 : 1).map(x => x.g);
+}
+const kmOf = pts => Math.round(pts.reduce((a, g, i) => i ? a + haversine(pts[i - 1], g) : 0, 0) / 100) / 10;
+/* half-kilometre squares (about 0.0045°) used for "area covered" and "try here next" */
+const cellOf = g => Math.floor(g.lat / 0.0045) + ':' + Math.floor(g.lng / 0.0045);
+const cellCenter = c => { const [a, b] = c.split(':').map(Number); return { lat: (a + 0.5) * 0.0045, lng: (b + 0.5) * 0.0045 }; };
+function riderStats(uid) {
+  const today = coDay(Date.now()) + 'T00:00:00', month = todayStr().slice(0, 7) + '-01T00:00:00';
+  const dayPts = trackOf(uid, new Date(Date.parse(today) - CO_TZ).toISOString()), monPts = trackOf(uid, new Date(Date.parse(month) - CO_TZ).toISOString());
+  const mine = Object.values(S.projects).filter(P => P.createdBy === uid);
+  const visited = new Set(trackOf(uid, '0').map(cellOf).concat(mine.filter(P => P.site.gps).map(P => cellOf(P.site.gps))));
+  const recent = new Set(trackOf(uid, new Date(Date.now() - 30 * 864e5).toISOString()).map(cellOf));
+  /* good leads: accepted or later, from anyone; suggest neighbouring squares not visited in 30 days */
+  const good = Object.values(S.projects).filter(P => P.site.gps && P.stage !== 'lost' && P.hist.some(h => h.s === 'accepted')), score = {};
+  for (const P of good) { const [a, b] = cellOf(P.site.gps).split(':').map(Number); for (let i = -1; i <= 1; i++) for (let j = -1; j <= 1; j++) { const c = (a + i) + ':' + (b + j); if (!recent.has(c)) score[c] = (score[c] || 0) + (i || j ? 1 : 2); } }
+  const next = Object.entries(score).sort((x, y) => y[1] - x[1]).slice(0, 3).map(([c]) => cellCenter(c));
+  return { kmDay: kmOf(dayPts), kmMonth: kmOf(monPts), sitesDay: mine.filter(P => P.t >= new Date(Date.parse(today) - CO_TZ).toISOString()).length, sitesMonth: mine.filter(P => P.t.slice(0, 7) === todayStr().slice(0, 7)).length, area: visited.size, next };
+}
+/* the last place each person shared today (photo or shift start), for the office map */
+function peopleToday(role) {
+  const from = new Date(Date.parse(coDay(Date.now()) + 'T00:00:00') - CO_TZ).toISOString();
+  return Object.values(S.users).filter(u => u.active && STAFF.includes(u.role) && !['owner', 'admin'].includes(u.role) && (!role || u.role === role))
+    .map(u => { const tr = Object.values(S.evidence).filter(e => e.by === u.uid && e.gps && e.t >= from).map(e => ({ t: e.t, g: e.gps })).concat((S.shiftLog || []).filter(x => x.uid === u.uid && x.gps && x.t >= from).map(x => ({ t: x.t, g: x.gps }))).sort((a, b) => a.t < b.t ? 1 : -1)[0]; return tr ? { u, g: tr.g, t: tr.t } : null; })
+    .filter(Boolean);
+}
 SCREENS.map = () => {
   const u = App.me;
   App.pageSay = t('s_map');
   const f = App.form.mf || 'all';
   let ps = visibleProjects(u).filter(P => P.site.gps);
   if (f === 'mine') { const ids = new Set(myTasks(u).map(n => n.pid)); ps = ps.filter(P => ids.has(P.id)); }
+  const office = ['owner', 'admin'].includes(u.role), rf = App.form.mr || '';
+  if (f === 'late') { const ids = new Set(allEscalations().list.map(n => n.pid).filter(Boolean)); ps = ps.filter(P => ids.has(P.id)); }
+  const people = office && f === 'people' ? peopleToday(rf) : [];
+  if (f === 'people') ps = [];
+  const rs = u.role === 'field' ? riderStats(u.uid) : null;
   const route = u.role === 'field' ? Object.values(S.evidence).filter(e => e.by === u.uid && e.gps && e.t.slice(0, 10) === todayStr()).sort((a, b) => a.t < b.t ? -1 : 1).map(e => e.gps) : [];
   const me = Geo.fresh(600000);
-  const pts = [...ps.map(P => P.site.gps), ...route, ...(me ? [me] : [])];
+  const pts = [...ps.map(P => P.site.gps), ...route, ...(me ? [me] : []), ...people.map(x => x.g), ...(rs ? rs.next : [])];
   let svg = `<div class="card center">${t('map_empty')}</div>`;
   if (pts.length) {
     let la0 = Math.min(...pts.map(p => p.lat)), la1 = Math.max(...pts.map(p => p.lat)), lo0 = Math.min(...pts.map(p => p.lng)), lo1 = Math.max(...pts.map(p => p.lng));
@@ -10662,14 +10914,23 @@ SCREENS.map = () => {
       ${route.length > 1 ? `<polyline points="${route.map(gp => X(gp) + ',' + Y(gp)).join(' ')}" fill="none" stroke="#1c5596" stroke-width="3" stroke-dasharray="6 4"/>` : ''}
       ${ps.map(P => `<g data-a="mapPin" data-v="${P.id}" style="cursor:pointer"><circle cx="${X(P.site.gps)}" cy="${Y(P.site.gps)}" r="${App.form.mp === P.id ? 17 : 13}" fill="${P.stage === 'lost' ? '#a3241c' : P.stage === 'amc' ? '#16703a' : '#23262f'}" stroke="#c9a227" stroke-width="3"/><text x="${X(P.site.gps)}" y="${Y(P.site.gps) + 5}" text-anchor="middle" font-size="13">${STAGES[P.stage][1]}</text></g>`).join('')}
       ${me ? `<circle cx="${X(me)}" cy="${Y(me)}" r="8" fill="#1c5596" stroke="#fff" stroke-width="3"/>` : ''}
+      ${(rs ? rs.next : []).map(g => `<rect x="${X(g) - 12}" y="${Y(g) - 12}" width="24" height="24" fill="none" stroke="#16703a" stroke-width="3" stroke-dasharray="4 3"/>`).join('')}
+      ${people.map(x => `<g><circle cx="${X(x.g)}" cy="${Y(x.g)}" r="13" fill="#fff" stroke="#1c5596" stroke-width="2"/><text x="${X(x.g)}" y="${Y(x.g) + 5}" text-anchor="middle" font-size="14">${ROLE_ICON[x.u.role]}</text></g>`).join('')}
       <line x1="12" y1="${Wd - 14}" x2="${12 + Wd / 4}" y2="${Wd - 14}" stroke="#333" stroke-width="3"/><text x="14" y="${Wd - 20}" font-size="11">${km} km</text></svg>`;
   }
   const sel = App.form.mp && S.projects[App.form.mp];
   const list = ps.slice().sort((a, b) => me ? haversine(me, a.site.gps) - haversine(me, b.site.gps) : 0);
-  App.mapData = { ps, route, me };
-  return topBar(t('map')) + `<main class="wrap"><div class="tabs" style="position:static;padding:0 0 10px">${[['all', '📋', 'all'], ['mine', '👉', 'mine']].map(([v, i, l]) => `<button class="${f === v ? 'on' : ''}" data-a="mfilter" data-v="${v}">${i} ${t(l)}</button>`).join('')}<button data-a="gpsMap">📍 ${t('where_am_i')}</button></div>
+  App.mapData = { ps, route, me, people, next: rs ? rs.next : [] };
+  const board = rs ? (() => { const from = new Date(Date.now() - 30 * 864e5).toISOString(), sc = {}; Object.values(S.projects).forEach(P => { const acc = P.hist.find(h => h.s === 'accepted'); if (acc && acc.t >= from && roleOf(P.createdBy) === 'field') sc[P.createdBy] = (sc[P.createdBy] || 0) + 10; });
+    return Object.entries(sc).sort((a, b) => b[1] - a[1]).slice(0, 5); })() : [];
+  return topBar(t('map')) + `<main class="wrap"><div class="tabs" style="position:static;padding:0 0 10px">${[['all', '📋', 'all'], ['mine', '👉', 'mine']].concat(office ? [['late', '⏰', 'mf_late'], ['people', '👥', 'mf_people']] : []).map(([v, i, l]) => `<button class="${f === v ? 'on' : ''}" data-a="mfilter" data-v="${v}">${i} ${t(l)}</button>`).join('')}<button data-a="gpsMap">📍 ${t('where_am_i')}</button></div>
+    ${office && f === 'people' ? `<div class="tabs" style="position:static;padding:0 0 8px">${['', 'tech', 'field', 'qc', 'sales', 'partner'].map(r => `<button class="${rf === r ? 'on' : ''}" data-a="mrole" data-v="${r}">${r ? ROLE_ICON[r] + ' ' + t('r_' + r) : t('mp_role_all')}</button>`).join('')}</div>` : ''}
+    ${rs ? `<div class="card"><div class="small">🏍️ ${t('rm_today', { k: rs.kmDay, n: rs.sitesDay })}</div><div class="small">📅 ${t('rm_month', { k: rs.kmMonth, n: rs.sitesMonth })}</div><div class="small">🗺️ ${t('rm_area', { n: rs.area })}</div></div>` : ''}
     <div id="lmap" class="lmap" hidden></div><div id="svgmap">${svg}</div>${sel ? `<div class="card" style="margin-top:10px">${projCard(sel).replace('class="task"', 'class="task" style="margin:0"')}<a class="btn" style="margin-top:8px" href="${dirLink(sel.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>` : ''}
     <p class="small muted">🔵 ${t('map_me')} ${route.length ? ' · ┅ ' + t('map_route') : ''} · ${t('map_note')}</p>
+    ${rs ? `<div class="card"><h3>🟩 ${t('rm_next')}</h3><p class="small muted">${t('rm_next_d')}</p>${rs.next.length ? rs.next.map((g, i) => `<a class="btn btn-sm" style="margin:2px" href="${dirLink(g)}" target="_blank" rel="noopener">🧭 ${i + 1}</a>`).join('') : `<p class="small">${t('rm_next_none')}</p>`}</div>` : ''}
+    ${rs && board.length ? `<div class="card"><h3>🏆 ${t('rm_board')}</h3>${board.map(([uid, pts], i) => `<div class="list-item small" style="${uid === u.uid ? 'background:var(--gold-l);border-radius:8px;padding-inline:6px' : ''}"><b style="width:26px">${['🥇', '🥈', '🥉'][i] || i + 1}</b><span class="grow">${esc(userName(uid))}</span><b>${pts}</b></div>`).join('')}</div>` : ''}
+    ${office && f === 'people' ? (people.length ? people.map(x => `<div class="list-item"><span>${ROLE_ICON[x.u.role]}</span><span class="grow">${t('mp_last', { who: esc(x.u.name), d: fmtD(x.t, true) })}</span><a class="btn btn-sm" href="${dirLink(x.g)}" target="_blank" rel="noopener">🧭</a></div>`).join('') : `<div class="card center">${t('mp_nobody')}</div>`) : ''}
     ${list.slice(0, 20).map(P => `<div class="list-item"><span class="grow">${STAGES[P.stage][1]} <b>${esc(P.id)}</b> · ${esc(projTitle(P))}</span>${me ? `<span class="chip c-mute">${(haversine(me, P.site.gps) / 1000).toFixed(1)} km</span>` : ''}<button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶</button></div>`).join('')}</main>` + nav('map');
 };
 
@@ -10705,6 +10966,8 @@ AFTER.map = () => {
       Lf.marker([g.lat, g.lng], { icon, title: P.id }).addTo(m).bindPopup(`<b>${esc(P.id)}</b> · ${esc(projTitle(P))}<br>${stageChip(P)}<div class="row" style="margin-top:8px"><button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶ ${t('open_project')}</button><a class="btn btn-sm" href="${dirLink(g)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>`);
     }
     if (d.route.length > 1) { Lf.polyline(d.route.map(g => [g.lat, g.lng]), { color: '#1c5596', weight: 4, dashArray: '6 6' }).addTo(m); d.route.forEach(g => pts.push([g.lat, g.lng])); }
+    (d.people || []).forEach(x => { Lf.marker([x.g.lat, x.g.lng], { icon: Lf.divIcon({ className: 'pin', html: `<span>${ROLE_ICON[x.u.role]}</span>`, iconSize: [36, 36], iconAnchor: [18, 18] }), title: x.u.name }).addTo(m).bindPopup(esc(x.u.name) + ' · ' + fmtD(x.t, true)); pts.push([x.g.lat, x.g.lng]); });
+    (d.next || []).forEach(g => { Lf.rectangle([[g.lat - 0.00225, g.lng - 0.00225], [g.lat + 0.00225, g.lng + 0.00225]], { color: '#16703a', weight: 3, dashArray: '5 4', fill: false }).addTo(m).bindPopup(t('rm_next')); pts.push([g.lat, g.lng]); });
     if (d.me) { Lf.circleMarker([d.me.lat, d.me.lng], { radius: 9, color: '#fff', weight: 3, fillColor: '#1c5596', fillOpacity: 1 }).addTo(m).bindPopup(t('map_me')); pts.push([d.me.lat, d.me.lng]); }
     if (pts.length > 1) m.fitBounds(pts, { padding: [30, 30], maxZoom: 16 });
     else if (pts.length) m.setView(pts[0], 15);
@@ -10748,7 +11011,7 @@ function docHead(P, title, no) {
 }
 function docQuote(P, v) {
   const q = P.quotes.find(x => x.v === +v) || lastQuote(P); if (!q) return '';
-  const s = paySchedule(S.config, q.total);
+  const s = paySchedule(payCfgAt(), q.total);
   return docHead(P, t('doc_quote'), `${P.id}-Q${q.v}`) + `<table><tr><td>${t('customer')}</td><td><b>${esc(P.contact.name)}</b></td></tr><tr><td>${t('site')}</td><td>${esc(P.site.address)}</td></tr><tr><td>${t('valid_until')}</td><td>${fmtD(addDays(q.validity || 30, new Date(q.t)))}</td></tr></table>
     <h3>${t('lift_needs')}</h3>${reqKv(q.req)}
     <h3>${t('price')}</h3><table>${q.lines.map(([k, val]) => `<tr><td>${t(k)}</td><td class="r">${money(val)}</td></tr>`).join('')}<tr><td><b>${t('q_list')}</b></td><td class="r">${money(q.list)}</td></tr>
@@ -10769,7 +11032,7 @@ function quoteAssumptions(P, q) {
 const civilLine = () => +S.config.civilMax > 0 ? `<p>${t('q_civil_range', { a: money(+S.config.civilMin || 0), b: money(+S.config.civilMax) })}</p>` : '';
 const cancelText = () => (+S.config.cancelBefore || +S.config.cancelAfter) ? t('ag_cancel_nums', { a: +S.config.cancelBefore || 0, b: +S.config.cancelAfter || 0 }) + ' ' + t('ag_cancel_text') : t('ag_cancel_text');
 function agreeKeyPoints(P) {
-  const q = P.quotes.find(x => x.v === (P.agreement && P.agreement.quoteV)) || lastQuote(P), s = P.schedule || paySchedule(S.config, q.total);
+  const q = P.quotes.find(x => x.v === (P.agreement && P.agreement.quoteV)) || lastQuote(P), s = P.schedule || paySchedule(payCfgAt(), q.total);
   return `<ul style="padding-left:20px;margin:0">${[t('ak_lift', { stops: q.req.stops, cap: t('cap_' + q.req.capacity), type: t('type_' + q.req.type), fin: t('fin_' + q.req.finish) }), t('ak_price', { total: money(q.total) }),
     t('ak_pay', { token: money(s.token), arrival: money(s.arrival), final: money(s.final) }), t('ak_prep'), t('ak_warranty', { n: S.config.warrantyMonths }), t('ak_amc', { n: S.config.amcVisits })].map(x => `<li style="margin:6px 0">${esc(x)}</li>`).join('')}</ul>`;
 }
@@ -10913,6 +11176,7 @@ SCREENS.me = () => {
       <div class="row small muted" style="justify-content:space-between"><span>20%</span><span>100%</span><span>150%</span></div>
       <div class="tiles three" style="margin-top:8px">${[[80, 'size_s'], [100, 'size_n'], [130, 'size_xl']].map(([z, l]) => `<button class="tile ${getScale() === z ? 'on' : ''}" data-a="scaleSet" data-v="${z}" style="min-height:64px">${t(l)}<small>${z}%</small></button>`).join('')}</div>
       ${getScale() < 60 ? `<div class="warnbox">⚠️ ${t('scale_small')}</div>` : ''}</div>
+    <div class="card"><h3>⛶ ${t('fs_title')}</h3>${toggleSet('fullscreen', 'fs_on', App.set.fullscreen !== false)}<p class="small muted">${t('fs_note')}</p></div>
     <div class="card"><h3>🎨 ${t('theme')}</h3><div class="tiles">${THEMES.map(([k, i]) => `<button class="tile ${(App.set.theme || 'auto') === k ? 'on' : ''}" data-a="setTheme" data-v="${k}" style="min-height:64px"><span class="i">${i}</span>${t('th_' + k)}</button>`).join('')}</div></div>
     <div class="card"><h3>💡 ${t('wake_title')}</h3><div class="tiles one"><button class="tile ${App.set.wake !== false ? 'on' : ''}" data-a="toggleWake"><span class="i">💡</span><span>${t('wake_on')}<br><small>${t(Wake.ok() ? (Wake.lock ? 'wake_now' : 'wake_ready') : 'wake_no')}</small></span></button></div><p class="small muted">${t('wake_note')}</p></div>
     <div class="card"><h3>🔊 ${t('me_voice')}</h3><div class="tiles one"><button class="tile ${guideOn() ? 'on' : ''}" data-a="toggleGuide"><span class="i">🗣️</span><span>${t('voice_guide')}<br><small>${t('voice_guide_d')}</small></span></button>
@@ -11144,7 +11408,7 @@ SCREENS.rules = () => {
   App.pageSay = t('s_rules');
   return topBar(t('business_rules'), { back: true }) + `<main class="wrap">${App.me.role === 'owner' ? hqCard() : ''}<div class="note">📏 ${t('s_rules')}</div>${Object.entries(RULE_GROUPS).map(([gk, keys]) => `<div class="card"><div class="row wrapw"><h3 class="grow" style="margin:0;min-width:55%">${t('rg_' + gk)}</h3>${ruleChip(gk)}</div>
     <p class="small muted">${t('rg_' + gk + '_d')}</p>${S.config.approved[gk] ? `<p class="small">✅ ${userName(S.config.approved[gk].by)} · ${fmtD(S.config.approved[gk].t, true)}</p>` : ''}
-    ${keys.map(k => own ? `<div class="field"><label for="${fid('cfg.' + k)}"><b>${t('cfg_' + k)}</b></label><input class="in" ${['sosNumber', 'officeNumber'].includes(k) ? 'type="tel" inputmode="tel"' : TEXT_CFG.includes(k) ? `type="text" ${k === 'payAcc' ? 'inputmode="numeric"' : ''}` : `type="number" min="${(CFG_LIMITS[k] || [0])[0]}" ${CFG_LIMITS[k] ? 'max="' + CFG_LIMITS[k][1] + '"' : ''} inputmode="decimal"`} id="${fid('cfg.' + k)}" data-f="cfg.${k}" value="${esc(String(S.config[k]))}">${CFG_LIMITS[k] ? `<span class="small muted">${t('cfg_range', { a: CFG_LIMITS[k][0], b: CFG_LIMITS[k][1] })}</span>` : ''}</div>` : `<div class="list-item"><span class="grow">${t('cfg_' + k)}</span><b>${S.config[k]}</b></div>`).join('')}
+    ${keys.map(k => own ? `<div class="field"><label for="${fid('cfg.' + k)}"><b>${t('cfg_' + k)}</b></label><input class="in" ${['sosNumber', 'officeNumber'].includes(k) ? 'type="tel" inputmode="tel"' : TEXT_CFG.includes(k) ? `type="text" ${k === 'payAcc' ? 'inputmode="numeric"' : ''}` : `type="number" min="${(CFG_LIMITS[k] || [0])[0]}" ${CFG_LIMITS[k] ? 'max="' + CFG_LIMITS[k][1] + '"' : ''} inputmode="decimal"`} id="${fid('cfg.' + k)}" data-f="cfg.${k}" value="${esc(String(payCfgAt()[k]))}">${CFG_LIMITS[k] ? `<span class="small muted">${t('cfg_range', { a: CFG_LIMITS[k][0], b: CFG_LIMITS[k][1] })}</span>` : ''}</div>` : `<div class="list-item"><span class="grow">${t('cfg_' + k)}</span><b>${S.config[k]}</b></div>`).join('')}
     ${RATE_GROUPS.includes(gk) ? rateBlock(gk, own) : ''}
     ${own ? `<div class="row"><button class="btn" data-a="cfgSave" data-v="${gk}">💾 ${t('save')}</button>${S.config.approved[gk] ? '' : `<button class="btn btn-ok" data-a="cfgApprove" data-v="${gk}">✅ ${t('approve_rule')}</button>`}</div>` : ''}</div>`).join('')}
     ${!own ? `<p class="small muted">${t('rules_owner_only')}</p>` : ''}</main>` + nav('me');
@@ -11727,7 +11991,7 @@ SCREENS.worker = ({ uid }) => {
   App.pageSay = t('s_worker');
   return topBar(uid === me.uid ? t('my_profile') : u.name, { back: true }) + `<main class="wrap">
     <div class="hero"><div class="row"><span style="font-size:2.2rem">${ROLE_ICON[u.role]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + u.role)}</span></div></div><div style="margin-top:6px">${authChip(uid)}</div></div>${onbCard(uid)}
-    ${u.role === 'partner' ? companyCard(uid) : ''}${u.role === 'tech' ? memberCard(uid) : ''}${u.role === 'supplier' ? supCard(uid) : ''}${legalCard(uid)}
+    ${u.role === 'partner' ? companyCard(uid) : ''}${u.role === 'tech' ? memberCard(uid) : ''}${u.role === 'supplier' ? supCard(uid) : ''}${contractCard(uid)}${legalCard(uid)}
     ${gradeOf(uid) ? ladderCard(uid, { short: true }) : ''}${trialCard(uid)}
     <div class="card"><h3>👤 ${t('profile')}</h3>${kv([['f_phone', esc(p.phone || '')], ['w_area', esc(p.area || '')], ['w_avail', p.availability ? t('av_' + p.availability) : ''], ['w_skills', (p.skills || []).map(x => t('skill_' + x)).join(', ')]])}
       ${u.role === 'customer' ? '' : `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="wprofile||uid|${uid}">✏️ ${t('edit')}</button>`}<p class="small muted">${t('w_privacy')}</p></div>
@@ -11749,11 +12013,11 @@ SCREENS.training = () => {
   const u = App.me, w = S.workers[u.uid] || { training: {} };
   App.pageSay = t('s_training');
   return topBar(t('training'), { back: true }) + `<main class="wrap"><p class="say">🎓 ${t('s_training')}</p>${modulesFor(u.role).concat(['senior', 'qc'].includes(gradeOf(u.uid)) ? ['qc'] : []).map(m => `<button class="cl-item ${trainOk(w, m) ? 'done' : ''}" data-a="wizOpen" data-v="train||module|${m}"><span class="st">${trainOk(w, m) ? '✅' : trainExpired(w, m) ? '⏰' : '▶️'}</span><span class="grow"><b>${t('tr_' + m + '_t')}</b><br><span class="small">${trainExpired(w, m) ? t('train_renew') : m === 'safety' && w.training[m] && +S.config.safetyRetest ? t('train_valid', { d: fmtD(addDays(Math.round(+S.config.safetyRetest * 30.4), new Date(w.training[m].t))) }) : t('train_parts')}</span></span></button>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}
-    <div class="note">💰 ${t('pay_transparent')}</div></main>` + nav('me');
+    <div class="note">💰 ${t('pay_transparent')}</div>${['owner', 'admin'].includes(u.role) ? `<div class="card"><h3>🎬 ${t('tv_title')}</h3><p class="small muted">${t('tv_note')}</p>${TRAIN.map(([m]) => `<div class="field"><label for="${fid('tv.' + m)}"><b>${t('tr_' + m + '_t')}</b></label><div class="row"><input class="in grow" id="${fid('tv.' + m)}" data-f="tv.${m}" value="${esc(App.form['tv.' + m] != null ? App.form['tv.' + m] : S.trainVideos[m] || '')}" placeholder="https://"><button class="btn btn-sm" data-a="tvSave" data-v="${m}">💾</button></div></div>`).join('')}</div>` : ''}</main>` + nav('me');
 };
 WIZ.train = {
   title: 'training', save: 'train_finish', saveIcon: '🎓', noDraft: true, init: () => ({ a: [] }),
-  steps: [1, 2, 3].map(n => ({ id: 'l' + n, icon: '📘', say: () => t('tr_' + W.opts.module + '_l' + n), body: () => `<div class="note">${t('lesson_n', { n, m: 3 })} · ${t('tr_' + W.opts.module + '_t')}</div>` }))
+  steps: [1, 2, 3].map(n => ({ id: 'l' + n, icon: '📘', say: () => t('tr_' + W.opts.module + '_l' + n), body: () => `<div class="note">${t('lesson_n', { n, m: 3 })} · ${t('tr_' + W.opts.module + '_t')}</div>` + (n === 1 && S.trainVideos[W.opts.module] ? `<a class="btn btn-p btn-big" href="${esc(S.trainVideos[W.opts.module])}" target="_blank" rel="noopener">▶ ${t('tv_watch')}</a>` : '') }))
     .concat([0, 1, 2].map(n => ({
       id: 'q' + n, icon: '❓', say: () => t('tr_' + W.opts.module + '_q' + (n + 1)),
       body: () => tiles('a.' + n, [0, 1, 2].map(o => [o, ['🅰️', '🅱️', '©️'][o], 'tr_' + W.opts.module + '_q' + (n + 1) + '_' + 'abc'[o]]), 'one'),
@@ -11885,6 +12149,7 @@ function weekText(w) {
     '', '🚦 ' + t('exc_title') + ': 🔴 ' + w.open.critical + ' · 🟠 ' + w.open.high + ' · ' + w.open.all].join('\n');
 }
 SCREENS.weekly = ({ end } = {}) => {
+  if (App.me && App.me.role === 'owner' && (App.set.seenWeekly || '') < weekKey(nowISO())) { App.set.seenWeekly = weekKey(nowISO()); saveSettings(); }
   const u = App.me; if (!['owner', 'admin'].includes(u.role)) return SCREENS.home();
   const w = weekSummary(end), row = (k, v) => [k, esc(String(v))];
   App.pageSay = t('week_title');
@@ -12240,8 +12505,14 @@ SCREENS.reviews = ({ uid, src }) => {
   return topBar(t('reviews') + ' · ' + S.users[uid].name, { back: true }) + `<main class="wrap"><div class="tabs" style="position:static;padding:0 0 10px">${tab('', 'all')}${tab('customer', 'rs_customer')}${tab('qc', 'rs_qc')}${tab('lead', 'rs_lead')}</div>
     <div class="card">${starsBlock(uid, src || null)}</div>
     ${s.list.map(r => `<div class="card"><div class="row"><b class="grow">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)} ${FACES[r.stars]}</b><span class="chip c-mute">${t('rs_' + r.src)}</span></div>
-      <div class="small muted">${fmtD(r.t)} · ${esc(r.pid)} · ${r.src === 'customer' ? esc(shortName(r.name || userName(r.by))) : esc(userName(r.by))}</div>${r.note ? `<p style="margin:6px 0 0">${esc(r.note)}</p>` : ''}</div>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
+      <div class="small muted">${fmtD(r.t)} · ${esc(r.pid)} · ${r.src === 'customer' ? esc(shortName(r.name || userName(r.by))) : esc(userName(r.by))}</div>${r.note ? `<p style="margin:6px 0 0">${esc(r.note)}</p>` : ''}${appealLine(r)}</div>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
 };
+function appealLine(r) {
+  const a = S.ratingAppeals[r.id], me = App.me;
+  if (a) return `<div class="small ${a.decided ? 'muted' : ''}" style="margin-top:6px">⚖️ ${a.decided ? (a.decided.ok ? t('ra_removed') : t('ra_kept', { n: esc(a.decided.note) })) : t('ra_open')}</div>`
+    + (!a.decided && ['owner', 'admin'].includes(me.role) && r.by !== me.uid ? `<button class="btn btn-sm" data-a="wizOpen" data-v="rateAppealDecide||rid|${r.id}">⚖️ ${t('tk_rating_appeal')}</button>` : '');
+  return r.uid === me.uid && r.stars <= 3 ? `<button class="btn btn-sm" style="margin-top:6px" data-a="wizOpen" data-v="rateAppeal||rid|${r.id}">⚖️ ${t('ra_appeal')}</button>` : '';
+}
 const shortName = n => { const p = String(n || '').trim().split(/\s+/); return p.length > 1 ? p[0] + ' ' + p[p.length - 1][0] + '.' : p[0] || ''; };
 
 /* customer (or Sales on their behalf) rates the work */
@@ -12487,7 +12758,7 @@ SCREENS.earn = ({ uid }) => {
   if (!u || !(uid === me.uid || ['owner', 'admin', 'finance'].includes(me.role)) || me.role === 'tech') return SCREENS.home();
   App.pageSay = t('s_earn');
   const c = S.config, now = weekKey(nowISO());
-  return topBar(t('earnings') + ' · ' + u.name, { back: true }) + `<main class="wrap"><div class="card"><h3>📏 ${t('pay_rules')}</h3>${kv([['earn_step', money(c.paySopStep)], ['earn_qc_bonus', money(c.payQcBonus)], ['earn_amc_visit', money(c.payAmcVisit)]])}<div style="margin-top:6px">${ruleChip('techpay')}</div><p class="small muted">${t('pay_rules_note')}</p></div>${u.role === 'field' ? `<div class="card"><h3>🏍️ ${t('field_pay')}</h3>${kv([['earn_lead_valid', +S.config.payLeadValid ? money(S.config.payLeadValid) : t('amount_not_set')], ['earn_lead_won', +S.config.leadWonPct ? S.config.leadWonPct + '%' : t('amount_not_set')]])}<div style="margin-top:6px">${ruleChip('fieldpay')}</div></div>` : ''}${u.role === 'tech' ? companyWorkCard(uid) : ''}
+  return topBar(t('earnings') + ' · ' + u.name, { back: true }) + `<main class="wrap">${ledgerCard(uid)}<div class="card"><h3>📏 ${t('pay_rules')}</h3>${kv([['earn_step', money(c.paySopStep)], ['earn_qc_bonus', money(c.payQcBonus)], ['earn_amc_visit', money(c.payAmcVisit)]])}<div style="margin-top:6px">${ruleChip('techpay')}</div><p class="small muted">${t('pay_rules_note')}</p></div>${u.role === 'field' ? `<div class="card"><h3>🏍️ ${t('field_pay')}</h3>${kv([['earn_lead_valid', +S.config.payLeadValid ? money(S.config.payLeadValid) : t('amount_not_set')], ['earn_lead_won', +S.config.leadWonPct ? S.config.leadWonPct + '%' : t('amount_not_set')]])}<div style="margin-top:6px">${ruleChip('fieldpay')}</div></div>` : ''}${u.role === 'tech' ? companyWorkCard(uid) : ''}
     ${weeksFor(uid).map(w => { const p = w.pay, diff = p && p.status !== 'open' && w.total !== p.computed ? w.total - p.computed : 0;
       const btn = [];
       if ((!p || p.status === 'open') && w.week < now && ['owner', 'admin'].includes(me.role) && w.total >= 0) btn.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="payApprove||uid|${uid}|week|${w.week}">✅ ${t('tk_approve_pay')}</button>`);
@@ -12497,11 +12768,44 @@ SCREENS.earn = ({ uid }) => {
       return `<div class="card"><div class="row"><b class="grow">${weekLabel(w.week)}</b><span class="chip ${!p || p.status === 'open' ? (w.week >= now ? 'c-mute' : 'c-warn') : p.status === 'paid' ? 'c-ok' : 'c-info'}">${t('wp_' + (!p || p.status === 'open' ? (w.week >= now ? 'running' : 'waiting') : p.status))}</span></div>
         ${w.lines.map(l => `<div class="list-item small"><span class="grow">${fmtD(l.t)} · ${esc(l.pid)} · ${esc(t(l.what))}${l.who ? ' · 👷 ' + esc(userName(l.who)) : ''}</span><b>${money(l.amount)}</b></div>`).join('')}
         ${kv([['earn_total', money(w.total)], ['earn_approved', p && p.status !== 'open' ? money(p.amount) + (p.adjust ? ` (${p.adjust > 0 ? '+' : ''}${money(p.adjust)}: ${esc(p.reason)})` : '') : ''], ['earn_paid', p && p.status === 'paid' ? fmtD(p.paidAt) + ' · ' + esc(p.ref) : '']])}
+        ${p && (p.held || p.release) ? `<p class="small">${t('ld_week_now', { n: money(p.payNow) })} · ${t('ld_week_held', { a: money(p.held || 0), b: money(p.release || 0) })}</p>` : ''}
         ${diff ? `<div class="warnbox">${t('earn_diff', { d: money(diff) })}</div>` : ''}
         ${p && p.dispute ? `<div class="${p.dispute.open ? 'warnbox' : 'note'}">🙋 ${esc(p.dispute.reason)}${p.dispute.answer ? '<br>💬 ' + esc(p.dispute.answer) : ''}</div>` : ''}
         ${btn.length ? `<div class="row wrapw">${btn.join('')}</div>` : ''}</div>`; }).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
 };
 const payWeek = () => weeksFor(W.opts.uid).find(x => x.week === W.opts.week);
+WIZ.settle = {
+  title: 'tk_settle_reserve', save: 'save', noDraft: true, init: () => ({ ref: '', note: '' }),
+  steps: [{ id: 's', icon: '🏦', say: 'tk_settle_reserve', body: () => `<div class="card">${kv([['r_' + roleOf(W.opts.uid), esc(userName(W.opts.uid))], ['ld_reserve', money(reserveBal(W.opts.uid))]])}</div>` + inp('ref', 'f_bank_ref', { big: true }) + inp('note', 'f_note', { opt: true }),
+    check: c => c.ref.trim() ? null : 'err_ref' }],
+  async finish(c) { const uid = W.opts.uid, r = await run([['RESERVE_SETTLED', null, { uid, amount: reserveBal(uid), ref: c.ref.trim(), note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('earn', { uid }, { replace: true }) } : r; }
+};
+SCREENS.contract = ({ uid }) => {
+  const me = App.me; uid = uid || me.uid; const u = S.users[uid];
+  if (!u || (uid !== me.uid && !['owner', 'admin'].includes(me.role))) return SCREENS.home();
+  App.pageSay = t('ct_title');
+  return topBar(t('ct_title'), { back: true }) + `<main class="wrap"><div class="card doc">${contractText()}</div>${contractCard(uid)}
+    ${uid === me.uid && !contractOk(uid) ? `<button class="btn btn-p btn-big" data-a="wizOpen" data-v="contract">✍️ ${t('ct_accept')}</button>` : ''}<button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button></main>` + nav('me');
+};
+WIZ.contract = {
+  title: 'ct_title', save: 'save', noDraft: true, init: () => ({ consent: false, signer: App.me.name, sig: null }),
+  steps: [{ id: 'r', icon: '📝', say: 'ct_p1', body: () => `<div class="card doc">${contractText()}</div>` + toggleTile('consent', '⬜', 'ct_accept'), check: c => c.consent ? null : 'err_consent' },
+    { id: 's', icon: '✍️', say: 's_sign_pad', body: () => inp('signer', 'f_signer_name', { mic: true }) + signSlot('sig', 'signature'), check: c => !c.signer.trim() ? 'err_fill' : c.sig ? null : 'err_sign' }],
+  async finish(c) { const r = await run([['CONTRACT_ACCEPTED', null, { v: +S.config.agreeVersion, consent: true, signer: c.signer.trim(), ev: [c.sig] }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('contract', {}, { replace: true }) } : r; }
+};
+WIZ.rateAppeal = {
+  title: 'ra_appeal', save: 'send', noDraft: true, init: () => ({ reason: '' }),
+  steps: [{ id: 'a', icon: '⚖️', say: 'ra_why', body: () => inp('reason', 'ra_why', { area: true, mic: true }), check: c => c.reason.trim() ? null : 'err_reason' }],
+  async finish(c) { const r = await run([['RATING_APPEALED', null, { rid: W.opts.rid, reason: c.reason.trim() }]]); return r.ok ? { ok: true, toast: 'ra_open' } : r; }
+};
+WIZ.rateAppealDecide = {
+  title: 'tk_rating_appeal', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
+  steps: [{ id: 'd', icon: '⚖️', say: 'tk_rating_appeal', body: () => { const a = S.ratingAppeals[W.opts.rid], r = S.reviews.find(x => x.id === W.opts.rid) || {};
+      return `<div class="card"><b>${'★'.repeat(r.stars || 0)}</b> · ${esc(userName(r.uid))} · ${esc(r.pid || '')}<br><span class="small">${esc(r.note || '')}</span><div class="note" style="margin-top:6px">⚖️ ${esc(a.reason)} · ${esc(userName(a.by))}</div></div>`
+        + tiles('ok', [['yes', '🗑️', 'ra_ok'], ['no', '✋', 'ra_no']], 'one') + inp('note', 'f_reason', { area: true, mic: true }); },
+    check: c => !c.ok ? 'err_choose' : c.note.trim() ? null : 'err_reason' }],
+  async finish(c) { const r = await run([['RATING_APPEAL_DECIDED', null, { rid: W.opts.rid, ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item' } : r; }
+};
 WIZ.payApprove = {
   title: 'tk_approve_pay', save: 'save', noDraft: true, init: () => ({ adjust: 0, reason: '' }),
   steps: [{ id: 'a', icon: '💰', say: 's_pay_approve', body: c => `<div class="card">${kv([['r_' + roleOf(W.opts.uid), esc(userName(W.opts.uid))], ['week', weekLabel(W.opts.week)], ['earn_total', money(payWeek().total)], ['earn_final', money(payWeek().total + (+c.adjust || 0))]])}</div>` +
@@ -12525,11 +12829,22 @@ WIZ.payAnswer = {
   async finish(c) { const r = await run([['PAY_DISPUTE_ANSWERED', null, { uid: W.opts.uid, week: W.opts.week, note: c.note.trim() }]]); return r.ok ? { ok: true, title: t('done_title'), what: t('what_pay_answered'), next: t('next_none') } : r; }
 };
 
+/* partner companies ranked by their members' quality points; bonuses shown with the rule that earned them */
+function coTable(score) {
+  const co = {}; Object.values(score).forEach(x => { const c = roleOf(x.uid) === 'tech' && companyOf(x.uid); if (c) co[c] = (co[c] || 0) + x.pts; });
+  const rows = Object.entries(co).sort((a, b) => b[1] - a[1]); if (!rows.length) return '';
+  return `<div class="card"><h3>🏢 ${t('lb_companies')}</h3>${rows.map(([c, pts], i) => `<div class="list-item"><b style="width:28px">${['🥇', '🥈', '🥉'][i] || i + 1}</b><span class="grow">${esc(userName(c))}</span><b>${pts}</b></div>`).join('')}</div>`;
+}
+function bonusCard() {
+  const me = App.me; if (!['tech', 'partner'].includes(me.role)) return '';
+  const lines = (me.role === 'partner' ? payLines(me.uid) : earnings(me.uid)).filter(e => e.what === 'earn_qc_bonus');
+  return `<div class="card"><h3>🎁 ${t('lb_bonus')}</h3><p class="small muted">${t('lb_bonus_rule', { a: money(S.config.payQcBonus) })}</p>${lines.map(e => `<div class="list-item small"><span class="grow">${fmtD(e.t)} · ${esc(e.pid)}${e.who ? ' · ' + esc(userName(e.who)) : ''}</span><b>${money(e.amount)}</b></div>`).join('') || `<p class="small muted">${t('nothing_here')}</p>`}</div>`;
+}
 /* ---------- leaderboard (quality, never speed) ---------- */
 SCREENS.leaders = ({ m }) => {
-  m = m || todayStr().slice(0, 7);
-  const prev = new Date(m + '-15T12:00:00'); prev.setMonth(prev.getMonth() - 1); const pm = prev.toISOString().slice(0, 7);
-  const inM = iso => iso && iso.slice(0, 7) === m;
+  const wk = m === 'week'; m = wk ? todayStr().slice(0, 7) : m || todayStr().slice(0, 7);
+  const prev = new Date(m + '-15T12:00:00'); prev.setMonth(prev.getMonth() - 1); const pm = prev.toISOString().slice(0, 7), thisWk = weekKey(nowISO());
+  const inM = iso => iso && (wk ? weekKey(iso) === thisWk : iso.slice(0, 7) === m);
   const score = {}, add = (uid, pts, what) => { if (!uid || !S.users[uid]) return; const s0 = score[uid] = score[uid] || { uid, pts: 0, items: {} }; s0.pts += pts; s0.items[what] = (s0.items[what] || 0) + 1; };
   for (const P of Object.values(S.projects)) {
     const acc = P.hist.find(h => h.s === 'accepted'); if (acc && inM(acc.t)) add(P.createdBy, 10, 'lb_valid_lead');
@@ -12541,8 +12856,8 @@ SCREENS.leaders = ({ m }) => {
   const table = (role, icon) => { const rows = Object.values(score).filter(x => roleOf(x.uid) === role).sort((a, b) => b.pts - a.pts).slice(0, 10);
     return `<div class="card"><h3>${icon} ${t('r_' + role)}</h3>${rows.map((x, i) => `<div class="list-item" style="${x.uid === App.me.uid ? 'background:var(--gold-l);border-radius:10px;padding-inline:6px' : ''}"><b style="width:28px">${['🥇', '🥈', '🥉'][i] || i + 1}</b><span class="grow">${esc(userName(x.uid))} ${gradeChip(x.uid)} ${gradeOf(x.uid) ? starChip(x.uid) : ''}<br><span class="small muted">${Object.entries(x.items).map(([k, n]) => t(k) + ' × ' + n).join(', ')}</span></span><b>${x.pts}</b></div>`).join('') || `<p class="muted small">${t('nothing_here')}</p>`}</div>`; };
   App.pageSay = t('s_leaders');
-  return topBar(t('leaderboard'), { back: true }) + `<main class="wrap"><div class="tabs" style="position:static;padding:0 0 10px"><button class="${m === todayStr().slice(0, 7) ? 'on' : ''}" data-a="nav2" data-v="leaders|">${t('this_month')}</button><button class="${m === pm ? 'on' : ''}" data-a="nav2" data-v="leaders|${pm}">${t('last_month')}</button></div>
-    ${table('field', '🏍️')}${table('sales', '🤝')}${table('tech', '🔧')}
+  return topBar(t('leaderboard'), { back: true }) + `<main class="wrap"><div class="tabs" style="position:static;padding:0 0 10px"><button class="${wk ? 'on' : ''}" data-a="nav2" data-v="leaders|week">${t('this_week')}</button><button class="${!wk && m === todayStr().slice(0, 7) ? 'on' : ''}" data-a="nav2" data-v="leaders|">${t('this_month')}</button><button class="${m === pm ? 'on' : ''}" data-a="nav2" data-v="leaders|${pm}">${t('last_month')}</button></div>
+    ${table('field', '🏍️')}${table('sales', '🤝')}${table('tech', '🔧')}${coTable(score)}${bonusCard()}
     <div class="card"><h3>📏 ${t('lb_rules')}</h3><ul style="padding-left:20px;margin:0">${['lb_r1', 'lb_r2', 'lb_r3', 'lb_r4', 'lb_r5'].map(k => `<li>${t(k)}</li>`).join('')}</ul><p class="small muted">${t('lb_fair')}</p></div></main>` + nav('me');
 };
 
@@ -12632,7 +12947,7 @@ function openTask(n) {
     pay_dispute: () => wiz('payAnswer', null, { uid: n.uid, week: n.week }), training: () => wiz('train', null, { module: n.module }),
     onb_profile: () => wiz('wprofile', null, { uid: n.uid }), check_docs: () => go('worker', { uid: n.uid }),
     rate_work: () => wiz('rate', pid, { ref: n.ref, about: n.ref === 'handover' ? doneLead(P) : P.service[n.ref.split(':')[1]].by }), rate_crew: () => wiz('rateCrew', pid, { uid: n.uid }),
-    wait_permit: () => go('project', { pid }), wait_serial: () => go('project', { pid }), po_silent: () => go('project', { pid, tab: 'info' }), referral_reward: () => wiz('refReward', pid), soc_approvals: () => go('project', { pid, tab: 'info' }), inspection_rework: () => go('project', { pid, tab: 'info' }), serial_mismatch: () => wiz('serialFix', pid), legal_renew: () => go('worker', { uid: n.uid }),
+    wait_permit: () => go('project', { pid }), wait_serial: () => go('project', { pid }), po_silent: () => go('project', { pid, tab: 'info' }), sign_contract: () => go('contract', {}), settle_reserve: () => go('earn', { uid: n.uid }), rating_appeal: () => wiz('rateAppealDecide', null, { rid: n.rid }), referral_reward: () => wiz('refReward', pid), soc_approvals: () => go('project', { pid, tab: 'info' }), inspection_rework: () => go('project', { pid, tab: 'info' }), serial_mismatch: () => wiz('serialFix', pid), legal_renew: () => go('worker', { uid: n.uid }),
     qc_recheck: () => wiz('recheck', pid), recheck_failed: () => wiz('recheckReview', pid),
     help_newbie: () => { const x = S.users[n.uid], ph = ((S.workers[n.uid] || {}).profile || {}).phone; sheet(`<h2>🤝 ${t('tk_help_newbie')}</h2><p><b>${esc(x.name)}</b> · ${t('r_' + x.role)} · ${t('nw_stuck', { n: newStuck(x) })}</p>${ph ? `<a class="btn btn-p btn-big" href="tel:+91${esc(ph)}">📞 ${esc(ph)}</a>` : ''}${onbCard(n.uid, { short: true })}`); },
     promotion_ready: () => wiz('promote', null, { uid: n.uid }), strike_appeal: () => wiz('decide', null, { uid: n.uid, sid: n.sid }),
@@ -12716,6 +13031,9 @@ const ACT = {
   nav: v => { Voice.stop(); if (MAIN_TABS.includes(v) && App.me) { App.stack = []; W = null; App.route = { name: 'home', p: {} }; if (v === 'home') { render(); window.scrollTo(0, 0); } else go(v); } else go(v); },
   back: () => { if (!App.locked) back(); },
   sayText: v => Voice.say(v),
+  tvSave: async m => { const r = await perform('TRAINING_VIDEO_SET', null, { module: m, url: String(App.form['tv.' + m] || '').trim() }); if (r.ok) { toast(t('saved_item')); render(); } },
+  setToggle: v => { App.set[v] = !(App.set[v] !== false); saveSettings(); render(); },
+  personOpen: v => personCard(v),
   errClose: () => { App.lastErr = null; const b = $('#errbar'); if (b) b.remove(); },
   pinSec: v => { const p = Object.assign({}, App.set.pins), mine = (p[App.me.uid] || []).slice(), i = mine.indexOf(v);
     if (i >= 0) mine.splice(i, 1); else if (mine.length >= 3) return toast(t('sec_max'), true); else mine.push(v);
@@ -12936,6 +13254,7 @@ const ACT = {
   tab: v => { App.route.p.tab = v; render(); },
   pfilter: v => { App.form.pf = v; render(); },
   mfilter: v => { App.form.mf = v; render(); },
+  mrole: v => { App.form.mr = v; render(); },
   mapPin: v => { App.form.mp = v; render(); },
   gpsMap: async () => { const gp = await Geo.get(); if (!gp) toast(t('gps_fail'), true); render(); },
   drill: v => go('drill', { k: v }),
@@ -12958,8 +13277,10 @@ const ACT = {
   disc: v => { W.ctx.discountPct = Math.max(0, Math.min(60, (+W.ctx.discountPct || 0) + (+v))); W.err = null; saveDraft(); render(); },
   cam: async (v, el) => {
     const key = el.dataset.k;
-    const meta = await Cam.open({ label: v, tag: el.dataset.tag, video: !!el.dataset.video });
-    if (meta && W) { const arr = getPath(W.ctx, key) || []; arr.push(meta); setPath(W.ctx, key, arr); W.err = null; saveDraft(); render(); }
+    /* one camera session can take several photos: "use and take another" keeps the camera open */
+    const keep = m => { if (!m || !W) return; const arr = getPath(W.ctx, key) || []; arr.push(m); setPath(W.ctx, key, arr); W.err = null; saveDraft(); };
+    const meta = await Cam.open({ label: v, tag: el.dataset.tag, video: !!el.dataset.video, front: !!el.dataset.front, each: keep });
+    if (meta && W) { keep(meta); render(); } else if (W) render();
   },
   rmPhoto: (v, el) => { const arr = getPath(W.ctx, el.dataset.k); if (arr) arr.splice(+v, 1); saveDraft(); render(); },
   sign: async (v, el) => { const meta = await openSign(v); if (meta && W) { setPath(W.ctx, el.dataset.k, meta); W.err = null; saveDraft(); render(); } },
@@ -13149,7 +13470,7 @@ const ACT = {
     let n = 0;
     for (const k of RULE_GROUPS[gk]) {
       const raw = App.form['cfg.' + k]; if (raw == null || raw === '') continue;
-      const val = ['sosNumber', 'officeNumber'].includes(k) ? String(raw).replace(/[^\d+]/g, '') : TEXT_CFG.includes(k) ? String(raw).trim().replace(/\s+/g, k === 'payAcc' ? '' : ' ').replace(/^.*$/, x => k === 'payIfsc' ? x.toUpperCase() : x) : +raw; if (val === S.config[k] && !(RATE_GROUPS.includes(gk) && App.form['cfgFrom.' + gk])) continue;
+      const val = ['sosNumber', 'officeNumber'].includes(k) ? String(raw).replace(/[^\d+]/g, '') : TEXT_CFG.includes(k) ? String(raw).trim().replace(/\s+/g, k === 'payAcc' ? '' : ' ').replace(/^.*$/, x => k === 'payIfsc' ? x.toUpperCase() : x) : +raw; if (val === payCfgAt()[k] && val === S.config[k] && !(RATE_GROUPS.includes(gk) && App.form['cfgFrom.' + gk])) continue;
       const from = RATE_GROUPS.includes(gk) && App.form['cfgFrom.' + gk] && App.form['cfgFrom.' + gk] > todayStr() ? App.form['cfgFrom.' + gk] : null;
       const r = await perform('CONFIG_SET', null, Object.assign({ key: k, value: val }, from ? { from } : {})); if (!r.ok) return; n++;
     }
@@ -13284,8 +13605,10 @@ async function seedPractice() {
   await SP('PARTNER_PROFILE', null, { uid: U.partner, licNo: 'MH/LIFT/2024/1187', licHolder: 'Dattatray Kulkarni (Shree Lift Works)', licAuthority: 'Electrical Inspector, Pune', licExpiry: addDays(400), gst: '27ABCDE1234F1Z5' }, 'admin');
   await SP('PARTNER_PROFILE', null, { uid: U.partner2, licNo: 'MH/LIFT/2021/0642', licHolder: 'Om Elevator Services', licAuthority: 'Electrical Inspector, Pune', licExpiry: addDays(20) }, 'admin');
   for (const k of ['partner', 'partner2']) for (const d of REQ_DOCS.partner) await SP('DOC_VERIFIED', null, { uid: U[k], doc: d, status: 'verified' }, 'admin');
+  for (const k of ['field', 'field2', 'qc', 'supplier', 'partner', 'partner2', 'tech']) await SP('CONTRACT_ACCEPTED', null, { v: 1, consent: true, signer: userName(U[k]), ev: [ph('sign')] }, k);
   /* the installer ladder: an experienced Senior, a Helper and a Trainee (they work as crew with the lead) */
   for (const [k, name, grade] of [['senior', 'Mahesh Shinde', 'senior'], ['helper', 'Sunil Gaikwad', 'helper'], ['trainee', 'Ganesh Kale', 'trainee']]) await SP('USER_ADDED', null, { uid: U[k], name, role: 'tech', grade, company: U.partner, salt, pin }, 'owner');
+  for (const k of ['senior', 'helper', 'trainee']) await SP('CONTRACT_ACCEPTED', null, { v: 1, consent: true, signer: userName(U[k]), ev: [ph('sign')] }, k);
   const CREW = { 'AIEC-P001': ['helper', 'trainee'], 'AIEC-P002': ['trainee'], 'AIEC-P003': ['helper'] };
   const payStep = (P, purpose) => { const p = activePay(P, purpose); return !p ? ['sales', 'PAYMENT_RECORDED', { payId: 'PAY-' + rid(6), purpose, amount: P.schedule[purpose], method: 'upi', ref: 'UPI' + rid(8) }] : ['finance', 'PAYMENT_STATUS', { payId: p.id, status: 'confirmed', ref: 'BANK-' + rid(6) }]; };
   const AUTO = {

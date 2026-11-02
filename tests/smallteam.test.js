@@ -84,6 +84,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   for (let guard = 0; guard < 40; guard++) {
     const n = await page.evaluate(p => needs(S.projects[p]).map(x => x.k), pid);
     if (n.includes('peer_check')) { const st = await ev(`peerWaiting(S.projects["${pid}"])[0]`); await step('peer_check', 'PSENIOR', 'PEER_CHECKED', { step: st, ok: true }); continue; }
+    /* new deals pay 20% for the custom cabin before the cabin step (70/20/10) */
+    if (await ev(`(d => !!d && d.purpose === 'cabin' && !activePay(S.projects["${pid}"], 'cabin'))(payDue(S.projects["${pid}"]))`)) { await step('pay_now', 'SCUST', 'PAYMENT_RECORDED', { payId: 'PAY-CAB-S', purpose: 'cabin', amount: await ev(`payDue(S.projects["${pid}"]).amount`), method: 'bank', ref: 'NEFT-S3' }); await step('verify_payment', 'POWNER', 'PAYMENT_STATUS', { payId: 'PAY-CAB-S', status: 'confirmed', ref: 'BANK-STMT-3' }); continue; }
     if (await ev(`sopNext(S.projects["${pid}"]) >= SOP.length`)) break;
     await step('install', tech, 'SOP_STEP_DONE', { step: await ev(`sopNext(S.projects["${pid}"])`), isc: await ev(`iscYes(sopNext(S.projects["${pid}"]))`), ev: await ph(1) });
   }

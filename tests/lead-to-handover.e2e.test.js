@@ -247,10 +247,18 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   /* --- 9. daily safety check (4 photos), then installation SOP, one blocker on the way --- */
   await startTask('site_checkin'); await W8(900); await shot('site_checkin'); await next(); await doneOk('checked in');
   await startTask('safety_check');
-  for (const k of ['ppe', 'scaffold', 'barricade', 'earthing']) await photo('s_' + k);
+  for (const k of ['ppe', 'scaffold', 'barricade', 'earthing', 'selfie']) await photo('s_' + k);
   await next(); await tap(page, '[data-a="toggle"][data-k="ok"]'); await next(); await doneOk('safety check');
   await startTask('install'); await shot('sop_list');
   for (let i = 0; i < 12; i++) {
+    /* deals won from now on pay 20% for the custom cabin before the cabin step (70/20/10): Sales records it, Finance confirms */
+    if (i === 5 && await page.evaluate(p => !!(S.projects[p].schedule || {}).cabin && !payConfirmed(S.projects[p], 'cabin'), pid)) {
+      const ok = await page.evaluate(async p => { const P = S.projects[p], sales = P.sales, fin = Object.values(S.users).find(u => u.role === 'finance' && u.active).uid, payId = 'PAY-CAB-E2E';
+        const a = await perform('PAYMENT_RECORDED', p, { payId, purpose: 'cabin', amount: P.schedule.cabin, method: 'upi', ref: 'UPI55667788' }, { as: sales, quiet: true });
+        const b = await perform('PAYMENT_STATUS', p, { payId, status: 'confirmed', ref: 'BANK-CAB' }, { as: fin, quiet: true }); render(); return a.ok && b.ok; }, pid);
+      assert(ok, 'the 20% cabin payment is recorded and confirmed before the cabin step');
+      await login('Tara Tech'); await startTask('install');
+    }
     if (i === 3) {
       await tap(page, `[data-a="clItem"][data-v="sop|${i}"]`, { wait: 250 });
       await tap(page, '[data-a="raiseBlocker"]', { wait: 250 }); await pick('reason', 'material'); await next(); await next(); await next(); await doneOk('blocker');

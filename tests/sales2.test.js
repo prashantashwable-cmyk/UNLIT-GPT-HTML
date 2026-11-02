@@ -45,7 +45,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const H = 'AIEC-P003';
   await page.evaluate(H => { S.projects[H].schedule.cabin = 50000; }, H);
   await act('SITE_CHECKED_IN', H, { day: await ev('safeDay()'), gps: await ev(`S.projects["${H}"].site.gps`) }, 'PSENIOR');
-  await act('SAFETY_CHECKED', H, { ev: await photos(4, 'safe') }, 'PSENIOR');
+  await act('SAFETY_CHECKED', H, { ev: await ev(`SAFETY_ITEMS.map(([k]) => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'safe_' + k, t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }))`) }, 'PSENIOR');
   assert(await ev(`sopNext(S.projects["${H}"])`) === 5 && (await act('SOP_STEP_DONE', H, { step: 5, isc: await ev('iscYes(5)'), ev: await photos(1) }, 'PSENIOR')).err === 'err_payment_gate', 'the cabin step waits for the cabin payment');
   assert(await ev('myWaits(S.users.PSENIOR).some(n => n.k === "wait_cabin_pay")'), 'the technician sees "waiting for the cabin payment" (as information)');
   assert((await act('PAYMENT_RECORDED', H, { purpose: 'cabin', amount: 49000, method: 'upi', ref: 'UPI1' }, 'PSALES')).err === 'err_amount', 'the cabin payment must match the plan');

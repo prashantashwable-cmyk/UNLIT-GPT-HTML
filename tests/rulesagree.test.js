@@ -10,7 +10,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
     const GATE = ['err_role', 'err_access', 'err_stage', 'err_no_project'];
     /* here the answer depends on what is filled in (which payment, whose pay, which crew member, which incident type),
        so the button shows and the rule decides on the details */
-    const DATA = { INCIDENT_RAISED: 'err_stage', STAGE_BACK: 'err_stage', PAY_DISPUTED: 'err_access', PAYMENT_RECORDED: 'err_stage', CUSTOMER_RATED: 'err_access', CREW_RATED: 'err_access', LEAD_CREATED: 'err_access' };
+    const DATA = { INCIDENT_RAISED: 'err_stage', STAGE_BACK: 'err_stage', PAY_DISPUTED: 'err_access', PAYMENT_RECORDED: 'err_stage', CUSTOMER_RATED: 'err_access', CREW_RATED: 'err_access', LEAD_CREATED: 'err_access', RATING_APPEALED: 'err_access' };
     const people = []; const seen = new Set();
     for (const u of Object.values(S.users)) if (u.active && !seen.has(u.role)) { seen.add(u.role); people.push(u); }
     const projects = Object.values(S.projects), bad = []; let n = 0;

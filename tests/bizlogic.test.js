@@ -70,8 +70,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
     INSPECTION_REQUESTED: 1, SERVICE_DONE: 1, PEER_CHECKED: 1, QC_RECHECK_DONE: 1, CREW_RATED: 1, SAFETY_COUNTERSIGNED: 1,
     /* outside parties act for themselves */
     PO_ACCEPTED: 1, PO_DECLINED: 1, DISPATCHED: 1, CLAIM_SENT: 1, SUPPLIER_INVOICE: 1, JOB_APPLIED: 1, JOB_WITHDRAWN: 1, LEAD_EDITED: 1, MATERIAL_RECEIPT_SIGNED: 1,
-    /* a person's own complaint about their own pay */
-    PAY_DISPUTED: 1
+    /* a person's own acts: a complaint about their own pay, accepting their own contract, appealing their own rating */
+    PAY_DISPUTED: 1, CONTRACT_ACCEPTED: 1, RATING_APPEALED: 1
   };
   const cov = await page.evaluate(D => { const keep = {}; for (const u of Object.values(S.users)) { keep[u.uid] = u.active; if (u.role !== 'owner') u.active = false; }
     const o = Object.values(S.users).find(u => u.role === 'owner'), no = [];

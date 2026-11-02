@@ -9,7 +9,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   });
   await page.evaluate(() => enterPractice()); await page.waitForTimeout(4500);
   /* this test is about the ladder itself: count every day (working days are tested in bizlogic) */
-  await page.evaluate(() => { S.config.sundayWork = 1; });
+  await page.evaluate(async () => { await perform('CONFIG_SET', null, { key: 'sundayWork', value: 1 }, { as: 'POWNER', quiet: true }); });
   /* a lead added on another phone (arrives without ringing the sender's own check) */
   await page.evaluate(() => { const ph = () => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'building', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} });
     window.__lead = pid => perform('LEAD_CREATED', pid, { safe: true, ev: [ph(), ph()], gps: { lat: 18.5, lng: 73.8, acc: 10 }, address: 'Test road', landmark: '', name: 'Mr. ' + pid, phone: '9822001234', shaft: 'yes', floors: 4 }, { as: 'PFIELD', noSave: true, quiet: true }); });
