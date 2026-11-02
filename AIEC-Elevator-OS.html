@@ -3284,8 +3284,8 @@ const L = {
   screen_size: ['Screen size', 'स्क्रीन का आकार', 'स्क्रीनचा आकार'],
   screen_size_d: ['Makes everything on the screen smaller or bigger (20% to 150%).', 'स्क्रीन पर सब कुछ छोटा या बड़ा करता है (20% से 150%)।', 'स्क्रीनवरील सर्व काही लहान किंवा मोठे करते (20% ते 150%).'],
   size_s: ['Small', 'छोटा', 'लहान'],
-  scale_small: ['Very small screens are hard to read and tap. Press the red ↺ 100% button at any time to go back.', 'बहुत छोटी स्क्रीन पढ़ने और दबाने में कठिन है। वापस जाने के लिए कभी भी लाल ↺ 100% बटन दबाएँ।', 'खूप लहान स्क्रीन वाचायला आणि दाबायला कठीण असते. परत जाण्यासाठी कधीही लाल ↺ 100% बटण दाबा.'],
-  scale_reset: ['Reset screen size to 100%', 'स्क्रीन आकार 100% करें', 'स्क्रीन आकार 100% करा'],
+  scale_small: ['Very small screens are hard to read and tap. Press the red ↺ 75% button at any time to go back.', 'बहुत छोटी स्क्रीन पढ़ने और दबाने में कठिन है। वापस जाने के लिए कभी भी लाल ↺ 75% बटन दबाएँ।', 'खूप लहान स्क्रीन वाचायला आणि दाबायला कठीण असते. परत जाण्यासाठी कधीही लाल ↺ 75% बटण दाबा.'],
+  scale_reset: ['Reset screen size to 75%', 'स्क्रीन आकार 75% करें', 'स्क्रीन आकार 75% करा'],
 
   /* ---------- WhatsApp templates + message log ---------- */
   templates: ['WhatsApp messages', 'व्हाट्सएप संदेश', 'व्हॉट्सॲप संदेश'],
@@ -5475,7 +5475,8 @@ function contractCard(uid) {
     <button class="btn btn-sm" style="margin-top:6px" data-a="nav2" data-v="contract|${uid}">📄 ${t('open')}</button></div>`;
 }
 const contractText = () => `<h2>📝 ${t('ct_title')}</h2><p class="small">${t('ct_version', { v: S.config.agreeVersion })} · ${esc(S.org ? S.org.name : '')}</p><ol style="padding-left:20px">${[1, 2, 3, 4, 5, 6, 7, 8].map(i => `<li style="margin:6px 0">${t('ct_p' + i)}</li>`).join('')}</ol><p class="small" style="color:var(--warn)">⚖️ ${t('ct_legal')}</p>`;
-function weeksFor(uid) {
+function weeksFor(uid) { return drawMemo('weeks', uid, () => weeksFor0(uid)); }
+function weeksFor0(uid) {
   const g = {};
   for (const e of payLines(uid)) { const k = weekKey(e.t); (g[k] = g[k] || { week: k, lines: [], total: 0 }).lines.push(e); g[k].total += e.amount; }
   Object.values(S.pay).filter(p => p.uid === uid && !g[p.week]).forEach(p => { g[p.week] = { week: p.week, lines: [], total: 0 }; });
@@ -7202,7 +7203,18 @@ function splitOA(n) {
   return n;
 }
 /* ---------- what must happen next (single task engine) ---------- */
-function needs(P) {
+/* While one screen is being drawn, the same lists (a job's needs, a person's tasks, pay weeks) are asked for many times;
+   they are worked out once per drawing. Outside a drawing nothing is kept, so a change is always seen at once. */
+let DRAW_MEMO = null;
+function drawMemo(name, key, fn) {
+  if (!DRAW_MEMO) return fn();
+  const k = name + '|' + key;
+  if (!DRAW_MEMO.has(k)) DRAW_MEMO.set(k, fn());
+  const v = DRAW_MEMO.get(k);
+  return Array.isArray(v) ? v.slice() : v;
+}
+function needs(P) { return P && P.id ? drawMemo('needs', P.id, () => needs0(P)) : needs0(P); }
+function needs0(P) {
   const out = [], add = (k, roles, o = {}) => out.push(splitOA(Object.assign({ k, roles, pid: P.id }, o)));
   const payNeed = purpose => {
     const p = activePay(P, purpose);
@@ -7349,7 +7361,8 @@ function coverTasks(P, out) {
   }
 }
 /* work that is not tied to one project: second approvals, pay, training */
-function globalNeeds(u, all) {
+function globalNeeds(u, all) { return drawMemo('global', (u && u.uid) + '|' + !!all, () => globalNeeds0(u, all)); }
+function globalNeeds0(u, all) {
   const out = [], add = (k, roles, o = {}) => { const n = splitOA(Object.assign({ k, roles, pid: null }, o)); out.push(n); return n; };
   /* unusual looking at customer and project pages by an outside company or its people */
   for (const x of Object.values(S.users).filter(y => OUTSIDERS.includes(y.role))) { const a = accessAlert(x.uid); if (a) add('access_alert', ['admin', 'owner'], { uid: x.uid, why: a.why, n: a.n, urgent: true }); }
@@ -7449,7 +7462,8 @@ function visibleProjects(u) { return S.order.map(id => S.projects[id]).filter(P 
 const WAIT_TASKS = ['wait_peer', 'wait_permit', 'wait_serial', 'wait_cabin_pay'];
 /* things a person is waiting for (shown as information, never counted as their work) */
 function myWaits(u) { const out = []; for (const P of visibleProjects(u)) for (const n of needs(P)) if (n.info && isMine(n, u)) out.push(n); return out; }
-function myTasks(u) {
+function myTasks(u) { return drawMemo('tasks', u && u.uid, () => myTasks0(u)); }
+function myTasks0(u) {
   const out = [];
   for (const P of visibleProjects(u)) for (const n of needs(P)) if (!n.info && isMine(n, u)) out.push(n);
   out.push(...globalNeeds(u));
@@ -7677,8 +7691,9 @@ function isInstalled() {
   return mm('(display-mode: standalone)') || mm('(display-mode: fullscreen)') || mm('(display-mode: minimal-ui)') || navigator.standalone === true || document.referrer.startsWith('android-app://') || inAndroidApp();
 }
 const installGate = () => App.mode === 'real' && !isInstalled() && !App.set.devNoInstallGate;
-/* screen scale 20%–150%: zooms the whole page; below 60% a normal-size reset button stays on screen */
-const getScale = () => Math.max(20, Math.min(150, Math.round(+App.set.scale || 100)));
+/* screen scale 20%–150%, 75% unless the person chose another size: zooms the whole page; below 60% a reset button stays on screen */
+const SCALE_DEFAULT = 75;
+const getScale = () => Math.max(20, Math.min(150, Math.round(+App.set.scale || SCALE_DEFAULT)));
 const THEMES = [['auto', '🌗'], ['light', '☀️'], ['color', '🌈'], ['dark', '🌙'], ['contrast', '🔲']];
 /* full screen: the phone allows it only after a tap, so the first tap of each start asks for it (when switched on) */
 function wantFull() { return App.set.fullscreen !== false && isInstalled(); }
@@ -7692,7 +7707,7 @@ function applyScale() {
   const z = getScale(), root = document.documentElement;
   root.style.zoom = z / 100; root.style.setProperty('--z', z / 100);
   let b = document.getElementById('scaleReset');
-  if (z < 60) { if (!b) { b = document.createElement('button'); b.id = 'scaleReset'; b.className = 'scale-reset'; b.dataset.a = 'scaleSet'; b.dataset.v = '100'; document.body.appendChild(b); } b.textContent = '↺ 100%'; b.setAttribute('aria-label', t('scale_reset')); }
+  if (z < 60) { if (!b) { b = document.createElement('button'); b.id = 'scaleReset'; b.className = 'scale-reset'; b.dataset.a = 'scaleSet'; b.dataset.v = String(SCALE_DEFAULT); document.body.appendChild(b); } b.textContent = '↺ ' + SCALE_DEFAULT + '%'; b.setAttribute('aria-label', t('scale_reset')); }
   else if (b) b.remove();
 }
 function setScale(z) { App.set.scale = Math.max(20, Math.min(150, z)); applyScale(); saveSettings(); render(); }
@@ -7701,8 +7716,10 @@ function render() {
   App.pageSay = ''; App.pageHelp = '';
   let h;
   const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr', 'splash', 'gate', 'door', 'enquiry', 'joinReq', 'reqSent', 'codeLogin', 'restore', 'myReq'].includes(r.name) && !(r.name === 'wiz' && !App.me);
+  const outer = !DRAW_MEMO; if (outer) DRAW_MEMO = new Map();
   try { h = gated ? SCREENS.install() : (SCREENS[r.name] || SCREENS.home)(r.p || {}); }
   catch (e) { console.error(e); h = `<main class="wrap"><div class="err">⚠️ ${esc(e.message)}</div><button class="btn btn-p" data-a="nav" data-v="home">🏠 ${t('nav_home')}</button></main>`; }
+  if (outer) DRAW_MEMO = null;
   const banner = App.mode === 'practice' ? `<div class="practice">🎓 ${t('practice_banner')}</div>` : '';
   const sos = App.me && SOS_ROLES.includes(App.me.role) && !App.locked && !gated && S.org ? `<button id="sosBtn" class="sos noprint" aria-label="SOS">🆘<small>${t('sos_hold_short')}</small></button>` : '';
   const guard = !!(App.me && (OUTSIDERS.includes(App.me.role) || App.me.role === 'customer' && r.name === 'drawings') && S.org);
@@ -11178,8 +11195,8 @@ SCREENS.me = () => {
     <div class="card"><h3>🔍 ${t('screen_size')}</h3><p class="small muted" style="margin:0 0 6px">${t('screen_size_d')}</p>
       <div class="stepper"><button data-a="scaleStep" data-v="-10" aria-label="−10%">−</button><output class="scale-out" id="scaleOut">${getScale()}%</output><button data-a="scaleStep" data-v="10" aria-label="+10%">+</button></div>
       <label class="sr" for="f_scale">${t('screen_size')}</label><input class="scale" type="range" id="f_scale" min="20" max="150" step="5" value="${getScale()}">
-      <div class="row small muted" style="justify-content:space-between"><span>20%</span><span>100%</span><span>150%</span></div>
-      <div class="tiles three" style="margin-top:8px">${[[80, 'size_s'], [100, 'size_n'], [130, 'size_xl']].map(([z, l]) => `<button class="tile ${getScale() === z ? 'on' : ''}" data-a="scaleSet" data-v="${z}" style="min-height:64px">${t(l)}<small>${z}%</small></button>`).join('')}</div>
+      <div class="row small muted" style="justify-content:space-between"><span>20%</span><span>${SCALE_DEFAULT}%</span><span>150%</span></div>
+      <div class="tiles three" style="margin-top:8px">${[[SCALE_DEFAULT, 'size_n'], [100, 'size_l'], [130, 'size_xl']].map(([z, l]) => `<button class="tile ${getScale() === z ? 'on' : ''}" data-a="scaleSet" data-v="${z}" style="min-height:64px">${t(l)}<small>${z}%</small></button>`).join('')}</div>
       ${getScale() < 60 ? `<div class="warnbox">⚠️ ${t('scale_small')}</div>` : ''}</div>
     <div class="card"><h3>⛶ ${t('fs_title')}</h3>${toggleSet('fullscreen', 'fs_on', App.set.fullscreen !== false)}<p class="small muted">${t('fs_note')}</p></div>
     <div class="card"><h3>🎨 ${t('theme')}</h3><div class="tiles">${THEMES.map(([k, i]) => `<button class="tile ${(App.set.theme || 'auto') === k ? 'on' : ''}" data-a="setTheme" data-v="${k}" style="min-height:64px"><span class="i">${i}</span>${t('th_' + k)}</button>`).join('')}</div></div>
