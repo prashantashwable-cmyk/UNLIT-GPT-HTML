@@ -13,7 +13,7 @@ What the Android app adds to the web app:
 ## 1. Get the APK (no computer setup needed)
 1. Open the repository on GitHub → **Actions** → **android**.
 2. Open the newest green run → at the bottom, **Artifacts** → **AIEC-Elevator-OS-apk** → download.
-3. Unzip it: inside is `AIEC-Elevator-OS-debug.apk`.
+3. Unzip it: inside are `AIEC-Elevator-OS.apk` and `INSTALL.txt`.
 4. To build again at any time: **Actions → android → Run workflow**.
 
 ## 2. Install it on a phone
@@ -21,7 +21,17 @@ What the Android app adds to the web app:
 2. Open it. Android asks to allow "Install unknown apps" for that app → allow → **Install**.
 3. Open **AIEC Elevator OS**. Allow Camera, Location and Microphone when asked.
 
-This "debug" APK is for testing and for giving to your own team. For the Play Store use step 3.
+### If it says "App not installed"
+1. **An older AIEC app is already on the phone** (the usual cause). Builds before number 4 were each signed with a different
+   key, so Android refuses to replace them. Uninstall the old one once: **Settings → Apps → AIEC Elevator OS → Uninstall**,
+   then install again. From now on every build is signed with the same key (`aiec-test.jks`) and installs over the last one.
+2. **The .zip was opened instead of the .apk.** Unzip first, then tap `AIEC-Elevator-OS.apk`.
+3. **Play Protect blocked it** → **More details → Install anyway**.
+4. **The download was cut off or the phone is full** → download again; keep at least 100 MB free.
+5. A Play Store copy and a GitHub copy cannot replace each other (different keys): uninstall one before installing the other.
+
+This APK is for testing and for giving to your own team. Its key `android/aiec-test.jks` (password `aiectest`) is public
+in this repository on purpose — never use it for the Play Store. For the Play Store use step 3.
 
 ## 3. Play Store (signed)
 1. Make your company signing key once (keep it safe — losing it means you can never update the app):
@@ -39,3 +49,4 @@ This "debug" APK is for testing and for giving to your own team. For the Play St
 - Alarms (trapped person, escalations) still ring only while the app is open or recently used. Ringing a closed phone needs Firebase Cloud Messaging plus the company server sending pushes.
 - Screenshots are not blocked yet (`FLAG_SECURE`); the web app's name watermark still applies for outside companies.
 - The very first open needs the internet; after that the app works offline as before.
+- Each build's number is the GitHub run number (shown as version `1.0.N` in Settings → Apps).

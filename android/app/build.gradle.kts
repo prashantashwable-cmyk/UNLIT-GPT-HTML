@@ -11,15 +11,27 @@ android {
         applicationId = "com.allindiaelevators.os"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        /* every GitHub build is newer than the last, so it installs over it */
+        val run = (System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInt()
+        versionCode = run
+        versionName = "1.0.$run"
     }
 
-    /* a signed release is made only when the keystore is given (GitHub secrets or local environment) */
+    /* One fixed TEST key (android/aiec-test.jks, committed on purpose) signs every test build, so a new build always
+       installs over the old one. It is NOT the Play Store key: that one comes only from GitHub secrets / environment. */
     val ks = System.getenv("AIEC_KEYSTORE")
     signingConfigs {
+        create("aiecTest") {
+            storeFile = rootProject.file("aiec-test.jks")
+            storePassword = "aiectest"
+            keyAlias = "aiec-test"
+            keyPassword = "aiectest"
+            enableV1Signing = true
+            enableV2Signing = true
+            enableV3Signing = true
+        }
         if (ks != null && file(ks).exists()) {
-            create("release") {
+            create("store") {
                 storeFile = file(ks)
                 storePassword = System.getenv("AIEC_KEYSTORE_PASSWORD")
                 keyAlias = System.getenv("AIEC_KEY_ALIAS")
@@ -29,9 +41,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("aiecTest")
+        }
         release {
             isMinifyEnabled = false
-            signingConfigs.findByName("release")?.let { signingConfig = it }
+            signingConfig = signingConfigs.findByName("store") ?: signingConfigs.getByName("aiecTest")
         }
     }
 

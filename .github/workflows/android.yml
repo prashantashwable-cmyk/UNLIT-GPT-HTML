@@ -1,6 +1,6 @@
 name: android
 # Builds the Android app (APK) on every change to the android/ folder, and on demand (Actions → android → Run workflow).
-# Download it from the run page: Artifacts → AIEC-Elevator-OS-apk.
+# Download it from the run page: Artifacts → AIEC-Elevator-OS-apk (unzip, then install AIEC-Elevator-OS.apk).
 on:
   push:
     paths:
@@ -24,15 +24,48 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-      - name: Build the test APK
+      # signed with the fixed test key (android/aiec-test.jks), so every new build installs over the previous one
+      - name: Build the APK
         working-directory: android
-        run: gradle assembleDebug --no-daemon
-      - name: Name it
-        run: cp android/app/build/outputs/apk/debug/app-debug.apk AIEC-Elevator-OS-debug.apk
+        run: gradle assembleRelease --no-daemon
+      - name: Check the signature (a bad APK fails here, not on the phone)
+        run: |
+          cp android/app/build/outputs/apk/release/app-release.apk AIEC-Elevator-OS.apk
+          SIGNER=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)/apksigner
+          "$SIGNER" verify --verbose --print-certs AIEC-Elevator-OS.apk | grep -E "Verified using|Signer #1 certificate SHA-256|Number of signers"
+          ls -l AIEC-Elevator-OS.apk
+      - name: Install note
+        run: |
+          cat > INSTALL.txt <<'TXT'
+          AIEC Elevator OS - Android app (build ${{ github.run_number }})
+
+          English
+          1. Unzip the downloaded file first. Install AIEC-Elevator-OS.apk (not the .zip).
+          2. If an older AIEC app is on the phone and it says "App not installed": uninstall the old app once
+             (Settings > Apps > AIEC Elevator OS > Uninstall), then install again. Later builds install over this one.
+          3. Allow "Install unknown apps" when asked. If Play Protect warns: More details > Install anyway.
+          4. Keep at least 100 MB free.
+
+          हिंदी
+          1. पहले डाउनलोड की गई फ़ाइल को अनज़िप करें। AIEC-Elevator-OS.apk इंस्टॉल करें (.zip नहीं)।
+          2. "App not installed" आए तो पुराना AIEC ऐप एक बार हटाएँ (Settings > Apps > AIEC Elevator OS > Uninstall), फिर दोबारा इंस्टॉल करें।
+          3. "Install unknown apps" की अनुमति दें। Play Protect चेतावनी दे तो: More details > Install anyway.
+          4. फ़ोन में कम से कम 100 MB जगह रखें।
+
+          मराठी
+          1. आधी डाउनलोड केलेली फाइल अनझिप करा. AIEC-Elevator-OS.apk इन्स्टॉल करा (.zip नाही).
+          2. "App not installed" आल्यास जुने AIEC ॲप एकदा काढा (Settings > Apps > AIEC Elevator OS > Uninstall), मग पुन्हा इन्स्टॉल करा.
+          3. "Install unknown apps" ला परवानगी द्या. Play Protect ने इशारा दिल्यास: More details > Install anyway.
+          4. फोनमध्ये किमान 100 MB जागा ठेवा.
+          TXT
+          sed -i 's/^          //' INSTALL.txt
       - uses: actions/upload-artifact@v4
         with:
           name: AIEC-Elevator-OS-apk
-          path: AIEC-Elevator-OS-debug.apk
+          path: |
+            AIEC-Elevator-OS.apk
+            INSTALL.txt
+
       # a signed Play Store build, only when the company's signing key is added as secrets
       - name: Signed release (Play Store)
         if: env.HAS_KEY == 'true'
