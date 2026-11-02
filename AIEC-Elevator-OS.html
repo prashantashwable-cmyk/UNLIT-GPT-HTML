@@ -7667,9 +7667,14 @@ window.addEventListener('popstate', () => {
 });
 /* real company use only inside the installed app; practice mode works anywhere */
 const APP_URL = 'https://prashantashwable-cmyk.github.io/UNLIT-GPT-HTML/';
+/* inside the AIEC Android app (a WebView wrapper): it counts as installed, and files and printing go through the app */
+const inAndroidApp = () => /AIECAndroid\//.test(navigator.userAgent || '') && !!window.AIECAndroid;
+function androidSave(blob, name, type) {
+  return new Promise(res => { const r = new FileReader(); r.onload = () => { try { window.AIECAndroid.saveFile(name, type || blob.type || 'application/octet-stream', String(r.result).split(',')[1] || ''); res(true); } catch (e) { res(false); } }; r.onerror = () => res(false); r.readAsDataURL(blob); });
+}
 function isInstalled() {
   const mm = q => window.matchMedia && window.matchMedia(q).matches;
-  return mm('(display-mode: standalone)') || mm('(display-mode: fullscreen)') || mm('(display-mode: minimal-ui)') || navigator.standalone === true || document.referrer.startsWith('android-app://');
+  return mm('(display-mode: standalone)') || mm('(display-mode: fullscreen)') || mm('(display-mode: minimal-ui)') || navigator.standalone === true || document.referrer.startsWith('android-app://') || inAndroidApp();
 }
 const installGate = () => App.mode === 'real' && !isInstalled() && !App.set.devNoInstallGate;
 /* screen scale 20%–150%: zooms the whole page; below 60% a normal-size reset button stays on screen */
@@ -11594,6 +11599,7 @@ function exportPack(kind, forUid, opts = {}) {
 /* share the file (or download it); false when the person cancelled */
 async function saveFile(name, pack) {
   const blob = new Blob([JSON.stringify(pack)], { type: 'application/json' });
+  if (inAndroidApp()) return androidSave(blob, name, 'application/json');
   let shared = false;
   try {
     const file = new File([blob], name, { type: 'application/json' });
@@ -12183,6 +12189,7 @@ function csvRows(kind) {
 }
 async function saveText(name, text, type) {
   const blob = new Blob([text], { type });
+  if (inAndroidApp()) return androidSave(blob, name, type);
   try { const f = new File([blob], name, { type }); if (navigator.canShare && navigator.canShare({ files: [f] })) { await navigator.share({ files: [f], title: name }); return true; } } catch (e) { if (e && e.name === 'AbortError') return false; }
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000); return true;
 }
@@ -13397,7 +13404,7 @@ const ACT = {
     const ok = data && await sha256(data) === e.hash;
     $('#vres').innerHTML = ok ? `<div class="okbox">✅ ${t('unchanged_ok')}</div>` : `<div class="err">⚠️ ${t('unchanged_bad')}</div>`;
   },
-  print: () => { if (App.me && OUTSIDERS.includes(App.me.role)) { toast(t('print_blocked'), true); logAccess('print', App.route.name, true); return; } window.print(); },
+  print: () => { if (App.me && OUTSIDERS.includes(App.me.role)) { toast(t('print_blocked'), true); logAccess('print', App.route.name, true); return; } if (inAndroidApp() && window.AIECAndroid.print) window.AIECAndroid.print(document.title); else window.print(); },
   payReverse: v => wiz('payreverse', pidHere(), { payId: v }),
   /* chat */
   chatKind: v => { App.form.ck = v; App.form.cto = null; render(); },

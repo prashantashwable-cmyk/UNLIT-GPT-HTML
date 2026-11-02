@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AIEC Elevator OS</string>
+    <string name="offline_title">No internet</string>
+    <string name="offline_text">The app needs the internet the first time it opens. After that it works offline. Turn on mobile data or Wi-Fi and try again.</string>
+    <string name="retry">Try again</string>
+    <string name="saved">Saved in Downloads: %1$s</string>
+    <string name="save_failed">Could not save the file</string>
+    <string name="no_app">No app on this phone can open this</string>
+    <string name="press_again">Press back again to close the app</string>
+    <string name="perm_needed">Allow this in phone Settings → Apps → AIEC Elevator OS → Permissions</string>
+</resources>

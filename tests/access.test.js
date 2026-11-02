@@ -18,6 +18,16 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(/^H1:/.test(f), 'after moving to a screen, focus is on its title: ' + f);
   const x = await page.evaluate(() => hx`<b>${'<img src=x onerror=alert(1)> Patil & Sons'}</b>${raw('<i>ok</i>')}${['<u>1</u>']}`);
   assert(x === '<b>&lt;img src=x onerror=alert(1)&gt; Patil &amp; Sons</b><i>ok</i><u>1</u>', 'hx`` escapes every value unless marked raw: ' + x);
+  /* inside the Android app: counts as installed; files and printing go to the phone */
+  const an = await page.evaluate(async () => {
+    const before = isInstalled(); const calls = [];
+    Object.defineProperty(navigator, 'userAgent', { value: navigator.userAgent + ' AIECAndroid/1.0', configurable: true });
+    window.AIECAndroid = { saveFile: (n, m, b) => calls.push(['save', n, m, atob(b)]), print: tt => calls.push(['print', tt]) };
+    const after = isInstalled(); await saveText('test.json', '{"a":1}', 'application/json'); loginAs(S.users.PADMIN); ACT.print();
+    delete window.AIECAndroid; return { before, after, calls };
+  });
+  assert(!an.before && an.after, 'inside the Android app the web app counts as installed (no install prompt)');
+  assert(an.calls.some(c => c[0] === 'save' && c[1] === 'test.json' && c[3] === '{"a":1}') && an.calls.some(c => c[0] === 'print'), 'files are saved and pages printed through the Android app');
   const errs = errors.filter(e => !/net::|Failed to fetch|ERR_|nominatim|CORS policy/.test(e)); assert(!errs.length, 'no page errors' + (errs.length ? ': ' + errs.slice(0, 2).join(' | ') : ''));
   await browser.close(); console.log('ACCESS PASSED');
 })().catch(e => { console.error('FAILED', e.message); process.exit(1); });

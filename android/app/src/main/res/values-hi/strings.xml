@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AIEC Elevator OS</string>
+    <string name="offline_title">इंटरनेट नहीं है</string>
+    <string name="offline_text">पहली बार खुलने पर ऐप को इंटरनेट चाहिए। उसके बाद यह बिना इंटरनेट भी चलता है। मोबाइल डेटा या Wi-Fi चालू करके फिर कोशिश करें।</string>
+    <string name="retry">फिर कोशिश करें</string>
+    <string name="saved">Downloads में सेव हुआ: %1$s</string>
+    <string name="save_failed">फ़ाइल सेव नहीं हो सकी</string>
+    <string name="no_app">इस फ़ोन पर इसे खोलने वाला ऐप नहीं है</string>
+    <string name="press_again">ऐप बंद करने के लिए फिर से back दबाएँ</string>
+    <string name="perm_needed">फ़ोन Settings → Apps → AIEC Elevator OS → Permissions में अनुमति दें</string>
+</resources>

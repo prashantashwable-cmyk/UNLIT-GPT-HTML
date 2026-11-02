@@ -1,0 +1,41 @@
+# AIEC Elevator OS — Android app
+
+The Android app is the same AIEC Elevator OS, opened full screen inside the phone app. Every update pushed to GitHub reaches every phone by itself; a new APK is needed only when this `android/` folder changes.
+
+What the Android app adds to the web app:
+- camera, microphone and GPS permissions (asked the first time they are needed);
+- phone, WhatsApp, SMS, e-mail and Google Maps links open in their own apps;
+- backup and company files are saved to **Downloads**; "Open file" works;
+- **Print** makes a PDF (quotes, certificates, safety logs);
+- the back button goes back inside the app (press twice on the first page to close);
+- full screen, Marathi / Hindi / English messages, a retry screen when there is no internet on the very first open.
+
+## 1. Get the APK (no computer setup needed)
+1. Open the repository on GitHub → **Actions** → **android**.
+2. Open the newest green run → at the bottom, **Artifacts** → **AIEC-Elevator-OS-apk** → download.
+3. Unzip it: inside is `AIEC-Elevator-OS-debug.apk`.
+4. To build again at any time: **Actions → android → Run workflow**.
+
+## 2. Install it on a phone
+1. Send the APK to the phone (WhatsApp to yourself, Google Drive or a cable).
+2. Open it. Android asks to allow "Install unknown apps" for that app → allow → **Install**.
+3. Open **AIEC Elevator OS**. Allow Camera, Location and Microphone when asked.
+
+This "debug" APK is for testing and for giving to your own team. For the Play Store use step 3.
+
+## 3. Play Store (signed)
+1. Make your company signing key once (keep it safe — losing it means you can never update the app):
+   `keytool -genkeypair -v -keystore aiec.jks -alias aiec -keyalg RSA -keysize 2048 -validity 10000`
+2. On GitHub: **Settings → Secrets and variables → Actions → New repository secret**, add:
+   - `AIEC_KEYSTORE_B64` = the file made Base64 (`base64 -w0 aiec.jks`)
+   - `AIEC_KEYSTORE_PASSWORD`, `AIEC_KEY_ALIAS` (`aiec`), `AIEC_KEY_PASSWORD`
+3. Run **Actions → android → Run workflow**. Download **AIEC-Elevator-OS-playstore** → upload the `.aab` file in Google Play Console (one-time $25 developer account).
+4. Package name (permanent): `com.allindiaelevators.os`.
+
+## 4. Open in Android Studio (optional)
+**File → Open** → choose this `android` folder → wait for Gradle → **Build → Build APK(s)**.
+
+## Honest limits (need native work later)
+- Alarms (trapped person, escalations) still ring only while the app is open or recently used. Ringing a closed phone needs Firebase Cloud Messaging plus the company server sending pushes.
+- Screenshots are not blocked yet (`FLAG_SECURE`); the web app's name watermark still applies for outside companies.
+- The very first open needs the internet; after that the app works offline as before.

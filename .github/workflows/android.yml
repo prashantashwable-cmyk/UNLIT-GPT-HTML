@@ -1,0 +1,54 @@
+name: android
+# Builds the Android app (APK) on every change to the android/ folder, and on demand (Actions → android → Run workflow).
+# Download it from the run page: Artifacts → AIEC-Elevator-OS-apk.
+on:
+  push:
+    paths:
+      - 'android/**'
+      - '.github/workflows/android.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      HAS_KEY: ${{ secrets.AIEC_KEYSTORE_B64 != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Build the test APK
+        working-directory: android
+        run: gradle assembleDebug --no-daemon
+      - name: Name it
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk AIEC-Elevator-OS-debug.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AIEC-Elevator-OS-apk
+          path: AIEC-Elevator-OS-debug.apk
+      # a signed Play Store build, only when the company's signing key is added as secrets
+      - name: Signed release (Play Store)
+        if: env.HAS_KEY == 'true'
+        working-directory: android
+        env:
+          AIEC_KEYSTORE: ${{ runner.temp }}/aiec.jks
+          AIEC_KEYSTORE_PASSWORD: ${{ secrets.AIEC_KEYSTORE_PASSWORD }}
+          AIEC_KEY_ALIAS: ${{ secrets.AIEC_KEY_ALIAS }}
+          AIEC_KEY_PASSWORD: ${{ secrets.AIEC_KEY_PASSWORD }}
+        run: |
+          echo "${{ secrets.AIEC_KEYSTORE_B64 }}" | base64 -d > "$AIEC_KEYSTORE"
+          gradle bundleRelease assembleRelease --no-daemon
+      - uses: actions/upload-artifact@v4
+        if: env.HAS_KEY == 'true'
+        with:
+          name: AIEC-Elevator-OS-playstore
+          path: |
+            android/app/build/outputs/bundle/release/*.aab
+            android/app/build/outputs/apk/release/*.apk
