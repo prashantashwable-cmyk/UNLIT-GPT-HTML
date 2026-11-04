@@ -3394,6 +3394,31 @@ const L = {
   tn_items: ['{n} work items counted', '{n} काम गिने गए', '{n} कामे मोजली'],
   cn_say: ['Leads to call now, the most important first.', 'अभी कॉल करने वाले लीड, सबसे ज़रूरी पहले।', 'आता कॉल करायचे लीड, सर्वात महत्त्वाचे आधी.'],
   cn_none: ['No calls due right now.', 'अभी कोई कॉल बाकी नहीं।', 'सध्या कोणताही कॉल बाकी नाही.'],
+  pg_title: ['Rough price in 4 questions', '4 सवालों में अनुमानित कीमत', '4 प्रश्नांत अंदाजे किंमत'],
+  pg_title_d: ['No sign-in needed', 'साइन-इन की ज़रूरत नहीं', 'साइन-इनची गरज नाही'],
+  pg_say: ['Answer four questions to see a rough price range for a new lift.', 'नई लिफ्ट की अनुमानित कीमत देखने के लिए चार सवालों के जवाब दें।', 'नवीन लिफ्टची अंदाजे किंमत पाहण्यासाठी चार प्रश्नांची उत्तरे द्या.'],
+  pg_area: ['Town or area of the site', 'साइट का शहर या इलाका', 'साइटचे गाव किंवा भाग'],
+  pg_kind: ['What building is it?', 'कौन सी इमारत है?', 'कोणती इमारत आहे?'],
+  pg_k_house: ['House / bungalow', 'घर / बंगला', 'घर / बंगला'],
+  pg_k_apartment: ['Apartment / society', 'अपार्टमेंट / सोसाइटी', 'अपार्टमेंट / सोसायटी'],
+  pg_k_commercial: ['Shop / office / hospital', 'दुकान / ऑफिस / अस्पताल', 'दुकान / ऑफिस / रुग्णालय'],
+  pg_stops: ['How many floors will it stop at (count the ground floor)?', 'लिफ्ट कितनी मंज़िलों पर रुकेगी (ग्राउंड फ्लोर गिनें)?', 'लिफ्ट किती मजल्यांवर थांबेल (तळमजला मोजा)?'],
+  pg_people: ['How many people at a time?', 'एक बार में कितने लोग?', 'एका वेळी किती लोक?'],
+  pg_p: ['{n} people', '{n} लोग', '{n} लोक'],
+  pg_cabin: ['Cabin look', 'केबिन कैसी हो', 'केबिन कशी हवी'],
+  pg_c_ms: ['Painted (simple)', 'पेंट वाली (सादी)', 'रंगवलेली (साधी)'],
+  pg_c_ss: ['Steel (shiny)', 'स्टील (चमकदार)', 'स्टील (चकचकीत)'],
+  pg_c_premium: ['Glass / premium', 'काँच / प्रीमियम', 'काच / प्रीमियम'],
+  pg_show: ['Show rough price', 'अनुमानित कीमत दिखाएँ', 'अंदाजे किंमत दाखवा'],
+  pg_range: ['Rough price including GST', 'GST सहित अनुमानित कीमत', 'GST सह अंदाजे किंमत'],
+  pg_not_quote: ['Not a quotation', 'यह कोटेशन नहीं है', 'हे कोटेशन नाही'],
+  pg_why: ['The final price comes only after our engineer measures the site: the pit, the top height and the walls change the work. The visit is free.', 'अंतिम कीमत हमारे इंजीनियर के साइट नापने के बाद ही आती है: पिट, ऊपर की ऊँचाई और दीवारें काम बदलती हैं। विज़िट मुफ़्त है।', 'अंतिम किंमत आमच्या इंजिनिअरने साइट मोजल्यानंतरच येते: पिट, वरची उंची आणि भिंती कामात बदल करतात. भेट मोफत आहे.'],
+  pg_book: ['Save this and book a free site visit', 'इसे सेव करें और मुफ़्त साइट विज़िट बुक करें', 'हे जतन करा आणि मोफत साइट भेट बुक करा'],
+  pg_unserved: ['We do not install in {a} yet. Leave your number: we will call you if we start there, or suggest a trusted company near you.', 'हम अभी {a} में इंस्टॉल नहीं करते। अपना नंबर दें: वहाँ शुरू करने पर हम कॉल करेंगे, या पास की भरोसेमंद कंपनी बताएँगे।', 'आम्ही अजून {a} मध्ये इन्स्टॉल करत नाही. तुमचा नंबर द्या: तिथे सुरू केल्यावर आम्ही कॉल करू, किंवा जवळची विश्वासू कंपनी सुचवू.'],
+  pg_unserved_leave: ['Leave my number', 'मेरा नंबर छोड़ें', 'माझा नंबर द्या'],
+  pg_note_line: ['Rough price seen: {k}, {n} stops, {p} people, {c} cabin, {lo} – {hi}', 'देखी गई अनुमानित कीमत: {k}, {n} स्टॉप, {p} लोग, {c} केबिन, {lo} – {hi}', 'पाहिलेली अंदाजे किंमत: {k}, {n} थांबे, {p} लोक, {c} केबिन, {lo} – {hi}'],
+  pg_out_line: ['Outside our service area: {a}', 'हमारे सेवा क्षेत्र से बाहर: {a}', 'आमच्या सेवा क्षेत्राबाहेर: {a}'],
+  cfg_serveAreas: ['Areas we serve (comma list, e.g. Pune, PCMC, Hinjewadi). Empty = all areas', 'हम जिन इलाकों में काम करते हैं (कॉमा से, जैसे Pune, PCMC)। खाली = सभी', 'आम्ही काम करतो ते भाग (स्वल्पविरामाने, उदा. Pune, PCMC). रिकामे = सर्व'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5296,7 +5321,7 @@ const PRE_WON = ['new', 'returned', 'accepted', 'contacted', 'requirements', 'qu
 const SALES_TALK = ['accepted', 'contacted', 'requirements', 'quote_ready', 'quoted'];
 const OPEN_STAGES = STAGE_ORDER.filter(s => s !== 'lost' && s !== 'amc');
 const stageIdx = s => STAGE_ORDER.indexOf(s);
-const TEXT_CFG = ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc', 'holidays', 'cityCode'];
+const TEXT_CFG = ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc', 'holidays', 'cityCode', 'serveAreas'];
 /* the lowest and highest value each business-rule number may take: checked by the rule, not only by the input box */
 const CFG_LIMITS = (() => {
   const L = {}, set = (keys, a, b) => keys.forEach(k => { L[k] = [a, b]; });
@@ -5323,7 +5348,7 @@ const CONTRACT_FROM = '2026-11-02T14:00:00.000Z', PAYDEF_FROM = '2026-11-02T14:0
 /* customer payment split: 70% when material arrives, 20% for the custom cabin, 10% at handover — for deals won from now on,
    unless the Owner has set their own split */
 const payCfgAt = t => (S.config._paySet || (t || nowISO()) < PAYDEF_FROM) ? S.config : Object.assign({}, S.config, { arrivalPct: 70, cabinPct: 20 });
-const TEXT_CFG_RE = { cityCode: /^[A-Z]{3}$/, holidays: /^(\d{4}-\d\d-\d\d)(\s*,\s*\d{4}-\d\d-\d\d)*$/, payUpi: /^[\w.\-]{2,}@[a-zA-Z]{2,}$/, payName: /^[^<>]{2,60}$/, payBank: /^[^<>]{2,60}$/, payAcc: /^\d{6,20}$/, payIfsc: /^[A-Z]{4}0[A-Z0-9]{6}$/ };
+const TEXT_CFG_RE = { cityCode: /^[A-Z]{3}$/, serveAreas: /^[^<>]{2,300}$/, holidays: /^(\d{4}-\d\d-\d\d)(\s*,\s*\d{4}-\d\d-\d\d)*$/, payUpi: /^[\w.\-]{2,}@[a-zA-Z]{2,}$/, payName: /^[^<>]{2,60}$/, payBank: /^[^<>]{2,60}$/, payAcc: /^\d{6,20}$/, payIfsc: /^[A-Z]{4}0[A-Z0-9]{6}$/ };
 const PAY_STAGE = { token: 'signed', arrival: 'arrived', cabin: 'installing', final: 'final_pay', retention: 'amc' };
 /* the cabin payment is due before the car (cabin) step */
 const CABIN_STEP = 5;
@@ -5471,7 +5496,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, qcRecheckPct: 10, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', serveAreas: '', accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, sundayWork: 0, holidays: '', dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -5495,7 +5520,7 @@ const RULE_GROUPS = {
   safety: ['dailySafety', 'sosNumber', 'safetyRetest'],
   statutory: ['licenceGate', 'permitGate'],
   quality: ['tolWidth', 'tolDepth', 'tolPit', 'tolHead', 'peerCheck', 'lowPit', 'lowHead', 'dbgTol', 'balLo', 'balHi', 'earthMax'],
-  privacy: ['officeNumber', 'cityCode', 'accessAlert'],
+  privacy: ['officeNumber', 'cityCode', 'serveAreas', 'accessAlert'],
   ladderpay: ['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior', 'payCrewJob', 'payQcInspection', 'spotTrainee', 'spotTech', 'spotSenior'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
   amc: ['amcPrice', 'amcCompPrice'],
@@ -6278,7 +6303,7 @@ const RULES = {
       if (!(d.key in DEFAULT_CONFIG)) return 'err_fill';
       if (d.from != null && (!isRateKey(d.key) || !/^\d{4}-\d\d-\d\d$/.test(d.from) || d.from < safeDay(ev.t))) return 'err_date';
       if (d.key === 'sosNumber' || d.key === 'officeNumber') return /^(\+?\d{3,15})?$/.test(String(d.value)) ? null : 'err_phone';
-      if (TEXT_CFG.includes(d.key)) return typeof d.value === 'string' && d.value.length <= (d.key === 'holidays' ? 600 : 60) && (!d.value || TEXT_CFG_RE[d.key].test(d.value)) ? null : 'err_pay_detail';
+      if (TEXT_CFG.includes(d.key)) return typeof d.value === 'string' && d.value.length <= (d.key === 'holidays' ? 600 : d.key === 'serveAreas' ? 300 : 60) && (!d.value || TEXT_CFG_RE[d.key].test(d.value)) ? null : 'err_pay_detail';
       if (!(typeof d.value === 'number' && isFinite(d.value) && d.value >= 0)) return 'err_number';
       /* settings saved before limits existed stay valid */
       if (ev.t >= LIMITS_FROM) {
@@ -8666,7 +8691,7 @@ function render() {
   const r = App.route;
   App.pageSay = ''; App.pageHelp = '';
   let h;
-  const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr', 'splash', 'gate', 'door', 'enquiry', 'joinReq', 'reqSent', 'codeLogin', 'restore', 'myReq'].includes(r.name) && !(r.name === 'wiz' && !App.me);
+  const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr', 'splash', 'gate', 'door', 'priceGuess', 'enquiry', 'joinReq', 'reqSent', 'codeLogin', 'restore', 'myReq'].includes(r.name) && !(r.name === 'wiz' && !App.me);
   const outer = !DRAW_MEMO; if (outer) DRAW_MEMO = new Map();
   try { h = gated ? SCREENS.install() : (SCREENS[r.name] || SCREENS.home)(r.p || {}); }
   catch (e) { console.error(e); h = `<main class="wrap"><div class="err">⚠️ ${esc(e.message)}</div><button class="btn btn-p" data-a="nav" data-v="home">🏠 ${t('nav_home')}</button></main>`; }
@@ -11136,7 +11161,7 @@ SCREENS.door = ({ kind }) => {
   const tile = (a, v, i, l, sub) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span><span>${t(l)}${sub ? `<br><small>${t(sub)}</small>` : ''}</span></button>`;
   const people = list.length ? `<p class="say">👤 ${t('door_pick_you')}</p>${users.length > 8 ? formInp('uq', 'search') : ''}<div class="tiles one">${list.map(u => `<button class="tile" data-a="loginUser" data-v="${u.uid}"><span class="i">${ROLE_ICON[u.role]}</span><span>${esc(u.name)}<br><small>${t('r_' + u.role)}</small></span></button>`).join('')}</div><div style="height:12px"></div>` : '';
   let body;
-  if (kind === 'cust') { App.pageSay = t('door_cust'); body = people + `<div class="tiles one">${tile('nav', 'codeLogin', '🔑', 'code_have')}${tile('nav', 'join', '📂', 'cust_have_file', 'cust_have_file_d')}${joinSrv() ? tile('custNewGuest', '', '🛗', 'cl_new_lift', 'cl_new_lift_d') : ''}${tile('nav', 'enquiry', '📞', 'cust_new_enq', 'cust_new_enq_d')}</div>`; }
+  if (kind === 'cust') { App.pageSay = t('door_cust'); body = people + `<div class="tiles one">${tile('nav', 'codeLogin', '🔑', 'code_have')}${tile('nav', 'join', '📂', 'cust_have_file', 'cust_have_file_d')}${joinSrv() ? tile('custNewGuest', '', '🛗', 'cl_new_lift', 'cl_new_lift_d') : ''}${tile('nav', 'priceGuess', '🧮', 'pg_title', 'pg_title_d')}${tile('nav', 'enquiry', '📞', 'cust_new_enq', 'cust_new_enq_d')}</div>`; }
   else if (kind === 'staff') { App.pageSay = t('door_staff'); body = people + `<div class="tiles one">${tile('nav', 'codeLogin', '🔑', 'code_have')}${tile('nav', 'join', '📂', 'staff_open_file')}</div><p class="small muted center">🧰 ${t('staff_new_here')}</p><button class="btn" data-a="door" data-v="join">🧰 ${t('door_join')}</button>`; }
   else { App.pageSay = t('join_pick'); body = (App.joinLink ? `<div class="okbox">🏢 ${t('gate_join_for', { n: esc(App.joinLink.org) })}</div>` : '') + `<p class="say">${t('join_pick')}</p><div class="tiles">${JOIN_ROLES.map(([r, i]) => `<button class="tile" data-a="joinRole" data-v="${r}"><span class="i">${i}</span>${t('jr_' + r)}</button>`).join('')}</div>`; }
   return topBar(t(kind === 'cust' ? 'door_cust' : kind === 'staff' ? 'door_staff' : 'door_join'), { back: true }) + `<main class="wrap">${body}${App.mode === 'practice' ? `<div class="note">🎓 ${t('practice_pin')}</div>` : ''}
@@ -11282,6 +11307,38 @@ async function myReqPoll() {
   } catch (e) { /* no network: try again later */ } finally { App.jqBusy = false; }
   if (['myReq', 'gate'].includes(App.route.name) && !W) render();
 }
+/* rough price before sign-in (v4): four plain questions give a range from the office's own price list, clearly not a
+   quotation; saving it or booking a visit asks name and number and becomes the normal enquiry with the answers in it */
+const PG_KINDS = [['house', '🏠'], ['apartment', '🏢'], ['commercial', '🏬']], PG_PEOPLE = [4, 6, 8, 10, 13], PG_CABINS = [['ms', '🎨'], ['ss', '✨'], ['premium', '💎']];
+function pgRange(f) {
+  const cfg = priceCfg(), stops = Math.max(2, Math.min(30, +f.pgStops || 0)), house = f.pgKind === 'house';
+  const req = { stops, capacity: +f.pgPeople, finish: f.pgCabin === 'ms' ? '' : 'ss', premium: f.pgCabin === 'premium' };
+  const lo = calcQuote(cfg, Object.assign({ type: house ? 'manual' : 'auto' }, req), 0).total;
+  /* the top end allows for automatic doors, power-cut rescue, a light curtain and ~10% site surprises */
+  const hi = calcQuote(cfg, Object.assign({ type: 'auto', ard: true, curtain: true }, req), 0).total * 1.1;
+  const r5 = (n, up) => (up ? Math.ceil : Math.floor)(n / 5000) * 5000;
+  return { lo: r5(lo), hi: Math.max(r5(hi, true), r5(lo) + 5000), stops };
+}
+/* an empty list means every area is served */
+const pgServed = area => { const l = String(S.config.serveAreas || '').split(',').map(x => x.trim().toLowerCase()).filter(Boolean); const a = String(area || '').toLowerCase(); return !l.length || l.some(x => a.includes(x) || x.includes(a) && a.length >= 3); };
+const pgReady = f => (f.pgArea || '').trim() && f.pgKind && +f.pgStops >= 2 && f.pgPeople && f.pgCabin;
+SCREENS.priceGuess = () => {
+  const f = App.form; App.pageSay = t('pg_say');
+  const tl = (k, v, i, l) => `<button class="tile ${String(f[k]) === String(v) ? 'on' : ''}" data-a="pgSet" data-v="${k}|${v}"><span class="i">${i}</span>${l}</button>`;
+  let out = '';
+  if (f.pgShown && pgReady(f)) {
+    if (!pgServed(f.pgArea)) out = `<div class="warnbox">📍 ${t('pg_unserved', { a: esc(f.pgArea.trim()) })}</div><button class="btn btn-p btn-big" data-a="pgBook" data-v="out">📞 ${t('pg_unserved_leave')}</button>`;
+    else { const r = pgRange(f); out = `<div class="hero center"><p class="small muted" style="margin:0">${t('pg_range')}</p><div style="font-size:1.6rem;font-weight:900;margin:4px 0">${money(r.lo)} – ${money(r.hi)}</div><span class="chip c-warn">⚠️ ${t('pg_not_quote')}</span></div>
+      <div class="note small">${t('pg_why')}</div><button class="btn btn-ok btn-big" data-a="pgBook" data-v="in">📅 ${t('pg_book')}</button>`; }
+  }
+  return topBar(t('pg_title'), { back: true }) + `<main class="wrap"><p class="say">🧮 ${t('pg_say')}</p>
+    ${formInp('pgArea', 'pg_area', { mic: true })}
+    <h3>1. ${t('pg_kind')}</h3><div class="tiles three">${PG_KINDS.map(([k, i]) => tl('pgKind', k, i, t('pg_k_' + k))).join('')}</div>
+    <h3>2. ${t('pg_stops')}</h3><div class="tiles three">${[2, 3, 4, 5, 6, 8].map(n => tl('pgStops', n, '🛗', String(n))).join('')}</div>
+    <h3>3. ${t('pg_people')}</h3><div class="tiles three">${PG_PEOPLE.map(n => tl('pgPeople', n, '👥', t('pg_p', { n }))).join('')}</div>
+    <h3>4. ${t('pg_cabin')}</h3><div class="tiles three">${PG_CABINS.map(([k, i]) => tl('pgCabin', k, i, t('pg_c_' + k))).join('')}</div>
+    <div id="ferr"></div>${f.pgShown && pgReady(f) ? '' : `<button class="btn btn-p btn-big" data-a="pgShow">🧮 ${t('pg_show')}</button>`}${out}</main>`;
+};
 SCREENS.enquiry = () => {
   const f = App.form; App.pageSay = t('enq_say');
   return topBar(t('enq_title'), { back: true }) + `<main class="wrap"><p class="say">${t('enq_say')}</p>
@@ -14593,6 +14650,14 @@ const ACT = {
   splashSkip: () => { clearTimeout(App.splashT); go('gate', {}, { replace: true }); },
   door: v => { App.form = {}; go('door', { kind: v }); },
   joinRole: v => { App.form = { rqRole: v }; go('joinReq', { role: v }); },
+  pgSet: v => { const [k, x] = v.split('|'); App.form[k] = x; App.form.pgShown = App.form.pgShown && !!pgReady(App.form); render(); },
+  pgShow: () => { const f = App.form; if (!pgReady(f)) { const el = $('#ferr'); if (el) el.innerHTML = `<div class="err">${t('err_fill')}</div>`; toast(t('err_fill'), true); return; } f.pgShown = true; render(); },
+  pgBook: v => {
+    /* carry the answers into the normal enquiry; the note is what the office reads first */
+    const f = App.form, r = pgRange(f), line = v === 'out' ? t('pg_out_line', { a: f.pgArea.trim() }) : t('pg_note_line', { k: t('pg_k_' + f.pgKind), n: r.stops, p: f.pgPeople, c: t('pg_c_' + f.pgCabin), lo: money(r.lo), hi: money(r.hi) });
+    App.form = { rqAddr: f.pgArea.trim(), rqFloors: String(r.stops), rqWho: f.pgKind === 'house' ? 'owner' : 'builder', rqNote: line.slice(0, 300) };
+    go('enquiry');
+  },
   enqWho: v => { App.form.rqWho = v; render(); },
   enqGps: async () => { const g = await Geo.get(); if (g) { App.form.rqGps = { lat: +g.lat.toFixed(6), lng: +g.lng.toFixed(6) }; render(); } else toast(t('gps_fail'), true); },
   joinMake: async () => {
