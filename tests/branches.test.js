@@ -77,6 +77,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await step('inspect_site', 'POWNER', 'QC_SITE_RESULT', await site('approved'));
 
   /* material and installation (as in the main flow) */
+  await step('sign_gad', 'BCUST', 'GAD_SIGNED', { ticks: { ffl: true, power: true, pit: true, scaffold: true }, powerBy: '2026-12-01', consent: true, signer: 'Mr. Rao', ev: await sign() });
   await step('release', 'POWNER', 'RELEASED', { supplier: 'PSUP', tech: 'PTECH', drawings: 'DWG-B1', materials: await ev('materialList({ stops: 5, type: "auto", capacity: "6", finish: "ss" })') });
   if ((await page.evaluate(p => needs(S.projects[p]).map(n => n.k), pid)).includes('record_permit')) await step('record_permit', 'POWNER', 'STATUTORY_SET', { item: 'permit', no: 'EP/B1', date: await ev('todayStr()') });
   await step('accept_po', 'PSUP', 'PO_ACCEPTED', { date: await ev('addDays(2)') });

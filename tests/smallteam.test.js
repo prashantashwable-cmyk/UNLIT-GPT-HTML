@@ -63,6 +63,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
 
   /* material */
   const tech = 'PTECH';
+  await step('sign_gad', 'SCUST', 'GAD_SIGNED', { ticks: { ffl: true, power: true, pit: true, scaffold: true }, powerBy: '2026-12-01', consent: true, signer: 'Mr. Joshi', ev: await sign() });
   await step('release', 'POWNER', 'RELEASED', { supplier: 'PSUP', tech, drawings: 'DWG-S001', materials: await ev('materialList({ stops: 5, type: "auto", capacity: "6", finish: "ss" })') });
   const open = async p => page.evaluate(p => needs(S.projects[p]).map(n => n.k), pid);
   if ((await open()).includes('record_permit')) await step('record_permit', 'POWNER', 'STATUTORY_SET', { item: 'permit', no: 'EP/S001/2026', date: await ev('todayStr()') });

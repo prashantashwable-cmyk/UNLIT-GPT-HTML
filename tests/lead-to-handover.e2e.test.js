@@ -198,6 +198,13 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await next(); await photo('ph'); await photo('ph'); await next(); await pick('outcome', 'approved'); await next(); await next(); await doneOk('qc approved');
   assert(await stage(pid) === 'site_ok', 'site_ok');
 
+  /* --- 5b. the customer signs the layout and civil promises --- */
+  await login('Mr. Deshmukh');
+  await startTask('sign_gad'); await next();
+  await next(); assert((await err()).length, 'all four promises must be ticked');
+  for (const k of ['ffl', 'power', 'pit', 'scaffold']) await tap(page, `[data-a="toggle"][data-k="ticks.${k}"]`);
+  await next(); await tap(page, '[data-a="toggle"][data-k="consent"]'); await sign('sig'); await next(); await doneOk('layout signed');
+
   /* --- 6. admin releases drawings --- */
   await login('Adam Admin');
   await startTask('release');

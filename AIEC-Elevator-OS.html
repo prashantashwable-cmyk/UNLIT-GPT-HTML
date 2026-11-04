@@ -3232,6 +3232,34 @@ const L = {
   err_pick_option: ['The customer must first choose one of the three options.', 'ग्राहक को पहले तीन में से एक विकल्प चुनना होगा।', 'ग्राहकाने आधी तीनपैकी एक पर्याय निवडायला हवा.'],
   tk_pick_option: ['Choose one of the three options', 'तीन में से एक विकल्प चुनें', 'तीनपैकी एक पर्याय निवडा'],
   ev_OPTION_CHOSEN: ['Option chosen', 'विकल्प चुना', 'पर्याय निवडला'],
+  err_var_open: ['The design change (variation) must be signed first.', 'पहले डिज़ाइन बदलाव (वेरिएशन) पर सही होनी चाहिए।', 'आधी डिझाइन बदलावर (व्हेरिएशन) सही व्हायला हवी.'],
+  err_gad_first: ['The customer must first sign the layout and civil promises.', 'पहले ग्राहक को लेआउट और सिविल वादों पर सही करनी होगी।', 'आधी ग्राहकाने लेआउट आणि सिव्हिल वचनांवर सही करायला हवी.'],
+  err_gad_ticks: ['All four promises must be ticked.', 'चारों वादों पर टिक ज़रूरी है।', 'चारही वचनांवर टिक आवश्यक आहे.'],
+  tk_sign_gad: ['Sign the layout and civil promises', 'लेआउट और सिविल वादों पर सही करें', 'लेआउट आणि सिव्हिल वचनांवर सही करा'],
+  doc_gad: ['Layout and civil scope', 'लेआउट और सिविल काम', 'लेआउट आणि सिव्हिल काम'],
+  gad_sign: ['Sign', 'सही करें', 'सही करा'],
+  gad_done: ['Signed. Material can now be ordered.', 'सही हुई। अब सामान मँगाया जा सकता है।', 'सही झाली. आता साहित्य मागवता येईल.'],
+  gad_wait: ['Material is ordered only after the customer signs this.', 'ग्राहक के इस पर सही करने के बाद ही सामान मँगाया जाता है।', 'ग्राहकाने यावर सही केल्यानंतरच साहित्य मागवले जाते.'],
+  gad_sizes: ['Sizes measured on site', 'साइट पर नापे गए नाप', 'साइटवर मोजलेली मापे'],
+  gad_lift: ['The lift', 'लिफ्ट', 'लिफ्ट'],
+  gad_ours: ['Our work', 'हमारा काम', 'आमचे काम'],
+  gad_yours: ['Your work (civil)', 'आपका काम (सिविल)', 'तुमचे काम (सिव्हिल)'],
+  gad_ours_d: ['Lift, rails, doors, machine, controller, wiring inside the shaft, testing and handover.', 'लिफ्ट, रेल, दरवाज़े, मशीन, कंट्रोलर, शाफ्ट के अंदर वायरिंग, टेस्ट और हैंडओवर।', 'लिफ्ट, रेल, दारे, मशीन, कंट्रोलर, शाफ्टमधील वायरिंग, चाचणी आणि हँडओव्हर.'],
+  gad_yours_d: ['Pit waterproofing; 3-phase 415 V supply with MCB and earthing up to the top; scaffolding and whitewash inside the shaft; plaster around door frames only after the frames are fixed; floor levels kept as marked.', 'पिट वॉटरप्रूफ़िंग; ऊपर तक MCB और अर्थिंग के साथ 3-फ़ेज़ 415 V; शाफ्ट में मचान और सफ़ेदी; दरवाज़े की फ़्रेम लगने के बाद ही उसके चारों ओर प्लास्टर; फ़र्श स्तर जैसे निशान किए वैसे ही।', 'पिट वॉटरप्रूफिंग; वरपर्यंत MCB व अर्थिंगसह 3-फेज 415 V; शाफ्टमध्ये पाड व रंग; दाराची फ्रेम बसल्यानंतरच त्याभोवती प्लास्टर; फरशी पातळी खूण केल्याप्रमाणेच.'],
+  gad_promises: ['The customer promised', 'ग्राहक ने वादा किया', 'ग्राहकाने वचन दिले'],
+  gad_t_ffl: ['Floor levels marked on site will not change by more than 5 mm', 'साइट पर चिह्नित फ़र्श स्तर 5 mm से ज़्यादा नहीं बदलेंगे', 'साइटवर खूण केलेली फरशी पातळी 5 mm पेक्षा जास्त बदलणार नाही'],
+  gad_t_power: ['3-phase power and earthing ready by {d}', '{d} तक 3-फ़ेज़ बिजली और अर्थिंग तैयार', '{d} पर्यंत 3-फेज वीज आणि अर्थिंग तयार'],
+  gad_t_pit: ['Pit dry and waterproofed before the team arrives', 'टीम आने से पहले पिट सूखा और वॉटरप्रूफ़', 'टीम येण्याआधी पिट कोरडा आणि वॉटरप्रूफ'],
+  gad_t_scaffold: ['Scaffolding and whitewash in the shaft before the team arrives', 'टीम आने से पहले शाफ्ट में मचान और सफ़ेदी', 'टीम येण्याआधी शाफ्टमध्ये पाड आणि रंग'],
+  gad_ticks_d: ['If these are not kept, the extra work and waiting time are charged as written in the agreement.', 'अगर ये पूरे नहीं हुए, तो अतिरिक्त काम और इंतज़ार का खर्च करार अनुसार लगेगा।', 'हे पाळले नाही तर जास्तीचे काम आणि थांबण्याचा खर्च करारानुसार लागेल.'],
+  gad_power_by: ['Power and earthing ready by', 'बिजली और अर्थिंग तैयार, तारीख', 'वीज आणि अर्थिंग तयार, तारीख'],
+  gad_signed_by: ['Signed by {n} on {d}', '{n} ने {d} को सही की', '{n} यांनी {d} रोजी सही केली'],
+  gad_in_person: ['on the phone of {n}', '{n} के फ़ोन पर', '{n} यांच्या फोनवर'],
+  gad_unsigned: ['Not signed yet.', 'अभी सही नहीं हुई।', 'अजून सही नाही.'],
+  gad_note: ['A summary for agreement, not a manufacturing drawing. The maker\'s drawing follows these sizes.', 'सहमति के लिए सारांश, निर्माण ड्रॉइंग नहीं। निर्माता की ड्रॉइंग इन्हीं नापों पर बनती है।', 'सहमतीसाठी सारांश, उत्पादन ड्रॉइंग नाही. उत्पादकाची ड्रॉइंग याच मापांवर होते.'],
+  s_gad_look: ['Check the sizes and who does what', 'नाप और कौन क्या करेगा, देखें', 'मापे आणि कोण काय करणार ते तपासा'],
+  s_gad_ticks: ['Your promises', 'आपके वादे', 'तुमची वचने'],
+  ev_GAD_SIGNED: ['Layout and civil promises signed', 'लेआउट और सिविल वादों पर सही', 'लेआउट आणि सिव्हिल वचनांवर सही'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5200,6 +5228,9 @@ const svSpecial = sv => !!sv && (+sv.pit < (+S.config.lowPit || 1400) || +sv.hea
 const TIERS = [['good', '🥉'], ['better', '🥈'], ['best', '🥇']];
 const tierReq = (req, k) => Object.assign({}, req, k === 'good' ? { finish: 'ms', ard: false, curtain: false, premium: false } : k === 'better' ? { finish: 'ss', ard: true, curtain: true, premium: false } : { finish: 'ss', ard: true, curtain: true, premium: true });
 const TIER_FEATS = [['finish', r => t('fin_' + r.finish)], ['ard', r => r.ard ? '✅' : '—'], ['curtain', r => r.curtain ? '✅' : '—'], ['premium', r => r.premium ? '✅' : '—']];
+/* the customer's one sign-off before material: layout and sizes, cabin finish, and the civil promises */
+const GAD_TICKS = ['ffl', 'power', 'pit', 'scaffold'];
+const gadNeeded = P => P.t >= JOURNEY_FROM && !P.gad;
 const FAULTS = ['trapped', 'door_close', 'door_reopen', 'level', 'noise', 'no_power'];
 const SITE_CANT = ['no_show', 'unsafe'];
 const floorGaps = P => Math.max(1, Math.min(59, (+(P.req && P.req.stops) || 2) - 1));
@@ -6447,9 +6478,23 @@ const RULES = {
       return need(ev_(ev.data, 'photo').length >= 1, 'err_photos', { n: 1 });
     }
   },
+  GAD_SIGNED: {
+    roles: ['customer', 'sales', 'admin', 'owner'], project: true, stages: ['site_ok'], check: (S, ev, u, P) => {
+      const d = ev.data;
+      if (u.role === 'customer' && P.customer !== u.uid) return 'err_access';
+      if (P.gad) return 'err_already';
+      if (variationOpen(P)) return 'err_var_open';
+      if (!GAD_TICKS.every(k => (d.ticks || {})[k] === true)) return 'err_gad_ticks';
+      if (!/^\d{4}-\d\d-\d\d$/.test(d.powerBy || '')) return 'err_date';
+      if (d.consent !== true) return 'err_consent';
+      if (!(d.signer || '').trim()) return 'err_fill';
+      return need(ev_(d, 'sign').length >= 1, 'err_sign');
+    }
+  },
   RELEASED: {
     roles: ['admin', 'owner'], project: true, stages: ['site_ok'], check: (S, ev, u, P) => {
       const d = ev.data;
+      if (gadNeeded(P)) return 'err_gad_first';
       if (roleOf(d.supplier) !== 'supplier' || !isActive(d.supplier)) return 'err_pick_supplier';
       const tw = techWhyNot(d.tech, ev.t); if (tw) return tw;
       if (!canLead(d.tech, P, ev.t)) return 'err_cant_lead';
@@ -7775,6 +7820,9 @@ function apply(S, ev) {
     case 'OPTION_CHOSEN': { const q = lastQuote(P), o = q.options.find(x => x.k === d.k);
       Object.assign(q, { lines: o.lines, cost: o.cost, list: o.list, discount: o.discount, price: o.price, gst: o.gst, total: o.total, margin: o.margin, req: clone(o.req), chosen: d.k, chosenBy: { t: ev.t, by: ev.by } });
       P.req = Object.assign({}, P.req, { finish: o.req.finish, ard: o.req.ard, curtain: o.req.curtain, premium: o.req.premium }); P.materials = materialList(P.req); break; }
+    case 'GAD_SIGNED': { const l = lastSiteOk(P) || {};
+      P.gad = { t: ev.t, by: ev.by, signer: d.signer.trim(), sig: ev_(d, 'sign')[0].id, ticks: d.ticks, powerBy: d.powerBy, finish: (P.req || {}).finish, meas: l.meas || null, door: l.door || null, floors: l.floors || null, inPerson: roleOf(ev.by) !== 'customer' };
+      P.finishOk = { ok: true, note: '', finish: (P.req || {}).finish, t: ev.t, by: ev.by, inPerson: roleOf(ev.by) !== 'customer' }; break; }
     case 'SITE_GROUP_SET': P.group = { gid: d.gid, name: d.name.trim(), tower: String(d.tower || '').trim(), t: ev.t, by: ev.by }; break;
     case 'SOC_VOTED': P.society.votes = Object.assign({}, P.society.votes, { [d.name]: { v: d.v, t: ev.t, by: ev.by, note: d.note || '' } }); break;
     case 'SOC_APPROVED': P.society.approvals[d.name] = { t: ev.t, by: ev.by, sig: ev_(d, 'sign')[0].id }; break;
@@ -7907,6 +7955,7 @@ function needs0(P) {
     case 'site_fix': add(openCorr(P, 'site').length ? 'fix_site' : 'request_qc', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
     case 'site_ok':
       if (variationOpen(P)) add(P.variation.status === 'proposed' ? 'sign_variation' : 'make_variation', P.variation.status === 'proposed' && P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales], urgent: true });
+      else if (gadNeeded(P)) add('sign_gad', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales], since: P.since });
       else add('release', ['admin', 'owner']);
       break;
     case 'material_order':
@@ -8788,7 +8837,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pre_survey: '📐', pick_option: '🥈', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -9723,6 +9772,11 @@ WIZ.survey = {
     return r.ok ? doneRes(P.id, 'sv_done') : r;
   }
 };
+function gadCard(P) {
+  if (!(P.gad || (P.stage === 'site_ok' && P.t >= JOURNEY_FROM))) return '';
+  return `<div class="card"><h3>✍️ ${t('doc_gad')}</h3>${P.gad ? `<div class="okbox">✅ ${t('gad_signed_by', { n: esc(P.gad.signer), d: fmtD(P.gad.t, true) })}</div>` : `<div class="warnbox">${t('gad_wait')}</div>`}
+    <div class="row wrapw"><button class="btn btn-sm" data-a="openDocP" data-v="${P.id}|gad">📄 ${t('doc_gad')}</button>${!P.gad && allowed('GAD_SIGNED', P) ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="gad|${P.id}">✍️ ${t('tk_sign_gad')}</button>` : ''}</div></div>`;
+}
 function tierTable(q, chooseP) {
   const o = q.options; if (!o) return '';
   return `<table class="mx"><tr><th></th>${o.map(x => `<th>${TIERS.find(t2 => t2[0] === x.k)[1]} ${t('tier_' + x.k)}${x.k === 'better' ? `<br><small>⭐ ${t('tier_advice')}</small>` : ''}${q.chosen === x.k ? '<br>✅' : ''}</th>`).join('')}</tr>
@@ -9742,6 +9796,17 @@ function surveyCard(P) {
     ${svSpecial(sv) ? `<div class="warnbox">⚠️ ${t('sv_special', { p: +S.config.lowPit || 1400, h: +S.config.lowHead || 3900 })}</div>` : ''}<p class="small muted">${esc(userName(sv.by))} · ${fmtD(sv.t, true)} · ${sv.sig ? '✍️ ' + esc(sv.signer) : '🚶 ' + esc(sv.noSign)}</p>${evGrid(sv.ev)}
     ${can ? `<button class="btn btn-sm" data-a="wizOpen" data-v="survey|${P.id}">✏️ ${t('sv_again')}</button>` : ''}</div>`;
 }
+WIZ.gad = {
+  title: 'tk_sign_gad', save: 'gad_sign', saveIcon: '✍️', init: P => ({ ticks: {}, powerBy: addDays(14), consent: false, signer: P.contact.name, sig: null }),
+  steps: [
+    { id: 'look', icon: '📐', say: 's_gad_look', body: (c, P) => `<div class="card">${gadBody(P)}</div>` },
+    { id: 'ticks', icon: '☑️', say: 's_gad_ticks', body: c => `<p class="small">${t('gad_ticks_d')}</p>` + GAD_TICKS.map(k => toggleTile('ticks.' + k, '⬜', t('gad_t_' + k, { d: fmtD(c.powerBy) }))).join('') + inp('powerBy', 'gad_power_by', { type: 'date' }),
+      check: c => !GAD_TICKS.every(k => c.ticks[k]) ? 'err_gad_ticks' : /^\d{4}-\d\d-\d\d$/.test(c.powerBy) ? null : 'err_date' },
+    { id: 'sign', icon: '✍️', say: 's_sign_pad', body: () => toggleTile('consent', '⬜', App.me.role === 'customer' ? 'i_have_read' : 'i_customer_read') + inp('signer', 'f_signer_name', { mic: true }) + signSlot('sig', 'customer_signature'),
+      check: c => !c.consent ? 'err_consent' : !(c.signer || '').trim() ? 'err_fill' : c.sig ? null : 'err_sign' }
+  ],
+  async finish(c, P) { const r = await run([['GAD_SIGNED', P.id, { ticks: c.ticks, powerBy: c.powerBy, consent: true, signer: c.signer.trim(), ev: [c.sig] }]]); return r.ok ? doneRes(P.id, 'gad_done') : r; }
+};
 WIZ.ticketAccept = {
   title: 'tk_accept_ticket', save: 'tk_accept_ticket', saveIcon: '🙋', noDraft: true, init: () => ({}),
   steps: [{ id: 'a', icon: '🚨', say: (c, P) => (ticketOf(P, W.opts.tid) || {}).text || '', body: (c, P) => { const x = ticketOf(P, W.opts.tid) || {};
@@ -11550,7 +11615,7 @@ function projInfo(P) {
   const sopN = Object.keys(P.sop).length;
   const target = installUsed(P);
   const cancelled = P.lost && P.lost.reason === 'cancelled' ? `<div class="err">⛔ ${t('cancelled_on', { d: fmtD(P.lost.t) })}: ${esc(P.lost.note)}${P.payments.some(x => x.status === 'confirmed') ? '<br>🏦 ' + t('refund_note') : ''}</div>` : '';
-  return cancelled + open + tierCard(P) + surveyCard(P) + groupCard(P) + socCard(P) + (P.stage === 'site_ok' || P.supCompare ? supCmpCard(P) : '') + expCard(P) + grnBtn(P) + stockSiteCard(P) + dreportCard(P) + leadScoreCard(P) + refCard(P) + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
+  return cancelled + open + tierCard(P) + gadCard(P) + surveyCard(P) + groupCard(P) + socCard(P) + (P.stage === 'site_ok' || P.supCompare ? supCmpCard(P) : '') + expCard(P) + grnBtn(P) + stockSiteCard(P) + dreportCard(P) + leadScoreCard(P) + refCard(P) + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
       ['gps', P.site.gps ? `<a href="${mapsLink(P.site.gps)}" target="_blank" rel="noopener">${P.site.gps.lat}, ${P.site.gps.lng}</a> · <a href="${dirLink(P.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a>` : t('no')]])}</div>
     ${OUTSIDERS.includes(u.role) ? maskedContact(P) : `<div class="card"><h3>👤 ${t('contact')}</h3>${kv([['f_contact_name', esc(P.contact.name)], ['f_phone', seeF(u, 'phone') ? (P.contact.phone ? `<a href="tel:+91${P.contact.phone}">📞 ${esc(P.contact.phone)}</a>` : t('i_no_phone')) : '🔒 ' + t('hidden')]])}
       ${P.corrected.length ? `<details style="margin-top:6px"><summary class="small">✏️ ${t('corrections_history')} (${P.corrected.length})</summary>${P.corrected.map(c => `<div class="small">${fmtD(c.t, true)} · ${userTag(c.by)} · ${t(c.field === 'address' ? 'f_address' : c.field === 'phone' ? 'f_phone' : 'f_contact_name')}: <s>${esc(c.old)}</s> → <b>${esc(c.val)}</b> (${esc(c.reason)})</div>`).join('')}</details>` : ''}</div>`}
@@ -12166,6 +12231,18 @@ function docGrn(P) {
   return docHead(P, t('doc_grn'), `${jobNo(P)}-GRN`) + kv([['grn_challan', esc(d.challan || '')], ['grn_seal', esc(d.seal || '')], ['grn_vehicle', esc(d.vehicle || '')], ['grn_sent', d.t ? fmtD(d.t, true) + ' · ' + esc(userName(d.by)) : ''], ['grn_got', m.t ? fmtD(m.t, true) + ' · ' + esc(userName(m.by)) : ''], ['grn_signer', esc(m.custName || '')]])
     + `<table><tr><th>#</th><th>${t('sk_item')}</th><th>${t('sk_qty')}</th><th>${t('grn_serial')}</th><th>${t('grn_state')}</th></tr>${rows}</table>${P.serialHold ? `<p><b>⚠️ ${t('grn_hold')}</b></p>` : ''}${m.note ? `<p>${esc(m.note)}</p>` : ''}<p class="small muted">${t('grn_note')}</p>`;
 }
+/* general arrangement and civil scope: the sizes measured, the lift, who does what, and the customer's promises */
+function gadBody(P) {
+  const l = P.gad || {}, m = l.meas || (lastSiteOk(P) || {}).meas || {}, door = l.door || (lastSiteOk(P) || {}).door, fl = l.floors || (lastSiteOk(P) || {}).floors, r = P.req || {};
+  return `<h3>${t('gad_sizes')}</h3>${kv(QC_SITE_MEAS.map(k => ['meas_' + k, m[k] ? m[k] + ' mm' : '—']).concat([['qs_door', door ? door.w + ' × ' + door.h + ' mm' : '—'], ['qs_floors', fl ? fl.join(' / ') + ' mm' : '—']]))}
+    <h3>${t('gad_lift')}</h3>${reqKv(r)}
+    <table><tr><th>${t('gad_ours')}</th><th>${t('gad_yours')}</th></tr><tr><td>${t('gad_ours_d')}</td><td style="color:var(--bad)">${t('gad_yours_d')}</td></tr></table>`;
+}
+function docGad(P) {
+  const g = P.gad;
+  return docHead(P, t('doc_gad'), `${jobNo(P)}-GAD`) + gadBody(P) + (g ? `<h3>${t('gad_promises')}</h3><ul style="padding-left:20px">${GAD_TICKS.map(k => `<li>✅ ${t('gad_t_' + k, { d: fmtD(g.powerBy) })}</li>`).join('')}</ul>
+    <p>${t('gad_signed_by', { n: esc(g.signer), d: fmtD(g.t, true) })}${g.inPerson ? ' · ' + t('gad_in_person', { n: esc(userName(g.by)) }) : ''}</p><img class="sigimg" data-m="${(S.evidence[g.sig] || {}).m || ''}" alt="">` : `<p class="small">${t('gad_unsigned')}</p>`) + `<p class="small muted">${t('gad_note')}</p>`;
+}
 /* a sheet for the society committee / general body: options, votes, cost per flat, payments, time, warranty */
 function docCommittee(P) {
   const sent = P.quotes.filter(q => q.sent), vt = socVotes(P), q = P.quotes.find(x => x.accepted) || sent[sent.length - 1] || lastQuote(P), sch = paySchedule(payCfgAt(), q.total);
@@ -12207,10 +12284,10 @@ SCREENS.doc = ({ pid, kind, v }) => {
   if (kind === 'po' && !['owner', 'admin', 'supplier'].includes(App.me.role)) return SCREENS.home();
   if (kind === 'grn' && !['owner', 'admin', 'supplier', 'finance', 'tech'].includes(App.me.role)) return SCREENS.home();
   if (['cert', 'bundle'].includes(kind) && !['owner', 'admin', 'qc', 'customer'].includes(App.me.role) && App.me.uid !== statLead()) return SCREENS.home();
-  const ready = { quote: P.quotes.length > 0, agreement: !!P.agreement, handover: !!P.done, po: !!P.po, cert: !!lastPass(P), warranty: !!P.done, bundle: !!P.done, resolution: !!P.society, committee: !!P.society && P.quotes.some(q => q.sent), notice: true, grn: !!P.mhand }[kind];
+  const ready = { quote: P.quotes.length > 0, agreement: !!P.agreement, handover: !!P.done, po: !!P.po, cert: !!lastPass(P), warranty: !!P.done, bundle: !!P.done, resolution: !!P.society, committee: !!P.society && P.quotes.some(q => q.sent), notice: true, grn: !!P.mhand, gad: !!P.gad || P.stage === 'site_ok' }[kind];
   if (!ready) return topBar(t('doc_' + kind), { back: true }) + `<main class="wrap"><div class="card center">${t('no_docs_yet')}</div></main>`;
   if (kind === 'quote' && App.me.role === 'customer') { const sent = P.quotes.filter(q => q.sent); if (!sent.length) return SCREENS.home(); if (!sent.some(q => q.v === +v)) v = sent[sent.length - 1].v; }
-  const html = kind === 'quote' ? docQuote(P, v) : kind === 'agreement' ? docAgreement(P) : kind === 'po' ? docPO(P) : kind === 'cert' ? docCert(P) : kind === 'warranty' ? docWarranty(P) : kind === 'resolution' ? docResolution(P) : kind === 'committee' ? docCommittee(P) : kind === 'grn' ? docGrn(P) : kind === 'notice' ? docNotice(P) : kind === 'bundle' ? docBundle(P) : docHandover(P);
+  const html = kind === 'quote' ? docQuote(P, v) : kind === 'agreement' ? docAgreement(P) : kind === 'po' ? docPO(P) : kind === 'cert' ? docCert(P) : kind === 'warranty' ? docWarranty(P) : kind === 'resolution' ? docResolution(P) : kind === 'committee' ? docCommittee(P) : kind === 'grn' ? docGrn(P) : kind === 'gad' ? docGad(P) : kind === 'notice' ? docNotice(P) : kind === 'bundle' ? docBundle(P) : docHandover(P);
   return topBar(t('doc_' + kind), { back: true }) + `<main class="wrap"><div class="row noprint" style="margin-bottom:10px"><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button><button class="btn" data-a="sayDoc">🔊 ${t('listen')}</button></div><div class="doc" id="docbody">${html}</div></main>`;
 };
 
@@ -14000,7 +14077,7 @@ function openTask(n) {
     record_payment: () => wiz('paynew', pid, { purpose: n.purpose }), verify_payment: () => wiz('payverify', pid, { payId: n.payId }),
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), decide_infeasible: () => wiz('infeasible', pid), approve_drawing: () => go('drawings', { pid }),
-    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), pre_survey: () => wiz('survey', pid), pick_option: () => go('project', { pid, tab: 'info' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
+    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), pre_survey: () => wiz('survey', pid), pick_option: () => go('project', { pid, tab: 'info' }), sign_gad: () => wiz('gad', pid), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
