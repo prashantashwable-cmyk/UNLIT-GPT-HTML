@@ -3169,6 +3169,45 @@ const L = {
   qd_disc: ['Discount: {a}% → {b}%', 'छूट: {a}% → {b}%', 'सवलत: {a}% → {b}%'],
   ev_DAILY_REPORT: ['Daily report sent', 'रोज़ की रिपोर्ट भेजी', 'रोजचा अहवाल पाठवला'],
   cfg_cityCode: ['City code in new job numbers (3 capital letters, e.g. PUN)', 'नए काम नंबर में शहर कोड (3 बड़े अक्षर, जैसे PUN)', 'नवीन काम क्रमांकात शहर कोड (3 मोठी अक्षरे, उदा. PUN)'],
+  cfg_lowPit: ['Pit below this (mm) needs a special low-pit design', 'इससे कम पिट (mm) पर खास लो-पिट डिज़ाइन', 'यापेक्षा कमी पिट (mm) असल्यास खास लो-पिट डिझाइन'],
+  cfg_lowHead: ['Overhead below this (mm) needs a special design', 'इससे कम ओवरहेड (mm) पर खास डिज़ाइन', 'यापेक्षा कमी ओव्हरहेड (mm) असल्यास खास डिझाइन'],
+  cfg_costSpecial: ['Cost of a special low-pit / low-overhead design, ₹ (0 = add by hand)', 'खास लो-पिट / लो-ओवरहेड डिज़ाइन का खर्च, ₹ (0 = हाथ से जोड़ें)', 'खास लो-पिट / लो-ओव्हरहेड डिझाइनचा खर्च, ₹ (0 = हाताने जोडा)'],
+  ql_special: ['Special design for low pit / overhead', 'कम पिट / ओवरहेड के लिए खास डिज़ाइन', 'कमी पिट / ओव्हरहेडसाठी खास डिझाइन'],
+  m_anchors: ['Chemical anchors for brick walls', 'ईंट की दीवार के लिए केमिकल एंकर', 'विटांच्या भिंतीसाठी केमिकल अँकर'],
+  err_survey_first: ['Measure the shaft first (builder, society or commercial job).', 'पहले शाफ्ट नापें (बिल्डर, सोसायटी या कमर्शियल काम)।', 'आधी शाफ्ट मोजा (बिल्डर, सोसायटी किंवा कमर्शियल काम).'],
+  err_sv_levels: ['Enter width and depth at the bottom, middle and top.', 'नीचे, बीच और ऊपर की चौड़ाई और गहराई लिखें।', 'खाली, मध्ये आणि वर रुंदी व खोली लिहा.'],
+  err_sv_photos: ['Take all 5 photos: pit, overhead, landing with tape, 3-phase point, storage room.', 'सभी 5 फोटो लें: पिट, ओवरहेड, टेप के साथ लैंडिंग, 3-फ़ेज़ पॉइंट, स्टोर रूम।', 'सर्व 5 फोटो घ्या: पिट, ओव्हरहेड, टेपसह लँडिंग, 3-फेज पॉइंट, स्टोअर रूम.'],
+  tk_pre_survey: ['Measure the shaft before the quotation', 'कोटेशन से पहले शाफ्ट नापें', 'कोटेशनआधी शाफ्ट मोजा'],
+  svy_title: ['Shaft measured before price', 'कीमत से पहले शाफ्ट नाप', 'किमतीआधी शाफ्ट मोजमाप'],
+  sv_done: ['Measurements saved. The quotation will use them.', 'नाप सेव हुए। कोटेशन इन्हें लेगा।', 'मोजमाप जतन झाले. कोटेशन ते वापरेल.'],
+  sv_again: ['Measure again (new version)', 'फिर नापें (नया संस्करण)', 'पुन्हा मोजा (नवीन आवृत्ती)'],
+  s_sv_levels: ['Width and depth at three heights', 'तीन ऊँचाइयों पर चौड़ाई और गहराई', 'तीन उंचीवर रुंदी आणि खोली'],
+  sv_levels_d: ['Shafts are rarely straight. The smallest reading is the real clear size; the difference shows how far out of plumb it is.', 'शाफ्ट शायद ही सीधे होते हैं। सबसे छोटा नाप असली साफ़ नाप है; अंतर बताता है कितना तिरछा है।', 'शाफ्ट क्वचितच सरळ असतात. सर्वात लहान मोजमाप हेच खरे मोकळे माप; फरक किती तिरपा आहे ते दाखवतो.'],
+  sv_lv_bottom: ['Bottom (pit level)', 'नीचे (पिट स्तर)', 'खाली (पिट पातळी)'],
+  sv_lv_middle: ['Middle', 'बीच', 'मध्य'],
+  sv_lv_top: ['Top (last floor)', 'ऊपर (आखिरी मंज़िल)', 'वर (शेवटचा मजला)'],
+  s_sv_pit: ['Pit, overhead and walls', 'पिट, ओवरहेड और दीवारें', 'पिट, ओव्हरहेड आणि भिंती'],
+  sv_clear: ['Clear shaft {w} × {d} mm · out of plumb {p} mm', 'साफ़ शाफ्ट {w} × {d} mm · तिरछापन {p} mm', 'मोकळा शाफ्ट {w} × {d} mm · तिरपेपणा {p} mm'],
+  sv_clear_t: ['Clear shaft (smallest reading)', 'साफ़ शाफ्ट (सबसे छोटा नाप)', 'मोकळा शाफ्ट (सर्वात लहान माप)'],
+  sv_plumb: ['Out of plumb', 'तिरछापन', 'तिरपेपणा'],
+  sv_special: ['Pit below {p} mm or overhead below {h} mm: a special design is needed and is added to the quotation.', '{p} mm से कम पिट या {h} mm से कम ओवरहेड: खास डिज़ाइन चाहिए, कोटेशन में जुड़ता है।', '{p} mm पेक्षा कमी पिट किंवा {h} mm पेक्षा कमी ओव्हरहेड: खास डिझाइन लागते, कोटेशनमध्ये जोडले जाते.'],
+  sv_wall: ['Wall where brackets are fixed', 'जिस दीवार पर ब्रैकेट लगेंगे', 'ज्या भिंतीवर ब्रॅकेट बसतील'],
+  sv_w_rcc: ['RCC concrete', 'RCC कंक्रीट', 'RCC काँक्रीट'],
+  sv_w_brick: ['Brick', 'ईंट', 'वीट'],
+  sv_w_steel: ['Steel structure', 'स्टील ढाँचा', 'स्टील रचना'],
+  sv_brick: ['Brick walls need chemical anchors or through-bolts; they are added to the material list.', 'ईंट की दीवार पर केमिकल एंकर या आर-पार बोल्ट लगते हैं; ये सामान सूची में जुड़ते हैं।', 'विटांच्या भिंतीला केमिकल अँकर किंवा आरपार बोल्ट लागतात; ते साहित्य यादीत जोडले जातात.'],
+  s_sv_photos: ['Five photos, taken now with the app camera', 'पाँच फोटो, अभी ऐप कैमरे से', 'पाच फोटो, आत्ता ॲप कॅमेऱ्याने'],
+  sv_ph_pit: ['Pit floor and corners (water / seepage)', 'पिट फ़र्श और कोने (पानी / सीलन)', 'पिट फरशी आणि कोपरे (पाणी / गळती)'],
+  sv_ph_head: ['Overhead: top of shaft and lifting hook / beam', 'ओवरहेड: शाफ्ट का ऊपरी भाग और हुक / बीम', 'ओव्हरहेड: शाफ्टचा वरचा भाग आणि हुक / बीम'],
+  sv_ph_landing: ['Main landing opening with measuring tape', 'टेप के साथ मुख्य लैंडिंग का द्वार', 'टेपसह मुख्य लँडिंगचे दार'],
+  sv_ph_power: ['3-phase power point and earthing', '3-फ़ेज़ बिजली पॉइंट और अर्थिंग', '3-फेज वीज पॉइंट आणि अर्थिंग'],
+  sv_ph_store: ['Room where material will be locked', 'कमरा जहाँ सामान बंद रहेगा', 'साहित्य बंद ठेवण्याची खोली'],
+  s_sv_sign: ['Customer confirms the sizes', 'ग्राहक नाप पक्के करता है', 'ग्राहक मापे निश्चित करतो'],
+  sv_sign_d: ['The customer (or site engineer) signs that these sizes were measured in front of them.', 'ग्राहक (या साइट इंजीनियर) सही करता है कि ये नाप उनके सामने लिए गए।', 'ग्राहक (किंवा साइट इंजिनियर) सही करतात की ही मापे त्यांच्यासमोर घेतली.'],
+  sv_away: ['Customer is not here to sign', 'ग्राहक सही के लिए यहाँ नहीं', 'ग्राहक सहीसाठी इथे नाही'],
+  q_measured: ['Measured on site {d}: clear shaft {w} × {dd} mm, pit {p} mm, overhead {h} mm. The QC confirms after the token.', 'साइट पर {d} को नापा: साफ़ शाफ्ट {w} × {dd} mm, पिट {p} mm, ओवरहेड {h} mm। टोकन के बाद QC पक्का करेगा।', 'साइटवर {d} रोजी मोजले: मोकळा शाफ्ट {w} × {dd} mm, पिट {p} mm, ओव्हरहेड {h} mm. टोकननंतर QC निश्चित करेल.'],
+  q_special: ['Includes a special design for the low pit / overhead measured.', 'नापे गए कम पिट / ओवरहेड के लिए खास डिज़ाइन शामिल।', 'मोजलेल्या कमी पिट / ओव्हरहेडसाठी खास डिझाइन समाविष्ट.'],
+  ev_SURVEY_DONE: ['Shaft measured before price', 'कीमत से पहले शाफ्ट नापा', 'किमतीआधी शाफ्ट मोजला'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5081,7 +5120,7 @@ const CFG_LIMITS = (() => {
   set(['tokenMode', 'dailySafety', 'licenceGate', 'permitGate', 'peerCheck', 'checkinGate', 'dualControl', 'requireTraining', 'sundayWork'], 0, 1);
   set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'civilMin', 'civilMax'], 0, 2000000);
   set(['reservePct'], 0, 90); set(['reserveRelease'], 1, 100); set(['agreeVersion'], 1, 99);
-  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['firstContactHours'], 1, 48); set(['idleDays'], 14, 365); set(['amcYearly'], 0, 500000); set(['powerYearly'], 0, 200000); set(['retentionPct'], 0, 20); set(['retentionDays'], 0, 365); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
+  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['lowPit'], 300, 3000); set(['lowHead'], 2000, 6000); set(['costSpecial'], 0, 5000000); set(['firstContactHours'], 1, 48); set(['idleDays'], 14, 365); set(['amcYearly'], 0, 500000); set(['powerYearly'], 0, 200000); set(['retentionPct'], 0, 20); set(['retentionDays'], 0, 365); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
   set(['lvHelperJobs', 'lvTechJobs', 'lvSeniorJobs', 'lvQcJobs', 'lvHelperReviews', 'lvTechReviews', 'lvSeniorReviews', 'lvQcReviews', 'partnerBigJobs'], 0, 500);
   set(['lvHelperStars', 'lvTechStars', 'lvSeniorStars', 'lvQcStars', 'partnerBigStars'], 0, 5); set(['lvTechTrust', 'lvSeniorTrust', 'lvQcTrust', 'lvSeniorPass', 'lvQcPass'], 0, 100);
   set(['lvHelperDays', 'lvTechDays', 'lvSeniorDays'], 0, 3650); set(['strikeDays'], 1, 3650); set(['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior'], 0, 300);
@@ -5127,6 +5166,12 @@ const STOCK_UNITS = ['pcs', 'm', 'kg', 'set', 'l'];
 const EXP_CATS = [['transport', '🚚'], ['loading', '🏋️'], ['consumables', '🔩'], ['electrical', '⚡'], ['travel', '🧳'], ['stay', '🏨'], ['civil', '🧱'], ['other', '❔']];
 const stockQty = (loc, sku) => ((S.stock.bal[loc] || {})[sku]) || 0;
 const stockLocOk = (S, loc) => loc === 'store' || loc === 'supplier' || loc === 'used' || loc === 'scrap' || (/^van:/.test(loc) && S.users[loc.slice(4)] && S.users[loc.slice(4)].role === 'tech') || (/^site:/.test(loc) && !!S.projects[loc.slice(5)]);
+/* v4 journey: measure big jobs before pricing; one customer sign-off before material; damage charges; measured steps */
+const JOURNEY_FROM = '2026-11-04T00:00:00.000Z';
+const SV_LEVELS = ['bottom', 'middle', 'top'], SV_WALLS = [['rcc', '🧱'], ['brick', '🧱'], ['steel', '🔩']], SV_PHOTOS = ['pit', 'head', 'landing', 'power', 'store'];
+/* builders, societies, hospitals, shops and multi-lift sites are measured before the quotation */
+const bigJob = P => !!(P.society || P.group || P.lead.contactRole === 'builder' || ['hospital', 'shop'].includes((P.req || {}).use || P.lead.use));
+const svSpecial = sv => !!sv && (+sv.pit < (+S.config.lowPit || 1400) || +sv.head < (+S.config.lowHead || 3900));
 const FAULTS = ['trapped', 'door_close', 'door_reopen', 'level', 'noise', 'no_power'];
 const SITE_CANT = ['no_show', 'unsafe'];
 const floorGaps = P => Math.max(1, Math.min(59, (+(P.req && P.req.stops) || 2) - 1));
@@ -5200,7 +5245,7 @@ const DEFAULT_CONFIG = {
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 8, adminDiscountLimit: 18, minMargin: 20, negStep: 5,
-  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, firstContactHours: 2, idleDays: 90, amcYearly: 0, powerYearly: 0, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
+  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, lowPit: 1400, lowHead: 3900, costSpecial: 0, firstContactHours: 2, idleDays: 90, amcYearly: 0, powerYearly: 0, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
@@ -5211,7 +5256,7 @@ const DEFAULT_CONFIG = {
 };
 /* every number belongs to a rule group that the Owner must approve */
 const RULE_GROUPS = {
-  pricing: ['costAuto', 'costManual', 'costPerStop', 'costSS', 'costDismantle', 'cap4', 'cap6', 'cap8', 'cap10', 'cap13', 'install', 'transport', 'gst'],
+  pricing: ['costAuto', 'costManual', 'costPerStop', 'costSS', 'costDismantle', 'costSpecial', 'cap4', 'cap6', 'cap8', 'cap10', 'cap13', 'install', 'transport', 'gst'],
   margins: ['targetMargin', 'salesDiscountLimit', 'adminDiscountLimit', 'minMargin', 'negStep'],
   token: ['token'],
   milestones: ['tokenMode', 'arrivalPct', 'cabinPct', 'retentionPct', 'retentionDays'],
@@ -5229,7 +5274,7 @@ const RULE_GROUPS = {
   security: ['pinDigits'],
   safety: ['dailySafety', 'sosNumber', 'safetyRetest'],
   statutory: ['licenceGate', 'permitGate'],
-  quality: ['tolWidth', 'tolDepth', 'tolPit', 'tolHead', 'peerCheck'],
+  quality: ['tolWidth', 'tolDepth', 'tolPit', 'tolHead', 'peerCheck', 'lowPit', 'lowHead'],
   privacy: ['officeNumber', 'cityCode', 'accessAlert'],
   ladderpay: ['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior', 'payCrewJob', 'payQcInspection', 'spotTrainee', 'spotTech', 'spotSenior'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
@@ -5257,7 +5302,7 @@ function calcQuote(cfg, req, discountPct) {
   const extra = Math.max(0, (+req.stops || 2) - 2) * cfg.costPerStop;
   const cap = +cfg['cap' + req.capacity] || 0;
   const fin = req.finish === 'ss' ? cfg.costSS : 0;
-  const parts = [['ql_lift', base], ['ql_stops', extra], ['ql_cap', cap], ['ql_finish', fin], ['ql_install', cfg.install], ['ql_transport', cfg.transport], ['ql_dismantle', req.job === 'replace' ? +cfg.costDismantle || 0 : 0]];
+  const parts = [['ql_lift', base], ['ql_stops', extra], ['ql_cap', cap], ['ql_finish', fin], ['ql_install', cfg.install], ['ql_transport', cfg.transport], ['ql_dismantle', req.job === 'replace' ? +cfg.costDismantle || 0 : 0], ['ql_special', req.special ? +cfg.costSpecial || 0 : 0]];
   const cost = sum(parts.map(p => p[1]));
   const k = 1 / (1 - cfg.targetMargin / 100);
   const lines = parts.filter(p => p[1] > 0).map(p => [p[0], r100(p[1] * k)]);
@@ -5291,10 +5336,10 @@ const poNo = P => 'PO-' + P.id.replace(/^AIEC-/, '') + '-' + P.poN;
 const paidTotal = P => P.payments.filter(p => p.status === 'confirmed').reduce((a, p) => a + (+p.amount || 0), 0);
 function materialList(req) {
   const st = +req.stops || 2;
-  return [
+  return (req.anchors ? [['m_anchors', st * 4]] : []).concat([
     ['m_machine', 1], ['m_controller', 1], ['m_rails', st * 2], ['m_cabin', 1], ['m_landing', st], ['m_cardoor', 1],
     ['m_cwt', 1], ['m_ropes', 1], ['m_buffers', 1], ['m_governor', 1], ['m_wiring', 1], ['m_buttons', st + 1]
-  ].map(([k, q]) => ({ k, q, fin: k === 'm_cabin' ? req.finish : undefined }));
+  ]).map(([k, q]) => ({ k, q, fin: k === 'm_cabin' ? req.finish : undefined }));
 }
 
 /* ---------- state ---------- */
@@ -6195,9 +6240,22 @@ const RULES = {
       return need(r.use && r.stops >= 2 && r.capacity && r.type && r.finish, 'err_fill');
     }
   },
+  /* measured before pricing: width and depth at bottom, middle and top, pit, overhead, wall, 5 photos, customer's signature */
+  SURVEY_DONE: {
+    roles: ['field', 'sales', 'admin', 'owner'], project: true, stages: SALES_TALK.concat(['new']), check: (S, ev, u, P) => {
+      const d = ev.data, lv = d.levels || {};
+      if (!SV_LEVELS.every(k => +(lv[k] || {}).w > 0 && +(lv[k] || {}).d > 0)) return 'err_sv_levels';
+      if (!(+d.pit > 0 && +d.head > 0)) return 'err_meas';
+      if (!SV_WALLS.some(w => w[0] === d.wall)) return 'err_choose';
+      const labels = ev_(d, 'photo').map(e => e.label);
+      if (!SV_PHOTOS.every(k => labels.includes('sv_' + k))) return 'err_sv_photos';
+      return ev_(d, 'sign').length ? need((d.signer || '').trim(), 'err_fill') : need((d.noSign || '').trim(), 'err_reason');
+    }
+  },
   QUOTE_CREATED: {
     roles: ['sales'], project: true, stages: ['requirements', 'quoted'], check: (S, ev, u, P) => {
       if (!P.req) return 'err_no_req';
+      if (ev.t >= JOURNEY_FROM && P.t >= JOURNEY_FROM && bigJob(P) && !P.survey) return 'err_survey_first';
       const d = +ev.data.discountPct;
       if (!(d >= 0 && d <= 90)) return 'err_number';
       if (d > 0 && !(ev.data.reason || '').trim()) return 'err_reason';
@@ -7330,7 +7388,7 @@ function apply(S, ev) {
       if (d.outcome === 'not_interested') { P.lost = { reason: d.reason, by: ev.by, t: ev.t }; P.followUp = null; setStage(P, 'lost', ev); }
       break;
     case 'FOLLOWUP_SET': P.followUp = { due: d.due, by: ev.by, note: d.note || '' }; break;
-    case 'REQ_SAVED': P.req = Object.assign({}, d.req); P.materials = materialList(P.req); if (P.stage === 'contacted') setStage(P, 'requirements', ev); break;
+    case 'REQ_SAVED': P.req = Object.assign({}, d.req, P.survey ? { special: svSpecial(P.survey), anchors: P.survey.wall === 'brick' } : {}); P.materials = materialList(P.req); if (P.stage === 'contacted') setStage(P, 'requirements', ev); break;
     case 'QUOTE_CREATED': {
       const q = calcQuote(priceCfg(ev.t), P.req, d.discountPct);
       if (roleOf(ev.by) === 'owner' && q.margin >= S.config.minMargin) q.needsApproval = false;
@@ -7666,6 +7724,14 @@ function apply(S, ev) {
     case 'EXPENSE_DECIDED': Object.assign(P.expenses.find(e => e.id === d.xid), { decided: { ok: d.ok, note: d.note || '', by: ev.by, t: ev.t } }); break;
     case 'SUP_COMPARED': P.supCompare = { rows: d.rows.map(x => ({ uid: x.uid, amount: +x.amount, days: +x.days })), pick: d.pick, reason: d.reason, t: ev.t, by: ev.by }; break;
     case 'DAILY_REPORT': (P.dreports = P.dreports || {})[safeDay(ev.t)] = { t: ev.t, by: ev.by, done: d.done.trim(), material: (d.material || '').trim(), blockers: (d.blockers || '').trim(), tomorrow: d.tomorrow.trim(), crew: (P.crew || []).slice() }; break;
+    case 'SURVEY_DONE': {
+      const lv = d.levels, ws = SV_LEVELS.map(k => +lv[k].w), ds = SV_LEVELS.map(k => +lv[k].d);
+      const sv = { v: ((P.survey || {}).v || 0) + 1, t: ev.t, by: ev.by, levels: lv, w: Math.min(...ws), d: Math.min(...ds), plumb: Math.max(Math.max(...ws) - Math.min(...ws), Math.max(...ds) - Math.min(...ds)), pit: +d.pit, head: +d.head, wall: d.wall,
+        ev: ev_(d, 'photo').map(e => e.id), sig: (ev_(d, 'sign')[0] || {}).id || null, signer: d.signer || '', noSign: d.noSign || '', note: d.note || '' };
+      (P.surveys = P.surveys || []).push(sv); P.survey = sv;
+      if (P.req) { P.req.special = svSpecial(sv); P.req.anchors = sv.wall === 'brick'; P.materials = materialList(P.req); }
+      break;
+    }
     case 'SITE_GROUP_SET': P.group = { gid: d.gid, name: d.name.trim(), tower: String(d.tower || '').trim(), t: ev.t, by: ev.by }; break;
     case 'SOC_VOTED': P.society.votes = Object.assign({}, P.society.votes, { [d.name]: { v: d.v, t: ev.t, by: ev.by, note: d.note || '' } }); break;
     case 'SOC_APPROVED': P.society.approvals[d.name] = { t: ev.t, by: ev.by, sig: ev_(d, 'sign')[0].id }; break;
@@ -7782,7 +7848,7 @@ function needs0(P) {
     case 'accepted': { const late = P.since >= LIFE_FROM && Date.now() - Date.parse(P.since) > (+S.config.firstContactHours || 2) * 3600e3;
       add('call_customer', ['sales'], { uids: [P.sales], urgent: late, since: P.since }); if (late) add('first_contact_late', ['admin'], { uid: P.sales, since: P.since }); break; }
     case 'contacted': add('write_needs', ['sales'], { uids: [P.sales] }); break;
-    case 'requirements': add('make_quote', ['sales'], { uids: [P.sales] }); break;
+    case 'requirements': if (P.t >= JOURNEY_FROM && bigJob(P) && !P.survey) add('pre_survey', ['sales', 'field'], { uids: [P.sales] }); else add('make_quote', ['sales'], { uids: [P.sales] }); break;
     case 'quote_approval': add('approve_quote', q && (q.margin < S.config.minMargin || (q.why || []).includes('over_admin')) ? ['owner'] : ['owner', 'admin'], { not: q && q.by, urgent: true });
       /* nobody else can approve (e.g. the Owner alone made a price below the floor): the maker withdraws it and makes a new one */
       if (q && !Object.values(S.users).some(x => x.active && x.uid !== q.by && ['owner', 'admin'].includes(x.role)) && !backupNow()) add('withdraw_quote', [roleOf(q.by)], { uids: [q.by], urgent: true });
@@ -8678,7 +8744,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pre_survey: '📐', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -9508,6 +9574,7 @@ WIZ.qcsite = {
       id: 'info', icon: '📋', say: 's_qc_info',
       body: (c, P) => `<div class="card">${kv([['f_address', esc(P.site.address)], ['gps', P.site.gps ? `<a href="${dirLink(P.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a>` : '']])}${reqKv(P.req)}</div>
         <div class="card"><h3>${t('prep_done_by_customer')}</h3>${PREP_ITEMS.map(([k, i]) => `<div class="list-item"><span>${P.prep[k] ? '✅' : '⬜'} ${i}</span><span class="grow">${t('prep_' + k)}</span></div>${P.prep[k] ? evGrid(P.prep[k].ev) : ''}`).join('')}</div>
+        ${P.survey ? `<div class="card"><h3>📐 ${t('svy_title')}</h3>${kv([['sv_clear_t', P.survey.w + ' × ' + P.survey.d + ' mm'], ['meas_pit', P.survey.pit + ' mm'], ['meas_head', P.survey.head + ' mm']])}</div>` : ''}
         ${P.qcSite.length ? `<div class="card"><h3>${t('previous_qc')}</h3>${P.qcSite.map(q => `<div>${fmtD(q.t)} · ${t('qo_' + q.outcome)}${q.why ? ' · ' + t('qs_' + q.why) : ''}</div>`).join('')}</div>` : ''}
         <div class="warnbox">📜 ${t('checklist_disclaimer')}</div>`
     },
@@ -9589,6 +9656,34 @@ function callNextCard(u) {
   if (u.role !== 'sales') return '';
   const l = callNext(u); if (!l.length) return '';
   return `<div class="card"><h3>📞 ${t('cn_title')}</h3>${l.map(([, P, why]) => `<div class="list-item"><span class="grow"><b>${esc(P.contact.name || P.id)}</b> ${scoreChip(P)}<br><span class="small">${esc(why)}</span></span>${P.contact.phone ? `<a class="btn btn-sm" href="tel:${esc(P.contact.phone)}">📞</a>` : ''}<button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶</button></div>`).join('')}</div>`;
+}
+WIZ.survey = {
+  title: 'svy_title', save: 'save', saveIcon: '📐',
+  init: () => ({ levels: { bottom: {}, middle: {}, top: {} }, pit: '', head: '', wall: '', ph: Object.fromEntries(SV_PHOTOS.map(k => [k, []])), signer: '', sig: null, noSign: '', away: false, note: '' }),
+  steps: [
+    { id: 'lv', icon: '📏', say: 's_sv_levels', body: () => `<p class="small muted">${t('sv_levels_d')}</p>` + SV_LEVELS.map(k => `<div class="card"><h3>${t('sv_lv_' + k)}</h3>${inp('levels.' + k + '.w', 'meas_width', { type: 'number', mode: 'numeric' })}${inp('levels.' + k + '.d', 'meas_depth', { type: 'number', mode: 'numeric' })}</div>`).join(''),
+      check: c => SV_LEVELS.every(k => +c.levels[k].w > 0 && +c.levels[k].d > 0) ? null : 'err_sv_levels' },
+    { id: 'ph1', icon: '📐', say: 's_sv_pit', body: c => { const sv = { pit: +c.pit, head: +c.head }, ws = SV_LEVELS.map(k => +c.levels[k].w), ds = SV_LEVELS.map(k => +c.levels[k].d);
+      return `<div class="okbox">${t('sv_clear', { w: Math.min(...ws), d: Math.min(...ds), p: Math.max(Math.max(...ws) - Math.min(...ws), Math.max(...ds) - Math.min(...ds)) })}</div>` + inp('pit', 'meas_pit', { type: 'number', mode: 'numeric', big: true }) + inp('head', 'meas_head', { type: 'number', mode: 'numeric', big: true })
+        + (+c.pit > 0 && +c.head > 0 && svSpecial(sv) ? `<div class="warnbox">⚠️ ${t('sv_special', { p: +S.config.lowPit || 1400, h: +S.config.lowHead || 3900 })}</div>` : '') + `<h3>${t('sv_wall')}</h3>` + tiles('wall', SV_WALLS.map(([k, i]) => [k, i, 'sv_w_' + k]), 'three') + (c.wall === 'brick' ? `<p class="small">🔩 ${t('sv_brick')}</p>` : ''); },
+      check: c => !(+c.pit > 0 && +c.head > 0) ? 'err_meas' : c.wall ? null : 'err_choose' },
+    { id: 'ph', icon: '📷', say: 's_sv_photos', body: () => SV_PHOTOS.map(k => photoSlot('ph.' + k, 'sv_ph_' + k, 1, { tag: 'sv_' + k })).join(''), check: c => SV_PHOTOS.every(k => (c.ph[k] || []).length) ? null : 'err_sv_photos' },
+    { id: 'sg', icon: '✍️', say: 's_sv_sign', body: c => `<div class="card">${kv(SV_LEVELS.map(k => ['sv_lv_' + k, (c.levels[k].w || '') + ' × ' + (c.levels[k].d || '') + ' mm']).concat([['meas_pit', c.pit + ' mm'], ['meas_head', c.head + ' mm']]))}</div><p class="small">${t('sv_sign_d')}</p>`
+      + toggleTile('away', '🚶', 'sv_away') + (c.away ? inp('noSign', 'f_reason', { area: true, mic: true }) : inp('signer', 'f_signer_name', { mic: true }) + signSlot('sig', 'customer_signature')),
+      check: c => c.away ? (c.noSign.trim() ? null : 'err_reason') : !c.signer.trim() ? 'err_fill' : c.sig ? null : 'err_sign' }
+  ],
+  async finish(c, P) {
+    const ev = [].concat(...SV_PHOTOS.map(k => (c.ph[k] || []).map(e => Object.assign({}, e, { label: 'sv_' + k })))).concat(!c.away && c.sig ? [c.sig] : []);
+    const r = await run([['SURVEY_DONE', P.id, { levels: c.levels, pit: +c.pit, head: +c.head, wall: c.wall, ev, signer: c.away ? '' : c.signer.trim(), noSign: c.away ? c.noSign.trim() : '' }]]);
+    return r.ok ? doneRes(P.id, 'sv_done') : r;
+  }
+};
+function surveyCard(P) {
+  const sv = P.survey, can = allowed('SURVEY_DONE', P);
+  if (!sv) return can && bigJob(P) ? `<button class="btn btn-sm${P.stage === 'requirements' ? ' btn-p' : ''}" style="margin-bottom:10px" data-a="wizOpen" data-v="survey|${P.id}">📐 ${t('svy_title')}</button>` : '';
+  return `<div class="card"><h3>📐 ${t('svy_title')}${sv.v > 1 ? ' · ' + t('qs_version', { n: sv.v }) : ''}</h3>${kv([['sv_clear_t', sv.w + ' × ' + sv.d + ' mm'], ['sv_plumb', sv.plumb + ' mm'], ['meas_pit', sv.pit + ' mm'], ['meas_head', sv.head + ' mm'], ['sv_wall', t('sv_w_' + sv.wall)]])}
+    ${svSpecial(sv) ? `<div class="warnbox">⚠️ ${t('sv_special', { p: +S.config.lowPit || 1400, h: +S.config.lowHead || 3900 })}</div>` : ''}<p class="small muted">${esc(userName(sv.by))} · ${fmtD(sv.t, true)} · ${sv.sig ? '✍️ ' + esc(sv.signer) : '🚶 ' + esc(sv.noSign)}</p>${evGrid(sv.ev)}
+    ${can ? `<button class="btn btn-sm" data-a="wizOpen" data-v="survey|${P.id}">✏️ ${t('sv_again')}</button>` : ''}</div>`;
 }
 WIZ.ticketAccept = {
   title: 'tk_accept_ticket', save: 'tk_accept_ticket', saveIcon: '🙋', noDraft: true, init: () => ({}),
@@ -11398,7 +11493,7 @@ function projInfo(P) {
   const sopN = Object.keys(P.sop).length;
   const target = installUsed(P);
   const cancelled = P.lost && P.lost.reason === 'cancelled' ? `<div class="err">⛔ ${t('cancelled_on', { d: fmtD(P.lost.t) })}: ${esc(P.lost.note)}${P.payments.some(x => x.status === 'confirmed') ? '<br>🏦 ' + t('refund_note') : ''}</div>` : '';
-  return cancelled + open + groupCard(P) + socCard(P) + (P.stage === 'site_ok' || P.supCompare ? supCmpCard(P) : '') + expCard(P) + grnBtn(P) + stockSiteCard(P) + dreportCard(P) + leadScoreCard(P) + refCard(P) + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
+  return cancelled + open + surveyCard(P) + groupCard(P) + socCard(P) + (P.stage === 'site_ok' || P.supCompare ? supCmpCard(P) : '') + expCard(P) + grnBtn(P) + stockSiteCard(P) + dreportCard(P) + leadScoreCard(P) + refCard(P) + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
       ['gps', P.site.gps ? `<a href="${mapsLink(P.site.gps)}" target="_blank" rel="noopener">${P.site.gps.lat}, ${P.site.gps.lng}</a> · <a href="${dirLink(P.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a>` : t('no')]])}</div>
     ${OUTSIDERS.includes(u.role) ? maskedContact(P) : `<div class="card"><h3>👤 ${t('contact')}</h3>${kv([['f_contact_name', esc(P.contact.name)], ['f_phone', seeF(u, 'phone') ? (P.contact.phone ? `<a href="tel:+91${P.contact.phone}">📞 ${esc(P.contact.phone)}</a>` : t('i_no_phone')) : '🔒 ' + t('hidden')]])}
       ${P.corrected.length ? `<details style="margin-top:6px"><summary class="small">✏️ ${t('corrections_history')} (${P.corrected.length})</summary>${P.corrected.map(c => `<div class="small">${fmtD(c.t, true)} · ${userTag(c.by)} · ${t(c.field === 'address' ? 'f_address' : c.field === 'phone' ? 'f_phone' : 'f_contact_name')}: <s>${esc(c.old)}</s> → <b>${esc(c.val)}</b> (${esc(c.reason)})</div>`).join('')}</details>` : ''}</div>`}
@@ -11815,7 +11910,9 @@ function tcoBlock(q) {
 }
 /* what the price stands on until the site check, printed so nothing is hidden */
 function quoteAssumptions(P, q) {
-  const r = q.req || {}, measured = (P.qcSite || []).some(x => x.meas), out = [];
+  const r = q.req || {}, measured = (P.qcSite || []).some(x => x.meas) || !!P.survey, out = [];
+  if (P.survey && !(P.qcSite || []).some(x => x.meas)) out.push(t('q_measured', { d: fmtD(P.survey.t), w: P.survey.w, dd: P.survey.d, p: P.survey.pit, h: P.survey.head }));
+  if (r.special) out.push(t('q_special'));
   if (!measured) out.push(t(r.shaft === 'no' ? 'q_assume_shaft_new' : 'q_assume_shaft'), t('q_assume_height'));
   if (r.power !== 'yes') out.push(t('q_assume_power'));
   return out.length ? out : [t('q_assume_shaft')];
@@ -13845,7 +13942,7 @@ function openTask(n) {
     record_payment: () => wiz('paynew', pid, { purpose: n.purpose }), verify_payment: () => wiz('payverify', pid, { payId: n.payId }),
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), decide_infeasible: () => wiz('infeasible', pid), approve_drawing: () => go('drawings', { pid }),
-    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
+    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), pre_survey: () => wiz('survey', pid), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
@@ -14534,7 +14631,7 @@ async function seedPractice() {
     new: () => ['sales', 'LEAD_ACCEPTED', {}],
     accepted: () => ['sales', 'CONTACT_LOGGED', { channel: 'call', outcome: 'interested', note: 'Wants lift for the building' }],
     contacted: P => ['sales', 'REQ_SAVED', { req: { use: P._use || 'apartment', stops: P._stops || 5, capacity: '6', type: 'auto', finish: P._fin || 'ss', shaft: 'yes', power: 'yes', timeline: '3m' } }],
-    requirements: P => ['sales', 'QUOTE_CREATED', { discountPct: P._disc == null ? 5 : P._disc, reason: 'Opening offer' }],
+    requirements: P => ['sales', 'QUOTE_CREATED', { discountPct: P._disc == null ? 5 : P._disc, reason: 'Opening offer', trade: TRADES[0][0] }],
     quote_approval: () => ['owner', 'QUOTE_DECISION', { decision: 'approve', reason: 'OK' }],
     quote_ready: () => ['sales', 'QUOTE_SENT', { channel: 'whatsapp' }],
     quoted: () => ['sales', 'DEAL_WON', {}],
