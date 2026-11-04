@@ -5,7 +5,8 @@
   "description": "AIEC Elevator OS - single-file offline app, lead to handover",
   "scripts": {
     "check": "node tests/static.test.js",
-    "test": "node tests/static.test.js && node tests/run-all.js"
+    "test": "node tests/static.test.js && node tests/run-all.js",
+    "shots": "node tests/shots-signin.js"
   },
   "devDependencies": {
     "playwright": "1.56.1"

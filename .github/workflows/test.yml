@@ -42,3 +42,28 @@ jobs:
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
       - run: node tests/run-all.js --shard=${{ matrix.shard }}/4
+  screens:
+    needs: static
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Cache the test browser
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: npm run shots
+      - name: Keep the screenshots of this build
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: tests/out/shots/
+          retention-days: 30

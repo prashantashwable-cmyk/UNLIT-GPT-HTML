@@ -3461,6 +3461,9 @@ const L = {
   ou_train: ['Needed for: installing without a senior', 'इसके लिए ज़रूरी: सीनियर के बिना इंस्टॉल', 'यासाठी गरजेचे: सीनियरशिवाय इन्स्टॉल'],
   nt_none: ['Add your technicians in your company page first.', 'पहले अपने कंपनी पेज में तकनीशियन जोड़ें।', 'आधी तुमच्या कंपनी पानात तंत्रज्ञ जोडा.'],
   nt_still: ['Still needed: {x}', 'अभी बाकी: {x}', 'अजून बाकी: {x}'],
+  da_this: ['This phone', 'यह फ़ोन', 'हा फोन'],
+  da_phone: ['Phone {n}', 'फ़ोन {n}', 'फोन {n}'],
+  da_last: ['last used {d}', 'आख़िरी बार {d}', 'शेवटचा वापर {d}'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -7617,7 +7620,7 @@ function validate(S, ev) {
   const u = S.users[ev.by];
   if (!u || !u.active) return 'err_no_user';
   const P0 = R.project ? S.projects[ev.pid] : null;
-  if (!R.roles.includes(u.role) && !ownerCovers(S, R, ev, u, P0)) return { k: 'err_role', v: { roles: rolesTxt(R.roles), who: Object.values(S.users).filter(x => x.active && x.uid !== u.uid && R.roles.includes(x.role) && x.role !== 'customer').slice(0, 2).map(x => x.name).join(', ') } };
+  if (!R.roles.includes(u.role) && !ownerCovers(S, R, ev, u, P0)) return { k: 'err_role', v: { roles: rolesTxt(R.roles), who: (w => w.some(x => x.role !== 'owner') ? w.filter(x => x.role !== 'owner') : w)(Object.values(S.users).filter(x => x.active && x.uid !== u.uid && R.roles.includes(x.role) && x.role !== 'customer')).slice(0, 2).map(x => x.name).join(', ') } };
   let P = null;
   if (R.project) {
     P = S.projects[ev.pid];
@@ -10222,7 +10225,7 @@ function devAlert(S, uid, at) {
 WIZ.devAlert = {
   title: 'tk_dev_alert', save: 'save', noDraft: true, init: () => ({ note: '' }),
   steps: [{ id: 'd', icon: '📱', say: 's_dev_alert', body: () => { const uid = W.opts.uid, m = (S.devUse || {})[uid] || {};
-    return `<div class="card"><b>${esc(userName(uid))}</b><p>${t('da_what', { n: devRecent(S, uid, nowISO()).length })}</p>${devRecent(S, uid, nowISO()).map(d => `<div class="list-item small"><span class="grow">📱 ${esc(String(d).slice(0, 10))}</span>${fmtD(m[d], true)}</div>`).join('')}</div><p class="small">${t('da_do')}</p>` + inp('note', 'pa_note', { area: true, mic: true }); },
+    return `<div class="card"><b>${esc(userName(uid))}</b><p>${t('da_what', { n: devRecent(S, uid, nowISO()).length })}</p>${devRecent(S, uid, nowISO()).map((d, i) => `<div class="list-item small"><span class="grow">📱 ${d === App.set.dev ? t('da_this') : t('da_phone', { n: i + 1 })} <span class="muted">· ${esc(String(d).slice(0, 6))}</span></span>${t('da_last', { d: fmtD(m[d], true) })}</div>`).join('')}</div><p class="small">${t('da_do')}</p>` + inp('note', 'pa_note', { area: true, mic: true }); },
     check: c => c.note.trim() ? null : 'err_reason' }],
   async finish(c) { const r = await run([['DEVICE_ALERT_SEEN', null, { uid: W.opts.uid, note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('home') } : r; }
 };
@@ -11716,7 +11719,7 @@ SCREENS.home = () => {
   App.tasks = tasks;
   /* the main screen shows only what needs attention now; everything else is folded away and opens with one tap */
   const idx = tasks.map((n, i) => [n, i]), hot = idx.filter(([n]) => isHot(n)), rest = idx.filter(([n]) => !isHot(n));
-  let h = topBar(t('nav_home')) + `<main class="wrap">${hero(u)}`;
+  let h = topBar(t(((NAV[u.role] || NAV.default).find(x => x[0] === 'home') || [])[2] || 'nav_home')) + `<main class="wrap">${hero(u)}`;
   if (App.mode === 'practice' && !(App.set.calmSeen || {})[u.uid]) h += `<div class="card"><b>🎓 ${t('calm_t')}</b><p class="small">${t('calm_d')}</p><div class="row wrapw"><button class="btn btn-p" data-a="calmTry">▶ ${t('calm_try')}</button><button class="btn" data-a="calmOk">${t('calm_ok')}</button></div></div>`;
   if (!adm && STAFF.includes(u.role) && daysSince(u.t) < 7) h += firstWeekCard(u);
   if (u.role === 'field') h += shiftCard();
@@ -11891,7 +11894,7 @@ function customerHome() {
   App.pageSay = t('cust_say', { stage: stName(P.stage), next: nextLine(P) });
   const q = [...P.quotes].reverse().find(x => x.sent);
   const tile = (a, v, i, l) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`;
-  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}${noLicBanner(P)}<div class="card"><b>${esc(jobNo(P))}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>${custPause(P)}${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
+  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${tourCard(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}${noLicBanner(P)}<div class="card"><b>${esc(jobNo(P))}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>${custPause(P)}${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
     ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + tasks.map((n, i) => taskCard(n, i)).join('') : ''}
     ${payCard(P)}
     ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
@@ -14544,7 +14547,7 @@ function jobRow(P, a, v, sub) { return `<button class="task" data-a="${a}" data-
 SCREENS.steps = () => {
   const u = App.me; if (u.role !== 'tech') return SCREENS.home();
   const js = techLive(u); App.pageSay = t('tn_steps_say');
-  return topBar(t('nav_steps')) + `<main class="wrap"><p class="say">🪜 ${t('tn_steps_say')}</p>${js.map(P => { const n = Object.keys(P.sop).length; return jobRow(P, 'openCl', P.id + '|sop', `<span class="chip c-info">${t('tn_step_n', { n, m: SOP.length })}</span>`); }).join('') || `<div class="card center">${t('tn_no_job')}</div>`}</main>` + nav('steps');
+  return topBar(t('nav_steps')) + `<main class="wrap"><p class="say">🪜 ${t('tn_steps_say')}</p>${js.map(P => [P, Object.keys(P.sop).length]).sort((a, b) => (a[1] >= SOP.length) - (b[1] >= SOP.length)).map(([P, n]) => jobRow(P, 'openCl', P.id + '|sop', `<span class="chip ${n >= SOP.length ? 'c-ok' : 'c-info'}">${n >= SOP.length ? '✅ ' : ''}${t('tn_step_n', { n, m: SOP.length })}</span>`)).join('') || `<div class="card center">${t('tn_no_job')}</div>`}</main>` + nav('steps');
 };
 SCREENS.damage = () => {
   const u = App.me; if (u.role !== 'tech') return SCREENS.home();
