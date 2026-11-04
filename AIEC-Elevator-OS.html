@@ -3026,6 +3026,110 @@ const L = {
   ev_SOC_VOTED: ['Committee member voted', 'समिति सदस्य ने वोट दिया', 'समिती सदस्याने मत दिले'],
   ev_SITE_GROUP_SET: ['Lift added to a site', 'लिफ्ट साइट में जोड़ी', 'लिफ्ट साइटमध्ये जोडली'],
   ev_FINISH_APPROVED: ['Cabin finish answered', 'केबिन फ़िनिश पर जवाब', 'केबिन फिनिशवर उत्तर'],
+  cfg_amcYearly: ['AMC price per year, for the 10-year cost in quotations (0 = do not show)', 'प्रति वर्ष AMC कीमत, कोटेशन में 10 साल के खर्च के लिए (0 = न दिखाएँ)', 'दरवर्षी AMC किंमत, कोटेशनमधील 10 वर्षांच्या खर्चासाठी (0 = दाखवू नका)'],
+  cfg_powerYearly: ['Electricity per year (estimate), for the 10-year cost', 'प्रति वर्ष बिजली (अंदाज), 10 साल के खर्च के लिए', 'दरवर्षी वीज (अंदाज), 10 वर्षांच्या खर्चासाठी'],
+  tco_title: ['10 years of owning this lift (estimate)', 'इस लिफ्ट के 10 साल का खर्च (अंदाज)', 'या लिफ्टचा 10 वर्षांचा खर्च (अंदाज)'],
+  tco_price: ['Price now', 'अभी की कीमत', 'आत्ताची किंमत'],
+  tco_amc: ['AMC after the first year: 9 × {a}', 'पहले साल के बाद AMC: 9 × {a}', 'पहिल्या वर्षानंतर AMC: 9 × {a}'],
+  tco_power: ['Electricity: 10 × {a}', 'बिजली: 10 × {a}', 'वीज: 10 × {a}'],
+  tco_total: ['10-year total', '10 साल का कुल', '10 वर्षांचे एकूण'],
+  tco_note: ['An estimate at today\'s rates; price rises are not included.', 'आज की दरों पर अंदाज; बढ़ोतरी शामिल नहीं।', 'आजच्या दरांवर अंदाज; दरवाढ धरलेली नाही.'],
+  q_ret_d: ['paid {n} days after handover', 'हैंडओवर के {n} दिन बाद', 'हँडओव्हरनंतर {n} दिवसांनी'],
+  cm_money: ['Money so far', 'अब तक का पैसा', 'आतापर्यंतचे पैसे'],
+  cs_bills: ['Supplier bills', 'सप्लायर बिल', 'सप्लायर बिले'],
+  cs_exp: ['Site expenses (approved)', 'साइट खर्च (मंज़ूर)', 'साइट खर्च (मंजूर)'],
+  cs_contrib: ['Gross contribution', 'सकल योगदान', 'एकूण योगदान'],
+  cs_in: ['Received so far', 'अब तक मिला', 'आतापर्यंत मिळाले'],
+  cs_out: ['Paid out so far', 'अब तक दिया', 'आतापर्यंत दिले'],
+  cs_note: ['Price less bills, crew pay and approved expenses. Office costs, rent and tax are not in it, so this is not profit.', 'कीमत में से बिल, टीम का भुगतान और मंज़ूर खर्च घटाकर। ऑफिस खर्च, किराया और टैक्स शामिल नहीं, इसलिए यह मुनाफ़ा नहीं।', 'किमतीतून बिले, टीमचे पैसे आणि मंजूर खर्च वजा करून. ऑफिस खर्च, भाडे आणि कर यात नाहीत, म्हणून हा नफा नाही.'],
+  ex_title: ['Site expenses', 'साइट खर्च', 'साइट खर्च'],
+  ex_add: ['Add an expense with receipt', 'रसीद के साथ खर्च जोड़ें', 'पावतीसह खर्च जोडा'],
+  ex_wait: ['Waiting for approval', 'मंज़ूरी बाकी', 'मंजुरी बाकी'],
+  ex_ok: ['Approved', 'मंज़ूर', 'मंजूर'],
+  ex_no: ['Not approved', 'मंज़ूर नहीं', 'मंजूर नाही'],
+  ex_what: ['What was it for?', 'किस लिए था?', 'कशासाठी होता?'],
+  ex_receipt: ['Photo of the bill / receipt', 'बिल / रसीद की फोटो', 'बिल / पावतीचा फोटो'],
+  ex_transport: ['Transport', 'ढुलाई', 'वाहतूक'],
+  ex_loading: ['Loading / unloading', 'चढ़ाई / उतराई', 'चढवणे / उतरवणे'],
+  ex_consumables: ['Consumables', 'छोटा सामान', 'किरकोळ साहित्य'],
+  ex_electrical: ['Electrical', 'बिजली का सामान', 'विद्युत साहित्य'],
+  ex_travel: ['Travel', 'यात्रा', 'प्रवास'],
+  ex_stay: ['Stay', 'ठहरना', 'राहणे'],
+  ex_civil: ['Civil work', 'सिविल काम', 'सिव्हिल काम'],
+  ex_other: ['Other', 'अन्य', 'इतर'],
+  s_ex_cat: ['What kind of expense?', 'कैसा खर्च?', 'कोणता खर्च?'],
+  s_ex_amount: ['How much, and the receipt', 'कितना, और रसीद', 'किती, आणि पावती'],
+  s_ex_decide: ['Approve this expense?', 'यह खर्च मंज़ूर करें?', 'हा खर्च मंजूर करायचा?'],
+  tk_decide_expense: ['Approve a site expense', 'साइट खर्च मंज़ूर करें', 'साइट खर्च मंजूर करा'],
+  err_receipt: ['Add a photo of the bill or receipt.', 'बिल या रसीद की फोटो जोड़ें।', 'बिल किंवा पावतीचा फोटो जोडा.'],
+  err_sku: ['Item code: 2 to 20 capital letters, numbers or "-".', 'सामान कोड: 2 से 20 बड़े अक्षर, अंक या "-"।', 'साहित्य कोड: 2 ते 20 मोठी अक्षरे, अंक किंवा "-".'],
+  err_stock_short: ['Not enough in stock there.', 'वहाँ स्टॉक में इतना नहीं है।', 'तिथे साठ्यात इतके नाही.'],
+  err_two_suppliers: ['Enter prices from at least two suppliers.', 'कम से कम दो सप्लायर की कीमत लिखें।', 'किमान दोन सप्लायरच्या किमती लिहा.'],
+  tk_stock_low: ['Stock below reorder level', 'स्टॉक दोबारा मँगाने के स्तर से कम', 'साठा पुन्हा मागवण्याच्या पातळीखाली'],
+  sk_title: ['Stock', 'स्टॉक', 'साठा'],
+  sk_my_van: ['My van stock', 'मेरी वैन का स्टॉक', 'माझ्या व्हॅनचा साठा'],
+  sk_say: ['What is in the store, in each van and at each site. Stock never goes below zero.', 'स्टोर, हर वैन और हर साइट पर क्या है। स्टॉक कभी शून्य से नीचे नहीं जाता।', 'स्टोअर, प्रत्येक व्हॅन आणि प्रत्येक साइटवर काय आहे. साठा कधीही शून्याखाली जात नाही.'],
+  sk_none: ['No items yet. Add the parts you keep.', 'अभी कोई सामान नहीं। जो पुर्ज़े रखते हैं जोड़ें।', 'अजून साहित्य नाही. ठेवता ते भाग जोडा.'],
+  sk_new: ['New stock item', 'नया स्टॉक सामान', 'नवीन साठा साहित्य'],
+  sk_move: ['Move stock', 'स्टॉक भेजें', 'साठा हलवा'],
+  sk_item: ['Item', 'सामान', 'साहित्य'],
+  sk_store: ['Store', 'स्टोर', 'स्टोअर'],
+  sk_supplier: ['From supplier (bought)', 'सप्लायर से (खरीदा)', 'सप्लायरकडून (खरेदी)'],
+  sk_used: ['Used', 'इस्तेमाल', 'वापरले'],
+  sk_scrap: ['Scrap / damaged', 'कबाड़ / खराब', 'भंगार / खराब'],
+  sk_reorder: ['reorder below {n}', '{n} से कम पर मँगाएँ', '{n} पेक्षा कमी झाल्यास मागवा'],
+  sk_reorder_at: ['Reorder when the store has fewer than', 'स्टोर में इससे कम हो तो मँगाएँ', 'स्टोअरमध्ये यापेक्षा कमी झाल्यास मागवा'],
+  sk_sku: ['Item code (e.g. RAIL-T89)', 'सामान कोड (जैसे RAIL-T89)', 'साहित्य कोड (उदा. RAIL-T89)'],
+  sk_name: ['Item name', 'सामान का नाम', 'साहित्याचे नाव'],
+  sk_moves: ['Last moves', 'पिछली हलचल', 'अलीकडील हालचाली'],
+  sk_which: ['Which item?', 'कौन-सा सामान?', 'कोणते साहित्य?'],
+  sk_where: ['From where to where?', 'कहाँ से कहाँ?', 'कुठून कुठे?'],
+  sk_from: ['From', 'से', 'कुठून'],
+  sk_to: ['To', 'तक', 'कुठे'],
+  sk_qty: ['How many', 'कितने', 'किती'],
+  sk_site: ['Stock at this site', 'इस साइट का स्टॉक', 'या साइटचा साठा'],
+  sk_sent: ['Sent', 'भेजा', 'पाठवले'],
+  sk_back: ['Back', 'वापस', 'परत'],
+  sk_left: ['Left', 'बाकी', 'उरले'],
+  sk_site_note: ['Sent minus used minus returned. Anything left over must come back or be explained.', 'भेजा घटा इस्तेमाल घटा वापस। जो बचा वह वापस आए या उसका कारण बताया जाए।', 'पाठवले वजा वापरले वजा परत. उरलेले परत यायला हवे किंवा कारण सांगायला हवे.'],
+  su_pcs: ['pieces', 'नग', 'नग'],
+  su_m: ['metres', 'मीटर', 'मीटर'],
+  su_kg: ['kg', 'किलो', 'किलो'],
+  su_set: ['sets', 'सेट', 'संच'],
+  su_l: ['litres', 'लीटर', 'लिटर'],
+  sp_title: ['Compare suppliers', 'सप्लायर की तुलना', 'सप्लायरची तुलना'],
+  s_sp: ['Price and delivery days from each supplier', 'हर सप्लायर की कीमत और डिलीवरी के दिन', 'प्रत्येक सप्लायरची किंमत आणि डिलिव्हरीचे दिवस'],
+  s_sp_pick: ['Which one, and why?', 'कौन-सा, और क्यों?', 'कोणता, आणि का?'],
+  sp_price: ['Price (₹)', 'कीमत (₹)', 'किंमत (₹)'],
+  sp_lead: ['Delivery in days', 'डिलीवरी दिनों में', 'डिलिव्हरी दिवसांत'],
+  sp_note: ['Leave a supplier empty if they did not quote.', 'जिसने कीमत नहीं दी उसे खाली छोड़ें।', 'ज्याने किंमत दिली नाही तो रिकामा ठेवा.'],
+  sp_why: ['Why this supplier', 'यह सप्लायर क्यों', 'हा सप्लायर का'],
+  sp_days: ['{n} days', '{n} दिन', '{n} दिवस'],
+  sp_other: ['The order went to a different supplier than the one chosen here.', 'ऑर्डर यहाँ चुने सप्लायर से अलग सप्लायर को गया।', 'ऑर्डर इथे निवडलेल्या सप्लायरपेक्षा वेगळ्या सप्लायरला गेली.'],
+  ag_title: ['Money owed to us', 'हमें मिलने वाला पैसा', 'आपल्याला येणे असलेले पैसे'],
+  ag_say: ['Payments due and not yet confirmed, by how long they have been due.', 'देय और अभी पक्के न हुए भुगतान, कितने दिनों से देय।', 'देय आणि अजून निश्चित न झालेली पेमेंट, किती दिवसांपासून देय.'],
+  ag_days: ['{a}–{b} days', '{a}–{b} दिन', '{a}–{b} दिवस'],
+  ag_over: ['over {n} days', '{n} दिन से ज़्यादा', '{n} दिवसांपेक्षा जास्त'],
+  ag_total: ['Total owed: {a}', 'कुल बाकी: {a}', 'एकूण येणे: {a}'],
+  ag_since: ['due since {d} ({n} days)', '{d} से देय ({n} दिन)', '{d} पासून देय ({n} दिवस)'],
+  ag_none: ['Nothing is owed right now.', 'अभी कुछ बाकी नहीं।', 'आत्ता काहीही येणे नाही.'],
+  doc_grn: ['Goods receipt note', 'माल प्राप्ति पत्र', 'माल प्राप्ती पत्र'],
+  grn_challan: ['Delivery challan', 'डिलीवरी चालान', 'डिलिव्हरी चलन'],
+  grn_seal: ['Seal no.', 'सील नं.', 'सील क्र.'],
+  grn_vehicle: ['Vehicle', 'गाड़ी', 'वाहन'],
+  grn_sent: ['Sent', 'भेजा', 'पाठवले'],
+  grn_got: ['Received on site', 'साइट पर मिला', 'साइटवर मिळाले'],
+  grn_signer: ['Signed by', 'सही करने वाले', 'सही करणारे'],
+  grn_serial: ['Serial', 'सीरियल', 'सीरियल'],
+  grn_state: ['Condition', 'हालत', 'स्थिती'],
+  grn_hold: ['Serial numbers did not match; installation was held until the office settled it.', 'सीरियल नंबर नहीं मिले; ऑफिस के निपटाने तक इंस्टॉलेशन रुका।', 'सीरियल नंबर जुळले नाहीत; ऑफिसने निकाल लावेपर्यंत इन्स्टॉलेशन थांबले.'],
+  grn_note: ['Made from the dispatch and the handover of material on site.', 'डिस्पैच और साइट पर सामान सौंपने से बना।', 'डिस्पॅच आणि साइटवर साहित्य सोपवण्यावरून तयार.'],
+  csv_tally: ['Receipts and payments (Tally / Zoho)', 'रसीदें और भुगतान (Tally / Zoho)', 'पावत्या आणि पेमेंट (Tally / Zoho)'],
+  ev_STOCK_ITEM_SET: ['Stock item set', 'स्टॉक सामान तय', 'साठा साहित्य ठरवले'],
+  ev_STOCK_MOVED: ['Stock moved', 'स्टॉक भेजा', 'साठा हलवला'],
+  ev_EXPENSE_ADDED: ['Expense added', 'खर्च जोड़ा', 'खर्च जोडला'],
+  ev_EXPENSE_DECIDED: ['Expense decided', 'खर्च पर फ़ैसला', 'खर्चावर निर्णय'],
+  ev_SUP_COMPARED: ['Suppliers compared', 'सप्लायर की तुलना', 'सप्लायरची तुलना'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4938,7 +5042,7 @@ const CFG_LIMITS = (() => {
   set(['tokenMode', 'dailySafety', 'licenceGate', 'permitGate', 'peerCheck', 'checkinGate', 'dualControl', 'requireTraining', 'sundayWork'], 0, 1);
   set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'civilMin', 'civilMax'], 0, 2000000);
   set(['reservePct'], 0, 90); set(['reserveRelease'], 1, 100); set(['agreeVersion'], 1, 99);
-  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['retentionPct'], 0, 20); set(['retentionDays'], 0, 365); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
+  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['amcYearly'], 0, 500000); set(['powerYearly'], 0, 200000); set(['retentionPct'], 0, 20); set(['retentionDays'], 0, 365); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
   set(['lvHelperJobs', 'lvTechJobs', 'lvSeniorJobs', 'lvQcJobs', 'lvHelperReviews', 'lvTechReviews', 'lvSeniorReviews', 'lvQcReviews', 'partnerBigJobs'], 0, 500);
   set(['lvHelperStars', 'lvTechStars', 'lvSeniorStars', 'lvQcStars', 'partnerBigStars'], 0, 5); set(['lvTechTrust', 'lvSeniorTrust', 'lvQcTrust', 'lvSeniorPass', 'lvQcPass'], 0, 100);
   set(['lvHelperDays', 'lvTechDays', 'lvSeniorDays'], 0, 3650); set(['strikeDays'], 1, 3650); set(['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior'], 0, 300);
@@ -4979,6 +5083,11 @@ const LIFE_FROM = '2026-11-04T00:00:00.000Z';
 const ROOT_CAUSES = [['door', '🚪'], ['controller', '🎛️'], ['power', '⚡'], ['brake', '🛑'], ['rope', '🪢'], ['sensor', '📡'], ['misuse', '🙅'], ['other', '❔']];
 const TEST_VALS = [['level', 0, 50], ['load', 50, 10000], ['ard', 0, 1000]];
 const testValsOk = v => !!v && TEST_VALS.every(([k, a, b]) => v[k] !== '' && v[k] != null && +v[k] >= a && +v[k] <= b) && +v.load > 0;
+/* store, van and site stock; project expenses; money in and out */
+const STOCK_UNITS = ['pcs', 'm', 'kg', 'set', 'l'];
+const EXP_CATS = [['transport', '🚚'], ['loading', '🏋️'], ['consumables', '🔩'], ['electrical', '⚡'], ['travel', '🧳'], ['stay', '🏨'], ['civil', '🧱'], ['other', '❔']];
+const stockQty = (loc, sku) => ((S.stock.bal[loc] || {})[sku]) || 0;
+const stockLocOk = (S, loc) => loc === 'store' || loc === 'supplier' || loc === 'used' || loc === 'scrap' || (/^van:/.test(loc) && S.users[loc.slice(4)] && S.users[loc.slice(4)].role === 'tech') || (/^site:/.test(loc) && !!S.projects[loc.slice(5)]);
 const FAULTS = ['trapped', 'door_close', 'door_reopen', 'level', 'noise', 'no_power'];
 const SITE_CANT = ['no_show', 'unsafe'];
 const floorGaps = P => Math.max(1, Math.min(59, (+(P.req && P.req.stops) || 2) - 1));
@@ -5052,7 +5161,7 @@ const DEFAULT_CONFIG = {
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 8, adminDiscountLimit: 18, minMargin: 20, negStep: 5,
-  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
+  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, amcYearly: 0, powerYearly: 0, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
@@ -5070,7 +5179,7 @@ const RULE_GROUPS = {
   paydetails: ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc'],
   fieldpay: ['payLeadValid', 'leadWonPct'],
   install: ['installDays', 'poDays', 'poAnswerHours', 'geoRadius', 'checkinGate'],
-  service: ['acceptMins', 'warrantyMonths', 'amcVisits', 'validityDays', 'civilMin', 'civilMax', 'cancelBefore', 'cancelAfter'],
+  service: ['acceptMins', 'amcYearly', 'powerYearly', 'warrantyMonths', 'amcVisits', 'validityDays', 'civilMin', 'civilMax', 'cancelBefore', 'cancelAfter'],
   dup: ['dupCommission', 'refReward'],
   contract: ['agreeVersion', 'reservePct', 'reserveRelease'],
   control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'sundayWork', 'holidays', 'dualControl', 'requireTraining'],
@@ -5156,7 +5265,7 @@ const hasQc = () => Object.values(S.users).some(u => u.active && u.role === 'qc'
 const svcRoles = () => svcLead() ? [roleOf(svcLead())] : hasQc() ? ['qc'] : ['admin', 'owner'];
 const isSvcOwner = u => ['admin', 'owner'].includes(u.role) || (svcLead() ? u.uid === svcLead() : u.role === 'qc');
 function emptyState() {
-  return { settle: {}, contracts: {}, trainVideos: {}, ratingAppeals: {}, reviewsVoid: [], org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
+  return { stock: { items: {}, bal: {}, moves: [] }, settle: {}, contracts: {}, trainVideos: {}, ratingAppeals: {}, reviewsVoid: [], org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
     templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], enquiries: {}, enqOrder: [], joins: {}, reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {}, lastAt: {}, undone: {} };
 }
 let S = emptyState();
@@ -5937,6 +6046,54 @@ const RULES = {
       if (!P.req || !P.req.finish) return 'err_no_req';
       if (typeof ev.data.ok !== 'boolean') return 'err_choose';
       return ev.data.ok ? null : need((ev.data.note || '').trim(), 'err_reason');
+    }
+  },
+  STOCK_ITEM_SET: {
+    roles: ['admin', 'owner', 'finance'], check: (S, ev) => { const d = ev.data;
+      return !/^[A-Z0-9-]{2,20}$/.test(d.sku || '') ? 'err_sku' : !((d.name || '').trim().length >= 2 && d.name.trim().length <= 60) ? 'err_fill' : !STOCK_UNITS.includes(d.unit) ? 'err_choose' : need(Number.isInteger(+d.reorder) && +d.reorder >= 0 && +d.reorder <= 100000, 'err_number'); }
+  },
+  /* stock moves between the store, a technician's van and a site; never below zero; "used" and "scrap" end there */
+  STOCK_MOVED: {
+    roles: ['admin', 'owner', 'finance', 'tech'], check: (S, ev, u) => {
+      const d = ev.data, it = S.stock.items[d.sku];
+      if (!it) return 'err_sku';
+      if (!(Number.isInteger(+d.qty) && +d.qty > 0 && +d.qty <= 100000)) return 'err_number';
+      if (!stockLocOk(S, d.from) || !stockLocOk(S, d.to) || d.from === d.to || ['used', 'scrap'].includes(d.from) || d.to === 'supplier') return 'err_choose';
+      if (u.role === 'tech') { const mine = l => l === 'van:' + u.uid || (/^site:/.test(l) && (S.projects[l.slice(5)] || {}).tech === u.uid);
+        if (d.from === 'supplier' || !(mine(d.from) && (mine(d.to) || ['used', 'store'].includes(d.to)))) return 'err_access'; }
+      if (d.from !== 'supplier' && ((S.stock.bal[d.from] || {})[d.sku] || 0) < +d.qty) return 'err_stock_short';
+      return ['scrap'].includes(d.to) && !(d.note || '').trim() ? 'err_reason' : null;
+    }
+  },
+  /* a site expense with its receipt; someone else in the office approves it before it counts */
+  EXPENSE_ADDED: {
+    roles: ['tech', 'sales', 'qc', 'admin', 'owner', 'finance'], project: true, check: (S, ev, u, P) => {
+      const d = ev.data;
+      if (u.role === 'tech' && P.tech !== u.uid && !(P.crew || []).includes(u.uid)) return 'err_access';
+      if (!/^X-[A-Za-z0-9]{4,12}$/.test(d.xid || '') || (P.expenses || []).some(x => x.id === d.xid)) return 'err_dup_id';
+      if (!EXP_CATS.some(c => c[0] === d.cat)) return 'err_choose';
+      if (!(Number.isInteger(+d.amount) && +d.amount > 0 && +d.amount <= 1000000)) return 'err_amount';
+      if (!(d.note || '').trim()) return 'err_fill';
+      return need(ev_(d, 'photo').length >= 1, 'err_receipt');
+    }
+  },
+  EXPENSE_DECIDED: {
+    roles: ['finance', 'admin', 'owner'], project: true, check: (S, ev, u, P) => {
+      const x = (P.expenses || []).find(e => e.id === ev.data.xid);
+      if (!x || x.decided) return 'err_already';
+      if (x.by === u.uid && otherOffice(u.uid, ['finance', 'admin', 'owner'])) return 'err_same_person';
+      if (typeof ev.data.ok !== 'boolean') return 'err_choose';
+      return ev.data.ok ? null : need((ev.data.note || '').trim(), 'err_reason');
+    }
+  },
+  /* suppliers compared before the order: at least two prices and the reason for the choice */
+  SUP_COMPARED: {
+    roles: ['admin', 'owner'], project: true, stages: ['site_ok'], check: (S, ev) => {
+      const rows = ev.data.rows || [];
+      if (rows.length < 2 || new Set(rows.map(x => x.uid)).size !== rows.length) return 'err_two_suppliers';
+      if (!rows.every(x => S.users[x.uid] && S.users[x.uid].role === 'supplier' && Number.isInteger(+x.amount) && +x.amount > 0 && Number.isInteger(+x.days) && +x.days >= 0 && +x.days <= 365)) return 'err_fill';
+      if (!rows.some(x => x.uid === ev.data.pick)) return 'err_choose';
+      return need((ev.data.reason || '').trim(), 'err_reason');
     }
   },
   LEAD_ACCEPTED: {
@@ -6845,7 +7002,7 @@ const RULES = {
   },
   BACKUP_ENDED: { roles: ['owner'], check: S => !S.backup || S.backup.ended ? 'err_already' : null },
   /* a spreadsheet file made by the Owner: who, what and how many rows (the file itself stays with the Owner) */
-  DATA_EXPORTED: { roles: ['owner'], check: (S, ev) => need(['projects', 'payments', 'tickets'].includes(ev.data.kind) && +ev.data.rows >= 0, 'err_choose') },
+  DATA_EXPORTED: { roles: ['owner'], check: (S, ev) => need(['projects', 'payments', 'tickets', 'tally'].includes(ev.data.kind) && +ev.data.rows >= 0, 'err_choose') },
   UNDONE: { roles: ROLES, check: (S, ev) => undoWhyNot(S, ev.data.target, ev.by, ev.t) },
   /* the day's close: open office items roll to tomorrow with a named person */
   DAY_CLOSED: {
@@ -7306,6 +7463,14 @@ function apply(S, ev) {
       else { m.open = false; m.status = { solved: 'solved', done: 'done', accept: 'confirmed', decline: 'declined', cancel: 'cancelled' }[d.act]; }
       break;
     }
+    case 'STOCK_ITEM_SET': S.stock.items[d.sku] = { sku: d.sku, name: d.name.trim(), unit: d.unit, reorder: +d.reorder, t: ev.t, by: ev.by }; break;
+    case 'STOCK_MOVED': {
+      const q = +d.qty, b = S.stock.bal;
+      if (d.from !== 'supplier') { b[d.from] = b[d.from] || {}; b[d.from][d.sku] = (b[d.from][d.sku] || 0) - q; }
+      if (!['used', 'scrap'].includes(d.to)) { b[d.to] = b[d.to] || {}; b[d.to][d.sku] = (b[d.to][d.sku] || 0) + q; }
+      S.stock.moves.push({ id: ev.id, t: ev.t, by: ev.by, sku: d.sku, qty: q, from: d.from, to: d.to, note: d.note || '', pid: /^site:/.test(d.to) ? d.to.slice(5) : /^site:/.test(d.from) ? d.from.slice(5) : null });
+      break;
+    }
     case 'TEMPLATE_SET': S.templates[d.tid] = { tid: d.tid, name: d.name || '', text: d.text, by: ev.by, t: ev.t }; break;
     case 'TEMPLATE_DELETED': delete S.templates[d.tid]; break;
     case 'MSG_LOGGED': P.msgs.push({ id: d.mid, t: ev.t, by: ev.by, template: d.template || '', text: d.text || '', lang: d.lang || '', status: 'opened', hist: [] }); break;
@@ -7414,6 +7579,9 @@ function apply(S, ev) {
       const ov = (P.society || {}).votes || {};
       P.society = { members, quorum: +d.quorum, t: ev.t, by: ev.by, approvals: Object.fromEntries(Object.entries(old).filter(([k]) => members.includes(k))), votes: Object.fromEntries(Object.entries(ov).filter(([k]) => members.includes(k))), flats: +d.flats || 0, free: +d.free || 0 }; break; }
     case 'FINISH_APPROVED': P.finishOk = { ok: d.ok, note: d.note || '', finish: P.req.finish, t: ev.t, by: ev.by, inPerson: roleOf(ev.by) !== 'customer' }; break;
+    case 'EXPENSE_ADDED': (P.expenses = P.expenses || []).push({ id: d.xid, cat: d.cat, amount: +d.amount, note: d.note, ev: ev_(d, 'photo').map(e => e.id), by: ev.by, t: ev.t, decided: null }); break;
+    case 'EXPENSE_DECIDED': Object.assign(P.expenses.find(e => e.id === d.xid), { decided: { ok: d.ok, note: d.note || '', by: ev.by, t: ev.t } }); break;
+    case 'SUP_COMPARED': P.supCompare = { rows: d.rows.map(x => ({ uid: x.uid, amount: +x.amount, days: +x.days })), pick: d.pick, reason: d.reason, t: ev.t, by: ev.by }; break;
     case 'SITE_GROUP_SET': P.group = { gid: d.gid, name: d.name.trim(), tower: String(d.tower || '').trim(), t: ev.t, by: ev.by }; break;
     case 'SOC_VOTED': P.society.votes = Object.assign({}, P.society.votes, { [d.name]: { v: d.v, t: ev.t, by: ev.by, note: d.note || '' } }); break;
     case 'SOC_APPROVED': P.society.approvals[d.name] = { t: ev.t, by: ev.by, sig: ev_(d, 'sign')[0].id }; break;
@@ -7619,6 +7787,8 @@ function needs0(P) {
   for (const m of P.chat) if (m.open && m.toRole) add('answer', m.kind === 'approval' ? ['owner', 'admin'] : uniq([m.toRole]), { mid: m.id, not: m.by, since: m.t, approval: m.kind === 'approval' });
   /* AMC: service visits due within 7 days, renewal within 30 days of the end date */
   if (P.stage === 'amc' && retDue(P) && retDue(P) <= todayStr()) payNeed('retention');
+  for (const x of (P.expenses || []).filter(e => !e.decided)) { const fin = Object.values(S.users).some(u => u.active && u.role === 'finance' && u.uid !== x.by);
+    add('decide_expense', fin ? ['finance'] : ['admin', 'owner'], Object.assign({ xid: x.id, since: x.t }, otherOffice(x.by, ['finance', 'admin', 'owner']) ? { not: x.by } : {})); }
   if (P.t >= LIFE_FROM && P.req && P.req.finish && ['won', 'agreement', 'signed', 'site_prep', 'qc_site', 'site_fix', 'site_ok'].includes(P.stage) && !(P.finishOk && P.finishOk.ok && P.finishOk.finish === P.req.finish))
     add(P.finishOk && !P.finishOk.ok ? 'finish_change' : 'approve_finish', P.finishOk && !P.finishOk.ok ? ['sales'] : P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales], since: P.finishOk ? P.finishOk.t : P.since });
   if (P.stage === 'amc' && P.done && !P.amcEnded) {
@@ -7673,6 +7843,7 @@ function coverTasks(P, out) {
 function globalNeeds(u, all) { return drawMemo('global', (u && u.uid) + '|' + !!all, () => globalNeeds0(u, all)); }
 function globalNeeds0(u, all) {
   const out = [], add = (k, roles, o = {}) => { const n = splitOA(Object.assign({ k, roles, pid: null }, o)); out.push(n); return n; };
+  { const low = Object.values(S.stock.items).filter(it => it.reorder > 0 && stockQty('store', it.sku) < it.reorder); if (low.length) add('stock_low', ['admin', 'owner'], { n: low.length }); }
   /* unusual looking at customer and project pages by an outside company or its people */
   for (const x of Object.values(S.users).filter(y => OUTSIDERS.includes(y.role))) { const a = accessAlert(x.uid); if (a) add('access_alert', ['admin', 'owner'], { uid: x.uid, why: a.why, n: a.n, urgent: true }); }
   /* SOS: an alarm for the office and for the person's company until someone confirms they are safe */
@@ -8414,7 +8585,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -9042,8 +9213,13 @@ function profitCard(P) {
   const labour = Object.values(S.users).filter(u => u.role === 'tech' || u.role === 'qc').reduce((a, u) => a + earnings(u.uid).filter(e => e.pid === P.id).reduce((b, e) => b + e.amount, 0), 0);
   const varAmt = P.variation && P.variation.status === 'signed' ? +P.variation.amount || 0 : 0, price = q.price + Math.round(varAmt / (1 + q.gstPct / 100));
   const est = q.cost, margin = price ? Math.round((price - est) / price * 1000) / 10 : 0, markup = est ? Math.round((price - est) / est * 1000) / 10 : 0;
+  /* actual money so far: bills, crew pay and approved expenses against the price; gross contribution, never "profit" */
+  const bills = (P.invoices || []).filter(x => x.status !== 'rejected').reduce((a, x) => a + invPayable(x), 0), exps = (P.expenses || []).filter(x => x.decided && x.decided.ok).reduce((a, x) => a + x.amount, 0);
+  const contrib = price - bills - labour - exps, inNow = paidTotal(P), outNow = (P.invoices || []).filter(x => x.status === 'paid').reduce((a, x) => a + invPayable(x), 0) + exps;
   return `<div class="card"><h3>📊 ${t('profit_title')}</h3>${kv([['profit_price', money(price)], ['profit_cost', money(est)], ['profit_labour', money(labour)], ['profit_margin', margin + '%'], ['profit_markup', markup + '%']])}
-    <p class="small muted">${t('profit_note', { v: q.rv || 1 })}</p></div>`;
+    <p class="small muted">${t('profit_note', { v: q.rv || 1 })}</p>
+    <h3 style="margin-top:8px">🧾 ${t('cm_money')}</h3>${kv([['cs_bills', money(bills)], ['profit_labour', money(labour)], ['cs_exp', money(exps)], ['cs_contrib', money(contrib) + (price ? ' · ' + Math.round(contrib / price * 1000) / 10 + '%' : '')], ['cs_in', money(inNow)], ['cs_out', money(outNow)]])}
+    <p class="small muted">${t('cs_note')}</p></div>`;
 }
 function quoteBox(q, internal) {
   return `<table class="mx" style="font-size:.95rem">${q.lines.map(([k, v]) => `<tr><td>${esc(t(k))}</td><td style="text-align:right">${money(v)}</td></tr>`).join('')}
@@ -9344,6 +9520,59 @@ SCREENS.lifts = () => {
   const list = all.filter(P => !q || [P.id, P.lift.label, P.contact.name, P.site.address].join(' ').toLowerCase().includes(q));
   return topBar(t('lr_title'), { back: true }) + `<main class="wrap"><p class="say">${t('lr_say')}</p>${all.length > 6 ? formInp('lq', 'search') : ''}
     ${list.length ? list.map(liftRow).join('') : `<div class="empty">${t('lr_none')}</div>`}</main>` + nav('projects');
+};
+/* ---------- stock: store, vans, sites ---------- */
+SCREENS.stock = () => {
+  const u = App.me; if (!u || !['owner', 'admin', 'finance', 'tech'].includes(u.role)) return SCREENS.home();
+  const items = Object.values(S.stock.items).sort((a, b) => a.name.localeCompare(b.name)), office = ['owner', 'admin', 'finance'].includes(u.role);
+  const vans = uniq(Object.keys(S.stock.bal).filter(l => /^van:/.test(l))).filter(l => office || l === 'van:' + u.uid);
+  App.pageSay = t('sk_say');
+  return topBar(t('sk_title'), { back: true }) + `<main class="wrap"><p class="say">${t('sk_say')}</p>
+    <div class="row wrapw">${allowed('STOCK_MOVED') ? `<button class="btn btn-p" data-a="wizOpen" data-v="stockMove|">🔁 ${t('sk_move')}</button>` : ''}${allowed('STOCK_ITEM_SET') ? `<button class="btn" data-a="wizOpen" data-v="stockItem|">➕ ${t('sk_new')}</button>` : ''}</div>
+    ${items.length ? `<table class="mx" style="margin-top:10px"><tr><th>${t('sk_item')}</th><th>${t('sk_store')}</th>${vans.map(v => `<th>🚐 ${esc(userName(v.slice(4)))}</th>`).join('')}</tr>${items.map(it => { const q = stockQty('store', it.sku), low = it.reorder > 0 && q < it.reorder;
+      return `<tr><td><b>${esc(it.name)}</b><br><span class="small muted">${esc(it.sku)}${it.reorder ? ' · ' + t('sk_reorder', { n: it.reorder }) : ''}</span></td><td${low ? ' style="color:var(--bad);font-weight:800"' : ''}>${low ? '⚠️ ' : ''}${q} ${esc(it.unit)}</td>${vans.map(v => `<td>${stockQty(v, it.sku)}</td>`).join('')}</tr>`; }).join('')}</table>` : `<div class="empty">${t('sk_none')}</div>`}
+    ${S.stock.moves.length ? `<h2 class="sec">${t('sk_moves')}</h2>` + S.stock.moves.slice(-15).reverse().map(m => `<div class="small list-item"><span class="grow">${fmtD(m.t, true)} · ${esc((S.stock.items[m.sku] || {}).name || m.sku)} × ${m.qty} · ${stockLocName(m.from)} → ${stockLocName(m.to)}${m.note ? ' · ' + esc(m.note) : ''}</span><span class="muted">${esc(userName(m.by))}</span></div>`).join('') : ''}</main>` + nav('me');
+};
+const stockLocName = l => l === 'store' ? t('sk_store') : l === 'supplier' ? t('sk_supplier') : l === 'used' ? t('sk_used') : l === 'scrap' ? t('sk_scrap') : /^van:/.test(l) ? '🚐 ' + userName(l.slice(4)) : /^site:/.test(l) ? '🏗️ ' + l.slice(5) : l;
+WIZ.stockItem = {
+  title: 'sk_new', save: 'save', noDraft: true, init: () => ({ sku: '', name: '', unit: 'pcs', reorder: '0' }),
+  steps: [{ id: 'i', icon: '📦', say: 'sk_new', body: () => inp('sku', 'sk_sku') + inp('name', 'sk_name', { mic: true }) + tiles('unit', STOCK_UNITS.map(x => [x, '📏', 'su_' + x]), 'three') + inp('reorder', 'sk_reorder_at', { type: 'number', mode: 'numeric' }),
+    check: c => !/^[A-Z0-9-]{2,20}$/.test((c.sku || '').trim().toUpperCase()) ? 'err_sku' : (c.name || '').trim().length >= 2 ? null : 'err_fill' }],
+  async finish(c) { const r = await run([['STOCK_ITEM_SET', null, { sku: c.sku.trim().toUpperCase(), name: c.name.trim(), unit: c.unit, reorder: +c.reorder || 0 }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('stock') } : r; }
+};
+WIZ.stockMove = {
+  title: 'sk_move', save: 'save', noDraft: true, init: () => ({ sku: '', qty: '1', from: '', to: '', note: '' }),
+  steps: [{ id: 's', icon: '📦', say: 'sk_which', body: () => tiles('sku', Object.values(S.stock.items).map(it => [it.sku, '📦', it.name]), 'one'), check: c => c.sku ? null : 'err_choose' },
+    { id: 'w', icon: '🔁', say: 'sk_where', body: c => { const u = App.me, office = ['owner', 'admin', 'finance'].includes(u.role);
+      const locs = (office ? ['supplier', 'store'] : ['store']).concat(Object.values(S.users).filter(x => x.active && x.role === 'tech' && (office || x.uid === u.uid)).map(x => 'van:' + x.uid))
+        .concat(Object.values(S.projects).filter(P => ['arrived', 'installing', 'qc_final', 'install_fix', 'amc'].includes(P.stage) && (office || P.tech === u.uid)).map(P => 'site:' + P.id)).concat(['used', 'scrap']);
+      return `<h3>${t('sk_from')}</h3>` + tiles('from', locs.filter(l => !['used', 'scrap'].includes(l)).map(l => [l, '📍', stockLocName(l) + (l !== 'supplier' && c.sku ? ' (' + stockQty(l, c.sku) + ')' : '')]), 'one')
+        + `<h3>${t('sk_to')}</h3>` + tiles('to', locs.filter(l => l !== 'supplier' && l !== c.from).map(l => [l, '📍', stockLocName(l)]), 'one') + inp('qty', 'sk_qty', { type: 'number', mode: 'numeric', big: true }) + inp('note', 'f_note', { opt: true, mic: true }); },
+      check: c => !c.from || !c.to ? 'err_choose' : Number.isInteger(+c.qty) && +c.qty > 0 ? null : 'err_number' }],
+  async finish(c) { const r = await run([['STOCK_MOVED', null, { sku: c.sku, qty: +c.qty, from: c.from, to: c.to, note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('stock') } : r; }
+};
+/* ---------- money owed to us, by how long it has been due ---------- */
+function dueSince(P, k) {
+  if (k === 'retention') return retDue(P);
+  const st = PAY_STAGE[k], h = (P.hist || []).find(x => x.s === st); return h ? safeDay(h.t) : null;
+}
+function ageRows() {
+  const out = [];
+  for (const P of Object.values(S.projects)) { if (!P.schedule || P.stage === 'lost') continue;
+    for (const k of PURPOSES) { const amt = P.schedule[k]; if (!amt || payConfirmed(P, k)) continue;
+      const since = dueSince(P, k); if (!since || since > todayStr()) continue;
+      out.push({ P, k, amt, since, days: Math.max(0, Math.round((Date.parse(todayStr() + 'T12:00:00') - Date.parse(since + 'T12:00:00')) / 864e5)) }); } }
+  return out.sort((a, b) => b.days - a.days);
+}
+const AGE_BUCKETS = [[0, 30], [31, 60], [61, 90], [91, 99999]];
+SCREENS.ageing = () => {
+  const u = App.me; if (!u || !['owner', 'admin', 'finance'].includes(u.role)) return SCREENS.home();
+  const rows = ageRows(), tot = AGE_BUCKETS.map(([a, b]) => rows.filter(x => x.days >= a && x.days <= b).reduce((s, x) => s + x.amt, 0));
+  App.pageSay = t('ag_say');
+  return topBar(t('ag_title'), { back: true }) + `<main class="wrap"><p class="say">${t('ag_say')}</p>
+    <div class="card"><table class="mx"><tr>${AGE_BUCKETS.map(([a, b], i) => `<th>${b > 9999 ? t('ag_over', { n: 90 }) : t('ag_days', { a, b })}</th>`).join('')}</tr><tr>${tot.map((x, i) => `<td${i >= 2 && x ? ' style="color:var(--bad);font-weight:800"' : ''}>${money(x)}</td>`).join('')}</tr></table>
+    <p class="small"><b>${t('ag_total', { a: money(tot.reduce((a, b) => a + b, 0)) })}</b></p></div>
+    ${rows.length ? rows.map(x => `<div class="list-item"><span class="grow"><b>${esc(x.P.id)}</b> · ${esc(x.P.contact.name)}<br><span class="small">${t('pay_' + x.k)} · ${money(x.amt)} · ${t('ag_since', { d: fmtD(x.since), n: x.days })}</span></span><button class="btn btn-sm" data-a="openProject" data-v="${x.P.id}">▶</button></div>`).join('') : `<div class="empty">✅ ${t('ag_none')}</div>`}</main>` + nav('home');
 };
 /* ---------- fault guide: works without internet; for trained people only ---------- */
 SCREENS.faults = () => {
@@ -11042,7 +11271,7 @@ function projInfo(P) {
   const sopN = Object.keys(P.sop).length;
   const target = installUsed(P);
   const cancelled = P.lost && P.lost.reason === 'cancelled' ? `<div class="err">⛔ ${t('cancelled_on', { d: fmtD(P.lost.t) })}: ${esc(P.lost.note)}${P.payments.some(x => x.status === 'confirmed') ? '<br>🏦 ' + t('refund_note') : ''}</div>` : '';
-  return cancelled + open + groupCard(P) + socCard(P) + refCard(P) + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
+  return cancelled + open + groupCard(P) + socCard(P) + (P.stage === 'site_ok' || P.supCompare ? supCmpCard(P) : '') + expCard(P) + grnBtn(P) + stockSiteCard(P) + refCard(P) + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
       ['gps', P.site.gps ? `<a href="${mapsLink(P.site.gps)}" target="_blank" rel="noopener">${P.site.gps.lat}, ${P.site.gps.lng}</a> · <a href="${dirLink(P.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a>` : t('no')]])}</div>
     ${OUTSIDERS.includes(u.role) ? maskedContact(P) : `<div class="card"><h3>👤 ${t('contact')}</h3>${kv([['f_contact_name', esc(P.contact.name)], ['f_phone', seeF(u, 'phone') ? (P.contact.phone ? `<a href="tel:+91${P.contact.phone}">📞 ${esc(P.contact.phone)}</a>` : t('i_no_phone')) : '🔒 ' + t('hidden')]])}
       ${P.corrected.length ? `<details style="margin-top:6px"><summary class="small">✏️ ${t('corrections_history')} (${P.corrected.length})</summary>${P.corrected.map(c => `<div class="small">${fmtD(c.t, true)} · ${userTag(c.by)} · ${t(c.field === 'address' ? 'f_address' : c.field === 'phone' ? 'f_phone' : 'f_contact_name')}: <s>${esc(c.old)}</s> → <b>${esc(c.val)}</b> (${esc(c.reason)})</div>`).join('')}</details>` : ''}</div>`}
@@ -11444,10 +11673,17 @@ function docQuote(P, v) {
     <h3>${t('price')}</h3><table>${q.lines.map(([k, val]) => `<tr><td>${t(k)}</td><td class="r">${money(val)}</td></tr>`).join('')}<tr><td><b>${t('q_list')}</b></td><td class="r">${money(q.list)}</td></tr>
     ${q.discount ? `<tr><td>${t('q_discount')} (${q.discountPct}%)</td><td class="r">− ${money(q.discount)}</td></tr>` : ''}<tr><td>${t('q_price')}</td><td class="r">${money(q.price)}</td></tr><tr><td>${t('q_gst', { n: q.gstPct })}</td><td class="r">${money(q.gst)}</td></tr><tr><td><b>${t('q_total')}</b></td><td class="r"><b>${money(q.total)}</b></td></tr></table>
     <h3>${t('pay_schedule')}</h3><table><tr><td>${t('pay_token')}</td><td class="r">${money(s.token)}</td></tr><tr><td>${t('pay_arrival')}</td><td class="r">${money(s.arrival)}</td></tr><tr><td>${t('pay_final')}</td><td class="r">${money(s.final)}</td></tr></table>
+    ${s.retention ? `<p class="small">${t('pay_retention')}: ${money(s.retention)} · ${t('q_ret_d', { n: s.retDays })}</p>` : ''}${tcoBlock(q)}
     <h3>${t('q_assume')}</h3><ul style="padding-left:20px">${quoteAssumptions(P, q).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
     <h3>${t('scope')}</h3><p>${t('scope_text')}</p><h3>${t('exclusions')}</h3><p>${t('exclusions_text')}</p>${civilLine()}<h3>${t('delivery')}</h3><p>${t('delivery_text', { n: S.config.installDays })}</p>
     <p class="small">${t('approval_status')}: <b>${t('qs_' + q.status)}</b>${q.decision ? ' · ' + userName(q.decision.by) + ' · ' + fmtD(q.decision.t) : ''} · ${t('version')} ${q.v} · ${userName(q.by)} · ${fmtD(q.t, true)}</p>
     ${Object.keys(RULE_GROUPS).some(gk => ['pricing', 'token', 'milestones'].includes(gk) && !S.config.approved[gk]) ? `<p class="small" style="color:var(--warn)">⚠️ ${t('doc_rules_proposed')}</p>` : ''}`;
+}
+/* 10 years of owning the lift: price, AMC after the first year, electricity (the Owner sets the yearly numbers) */
+function tcoBlock(q) {
+  const amc = +S.config.amcYearly || 0, pw = +S.config.powerYearly || 0; if (!amc && !pw) return '';
+  const tot = q.total + 9 * amc + 10 * pw;
+  return `<h3>${t('tco_title')}</h3><table><tr><td>${t('tco_price')}</td><td class="r">${money(q.total)}</td></tr>${amc ? `<tr><td>${t('tco_amc', { a: money(amc) })}</td><td class="r">${money(9 * amc)}</td></tr>` : ''}${pw ? `<tr><td>${t('tco_power', { a: money(pw) })}</td><td class="r">${money(10 * pw)}</td></tr>` : ''}<tr><td><b>${t('tco_total')}</b></td><td class="r"><b>${money(tot)}</b></td></tr></table><p class="small muted">${t('tco_note')}</p>`;
 }
 /* what the price stands on until the site check, printed so nothing is hidden */
 function quoteAssumptions(P, q) {
@@ -11511,6 +11747,52 @@ function custRefCard(P) {
 /* society committee: approvals needed, who approved and when, the resolution made from them */
 const groupLifts = gid => Object.values(S.projects).filter(P => P.group && P.group.gid === gid && P.stage !== 'lost').sort((a, b) => (a.group.tower || '').localeCompare(b.group.tower || '') || a.id.localeCompare(b.id));
 const slowestLift = gid => groupLifts(gid).filter(P => P.stage !== 'amc').sort((a, b) => stageIdx(a.stage) - stageIdx(b.stage))[0] || null;
+function expCard(P) {
+  const u = App.me, xs = P.expenses || [], can = allowed('EXPENSE_ADDED', P);
+  if (!xs.length && !can) return '';
+  const mon = seeF(u, 'money') || ['tech'].includes(u.role);
+  return `<div class="card"><h3>🧾 ${t('ex_title')}</h3>${xs.map(x => `<div class="list-item small" style="display:block"><b>${EXP_CATS.find(c => c[0] === x.cat)[1]} ${t('ex_' + x.cat)}</b>${mon ? ' · ' + money(x.amount) : ''} · ${esc(x.note)}
+    <span class="chip ${!x.decided ? 'c-warn' : x.decided.ok ? 'c-ok' : 'c-bad'}">${t(!x.decided ? 'ex_wait' : x.decided.ok ? 'ex_ok' : 'ex_no')}</span><br><span class="muted">${esc(userName(x.by))} · ${fmtD(x.t, true)}${x.decided && x.decided.note ? ' · ' + esc(x.decided.note) : ''}</span>${evGrid(x.ev)}
+    ${!x.decided && allowed('EXPENSE_DECIDED', P) && !(x.by === u.uid && otherOffice(u.uid, ['finance', 'admin', 'owner'])) ? `<button class="btn btn-sm" data-a="wizOpen" data-v="expDecide|${P.id}|xid|${x.id}">⚖️ ${t('tk_decide_expense')}</button>` : ''}</div>`).join('')}
+    ${can ? `<button class="btn btn-sm" data-a="wizOpen" data-v="expAdd|${P.id}">➕ ${t('ex_add')}</button>` : ''}</div>`;
+}
+const grnBtn = P => P.mhand && ['owner', 'admin', 'supplier', 'finance', 'tech'].includes(App.me.role) ? `<button class="btn btn-sm" style="margin-bottom:10px" data-a="openDocP" data-v="${P.id}|grn">📑 ${t('doc_grn')}</button>` : '';
+function stockSiteCard(P) {
+  const mv = S.stock.moves.filter(m => m.pid === P.id); if (!mv.length) return '';
+  const by = {}; mv.forEach(m => { const x = by[m.sku] = by[m.sku] || { sent: 0, used: 0, back: 0 }; if (m.to === 'site:' + P.id) x.sent += m.qty; else if (m.to === 'used') x.used += m.qty; else x.back += m.qty; });
+  return `<div class="card"><h3>📦 ${t('sk_site')}</h3><table class="mx"><tr><th>${t('sk_item')}</th><th>${t('sk_sent')}</th><th>${t('sk_used')}</th><th>${t('sk_back')}</th><th>${t('sk_left')}</th></tr>${Object.entries(by).map(([k, x]) => { const it = S.stock.items[k] || { name: k, unit: '' }, left = x.sent - x.used - x.back;
+    return `<tr><td>${esc(it.name)}</td><td>${x.sent}</td><td>${x.used}</td><td>${x.back}</td><td${left ? ' style="color:var(--warn);font-weight:800"' : ''}>${left} ${esc(it.unit)}</td></tr>`; }).join('')}</table><p class="small muted">${t('sk_site_note')}</p></div>`;
+}
+function supCmpCard(P) {
+  const c = P.supCompare, can = allowed('SUP_COMPARED', P); if (!c && !can) return '';
+  if (!c) return `<button class="btn btn-sm" style="margin-bottom:10px" data-a="wizOpen" data-v="supCompare|${P.id}">⚖️ ${t('sp_title')}</button>`;
+  return `<div class="card"><h3>⚖️ ${t('sp_title')}</h3>${c.rows.map(x => `<div class="list-item small"><span>${x.uid === c.pick ? '✅' : '⬜'}</span><span class="grow">${esc(userName(x.uid))} · ${money(x.amount)} · ${t('sp_days', { n: x.days })}</span></div>`).join('')}
+    <p class="small">${t('sp_why')}: ${esc(c.reason)} · ${esc(userName(c.by))}</p>${P.supplier && P.supplier !== c.pick ? `<div class="warnbox">⚠️ ${t('sp_other')}</div>` : ''}${can ? `<button class="btn btn-sm" data-a="wizOpen" data-v="supCompare|${P.id}">✏️ ${t('sp_title')}</button>` : ''}</div>`;
+}
+WIZ.expAdd = {
+  title: 'ex_add', save: 'save', init: () => ({ cat: '', amount: '', note: '', ph: [] }),
+  steps: [{ id: 'c', icon: '🧾', say: 's_ex_cat', body: () => tiles('cat', EXP_CATS.map(([k, i]) => [k, i, 'ex_' + k]), 'two'), check: c => c.cat ? null : 'err_choose' },
+    { id: 'a', icon: '💰', say: 's_ex_amount', body: () => inp('amount', 'amount', { type: 'number', mode: 'numeric', big: true }) + inp('note', 'ex_what', { mic: true }) + photoSlot('ph', 'ex_receipt', 1, { tag: 'receipt' }),
+      check: c => !(Number.isInteger(+c.amount) && +c.amount > 0) ? 'err_amount' : !c.note.trim() ? 'err_fill' : c.ph.length ? null : 'err_receipt' }],
+  async finish(c, P) { const r = await run([['EXPENSE_ADDED', P.id, { xid: 'X-' + rid(6), cat: c.cat, amount: +c.amount, note: c.note.trim(), ev: c.ph }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+WIZ.expDecide = {
+  title: 'tk_decide_expense', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
+  steps: [{ id: 'd', icon: '⚖️', say: 's_ex_decide', body: (c, P) => { const x = (P.expenses || []).find(e => e.id === W.opts.xid) || {}; return `<div class="card"><b>${t('ex_' + x.cat)} · ${money(x.amount)}</b><p>${esc(x.note || '')}</p><p class="small muted">${esc(userName(x.by))} · ${fmtD(x.t, true)}</p>${evGrid(x.ev)}</div>`
+      + tiles('ok', [['yes', '✅', 'ex_ok'], ['no', '❌', 'ex_no']], 'one') + inp('note', 'f_note', { area: true, mic: true, opt: true }); },
+    check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }],
+  async finish(c, P) { const r = await run([['EXPENSE_DECIDED', P.id, { xid: W.opts.xid, ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+WIZ.supCompare = {
+  title: 'sp_title', save: 'save', noDraft: true,
+  init: P => { const sup = Object.values(S.users).filter(u => u.active && u.role === 'supplier'); return { rows: sup.slice(0, 4).map(u => ({ uid: u.uid, on: false, amount: '', days: '' })), pick: '', reason: '' }; },
+  steps: [{ id: 'r', icon: '⚖️', say: 's_sp', body: c => c.rows.map((x, i) => `<div class="card"><b>${esc(userName(x.uid))}</b>${inp('rows.' + i + '.amount', 'sp_price', { type: 'number', mode: 'numeric' })}${inp('rows.' + i + '.days', 'sp_lead', { type: 'number', mode: 'numeric' })}</div>`).join('') + `<p class="small muted">${t('sp_note')}</p>`,
+      check: c => c.rows.filter(x => +x.amount > 0).length >= 2 ? null : 'err_two_suppliers' },
+    { id: 'p', icon: '✅', say: 's_sp_pick', body: c => tiles('pick', c.rows.filter(x => +x.amount > 0).map(x => [x.uid, '🏭', userName(x.uid) + ' · ' + money(+x.amount)]), 'one') + inp('reason', 'sp_why', { area: true, mic: true }),
+      check: c => !c.pick ? 'err_choose' : c.reason.trim() ? null : 'err_reason' }],
+  async finish(c, P) { const rows = c.rows.filter(x => +x.amount > 0).map(x => ({ uid: x.uid, amount: +x.amount, days: +x.days || 0 }));
+    const r = await run([['SUP_COMPARED', P.id, { rows, pick: c.pick, reason: c.reason.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
 function groupCard(P) {
   const u = App.me, can = ['sales', 'admin', 'owner'].includes(u.role) && allowed('SITE_GROUP_SET', P);
   if (!P.group) return can ? `<button class="btn btn-sm" style="margin-bottom:10px" data-a="wizOpen" data-v="copyLift|${P.id}">🏗️ ${t('sg_add')}</button>` : '';
@@ -11594,6 +11876,13 @@ function docResolution(P) {
     <table><tr><th>#</th><th>${t('sc_member')}</th><th>${t('signature')}</th></tr>${sc.members.map((m, i) => { const a = sc.approvals[m]; return `<tr><td>${i + 1}</td><td>${esc(m)}</td><td>${a ? `<img class="sigimg" data-m="${(S.evidence[a.sig] || {}).m || ''}" alt=""><br><span class="small">${fmtD(a.t, true)}</span>` : '—'}</td></tr>`; }).join('')}</table>
     <p><b>${t('res_result', { a: n, b: sc.members.length, q: sc.quorum, r: t(socOk(P) ? 'res_pass' : 'res_open') })}</b></p><p class="small">📎 ${t('res_note')}</p>`;
 }
+/* goods receipt note: what the supplier sent and what was received on site, by whom, with serials and damage */
+function docGrn(P) {
+  const d = P.dispatch || {}, m = P.mhand || {}, sm = d.serialMap || {}, list = Array.isArray(m.items) && m.items.length ? m.items : (P.materials || []);
+  const rows = list.map((x, i) => `<tr><td>${i + 1}</td><td>${esc(t(x.k))}</td><td>${x.q || ''}</td><td>${esc(sm[x.k] || '')}</td><td>${x.status ? (L['mi_' + x.status] ? t('mi_' + x.status) : esc(x.status)) : ''}</td></tr>`).join('');
+  return docHead(P, t('doc_grn'), `${P.id}-GRN`) + kv([['grn_challan', esc(d.challan || '')], ['grn_seal', esc(d.seal || '')], ['grn_vehicle', esc(d.vehicle || '')], ['grn_sent', d.t ? fmtD(d.t, true) + ' · ' + esc(userName(d.by)) : ''], ['grn_got', m.t ? fmtD(m.t, true) + ' · ' + esc(userName(m.by)) : ''], ['grn_signer', esc(m.custName || '')]])
+    + `<table><tr><th>#</th><th>${t('sk_item')}</th><th>${t('sk_qty')}</th><th>${t('grn_serial')}</th><th>${t('grn_state')}</th></tr>${rows}</table>${P.serialHold ? `<p><b>⚠️ ${t('grn_hold')}</b></p>` : ''}${m.note ? `<p>${esc(m.note)}</p>` : ''}<p class="small muted">${t('grn_note')}</p>`;
+}
 /* a sheet for the society committee / general body: options, votes, cost per flat, payments, time, warranty */
 function docCommittee(P) {
   const sent = P.quotes.filter(q => q.sent), vt = socVotes(P), q = P.quotes.find(x => x.accepted) || sent[sent.length - 1] || lastQuote(P), sch = paySchedule(payCfgAt(), q.total);
@@ -11633,11 +11922,12 @@ SCREENS.doc = ({ pid, kind, v }) => {
   if (!P || !canSee(App.me, P)) return SCREENS.home();
   if ((kind === 'quote' || kind === 'agreement' || kind === 'committee') && !seeF(App.me, 'money')) return SCREENS.home();
   if (kind === 'po' && !['owner', 'admin', 'supplier'].includes(App.me.role)) return SCREENS.home();
+  if (kind === 'grn' && !['owner', 'admin', 'supplier', 'finance', 'tech'].includes(App.me.role)) return SCREENS.home();
   if (['cert', 'bundle'].includes(kind) && !['owner', 'admin', 'qc', 'customer'].includes(App.me.role) && App.me.uid !== statLead()) return SCREENS.home();
-  const ready = { quote: P.quotes.length > 0, agreement: !!P.agreement, handover: !!P.done, po: !!P.po, cert: !!lastPass(P), warranty: !!P.done, bundle: !!P.done, resolution: !!P.society, committee: !!P.society && P.quotes.some(q => q.sent), notice: true }[kind];
+  const ready = { quote: P.quotes.length > 0, agreement: !!P.agreement, handover: !!P.done, po: !!P.po, cert: !!lastPass(P), warranty: !!P.done, bundle: !!P.done, resolution: !!P.society, committee: !!P.society && P.quotes.some(q => q.sent), notice: true, grn: !!P.mhand }[kind];
   if (!ready) return topBar(t('doc_' + kind), { back: true }) + `<main class="wrap"><div class="card center">${t('no_docs_yet')}</div></main>`;
   if (kind === 'quote' && App.me.role === 'customer') { const sent = P.quotes.filter(q => q.sent); if (!sent.length) return SCREENS.home(); if (!sent.some(q => q.v === +v)) v = sent[sent.length - 1].v; }
-  const html = kind === 'quote' ? docQuote(P, v) : kind === 'agreement' ? docAgreement(P) : kind === 'po' ? docPO(P) : kind === 'cert' ? docCert(P) : kind === 'warranty' ? docWarranty(P) : kind === 'resolution' ? docResolution(P) : kind === 'committee' ? docCommittee(P) : kind === 'notice' ? docNotice(P) : kind === 'bundle' ? docBundle(P) : docHandover(P);
+  const html = kind === 'quote' ? docQuote(P, v) : kind === 'agreement' ? docAgreement(P) : kind === 'po' ? docPO(P) : kind === 'cert' ? docCert(P) : kind === 'warranty' ? docWarranty(P) : kind === 'resolution' ? docResolution(P) : kind === 'committee' ? docCommittee(P) : kind === 'grn' ? docGrn(P) : kind === 'notice' ? docNotice(P) : kind === 'bundle' ? docBundle(P) : docHandover(P);
   return topBar(t('doc_' + kind), { back: true }) + `<main class="wrap"><div class="row noprint" style="margin-bottom:10px"><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button><button class="btn" data-a="sayDoc">🔊 ${t('listen')}</button></div><div class="doc" id="docbody">${html}</div></main>`;
 };
 
@@ -11650,9 +11940,9 @@ SCREENS.me = () => {
   const tile = (a, v, i, l, on) => on === false ? '' : `<button class="tile" data-a="${a}" data-v="${v || ''}"><span class="i" aria-hidden="true">${i}</span>${t(l)}</button>`;
   const group = (icon, l, body) => !body.trim() ? '' : l === 'me_app' ? fold('me_app', t(l), `<div class="tiles">${body}</div>`, { icon, sub: t('fold_tap') }) : `<h2 class="sec">${icon} ${t(l)}</h2><div class="tiles">${body}</div>`;
   return topBar(t('me')) + `<main class="wrap"><div class="hero"><div class="row"><span style="font-size:2.4rem">${ROLE_ICON[r]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + r)}</span></div></div><p class="small muted" style="margin:8px 0 0">${t('role_note')}</p></div>
-    ${group('🧰', 'me_work', tile('nav', 'jobs', '🧰', 'jobs_title', ['partner', 'qc'].includes(r)) + tile('nav2', 'worker|' + u.uid, '🏢', 'my_company', r === 'partner') + tile('nav2', 'ladder|' + u.uid, '🪜', 'my_ladder', !!gradeOf(u.uid)) + tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'faults', '🧯', 'fg_title', ['tech', 'qc', 'admin', 'owner'].includes(r)) + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', ['qc', 'partner', 'field'].includes(r))
+    ${group('🧰', 'me_work', tile('nav', 'jobs', '🧰', 'jobs_title', ['partner', 'qc'].includes(r)) + tile('nav2', 'worker|' + u.uid, '🏢', 'my_company', r === 'partner') + tile('nav2', 'ladder|' + u.uid, '🪜', 'my_ladder', !!gradeOf(u.uid)) + tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'faults', '🧯', 'fg_title', ['tech', 'qc', 'admin', 'owner'].includes(r)) + tile('nav', 'stock', '📦', 'sk_my_van', r === 'tech') + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', ['qc', 'partner', 'field'].includes(r))
       + tile('nav2', 'leaders|', '🏆', 'leaderboard', staff) + tile('nav', 'templates', '💬', 'templates', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'helper', '🙋', 'helper'))}
-    ${group('🏢', 'me_office', tile('nav', 'lifts', '🛗', 'lr_title', adm || r === 'sales') + tile('nav', 'posts', '📣', 'posts_title', adm) + tile('nav', 'escalations', '⏫', 'esc_title', adm) + tile('nav', 'workers', '🪪', 'workers', adm) + tile('nav', 'users', '👥', 'users', adm)
+    ${group('🏢', 'me_office', tile('nav', 'lifts', '🛗', 'lr_title', adm || r === 'sales') + tile('nav', 'stock', '📦', 'sk_title', adm || r === 'finance') + tile('nav', 'ageing', '⏳', 'ag_title', adm || r === 'finance') + tile('nav', 'posts', '📣', 'posts_title', adm) + tile('nav', 'escalations', '⏫', 'esc_title', adm) + tile('nav', 'workers', '🪪', 'workers', adm) + tile('nav', 'users', '👥', 'users', adm)
       + tile('nav', 'rules', '📏', 'business_rules', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'audit', '🧾', 'audit_log', adm) + tile('nav', 'problems', '⚠️', 'problems', adm) + tile('nav', 'access', '🛡️', 'access_log', adm))}
     ${r === 'owner' ? hqCard() : ''}
     ${fold('me_set', t('me_settings'), `
@@ -12656,7 +12946,7 @@ SCREENS.weekly = ({ end } = {}) => {
     ${card('⚖️', 'wk_control', [row('wk_overrides', w.approvals + ' · ' + t('stage_back') + ' ' + w.stageBack + ' · ' + t('dispute_set') + ' ' + w.disputes + ' · ' + t('hold_put') + ' ' + w.holds), row('wk_closes', w.closes + ' / 7'), row('clock_title', w.clock)])}
     <div class="card"><h3>📏 ${t('kn_title')}</h3>${keyNumbers().map(([k, v, d]) => `<div class="list-item" style="display:block"><b>${t(k)}: ${esc(v)}</b><br><span class="small muted">${t(d, { d: S.config.installDays })}</span></div>`).join('')}</div>
     <div class="stack noprint"><button class="btn btn-ok btn-big" data-a="weekShare" data-v="${w.end}">📤 ${t('wk_share')}</button><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button><button class="btn" data-a="nav" data-v="auto">⚙️ ${t('auto_title')}</button></div>
-    ${u.role === 'owner' ? `<h2 class="sec noprint">📊 ${t('csv_title')}</h2><div class="card noprint"><p class="small">${t('csv_note')}</p><div class="row wrapw">${['projects', 'payments', 'tickets'].map(k => `<button class="btn btn-sm" data-a="csvGo" data-v="${k}">⬇️ ${t('csv_' + k)}</button>`).join('')}</div>
+    ${u.role === 'owner' ? `<h2 class="sec noprint">📊 ${t('csv_title')}</h2><div class="card noprint"><p class="small">${t('csv_note')}</p><div class="row wrapw">${['projects', 'payments', 'tickets', 'tally'].map(k => `<button class="btn btn-sm" data-a="csvGo" data-v="${k}">⬇️ ${t('csv_' + k)}</button>`).join('')}</div>
       ${(S.exports || []).length ? `<p class="small muted" style="margin-top:6px">${S.exports.slice(0, 5).map(x => `${fmtD(x.t, true)} · ${t('csv_' + x.kind)} · ${x.rows} · ${esc(userName(x.by))}`).join('<br>')}</p>` : ''}</div>` : ''}
   </main>` + nav('home');
 };
@@ -12667,6 +12957,11 @@ function csvRows(kind) {
   const ps = Object.values(S.projects), d = x => x ? x.slice(0, 10) : '';
   if (kind === 'projects') return [['Project', 'Stage', 'Created', 'Address', 'Customer', 'Sales', 'Partner company', 'Team lead', 'Price (agreed)', 'Paid (confirmed)', 'Days in stage', 'On hold', 'Open tickets']]
     .concat(ps.map(P => [P.id, P.stage, d(P.t), P.site.address, P.contact.name, userName(P.sales), userName(P.partner), userName(P.tech), (P.quotes.find(q => q.accepted) || {}).total || '', paidTotal(P), daysSince(P.since), onHold(P) ? 'yes' : '', P.tickets.filter(x => x.status !== 'closed').length]));
+  /* receipts and payments for the accountant (Tally or Zoho Books import): one row per voucher */
+  if (kind === 'tally') return [['Date', 'Voucher type', 'Ledger', 'Amount', 'Reference', 'Narration']]
+    .concat(ps.flatMap(P => P.payments.filter(x => x.status === 'confirmed').map(x => [d(x.confirmedAt || x.t), 'Receipt', P.contact.name || P.id, x.amount, x.bankRef || x.ref || x.id, P.id + ' ' + x.purpose + ' ' + x.method])))
+    .concat(ps.flatMap(P => (P.invoices || []).filter(x => x.status === 'paid').map(x => [d(x.paidT || x.t), 'Payment', userName(x.by), invPayable(x), x.ref || x.no, P.id + ' supplier bill ' + x.no])))
+    .concat(ps.flatMap(P => (P.expenses || []).filter(x => x.decided && x.decided.ok).map(x => [d(x.decided.t), 'Payment', 'Site expenses - ' + x.cat, x.amount, x.id, P.id + ' ' + x.note])));
   if (kind === 'payments') return [['Project', 'Payment', 'Purpose', 'Amount', 'Method', 'Status', 'Recorded by', 'Recorded', 'Checked by', 'Checked', 'Bank reference']]
     .concat(ps.flatMap(P => P.payments.map(x => [P.id, x.id, x.purpose, x.amount, x.method, x.status, userName(x.recordedBy), d(x.t), userName(x.confirmedBy), d(x.confirmedAt), x.bankRef || '']))
       .concat(ps.flatMap(P => (P.invoices || []).map(x => [P.id, x.id, 'supplier bill ' + x.no, -invPayable(x), 'bank', x.status, userName(x.by), d(x.t), userName(x.paidBy || x.okBy), d(x.paidT || x.okT), x.ref || '']))));
@@ -13422,7 +13717,7 @@ function openTask(n) {
     record_payment: () => wiz('paynew', pid, { purpose: n.purpose }), verify_payment: () => wiz('payverify', pid, { payId: n.payId }),
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), decide_infeasible: () => wiz('infeasible', pid), approve_drawing: () => go('drawings', { pid }),
-    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
+    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
