@@ -3168,6 +3168,7 @@ const L = {
   qd_total: ['Total: {a} → {b}', 'कुल: {a} → {b}', 'एकूण: {a} → {b}'],
   qd_disc: ['Discount: {a}% → {b}%', 'छूट: {a}% → {b}%', 'सवलत: {a}% → {b}%'],
   ev_DAILY_REPORT: ['Daily report sent', 'रोज़ की रिपोर्ट भेजी', 'रोजचा अहवाल पाठवला'],
+  cfg_cityCode: ['City code in new job numbers (3 capital letters, e.g. PUN)', 'नए काम नंबर में शहर कोड (3 बड़े अक्षर, जैसे PUN)', 'नवीन काम क्रमांकात शहर कोड (3 मोठी अक्षरे, उदा. PUN)'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5070,7 +5071,7 @@ const PRE_WON = ['new', 'returned', 'accepted', 'contacted', 'requirements', 'qu
 const SALES_TALK = ['accepted', 'contacted', 'requirements', 'quote_ready', 'quoted'];
 const OPEN_STAGES = STAGE_ORDER.filter(s => s !== 'lost' && s !== 'amc');
 const stageIdx = s => STAGE_ORDER.indexOf(s);
-const TEXT_CFG = ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc', 'holidays'];
+const TEXT_CFG = ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc', 'holidays', 'cityCode'];
 /* the lowest and highest value each business-rule number may take: checked by the rule, not only by the input box */
 const CFG_LIMITS = (() => {
   const L = {}, set = (keys, a, b) => keys.forEach(k => { L[k] = [a, b]; });
@@ -5097,7 +5098,7 @@ const CONTRACT_FROM = '2026-11-02T14:00:00.000Z', PAYDEF_FROM = '2026-11-02T14:0
 /* customer payment split: 70% when material arrives, 20% for the custom cabin, 10% at handover — for deals won from now on,
    unless the Owner has set their own split */
 const payCfgAt = t => (S.config._paySet || (t || nowISO()) < PAYDEF_FROM) ? S.config : Object.assign({}, S.config, { arrivalPct: 70, cabinPct: 20 });
-const TEXT_CFG_RE = { holidays: /^(\d{4}-\d\d-\d\d)(\s*,\s*\d{4}-\d\d-\d\d)*$/, payUpi: /^[\w.\-]{2,}@[a-zA-Z]{2,}$/, payName: /^[^<>]{2,60}$/, payBank: /^[^<>]{2,60}$/, payAcc: /^\d{6,20}$/, payIfsc: /^[A-Z]{4}0[A-Z0-9]{6}$/ };
+const TEXT_CFG_RE = { cityCode: /^[A-Z]{3}$/, holidays: /^(\d{4}-\d\d-\d\d)(\s*,\s*\d{4}-\d\d-\d\d)*$/, payUpi: /^[\w.\-]{2,}@[a-zA-Z]{2,}$/, payName: /^[^<>]{2,60}$/, payBank: /^[^<>]{2,60}$/, payAcc: /^\d{6,20}$/, payIfsc: /^[A-Z]{4}0[A-Z0-9]{6}$/ };
 const PAY_STAGE = { token: 'signed', arrival: 'arrived', cabin: 'installing', final: 'final_pay', retention: 'amc' };
 /* the cabin payment is due before the car (cabin) step */
 const CABIN_STEP = 5;
@@ -5205,7 +5206,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, qcRecheckPct: 10, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, sundayWork: 0, holidays: '', dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -5229,7 +5230,7 @@ const RULE_GROUPS = {
   safety: ['dailySafety', 'sosNumber', 'safetyRetest'],
   statutory: ['licenceGate', 'permitGate'],
   quality: ['tolWidth', 'tolDepth', 'tolPit', 'tolHead', 'peerCheck'],
-  privacy: ['officeNumber', 'accessAlert'],
+  privacy: ['officeNumber', 'cityCode', 'accessAlert'],
   ladderpay: ['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior', 'payCrewJob', 'payQcInspection', 'spotTrainee', 'spotTech', 'spotSenior'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
   amc: ['amcPrice'],
@@ -5303,7 +5304,7 @@ const hasQc = () => Object.values(S.users).some(u => u.active && u.role === 'qc'
 const svcRoles = () => svcLead() ? [roleOf(svcLead())] : hasQc() ? ['qc'] : ['admin', 'owner'];
 const isSvcOwner = u => ['admin', 'owner'].includes(u.role) || (svcLead() ? u.uid === svcLead() : u.role === 'qc');
 function emptyState() {
-  return { stock: { items: {}, bal: {}, moves: [] }, settle: {}, contracts: {}, trainVideos: {}, ratingAppeals: {}, reviewsVoid: [], org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
+  return { jobNos: {}, stock: { items: {}, bal: {}, moves: [] }, settle: {}, contracts: {}, trainVideos: {}, ratingAppeals: {}, reviewsVoid: [], org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
     templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], enquiries: {}, enqOrder: [], joins: {}, reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {}, lastAt: {}, undone: {} };
 }
 let S = emptyState();
@@ -6037,6 +6038,7 @@ const RULES = {
     roles: ['field', 'sales', 'admin', 'owner', 'customer'], check: (S, ev, u) => {
       const d = ev.data;
       if (S.projects[ev.pid]) return 'err_dup_id';
+      if (d.no != null && !/^AIEC-[A-Z]{3}-\d{4}-\d{5}$/.test(d.no)) return 'err_fill';
       /* a customer may enter only their own site (with their own number); it is checked by Sales like any new lead */
       if (u && u.role === 'customer') { if (d.bySelf !== true || d.noPhone || d.enquiry) return 'err_access'; }
       else if (d.copyOf) { const O = S.projects[d.copyOf]; if (!O || !['sales', 'admin', 'owner'].includes(u.role)) return 'err_access'; return !d.noPhone && !validPhone(d.phone) ? 'err_phone' : null; }
@@ -7218,6 +7220,15 @@ function validate(S, ev) {
 }
 
 /* ---------- reducer: event → state ---------- */
+/* the job number people see: AIEC-<city>-<year>-<5 digits>, next free number; if two phones made the same number
+   while offline, the later one in the shared history gets "-B" (the same on every phone) */
+const jobNo = P => P.no || P.id;
+function newJobNo() {
+  const y = todayStr().slice(0, 4), pre = 'AIEC-' + (S.config.cityCode || 'PUN') + '-' + y + '-';
+  const max = Object.keys(S.jobNos || {}).filter(x => x.startsWith(pre)).reduce((a, x) => Math.max(a, +x.slice(pre.length, pre.length + 5) || 0), 0);
+  return pre + String(max + 1).padStart(5, '0');
+}
+const pidOfNo = x => (S.jobNos || {})[x] || x;
 function newPid() { let pid; do { pid = 'AIEC-' + todayStr().slice(2, 4) + todayStr().slice(5, 7) + '-' + rid(3); } while (S.projects[pid]); return pid; }
 function newProject(ev) {
   const d = ev.data;
@@ -7287,6 +7298,7 @@ function apply(S, ev) {
     case 'CUSTOMER_LINKED': { const x = S.users[d.uid]; x.projects = uniq((x.projects || []).concat(P.id)); P.customer = d.uid; break; }
     case 'LEAD_CREATED':
       P = S.projects[ev.pid] = newProject(ev); S.order.unshift(ev.pid); if (d.copyOf) P.copyOf = d.copyOf;
+      if (d.no) { let no = d.no, k = 0; while (S.jobNos[no]) no = d.no + '-' + 'BCDEFGHJKLMNPQRSTUVWXYZ'[k++]; P.no = no; S.jobNos[no] = P.id; }
       if (d.bySelf && S.users[ev.by] && S.users[ev.by].role === 'customer') { const x = S.users[ev.by]; P.customer = x.uid; if (x.projectId !== P.id) x.projects = uniq((x.projects || []).concat(P.id)); }
       if (d.enquiry && S.enquiries[d.enquiry] && S.enquiries[d.enquiry].open) Object.assign(S.enquiries[d.enquiry], { open: false, closedBy: ev.by, closedT: ev.t, pid: ev.pid });
       break;
@@ -8079,13 +8091,13 @@ function personCard(uid) {
 function linkify(root) {
   if (!root || !App.me) return;
   root.querySelectorAll('button .ulink, a .ulink').forEach(sp => sp.removeAttribute('data-a'));
-  const ids = visibleProjects(App.me).map(P => P.id); if (!ids.length) return;
+  const ids = visibleProjects(App.me).flatMap(P => P.no ? [P.no, P.id] : [P.id]); if (!ids.length) return;
   const re = new RegExp('(' + ids.map(x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).sort((a, b) => b.length - a.length).join('|') + ')(?![\\w-])', 'g');
   const re1 = new RegExp(re.source);
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => n.parentElement && n.parentElement.closest('button,a,input,textarea,select,svg,.doc,.pidlink,[data-nolink]') ? NodeFilter.FILTER_REJECT : re1.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP });
   const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
   for (const n of nodes) { re.lastIndex = 0; const frag = document.createDocumentFragment(); let last = 0, m;
-    while ((m = re.exec(n.nodeValue))) { frag.append(n.nodeValue.slice(last, m.index)); const b = document.createElement('button'); b.className = 'pidlink'; b.dataset.a = 'openProject'; b.dataset.v = m[1]; b.textContent = m[1]; frag.append(b); last = m.index + m[1].length; }
+    while ((m = re.exec(n.nodeValue))) { frag.append(n.nodeValue.slice(last, m.index)); const b = document.createElement('button'); b.className = 'pidlink'; b.dataset.a = 'openProject'; b.dataset.v = pidOfNo(m[1]); b.textContent = m[1]; frag.append(b); last = m.index + m[1].length; }
     frag.append(n.nodeValue.slice(last)); n.replaceWith(frag); }
 }
 
@@ -8161,6 +8173,8 @@ const EV_V = 1;
 const evV = ev => ev.v || 1;
 async function perform(type, pid, data, opt = {}) {
   const by = opt.as || (App.me && App.me.uid);
+  /* a new job made on this phone (its key from newPid) gets the next job number */
+  if (type === 'LEAD_CREATED' && data && !data.no && !S.projects[pid] && /^AIEC-\d{4}-[A-Za-z0-9]{3}$/.test(pid || '')) data = Object.assign({}, data, { no: newJobNo() });
   let tt = opt.t || nowISO();
   const last = EVENTS[EVENTS.length - 1];
   /* keep records made in the same moment in order; a record from a phone whose clock ran far ahead must not drag new records into the future */
@@ -8785,7 +8799,7 @@ function taskCard(n, i) {
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}${taskBars(n, null)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
   return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
-    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + (n.k === 'escalated' ? n.ref : n.k)))}${esc(sub)}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span>${whyNow(n)}${taskBars(n, P)}</span><span class="go" aria-hidden="true">▶</span></button>`;
+    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + (n.k === 'escalated' ? n.ref : n.k)))}${esc(sub)}</b><span class="small muted">${esc(jobNo(P))} · ${esc(projTitle(P))}</span>${whyNow(n)}${taskBars(n, P)}</span><span class="go" aria-hidden="true">▶</span></button>`;
 }
 /* the third line of a task card: one reason why it matters now (or nothing) */
 function whyNow(n) {
@@ -8805,7 +8819,7 @@ function escChip(n) {
 const escWho = n => (n.whoUids || []).length ? n.whoUids.map(userName).join(', ') : rolesTxt(n.who || []);
 function projCard(P) {
   return `<button class="task" data-a="openProject" data-v="${P.id}"><span class="ti" aria-hidden="true">${STAGES[P.stage][1]}</span>
-    <span style="flex:1;min-width:0"><b>${esc(P.id)} · ${esc(projTitle(P))}</b><span class="small muted">${esc((P.site.address || '').slice(0, 60))}</span><br>${stageChip(P)} ${waitLine(P)}${jobBars(P)}</span><span class="go" aria-hidden="true">▶</span></button>`;
+    <span style="flex:1;min-width:0"><b>${esc(jobNo(P))} · ${esc(projTitle(P))}</b><span class="small muted">${esc((P.site.address || '').slice(0, 60))}</span><br>${stageChip(P)} ${waitLine(P)}${jobBars(P)}</span><span class="go" aria-hidden="true">▶</span></button>`;
 }
 function thumb(e, o = {}) {
   if (!e) return '';
@@ -9044,7 +9058,7 @@ WIZ.lead = {
       id: 'dup', icon: '👀', say: 's_lead_dup', skip: ctx => !findDuplicates(ctx).length,
       body: ctx => {
         const list = findDuplicates(ctx);
-        return list.map(P => `<div class="card"><b>${esc(P.id)}</b> ${stageChip(P)}<br><span class="small">${esc((P.site.address || '').slice(0, 70))}</span>
+        return list.map(P => `<div class="card"><b>${esc(jobNo(P))}</b> ${stageChip(P)}<br><span class="small">${esc((P.site.address || '').slice(0, 70))}</span>
           ${ctx.gps && P.site.gps ? `<br><span class="chip c-mute">📏 ${t('meters_away', { n: haversine(ctx.gps, P.site.gps) })}</span>` : ''}</div>`).join('') +
           tiles('dup', [['attach', '➕', 'dup_attach'], ['new', '🆕', 'dup_new']], 'one') + (ctx.dup === 'attach' ? toggleTile('newInfo', '⬜', 'dup_new_info') : '') +
           `<div class="note">💡 ${t('dup_rule', { n: S.config.dupCommission })} ${ruleChip('dup')}</div>`;
@@ -9620,7 +9634,7 @@ function liftRow(P) {
   const lastSvc = Object.values(P.service).sort((a, b) => a.t < b.t ? 1 : -1)[0], watch = lastSvc ? AMC_CHECKS.filter(k => ['fair', 'fail'].includes(lastSvc.checks[k])) : [];
   const fin = P.qcFinal.filter(x => x.outcome === 'pass').slice(-1)[0];
   return `<div class="card"><div class="row wrapw"><b class="grow">🛗 ${esc(P.lift.label || P.id)}</b><button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶</button></div>
-    <p class="small muted" style="margin:2px 0 6px;overflow-wrap:anywhere">${esc(P.id)} · ${esc((P.site.address || '').slice(0, 70))} · ${esc(P.contact.name)}</p>
+    <p class="small muted" style="margin:2px 0 6px;overflow-wrap:anywhere">${esc(jobNo(P))} · ${esc((P.site.address || '').slice(0, 70))} · ${esc(P.contact.name)}</p>
     <div class="row wrapw" style="gap:6px">${t('lr_installed')} ${fmtD(P.done.t)} · <span class="chip ${wd != null && wd < 0 ? 'c-mute' : wd != null && wd <= 30 ? 'c-warn' : 'c-ok'}">🛡️ ${wd != null && wd < 0 ? t('lr_warranty_over') : t('lr_warranty_till', { d: fmtD(we) })}</span>
       <span class="chip ${P.amcEnded || (ad != null && ad < 0) ? 'c-bad' : ad != null && ad <= 30 ? 'c-warn' : 'c-ok'}">🛠️ ${P.amcEnded || (ad != null && ad < 0) ? t('lr_amc_out') : t('lr_amc_till', { d: fmtD(P.amcEnd) })}</span>${statOf(P).licence ? licChip(liftLicenceDays(P)) : `<span class="chip c-warn">📜 ${t('stat_needed_short')}</span>`}</div>
     <p class="small" style="margin:6px 0 0">${t('lr_breakdowns', { n: bd.length })}${open ? ' · ' + t('lr_open', { n: open }) : ''}${top ? ' · ' + t('lr_top_cause', { c: t('rc_' + top[0]), n: top[1] }) : ''}${watch.length ? '<br>🟡 ' + t('lr_watch') + ': ' + watch.map(k => t('amc_' + k)).join(', ') : ''}${fin && fin.vals ? '<br>📏 ' + TEST_VALS.map(([k]) => t('tv_' + k) + ' ' + fin.vals[k]).join(' · ') : ''}${(P.lift.owners || []).length > 1 ? '<br>🏠 ' + t('lr_owners', { n: P.lift.owners.length }) : ''}</p>
@@ -9951,8 +9965,8 @@ SCREENS.supbills = () => {
   const due = ps.filter(P => P.dispatch && P.stage !== 'lost' && !(P.invoices || []).some(x => x.status !== 'rejected'));
   App.pageSay = t('inv_title');
   return topBar(t('inv_title'), { back: true }) + `<main class="wrap"><div class="note">🧾 ${t('inv_note')}</div>
-    ${due.map(P => `<button class="btn" data-a="wizOpen" data-v="supInvoice|${P.id}">🧾 ${t('inv_new')} · ${esc(P.id)} · ${esc((P.po || {}).no || '')}</button>`).join('')}
-    ${inv.length ? `<div class="card">${inv.map(([P, x]) => `<div class="small muted">${esc(P.id)}</div>` + invRow(x, P, true)).join('')}</div>` : `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
+    ${due.map(P => `<button class="btn" data-a="wizOpen" data-v="supInvoice|${P.id}">🧾 ${t('inv_new')} · ${esc(jobNo(P))} · ${esc((P.po || {}).no || '')}</button>`).join('')}
+    ${inv.length ? `<div class="card">${inv.map(([P, x]) => `<div class="small muted">${esc(jobNo(P))}</div>` + invRow(x, P, true)).join('')}</div>` : `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
 };
 /* ---------- bank statement match: suggestions only; a person confirms each one ---------- */
 function csvParse(text) {
@@ -9998,7 +10012,7 @@ SCREENS.recon = () => {
         ${kv([['recon_app', `${esc(x.P.id)} · ${t('pay_' + x.p.purpose)} · <b>${money(x.p.amount)}</b> · ${esc(x.p.ref || '')} · ${fmtD(x.p.t)}`], ['recon_bank', `${fmtD(x.line.date)} · <b>${money(x.line.amount)}</b> · ${esc(x.line.text)}`]])}
         <div class="row wrapw">${mine(x.p) ? `<span class="small muted">${t('err_same_person')}</span>` : `<button class="btn btn-sm btn-ok" data-a="reconOk" data-v="${x.P.id}|${x.p.id}|${x.line.i}">✅ ${t('recon_confirm')}</button>`}<button class="btn btn-sm" data-a="reconSkip" data-v="${x.p.id}">✖ ${t('recon_not_this')}</button></div></div>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}
       <h2 class="sec">❓ ${t('recon_free_bank')} (${m.freeLines.length})</h2><div class="card">${m.freeLines.slice(0, 30).map(L => `<div class="small">${fmtD(L.date)} · ${money(L.amount)} · ${esc(L.text)}</div>`).join('') || '—'}</div>
-      <h2 class="sec">⏳ ${t('recon_free_app')} (${m.freePays.length})</h2><div class="card">${m.freePays.map(({ P, p }) => `<div class="small">${esc(P.id)} · ${t('pay_' + p.purpose)} · ${money(p.amount)} · ${esc(p.ref || '')}</div>`).join('') || '—'}</div>` : ''}
+      <h2 class="sec">⏳ ${t('recon_free_app')} (${m.freePays.length})</h2><div class="card">${m.freePays.map(({ P, p }) => `<div class="small">${esc(jobNo(P))} · ${t('pay_' + p.purpose)} · ${money(p.amount)} · ${esc(p.ref || '')}</div>`).join('') || '—'}</div>` : ''}
     <p class="small muted">${t('recon_limits')}</p></main>` + nav('me');
 };
 function materialCard(P) {
@@ -10147,7 +10161,7 @@ SCREENS.receipt = ({ pid, pay }) => {
   if (!P || !p || p.status !== 'confirmed' || !canSee(u, P) || !seeF(u, 'money')) return SCREENS.home();
   App.pageSay = t('receipt_title');
   return topBar(t('receipt_title'), { back: true }) + `<main class="wrap"><div class="row noprint" style="margin-bottom:10px"><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button></div>
-    <div class="card doc"><h2>🧾 ${t('receipt_title')}</h2><p><b>${esc(S.org.name)}</b></p>${kv([['receipt_no', esc(p.id)], ['receipt_date', fmtD(p.confirmedAt || p.t)], ['f_contact_name', esc(P.contact.name)], ['f_address', esc(P.site.address)], ['receipt_for', t('pay_' + p.purpose) + ' · ' + esc(P.id)],
+    <div class="card doc"><h2>🧾 ${t('receipt_title')}</h2><p><b>${esc(S.org.name)}</b></p>${kv([['receipt_no', esc(p.id)], ['receipt_date', fmtD(p.confirmedAt || p.t)], ['f_contact_name', esc(P.contact.name)], ['f_address', esc(P.site.address)], ['receipt_for', t('pay_' + p.purpose) + ' · ' + esc(jobNo(P))],
       ['amount', money(p.amount)], ['receipt_method', t('pm_' + p.method)], ['f_bank_ref', esc(p.bankRef || p.ref || '')], ['receipt_checked', userName(p.confirmedBy) + ' · ' + fmtD(p.confirmedAt, true)]])}
       <p class="small muted">${t('receipt_note')}</p></div></main>` + nav('projects');
 };
@@ -10213,7 +10227,7 @@ SCREENS.drawings = ({ pid }) => {
     <p class="small muted">${fmtD(v.t, true)} · ${esc(userName(v.by))}${v.note ? ' · ' + esc(v.note) : ''}${v.approved ? ' · ✅ ' + esc(userName(v.approved.by)) + ' ' + fmtD(v.approved.t, true) : ''}</p>${v.ev.length ? evGrid(v.ev) : `<p class="small muted">${t('dwg_no_pages')}</p>`}
     ${s === 'draft' && allowed('DRAWING_APPROVED', P) && !(v.by === u.uid && otherOffice(u.uid, ['admin', 'owner'])) ? `<button class="btn btn-p" data-a="dwgApprove" data-v="${P.id}|${esc(v.ref)}">✅ ${t('dwg_approve')}</button>` : ''}</div>`; };
   App.pageSay = t('dwg_title');
-  return topBar(t('dwg_title') + ' · ' + esc(P.id), { back: true }) + `<main class="wrap">${lock ? `<div class="warnbox">🔒 ${t(lock)}</div>` : ver(cur, false)
+  return topBar(t('dwg_title') + ' · ' + esc(jobNo(P)), { back: true }) + `<main class="wrap">${lock ? `<div class="warnbox">🔒 ${t(lock)}</div>` : ver(cur, false)
     + (u.role === 'customer' ? `<div class="note">👁️ ${t('dwg_view_only')}</div>` : '') + `<p class="small muted">${t('dwg_note')}</p>`
     + (allowed('DRAWING_ADDED', P) ? `<button class="btn btn-p" data-a="wizOpen" data-v="drawingAdd|${P.id}">➕ ${t('dwg_add')}</button>` : '')
     + (office && drafts.length ? `<h2 class="sec">${t('dwg_st_draft')}</h2><p class="small muted">${t('dwg_draft_note')}</p>` + drafts.slice().reverse().map(v => ver(v, true)).join('') : '')
@@ -10239,11 +10253,11 @@ SCREENS.stattracker = ({ f }) => {
   App.pageSay = t('stat_tracker');
   return topBar(t('stat_tracker'), { back: true }) + `<main class="wrap"><p class="small muted">${t('stat_tracker_note')}</p>
     <div class="row wrapw">${['all', 'exp', 'miss'].map(k => `<button class="btn btn-sm ${f === k ? 'btn-p' : ''}" data-a="statF" data-v="${k}" aria-pressed="${f === k}">${t('st_f_' + k)} (${cnt[k]})</button>`).join('')}</div>
-    ${rows.map(({ P, st, d, miss }) => `<div class="card"><div class="row wrapw"><b class="stid" style="white-space:nowrap">${esc(P.id)}</b>${stageChip(P)}${licChip(d)}</div><p class="small muted">${esc(P.site.address)}</p>${statBars(P)}
+    ${rows.map(({ P, st, d, miss }) => `<div class="card"><div class="row wrapw"><b class="stid" style="white-space:nowrap">${esc(jobNo(P))}</b>${stageChip(P)}${licChip(d)}</div><p class="small muted">${esc(P.site.address)}</p>${statBars(P)}
       ${kv([['stat_permit', st.permit ? `✅ ${esc(st.permit.no)} · ${fmtD(st.permit.date)}` : '—'], ['stat_inspection', st.inspection ? `${st.inspection.result === 'pass' ? '✅' : '❌'} ${fmtD(st.inspection.date)}` : '—'],
         ['stat_licence', st.licence ? `${esc(st.licence.no)} · ${esc(st.licence.holder)} · ${t('lic_expiry')}: ${fmtD(st.licence.expiry)}` : '—']])}
       ${miss.length ? `<div class="warnbox">📄 ${t('stat_missing')}: ${miss.map(k => t(k)).join(', ')}</div>` : ''}
-      <div class="row wrapw"><button class="btn btn-sm" data-a="openProject" data-v="${P.id}">📂 ${esc(P.id)}</button>${allowed('STATUTORY_SET', P) ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="statutory|${P.id}">📜 ${t('stat_title')}</button>` : ''}</div></div>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}
+      <div class="row wrapw"><button class="btn btn-sm" data-a="openProject" data-v="${P.id}">📂 ${esc(jobNo(P))}</button>${allowed('STATUTORY_SET', P) ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="statutory|${P.id}">📜 ${t('stat_title')}</button>` : ''}</div></div>`).join('') || `<div class="card center">${t('nothing_here')}</div>`}
     <p class="small muted">${t('stat_note')}</p></main>` + nav('me');
 };
 /* ---------- statutory records, hold, stage back, dispute ---------- */
@@ -10432,7 +10446,7 @@ SCREENS.safetylog = ({ pid }) => {
       ${y.closed.map(i => `<div class="okbox">✅ ${t('inc_' + i.type)} · ${t('inc_closed')}${cust ? '' : '<br>' + t('f_inc_cause') + ': ' + esc(i.resolution.cause || '') + '<br>' + t('f_inc_fix') + ': ' + esc(i.resolution.fix || '')}</div>${evGrid(i.resolution.ev || [])}`).join('')}
       ${y.qc ? `<div class="${y.qc.outcome === 'pass' ? 'okbox' : 'err'}">🔍 ${t('qo_' + y.qc.outcome)}${y.qc.crit ? '<br>' + QC_CRITICAL.map(k => (y.qc.crit[k] === 'pass' ? '✅ ' : '❌ ') + t('qcc_' + k)).join(' · ') + (y.qc.earthVal ? ' · ⚡ ' + esc(y.qc.earthVal) : '') : ''}</div>` : ''}</div>`; });
   return topBar(t('safety_log'), { back: true }) + `<main class="wrap"><div class="row noprint" style="margin-bottom:10px"><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button></div>
-    <div class="card"><b>${esc(S.org.name)}</b> · ${esc(P.id)} · ${esc(projTitle(P))}<br><span class="small muted">📍 ${esc(areaOf(P))}${P.partner ? ' · 🏢 ' + esc(userName(P.partner)) : ''}${P.tech ? ' · 🔧 ' + esc(userName(P.tech)) : ''}</span>${stopIncidents(P).length ? `<div class="err" style="margin-top:6px">🛑 ${t('work_stopped')}</div>` : ''}</div>
+    <div class="card"><b>${esc(S.org.name)}</b> · ${esc(jobNo(P))} · ${esc(projTitle(P))}<br><span class="small muted">📍 ${esc(areaOf(P))}${P.partner ? ' · 🏢 ' + esc(userName(P.partner)) : ''}${P.tech ? ' · 🔧 ' + esc(userName(P.tech)) : ''}</span>${stopIncidents(P).length ? `<div class="err" style="margin-top:6px">🛑 ${t('work_stopped')}</div>` : ''}</div>
     ${cards.join('') || `<div class="card center">${t('nothing_here')}</div>`}<p class="small muted">${t('safety_log_note')}</p></main>` + nav('projects');
 };
 
@@ -10960,7 +10974,7 @@ SCREENS.waits = () => {
   const stageRow = x => `<div class="card" style="padding:10px 12px"><div class="row"><b class="grow">${(STAGES[x.s] || [0, '•'])[1]} ${esc(stName(x.s))}</b><b>${wjDays(x.avg)}</b></div>
     <div style="height:8px;background:var(--line);border-radius:6px;margin:6px 0"><i style="display:block;height:8px;border-radius:6px;background:${x.avg >= S.config.escalateDays ? 'var(--bad)' : x.avg >= S.config.remindDays ? 'var(--warn, #d9a400)' : 'var(--ok)'};width:${Math.max(4, Math.round(x.avg / top * 100))}%"></i></div>
     <div class="small muted">${t('wj_row', { n: x.n, a: wjDays(x.avg), m: wjDays(x.max) })} (${esc(x.maxPid)}) · ${t('wj_waits_on', { r: x.role === 'system' ? t('system') : t('r_' + x.role) })}</div></div>`;
-  const now = waitNow().slice(0, 15).map(({ P, days: d, n }) => `<button class="task" data-a="openProject" data-v="${P.id}"><span class="ti">${(STAGES[P.stage] || [0, '•'])[1]}</span><span class="grow" style="flex:1;min-width:0"><b>${esc(P.id)} · ${t('wj_in_stage', { d: wjDays(d), s: stName(P.stage) })}</b><br><span class="small muted">${esc(t('waiting_for', { who: waitsWho(n) }))}</span>${n ? taskBars(n, P) : ''}</span></button>`).join('');
+  const now = waitNow().slice(0, 15).map(({ P, days: d, n }) => `<button class="task" data-a="openProject" data-v="${P.id}"><span class="ti">${(STAGES[P.stage] || [0, '•'])[1]}</span><span class="grow" style="flex:1;min-width:0"><b>${esc(jobNo(P))} · ${t('wj_in_stage', { d: wjDays(d), s: stName(P.stage) })}</b><br><span class="small muted">${esc(t('waiting_for', { who: waitsWho(n) }))}</span>${n ? taskBars(n, P) : ''}</span></button>`).join('');
   const who = w.who.slice(0, 8).map(x => `<div class="list-item"><span class="grow">${ROLE_ICON[roleOf(x.uid)] || ''} <b>${esc(userName(x.uid))}</b> · ${t('r_' + roleOf(x.uid))}</span><span class="small">${t('wj_who_row', { d: wjDays(x.days), n: x.n })}</span></div>`).join('');
   const money = PURPOSES.filter(k => w.money[k]).map(k => `<div class="list-item"><span class="grow">${t('pay_' + k)}</span><span class="small">${t('wj_row', { n: w.money[k].n, a: wjDays(w.money[k].sum / w.money[k].n), m: wjDays(w.money[k].max) })}</span></div>`).join('');
   return topBar(t('wj_title'), { back: true }) + `<main class="wrap"><p class="say">⏳ ${t('wj_say')}</p>
@@ -11021,7 +11035,7 @@ SCREENS.home = () => {
   if (u.role === 'field') h += shiftCard();
   h += moneyLine(u) + callNextCard(u) + routineCard(u);
   if (u.role === 'tech') { const open = visibleProjects(u).filter(P => checkedIn(P, safeDay(), u.uid) && !(((P.dayEnds || {})[safeDay()] || {})[u.uid]));
-    open.forEach(P => { h += `<button class="task" style="margin-top:10px" data-a="wizOpen" data-v="techEnd|${P.id}"><span class="ti">🏁</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_end_day')}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span></span><span class="go">▶</span></button>`; }); }
+    open.forEach(P => { h += `<button class="task" style="margin-top:10px" data-a="wizOpen" data-v="techEnd|${P.id}"><span class="ti">🏁</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_end_day')}</b><span class="small muted">${esc(jobNo(P))} · ${esc(projTitle(P))}</span></span><span class="go">▶</span></button>`; }); }
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))}${tasks[0].pid ? ' · ' + esc(tasks[0].pid) : ''}</p>`;
   else h += `<div class="card center"><div class="big-i">☕</div><b>${t('no_tasks')}</b><p class="muted">${t(u.role === 'field' ? 'no_tasks_field' : 'no_tasks_other')}</p></div>`;
   { const ws = myWaits(u); if (ws.length) h += `<div class="note" style="margin-top:10px"><b>⏳ ${t('waiting_t')}</b>${ws.map(n => `<div class="small">${esc(t('tk_' + n.k))}${n.pid ? ' · ' + esc(n.pid) : ''}</div>`).join('')}<span class="small muted">${t('waiting_sub')}</span></div>`; }
@@ -11109,7 +11123,7 @@ function gsearch() {
   const q = String(App.form.gq || '').trim().toLowerCase(), digits = q.replace(/\D/g, '');
   let res = '';
   if (q.length >= 2) {
-    const hit = visibleProjects(App.me).filter(P => [P.id, P.contact.name, P.site.address, P.lift && P.lift.code].join(' ').toLowerCase().includes(q) || (digits.length >= 4 && String(P.contact.phone || '').includes(digits)));
+    const hit = visibleProjects(App.me).filter(P => [P.id, P.no || '', P.contact.name, P.site.address, P.lift && P.lift.code].join(' ').toLowerCase().includes(q) || (digits.length >= 4 && String(P.contact.phone || '').includes(digits)));
     res = hit.length ? hit.slice(0, 8).map(projCard).join('') : `<p class="muted small">${t('gsearch_none')}</p>`;
   }
   return formInp('gq', 'gsearch', { mode: 'search' }) + `<div id="gres">${res}</div>`;
@@ -11190,7 +11204,7 @@ function customerHome() {
   App.pageSay = t('cust_say', { stage: stName(P.stage), next: nextLine(P) });
   const q = [...P.quotes].reverse().find(x => x.sent);
   const tile = (a, v, i, l) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`;
-  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}<div class="card"><b>${esc(P.id)}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>${custPause(P)}${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
+  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}<div class="card"><b>${esc(jobNo(P))}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>${custPause(P)}${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
     ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + tasks.map((n, i) => taskCard(n, i)).join('') : ''}
     ${payCard(P)}
     ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
@@ -11220,9 +11234,9 @@ function payCard(P, full) {
     : last && last.status === 'failed' ? `<div class="warnbox">⚠️ ${t('pay_failed_again')}${(last.hist || []).slice(-1)[0] && last.hist.slice(-1)[0].reason ? ' · ' + esc(last.hist.slice(-1)[0].reason) : ''}</div>` : '';
   const have = c.payUpi || (c.payAcc && c.payIfsc);
   let qr = ''; if (full && c.payUpi) { try { qr = `<div class="center" style="margin:8px 0"><div style="display:inline-block;background:#fff;padding:6px">${QR.svg(upiLink(P, due), 220)}</div><p class="small muted">${t('pay_qr_note')}</p></div>`; } catch (e) { qr = ''; } }
-  return `<div class="card"><h3>💳 ${t('pay_title')}</h3>${kv([['pay_for', t('pay_' + due.purpose) + ' · ' + esc(P.id)], ['amount', `<b style="font-size:1.3rem">${money(due.amount)}</b>`]])}${st}
+  return `<div class="card"><h3>💳 ${t('pay_title')}</h3>${kv([['pay_for', t('pay_' + due.purpose) + ' · ' + esc(jobNo(P))], ['amount', `<b style="font-size:1.3rem">${money(due.amount)}</b>`]])}${st}
     ${!have ? `<div class="warnbox">⚠️ ${t('pay_no_details')}</div>` : full ? `${c.payUpi ? `<a class="btn btn-ok btn-big" href="${esc(upiLink(P, due))}">📱 ${t('pay_upi_app')}</a><p class="small muted">🧾 ${t('pay_note_keep')}</p>${qr}${kv([['pay_upi_id', `<b>${esc(c.payUpi)}</b>`]])}` : ''}
-      ${c.payAcc && c.payIfsc ? `<h3 style="margin-top:10px">🏦 ${t('pay_bank')}</h3>${kv([['pay_acc_name', esc(c.payName || S.org.name)], ['pay_bank_name', esc(c.payBank)], ['pay_acc', `<b>${esc(c.payAcc)}</b>`], ['pay_ifsc', `<b>${esc(c.payIfsc)}</b>`], ['pay_remark', `<b>${esc(P.id)}</b>`]])}` : ''}
+      ${c.payAcc && c.payIfsc ? `<h3 style="margin-top:10px">🏦 ${t('pay_bank')}</h3>${kv([['pay_acc_name', esc(c.payName || S.org.name)], ['pay_bank_name', esc(c.payBank)], ['pay_acc', `<b>${esc(c.payAcc)}</b>`], ['pay_ifsc', `<b>${esc(c.payIfsc)}</b>`], ['pay_remark', `<b>${esc(jobNo(P))}</b>`]])}` : ''}
       <div class="warnbox">🔐 ${t('pay_safe')}</div>` : `<button class="btn btn-p btn-big" data-a="payInfo" data-v="${P.id}">💳 ${t('pay_how')}</button>`}
     ${full && App.me.role === 'customer' && !due.pay && have ? `<button class="btn btn-p btn-big" data-a="wizOpen" data-v="custPaid|${P.id}|purpose|${due.purpose}">✅ ${t('pay_i_paid')}</button>` : ''}</div>`;
 }
@@ -11329,7 +11343,7 @@ SCREENS.project = ({ pid, tab }) => {
   App.pageSay = `${P.id}. ${stName(P.stage)}. ${nextLine(P)}`;
   App.tasks = mine;
   const body = { info: projInfo, timeline: projTimeline, chat: projChat, photos: projPhotos, money: projMoney, docs: projDocs }[tab] || projInfo;
-  return topBar(P.id + ' · ' + projTitle(P), { back: true }) + `<div class="wrap" style="padding-bottom:0"><div class="card">${phaseBar(P)}${jobBars(P)}<div style="margin-top:8px">${stageChip(P)} <span class="chip c-mute">🕒 ${t('days_n', { n: daysSince(P.since) })}</span></div>
+  return topBar(jobNo(P) + ' · ' + projTitle(P), { back: true }) + `<div class="wrap" style="padding-bottom:0"><div class="card">${phaseBar(P)}${jobBars(P)}<div style="margin-top:8px">${stageChip(P)} <span class="chip c-mute">🕒 ${t('days_n', { n: daysSince(P.since) })}</span></div>
     <p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${waits.map(n => `<span class="chip c-info" style="margin-top:8px">⏳ ${esc(t('tk_' + n.k))}</span>`).join(' ')}${mine.map((n, i) => `<button class="btn btn-p" style="margin-top:8px" data-a="openTask" data-v="${i}">▶ ${esc(t('tk_' + n.k))}${n.slot ? ' · ' + t('slot_' + n.slot) : ''}</button>`).join('')}</div></div>
     <div class="tabs">${tabs.map(([k, i, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-v="${k}">${i} ${t(l)}</button>`).join('')}</div>
     <main class="wrap" style="padding-top:4px">${body(P)}</main>` + nav('projects');
@@ -11700,7 +11714,7 @@ SCREENS.map = () => {
     ${rs ? `<div class="card"><h3>🟩 ${t('rm_next')}</h3><p class="small muted">${t('rm_next_d')}</p>${rs.next.length ? rs.next.map((g, i) => `<a class="btn btn-sm" style="margin:2px" href="${dirLink(g)}" target="_blank" rel="noopener">🧭 ${i + 1}</a>`).join('') : `<p class="small">${t('rm_next_none')}</p>`}</div>` : ''}
     ${rs && board.length ? `<div class="card"><h3>🏆 ${t('rm_board')}</h3>${board.map(([uid, pts], i) => `<div class="list-item small" style="${uid === u.uid ? 'background:var(--gold-l);border-radius:8px;padding-inline:6px' : ''}"><b style="width:26px">${['🥇', '🥈', '🥉'][i] || i + 1}</b><span class="grow">${esc(userName(uid))}</span><b>${pts}</b></div>`).join('')}</div>` : ''}
     ${office && f === 'people' ? (people.length ? people.map(x => `<div class="list-item"><span>${ROLE_ICON[x.u.role]}</span><span class="grow">${t('mp_last', { who: esc(x.u.name), d: fmtD(x.t, true) })}</span><a class="btn btn-sm" href="${dirLink(x.g)}" target="_blank" rel="noopener">🧭</a></div>`).join('') : `<div class="card center">${t('mp_nobody')}</div>`) : ''}
-    ${list.slice(0, 20).map(P => `<div class="list-item"><span class="grow">${STAGES[P.stage][1]} <b>${esc(P.id)}</b> · ${esc(projTitle(P))}</span>${me ? `<span class="chip c-mute">${(haversine(me, P.site.gps) / 1000).toFixed(1)} km</span>` : ''}<button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶</button></div>`).join('')}</main>` + nav('map');
+    ${list.slice(0, 20).map(P => `<div class="list-item"><span class="grow">${STAGES[P.stage][1]} <b>${esc(jobNo(P))}</b> · ${esc(projTitle(P))}</span>${me ? `<span class="chip c-mute">${(haversine(me, P.site.gps) / 1000).toFixed(1)} km</span>` : ''}<button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶</button></div>`).join('')}</main>` + nav('map');
 };
 
 /* street map (OpenStreetMap) when online; the simple plot above stays as the offline fallback */
@@ -11732,7 +11746,7 @@ AFTER.map = () => {
     for (const P of d.ps) {
       const g = P.site.gps; pts.push([g.lat, g.lng]);
       const icon = Lf.divIcon({ className: 'pin', html: `<span class="${P.stage === 'lost' ? 'lost' : P.stage === 'amc' ? 'done' : ''}">${STAGES[P.stage][1]}</span>`, iconSize: [36, 36], iconAnchor: [18, 18] });
-      Lf.marker([g.lat, g.lng], { icon, title: P.id }).addTo(m).bindPopup(`<b>${esc(P.id)}</b> · ${esc(projTitle(P))}<br>${stageChip(P)}<div class="row" style="margin-top:8px"><button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶ ${t('open_project')}</button><a class="btn btn-sm" href="${dirLink(g)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>`);
+      Lf.marker([g.lat, g.lng], { icon, title: P.id }).addTo(m).bindPopup(`<b>${esc(jobNo(P))}</b> · ${esc(projTitle(P))}<br>${stageChip(P)}<div class="row" style="margin-top:8px"><button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶ ${t('open_project')}</button><a class="btn btn-sm" href="${dirLink(g)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>`);
     }
     if (d.route.length > 1) { Lf.polyline(d.route.map(g => [g.lat, g.lng]), { color: '#1c5596', weight: 4, dashArray: '6 6' }).addTo(m); d.route.forEach(g => pts.push([g.lat, g.lng])); }
     (d.people || []).forEach(x => { Lf.marker([x.g.lat, x.g.lng], { icon: Lf.divIcon({ className: 'pin', html: `<span>${ROLE_ICON[x.u.role]}</span>`, iconSize: [36, 36], iconAnchor: [18, 18] }), title: x.u.name }).addTo(m).bindPopup(esc(x.u.name) + ' · ' + fmtD(x.t, true)); pts.push([x.g.lat, x.g.lng]); });
@@ -11753,7 +11767,7 @@ SCREENS.chat = () => {
   const forMe = myTasks(u).filter(n => n.k === 'answer');
   return topBar(t('chat')) + `<main class="wrap">${forMe.length ? `<div class="warnbox">❓ ${t('questions_for_me', { n: forMe.length })}</div>` : ''}
     ${ps.length ? ps.map(P => { const m = P.chat[P.chat.length - 1], open = P.chat.filter(x => x.open && x.toRole === u.role).length;
-      return `<button class="task" data-a="openProjectTab" data-v="${P.id}|chat"><span class="ti">💬</span><span style="flex:1;min-width:0"><b>${esc(P.id)} · ${esc(projTitle(P))}</b><span class="small muted">${userName(m.by)}: ${esc(m.text.slice(0, 60))}</span><br><span class="small muted">${fmtD(m.t, true)}</span>${open ? ` <span class="chip c-warn">❓ ${open}</span>` : ''}</span><span class="go">▶</span></button>`; }).join('')
+      return `<button class="task" data-a="openProjectTab" data-v="${P.id}|chat"><span class="ti">💬</span><span style="flex:1;min-width:0"><b>${esc(jobNo(P))} · ${esc(projTitle(P))}</b><span class="small muted">${userName(m.by)}: ${esc(m.text.slice(0, 60))}</span><br><span class="small muted">${fmtD(m.t, true)}</span>${open ? ` <span class="chip c-warn">❓ ${open}</span>` : ''}</span><span class="go">▶</span></button>`; }).join('')
       : `<div class="card center">${t('no_messages')}<br><span class="small muted">${t('chat_how')}</span></div>`}</main>` + nav('chat');
 };
 
@@ -11781,7 +11795,7 @@ function docHead(P, title, no) {
 function docQuote(P, v) {
   const q = P.quotes.find(x => x.v === +v) || lastQuote(P); if (!q) return '';
   const s = paySchedule(payCfgAt(), q.total);
-  return docHead(P, t('doc_quote'), `${P.id}-Q${q.v}`) + `<table><tr><td>${t('customer')}</td><td><b>${esc(P.contact.name)}</b></td></tr><tr><td>${t('site')}</td><td>${esc(P.site.address)}</td></tr><tr><td>${t('valid_until')}</td><td>${fmtD(addDays(q.validity || 30, new Date(q.t)))}</td></tr></table>
+  return docHead(P, t('doc_quote'), `${jobNo(P)}-Q${q.v}`) + `<table><tr><td>${t('customer')}</td><td><b>${esc(P.contact.name)}</b></td></tr><tr><td>${t('site')}</td><td>${esc(P.site.address)}</td></tr><tr><td>${t('valid_until')}</td><td>${fmtD(addDays(q.validity || 30, new Date(q.t)))}</td></tr></table>
     ${quoteDiff(P, q).length ? `<div class="note"><b>${t('qd_title', { v: q.v - 1 })}</b><br>${quoteDiff(P, q).map(esc).join('<br>')}</div>` : ''}
     <h3>${t('lift_needs')}</h3>${reqKv(q.req)}
     <h3>${t('price')}</h3><table>${q.lines.map(([k, val]) => `<tr><td>${t(k)}</td><td class="r">${money(val)}</td></tr>`).join('')}<tr><td><b>${t('q_list')}</b></td><td class="r">${money(q.list)}</td></tr>
@@ -11815,7 +11829,7 @@ function agreeKeyPoints(P) {
 }
 function docAgreement(P, preview) {
   const sg = P.agreement && P.agreement.signed;
-  return (preview ? '' : docHead(P, t('doc_agreement'), `${P.id}-AG`)) + `<p>${esc(t('ag_parties', { company: S.org.name, name: P.contact.name, site: P.site.address }))}</p>${agreeKeyPoints(P)}
+  return (preview ? '' : docHead(P, t('doc_agreement'), `${jobNo(P)}-AG`)) + `<p>${esc(t('ag_parties', { company: S.org.name, name: P.contact.name, site: P.site.address }))}</p>${agreeKeyPoints(P)}
     <h3>${t('ag_customer_duties')}</h3><ul style="padding-left:20px">${PREP_ITEMS.map(([k]) => `<li>${t('prep_' + k)}</li>`).join('')}</ul>
     <h3>${t('ag_company_duties')}</h3><p>${t('ag_company_text')}</p><h3>${t('ag_cancel')}</h3><p>${esc(cancelText())}</p>
     <p class="small" style="color:var(--warn)">⚖️ ${t('legal_template')}</p>
@@ -11830,7 +11844,7 @@ function handoverSummary(P) {
 const lastPass = P => [...(P.qcFinal || [])].reverse().find(x => x.outcome === 'pass');
 function docCert(P) {
   const q = lastPass(P), pc = P.partner && S.users[P.partner], prof = pc ? licOf(pc.uid) || {} : {}, st = statOf(P);
-  return docHead(P, t('doc_cert'), `${P.id}-CF`) + `<p>${t('cert_text', { d: fmtD(q.t), qc: esc(userName(q.by)) })}</p>
+  return docHead(P, t('doc_cert'), `${jobNo(P)}-CF`) + `<p>${t('cert_text', { d: fmtD(q.t), qc: esc(userName(q.by)) })}</p>
     ${kv([['f_address', esc(P.site.address)], ['cert_permit', st.permit ? esc(st.permit.no) + ' · ' + fmtD(st.permit.date) : '—'], ['cert_contractor', esc(pc ? pc.name : (S.org ? S.org.name : ''))], ['cert_lic', esc(prof.licNo || '____________')], ['cert_earth', esc(q.earthVal || '—')]])}
     <h3>${t('checks_done')}</h3><ul style="padding-left:20px">${QC_FINAL_CHECKS.map(k => `<li>${t('qcf_' + k)}: ${(q.checks || {})[k] === 'pass' ? '✅' : '—'}</li>`).join('')}</ul>
     <table style="margin-top:28px"><tr><td style="width:50%;height:70px;vertical-align:bottom">${t('cert_sign')}</td><td style="vertical-align:bottom">${esc(userName(q.by))} · ${t('r_qc')}</td></tr></table>
@@ -11838,7 +11852,7 @@ function docCert(P) {
 }
 function docHandover(P) {
   const sigs = SLOTS.map(s => P.hand[s] ? `<td style="width:33%"><img class="sigimg" data-m="${S.evidence[P.hand[s].sig].m}" alt=""><br><b>${esc(P.hand[s].signer)}</b><br><span class="small">${t('slot_' + s)} · ${fmtD(P.hand[s].t)}${s === 'customer' && P.hand[s].inPerson ? '<br>📱 ' + t('hs_on_tech') + (P.hand[s].why ? ' · ' + t('hsw_' + P.hand[s].why) : '') : ''}</span></td>` : `<td>${t('slot_' + s)}: —</td>`).join('');
-  return docHead(P, t('doc_handover'), `${P.id}-HO`) + handoverSummary(P) +
+  return docHead(P, t('doc_handover'), `${jobNo(P)}-HO`) + handoverSummary(P) +
     `<h3>${t('checks_done')}</h3><ul style="padding-left:20px">${QC_FINAL_CHECKS.map(k => `<li>${t('qcf_' + k)}: ${(([...P.qcFinal].reverse()[0] || {}).checks || {})[k] === 'pass' ? '✅' : '—'}</li>`).join('')}</ul>
     <h3>${t('signatures')}</h3><table><tr>${sigs}</tr></table>
     ${P.done ? `<h3>${t('warranty')}</h3><p>${t('warranty_until', { d: fmtD(addDays(P.done.warrantyMonths * 30, new Date(P.done.t))) })}</p><h3>${t('amc_visits')}</h3><ul style="padding-left:20px">${P.done.amc.visits.map(d => `<li>${fmtD(d)}</li>`).join('')}</ul>` : ''}
@@ -11986,7 +12000,7 @@ WIZ.socApprove = {
 };
 function docResolution(P) {
   const sc = P.society, q = P.quotes.find(x => x.accepted) || lastQuote(P), n = socCount(P);
-  return docHead(P, t('doc_resolution'), `${P.id}-RS`) + `<p>${esc(t('res_text', { site: P.site.address, co: S.org.name, total: q ? money(q.total) : '—' }))}</p>
+  return docHead(P, t('doc_resolution'), `${jobNo(P)}-RS`) + `<p>${esc(t('res_text', { site: P.site.address, co: S.org.name, total: q ? money(q.total) : '—' }))}</p>
     <table><tr><th>#</th><th>${t('sc_member')}</th><th>${t('signature')}</th></tr>${sc.members.map((m, i) => { const a = sc.approvals[m]; return `<tr><td>${i + 1}</td><td>${esc(m)}</td><td>${a ? `<img class="sigimg" data-m="${(S.evidence[a.sig] || {}).m || ''}" alt=""><br><span class="small">${fmtD(a.t, true)}</span>` : '—'}</td></tr>`; }).join('')}</table>
     <p><b>${t('res_result', { a: n, b: sc.members.length, q: sc.quorum, r: t(socOk(P) ? 'res_pass' : 'res_open') })}</b></p><p class="small">📎 ${t('res_note')}</p>`;
 }
@@ -11994,13 +12008,13 @@ function docResolution(P) {
 function docGrn(P) {
   const d = P.dispatch || {}, m = P.mhand || {}, sm = d.serialMap || {}, list = Array.isArray(m.items) && m.items.length ? m.items : (P.materials || []);
   const rows = list.map((x, i) => `<tr><td>${i + 1}</td><td>${esc(t(x.k))}</td><td>${x.q || ''}</td><td>${esc(sm[x.k] || '')}</td><td>${x.status ? (L['mi_' + x.status] ? t('mi_' + x.status) : esc(x.status)) : ''}</td></tr>`).join('');
-  return docHead(P, t('doc_grn'), `${P.id}-GRN`) + kv([['grn_challan', esc(d.challan || '')], ['grn_seal', esc(d.seal || '')], ['grn_vehicle', esc(d.vehicle || '')], ['grn_sent', d.t ? fmtD(d.t, true) + ' · ' + esc(userName(d.by)) : ''], ['grn_got', m.t ? fmtD(m.t, true) + ' · ' + esc(userName(m.by)) : ''], ['grn_signer', esc(m.custName || '')]])
+  return docHead(P, t('doc_grn'), `${jobNo(P)}-GRN`) + kv([['grn_challan', esc(d.challan || '')], ['grn_seal', esc(d.seal || '')], ['grn_vehicle', esc(d.vehicle || '')], ['grn_sent', d.t ? fmtD(d.t, true) + ' · ' + esc(userName(d.by)) : ''], ['grn_got', m.t ? fmtD(m.t, true) + ' · ' + esc(userName(m.by)) : ''], ['grn_signer', esc(m.custName || '')]])
     + `<table><tr><th>#</th><th>${t('sk_item')}</th><th>${t('sk_qty')}</th><th>${t('grn_serial')}</th><th>${t('grn_state')}</th></tr>${rows}</table>${P.serialHold ? `<p><b>⚠️ ${t('grn_hold')}</b></p>` : ''}${m.note ? `<p>${esc(m.note)}</p>` : ''}<p class="small muted">${t('grn_note')}</p>`;
 }
 /* a sheet for the society committee / general body: options, votes, cost per flat, payments, time, warranty */
 function docCommittee(P) {
   const sent = P.quotes.filter(q => q.sent), vt = socVotes(P), q = P.quotes.find(x => x.accepted) || sent[sent.length - 1] || lastQuote(P), sch = paySchedule(payCfgAt(), q.total);
-  return docHead(P, t('doc_committee'), `${P.id}-CM`) + `<h3>${t('cm_lift')}</h3>${reqKv(P.req)}
+  return docHead(P, t('doc_committee'), `${jobNo(P)}-CM`) + `<h3>${t('cm_lift')}</h3>${reqKv(P.req)}
     <h3>${t('cm_options')}</h3><table><tr><th>${t('cm_ver')}</th><th>${t('q_total')}</th>${P.society && P.society.flats ? `<th>${t('cm_flat')}</th>` : ''}<th>${t('sv_title')}</th></tr>${sent.map(x => `<tr><td>${x.v}</td><td>${money(x.total)}</td>${P.society && P.society.flats ? `<td>${money(perFlat(P, x.total))}</td>` : ''}<td>${vt[x.v] || 0}</td></tr>`).join('')}</table>
     ${P.society && P.society.flats ? `<p class="small">${t('sv_flats', { n: P.society.flats, f: P.society.free || 0 })}</p>` : ''}
     <h3>${t('pay_schedule')}</h3>${kv(PURPOSES.filter(k => sch[k]).map(k => ['pay_' + k, money(sch[k])]))}
@@ -12011,13 +12025,13 @@ function docNotice(P) {
   const f = App.form, from = f.ntFrom || addDays(7), to = f.ntTo || addDays(7 + (+S.config.installDays || 14));
   return `<div class="noprint card"><div class="row wrapw"><label class="grow"><span class="small">${t('nt_from')}</span><input class="in" type="date" data-f="ntFrom" id="f_ntFrom" value="${esc(from)}"></label><label class="grow"><span class="small">${t('nt_to')}</span><input class="in" type="date" data-f="ntTo" id="f_ntTo" value="${esc(to)}"></label></div><p class="small muted">${t('nt_hint')}</p></div>`
     + `<div style="text-align:center"><h2>📢 ${t('nt_head')}</h2><p style="font-size:1.15rem">${esc(t('nt_text', { site: P.lead.tower ? P.lead.tower + ', ' + P.site.address : P.site.address, from: fmtD(from), to: fmtD(to), co: S.org.name }))}</p>
-    <p>${t('nt_sorry')}</p><p><b>${t('nt_contact', { n: esc(S.config.officeNumber || '') })}</b></p><p class="small">${esc(S.org.name)} · ${esc(P.id)}</p></div>`;
+    <p>${t('nt_sorry')}</p><p><b>${t('nt_contact', { n: esc(S.config.officeNumber || '') })}</b></p><p class="small">${esc(S.org.name)} · ${esc(jobNo(P))}</p></div>`;
 }
 /* the warranty card: dates, what is and is not covered, who to call, serials for claims */
 function docWarranty(P) {
   const end = warrantyEnd(P), lead = svcLead(), off = S.config.officeNumber || '', sm = (P.dispatch || {}).serialMap || {};
   const left = Math.round((new Date(end + 'T12:00:00') - new Date(todayStr() + 'T12:00:00')) / 864e5);
-  return docHead(P, t('doc_warranty'), `${P.id}-WC`) + kv([['f_address', esc(P.site.address)], ['warranty', t('wc_from_to', { a: fmtD(P.done.t), b: fmtD(end) })], ['lift_qr', P.lift ? esc(P.lift.code) : '']])
+  return docHead(P, t('doc_warranty'), `${jobNo(P)}-WC`) + kv([['f_address', esc(P.site.address)], ['warranty', t('wc_from_to', { a: fmtD(P.done.t), b: fmtD(end) })], ['lift_qr', P.lift ? esc(P.lift.code) : '']])
     + `<p><b>${left >= 0 ? t('wc_left', { n: left }) : t('wc_over', { d: fmtD(end) })}</b></p>
     <h3>✅ ${t('wc_covered')}</h3><p>${t('wc_covered_text')}</p><h3>🚫 ${t('wc_not')}</h3><p>${t('wc_not_text')}</p>
     <h3>📞 ${t('wc_call')}</h3><p>${lead ? esc(userName(lead)) + ' · ' + t('r_' + roleOf(lead)) : esc(S.org.name)}${off ? ' · ' + esc(off) : ''}</p>
@@ -12281,7 +12295,7 @@ SCREENS.reports = () => {
   if (!['owner', 'admin', 'sales'].includes(App.me.role)) return SCREENS.home();
   const xs = openReports(); App.pageSay = t('rp_say');
   return topBar(t('rp_title'), { back: true }) + `<main class="wrap"><p class="say">📨 ${t('rp_say')}</p>${xs.map(x => { const P = liftOf(x.code);
-    return `<div class="card"><div class="row wrapw"><b class="grow">${P ? esc(P.lift.label || P.id) + ' · ' + esc(P.id) : '⚠️ ' + t('rp_unknown')}</b><span class="chip ${x.problem === 'stopped' ? 'c-bad' : 'c-warn'}">${QR_PROBLEMS.find(([k]) => k === x.problem)[1]} ${t('qp_' + x.problem)}</span></div>
+    return `<div class="card"><div class="row wrapw"><b class="grow">${P ? esc(P.lift.label || P.id) + ' · ' + esc(jobNo(P)) : '⚠️ ' + t('rp_unknown')}</b><span class="chip ${x.problem === 'stopped' ? 'c-bad' : 'c-warn'}">${QR_PROBLEMS.find(([k]) => k === x.problem)[1]} ${t('qp_' + x.problem)}</span></div>
       <p class="small muted">${esc(x.code)} · ${fmtD(x.t, true)}${P ? ' · ' + esc(P.site.address) : ''}</p>
       <div class="row wrapw">${x.phone ? `<a class="btn btn-sm btn-p" href="tel:+91${x.phone}">📞 ${esc(x.phone)}</a>` : ''}${P && allowed('TICKET_OPENED', P) ? `<button class="btn btn-sm btn-ok" data-a="rpTicket" data-v="${x.rid}">🎫 ${t('rp_open')}</button>` : ''}<button class="btn btn-sm" data-a="rpDismiss" data-v="${x.rid}">✖ ${t('rp_dismiss')}</button></div></div>`; }).join('') || `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('me');
 };
@@ -12872,11 +12886,11 @@ function trialCard(uid) {
   const can = ['qc', 'admin', 'owner'].includes(me.role) || (me.role === 'tech' && gradeOf(me.uid) === 'senior');
   return `<div class="card"><h3>🧪 ${t('trial_title')}</h3><div class="${ok ? 'okbox' : 'warnbox'}">${t(ok ? 'trial_ok' : 'trial_needed')}</div>
     ${tr.map(x => `<div class="small">${x.ok ? '✅' : '❌'} ${esc(x.pid)} · ${esc(userName(x.by))} · ${fmtD(x.t)}${x.note ? ' · ' + esc(x.note) : ''}</div>`).join('')}
-    ${can && !ok && me.uid !== uid ? (jobs.length ? jobs.slice(0, 5).map(P => `<button class="btn btn-sm" style="margin-top:6px" data-a="wizOpen" data-v="trial|${P.id}|uid|${uid}">🧪 ${t('trial_record')} · ${esc(P.id)}</button>`).join(' ') : `<p class="small muted">${t('trial_no_job')}</p>`) : ''}</div>`;
+    ${can && !ok && me.uid !== uid ? (jobs.length ? jobs.slice(0, 5).map(P => `<button class="btn btn-sm" style="margin-top:6px" data-a="wizOpen" data-v="trial|${P.id}|uid|${uid}">🧪 ${t('trial_record')} · ${esc(jobNo(P))}</button>`).join(' ') : `<p class="small muted">${t('trial_no_job')}</p>`) : ''}</div>`;
 }
 WIZ.trial = {
   title: 'trial_title', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
-  steps: [{ id: 't', icon: '🧪', say: 's_trial', body: (c, P) => `<div class="card"><b>${esc(userName(W.opts.uid))}</b> · ${esc(P.id)}</div>` + tiles('ok', [['yes', '✅', 'trial_pass'], ['no', '🔁', 'trial_again']], 'one') + inp('note', 'f_note', { area: true, mic: true, opt: c.ok !== 'no' }),
+  steps: [{ id: 't', icon: '🧪', say: 's_trial', body: (c, P) => `<div class="card"><b>${esc(userName(W.opts.uid))}</b> · ${esc(jobNo(P))}</div>` + tiles('ok', [['yes', '✅', 'trial_pass'], ['no', '🔁', 'trial_again']], 'one') + inp('note', 'f_note', { area: true, mic: true, opt: c.ok !== 'no' }),
     check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }],
   async finish(c, P) { const r = await run([['TRIAL_RESULT', P.id, { uid: W.opts.uid, ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? { ok: true, go: () => go('worker', { uid: W.opts.uid }, { replace: true }) } : r; }
 };
@@ -13422,7 +13436,7 @@ WIZ.rate = {
   title: 'tk_rate_work', save: 'send', saveIcon: '⭐', noDraft: true, init: () => ({ stars: '', note: '', name: '' }),
   steps: [{
     id: 's', icon: '⭐', say: () => t(W.opts.ref === 'handover' ? 's_rate_handover' : 's_rate_visit', { name: userName(W.opts.about) }),
-    body: (c, P) => `<div class="card center"><b>${esc(userName(W.opts.about))}</b> ${gradeChip(W.opts.about)}<div class="small muted">${t(W.opts.ref === 'handover' ? 'rate_handover' : 'rate_visit')} · ${esc(P.id)}</div></div>` + starPicker('stars')
+    body: (c, P) => `<div class="card center"><b>${esc(userName(W.opts.about))}</b> ${gradeChip(W.opts.about)}<div class="small muted">${t(W.opts.ref === 'handover' ? 'rate_handover' : 'rate_visit')} · ${esc(jobNo(P))}</div></div>` + starPicker('stars')
       + inp('note', 'f_comment', { area: true, mic: true, opt: true }) + (App.me.role === 'sales' ? inp('name', 'f_customer_name', { mic: true }) + `<div class="note">${t('rate_in_person')}</div>` : ''),
     check: c => !c.stars ? 'err_stars' : App.me.role === 'sales' && !c.name.trim() ? 'err_fill' : null
   }],
