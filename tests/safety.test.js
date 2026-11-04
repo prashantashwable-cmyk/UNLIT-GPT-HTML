@@ -68,7 +68,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* QC safety-critical items */
   const qc = await page.evaluate(async H => {
     const P = S.projects[H]; P.stage = 'qc_final';
-    const base = { checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), outcome: 'pass', stars: 5, ev: [1, 2].map(() => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'qc', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} })) };
+    const base = { vals: { level: 3, load: 680, ard: 24 }, checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), outcome: 'pass', stars: 5, ev: [1, 2].map(() => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'qc', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} })) };
     const crit = v => Object.fromEntries(QC_CRITICAL.map(k => [k, v(k)]));
     const cph = QC_CRITICAL.map(k => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'crit_' + k, t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }));
     const r1 = await perform('QC_FINAL_RESULT', H, base, { as: 'PQC', quiet: true });

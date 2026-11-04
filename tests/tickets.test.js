@@ -29,9 +29,13 @@ const APP = 'file://' + path.resolve(__dirname, '..', 'AIEC-Elevator-OS.html');
   await page.evaluate(A => { ticketOf(S.projects[A], 'T-B2').t = new Date(Date.now() - 13 * 3600e3).toISOString(); }, A);
   assert((await tasks('PADMIN', A)).some(n => n.k === 'sla_breach' && n.tid === 'T-B2'), 'after the limit the office sees "a ticket passed its time limit"');
   await act('TICKET_ASSIGNED', A, { tid: 'T-B2', uid: 'PTECH', due: await ev('todayStr()') }, 'PADMIN');
+  const at = (await tasks('PTECH', A)).find(n => n.k === 'accept_ticket' && n.tid === 'T-B2');
+  assert(at && at.urgent, 'a breakdown given to the technician first asks them to accept it');
+  assert((await act('TICKET_ACCEPTED', A, { tid: 'T-B2' }, 'PADMIN')).err === 'err_access', 'only the person it was given to accepts it');
+  assert((await act('TICKET_ACCEPTED', A, { tid: 'T-B2' }, 'PTECH')).ok, 'the technician accepts');
   const wt = (await tasks('PTECH', A)).find(n => n.k === 'work_ticket' && n.tid === 'T-B2');
   assert(wt && wt.urgent && wt.overdue, 'the technician\'s task is urgent and overdue');
-  assert((await act('TICKET_UPDATED', A, { tid: 'T-B2', status: 'resolved', note: 'Door contact cleaned' }, 'PTECH')).ok && await ev(`ticketLate(ticketOf(S.projects["${A}"], "T-B2"))`) && !(await tasks('PADMIN', A)).some(n => n.k === 'sla_breach' && n.tid === 'T-B2'), 'once fixed, the breach task goes; the ticket stays recorded as fixed late');
+  assert((await act('TICKET_UPDATED', A, { tid: 'T-B2', status: 'resolved', cause: 'door', note: 'Door contact cleaned' }, 'PTECH')).ok && await ev(`ticketLate(ticketOf(S.projects["${A}"], "T-B2"))`) && !(await tasks('PADMIN', A)).some(n => n.k === 'sla_breach' && n.tid === 'T-B2'), 'once fixed, the breach task goes; the ticket stays recorded as fixed late');
 
   /* office changes urgency */
   assert((await act('TICKET_SEVERITY', A, { tid: 'T-R3', sev: 'unsafe', note: 'x' }, 'PTECH')).ok === false, 'a technician cannot change urgency');

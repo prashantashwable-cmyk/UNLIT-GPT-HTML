@@ -90,7 +90,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
     await step('install', tech, 'SOP_STEP_DONE', { step: await ev(`sopNext(S.projects["${pid}"])`), isc: await ev(`iscYes(sopNext(S.projects["${pid}"]))`), ev: await ph(1) });
   }
   await step('request_inspection', tech, 'INSPECTION_REQUESTED', {});
-  await step('final_inspect', 'POWNER', 'QC_FINAL_RESULT', { checks: await ev('Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, "pass"]))'), crit: await ev('Object.fromEntries(QC_CRITICAL.map(k => [k, "pass"]))'), earthVal: '0.8 Ω', outcome: 'pass', stars: 5,
+  await step('final_inspect', 'POWNER', 'QC_FINAL_RESULT', { vals: { level: 3, load: 680, ard: 24 }, checks: await ev('Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, "pass"]))'), crit: await ev('Object.fromEntries(QC_CRITICAL.map(k => [k, "pass"]))'), earthVal: '0.8 Ω', outcome: 'pass', stars: 5,
     ev: (await ph(2)).concat(await ev(`QC_CRITICAL.map(k => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'crit_' + k, t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }))`)) });
   const due3 = await ev(`payDue(S.projects["${pid}"])`);
   await step('pay_now', 'SCUST', 'PAYMENT_RECORDED', { payId: 'PAY-S3', purpose: 'final', amount: due3.amount, method: 'upi', ref: 'UTR-S3' });

@@ -47,7 +47,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert((await act('PAY_DISPUTED', null, { uid: 'PQC', week: await ev('weeksFor("PQC")[0].week'), reason: 'Two inspections missing' }, 'PQC')).ok, 'QC Inspectors can ask about their pay');
   const tid = await ev('S.projects["AIEC-P001"].tickets.find(x => x.status === "open").id');
   await act('TICKET_ASSIGNED', 'AIEC-P001', { tid, uid: 'PTECH', due: await ev('addDays(1)') }, 'PADMIN');
-  await act('TICKET_UPDATED', 'AIEC-P001', { tid, status: 'resolved', note: 'Fixed door roller', ev: [] }, 'PTECH');
+  await act('TICKET_UPDATED', 'AIEC-P001', { tid, status: 'resolved', cause: 'door', note: 'Fixed door roller', ev: [] }, 'PTECH');
   await act('TICKET_CLOSED', 'AIEC-P001', { tid, ok: true, note: '' }, 'PADMIN');
   assert(await sum('PTECH', 'earn_repair') > 0, 'a confirmed repair is paid to the person who fixed it');
   await act('USER_UPDATED', null, { uid: 'PPART1', active: false }, 'POWNER');

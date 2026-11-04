@@ -36,10 +36,10 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert((await act('TICKET_ASSIGNED', 'AIEC-P001', { tid, uid: 'PTECH', due: '2099-01-01' }, 'PADMIN')).ok, 'ticket assigned to technician');
   await page.evaluate(() => loginAs(S.users.PTECH));
   assert(await page.evaluate(() => myTasks(App.me).some(n => n.k === 'work_ticket')), 'technician gets the "fix the problem" task');
-  assert(!(await act('TICKET_UPDATED', 'AIEC-P001', { tid, status: 'resolved', note: 'done' }, 'PFIELD')).ok, 'another worker cannot update the ticket');
-  assert((await act('TICKET_UPDATED', 'AIEC-P001', { tid, status: 'resolved', note: 'Door roller changed', ev: [] }, 'PTECH')).ok, 'technician marks it fixed');
+  assert(!(await act('TICKET_UPDATED', 'AIEC-P001', { tid, status: 'resolved', cause: 'door', note: 'done' }, 'PFIELD')).ok, 'another worker cannot update the ticket');
+  assert((await act('TICKET_UPDATED', 'AIEC-P001', { tid, status: 'resolved', cause: 'door', note: 'Door roller changed', ev: [] }, 'PTECH')).ok, 'technician marks it fixed');
   assert((await act('TICKET_CLOSED', 'AIEC-P001', { tid, ok: false, note: 'Still noisy' }, 'PADMIN')).ok && await P('AIEC-P001', 'P.tickets[0].status === "in_progress" && P.tickets[0].hist.some(h => h.status === "reopened")'), 'not fixed → ticket opens again');
-  await act('TICKET_UPDATED', 'AIEC-P001', { tid, status: 'resolved', note: 'Door track cleaned', ev: [] }, 'PTECH');
+  await act('TICKET_UPDATED', 'AIEC-P001', { tid, status: 'resolved', cause: 'door', note: 'Door track cleaned', ev: [] }, 'PTECH');
   assert((await act('TICKET_CLOSED', 'AIEC-P001', { tid, ok: true, note: '' }, 'PADMIN')).ok && await P('AIEC-P001', 'P.tickets[0].status === "closed" && P.tickets[0].hist.length >= 5'), 'fixed → closed with full history');
   const checks = { ride: 'pass', doors: 'fail', alarm: 'pass', brake: 'pass', ropes: 'pass', oil: 'pass', pit: 'pass' };
   const ev1 = await page.evaluate(() => [{ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'amc', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }]);

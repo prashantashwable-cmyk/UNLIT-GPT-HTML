@@ -2902,6 +2902,73 @@ const L = {
   s_qs_correct: ['Correct a measurement', 'एक नाप सुधारें', 'एक मोजमाप दुरुस्त करा'],
   qs_correct_d: ['The first record stays. This becomes version 2 with your reason, and everyone sees both.', 'पहला रिकॉर्ड रहता है। यह आपके कारण के साथ संस्करण 2 बनता है, और सब दोनों देखते हैं।', 'पहिली नोंद तशीच राहते. ही तुमच्या कारणासह आवृत्ती 2 होते, आणि सर्वांना दोन्ही दिसतात.'],
   qs_version: ['Version {n}', 'संस्करण {n}', 'आवृत्ती {n}'],
+  cfg_acceptMins: ['Minutes a technician has to accept a breakdown before the office is told', 'ब्रेकडाउन मानने के लिए तकनीशियन के मिनट, फिर ऑफिस को सूचना', 'ब्रेकडाउन स्वीकारण्यासाठी तंत्रज्ञाला मिनिटे, नंतर ऑफिसला कळवले जाते'],
+  err_test_vals: ['Enter the test values: levelling (mm), load tested (kg), ARD battery (V, 0 if none).', 'टेस्ट मान लिखें: लेवलिंग (mm), लोड टेस्ट (kg), ARD बैटरी (V, न हो तो 0)।', 'चाचणी मूल्ये लिहा: लेव्हलिंग (mm), लोड चाचणी (kg), ARD बॅटरी (V, नसल्यास 0).'],
+  s_qcf_vals: ['Test values as numbers', 'टेस्ट मान अंकों में', 'चाचणी मूल्ये आकड्यांत'],
+  qcf_vals_d: ['Write what you measured, not just a tick. These go in the lift record and the handover papers.', 'जो नापा वह लिखें, सिर्फ़ टिक नहीं। ये लिफ्ट रिकॉर्ड और हैंडओवर कागज़ों में जाते हैं।', 'जे मोजले ते लिहा, फक्त टिक नाही. हे लिफ्ट नोंद आणि हँडओव्हर कागदपत्रांत जातात.'],
+  tv_level: ['Levelling error (mm)', 'लेवलिंग अंतर (mm)', 'लेव्हलिंग फरक (mm)'],
+  tv_load: ['Load tested (kg)', 'लोड टेस्ट (kg)', 'लोड चाचणी (kg)'],
+  tv_ard: ['ARD battery (V)', 'ARD बैटरी (V)', 'ARD बॅटरी (V)'],
+  tv_range: ['Allowed: {a} to {b}', 'मान्य: {a} से {b}', 'मान्य: {a} ते {b}'],
+  amc_good: ['Good', 'ठीक', 'चांगले'],
+  amc_fair: ['Wearing', 'घिस रहा', 'झिजत आहे'],
+  amc_replace: ['Replace', 'बदलें', 'बदला'],
+  amc_fair_d: ['"Wearing" means it works today but will need a part soon. The office sees it in the lift record.', '"घिस रहा" मतलब आज चलता है पर जल्द पुर्ज़ा चाहिए। ऑफिस इसे लिफ्ट रिकॉर्ड में देखता है।', '"झिजत आहे" म्हणजे आज चालते पण लवकरच भाग लागेल. ऑफिसला हे लिफ्ट नोंदीत दिसते.'],
+  err_cause: ['Choose what caused the breakdown.', 'ब्रेकडाउन का कारण चुनें।', 'ब्रेकडाउनचे कारण निवडा.'],
+  s_rcause: ['What caused the breakdown?', 'ब्रेकडाउन किस कारण हुआ?', 'ब्रेकडाउन कशामुळे झाले?'],
+  rc_door: ['Door / door lock', 'दरवाज़ा / दरवाज़े का लॉक', 'दार / दाराचे लॉक'],
+  rc_controller: ['Controller / board', 'कंट्रोलर / बोर्ड', 'कंट्रोलर / बोर्ड'],
+  rc_power: ['Power supply', 'बिजली सप्लाई', 'वीज पुरवठा'],
+  rc_brake: ['Brake / machine', 'ब्रेक / मशीन', 'ब्रेक / मशीन'],
+  rc_rope: ['Rope / belt', 'रस्सी / बेल्ट', 'दोर / बेल्ट'],
+  rc_sensor: ['Sensor / switch', 'सेंसर / स्विच', 'सेन्सर / स्विच'],
+  rc_misuse: ['Misuse / damage by users', 'गलत इस्तेमाल / नुकसान', 'चुकीचा वापर / नुकसान'],
+  rc_other: ['Other', 'अन्य', 'इतर'],
+  tk_accept_ticket: ['Accept the breakdown', 'ब्रेकडाउन स्वीकारें', 'ब्रेकडाउन स्वीकारा'],
+  tk_ticket_not_accepted: ['Breakdown not accepted: give it to someone else', 'ब्रेकडाउन स्वीकार नहीं हुआ: किसी और को दें', 'ब्रेकडाउन स्वीकारले नाही: दुसऱ्याला द्या'],
+  tkt_not_accepted: ['Not accepted yet', 'अभी स्वीकार नहीं', 'अजून स्वीकारले नाही'],
+  tkt_accept_d: ['Accepting tells the office and the customer that you are on the way.', 'स्वीकार करने से ऑफिस और ग्राहक को पता चलता है कि आप रास्ते में हैं।', 'स्वीकारल्याने ऑफिस आणि ग्राहकाला कळते की तुम्ही वाटेत आहात.'],
+  tkt_accepted: ['Accepted: on the way', 'स्वीकार: रास्ते में', 'स्वीकारले: वाटेत'],
+  tk_warranty_call: ['Warranty ends soon: call the customer', 'वारंटी जल्द खत्म: ग्राहक को फ़ोन करें', 'वॉरंटी लवकर संपते: ग्राहकाला फोन करा'],
+  s_warranty_call: ['Tell the customer when the warranty ends and what the AMC covers after that.', 'ग्राहक को बताएँ कि वारंटी कब खत्म होगी और उसके बाद AMC में क्या मिलता है।', 'ग्राहकाला सांगा की वॉरंटी कधी संपते आणि त्यानंतर AMC मध्ये काय मिळते.'],
+  warranty_ends: ['Warranty ends', 'वारंटी खत्म', 'वॉरंटी संपते'],
+  warranty_call_d: ['After the warranty, parts and repairs are paid unless the AMC covers them.', 'वारंटी के बाद, AMC में न हो तो पुर्ज़े और मरम्मत का पैसा लगता है।', 'वॉरंटीनंतर, AMC मध्ये नसल्यास भाग आणि दुरुस्तीचे पैसे लागतात.'],
+  wc_what: ['What the customer said', 'ग्राहक ने क्या कहा', 'ग्राहक काय म्हणाले'],
+  lo_title: ['Building sold: new owner', 'इमारत बिकी: नया मालिक', 'इमारत विकली: नवीन मालक'],
+  s_lift_owner: ['Who owns the lift now?', 'अब लिफ्ट का मालिक कौन है?', 'आता लिफ्टचा मालक कोण?'],
+  lo_note: ['{name} will no longer see this lift in their app. The lift\'s history stays with the lift.', '{name} अपने ऐप में यह लिफ्ट अब नहीं देखेंगे। लिफ्ट का इतिहास लिफ्ट के साथ रहता है।', '{name} यांना त्यांच्या ॲपमध्ये ही लिफ्ट आता दिसणार नाही. लिफ्टचा इतिहास लिफ्टसोबत राहतो.'],
+  lo_new_name: ['New owner\'s name', 'नए मालिक का नाम', 'नवीन मालकाचे नाव'],
+  lr_title: ['Lift register', 'लिफ्ट रजिस्टर', 'लिफ्ट नोंदवही'],
+  lr_say: ['Every handed-over lift: warranty, AMC, licence, breakdowns and parts to watch.', 'हर सौंपी गई लिफ्ट: वारंटी, AMC, लाइसेंस, ब्रेकडाउन और देखने लायक पुर्ज़े।', 'प्रत्येक सोपवलेली लिफ्ट: वॉरंटी, AMC, परवाना, ब्रेकडाउन आणि लक्ष ठेवायचे भाग.'],
+  lr_none: ['No lift has been handed over yet.', 'अभी कोई लिफ्ट नहीं सौंपी गई।', 'अजून एकही लिफ्ट सोपवलेली नाही.'],
+  lr_installed: ['Handed over', 'सौंपी गई', 'सोपवली'],
+  lr_warranty_over: ['Warranty over', 'वारंटी खत्म', 'वॉरंटी संपली'],
+  lr_warranty_till: ['Warranty till {d}', 'वारंटी {d} तक', 'वॉरंटी {d} पर्यंत'],
+  lr_amc_out: ['No AMC', 'AMC नहीं', 'AMC नाही'],
+  lr_amc_till: ['AMC till {d}', 'AMC {d} तक', 'AMC {d} पर्यंत'],
+  lr_breakdowns: ['{n} breakdowns in 12 months', '12 महीनों में {n} ब्रेकडाउन', '12 महिन्यांत {n} ब्रेकडाउन'],
+  lr_open: ['{n} open', '{n} खुले', '{n} उघडे'],
+  lr_top_cause: ['most often: {c} ({n})', 'सबसे ज़्यादा: {c} ({n})', 'सर्वात जास्त: {c} ({n})'],
+  lr_watch: ['Parts to watch', 'देखने लायक पुर्ज़े', 'लक्ष ठेवायचे भाग'],
+  lr_owners: ['{n} owners so far', 'अब तक {n} मालिक', 'आतापर्यंत {n} मालक'],
+  fg_title: ['Fault guide', 'खराबी गाइड', 'बिघाड मार्गदर्शक'],
+  fg_note: ['For trained technicians only. Always follow the lift maker\'s manual and the safety check. When in doubt, stop and call the office.', 'केवल प्रशिक्षित तकनीशियन के लिए। हमेशा लिफ्ट निर्माता की मैनुअल और सुरक्षा जाँच मानें। शक हो तो रुकें और ऑफिस को फ़ोन करें।', 'फक्त प्रशिक्षित तंत्रज्ञांसाठी. नेहमी लिफ्ट उत्पादकाचे मॅन्युअल आणि सुरक्षा तपासणी पाळा. शंका असल्यास थांबा आणि ऑफिसला फोन करा.'],
+  fg_call: ['Someone trapped, smoke, water in the pit or a broken rope: do not try to fix. Press SOS and call the office now.', 'कोई फँसा हो, धुआँ, पिट में पानी या रस्सी टूटी हो: ठीक करने की कोशिश न करें। SOS दबाएँ और तुरंत ऑफिस को फ़ोन करें।', 'कोणी अडकले, धूर, पिटमध्ये पाणी किंवा दोर तुटला: दुरुस्त करण्याचा प्रयत्न करू नका. SOS दाबा आणि लगेच ऑफिसला फोन करा.'],
+  fg_trapped_t: ['Lift stopped between floors (people inside)', 'लिफ्ट मंज़िलों के बीच रुकी (अंदर लोग)', 'लिफ्ट मजल्यांमध्ये थांबली (आत लोक)'],
+  fg_trapped: ['1. Talk to the people inside; tell them help is coming and not to open the doors.\n2. Switch off the main power and lock it.\n3. Only a trained person does the manual rescue, as in the maker\'s manual, with a second person present.\n4. Bring the car to the nearest floor, open the doors, help everyone out.\n5. Keep the lift off and record the breakdown with photos.', '1. अंदर के लोगों से बात करें; बताएँ मदद आ रही है और दरवाज़े न खोलें।\n2. मेन बिजली बंद करें और लॉक करें।\n3. मैनुअल बचाव सिर्फ़ प्रशिक्षित व्यक्ति, निर्माता की मैनुअल अनुसार, दूसरे व्यक्ति के साथ करे।\n4. कार को नज़दीकी मंज़िल पर लाएँ, दरवाज़े खोलें, सबको बाहर निकालें।\n5. लिफ्ट बंद रखें और ब्रेकडाउन फोटो सहित दर्ज करें।', '1. आतल्या लोकांशी बोला; मदत येत आहे आणि दारे उघडू नका असे सांगा.\n2. मुख्य वीज बंद करा आणि लॉक करा.\n3. मॅन्युअल सुटका फक्त प्रशिक्षित व्यक्ती, उत्पादकाच्या मॅन्युअलनुसार, दुसऱ्या व्यक्तीसोबत करेल.\n4. कार जवळच्या मजल्यावर आणा, दारे उघडा, सर्वांना बाहेर काढा.\n5. लिफ्ट बंद ठेवा आणि ब्रेकडाउन फोटोसह नोंदवा.'],
+  fg_door_close_t: ['Door does not close', 'दरवाज़ा बंद नहीं होता', 'दार बंद होत नाही'],
+  fg_door_close: ['1. Check the sill groove for stones, dust or screws; clean it.\n2. Check the door sensor / light curtain is clean and not blocked.\n3. Check the door lock contact and the landing door rollers.\n4. If it still does not close, keep the lift off and record it.', '1. सिल की खांच में पत्थर, धूल या पेंच देखें; साफ़ करें।\n2. दरवाज़े का सेंसर / लाइट कर्टन साफ़ और खुला हो।\n3. दरवाज़े के लॉक का कॉन्टैक्ट और लैंडिंग दरवाज़े के रोलर देखें।\n4. फिर भी बंद न हो तो लिफ्ट बंद रखें और दर्ज करें।', '1. सिलच्या खाचेत दगड, धूळ किंवा स्क्रू पाहा; साफ करा.\n2. दाराचा सेन्सर / लाइट कर्टन स्वच्छ आणि मोकळा आहे का पाहा.\n3. दाराच्या लॉकचा कॉन्टॅक्ट आणि लँडिंग दाराचे रोलर तपासा.\n4. तरीही बंद होत नसल्यास लिफ्ट बंद ठेवा आणि नोंदवा.'],
+  fg_door_reopen_t: ['Door keeps opening again', 'दरवाज़ा बार-बार फिर खुलता है', 'दार पुन्हा पुन्हा उघडते'],
+  fg_door_reopen: ['1. Clean the light curtain / safety edge; check nothing hangs in the doorway.\n2. Check the door-open button is not stuck.\n3. Check the door closing force and timing as in the maker\'s manual.\n4. Record what you changed.', '1. लाइट कर्टन / सेफ्टी एज साफ़ करें; दरवाज़े में कुछ लटका न हो।\n2. दरवाज़ा खोलने का बटन अटका न हो।\n3. निर्माता की मैनुअल अनुसार दरवाज़ा बंद होने का बल और समय देखें।\n4. जो बदला वह दर्ज करें।', '1. लाइट कर्टन / सेफ्टी एज साफ करा; दारात काही लटकत नाही ना पाहा.\n2. दार उघडण्याचे बटण अडकले नाही ना पाहा.\n3. उत्पादकाच्या मॅन्युअलनुसार दार बंद होण्याचा जोर आणि वेळ तपासा.\n4. जे बदलले ते नोंदवा.'],
+  fg_level_t: ['Car stops above or below the floor', 'कार मंज़िल से ऊपर या नीचे रुकती है', 'कार मजल्याच्या वर किंवा खाली थांबते'],
+  fg_level: ['1. Measure the step at each floor (mm) and write it down.\n2. Check the floor magnets / vanes and the levelling sensor.\n3. Check the brake gap and load in the car.\n4. Adjust only as the maker\'s manual says; then measure again.', '1. हर मंज़िल पर सीढ़ी का अंतर (mm) नापें और लिखें।\n2. फ़्लोर मैग्नेट / वेन और लेवलिंग सेंसर देखें।\n3. ब्रेक गैप और कार में लोड देखें।\n4. सिर्फ़ निर्माता की मैनुअल अनुसार सेट करें; फिर नापें।', '1. प्रत्येक मजल्यावर पायरीचा फरक (mm) मोजा आणि लिहा.\n2. फ्लोअर मॅग्नेट / वेन आणि लेव्हलिंग सेन्सर तपासा.\n3. ब्रेक गॅप आणि कारमधील भार तपासा.\n4. फक्त उत्पादकाच्या मॅन्युअलनुसार जुळवा; मग पुन्हा मोजा.'],
+  fg_noise_t: ['Noise or shaking while running', 'चलते समय आवाज़ या झटके', 'चालताना आवाज किंवा हादरे'],
+  fg_noise: ['1. Ride the lift and note where the noise comes from (top, car, pit, doors).\n2. Check guide shoes / rollers and rail lubrication.\n3. Check rope / belt tension and the machine mounting.\n4. A grinding sound or a jerk on the brake: keep the lift off and call the office.', '1. लिफ्ट में चलें और देखें आवाज़ कहाँ से है (ऊपर, कार, पिट, दरवाज़े)।\n2. गाइड शू / रोलर और रेल की ग्रीसिंग देखें।\n3. रस्सी / बेल्ट का तनाव और मशीन की फिटिंग देखें।\n4. घिसने की आवाज़ या ब्रेक पर झटका: लिफ्ट बंद रखें और ऑफिस को फ़ोन करें।', '1. लिफ्टमधून फिरा आणि आवाज कुठून येतो ते पाहा (वर, कार, पिट, दारे).\n2. गाइड शू / रोलर आणि रेलचे ग्रीसिंग तपासा.\n3. दोर / बेल्टचा ताण आणि मशीनची फिटिंग तपासा.\n4. घासल्याचा आवाज किंवा ब्रेकवर धक्का: लिफ्ट बंद ठेवा आणि ऑफिसला फोन करा.'],
+  fg_no_power_t: ['Power cut: lift dead', 'बिजली गई: लिफ्ट बंद', 'वीज गेली: लिफ्ट बंद'],
+  fg_no_power: ['1. Check if anyone is inside (call out at each floor). If yes, follow "people inside".\n2. Check the main switch, MCB and phase supply in the machine room / panel.\n3. Check the ARD (auto rescue) battery voltage and write it down.\n4. When power returns, run the lift empty top to bottom before letting people use it.', '1. देखें अंदर कोई है (हर मंज़िल पर आवाज़ दें)। हो तो "अंदर लोग" के कदम मानें।\n2. मशीन रूम / पैनल में मेन स्विच, MCB और फ़ेज़ सप्लाई देखें।\n3. ARD (ऑटो रेस्क्यू) बैटरी का वोल्टेज नापें और लिखें।\n4. बिजली आने पर लोगों को इस्तेमाल करने देने से पहले लिफ्ट को खाली ऊपर से नीचे चलाएँ।', '1. आत कोणी आहे का ते पाहा (प्रत्येक मजल्यावर हाक द्या). असल्यास "आत लोक" च्या पायऱ्या पाळा.\n2. मशीन रूम / पॅनलमध्ये मुख्य स्विच, MCB आणि फेज पुरवठा तपासा.\n3. ARD (ऑटो रेस्क्यू) बॅटरीचे व्होल्टेज मोजा आणि लिहा.\n4. वीज आल्यावर लोकांना वापरू देण्याआधी लिफ्ट रिकामी वरून खाली चालवा.'],
+  ev_TICKET_ACCEPTED: ['Breakdown accepted', 'ब्रेकडाउन स्वीकार', 'ब्रेकडाउन स्वीकारले'],
+  ev_WARRANTY_CALLED: ['Warranty-end call made', 'वारंटी खत्म होने की कॉल की', 'वॉरंटी संपण्याचा फोन केला'],
+  ev_LIFT_OWNER_CHANGED: ['Lift owner changed', 'लिफ्ट का मालिक बदला', 'लिफ्टचा मालक बदलला'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4814,7 +4881,7 @@ const CFG_LIMITS = (() => {
   set(['tokenMode', 'dailySafety', 'licenceGate', 'permitGate', 'peerCheck', 'checkinGate', 'dualControl', 'requireTraining', 'sundayWork'], 0, 1);
   set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'civilMin', 'civilMax'], 0, 2000000);
   set(['reservePct'], 0, 90); set(['reserveRelease'], 1, 100); set(['agreeVersion'], 1, 99);
-  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['poDays'], 1, 120);
+  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
   set(['lvHelperJobs', 'lvTechJobs', 'lvSeniorJobs', 'lvQcJobs', 'lvHelperReviews', 'lvTechReviews', 'lvSeniorReviews', 'lvQcReviews', 'partnerBigJobs'], 0, 500);
   set(['lvHelperStars', 'lvTechStars', 'lvSeniorStars', 'lvQcStars', 'partnerBigStars'], 0, 5); set(['lvTechTrust', 'lvSeniorTrust', 'lvQcTrust', 'lvSeniorPass', 'lvQcPass'], 0, 100);
   set(['lvHelperDays', 'lvTechDays', 'lvSeniorDays'], 0, 3650); set(['strikeDays'], 1, 3650); set(['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior'], 0, 300);
@@ -4850,6 +4917,12 @@ const ISC = [[1, 1], [2, 1], [3, 1], [4, 1], [5, 0], [6, 0], [7, 0], [8, 0], [9,
 const ISC_FROM = '2026-11-01T00:00:00.000Z';
 /* site check details (floor heights, door opening), "could not check", "cannot be fitted", drawing approval: from this date */
 const SURVEY_FROM = '2026-11-04T00:00:00.000Z';
+/* after handover: test values as numbers, breakdown accept and root cause, "watch" parts at service visits */
+const LIFE_FROM = '2026-11-04T00:00:00.000Z';
+const ROOT_CAUSES = [['door', '🚪'], ['controller', '🎛️'], ['power', '⚡'], ['brake', '🛑'], ['rope', '🪢'], ['sensor', '📡'], ['misuse', '🙅'], ['other', '❔']];
+const TEST_VALS = [['level', 0, 50], ['load', 50, 10000], ['ard', 0, 1000]];
+const testValsOk = v => !!v && TEST_VALS.every(([k, a, b]) => v[k] !== '' && v[k] != null && +v[k] >= a && +v[k] <= b) && +v.load > 0;
+const FAULTS = ['trapped', 'door_close', 'door_reopen', 'level', 'noise', 'no_power'];
 const SITE_CANT = ['no_show', 'unsafe'];
 const floorGaps = P => Math.max(1, Math.min(59, (+(P.req && P.req.stops) || 2) - 1));
 const lastSiteOk = P => P.qcSite.slice().reverse().find(x => x.outcome === 'approved') || null;
@@ -4922,7 +4995,7 @@ const DEFAULT_CONFIG = {
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 8, adminDiscountLimit: 18, minMargin: 20, negStep: 5,
-  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
+  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
@@ -4940,7 +5013,7 @@ const RULE_GROUPS = {
   paydetails: ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc'],
   fieldpay: ['payLeadValid', 'leadWonPct'],
   install: ['installDays', 'poDays', 'poAnswerHours', 'geoRadius', 'checkinGate'],
-  service: ['warrantyMonths', 'amcVisits', 'validityDays', 'civilMin', 'civilMax', 'cancelBefore', 'cancelAfter'],
+  service: ['acceptMins', 'warrantyMonths', 'amcVisits', 'validityDays', 'civilMin', 'civilMax', 'cancelBefore', 'cancelAfter'],
   dup: ['dupCommission', 'refReward'],
   contract: ['agreeVersion', 'reservePct', 'reserveRelease'],
   control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'sundayWork', 'holidays', 'dualControl', 'requireTraining'],
@@ -6270,6 +6343,7 @@ const RULES = {
       if (ev_(d).length < 2) return { k: 'err_photos', v: { n: 2 } };
       if (!QC_FINAL_CHECKS.every(c => ['pass', 'fail'].includes((d.checks || {})[c]))) return 'err_checks';
       if (!QC_CRITICAL.every(c => ['pass', 'fail'].includes((d.crit || {})[c]))) return 'err_crit';
+      if (ev.t >= LIFE_FROM && d.outcome === 'pass' && !testValsOk(d.vals)) return 'err_test_vals';
       const labels = ev_(d).map(e => e.label);
       if (!QC_CRITICAL.every(c => labels.includes('crit_' + c))) return 'err_crit_photos';
       const anyFail = QC_FINAL_CHECKS.some(c => d.checks[c] === 'fail') || QC_CRITICAL.some(c => d.crit[c] === 'fail');
@@ -6429,7 +6503,7 @@ const RULES = {
       if (P.tech !== u.uid && (P.svcOwner || {})[i] !== u.uid) return 'err_access';
       if (stopIncidents(P).length) return 'err_work_stopped';
       if (S.config.licenceGate && !liftLicenceOk(P, ev.t)) return 'err_lift_licence';
-      if (!AMC_CHECKS.every(k => ['pass', 'fail'].includes((ev.data.checks || {})[k]))) return 'err_checks';
+      if (!AMC_CHECKS.every(k => ['pass', 'fail'].concat(ev.t >= LIFE_FROM ? ['fair'] : []).includes((ev.data.checks || {})[k]))) return 'err_checks';
       return need(ev_(ev.data).length >= 1, 'err_photos', { n: 1 });
     }
   },
@@ -6469,12 +6543,21 @@ const RULES = {
       return need(/^\d{4}-\d\d-\d\d$/.test(ev.data.due || ''), 'err_date');
     }
   },
+  /* the person given a breakdown says "I have it" (else the office is told to give it to someone else) */
+  TICKET_ACCEPTED: {
+    roles: ['tech', 'sales', 'admin', 'owner', 'qc'], project: true, open: true, check: (S, ev, u, P) => {
+      const x = ticketOf(P, ev.data.tid);
+      if (!x || !['assigned', 'in_progress'].includes(x.status) || x.accepted) return 'err_already';
+      return need(x.owner === u.uid, 'err_access');
+    }
+  },
   TICKET_UPDATED: {
     roles: ['tech', 'sales', 'admin', 'owner', 'qc'], project: true, open: true, check: (S, ev, u, P) => {
       const x = ticketOf(P, ev.data.tid);
       if (!x || x.status === 'closed') return 'err_already';
       if (x.owner !== u.uid && !['admin', 'owner'].includes(u.role)) return 'err_access';
       if (!['in_progress', 'resolved'].includes(ev.data.status)) return 'err_choose';
+      if (ev.t >= LIFE_FROM && ev.data.status === 'resolved' && x.kind === 'breakdown' && !ROOT_CAUSES.some(c => c[0] === ev.data.cause)) return 'err_cause';
       return need((ev.data.note || '').trim(), 'err_fill');
     }
   },
@@ -6486,6 +6569,11 @@ const RULES = {
       if (ev.data.fault && (u.role === 'customer' || ![P.tech, x.owner, ...(P.crew || [])].includes(ev.data.fault) || !(ev.data.note || '').trim())) return 'err_reason';
       return null;
     }
+  },
+  WARRANTY_CALLED: { roles: ['sales', 'admin', 'owner'], project: true, stages: ['amc'], check: (S, ev, u, P) => P.warrantyCalled ? 'err_already' : need((ev.data.note || '').trim(), 'err_fill') },
+  /* the building is sold: the lift keeps its history; the new owner's name and number replace the old ones, and the old owner's app login no longer sees it */
+  LIFT_OWNER_CHANGED: {
+    roles: ['admin', 'owner'], project: true, stages: ['amc'], check: (S, ev, u, P) => !(ev.data.name || '').trim() ? 'err_fill' : !validPhone(ev.data.phone) ? 'err_phone' : need((ev.data.note || '').trim(), 'err_reason')
   },
   AMC_ENDED: { roles: ['sales', 'admin', 'owner'], project: true, stages: ['amc'], check: (S, ev, u, P) => P.amcEnded ? 'err_already' : need((ev.data.reason || '').trim(), 'err_reason') },
   AMC_RENEWED: {
@@ -7091,7 +7179,7 @@ function apply(S, ev) {
       if (d.outcome === 'pass' && +S.config.qcRecheckPct > 0 && Object.values(S.users).some(x => x.active && x.role === 'qc' && x.uid !== ev.by) && [...String(ev.id)].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) % 1000, 7) % 100 < +S.config.qcRecheckPct) P.recheck = { first: ev.by, t: ev.t, done: null };
       const items = (d.items || []).filter(x => (x.text || '').trim()).map((x, i) => ({ id: ev.id + '-' + i, scope: 'install', text: x.text, due: x.due || '', role: 'tech', done: null, t: ev.t }));
       P.qc = ev.by;
-      P.qcFinal.push({ t: ev.t, by: ev.by, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), note: d.note || '', ev: ev_(d).map(e => e.id), stars: d.stars ? +d.stars : null, cause: d.outcome === 'fail' ? (d.cause || 'work') : null, crit: d.crit || null, earthVal: d.earthVal || '', lead: P.tech || null, crew: (P.crew || []).slice(), partner: P.partner || null });
+      P.qcFinal.push({ vals: d.vals || null, t: ev.t, by: ev.by, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), note: d.note || '', ev: ev_(d).map(e => e.id), stars: d.stars ? +d.stars : null, cause: d.outcome === 'fail' ? (d.cause || 'work') : null, crit: d.crit || null, earthVal: d.earthVal || '', lead: P.tech || null, crew: (P.crew || []).slice(), partner: P.partner || null });
       if (d.stars && P.tech) S.reviews.push({ id: ev.id, uid: P.tech, by: ev.by, src: 'qc', stars: +d.stars, pid: P.id, ref: 'qcf' + (P.qcFinal.length - 1), note: d.note || '', t: ev.t });
       if (d.outcome === 'pass' && P.tech && trialNeeded(P.tech)) { const w = worker(P.tech); (w.trials = w.trials || []).push({ pid: P.id, ok: true, note: '', by: ev.by, t: ev.t, auto: true }); }
       P.corrections.push(...items);
@@ -7140,8 +7228,13 @@ function apply(S, ev) {
     }
     case 'TICKET_SEVERITY': { const x = ticketOf(P, d.tid); x.hist.push({ status: 'sev', t: ev.t, by: ev.by, from: x.sev, to: d.sev, note: d.note }); x.sev = d.sev; break; }
     case 'LIFT_QR_SET': P.lift.label = d.label.trim(); break;
-    case 'TICKET_ASSIGNED': { const x = ticketOf(P, d.tid); x.owner = d.uid; x.due = d.due; if (x.status === 'open') x.status = 'assigned'; x.hist.push({ status: 'assigned', t: ev.t, by: ev.by, note: userName(d.uid) + ' · ' + d.due }); break; }
-    case 'TICKET_UPDATED': { const x = ticketOf(P, d.tid); x.status = d.status; if (d.status === 'resolved') x.resolvedT = ev.t; x.hist.push({ status: d.status, t: ev.t, by: ev.by, note: d.note, ev: ev_(d).map(e => e.id) }); break; }
+    case 'WARRANTY_CALLED': P.warrantyCalled = { t: ev.t, by: ev.by, note: d.note }; break;
+    case 'LIFT_OWNER_CHANGED':
+      P.lift.owners = (P.lift.owners || [{ name: P.contact.name, phone: P.contact.phone, t: P.lift.t }]).concat([{ name: d.name.trim(), phone: d.phone, t: ev.t, by: ev.by, note: d.note }]);
+      P.contact = Object.assign({}, P.contact, { name: d.name.trim(), phone: d.phone }); P.customer = null; break;
+    case 'TICKET_ACCEPTED': { const x = ticketOf(P, d.tid); x.accepted = { t: ev.t, by: ev.by }; x.hist.push({ status: 'accepted', t: ev.t, by: ev.by, note: '' }); break; }
+    case 'TICKET_ASSIGNED': { const x = ticketOf(P, d.tid); x.owner = d.uid; x.due = d.due; x.assignedT = ev.t; x.accepted = null; if (x.status === 'open') x.status = 'assigned'; x.hist.push({ status: 'assigned', t: ev.t, by: ev.by, note: userName(d.uid) + ' · ' + d.due }); break; }
+    case 'TICKET_UPDATED': { const x = ticketOf(P, d.tid); x.status = d.status; if (!x.accepted && x.owner === ev.by) x.accepted = { t: ev.t, by: ev.by }; if (d.cause) x.cause = d.cause; if (d.status === 'resolved') x.resolvedT = ev.t; x.hist.push({ status: d.status, t: ev.t, by: ev.by, note: d.note, ev: ev_(d).map(e => e.id) }); break; }
     case 'TICKET_CLOSED': { const x = ticketOf(P, d.tid); if (d.fault) Object.assign(x, { fault: d.fault, faultT: ev.t, faultBy: ev.by }); x.status = d.ok === false ? 'in_progress' : 'closed'; if (d.ok === false) x.resolvedT = null; x.hist.push({ status: d.ok === false ? 'reopened' : 'closed', t: ev.t, by: ev.by, note: d.note || '' }); break; }
     case 'AMC_ENDED': P.amcEnded = { t: ev.t, by: ev.by, reason: d.reason }; break;
     case 'AMC_RENEWED': { P.amcEnded = null;
@@ -7431,7 +7524,9 @@ function needs0(P) {
   /* AMC: service visits due within 7 days, renewal within 30 days of the end date */
   if (P.stage === 'amc' && P.done && !P.amcEnded) {
     P.done.amc.visits.forEach((d, i) => { if (!P.service[i] && d <= addDays(7) && (!P.amcEnd || d <= P.amcEnd)) add('amc_visit', ['tech'], { uids: [(P.svcOwner || {})[i] || P.tech], visit: i, overdue: d < todayStr(), since: d + 'T12:00:00' }); });
-    if (P.amcEnd && P.amcEnd <= addDays(30)) add('amc_renew', ['sales', 'admin'], { uids: [P.sales], overdue: P.amcEnd < todayStr(), since: P.amcEnd + 'T12:00:00' });
+    if (P.amcEnd && P.amcEnd <= addDays(60)) add('amc_renew', ['sales', 'admin'], { uids: [P.sales], overdue: P.amcEnd < todayStr(), urgent: P.amcEnd <= addDays(7), since: (P.amcEnd <= addDays(30) ? P.amcEnd : addDays(-60, new Date(P.amcEnd + 'T12:00:00'))) + 'T12:00:00' });
+    /* warranty ends within 30 days: a call to the customer about what changes (once) */
+    { const we = warrantyEnd(P); if (we && we >= todayStr() && we <= addDays(30) && !P.warrantyCalled) add('warranty_call', ['sales', 'admin'], { uids: [P.sales], date: we, since: addDays(-30, new Date(we + 'T12:00:00')) + 'T12:00:00' }); }
   }
   /* marketplace: a released job still needs a team lead and nobody has been asked */
   if (P.stage === 'site_ok' && !P.tech && !Object.values(S.posts).some(p => p.pid === P.id && p.kind === 'lead' && p.status === 'open')) add('post_job', ['admin', 'owner'], { kind: 'lead', since: P.since });
@@ -7446,6 +7541,10 @@ function needs0(P) {
   for (const x of P.tickets) {
     const sev = x.sev || 'routine', late = ticketLate(x), hot = ['trapped', 'unsafe', 'breakdown'].includes(sev), alarm = ['trapped', 'unsafe'].includes(sev) && !['resolved', 'closed'].includes(x.status);
     if (x.status === 'open') add('assign_ticket', alarm ? uniq(svcRoles().concat(['admin', 'owner', 'sales'])) : late ? uniq(svcRoles().concat(['admin', 'owner'])) : svcRoles(), { tid: x.id, sev, urgent: hot || late, alarm, uids: svcLead() ? [svcLead()] : [], since: x.t });
+    else if (x.kind === 'breakdown' && x.status === 'assigned' && !x.accepted && x.assignedT && x.assignedT >= LIFE_FROM) {
+      add('accept_ticket', [roleOf(x.owner) || 'admin'], { uids: [x.owner], tid: x.id, sev, urgent: true, alarm, since: x.assignedT });
+      if (Date.now() - Date.parse(x.assignedT) > (+S.config.acceptMins || 15) * 60e3) add('ticket_not_accepted', uniq(svcRoles().concat(['admin', 'owner'])), { tid: x.id, sev, urgent: true, uid: x.owner, since: x.assignedT });
+    }
     else if (['assigned', 'in_progress'].includes(x.status)) add('work_ticket', [roleOf(x.owner) || 'admin'], { uids: [x.owner], tid: x.id, sev, urgent: hot || late, alarm, overdue: late || (x.due && x.due < todayStr()), since: x.due ? addDays(1, new Date(x.due + 'T12:00:00')) + 'T00:00:00' : null });
     if (late && !['resolved', 'closed'].includes(x.status)) add('sla_breach', ['admin', 'owner'], { tid: x.id, sev, since: new Date(ticketDue(x)).toISOString() });
     else if (x.status === 'resolved') add('confirm_ticket', P.customer ? ['customer'] : ['admin', 'owner'], { uids: [P.customer], tid: x.id });
@@ -8216,7 +8315,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -8405,7 +8504,7 @@ function stepper(key, min, max) {
 }
 function ynRow(key, label, vals = ['yes', 'no']) {
   const v = g(key);
-  const lab = vals[0] === 'pass' ? ['✅ ' + t('pass'), '❌ ' + t('fail')] : ['✅ ' + t('yes'), '❌ ' + t('no'), '➖ ' + t('isc_na')];
+  const lab = vals[1] === 'fair' ? ['✅ ' + t('amc_good'), '🟡 ' + t('amc_fair'), '❌ ' + t('amc_replace')] : vals[0] === 'pass' ? ['✅ ' + t('pass'), '❌ ' + t('fail')] : ['✅ ' + t('yes'), '❌ ' + t('no'), '➖ ' + t('isc_na')];
   return `<div class="check-row"><span class="q">${L[label] ? esc(t(label)) : label}</span><span class="yn" role="group">
     <button class="y ${v === vals[0] ? 'on' : ''}" data-a="pick" data-k="${key}" data-v="${vals[0]}" aria-pressed="${v === vals[0]}">${lab[0]}</button>
     <button class="n ${v === vals[1] ? 'on' : ''}" data-a="pick" data-k="${key}" data-v="${vals[1]}" aria-pressed="${v === vals[1]}">${lab[1]}</button>${vals[2] ? `
@@ -9082,6 +9181,24 @@ WIZ.qcsite = {
     return r.ok ? doneRes(P.id, 'what_qc_' + outcome) : r;
   }
 };
+WIZ.ticketAccept = {
+  title: 'tk_accept_ticket', save: 'tk_accept_ticket', saveIcon: '🙋', noDraft: true, init: () => ({}),
+  steps: [{ id: 'a', icon: '🚨', say: (c, P) => (ticketOf(P, W.opts.tid) || {}).text || '', body: (c, P) => { const x = ticketOf(P, W.opts.tid) || {};
+    return `<div class="card"><p><b>${esc(x.text || '')}</b></p>${kv([['f_address', esc(P.site.address)], ['f_contact_name', esc(P.contact.name)]])}${P.site.gps ? `<a class="btn" href="${dirLink(P.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a>` : ''}</div><p class="small muted">${t('tkt_accept_d')}</p>`; } }],
+  async finish(c, P) { const r = await run([['TICKET_ACCEPTED', P.id, { tid: W.opts.tid }]]); return r.ok ? doneRes(P.id, 'tkt_accepted') : r; }
+};
+WIZ.warrantyCall = {
+  title: 'tk_warranty_call', save: 'save', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'n', icon: '🛡️', say: 's_warranty_call', body: (c, P) => `<div class="card">${kv([['warranty_ends', fmtD(warrantyEnd(P))], ['amc_until', P.amcEnd ? fmtD(P.amcEnd) : '']])}<p class="small">${t('warranty_call_d')}</p></div>` + inp('note', 'wc_what', { area: true, mic: true }),
+    check: c => c.note.trim() ? null : 'err_fill' }],
+  async finish(c, P) { const r = await run([['WARRANTY_CALLED', P.id, { note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+WIZ.liftOwner = {
+  title: 'lo_title', save: 'save', noDraft: true, init: () => ({ name: '', phone: '', note: '' }),
+  steps: [{ id: 'n', icon: '🏠', say: 's_lift_owner', body: (c, P) => `<div class="warnbox">${t('lo_note', { name: esc(P.contact.name) })}</div>` + inp('name', 'lo_new_name', { mic: true }) + inp('phone', 'f_phone', { type: 'tel', mode: 'tel', max: 13 }) + inp('note', 'f_reason', { area: true, mic: true }),
+    check: c => !c.name.trim() ? 'err_fill' : !validPhone(c.phone) ? 'err_phone' : c.note.trim() ? null : 'err_reason' }],
+  async finish(c, P) { const r = await run([['LIFT_OWNER_CHANGED', P.id, { name: c.name.trim(), phone: c.phone, note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
 WIZ.infeasible = {
   title: 'tk_decide_infeasible', save: 'save', noDraft: true, init: () => ({ decision: '', note: '' }),
   steps: [{ id: 'd', icon: '⛔', say: 's_infeasible', body: (c, P) => `<div class="card"><p><b>${t('infeasible_why')}:</b> ${esc(P.infeasible.note)}</p><p class="small muted">${esc(userName(P.infeasible.by))} · ${fmtD(P.infeasible.t, true)}</p>${kv(QC_SITE_MEAS.map(m => ['meas_' + m, (P.infeasible.meas || {})[m] + ' mm']))}</div>`
@@ -9097,6 +9214,37 @@ WIZ.sitefixv = {
       + Array.from({ length: floorGaps(P) }, (_, i) => inp('floors.' + i, 'qs_floor_h', { type: 'number', mode: 'numeric' })).join('') + inp('reason', 'f_reason', { area: true, mic: true }),
     check: (c, P) => !QC_SITE_MEAS.every(m => +c.meas[m] > 0) ? 'err_meas' : !(+c.door.w > 0 && +c.door.h > 0) ? 'err_door' : !Array.from({ length: floorGaps(P) }, (_, i) => +c.floors[i]).every(x => x > 0) ? 'err_floors' : c.reason.trim() ? null : 'err_reason' }],
   async finish(c, P) { const r = await run([['QC_SITE_CORRECTED', P.id, { meas: c.meas, door: { w: +c.door.w, h: +c.door.h }, floors: Array.from({ length: floorGaps(P) }, (_, i) => +c.floors[i]), reason: c.reason.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+/* ---------- every handed-over lift: its papers, service, faults and owners in one list ---------- */
+function liftRow(P) {
+  const we = warrantyEnd(P), wd = we ? Math.round((Date.parse(we + 'T12:00:00') - Date.parse(todayStr() + 'T12:00:00')) / 864e5) : null;
+  const ad = P.amcEnd ? Math.round((Date.parse(P.amcEnd + 'T12:00:00') - Date.parse(todayStr() + 'T12:00:00')) / 864e5) : null;
+  const yr = Date.now() - 365 * 864e5, bd = P.tickets.filter(x => x.kind === 'breakdown' && Date.parse(x.t) > yr), open = P.tickets.filter(x => !['resolved', 'closed'].includes(x.status)).length;
+  const causes = {}; bd.forEach(x => { if (x.cause) causes[x.cause] = (causes[x.cause] || 0) + 1; });
+  const top = Object.entries(causes).sort((a, b) => b[1] - a[1])[0];
+  const lastSvc = Object.values(P.service).sort((a, b) => a.t < b.t ? 1 : -1)[0], watch = lastSvc ? AMC_CHECKS.filter(k => ['fair', 'fail'].includes(lastSvc.checks[k])) : [];
+  const fin = P.qcFinal.filter(x => x.outcome === 'pass').slice(-1)[0];
+  return `<div class="card"><div class="row wrapw"><b class="grow">🛗 ${esc(P.lift.label || P.id)}</b><button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶</button></div>
+    <p class="small muted" style="margin:2px 0 6px;overflow-wrap:anywhere">${esc(P.id)} · ${esc((P.site.address || '').slice(0, 70))} · ${esc(P.contact.name)}</p>
+    <div class="row wrapw" style="gap:6px">${t('lr_installed')} ${fmtD(P.done.t)} · <span class="chip ${wd != null && wd < 0 ? 'c-mute' : wd != null && wd <= 30 ? 'c-warn' : 'c-ok'}">🛡️ ${wd != null && wd < 0 ? t('lr_warranty_over') : t('lr_warranty_till', { d: fmtD(we) })}</span>
+      <span class="chip ${P.amcEnded || (ad != null && ad < 0) ? 'c-bad' : ad != null && ad <= 30 ? 'c-warn' : 'c-ok'}">🛠️ ${P.amcEnded || (ad != null && ad < 0) ? t('lr_amc_out') : t('lr_amc_till', { d: fmtD(P.amcEnd) })}</span>${statOf(P).licence ? licChip(liftLicenceDays(P)) : `<span class="chip c-warn">📜 ${t('stat_needed_short')}</span>`}</div>
+    <p class="small" style="margin:6px 0 0">${t('lr_breakdowns', { n: bd.length })}${open ? ' · ' + t('lr_open', { n: open }) : ''}${top ? ' · ' + t('lr_top_cause', { c: t('rc_' + top[0]), n: top[1] }) : ''}${watch.length ? '<br>🟡 ' + t('lr_watch') + ': ' + watch.map(k => t('amc_' + k)).join(', ') : ''}${fin && fin.vals ? '<br>📏 ' + TEST_VALS.map(([k]) => t('tv_' + k) + ' ' + fin.vals[k]).join(' · ') : ''}${(P.lift.owners || []).length > 1 ? '<br>🏠 ' + t('lr_owners', { n: P.lift.owners.length }) : ''}</p>
+    ${allowed('LIFT_OWNER_CHANGED', P) ? `<button class="btn btn-sm" style="margin-top:6px" data-a="wizOpen" data-v="liftOwner|${P.id}">🏠 ${t('lo_title')}</button>` : ''}</div>`;
+}
+SCREENS.lifts = () => {
+  const u = App.me; if (!u || !['owner', 'admin', 'sales', 'qc'].includes(u.role)) return SCREENS.home();
+  App.pageSay = t('lr_say');
+  const q = (App.form.lq || '').toLowerCase(), all = visibleProjects(u).filter(P => P.done && P.lift).sort((a, b) => a.done.t < b.done.t ? 1 : -1);
+  const list = all.filter(P => !q || [P.id, P.lift.label, P.contact.name, P.site.address].join(' ').toLowerCase().includes(q));
+  return topBar(t('lr_title'), { back: true }) + `<main class="wrap"><p class="say">${t('lr_say')}</p>${all.length > 6 ? formInp('lq', 'search') : ''}
+    ${list.length ? list.map(liftRow).join('') : `<div class="empty">${t('lr_none')}</div>`}</main>` + nav('projects');
+};
+/* ---------- fault guide: works without internet; for trained people only ---------- */
+SCREENS.faults = () => {
+  App.pageSay = t('fg_title');
+  return topBar(t('fg_title'), { back: true }) + `<main class="wrap"><div class="warnbox">⚠️ ${t('fg_note')}</div>
+    ${FAULTS.map(k => `<details class="card"><summary><b>${t('fg_' + k + '_t')}</b></summary><p style="white-space:pre-line">${t('fg_' + k)}</p></details>`).join('')}
+    <div class="note">🆘 ${t('fg_call')}</div></main>` + nav('me');
 };
 /* ---------- Admin: release drawings & assign team ---------- */
 const usersOf = role => Object.values(S.users).filter(u => u.role === role && u.active);
@@ -9843,12 +9991,14 @@ SCREENS.safetylog = ({ pid }) => {
 /* ---------- QC final inspection ---------- */
 WIZ.qcfinal = {
   title: 'tk_final_inspect', save: 'save_result', saveIcon: '🔍',
-  init: () => ({ checks: {}, crit: {}, critPh: Object.fromEntries(QC_CRITICAL.map(k => [k, []])), earthVal: '', ph: [], outcome: '', items: [], note: '', cause: '', stars: '' }),
+  init: () => ({ checks: {}, crit: {}, critPh: Object.fromEntries(QC_CRITICAL.map(k => [k, []])), earthVal: '', vals: {}, ph: [], outcome: '', items: [], note: '', cause: '', stars: '' }),
   steps: [
     { id: 'info', icon: '📋', say: 's_qcf_info', body: (c, P) => `<div class="card"><h3>${t('sop_evidence')}</h3>${SOP.map(([k, i], n) => `<div class="list-item"><span>${P.sop[n] ? '✅' : '⬜'} ${i}</span><span class="grow">${t('sop_' + k)}</span></div>${P.sop[n] ? evGrid(P.sop[n].ev) : ''}`).join('')}</div><div class="warnbox">📜 ${t('checklist_disclaimer')}</div>` },
     { id: 'checks', icon: '✔️', say: 's_qcf_checks', body: () => `<div class="card">${QC_FINAL_CHECKS.map(k => ynRow('checks.' + k, 'qcf_' + k, ['pass', 'fail'])).join('')}</div>`, check: c => QC_FINAL_CHECKS.every(k => c.checks[k]) ? null : 'err_checks' },
     { id: 'crit', icon: '🛡️', say: 's_qcf_crit', body: () => `<div class="warnbox">🛡️ ${t('qcc_note')}</div>` + QC_CRITICAL.map(k => `<div class="card"><h3>${t('qcc_' + k)}</h3>${ynRow('crit.' + k, 'qcc_' + k, ['pass', 'fail'])}${k === 'earthing' ? inp('earthVal', 'qcc_earth_val', { opt: true }) : ''}${photoSlot('critPh.' + k, 'qcc_' + k, 1, { tag: 'crit_' + k })}</div>`).join(''),
       check: c => !QC_CRITICAL.every(k => c.crit[k]) ? 'err_crit' : !QC_CRITICAL.every(k => (c.critPh[k] || []).length) ? 'err_crit_photos' : null },
+    { id: 'vals', icon: '📏', say: 's_qcf_vals', body: () => `<p class="small muted">${t('qcf_vals_d')}</p>` + TEST_VALS.map(([k, a, b]) => inp('vals.' + k, 'tv_' + k, { type: 'number', mode: 'decimal' }) + `<p class="small muted" style="margin:-6px 0 8px">${t('tv_range', { a, b })}</p>`).join(''),
+      check: c => QC_FINAL_CHECKS.some(k => c.checks[k] === 'fail') || QC_CRITICAL.some(k => c.crit[k] === 'fail') || testValsOk(c.vals) ? null : 'err_test_vals' },
     { id: 'photos', icon: '📷', say: 's_qc_photos', body: () => photoSlot('ph', 'ph_final_qc', 2, { video: true, tag: 'qc_final' }), check: c => c.ph.length >= 2 ? null : { k: 'err_photos', v: { n: 2 } } },
     {
       id: 'out', icon: '⚖️', say: 's_qcf_out',
@@ -9860,7 +10010,7 @@ WIZ.qcfinal = {
     { id: 'items', icon: '🛠️', say: 's_qcf_items', skip: c => c.outcome !== 'fail', body: () => itemsEditor('items'), check: c => c.items.some(x => (x.text || '').trim()) ? null : 'err_items' },
     { id: 'stars', icon: '⭐', say: (c, P) => t('s_qcf_stars', { name: userName(P.tech) }), body: (c, P) => `<div class="card center"><b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)}</div>` + starPicker('stars') + `<p class="small muted">${t('qcf_stars_note')}</p>`, check: c => c.stars ? null : 'err_stars' }
   ],
-  async finish(c, P) { const r = await run([['QC_FINAL_RESULT', P.id, { checks: c.checks, crit: c.crit, earthVal: (c.earthVal || '').trim(), outcome: c.outcome, items: c.outcome === 'fail' ? c.items : [], note: c.note, ev: c.ph.concat(...QC_CRITICAL.map(k => (c.critPh[k] || []).map(e => Object.assign({}, e, { label: 'crit_' + k })))), stars: +c.stars, cause: c.outcome === 'fail' ? c.cause : undefined }]]); return r.ok ? doneRes(P.id, 'what_qcf_' + c.outcome) : r; }
+  async finish(c, P) { const r = await run([['QC_FINAL_RESULT', P.id, { vals: testValsOk(c.vals) ? Object.fromEntries(TEST_VALS.map(([k]) => [k, +c.vals[k]])) : undefined, checks: c.checks, crit: c.crit, earthVal: (c.earthVal || '').trim(), outcome: c.outcome, items: c.outcome === 'fail' ? c.items : [], note: c.note, ev: c.ph.concat(...QC_CRITICAL.map(k => (c.critPh[k] || []).map(e => Object.assign({}, e, { label: 'crit_' + k })))), stars: +c.stars, cause: c.outcome === 'fail' ? c.cause : undefined }]]); return r.ok ? doneRes(P.id, 'what_qcf_' + c.outcome) : r; }
 };
 /* ---------- Handover signatures ---------- */
 WIZ.hsign = {
@@ -10800,6 +10950,7 @@ function projInfo(P) {
     ${['installing', 'qc_final', 'install_fix', 'final_pay', 'handover', 'amc'].includes(P.stage) ? `<div class="card"><h3>🔧 ${t('installation')}</h3><div class="prog"><i style="width:${sopN / SOP.length * 100}%"></i></div><p>${sopN} / ${SOP.length} ${t('steps_done')}</p>
       ${target != null ? `<span class="chip ${target > S.config.installDays ? 'c-bad' : 'c-info'}">🎯 ${t('target_days', { n: target, m: S.config.installDays })}</span> ${ruleChip('install')}` : ''}</div>` : ''}
     ${P.qcSite.length || P.qcFinal.length ? `<div class="card"><h3>🔍 ${t('inspections')}</h3>${[...P.qcSite.map(x => [t('tk_inspect_site'), x]), ...P.qcFinal.map(x => [t('tk_final_inspect'), x])].map(([l, x]) => `<div class="list-item"><span class="grow">${l} · ${fmtD(x.t)} · ${userTag(x.by)}${x.v > 1 ? ` <span class="chip c-info">${t('qs_version', { n: x.v })}</span>` : ''}${x.why ? ` · ${t('qs_' + x.why)}` : ''}</span><b>${t('qo_' + x.outcome)}</b></div>`
+        + (x.vals ? `<p class="small muted" style="margin:0 0 6px;overflow-wrap:anywhere">📏 ${TEST_VALS.map(([k]) => t('tv_' + k) + ' ' + x.vals[k]).join(' · ')}</p>` : '')
         + (x.door || x.fix ? `<p class="small muted" style="margin:0 0 6px;overflow-wrap:anywhere">${x.meas ? QC_SITE_MEAS.map(m => t('meas_' + m) + ' ' + x.meas[m]).join(' · ') : ''}${x.door ? ' · ' + t('qs_door') + ' ' + x.door.w + '×' + x.door.h : ''}${x.floors ? ' · ' + t('qs_floors') + ' ' + x.floors.join('/') : ''} mm${x.fix ? '<br>✏️ ' + esc(x.note) : ''}</p>` : '')).join('')}
       ${allowed('QC_SITE_CORRECTED', P) && lastSiteOk(P) && lastSiteOk(P).door ? `<button class="btn btn-sm" data-a="wizOpen" data-v="sitefixv|${P.id}">✏️ ${t('qs_correct')}</button>` : ''}
       ${P.corrections.map(c => `<div class="small">${c.done ? '✅' : '🛠️'} ${esc(c.text)}</div>`).join('')}</div>` : ''}
@@ -11333,9 +11484,9 @@ SCREENS.me = () => {
   const tile = (a, v, i, l, on) => on === false ? '' : `<button class="tile" data-a="${a}" data-v="${v || ''}"><span class="i" aria-hidden="true">${i}</span>${t(l)}</button>`;
   const group = (icon, l, body) => !body.trim() ? '' : l === 'me_app' ? fold('me_app', t(l), `<div class="tiles">${body}</div>`, { icon, sub: t('fold_tap') }) : `<h2 class="sec">${icon} ${t(l)}</h2><div class="tiles">${body}</div>`;
   return topBar(t('me')) + `<main class="wrap"><div class="hero"><div class="row"><span style="font-size:2.4rem">${ROLE_ICON[r]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + r)}</span></div></div><p class="small muted" style="margin:8px 0 0">${t('role_note')}</p></div>
-    ${group('🧰', 'me_work', tile('nav', 'jobs', '🧰', 'jobs_title', ['partner', 'qc'].includes(r)) + tile('nav2', 'worker|' + u.uid, '🏢', 'my_company', r === 'partner') + tile('nav2', 'ladder|' + u.uid, '🪜', 'my_ladder', !!gradeOf(u.uid)) + tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', ['qc', 'partner', 'field'].includes(r))
+    ${group('🧰', 'me_work', tile('nav', 'jobs', '🧰', 'jobs_title', ['partner', 'qc'].includes(r)) + tile('nav2', 'worker|' + u.uid, '🏢', 'my_company', r === 'partner') + tile('nav2', 'ladder|' + u.uid, '🪜', 'my_ladder', !!gradeOf(u.uid)) + tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'faults', '🧯', 'fg_title', ['tech', 'qc', 'admin', 'owner'].includes(r)) + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', ['qc', 'partner', 'field'].includes(r))
       + tile('nav2', 'leaders|', '🏆', 'leaderboard', staff) + tile('nav', 'templates', '💬', 'templates', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'helper', '🙋', 'helper'))}
-    ${group('🏢', 'me_office', tile('nav', 'posts', '📣', 'posts_title', adm) + tile('nav', 'escalations', '⏫', 'esc_title', adm) + tile('nav', 'workers', '🪪', 'workers', adm) + tile('nav', 'users', '👥', 'users', adm)
+    ${group('🏢', 'me_office', tile('nav', 'lifts', '🛗', 'lr_title', adm || r === 'sales') + tile('nav', 'posts', '📣', 'posts_title', adm) + tile('nav', 'escalations', '⏫', 'esc_title', adm) + tile('nav', 'workers', '🪪', 'workers', adm) + tile('nav', 'users', '👥', 'users', adm)
       + tile('nav', 'rules', '📏', 'business_rules', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'audit', '🧾', 'audit_log', adm) + tile('nav', 'problems', '⚠️', 'problems', adm) + tile('nav', 'access', '🛡️', 'access_log', adm))}
     ${r === 'owner' ? hqCard() : ''}
     ${fold('me_set', t('me_settings'), `
@@ -11997,13 +12148,14 @@ function amcCard(P) {
     const btns = [], due = ticketDue(x), late = ticketLate(x), open = !['resolved', 'closed'].includes(x.status);
     if (x.status !== 'closed' && allowed('TICKET_SEVERITY', P)) btns.push(`<button class="btn btn-sm" data-a="wizOpen" data-v="ticketSev|${P.id}|tid|${x.id}">🚦 ${t('sev_change')}</button>`);
     if (x.status === 'open' && allowed('TICKET_ASSIGNED', P)) btns.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="ticketAssign|${P.id}|tid|${x.id}">👤 ${t('tk_assign_ticket')}</button>`);
+    if (x.kind === 'breakdown' && x.status === 'assigned' && !x.accepted && x.owner === u.uid) btns.push(`<button class="btn btn-sm btn-p" data-a="tktAccept" data-v="${P.id}|${x.id}">🙋 ${t('tk_accept_ticket')}</button>`);
     if (['assigned', 'in_progress'].includes(x.status) && (x.owner === u.uid || ['admin', 'owner'].includes(u.role))) btns.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="ticketUpdate|${P.id}|tid|${x.id}">🔧 ${t('tk_work_ticket')}</button>`);
     if (x.status === 'resolved' && allowed('TICKET_CLOSED', P)) btns.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="ticketClose|${P.id}|tid|${x.id}">✅ ${t('tk_confirm_ticket')}</button>`);
     const sv = x.sev || 'routine', sevChip = `<span class="chip ${sevRank(sv) <= 1 ? 'c-bad' : sevRank(sv) <= 3 ? 'c-warn' : 'c-mute'}">${SEVERITIES[sevRank(sv)][1]} ${t('sev_' + sv)}</span>`;
     const clock = due == null ? (sv === 'trapped' && open ? ` <span class="chip c-bad">🆘 ${t('sla_now')}</span>` : '') : open ? ` <span class="chip ${late ? 'c-bad' : 'c-info'}">⏱️ ${late ? t('sla_late', { h: Math.ceil((Date.now() - due) / 3600e3) }) : t('sla_left', { h: Math.max(1, Math.ceil((due - Date.now()) / 3600e3)) })}</span>` : late ? ` <span class="chip c-warn">⏱️ ${t('sla_was_late')}</span>` : ` <span class="chip c-ok">⏱️ ${t('sla_in_time')}</span>`;
-    return `<div class="list-item" style="display:block"><b>${TICKET_KINDS.find(k => k[0] === x.kind)[1]} ${t('tkind_' + x.kind)}</b> ${sevChip}${x.repeat ? ` <span class="chip c-warn">🔁 ${t('sev_repeat')}</span>` : ''}${clock} <span class="chip ${x.status === 'closed' ? 'c-ok' : x.status === 'resolved' ? 'c-info' : 'c-warn'}">${t('ts_' + x.status)}</span> <span class="small muted">${(TICKET_SRC.find(k => k[0] === x.src) || ['', ''])[1]}</span>
+    return `<div class="list-item" style="display:block"><b>${TICKET_KINDS.find(k => k[0] === x.kind)[1]} ${t('tkind_' + x.kind)}</b> ${sevChip}${x.repeat ? ` <span class="chip c-warn">🔁 ${t('sev_repeat')}</span>` : ''}${x.cause ? ` <span class="chip c-mute">${ROOT_CAUSES.find(c => c[0] === x.cause)[1]} ${t('rc_' + x.cause)}</span>` : ''}${x.kind === 'breakdown' && x.owner && !x.accepted && x.status === 'assigned' ? ` <span class="chip c-warn">⏳ ${t('tkt_not_accepted')}</span>` : ''}${clock} <span class="chip ${x.status === 'closed' ? 'c-ok' : x.status === 'resolved' ? 'c-info' : 'c-warn'}">${t('ts_' + x.status)}</span> <span class="small muted">${(TICKET_SRC.find(k => k[0] === x.src) || ['', ''])[1]}</span>
       ${ticketBars(x, P)}<div class="small">${esc(x.text)}</div><div class="small muted">${userName(x.by)} · ${fmtD(x.t, true)}${x.owner ? ' · 👤 ' + esc(userName(x.owner)) : ''}${x.due ? ' · 📅 ' + fmtD(x.due) : ''}${x.due && x.due < todayStr() && x.status !== 'closed' && x.status !== 'resolved' ? ' · <b style="color:var(--bad)">' + t('overdue') + '</b>' : ''}</div>
-      ${x.hist.length > 1 ? `<details class="small"><summary>${t('history')}</summary>${x.hist.map(h => `<div>${fmtD(h.t, true)} · ${h.status === 'sev' ? t('sev_' + h.from) + ' → ' + t('sev_' + h.to) : t('ts_' + h.status)} · ${esc(userName(h.by))} ${esc(h.note || '')}</div>`).join('')}</details>` : ''}
+      ${x.hist.length > 1 ? `<details class="small"><summary>${t('history')}</summary>${x.hist.map(h => `<div>${fmtD(h.t, true)} · ${h.status === 'sev' ? t('sev_' + h.from) + ' → ' + t('sev_' + h.to) : h.status === 'accepted' ? '🙋 ' + t('tkt_accepted') : t('ts_' + h.status)} · ${esc(userName(h.by))} ${esc(h.note || '')}</div>`).join('')}</details>` : ''}
       ${btns.length ? `<div class="row wrapw" style="margin-top:6px">${btns.join('')}</div>` : ''}</div>`;
   }).join('');
   const out = P.amcEnded || (P.amcEnd && P.amcEnd < todayStr());
@@ -12018,7 +12170,7 @@ function amcCard(P) {
 WIZ.service = {
   title: 'tk_amc_visit', save: 'save', saveIcon: '🔧', init: () => ({ checks: {}, ph: [], met: '', note: '' }),
   steps: [
-    { id: 'checks', icon: '✔️', say: 's_svc_checks', body: () => `<div class="card">${AMC_CHECKS.map(k => ynRow('checks.' + k, 'amc_' + k, ['pass', 'fail'])).join('')}</div>`, check: c => AMC_CHECKS.every(k => c.checks[k]) ? null : 'err_checks' },
+    { id: 'checks', icon: '✔️', say: 's_svc_checks', body: () => `<p class="small muted">${t('amc_fair_d')}</p><div class="card">${AMC_CHECKS.map(k => ynRow('checks.' + k, 'amc_' + k, ['pass', 'fair', 'fail'])).join('')}</div>`, check: c => AMC_CHECKS.every(k => c.checks[k]) ? null : 'err_checks' },
     { id: 'photos', icon: '📷', say: 's_svc_photos', body: () => photoSlot('ph', 'ph_service', 1, { video: true, tag: 'amc' }), check: c => c.ph.length ? null : { k: 'err_photos', v: { n: 1 } } },
     { id: 'note', icon: '📝', say: 's_svc_note', body: c => inp('met', 'f_met', { mic: true, opt: true }) + inp('note', 'f_note', { area: true, mic: true, opt: true }) + (AMC_CHECKS.some(k => c.checks[k] === 'fail') ? `<div class="warnbox">🎫 ${t('svc_ticket_auto')}</div>` : '') }
   ],
@@ -12064,13 +12216,16 @@ WIZ.ticketAssign = {
   async finish(c, P) { const r = await run([['TICKET_ASSIGNED', P.id, { tid: W.opts.tid, uid: c.uid, due: c.due }]]); return r.ok ? doneRes(P.id, 'what_ticket_assigned') : r; }
 };
 WIZ.ticketUpdate = {
-  title: 'tk_work_ticket', save: 'save', init: () => ({ status: '', note: '', ph: [] }),
+  title: 'tk_work_ticket', save: 'save', init: () => ({ status: '', note: '', cause: '', ph: [] }),
   steps: [{
     id: 'st', icon: '🔧', say: (c, P) => (ticketOf(P, W.opts.tid) || {}).text || '',
     body: () => tiles('status', [['in_progress', '🔧', 'ts_in_progress'], ['resolved', '✅', 'ts_resolved']], 'one') + inp('note', 'f_note', { area: true, mic: true }) + photoSlot('ph', 'ph_after_fix', 0, { tag: 'ticket' }),
     check: c => !c.status ? 'err_choose' : c.note.trim() ? null : 'err_fill'
+  }, {
+    id: 'cause', icon: '🔎', say: 's_rcause', skip: (c, P) => c.status !== 'resolved' || (ticketOf(P, W.opts.tid) || {}).kind !== 'breakdown',
+    body: () => tiles('cause', ROOT_CAUSES.map(([k, i]) => [k, i, 'rc_' + k]), 'two'), check: c => c.cause ? null : 'err_cause'
   }],
-  async finish(c, P) { const r = await run([['TICKET_UPDATED', P.id, { tid: W.opts.tid, status: c.status, note: c.note.trim(), ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_ticket_updated') : r; }
+  async finish(c, P) { const r = await run([['TICKET_UPDATED', P.id, { tid: W.opts.tid, status: c.status, note: c.note.trim(), cause: c.status === 'resolved' && c.cause ? c.cause : undefined, ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_ticket_updated') : r; }
 };
 WIZ.ticketClose = {
   title: 'tk_confirm_ticket', save: 'save', init: () => ({ ok: '', note: '', fault: '' }),
@@ -13100,7 +13255,8 @@ function openTask(n) {
     get_decision: () => wiz('decision', pid), prepare_agreement: () => wiz('agreeprep', pid), sign_agreement: () => wiz('sign', pid),
     record_payment: () => wiz('paynew', pid, { purpose: n.purpose }), verify_payment: () => wiz('payverify', pid, { payId: n.payId }),
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
-    inspect_site: () => wiz('qcsite', pid), decide_infeasible: () => wiz('infeasible', pid), approve_drawing: () => go('drawings', { pid }), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
+    inspect_site: () => wiz('qcsite', pid), decide_infeasible: () => wiz('infeasible', pid), approve_drawing: () => go('drawings', { pid }),
+    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
@@ -13203,6 +13359,7 @@ const ACT = {
   nav: v => { Voice.stop(); if (MAIN_TABS.includes(v) && App.me) { App.stack = []; W = null; App.route = { name: 'home', p: {} }; if (v === 'home') { render(); window.scrollTo(0, 0); } else go(v); } else go(v); },
   back: () => { if (!App.locked) back(); },
   sayText: v => Voice.say(v),
+  tktAccept: async v => { const [pid, tid] = v.split('|'), r = await perform('TICKET_ACCEPTED', pid, { tid }); if (r.ok) { toast(t('tkt_accepted')); render(); } },
   dwgApprove: async v => { const i = v.indexOf('|'), r = await perform('DRAWING_APPROVED', v.slice(0, i), { ref: v.slice(i + 1) }); if (r.ok) { toast(t('saved_item')); render(); } },
   tvSave: async m => { const r = await perform('TRAINING_VIDEO_SET', null, { module: m, url: String(App.form['tv.' + m] || '').trim() }); if (r.ok) { toast(t('saved_item')); render(); } },
   setToggle: v => { App.set[v] = !(App.set[v] !== false); saveSettings(); render(); },
@@ -13804,7 +13961,7 @@ async function seedPractice() {
     arrived: P => P.mhand && P.mhand.wait ? [P.customer, 'MATERIAL_RECEIPT_SIGNED', { custName: P.contact.name, custody: true, ev: [ph('sign')] }]
       : payConfirmed(P, 'arrival') ? [P.tech, 'MATERIAL_HANDED', Object.assign({ serialSeen: Object.assign({}, (P.dispatch || {}).serialMap), items: P.materials.map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, signer: 'contact', custody: !custSignsApp(P, 'contact'), ev: (custSignsApp(P, 'contact') ? [ph('sign')] : [ph('sign'), ph('sign')]).concat([Object.assign(ph('site', P.site.gps), { label: 'storage' })]) }, custSignsApp(P, 'contact') ? { custApp: true } : {})] : payStep(P, 'arrival'),
     installing: P => peerWaiting(P).length ? [Object.values(S.users).find(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).uid, 'PEER_CHECKED', { step: peerWaiting(P)[0], ok: true }] : sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? (+S.config.checkinGate && !checkedIn(P, safeDay(nextAt())) ? [P.tech, 'SITE_CHECKED_IN', { day: safeDay(nextAt()), gps: P.site.gps }] : [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }]) : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), isc: iscYes(sopNext(P)), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
-    qc_final: P => ['qc', 'QC_FINAL_RESULT', { checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), crit: Object.fromEntries(QC_CRITICAL.map(k => [k, 'pass'])), earthVal: '0.8 Ω', outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)].concat(QC_CRITICAL.map(k => Object.assign(ph('work', P.site.gps), { label: 'crit_' + k }))) }],
+    qc_final: P => ['qc', 'QC_FINAL_RESULT', { vals: { level: 3, load: 680, ard: 24 }, checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), crit: Object.fromEntries(QC_CRITICAL.map(k => [k, 'pass'])), earthVal: '0.8 Ω', outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)].concat(QC_CRITICAL.map(k => Object.assign(ph('work', P.site.gps), { label: 'crit_' + k }))) }],
     final_pay: P => payStep(P, 'final'),
     handover: P => { const s = SLOTS.find(x => !P.hand[x]); return s ? [s === 'qc' ? 'qc' : P.tech, 'HANDOVER_SIGNED', Object.assign({ slot: s, consent: true, signer: s === 'customer' ? P.contact.name : userName(U[s]), ev: [ph('sign')].concat(s === 'customer' ? [Object.assign(ph('work', P.site.gps), { label: 'handover' })] : []) }, s === 'customer' ? { why: 'noapp' } : {})]
       : !statOf(P).inspection ? ['admin', 'STATUTORY_SET', { item: 'inspection', date: safeDay(nextAt()), result: 'pass', note: 'Lift Inspector, Pune' }]

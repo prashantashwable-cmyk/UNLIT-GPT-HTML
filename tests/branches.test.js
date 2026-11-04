@@ -97,7 +97,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await step('request_inspection', 'PTECH', 'INSPECTION_REQUESTED', {});
 
   /* final inspection fails, the team fixes it */
-  const final = async (outcome) => ({ checks: await ev(`Object.fromEntries(QC_FINAL_CHECKS.map((k, i) => [k, ${outcome === 'fail' ? 'i === 0 ? "fail" : "pass"' : '"pass"'}]))`), crit: await ev('Object.fromEntries(QC_CRITICAL.map(k => [k, "pass"]))'), earthVal: '0.8 Ω', outcome, cause: outcome === 'fail' ? 'work' : undefined, note: outcome === 'fail' ? 'Door gap too wide' : '', items: outcome === 'fail' ? [{ text: 'Adjust the landing door gap' }] : [], stars: 4,
+  const final = async (outcome) => ({ vals: { level: 3, load: 680, ard: 24 }, checks: await ev(`Object.fromEntries(QC_FINAL_CHECKS.map((k, i) => [k, ${outcome === 'fail' ? 'i === 0 ? "fail" : "pass"' : '"pass"'}]))`), crit: await ev('Object.fromEntries(QC_CRITICAL.map(k => [k, "pass"]))'), earthVal: '0.8 Ω', outcome, cause: outcome === 'fail' ? 'work' : undefined, note: outcome === 'fail' ? 'Door gap too wide' : '', items: outcome === 'fail' ? [{ text: 'Adjust the landing door gap' }] : [], stars: 4,
     ev: (await ph(2)).concat(await ev(`QC_CRITICAL.map(k => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'crit_' + k, t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }))`)) });
   await step('final_inspect', 'POWNER', 'QC_FINAL_RESULT', await final('fail'));
   assert(await stage() === 'install_fix', 'a failed final inspection sends the job back for fixing');
@@ -119,7 +119,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* after handover: a complaint and a service visit */
   await page.evaluate(p => perform('TICKET_OPENED', p, { tid: 'T-B1', kind: 'breakdown', text: 'Lift stopped at 2nd floor' }, { as: 'BCUST', quiet: true }), pid);
   await step('assign_ticket', 'POWNER', 'TICKET_ASSIGNED', { tid: 'T-B1', uid: 'PTECH', due: await ev('todayStr()') });
-  await step('work_ticket', 'PTECH', 'TICKET_UPDATED', { tid: 'T-B1', status: 'resolved', note: 'Door contact cleaned' });
+  await step('accept_ticket', 'PTECH', 'TICKET_ACCEPTED', { tid: 'T-B1' });
+  await step('work_ticket', 'PTECH', 'TICKET_UPDATED', { tid: 'T-B1', status: 'resolved', cause: 'door', note: 'Door contact cleaned' });
   await step('confirm_ticket', 'BCUST', 'TICKET_CLOSED', { tid: 'T-B1', ok: true });
   await page.evaluate(p => { S.projects[p].done.amc.visits[0] = todayStr(); }, pid);
   await step('amc_visit', 'PTECH', null);
