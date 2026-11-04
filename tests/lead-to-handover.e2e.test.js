@@ -251,7 +251,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   /* --- 9. daily safety check (4 photos), then installation SOP, one blocker on the way --- */
   await startTask('site_checkin'); await W8(900); await shot('site_checkin'); await next(); await doneOk('checked in');
   await startTask('safety_check');
-  for (const k of ['ppe', 'scaffold', 'barricade', 'earthing', 'selfie']) await photo('s_' + k);
+  for (const k of ['ppe', 'scaffold', 'barricade', 'earthing', 'selfie', 'loto']) await photo('s_' + k);
   await next(); await tap(page, '[data-a="toggle"][data-k="ok"]'); await next(); await doneOk('safety check');
   await startTask('install'); await shot('sop_list');
   for (let i = 0; i < 12; i++) {

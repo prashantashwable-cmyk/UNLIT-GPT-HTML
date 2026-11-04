@@ -3130,6 +3130,44 @@ const L = {
   ev_EXPENSE_ADDED: ['Expense added', 'खर्च जोड़ा', 'खर्च जोडला'],
   ev_EXPENSE_DECIDED: ['Expense decided', 'खर्च पर फ़ैसला', 'खर्चावर निर्णय'],
   ev_SUP_COMPARED: ['Suppliers compared', 'सप्लायर की तुलना', 'सप्लायरची तुलना'],
+  safe_loto: ['Main switch locked and tagged', 'मेन स्विच लॉक और टैग', 'मुख्य स्विच लॉक आणि टॅग'],
+  safe_loto_d: ['Photo of the lock and the "do not switch on" tag on the lift\'s main switch before electrical work.', 'बिजली के काम से पहले लिफ्ट के मेन स्विच पर लॉक और "चालू न करें" टैग की फोटो।', 'विद्युत कामाआधी लिफ्टच्या मुख्य स्विचवर लॉक आणि "चालू करू नका" टॅगचा फोटो.'],
+  lg_height: ['Work-at-height certificate', 'ऊँचाई पर काम का प्रमाणपत्र', 'उंचीवरील कामाचे प्रमाणपत्र'],
+  cfg_firstContactHours: ['Hours Sales has to call a new lead before the Admin is told', 'नई लीड को फ़ोन करने के लिए सेल्स के घंटे, फिर एडमिन को सूचना', 'नवीन लीडला फोन करण्यासाठी सेल्सचे तास, नंतर ॲडमिनला कळवले जाते'],
+  cfg_idleDays: ['Days an enquiry may sit without moving before Sales must keep it or close it', 'कितने दिन बिना हलचल के बाद सेल्स पूछताछ रखे या बंद करे', 'किती दिवस हालचाल नसल्यावर सेल्सने चौकशी ठेवावी किंवा बंद करावी'],
+  tk_first_contact_late: ['New lead not called in time', 'नई लीड को समय पर फ़ोन नहीं', 'नवीन लीडला वेळेत फोन नाही'],
+  tk_lead_idle: ['Enquiry has not moved: keep it or close it', 'पूछताछ आगे नहीं बढ़ी: रखें या बंद करें', 'चौकशी पुढे गेली नाही: ठेवा किंवा बंद करा'],
+  tk_daily_report: ['Daily report', 'रोज़ की रिपोर्ट', 'रोजचा अहवाल'],
+  s_dreport: ['What happened on site today?', 'आज साइट पर क्या हुआ?', 'आज साइटवर काय झाले?'],
+  dr_title: ['Daily reports', 'रोज़ की रिपोर्ट', 'रोजचे अहवाल'],
+  dr_done: ['Work done today', 'आज किया काम', 'आज केलेले काम'],
+  dr_material: ['Material used or short', 'इस्तेमाल हुआ या कम पड़ा सामान', 'वापरलेले किंवा कमी पडलेले साहित्य'],
+  dr_blockers: ['What is stopping the work', 'काम में क्या रुकावट है', 'कामात काय अडथळा आहे'],
+  dr_tomorrow: ['Plan for tomorrow', 'कल की योजना', 'उद्याचे नियोजन'],
+  ls_title: ['Lead score: {n}', 'लीड स्कोर: {n}', 'लीड स्कोअर: {n}'],
+  ls_none: ['Nothing known yet.', 'अभी कुछ पता नहीं।', 'अजून काही माहिती नाही.'],
+  ls_note: ['Made from what is known about the enquiry; it helps choose whom to call first.', 'पूछताछ के बारे में जो पता है उससे बना; किसे पहले फ़ोन करें यह चुनने में मदद।', 'चौकशीबद्दल जे माहीत आहे त्यावरून; आधी कोणाला फोन करायचा ते ठरवण्यास मदत.'],
+  ls_phone: ['phone number', 'फ़ोन नंबर', 'फोन नंबर'],
+  ls_consent: ['agreed to calls', 'कॉल के लिए सहमति', 'फोनला संमती'],
+  ls_decider: ['talking to the decision maker', 'फ़ैसला करने वाले से बात', 'निर्णय घेणाऱ्याशी बोलणे'],
+  ls_shaft: ['shaft ready', 'शाफ्ट तैयार', 'शाफ्ट तयार'],
+  ls_floors: ['floors known', 'मंज़िलें पता', 'मजले माहीत'],
+  ls_soon: ['wants it within a month', 'एक महीने में चाहिए', 'महिन्याभरात हवी'],
+  ls_3m: ['wants it within 3 months', '3 महीने में चाहिए', '3 महिन्यांत हवी'],
+  ls_quoted: ['quotation sent', 'कोटेशन भेजा', 'कोटेशन पाठवले'],
+  ls_followup: ['follow-up planned', 'फ़ॉलो-अप तय', 'फॉलो-अप ठरले'],
+  ls_referral: ['came by referral', 'रेफ़रल से आई', 'रेफरलने आली'],
+  cn_title: ['Call next', 'अगला फ़ोन', 'पुढचा फोन'],
+  cn_followup: ['follow-up due {d}', 'फ़ॉलो-अप {d}', 'फॉलो-अप {d}'],
+  cn_new: ['new lead, {h} h without a call', 'नई लीड, {h} घंटे से फ़ोन नहीं', 'नवीन लीड, {h} तास फोन नाही'],
+  cn_expiring: ['quotation ends {d}', 'कोटेशन {d} को खत्म', 'कोटेशन {d} रोजी संपते'],
+  cn_expired: ['quotation ended {d}', 'कोटेशन {d} को खत्म हुआ', 'कोटेशन {d} रोजी संपले'],
+  cn_quoted: ['quoted {n} days ago, no answer', '{n} दिन पहले कोटेशन, जवाब नहीं', '{n} दिवसांपूर्वी कोटेशन, उत्तर नाही'],
+  cn_open: ['open: {s}', 'खुला: {s}', 'उघडे: {s}'],
+  qd_title: ['What changed from version {v}', 'संस्करण {v} से क्या बदला', 'आवृत्ती {v} पासून काय बदलले'],
+  qd_total: ['Total: {a} → {b}', 'कुल: {a} → {b}', 'एकूण: {a} → {b}'],
+  qd_disc: ['Discount: {a}% → {b}%', 'छूट: {a}% → {b}%', 'सवलत: {a}% → {b}%'],
+  ev_DAILY_REPORT: ['Daily report sent', 'रोज़ की रिपोर्ट भेजी', 'रोजचा अहवाल पाठवला'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5042,7 +5080,7 @@ const CFG_LIMITS = (() => {
   set(['tokenMode', 'dailySafety', 'licenceGate', 'permitGate', 'peerCheck', 'checkinGate', 'dualControl', 'requireTraining', 'sundayWork'], 0, 1);
   set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'civilMin', 'civilMax'], 0, 2000000);
   set(['reservePct'], 0, 90); set(['reserveRelease'], 1, 100); set(['agreeVersion'], 1, 99);
-  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['amcYearly'], 0, 500000); set(['powerYearly'], 0, 200000); set(['retentionPct'], 0, 20); set(['retentionDays'], 0, 365); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
+  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['firstContactHours'], 1, 48); set(['idleDays'], 14, 365); set(['amcYearly'], 0, 500000); set(['powerYearly'], 0, 200000); set(['retentionPct'], 0, 20); set(['retentionDays'], 0, 365); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
   set(['lvHelperJobs', 'lvTechJobs', 'lvSeniorJobs', 'lvQcJobs', 'lvHelperReviews', 'lvTechReviews', 'lvSeniorReviews', 'lvQcReviews', 'partnerBigJobs'], 0, 500);
   set(['lvHelperStars', 'lvTechStars', 'lvSeniorStars', 'lvQcStars', 'partnerBigStars'], 0, 5); set(['lvTechTrust', 'lvSeniorTrust', 'lvQcTrust', 'lvSeniorPass', 'lvQcPass'], 0, 100);
   set(['lvHelperDays', 'lvTechDays', 'lvSeniorDays'], 0, 3650); set(['strikeDays'], 1, 3650); set(['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior'], 0, 300);
@@ -5111,7 +5149,7 @@ function iscWhyNot(d) {
   return null;
 }
 /* legal papers a site worker carries (BOCW, ESIC, safety training), each with an end date */
-const LEGAL = ['bocw', 'esic', 'safety', 'insurance'];
+const LEGAL = ['bocw', 'esic', 'safety', 'insurance', 'height'];
 const legalOf = uid => (S.workers[uid] || {}).legal || {};
 const legalEnded = (uid, at) => LEGAL.filter(k => legalOf(uid)[k] && legalOf(uid)[k].expiry < safeDay(at || nowISO()));
 const refProject = code => { const c = String(code || '').toUpperCase().replace(/[^A-Z0-9]/g, ''); return c ? Object.values(S.projects).find(P => P.done && P.lift && P.lift.code.toUpperCase().replace(/[^A-Z0-9]/g, '') === c) || null : null; };
@@ -5124,9 +5162,9 @@ const QC_SITE_CHECKS = ['plumb', 'pit_dry', 'power3', 'barricade', 'access'];
 const QC_SITE_MEAS = ['width', 'depth', 'pit', 'head'];
 const QC_FINAL_CHECKS = ['ride', 'level', 'doors', 'alarm', 'plate', 'safetydev', 'wiring'];
 /* safety: photos each work day, items QC must check one by one, kinds of incident, and the ones that stop all work on site */
-const SAFETY_ITEMS = [['ppe', '⛑️'], ['scaffold', '🪜'], ['barricade', '🚧'], ['earthing', '⚡'], ['selfie', '🤳']];
+const SAFETY_ITEMS = [['ppe', '⛑️'], ['scaffold', '🪜'], ['barricade', '🚧'], ['earthing', '⚡'], ['selfie', '🤳'], ['loto', '🔒']];
 /* the selfie is asked for checks made from the day it was added; earlier checks stay valid with their four photos */
-const safetyNeeded = t => SAFETY_ITEMS.filter(([k]) => k !== 'selfie' || t >= CONTRACT_FROM);
+const safetyNeeded = t => SAFETY_ITEMS.filter(([k]) => (k !== 'selfie' || t >= CONTRACT_FROM) && (k !== 'loto' || t >= LIFE_FROM));
 const QC_CRITICAL = ['earthing', 'brakes', 'governor', 'interlocks'];
 const INC_TYPES = [['hazard', '⚠️'], ['injury', '🩹'], ['near_miss', '😮'], ['equipment', '🔧'], ['other', '🚨']];
 const STOP_TYPES = ['hazard', 'sos', 'injury'];
@@ -5161,7 +5199,7 @@ const DEFAULT_CONFIG = {
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 8, adminDiscountLimit: 18, minMargin: 20, negStep: 5,
-  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, amcYearly: 0, powerYearly: 0, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
+  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, firstContactHours: 2, idleDays: 90, amcYearly: 0, powerYearly: 0, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
@@ -5180,7 +5218,7 @@ const RULE_GROUPS = {
   fieldpay: ['payLeadValid', 'leadWonPct'],
   install: ['installDays', 'poDays', 'poAnswerHours', 'geoRadius', 'checkinGate'],
   service: ['acceptMins', 'amcYearly', 'powerYearly', 'warrantyMonths', 'amcVisits', 'validityDays', 'civilMin', 'civilMax', 'cancelBefore', 'cancelAfter'],
-  dup: ['dupCommission', 'refReward'],
+  dup: ['dupCommission', 'refReward', 'firstContactHours', 'idleDays'],
   contract: ['agreeVersion', 'reservePct', 'reserveRelease'],
   control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'sundayWork', 'holidays', 'dualControl', 'requireTraining'],
   ladder: ['lvHelperJobs', 'lvHelperStars', 'lvHelperReviews', 'lvHelperDays', 'lvTechJobs', 'lvTechStars', 'lvTechReviews', 'lvTechTrust', 'lvTechDays',
@@ -5307,6 +5345,32 @@ const lastQuote = P => P.quotes[P.quotes.length - 1];
 /* the contact agreed to calls / WhatsApp when the lead was taken, and has not asked to stop */
 const mayContact = (P, ch) => !((P.optOut || {})[ch]) && !(P.consent && P.consent[ch] === 'no');
 /* a sent quotation is valid for the set number of days (India date) */
+/* lead score 0-100, with the reasons shown (never a hidden number) */
+function leadHeat(P) {
+  const why = [], add = (n, k) => { why.push([n, k]); return n; }, r = P.req || {};
+  let n = 0;
+  if (P.contact.phone) n += add(10, 'ls_phone');
+  if ((P.consent || {}).call === 'yes') n += add(5, 'ls_consent');
+  if (P.lead.contactRole === 'owner' || P.lead.contactRole === 'builder') n += add(15, 'ls_decider');
+  if (P.lead.shaft === 'yes' || r.shaft === 'yes') n += add(20, 'ls_shaft');
+  if (P.lead.floors || r.stops) n += add(5, 'ls_floors');
+  if (r.timeline === '1m') n += add(20, 'ls_soon'); else if (r.timeline === '3m') n += add(10, 'ls_3m');
+  if (P.quotes.some(q => q.sent)) n += add(10, 'ls_quoted');
+  if (P.followUp && P.followUp.due >= todayStr()) n += add(5, 'ls_followup');
+  if (P.referral) n += add(10, 'ls_referral');
+  return { n: Math.min(100, n), why };
+}
+const scoreChip = P => { const s = leadHeat(P); return `<span class="chip ${s.n >= 60 ? 'c-ok' : s.n >= 35 ? 'c-info' : 'c-mute'}" title="${esc(s.why.map(([v, k]) => '+' + v + ' ' + t(k)).join(', '))}">🎯 ${s.n}</span>`; };
+/* what changed from the previous quotation version, in plain words */
+function quoteDiff(P, q) {
+  const i = P.quotes.indexOf(q), o = i > 0 ? P.quotes[i - 1] : null; if (!o) return [];
+  const out = [];
+  if (o.total !== q.total) out.push(t('qd_total', { a: money(o.total), b: money(q.total) }));
+  if ((o.discountPct || 0) !== (q.discountPct || 0)) out.push(t('qd_disc', { a: o.discountPct || 0, b: q.discountPct || 0 }));
+  const ro = o.req || {}, rq = q.req || {};
+  for (const [k, lab, f] of [['stops', 'q_stops', x => x], ['capacity', 'q_cap', x => t('cap_' + x)], ['type', 'q_type', x => t('type_' + x)], ['finish', 'q_finish', x => t('fin_' + x)]]) if (ro[k] !== rq[k] && rq[k] != null) out.push(t(lab) + ': ' + f(ro[k]) + ' → ' + f(rq[k]));
+  return out;
+}
 const quoteValidTill = q => q && q.sent ? addDays(q.validity || S.config.validityDays, new Date(q.sent.t)) : null;
 const quoteExpired = (q, at) => !!q && !!q.sent && quoteValidTill(q) < safeDay(at || nowISO());
 const activePay = (P, purpose) => [...P.payments].reverse().find(p => p.purpose === purpose && p.status !== 'failed');
@@ -7002,6 +7066,13 @@ const RULES = {
   },
   BACKUP_ENDED: { roles: ['owner'], check: S => !S.backup || S.backup.ended ? 'err_already' : null },
   /* a spreadsheet file made by the Owner: who, what and how many rows (the file itself stays with the Owner) */
+  DAILY_REPORT: {
+    roles: ['tech'], project: true, stages: ['arrived', 'installing', 'install_fix'], check: (S, ev, u, P) => {
+      if (P.tech !== u.uid) return 'err_access';
+      if ((P.dreports || {})[safeDay(ev.t)]) return 'err_already';
+      return need((ev.data.done || '').trim() && (ev.data.tomorrow || '').trim(), 'err_fill');
+    }
+  },
   DATA_EXPORTED: { roles: ['owner'], check: (S, ev) => need(['projects', 'payments', 'tickets', 'tally'].includes(ev.data.kind) && +ev.data.rows >= 0, 'err_choose') },
   UNDONE: { roles: ROLES, check: (S, ev) => undoWhyNot(S, ev.data.target, ev.by, ev.t) },
   /* the day's close: open office items roll to tomorrow with a named person */
@@ -7582,6 +7653,7 @@ function apply(S, ev) {
     case 'EXPENSE_ADDED': (P.expenses = P.expenses || []).push({ id: d.xid, cat: d.cat, amount: +d.amount, note: d.note, ev: ev_(d, 'photo').map(e => e.id), by: ev.by, t: ev.t, decided: null }); break;
     case 'EXPENSE_DECIDED': Object.assign(P.expenses.find(e => e.id === d.xid), { decided: { ok: d.ok, note: d.note || '', by: ev.by, t: ev.t } }); break;
     case 'SUP_COMPARED': P.supCompare = { rows: d.rows.map(x => ({ uid: x.uid, amount: +x.amount, days: +x.days })), pick: d.pick, reason: d.reason, t: ev.t, by: ev.by }; break;
+    case 'DAILY_REPORT': (P.dreports = P.dreports || {})[safeDay(ev.t)] = { t: ev.t, by: ev.by, done: d.done.trim(), material: (d.material || '').trim(), blockers: (d.blockers || '').trim(), tomorrow: d.tomorrow.trim(), crew: (P.crew || []).slice() }; break;
     case 'SITE_GROUP_SET': P.group = { gid: d.gid, name: d.name.trim(), tower: String(d.tower || '').trim(), t: ev.t, by: ev.by }; break;
     case 'SOC_VOTED': P.society.votes = Object.assign({}, P.society.votes, { [d.name]: { v: d.v, t: ev.t, by: ev.by, note: d.note || '' } }); break;
     case 'SOC_APPROVED': P.society.approvals[d.name] = { t: ev.t, by: ev.by, sig: ev_(d, 'sign')[0].id }; break;
@@ -7695,7 +7767,8 @@ function needs0(P) {
   switch (P.stage) {
     case 'new': add('review_lead', ['sales'], { uids: [P.sales] }); break;
     case 'returned': if (P.lead.bySelf) { add('fix_lead', ['sales']); break; } add('fix_lead', [roleOf(P.createdBy) && ['field', 'sales', 'admin', 'owner'].includes(roleOf(P.createdBy)) ? roleOf(P.createdBy) : 'field'], { uids: [P.createdBy] }); break;
-    case 'accepted': add('call_customer', ['sales'], { uids: [P.sales] }); break;
+    case 'accepted': { const late = P.since >= LIFE_FROM && Date.now() - Date.parse(P.since) > (+S.config.firstContactHours || 2) * 3600e3;
+      add('call_customer', ['sales'], { uids: [P.sales], urgent: late, since: P.since }); if (late) add('first_contact_late', ['admin'], { uid: P.sales, since: P.since }); break; }
     case 'contacted': add('write_needs', ['sales'], { uids: [P.sales] }); break;
     case 'requirements': add('make_quote', ['sales'], { uids: [P.sales] }); break;
     case 'quote_approval': add('approve_quote', q && (q.margin < S.config.minMargin || (q.why || []).includes('over_admin')) ? ['owner'] : ['owner', 'admin'], { not: q && q.by, urgent: true });
@@ -7703,7 +7776,7 @@ function needs0(P) {
       if (q && !Object.values(S.users).some(x => x.active && x.uid !== q.by && ['owner', 'admin'].includes(x.role)) && !backupNow()) add('withdraw_quote', [roleOf(q.by)], { uids: [q.by], urgent: true });
       break;
     case 'quote_ready': add('send_quote', ['sales'], { uids: [P.sales] }); break;
-    case 'quoted': add(quoteExpired(q) && quoteValidTill(q) < addDays(-7) ? 'requote' : 'get_decision', ['sales'], { uids: [P.sales], urgent: quoteExpired(q) }); break;
+    case 'quoted': add(quoteExpired(q) && quoteValidTill(q) < addDays(-7) ? 'requote' : 'get_decision', ['sales'], { uids: [P.sales], urgent: quoteExpired(q) || (!!quoteValidTill(q) && quoteValidTill(q) <= addDays(3)), till: quoteValidTill(q) }); break;
     case 'won': add('prepare_agreement', ['sales'], { uids: [P.sales] }); break;
     case 'agreement': add('sign_agreement', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
     case 'signed': payNeed('token'); break;
@@ -7787,6 +7860,12 @@ function needs0(P) {
   for (const m of P.chat) if (m.open && m.toRole) add('answer', m.kind === 'approval' ? ['owner', 'admin'] : uniq([m.toRole]), { mid: m.id, not: m.by, since: m.t, approval: m.kind === 'approval' });
   /* AMC: service visits due within 7 days, renewal within 30 days of the end date */
   if (P.stage === 'amc' && retDue(P) && retDue(P) <= todayStr()) payNeed('retention');
+  /* an enquiry nobody has moved for a long time: keep it with a follow-up date, or close it as lost */
+  if (['accepted', 'contacted', 'requirements', 'quote_ready', 'quoted'].includes(P.stage) && Date.now() - Date.parse(P.since) > (+S.config.idleDays || 90) * 864e5 && !(P.followUp && P.followUp.due >= todayStr()))
+    add('lead_idle', ['sales'], { uids: [P.sales], since: P.since });
+  /* the job lead's short daily report, asked for from 4 pm on a day they checked in */
+  if (['arrived', 'installing', 'install_fix'].includes(P.stage) && P.tech && ((P.checkins || {})[todayStr()] || {})[P.tech] && !((P.dreports || {})[todayStr()]) && new Date().getHours() >= 16)
+    add('daily_report', ['tech'], { uids: [P.tech] });
   for (const x of (P.expenses || []).filter(e => !e.decided)) { const fin = Object.values(S.users).some(u => u.active && u.role === 'finance' && u.uid !== x.by);
     add('decide_expense', fin ? ['finance'] : ['admin', 'owner'], Object.assign({ xid: x.id, since: x.t }, otherOffice(x.by, ['finance', 'admin', 'owner']) ? { not: x.by } : {})); }
   if (P.t >= LIFE_FROM && P.req && P.req.finish && ['won', 'agreement', 'signed', 'site_prep', 'qc_site', 'site_fix', 'site_ok'].includes(P.stage) && !(P.finishOk && P.finishOk.ok && P.finishOk.finish === P.req.finish))
@@ -8585,7 +8664,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -9463,6 +9542,40 @@ WIZ.finish = {
     check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }],
   async finish(c, P) { const r = await run([['FINISH_APPROVED', P.id, { ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
 };
+WIZ.dreport = {
+  title: 'tk_daily_report', save: 'send', saveIcon: '📝', init: () => ({ done: '', material: '', blockers: '', tomorrow: '' }),
+  steps: [{ id: 'd', icon: '📝', say: 's_dreport', body: () => inp('done', 'dr_done', { area: true, mic: true }) + inp('material', 'dr_material', { area: true, mic: true, opt: true }) + inp('blockers', 'dr_blockers', { area: true, mic: true, opt: true }) + inp('tomorrow', 'dr_tomorrow', { area: true, mic: true }),
+    check: c => c.done.trim() && c.tomorrow.trim() ? null : 'err_fill' }],
+  async finish(c, P) { const r = await run([['DAILY_REPORT', P.id, { done: c.done.trim(), material: c.material.trim(), blockers: c.blockers.trim(), tomorrow: c.tomorrow.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+function dreportCard(P) {
+  const ds = Object.entries(P.dreports || {}).sort((a, b) => a[0] < b[0] ? 1 : -1); if (!ds.length && !allowed('DAILY_REPORT', P)) return '';
+  return `<div class="card"><h3>📝 ${t('dr_title')}</h3>${ds.slice(0, 5).map(([day, x]) => `<details class="small"><summary><b>${fmtD(day)}</b> · ${esc(x.done.slice(0, 60))}</summary><p>✅ ${esc(x.done)}</p>${x.material ? `<p>📦 ${esc(x.material)}</p>` : ''}${x.blockers ? `<p>⛔ ${esc(x.blockers)}</p>` : ''}<p>➡️ ${esc(x.tomorrow)}</p></details>`).join('')}
+    ${allowed('DAILY_REPORT', P) && !(P.dreports || {})[todayStr()] ? `<button class="btn btn-sm" data-a="wizOpen" data-v="dreport|${P.id}">📝 ${t('tk_daily_report')}</button>` : ''}</div>`;
+}
+/* sales: who to call next and why */
+function leadScoreCard(P) {
+  if (!['sales', 'admin', 'owner'].includes(App.me.role) || !PRE_WON.includes(P.stage)) return '';
+  const s = leadHeat(P);
+  return `<div class="card"><h3>🎯 ${t('ls_title', { n: s.n })}</h3><div class="bar"><span class="b"><i style="width:${s.n}%"></i></span><b>${s.n}</b></div><p class="small">${s.why.length ? s.why.map(([v, k]) => '+' + v + ' ' + t(k)).join(' · ') : t('ls_none')}</p><p class="small muted">${t('ls_note')}</p></div>`;
+}
+function callNext(u) {
+  const out = [];
+  for (const P of visibleProjects(u).filter(P => P.sales === u.uid && ['accepted', 'contacted', 'requirements', 'quote_ready', 'quoted'].includes(P.stage))) {
+    const q = lastQuote(P), till = quoteValidTill(q), sc = leadHeat(P).n;
+    if (P.followUp && P.followUp.due <= todayStr()) out.push([0, P, t('cn_followup', { d: fmtD(P.followUp.due) }), sc]);
+    else if (P.stage === 'accepted') out.push([1, P, t('cn_new', { h: Math.max(1, Math.round((Date.now() - Date.parse(P.since)) / 3600e3)) }), sc]);
+    else if (P.stage === 'quoted' && till && till <= addDays(3)) out.push([2, P, till < todayStr() ? t('cn_expired', { d: fmtD(till) }) : t('cn_expiring', { d: fmtD(till) }), sc]);
+    else if (P.stage === 'quoted' && q && q.sent) out.push([3, P, t('cn_quoted', { n: Math.round((Date.now() - Date.parse(q.sent.t)) / 864e5) }), sc]);
+    else out.push([4, P, t('cn_open', { s: stName(P.stage) }), sc]);
+  }
+  return out.sort((a, b) => a[0] - b[0] || b[3] - a[3]).slice(0, 8);
+}
+function callNextCard(u) {
+  if (u.role !== 'sales') return '';
+  const l = callNext(u); if (!l.length) return '';
+  return `<div class="card"><h3>📞 ${t('cn_title')}</h3>${l.map(([, P, why]) => `<div class="list-item"><span class="grow"><b>${esc(P.contact.name || P.id)}</b> ${scoreChip(P)}<br><span class="small">${esc(why)}</span></span>${P.contact.phone ? `<a class="btn btn-sm" href="tel:${esc(P.contact.phone)}">📞</a>` : ''}<button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶</button></div>`).join('')}</div>`;
+}
 WIZ.ticketAccept = {
   title: 'tk_accept_ticket', save: 'tk_accept_ticket', saveIcon: '🙋', noDraft: true, init: () => ({}),
   steps: [{ id: 'a', icon: '🚨', say: (c, P) => (ticketOf(P, W.opts.tid) || {}).text || '', body: (c, P) => { const x = ticketOf(P, W.opts.tid) || {};
@@ -10906,7 +11019,7 @@ SCREENS.home = () => {
   if (App.mode === 'practice' && !(App.set.calmSeen || {})[u.uid]) h += `<div class="card"><b>🎓 ${t('calm_t')}</b><p class="small">${t('calm_d')}</p><div class="row wrapw"><button class="btn btn-p" data-a="calmTry">▶ ${t('calm_try')}</button><button class="btn" data-a="calmOk">${t('calm_ok')}</button></div></div>`;
   if (!adm && STAFF.includes(u.role) && daysSince(u.t) < 7) h += firstWeekCard(u);
   if (u.role === 'field') h += shiftCard();
-  h += moneyLine(u) + routineCard(u);
+  h += moneyLine(u) + callNextCard(u) + routineCard(u);
   if (u.role === 'tech') { const open = visibleProjects(u).filter(P => checkedIn(P, safeDay(), u.uid) && !(((P.dayEnds || {})[safeDay()] || {})[u.uid]));
     open.forEach(P => { h += `<button class="task" style="margin-top:10px" data-a="wizOpen" data-v="techEnd|${P.id}"><span class="ti">🏁</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_end_day')}</b><span class="small muted">${esc(P.id)} · ${esc(projTitle(P))}</span></span><span class="go">▶</span></button>`; }); }
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))}${tasks[0].pid ? ' · ' + esc(tasks[0].pid) : ''}</p>`;
@@ -11271,7 +11384,7 @@ function projInfo(P) {
   const sopN = Object.keys(P.sop).length;
   const target = installUsed(P);
   const cancelled = P.lost && P.lost.reason === 'cancelled' ? `<div class="err">⛔ ${t('cancelled_on', { d: fmtD(P.lost.t) })}: ${esc(P.lost.note)}${P.payments.some(x => x.status === 'confirmed') ? '<br>🏦 ' + t('refund_note') : ''}</div>` : '';
-  return cancelled + open + groupCard(P) + socCard(P) + (P.stage === 'site_ok' || P.supCompare ? supCmpCard(P) : '') + expCard(P) + grnBtn(P) + stockSiteCard(P) + refCard(P) + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
+  return cancelled + open + groupCard(P) + socCard(P) + (P.stage === 'site_ok' || P.supCompare ? supCmpCard(P) : '') + expCard(P) + grnBtn(P) + stockSiteCard(P) + dreportCard(P) + leadScoreCard(P) + refCard(P) + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
       ['gps', P.site.gps ? `<a href="${mapsLink(P.site.gps)}" target="_blank" rel="noopener">${P.site.gps.lat}, ${P.site.gps.lng}</a> · <a href="${dirLink(P.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a>` : t('no')]])}</div>
     ${OUTSIDERS.includes(u.role) ? maskedContact(P) : `<div class="card"><h3>👤 ${t('contact')}</h3>${kv([['f_contact_name', esc(P.contact.name)], ['f_phone', seeF(u, 'phone') ? (P.contact.phone ? `<a href="tel:+91${P.contact.phone}">📞 ${esc(P.contact.phone)}</a>` : t('i_no_phone')) : '🔒 ' + t('hidden')]])}
       ${P.corrected.length ? `<details style="margin-top:6px"><summary class="small">✏️ ${t('corrections_history')} (${P.corrected.length})</summary>${P.corrected.map(c => `<div class="small">${fmtD(c.t, true)} · ${userTag(c.by)} · ${t(c.field === 'address' ? 'f_address' : c.field === 'phone' ? 'f_phone' : 'f_contact_name')}: <s>${esc(c.old)}</s> → <b>${esc(c.val)}</b> (${esc(c.reason)})</div>`).join('')}</details>` : ''}</div>`}
@@ -11669,6 +11782,7 @@ function docQuote(P, v) {
   const q = P.quotes.find(x => x.v === +v) || lastQuote(P); if (!q) return '';
   const s = paySchedule(payCfgAt(), q.total);
   return docHead(P, t('doc_quote'), `${P.id}-Q${q.v}`) + `<table><tr><td>${t('customer')}</td><td><b>${esc(P.contact.name)}</b></td></tr><tr><td>${t('site')}</td><td>${esc(P.site.address)}</td></tr><tr><td>${t('valid_until')}</td><td>${fmtD(addDays(q.validity || 30, new Date(q.t)))}</td></tr></table>
+    ${quoteDiff(P, q).length ? `<div class="note"><b>${t('qd_title', { v: q.v - 1 })}</b><br>${quoteDiff(P, q).map(esc).join('<br>')}</div>` : ''}
     <h3>${t('lift_needs')}</h3>${reqKv(q.req)}
     <h3>${t('price')}</h3><table>${q.lines.map(([k, val]) => `<tr><td>${t(k)}</td><td class="r">${money(val)}</td></tr>`).join('')}<tr><td><b>${t('q_list')}</b></td><td class="r">${money(q.list)}</td></tr>
     ${q.discount ? `<tr><td>${t('q_discount')} (${q.discountPct}%)</td><td class="r">− ${money(q.discount)}</td></tr>` : ''}<tr><td>${t('q_price')}</td><td class="r">${money(q.price)}</td></tr><tr><td>${t('q_gst', { n: q.gstPct })}</td><td class="r">${money(q.gst)}</td></tr><tr><td><b>${t('q_total')}</b></td><td class="r"><b>${money(q.total)}</b></td></tr></table>
@@ -13717,7 +13831,7 @@ function openTask(n) {
     record_payment: () => wiz('paynew', pid, { purpose: n.purpose }), verify_payment: () => wiz('payverify', pid, { payId: n.payId }),
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), decide_infeasible: () => wiz('infeasible', pid), approve_drawing: () => go('drawings', { pid }),
-    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
+    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
