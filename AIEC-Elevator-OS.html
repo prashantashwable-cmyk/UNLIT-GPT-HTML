@@ -3297,6 +3297,28 @@ const L = {
   ev_DAMAGE_REPORTED: ['Site damage reported', 'साइट नुकसान बताया', 'साइट नुकसान कळवले'],
   ev_DAMAGE_DECIDED: ['Site damage decided', 'साइट नुकसान पर फ़ैसला', 'साइट नुकसानावर निर्णय'],
   ev_CHARGE_SETTLED: ['Damage charge settled', 'नुकसान राशि निपटी', 'नुकसान रक्कम मिटली'],
+  cfg_dbgTol: ['Rail gauge (distance between guides) tolerance, ± mm — set by your engineer', 'रेल गेज (गाइड के बीच की दूरी) छूट, ± mm — आपके इंजीनियर द्वारा', 'रेल गेज (गाइडमधील अंतर) सहनशीलता, ± mm — तुमच्या इंजिनिअरनुसार'],
+  cfg_balLo: ['Counterweight balance: lowest % allowed', 'काउंटरवेट बैलेंस: न्यूनतम % मान्य', 'काउंटरवेट बॅलन्स: किमान % मान्य'],
+  cfg_balHi: ['Counterweight balance: highest % allowed', 'काउंटरवेट बैलेंस: अधिकतम % मान्य', 'काउंटरवेट बॅलन्स: कमाल % मान्य'],
+  cfg_earthMax: ['Highest earthing resistance allowed, Ω — set by your engineer', 'अधिकतम अर्थिंग प्रतिरोध, Ω — आपके इंजीनियर द्वारा', 'कमाल अर्थिंग प्रतिरोध, Ω — तुमच्या इंजिनिअरनुसार'],
+  s_read: ['Write the measured numbers', 'नापे गए अंक लिखें', 'मोजलेले आकडे लिहा'],
+  rd_dbg_d: ['Measure the distance between the two rails at every bracket level. Each must be within ±{t} mm of the drawing value.', 'हर ब्रैकेट स्तर पर दोनों रेल के बीच की दूरी नापें। हर एक ड्रॉइंग मान से ±{t} mm के अंदर हो।', 'प्रत्येक ब्रॅकेट पातळीवर दोन रेलमधील अंतर मोजा. प्रत्येक ड्रॉइंग मूल्यापासून ±{t} mm आत असावे.'],
+  rd_nominal: ['Drawing value (mm)', 'ड्रॉइंग मान (mm)', 'ड्रॉइंग मूल्य (mm)'],
+  rd_level: ['Bracket level {n} (mm)', 'ब्रैकेट स्तर {n} (mm)', 'ब्रॅकेट पातळी {n} (mm)'],
+  rd_bal_d: ['Balance test with load: allowed {a}% to {b}%.', 'लोड के साथ बैलेंस टेस्ट: मान्य {a}% से {b}%।', 'भारासह बॅलन्स चाचणी: मान्य {a}% ते {b}%.'],
+  rd_balance: ['Counterweight balance (%)', 'काउंटरवेट बैलेंस (%)', 'काउंटरवेट बॅलन्स (%)'],
+  rd_earth_d: ['Earthing resistance must be at most {n} Ω.', 'अर्थिंग प्रतिरोध अधिकतम {n} Ω हो।', 'अर्थिंग प्रतिरोध जास्तीत जास्त {n} Ω असावा.'],
+  rd_ohm: ['Earthing resistance (Ω)', 'अर्थिंग प्रतिरोध (Ω)', 'अर्थिंग प्रतिरोध (Ω)'],
+  ls_sw_final: ['Final limit switch works', 'फ़ाइनल लिमिट स्विच काम करता है', 'फायनल लिमिट स्विच चालते'],
+  ls_sw_terminal: ['Terminal stopping switch works', 'टर्मिनल स्टॉपिंग स्विच काम करता है', 'टर्मिनल स्टॉपिंग स्विच चालते'],
+  ls_sw_slowdown: ['Slow-down switch works', 'स्लो-डाउन स्विच काम करता है', 'स्लो-डाउन स्विच चालते'],
+  ls_sw_overload: ['Overload sensor set and tested', 'ओवरलोड सेंसर सेट और टेस्ट', 'ओव्हरलोड सेन्सर सेट आणि चाचणी'],
+  err_read: ['Write the measured number.', 'नापा गया अंक लिखें।', 'मोजलेला आकडा लिहा.'],
+  err_read_dbg: ['Write the drawing value and the reading at every bracket level.', 'ड्रॉइंग मान और हर ब्रैकेट स्तर का नाप लिखें।', 'ड्रॉइंग मूल्य आणि प्रत्येक ब्रॅकेट पातळीचे माप लिहा.'],
+  err_dbg_tol: ['Rail gauge out of ±{t} mm at level(s) {n}: correct the rails first.', 'स्तर {n} पर रेल गेज ±{t} mm से बाहर: पहले रेल ठीक करें।', 'पातळी {n} वर रेल गेज ±{t} mm बाहेर: आधी रेल दुरुस्त करा.'],
+  err_bal: ['Balance must be between {a}% and {b}%: adjust the counterweight.', 'बैलेंस {a}% से {b}% के बीच हो: काउंटरवेट ठीक करें।', 'बॅलन्स {a}% ते {b}% दरम्यान असावा: काउंटरवेट जुळवा.'],
+  err_earth: ['Earthing above {n} Ω: improve the earthing first.', 'अर्थिंग {n} Ω से ज़्यादा: पहले अर्थिंग सुधारें।', 'अर्थिंग {n} Ω पेक्षा जास्त: आधी अर्थिंग सुधारा.'],
+  err_limit_sw: ['Every limit switch and the overload sensor must be tested and working.', 'हर लिमिट स्विच और ओवरलोड सेंसर टेस्ट होकर चालू हों।', 'प्रत्येक लिमिट स्विच आणि ओव्हरलोड सेन्सर तपासून चालू असावेत.'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5209,7 +5231,7 @@ const CFG_LIMITS = (() => {
   set(['tokenMode', 'dailySafety', 'licenceGate', 'permitGate', 'peerCheck', 'checkinGate', 'dualControl', 'requireTraining', 'sundayWork'], 0, 1);
   set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'civilMin', 'civilMax'], 0, 2000000);
   set(['reservePct'], 0, 90); set(['reserveRelease'], 1, 100); set(['agreeVersion'], 1, 99);
-  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['costArd', 'costCurtain', 'costPremium'], 0, 5000000); set(['lowPit'], 300, 3000); set(['lowHead'], 2000, 6000); set(['costSpecial'], 0, 5000000); set(['firstContactHours'], 1, 48); set(['idleDays'], 14, 365); set(['amcYearly'], 0, 500000); set(['powerYearly'], 0, 200000); set(['retentionPct'], 0, 20); set(['retentionDays'], 0, 365); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
+  set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['dbgTol'], 0.1, 5); set(['balLo', 'balHi'], 30, 70); set(['earthMax'], 0.1, 10); set(['costArd', 'costCurtain', 'costPremium'], 0, 5000000); set(['lowPit'], 300, 3000); set(['lowHead'], 2000, 6000); set(['costSpecial'], 0, 5000000); set(['firstContactHours'], 1, 48); set(['idleDays'], 14, 365); set(['amcYearly'], 0, 500000); set(['powerYearly'], 0, 200000); set(['retentionPct'], 0, 20); set(['retentionDays'], 0, 365); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
   set(['lvHelperJobs', 'lvTechJobs', 'lvSeniorJobs', 'lvQcJobs', 'lvHelperReviews', 'lvTechReviews', 'lvSeniorReviews', 'lvQcReviews', 'partnerBigJobs'], 0, 500);
   set(['lvHelperStars', 'lvTechStars', 'lvSeniorStars', 'lvQcStars', 'partnerBigStars'], 0, 5); set(['lvTechTrust', 'lvSeniorTrust', 'lvQcTrust', 'lvSeniorPass', 'lvQcPass'], 0, 100);
   set(['lvHelperDays', 'lvTechDays', 'lvSeniorDays'], 0, 3650); set(['strikeDays'], 1, 3650); set(['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior'], 0, 300);
@@ -5271,6 +5293,24 @@ const gadNeeded = P => P.t >= JOURNEY_FROM && !P.gad;
 /* damage or loss on site: who caused it decides who pays; an unpaid builder charge pauses the installation */
 const DMG_WHO = [['builder', '🏗️'], ['crew', '🔧'], ['supplier', '🚚'], ['unknown', '❔']];
 const chargesDue = P => (P.charges || []).filter(c => c.status === 'due');
+/* numbers at installation steps (new jobs): rail gauge at each bracket level, counterweight balance, earthing, final tests */
+const SOP_READ = { 3: 'dbg', 6: 'bal', 9: 'earth', 11: 'final' };
+const LIMIT_SW = ['final', 'terminal', 'slowdown', 'overload'];
+function readWhyNot(P, step, rd, at) {
+  const k = SOP_READ[step]; if (!k || P.t < JOURNEY_FROM || at < JOURNEY_FROM) return null;
+  const c = S.config; rd = rd || {};
+  if (k === 'dbg') { const nom = +rd.nominal, xs = (rd.levels || []).map(Number);
+    if (!(nom > 0) || xs.length < Math.max(2, (+(P.req || {}).stops || 2)) || !xs.every(x => x > 0)) return 'err_read_dbg';
+    const bad = xs.map((x, i) => [i + 1, x]).filter(([, x]) => Math.abs(x - nom) > (+c.dbgTol || 1));
+    return bad.length ? { k: 'err_dbg_tol', v: { n: bad.map(([i]) => i).join(', '), t: +c.dbgTol || 1 } } : null; }
+  if (k === 'bal') { const b = +rd.balance; if (!(b > 0)) return 'err_read'; return b < (+c.balLo || 45) || b > (+c.balHi || 50) ? { k: 'err_bal', v: { a: +c.balLo || 45, b: +c.balHi || 50 } } : null; }
+  if (k === 'earth') { const e = +rd.ohm; if (!(e > 0)) return 'err_read'; return e > (+c.earthMax || 2) ? { k: 'err_earth', v: { n: +c.earthMax || 2 } } : null; }
+  if (k === 'final') { if (!(rd.ard !== '' && rd.ard != null && +rd.ard >= 0)) return 'err_read'; return LIMIT_SW.every(x => (rd.sw || {})[x] === 'yes') ? null : 'err_limit_sw'; }
+  return null;
+}
+/* good readings for a step (practice data and tests) */
+const readYes = (step, P) => { const k = SOP_READ[step]; return k === 'dbg' ? { nominal: 1600, levels: Array.from({ length: Math.max(2, +((P || {}).req || {}).stops || 2) }, () => 1600.3) } : k === 'bal' ? { balance: 47.5 } : k === 'earth' ? { ohm: 0.8 } : k === 'final' ? { ard: 24, sw: Object.fromEntries(LIMIT_SW.map(x => [x, 'yes'])) } : undefined; };
+const readText = (rd, step) => { const k = SOP_READ[step]; return !rd ? '' : k === 'dbg' ? t('rd_nominal') + ' ' + rd.nominal + ' · ' + (rd.levels || []).join(' / ') + ' mm' : k === 'bal' ? rd.balance + '%' : k === 'earth' ? rd.ohm + ' Ω' : 'ARD ' + rd.ard + ' V · ' + LIMIT_SW.filter(x => (rd.sw || {})[x] === 'yes').length + '/' + LIMIT_SW.length; };
 const FAULTS = ['trapped', 'door_close', 'door_reopen', 'level', 'noise', 'no_power'];
 const SITE_CANT = ['no_show', 'unsafe'];
 const floorGaps = P => Math.max(1, Math.min(59, (+(P.req && P.req.stops) || 2) - 1));
@@ -5344,7 +5384,7 @@ const DEFAULT_CONFIG = {
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 8, adminDiscountLimit: 18, minMargin: 20, negStep: 5,
-  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, costArd: 35000, costCurtain: 12000, costPremium: 150000, lowPit: 1400, lowHead: 3900, costSpecial: 0, firstContactHours: 2, idleDays: 90, amcYearly: 0, powerYearly: 0, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
+  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, dbgTol: 1, balLo: 45, balHi: 50, earthMax: 2, costArd: 35000, costCurtain: 12000, costPremium: 150000, lowPit: 1400, lowHead: 3900, costSpecial: 0, firstContactHours: 2, idleDays: 90, amcYearly: 0, powerYearly: 0, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
@@ -5373,7 +5413,7 @@ const RULE_GROUPS = {
   security: ['pinDigits'],
   safety: ['dailySafety', 'sosNumber', 'safetyRetest'],
   statutory: ['licenceGate', 'permitGate'],
-  quality: ['tolWidth', 'tolDepth', 'tolPit', 'tolHead', 'peerCheck', 'lowPit', 'lowHead'],
+  quality: ['tolWidth', 'tolDepth', 'tolPit', 'tolHead', 'peerCheck', 'lowPit', 'lowHead', 'dbgTol', 'balLo', 'balHi', 'earthMax'],
   privacy: ['officeNumber', 'cityCode', 'accessAlert'],
   ladderpay: ['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior', 'payCrewJob', 'payQcInspection', 'spotTrainee', 'spotTech', 'spotSenior'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
@@ -6677,6 +6717,7 @@ const RULES = {
       if (!gradeMayLead(u.uid, P)) return 'err_cant_lead';
       if (ev.data.step !== sopNext(P)) return 'err_order';
       if (ev.t >= JOURNEY_FROM && chargesDue(P).length) return 'err_charge_due';
+      { const rw = readWhyNot(P, ev.data.step, ev.data.read, ev.t); if (rw) return rw; }
       if (ev.t >= ISC_FROM) {
         if (legalEnded(u.uid, ev.t).length) return 'err_wallet_expired';
         if (ev.data.step === 0 && P.serialHold && !P.serialHold.ok) return 'err_serial_mismatch';
@@ -7707,7 +7748,7 @@ function apply(S, ev) {
     }
     /* installation time counts from the customer's signature */
     case 'MATERIAL_RECEIPT_SIGNED': Object.assign(P.mhand, { custSig: ev_(d, 'sign')[0].id, custName: d.custName, custody: true, wait: false, techT: P.mhand.t, t: ev.t }); setStage(P, 'installing', ev); break;
-    case 'SOP_STEP_DONE': P.sop[d.step] = { t: ev.t, by: ev.by, note: d.note || '', ev: ev_(d).map(e => e.id) };
+    case 'SOP_STEP_DONE': P.sop[d.step] = { t: ev.t, by: ev.by, note: d.note || '', ev: ev_(d).map(e => e.id), read: d.read || null };
       /* inspector points: each "No" becomes a problem to fix before the inspection can be asked */
       if (d.isc) { P.isc = P.isc || {}; for (const [n] of iscFor(d.step)) { const a = d.isc[n]; if (!a) continue; const note = String((d.iscNote || {})[n] || '').trim();
         P.isc[n] = { a, note, step: d.step, t: ev.t, by: ev.by };
@@ -10370,7 +10411,7 @@ function docPO(P) {
 }
 /* ---------- Technician: SOP step ---------- */
 WIZ.sopstep = {
-  title: 'tk_install', save: 'step_done', saveIcon: '✅', init: () => ({ ph: [], note: '', isc: {}, iscNote: {} }),
+  title: 'tk_install', save: 'step_done', saveIcon: '✅', init: () => ({ ph: [], note: '', isc: {}, iscNote: {}, read: { levels: [], sw: {} } }),
   steps: [{
     id: 'do', icon: '🔧', say: () => t('sop_' + SOP[W.opts.step][0] + '_d'),
     body: () => { const [k, ic] = SOP[W.opts.step]; return `<div class="big-i">${ic}</div><h2 class="center">${W.opts.step + 1}. ${t('sop_' + k)}</h2><div class="warnbox">🦺 ${t('sop_safety')}</div>` +
@@ -10383,9 +10424,18 @@ WIZ.sopstep = {
       ynRow('isc.' + n, `<b>${n}.</b> ${esc(t('isc_' + n))}${m ? ` <span class="chip c-warn">${t('isc_must')}</span>` : ''}`, m ? ['yes', 'no'] : ['yes', 'no', 'na'])
       + (c.isc[n] === 'no' ? inp('iscNote.' + n, 'isc_why', { mic: true }) : '')).join('') + '</div>',
     check: c => iscWhyNot({ step: W.opts.step, isc: c.isc, iscNote: c.iscNote })
+  }, {
+    id: 'read', icon: '📏', say: 's_read', skip: () => { const P = S.projects[W.pid]; return !SOP_READ[W.opts.step] || P.t < JOURNEY_FROM; },
+    body: c => { const k = SOP_READ[W.opts.step], P = S.projects[W.pid], cf = S.config;
+      if (k === 'dbg') return `<p class="small muted">${t('rd_dbg_d', { t: +cf.dbgTol || 1 })}</p>` + inp('read.nominal', 'rd_nominal', { type: 'number', mode: 'decimal' }) + Array.from({ length: Math.max(2, +(P.req || {}).stops || 2) }, (_, i) => inp('read.levels.' + i, t('rd_level', { n: i + 1 }), { type: 'number', mode: 'decimal' })).join('');
+      if (k === 'bal') return `<p class="small muted">${t('rd_bal_d', { a: +cf.balLo || 45, b: +cf.balHi || 50 })}</p>` + inp('read.balance', 'rd_balance', { type: 'number', mode: 'decimal', big: true });
+      if (k === 'earth') return `<p class="small muted">${t('rd_earth_d', { n: +cf.earthMax || 2 })}</p>` + inp('read.ohm', 'rd_ohm', { type: 'number', mode: 'decimal', big: true });
+      return inp('read.ard', 'tv_ard', { type: 'number', mode: 'decimal' }) + `<div class="card">${LIMIT_SW.map(x => ynRow('read.sw.' + x, 'ls_sw_' + x)).join('')}</div>`; },
+    check: c => readWhyNot(S.projects[W.pid], W.opts.step, c.read, nowISO())
   }],
   async finish(c) { const isc = iscFor(W.opts.step).length ? { isc: c.isc, iscNote: Object.fromEntries(Object.entries(c.iscNote).filter(([n]) => c.isc[n] === 'no').map(([n, v]) => [n, String(v).trim()])) } : {};
-    const r = await run([['SOP_STEP_DONE', W.pid, Object.assign({ step: W.opts.step, ev: c.ph, note: c.note }, isc)]]); return r.ok ? backToList(W.pid, 'sop') : r; }
+    const rd = SOP_READ[W.opts.step] && S.projects[W.pid].t >= JOURNEY_FROM ? { read: c.read } : {};
+    const r = await run([['SOP_STEP_DONE', W.pid, Object.assign({ step: W.opts.step, ev: c.ph, note: c.note }, isc, rd)]]); return r.ok ? backToList(W.pid, 'sop') : r; }
 };
 WIZ.blocker = {
   title: 'report_problem', save: 'send_problem', saveIcon: '⛔',
@@ -10786,7 +10836,7 @@ WIZ.qcfinal = {
   title: 'tk_final_inspect', save: 'save_result', saveIcon: '🔍',
   init: () => ({ checks: {}, crit: {}, critPh: Object.fromEntries(QC_CRITICAL.map(k => [k, []])), earthVal: '', vals: {}, ph: [], outcome: '', items: [], note: '', cause: '', stars: '' }),
   steps: [
-    { id: 'info', icon: '📋', say: 's_qcf_info', body: (c, P) => `<div class="card"><h3>${t('sop_evidence')}</h3>${SOP.map(([k, i], n) => `<div class="list-item"><span>${P.sop[n] ? '✅' : '⬜'} ${i}</span><span class="grow">${t('sop_' + k)}</span></div>${P.sop[n] ? evGrid(P.sop[n].ev) : ''}`).join('')}</div><div class="warnbox">📜 ${t('checklist_disclaimer')}</div>` },
+    { id: 'info', icon: '📋', say: 's_qcf_info', body: (c, P) => `<div class="card"><h3>${t('sop_evidence')}</h3>${SOP.map(([k, i], n) => `<div class="list-item"><span>${P.sop[n] ? '✅' : '⬜'} ${i}</span><span class="grow">${t('sop_' + k)}${P.sop[n] && P.sop[n].read ? '<br><small>📏 ' + esc(readText(P.sop[n].read, n)) + '</small>' : ''}</span></div>${P.sop[n] ? evGrid(P.sop[n].ev) : ''}`).join('')}</div><div class="warnbox">📜 ${t('checklist_disclaimer')}</div>` },
     { id: 'checks', icon: '✔️', say: 's_qcf_checks', body: () => `<div class="card">${QC_FINAL_CHECKS.map(k => ynRow('checks.' + k, 'qcf_' + k, ['pass', 'fail'])).join('')}</div>`, check: c => QC_FINAL_CHECKS.every(k => c.checks[k]) ? null : 'err_checks' },
     { id: 'crit', icon: '🛡️', say: 's_qcf_crit', body: () => `<div class="warnbox">🛡️ ${t('qcc_note')}</div>` + QC_CRITICAL.map(k => `<div class="card"><h3>${t('qcc_' + k)}</h3>${ynRow('crit.' + k, 'qcc_' + k, ['pass', 'fail'])}${k === 'earthing' ? inp('earthVal', 'qcc_earth_val', { opt: true }) : ''}${photoSlot('critPh.' + k, 'qcc_' + k, 1, { tag: 'crit_' + k })}</div>`).join(''),
       check: c => !QC_CRITICAL.every(k => c.crit[k]) ? 'err_crit' : !QC_CRITICAL.every(k => (c.critPh[k] || []).length) ? 'err_crit_photos' : null },

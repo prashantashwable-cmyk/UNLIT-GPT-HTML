@@ -88,7 +88,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
     /* new deals pay 20% for the custom cabin before the cabin step (70/20/10) */
     if (await ev(`(d => !!d && d.purpose === 'cabin' && !activePay(S.projects["${pid}"], 'cabin'))(payDue(S.projects["${pid}"]))`)) { await step('pay_now', 'SCUST', 'PAYMENT_RECORDED', { payId: 'PAY-CAB-S', purpose: 'cabin', amount: await ev(`payDue(S.projects["${pid}"]).amount`), method: 'bank', ref: 'NEFT-S3' }); await step('verify_payment', 'POWNER', 'PAYMENT_STATUS', { payId: 'PAY-CAB-S', status: 'confirmed', ref: 'BANK-STMT-3' }); continue; }
     if (await ev(`sopNext(S.projects["${pid}"]) >= SOP.length`)) break;
-    await step('install', tech, 'SOP_STEP_DONE', { step: await ev(`sopNext(S.projects["${pid}"])`), isc: await ev(`iscYes(sopNext(S.projects["${pid}"]))`), ev: await ph(1) });
+    await step('install', tech, 'SOP_STEP_DONE', { step: await ev(`sopNext(S.projects["${pid}"])`), isc: await ev(`iscYes(sopNext(S.projects["${pid}"]))`), read: await ev(`readYes(sopNext(S.projects["${pid}"]), S.projects["${pid}"])`), ev: await ph(1) });
   }
   await step('request_inspection', tech, 'INSPECTION_REQUESTED', {});
   await step('final_inspect', 'POWNER', 'QC_FINAL_RESULT', { vals: { level: 3, load: 680, ard: 24 }, checks: await ev('Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, "pass"]))'), crit: await ev('Object.fromEntries(QC_CRITICAL.map(k => [k, "pass"]))'), earthVal: '0.8 Ω', outcome: 'pass', stars: 5,

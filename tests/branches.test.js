@@ -93,7 +93,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
     /* new deals pay 20% for the custom cabin before the cabin step (70/20/10) */
     if (await ev(`(d => !!d && d.purpose === 'cabin' && !activePay(S.projects["${pid}"], 'cabin'))(payDue(S.projects["${pid}"]))`)) { await step('pay_now', 'BCUST', 'PAYMENT_RECORDED', { payId: 'PAY-CAB-B', purpose: 'cabin', amount: await ev(`payDue(S.projects["${pid}"]).amount`), method: 'bank', ref: 'NEFT-B4' }); await step('verify_payment', 'POWNER', 'PAYMENT_STATUS', { payId: 'PAY-CAB-B', status: 'confirmed', ref: 'STMT-B4' }); continue; }
     if ((await page.evaluate(p => needs(S.projects[p]).map(x => x.k), pid)).includes('peer_check')) await step('peer_check', 'PSENIOR', 'PEER_CHECKED', { step: await ev(`peerWaiting(S.projects["${pid}"])[0]`), ok: true });
-    else await step('install', 'PTECH', 'SOP_STEP_DONE', { step: await ev(`sopNext(S.projects["${pid}"])`), isc: await ev(`iscYes(sopNext(S.projects["${pid}"]))`), ev: await ph(1) });
+    else await step('install', 'PTECH', 'SOP_STEP_DONE', { step: await ev(`sopNext(S.projects["${pid}"])`), isc: await ev(`iscYes(sopNext(S.projects["${pid}"]))`), read: await ev(`readYes(sopNext(S.projects["${pid}"]), S.projects["${pid}"])`), ev: await ph(1) });
   }
   await step('request_inspection', 'PTECH', 'INSPECTION_REQUESTED', {});
 

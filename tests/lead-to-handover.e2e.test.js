@@ -281,6 +281,12 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
     await photo('ph'); await next();
     const pts = await page.evaluate(i => iscFor(i).map(x => x[0]), i);
     if (pts.length) { for (const n of pts) await pick('isc.' + n, 'yes'); if (i === 9) await shot('sop_checklist'); await next(); }
+    /* rails, counterweight, wiring and the final test: the measured numbers */
+    if ([3, 6, 9, 11].includes(i)) { const rd = await page.evaluate(([i, p]) => readYes(i, S.projects[p]), [i, pid]);
+      if (i === 3) { await fill('read.nominal', rd.nominal); for (let k = 0; k < rd.levels.length; k++) await fill('read.levels.' + k, rd.levels[k]); }
+      if (i === 6) await fill('read.balance', rd.balance); if (i === 9) await fill('read.ohm', rd.ohm);
+      if (i === 11) { await fill('read.ard', rd.ard); for (const x of Object.keys(rd.sw)) await pick('read.sw.' + x, 'yes'); }
+      await next(); }
     /* doors, wiring and safety devices: a co-worker (here the QC Inspector) checks the photos before the next step */
     if ([8, 9, 10].includes(i)) {
       await login('Quinn QC'); await startTask('peer_check'); await pick('ok', 'yes'); await next(); await doneOk('co-worker check');
