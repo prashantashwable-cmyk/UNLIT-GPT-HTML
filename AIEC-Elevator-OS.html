@@ -3332,6 +3332,23 @@ const L = {
   tk_set_insp_mode: ['No licence: keep the lift in inspection mode', 'लाइसेंस नहीं: लिफ्ट इंस्पेक्शन मोड में रखें', 'परवाना नाही: लिफ्ट इन्स्पेक्शन मोडमध्ये ठेवा'],
   tk_set_normal_mode: ['Licence received: switch to normal service', 'लाइसेंस मिला: सामान्य सेवा में करें', 'परवाना मिळाला: सामान्य सेवेत करा'],
   ev_LIFT_MODE_SET: ['Lift mode set', 'लिफ्ट मोड तय', 'लिफ्ट मोड ठरवला'],
+  cfg_amcCompPrice: ['Comprehensive AMC price per year (parts included), ₹ (0 = not offered)', 'कॉम्प्रिहेंसिव AMC कीमत प्रति वर्ष (पुर्ज़े सहित), ₹ (0 = नहीं)', 'कॉम्प्रिहेन्सिव्ह AMC किंमत दरवर्षी (भागांसह), ₹ (0 = नाही)'],
+  amc_comp: ['Comprehensive (parts included)', 'कॉम्प्रिहेंसिव (पुर्ज़े सहित)', 'कॉम्प्रिहेन्सिव्ह (भागांसह)'],
+  amc_noncomp: ['Non-comprehensive (parts paid separately)', 'नॉन-कॉम्प्रिहेंसिव (पुर्ज़े अलग से)', 'नॉन-कॉम्प्रिहेन्सिव्ह (भाग वेगळे)'],
+  s_amc_plan: ['Which maintenance contract?', 'कौन-सा रखरखाव अनुबंध?', 'कोणता देखभाल करार?'],
+  ap_visits: ['{n} service visits a year', 'साल में {n} सर्विस विज़िट', 'वर्षात {n} सर्व्हिस भेटी'],
+  ap_breakdown: ['Breakdown calls', 'ब्रेकडाउन कॉल', 'ब्रेकडाउन कॉल'],
+  ap_labour: ['Labour for repairs', 'मरम्मत की मज़दूरी', 'दुरुस्तीची मजुरी'],
+  ap_parts: ['Spare parts (not ropes)', 'पुर्ज़े (रस्सी नहीं)', 'सुटे भाग (दोर नाही)'],
+  ap_rope: ['Ropes and major parts', 'रस्सी और बड़े पुर्ज़े', 'दोर आणि मोठे भाग'],
+  ap_year: ['Price per year', 'प्रति वर्ष कीमत', 'दरवर्षी किंमत'],
+  ap_note: ['Damage from misuse, water or fire is not covered in either.', 'गलत इस्तेमाल, पानी या आग से नुकसान किसी में शामिल नहीं।', 'चुकीचा वापर, पाणी किंवा आगीमुळे नुकसान दोन्हीत समाविष्ट नाही.'],
+  ap_to: ['For {name}, {site}. Your current contract ends on {d}.', '{name}, {site} के लिए। आपका अभी का अनुबंध {d} को खत्म।', '{name}, {site} साठी. तुमचा सध्याचा करार {d} रोजी संपतो.'],
+  doc_amcoffer: ['Maintenance contract offer', 'रखरखाव अनुबंध प्रस्ताव', 'देखभाल करार प्रस्ताव'],
+  s_svc_qr: ['Lift code from the sticker', 'स्टिकर से लिफ्ट कोड', 'स्टिकरवरून लिफ्ट कोड'],
+  s_svc_qr_d: ['Type the 6-letter code printed under the QR sticker inside the car or machine room. It proves the visit was on this lift.', 'कार या मशीन रूम में QR स्टिकर के नीचे छपा 6 अक्षर का कोड लिखें। इससे पता चलता है कि विज़िट इसी लिफ्ट पर हुई।', 'कार किंवा मशीन रूममधील QR स्टिकरखाली छापलेला 6 अक्षरी कोड लिहा. यावरून भेट याच लिफ्टवर झाल्याचे सिद्ध होते.'],
+  svc_qr: ['Lift code', 'लिफ्ट कोड', 'लिफ्ट कोड'],
+  err_lift_code: ['That is not this lift\'s code. Read it from the sticker on this lift.', 'यह इस लिफ्ट का कोड नहीं। इसी लिफ्ट के स्टिकर से पढ़ें।', 'हा या लिफ्टचा कोड नाही. याच लिफ्टच्या स्टिकरवरून वाचा.'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5242,7 +5259,7 @@ const CFG_LIMITS = (() => {
   set(['gst'], 0, 28); set(['targetMargin'], 1, 90); set(['minMargin'], 0, 90); set(['salesDiscountLimit', 'adminDiscountLimit'], 0, 50); set(['negStep'], 1, 25);
   set(['token'], 0, 500000); set(['arrivalPct', 'cabinPct', 'leadWonPct', 'cancelBefore', 'cancelAfter', 'dupCommission', 'qcRecheckPct', 'spotTrainee', 'spotTech', 'spotSenior'], 0, 100);
   set(['tokenMode', 'dailySafety', 'licenceGate', 'permitGate', 'peerCheck', 'checkinGate', 'dualControl', 'requireTraining', 'sundayWork'], 0, 1);
-  set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'civilMin', 'civilMax'], 0, 2000000);
+  set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'amcCompPrice', 'civilMin', 'civilMax'], 0, 2000000);
   set(['reservePct'], 0, 90); set(['reserveRelease'], 1, 100); set(['agreeVersion'], 1, 99);
   set(['installDays'], 1, 180); set(['warrantyMonths'], 0, 120); set(['amcVisits'], 0, 24); set(['validityDays'], 1, 365); set(['poAnswerHours'], 1, 168); set(['dbgTol'], 0.1, 5); set(['balLo', 'balHi'], 30, 70); set(['earthMax'], 0.1, 10); set(['costArd', 'costCurtain', 'costPremium'], 0, 5000000); set(['lowPit'], 300, 3000); set(['lowHead'], 2000, 6000); set(['costSpecial'], 0, 5000000); set(['firstContactHours'], 1, 48); set(['idleDays'], 14, 365); set(['amcYearly'], 0, 500000); set(['powerYearly'], 0, 200000); set(['retentionPct'], 0, 20); set(['retentionDays'], 0, 365); set(['acceptMins'], 2, 240); set(['poDays'], 1, 120);
   set(['lvHelperJobs', 'lvTechJobs', 'lvSeniorJobs', 'lvQcJobs', 'lvHelperReviews', 'lvTechReviews', 'lvSeniorReviews', 'lvQcReviews', 'partnerBigJobs'], 0, 500);
@@ -5327,6 +5344,9 @@ const readText = (rd, step) => { const k = SOP_READ[step]; return !rd ? '' : k =
 /* a working lift without its licence: nobody may use it; the controller stays in inspection mode until the licence */
 const unlicensed = P => ['final_pay', 'handover', 'amc'].includes(P.stage) && !liftLicenceOk(P);
 const noLicBanner = P => unlicensed(P) ? `<div class="err" role="alert" style="font-size:1.05rem">🚫 <b>${t('nl_title')}</b><br>${t('nl_say')}${P.liftMode && P.liftMode.mode === 'inspection' ? '<br>🔒 ' + t('nl_mode_since', { d: fmtD(P.liftMode.t) }) : ''}<br><button class="btn btn-sm" style="margin-top:6px" data-a="openDocP" data-v="${P.id}|nolicence">🖨️ ${t('doc_nolicence')}</button></div>` : '';
+/* service visits on lifts handed over from now are saved only with the code from the lift's own sticker */
+const svcQrNeeded = P => !!(P.done && P.lift && P.done.t >= JOURNEY_FROM);
+const normCode = x => String(x || '').toUpperCase().replace(/[^0-9A-Z]/g, '');
 const FAULTS = ['trapped', 'door_close', 'door_reopen', 'level', 'noise', 'no_power'];
 const SITE_CANT = ['no_show', 'unsafe'];
 const floorGaps = P => Math.max(1, Math.min(59, (+(P.req && P.req.stops) || 2) - 1));
@@ -5400,7 +5420,7 @@ const DEFAULT_CONFIG = {
   cap4: 0, cap6: 20000, cap8: 40000, cap10: 60000, cap13: 90000,
   install: 60000, transport: 15000, gst: 18,
   targetMargin: 60, salesDiscountLimit: 8, adminDiscountLimit: 18, minMargin: 20, negStep: 5,
-  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, dbgTol: 1, balLo: 45, balHi: 50, earthMax: 2, costArd: 35000, costCurtain: 12000, costPremium: 150000, lowPit: 1400, lowHead: 3900, costSpecial: 0, firstContactHours: 2, idleDays: 90, amcYearly: 0, powerYearly: 0, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
+  token: 10000, tokenMode: 0, arrivalPct: 90, cabinPct: 0, payLeadValid: 0, leadWonPct: 0, installDays: 14, warrantyMonths: 12, amcVisits: 4, validityDays: 30, reservePct: 0, reserveRelease: 10, agreeVersion: 1, refReward: 0, poAnswerHours: 24, acceptMins: 15, amcCompPrice: 0, dbgTol: 1, balLo: 45, balHi: 50, earthMax: 2, costArd: 35000, costCurtain: 12000, costPremium: 150000, lowPit: 1400, lowHead: 3900, costSpecial: 0, firstContactHours: 2, idleDays: 90, amcYearly: 0, powerYearly: 0, retentionPct: 0, retentionDays: 90, civilMin: 60000, civilMax: 150000, cancelBefore: 0, cancelAfter: 0, dupCommission: 10,
   lvHelperJobs: 3, lvHelperStars: 3.5, lvHelperReviews: 3, lvHelperDays: 30,
   lvTechJobs: 8, lvTechStars: 4, lvTechReviews: 8, lvTechTrust: 60, lvTechDays: 90,
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
@@ -5433,7 +5453,7 @@ const RULE_GROUPS = {
   privacy: ['officeNumber', 'cityCode', 'accessAlert'],
   ladderpay: ['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior', 'payCrewJob', 'payQcInspection', 'spotTrainee', 'spotTech', 'spotSenior'],
   techpay: ['paySopStep', 'payQcBonus', 'payAmcVisit'],
-  amc: ['amcPrice'],
+  amc: ['amcPrice', 'amcCompPrice'],
   tickets: ['slaUnsafe', 'slaBreakdown', 'slaRepeat', 'slaRoutine']
 };
 const groupOf = key => Object.keys(RULE_GROUPS).find(g => RULE_GROUPS[g].includes(key));
@@ -7095,6 +7115,7 @@ const RULES = {
       if (stopIncidents(P).length) return 'err_work_stopped';
       if (S.config.licenceGate && !liftLicenceOk(P, ev.t)) return 'err_lift_licence';
       if (!AMC_CHECKS.every(k => ['pass', 'fail'].concat(ev.t >= LIFE_FROM ? ['fair'] : []).includes((ev.data.checks || {})[k]))) return 'err_checks';
+      if (svcQrNeeded(P) && normCode(ev.data.qr) !== normCode(P.lift.code)) return 'err_lift_code';
       return need(ev_(ev.data).length >= 1, 'err_photos', { n: 1 });
     }
   },
@@ -7168,7 +7189,7 @@ const RULES = {
   },
   AMC_ENDED: { roles: ['sales', 'admin', 'owner'], project: true, stages: ['amc'], check: (S, ev, u, P) => P.amcEnded ? 'err_already' : need((ev.data.reason || '').trim(), 'err_reason') },
   AMC_RENEWED: {
-    roles: ['sales', 'admin', 'owner'], project: true, stages: ['amc'], check: (S, ev) =>
+    roles: ['sales', 'admin', 'owner'], project: true, stages: ['amc'], check: (S, ev) => ev.data.plan != null && !['comp', 'noncomp'].includes(ev.data.plan) ? 'err_choose' :
       need([1, 2, 3].includes(+ev.data.years) && +ev.data.amount >= 0 && ev.data.amount !== '', 'err_fill')
   },
   /* escalation: what the Owner/Admin did about stuck work */
@@ -7837,7 +7858,7 @@ function apply(S, ev) {
     case 'TEMPLATE_DELETED': delete S.templates[d.tid]; break;
     case 'MSG_LOGGED': P.msgs.push({ id: d.mid, t: ev.t, by: ev.by, template: d.template || '', text: d.text || '', lang: d.lang || '', status: 'opened', hist: [] }); break;
     case 'MSG_STATUS': { const m = P.msgs.find(x => x.id === d.mid); m.status = d.status; m.hist.push({ status: d.status, t: ev.t, by: ev.by, note: d.note || '' }); break; }
-    case 'SERVICE_DONE': P.service[d.visit] = { t: ev.t, by: ev.by, checks: d.checks, note: d.note || '', met: d.met || '', ev: ev_(d).map(e => e.id) }; break;
+    case 'SERVICE_DONE': P.service[d.visit] = { t: ev.t, by: ev.by, checks: d.checks, note: d.note || '', met: d.met || '', ev: ev_(d).map(e => e.id), qr: !!d.qr }; break;
     case 'TICKET_OPENED': {
       /* a fault that comes back within 30 days of an earlier breakdown is a repeat fault */
       const back = d.kind !== 'request' && P.tickets.some(o => o.kind === 'breakdown' && Date.parse(ev.t) - Date.parse(o.t) < 30 * 864e5);
@@ -7860,7 +7881,7 @@ function apply(S, ev) {
       const from = P.amcEnd && P.amcEnd > ev.t.slice(0, 10) ? P.amcEnd : ev.t.slice(0, 10), n = Math.max(1, S.config.amcVisits) * +d.years, gap = Math.round(365 * +d.years / n);
       const visits = Array.from({ length: n }, (_, i) => addDays(gap * (i + 1), new Date(from + 'T12:00:00')));
       P.done.amc.visits.push(...visits); P.amcEnd = addDays(365 * +d.years, new Date(from + 'T12:00:00'));
-      P.renewals.push({ t: ev.t, by: ev.by, years: +d.years, amount: +d.amount, from, to: P.amcEnd, note: d.note || '' });
+      P.renewals.push({ t: ev.t, by: ev.by, years: +d.years, amount: +d.amount, from, to: P.amcEnd, note: d.note || '', plan: d.plan || '' });
       break;
     }
     case 'SUPPLIER_INVOICE': (P.invoices = P.invoices || []).push({ id: d.iid, no: d.no, amount: +d.amount, gst: +d.gst, date: d.date, ev: ev_(d).map(e => e.id), status: 'submitted', by: ev.by, t: ev.t, deduct: 0, hist: [] }); break;
@@ -12487,10 +12508,10 @@ SCREENS.doc = ({ pid, kind, v }) => {
   if (kind === 'po' && !['owner', 'admin', 'supplier'].includes(App.me.role)) return SCREENS.home();
   if (kind === 'grn' && !['owner', 'admin', 'supplier', 'finance', 'tech'].includes(App.me.role)) return SCREENS.home();
   if (['cert', 'bundle'].includes(kind) && !['owner', 'admin', 'qc', 'customer'].includes(App.me.role) && App.me.uid !== statLead()) return SCREENS.home();
-  const ready = { quote: P.quotes.length > 0, agreement: !!P.agreement, handover: !!P.done, po: !!P.po, cert: !!lastPass(P), warranty: !!P.done, bundle: !!P.done, resolution: !!P.society, committee: !!P.society && P.quotes.some(q => q.sent), notice: true, nolicence: unlicensed(P), grn: !!P.mhand, charge: (P.charges || []).length > 0, gad: !!P.gad || P.stage === 'site_ok' }[kind];
+  const ready = { quote: P.quotes.length > 0, agreement: !!P.agreement, handover: !!P.done, po: !!P.po, cert: !!lastPass(P), warranty: !!P.done, bundle: !!P.done, resolution: !!P.society, committee: !!P.society && P.quotes.some(q => q.sent), notice: true, nolicence: unlicensed(P), amcoffer: !!P.done && +S.config.amcCompPrice > 0, grn: !!P.mhand, charge: (P.charges || []).length > 0, gad: !!P.gad || P.stage === 'site_ok' }[kind];
   if (!ready) return topBar(t('doc_' + kind), { back: true }) + `<main class="wrap"><div class="card center">${t('no_docs_yet')}</div></main>`;
   if (kind === 'quote' && App.me.role === 'customer') { const sent = P.quotes.filter(q => q.sent); if (!sent.length) return SCREENS.home(); if (!sent.some(q => q.v === +v)) v = sent[sent.length - 1].v; }
-  const html = kind === 'quote' ? docQuote(P, v) : kind === 'agreement' ? docAgreement(P) : kind === 'po' ? docPO(P) : kind === 'cert' ? docCert(P) : kind === 'warranty' ? docWarranty(P) : kind === 'resolution' ? docResolution(P) : kind === 'committee' ? docCommittee(P) : kind === 'grn' ? docGrn(P) : kind === 'gad' ? docGad(P) : kind === 'nolicence' ? docNoLicence(P) : kind === 'charge' ? docCharge(P) : kind === 'notice' ? docNotice(P) : kind === 'bundle' ? docBundle(P) : docHandover(P);
+  const html = kind === 'quote' ? docQuote(P, v) : kind === 'agreement' ? docAgreement(P) : kind === 'po' ? docPO(P) : kind === 'cert' ? docCert(P) : kind === 'warranty' ? docWarranty(P) : kind === 'resolution' ? docResolution(P) : kind === 'committee' ? docCommittee(P) : kind === 'grn' ? docGrn(P) : kind === 'gad' ? docGad(P) : kind === 'nolicence' ? docNoLicence(P) : kind === 'amcoffer' ? docAmcOffer(P) : kind === 'charge' ? docCharge(P) : kind === 'notice' ? docNotice(P) : kind === 'bundle' ? docBundle(P) : docHandover(P);
   return topBar(t('doc_' + kind), { back: true }) + `<main class="wrap"><div class="row noprint" style="margin-bottom:10px"><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button><button class="btn" data-a="sayDoc">🔊 ${t('listen')}</button></div><div class="doc" id="docbody">${html}</div></main>`;
 };
 
@@ -13180,22 +13201,23 @@ function amcCard(P) {
   const out = P.amcEnded || (P.amcEnd && P.amcEnd < todayStr());
   return `<div class="card"><h3>🛠️ ${t('amc_title')}</h3>${out ? `<div class="warnbox">🛑 ${t('amc_out')}${P.amcEnded ? ' · ' + esc(P.amcEnded.reason) : ''}</div>` : ''}${kv([['amc_until', P.amcEnd ? fmtD(P.amcEnd) : ''], ['warranty', t('months_n', { n: P.done.warrantyMonths })]])}
     <h3 style="margin-top:10px">${t('amc_visits')}</h3>${P.done.amc.visits.length ? amcBars(P) : ''}${visits}
-    ${P.renewals.length ? `<div class="small muted" style="margin-top:6px">${P.renewals.map(r => `♻️ ${fmtD(r.t)} · ${r.years} ${t('years')} · ${money(r.amount)} · ${esc(userName(r.by))}`).join('<br>')}</div>` : ''}
-    ${allowed('AMC_RENEWED', P) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="renew|${P.id}">♻️ ${t('tk_amc_renew')}</button>` : ''}
+    ${P.renewals.length ? `<div class="small muted" style="margin-top:6px">${P.renewals.map(r => `♻️ ${fmtD(r.t)} · ${r.years} ${t('years')} · ${money(r.amount)}${r.plan ? ' · ' + t('amc_' + r.plan) : ''} · ${esc(userName(r.by))}`).join('<br>')}</div>` : ''}
+    ${allowed('AMC_RENEWED', P) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="renew|${P.id}">♻️ ${t('tk_amc_renew')}</button>` : ''}${+S.config.amcCompPrice > 0 && seeF(App.me, 'money') ? `<button class="btn btn-sm" style="margin-top:8px" data-a="openDocP" data-v="${P.id}|amcoffer">📄 ${t('doc_amcoffer')}</button>` : ''}
     ${P.lift && ['owner', 'admin', 'sales', 'qc'].includes(u.role) ? `<button class="btn btn-sm" style="margin-top:8px" data-a="liftQr" data-v="${P.id}">🔳 ${t('lift_qr')} · ${esc(P.lift.code)}</button>` : ''}
     <h3 style="margin-top:12px">🎫 ${t('tickets')}</h3>${tk || `<p class="muted small">${t('nothing_here')}</p>`}
     ${allowed('TICKET_OPENED', P) ? `<button class="btn" style="margin-top:8px" data-a="wizOpen" data-v="ticket|${P.id}">🚨 ${t('ticket_new')}</button>` : ''}</div>`;
 }
 WIZ.service = {
-  title: 'tk_amc_visit', save: 'save', saveIcon: '🔧', init: () => ({ checks: {}, ph: [], met: '', note: '' }),
+  title: 'tk_amc_visit', save: 'save', saveIcon: '🔧', init: () => ({ qr: '', checks: {}, ph: [], met: '', note: '' }),
   steps: [
+    { id: 'qr', icon: '🔳', say: 's_svc_qr', skip: (c, P) => !svcQrNeeded(P), body: () => `<p class="say">${t('s_svc_qr_d')}</p>` + inp('qr', 'svc_qr', { big: true, max: 12 }), check: (c, P) => normCode(c.qr) === normCode(P.lift.code) ? null : 'err_lift_code' },
     { id: 'checks', icon: '✔️', say: 's_svc_checks', body: () => `<p class="small muted">${t('amc_fair_d')}</p><div class="card">${AMC_CHECKS.map(k => ynRow('checks.' + k, 'amc_' + k, ['pass', 'fair', 'fail'])).join('')}</div>`, check: c => AMC_CHECKS.every(k => c.checks[k]) ? null : 'err_checks' },
     { id: 'photos', icon: '📷', say: 's_svc_photos', body: () => photoSlot('ph', 'ph_service', 1, { video: true, tag: 'amc' }), check: c => c.ph.length ? null : { k: 'err_photos', v: { n: 1 } } },
     { id: 'note', icon: '📝', say: 's_svc_note', body: c => inp('met', 'f_met', { mic: true, opt: true }) + inp('note', 'f_note', { area: true, mic: true, opt: true }) + (AMC_CHECKS.some(k => c.checks[k] === 'fail') ? `<div class="warnbox">🎫 ${t('svc_ticket_auto')}</div>` : '') }
   ],
   async finish(c, P) {
     const fails = AMC_CHECKS.filter(k => c.checks[k] === 'fail');
-    const list = [['SERVICE_DONE', P.id, { visit: W.opts.visit, checks: c.checks, met: c.met, note: c.note, ev: c.ph }]];
+    const list = [['SERVICE_DONE', P.id, Object.assign({ visit: W.opts.visit, checks: c.checks, met: c.met, note: c.note, ev: c.ph }, svcQrNeeded(P) ? { qr: c.qr } : {})]];
     if (fails.length) list.push(['TICKET_OPENED', P.id, { tid: 'T-' + rid(5), kind: 'request', text: t('svc_repair') + ': ' + fails.map(k => t('amc_' + k)).join(', ') }]);
     const r = await run(list); return r.ok ? doneRes(P.id, 'what_service_done') : r;
   }
@@ -13260,14 +13282,22 @@ WIZ.ticketClose = {
   }],
   async finish(c, P) { const r = await run([['TICKET_CLOSED', P.id, Object.assign({ tid: W.opts.tid, ok: c.ok === 'yes', note: c.note }, c.fault ? { fault: c.fault } : {})]]); return r.ok ? doneRes(P.id, c.ok === 'yes' ? 'what_ticket_closed' : 'what_ticket_reopened') : r; }
 };
+function amcPlans() {
+  return `<table class="mx"><tr><th></th><th>🛠️ ${t('amc_noncomp')}</th><th>🛡️ ${t('amc_comp')}</th></tr>${[['ap_visits', '✅', '✅'], ['ap_breakdown', '✅', '✅'], ['ap_labour', '✅', '✅'], ['ap_parts', '—', '✅'], ['ap_rope', '—', '✅']].map(([k, a, b]) => `<tr><td>${t(k, { n: S.config.amcVisits })}</td><td>${a}</td><td>${b}</td></tr>`).join('')}
+    <tr><td><b>${t('ap_year')}</b></td><td><b>${money(+S.config.amcPrice)}</b></td><td><b>${money(+S.config.amcCompPrice)}</b></td></tr></table><p class="small muted">${t('ap_note')}</p>`;
+}
+function docAmcOffer(P) { return docHead(P, t('doc_amcoffer'), `${jobNo(P)}-AMC`) + `<p>${esc(t('ap_to', { name: P.contact.name, site: P.site.address, d: P.amcEnd ? fmtD(P.amcEnd) : '' }))}</p>` + amcPlans(); }
 WIZ.renew = {
-  title: 'tk_amc_renew', save: 'save', init: () => ({ years: '1', amount: S.config.amcPrice, note: '' }),
+  title: 'tk_amc_renew', save: 'save', init: () => ({ plan: +S.config.amcCompPrice > 0 ? '' : 'noncomp', years: '1', amount: S.config.amcPrice, note: '' }),
   steps: [{
+    id: 'p', icon: '🛠️', say: 's_amc_plan', skip: () => !(+S.config.amcCompPrice > 0), body: c => amcPlans() + tiles('plan', [['noncomp', '🛠️', 'amc_noncomp'], ['comp', '🛡️', 'amc_comp']], 'one'),
+    check: c => { if (!c.plan) return 'err_choose'; c.amount = String((c.plan === 'comp' ? +S.config.amcCompPrice : +S.config.amcPrice) * (+c.years || 1)); return null; }
+  }, {
     id: 'y', icon: '♻️', say: 's_renew',
     body: c => tiles('years', [['1', '1️⃣', 'years_1'], ['2', '2️⃣', 'years_2'], ['3', '3️⃣', 'years_3']], 'three') + inp('amount', 'f_amc_amount', { type: 'number', mode: 'numeric', big: true }) + `<p class="small muted">${t('amc_price_hint', { p: money(S.config.amcPrice) })} ${ruleChip('amc')}</p>` + inp('note', 'f_note', { opt: true }),
     check: c => +c.amount >= 0 && c.amount !== '' ? null : 'err_number'
   }],
-  async finish(c, P) { const r = await run([['AMC_RENEWED', P.id, { years: +c.years, amount: +c.amount, note: c.note }]]); return r.ok ? doneRes(P.id, 'what_renewed') : r; }
+  async finish(c, P) { const r = await run([['AMC_RENEWED', P.id, Object.assign({ years: +c.years, amount: +c.amount, note: c.note }, +S.config.amcCompPrice > 0 ? { plan: c.plan } : {})]]); return r.ok ? doneRes(P.id, 'what_renewed') : r; }
 };
 
 /* ---------- two-person approval ---------- */
