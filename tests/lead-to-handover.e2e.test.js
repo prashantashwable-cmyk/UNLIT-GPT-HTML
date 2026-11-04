@@ -314,6 +314,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await login('Fiona Finance'); await startTask('verify_payment'); await pick('status', 'confirmed'); await next(); await fill('ref', 'STMT-2001'); await next();
   assert(await stage(pid) === 'handover', 'handover');
 
+  /* --- 11b. no licence yet: the technician leaves the controller in inspection mode (photo) --- */
+  await login('Tara Tech'); await startTask('set_insp_mode'); await photo('ph'); await next(); await doneOk('inspection mode');
+
   /* --- 12. handover: customer, technician, QC sign; QC completes --- */
   for (const [who, slot] of [['Mr. Deshmukh', 'customer'], ['Tara Tech', 'tech'], ['Quinn QC', 'qc']]) {
     await login(who); await startTask('sign_handover');

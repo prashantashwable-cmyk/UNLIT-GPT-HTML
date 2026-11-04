@@ -3319,6 +3319,19 @@ const L = {
   err_bal: ['Balance must be between {a}% and {b}%: adjust the counterweight.', 'बैलेंस {a}% से {b}% के बीच हो: काउंटरवेट ठीक करें।', 'बॅलन्स {a}% ते {b}% दरम्यान असावा: काउंटरवेट जुळवा.'],
   err_earth: ['Earthing above {n} Ω: improve the earthing first.', 'अर्थिंग {n} Ω से ज़्यादा: पहले अर्थिंग सुधारें।', 'अर्थिंग {n} Ω पेक्षा जास्त: आधी अर्थिंग सुधारा.'],
   err_limit_sw: ['Every limit switch and the overload sensor must be tested and working.', 'हर लिमिट स्विच और ओवरलोड सेंसर टेस्ट होकर चालू हों।', 'प्रत्येक लिमिट स्विच आणि ओव्हरलोड सेन्सर तपासून चालू असावेत.'],
+  nl_title: ['DO NOT USE THIS LIFT', 'इस लिफ्ट का इस्तेमाल न करें', 'ही लिफ्ट वापरू नका'],
+  nl_say: ['The lift is not yet licensed by the Lift Inspector. Nobody (residents, workers, visitors) may use it until the licence is issued.', 'लिफ्ट को अभी लिफ्ट इंस्पेक्टर का लाइसेंस नहीं मिला। लाइसेंस मिलने तक कोई (निवासी, मज़दूर, मेहमान) इसका इस्तेमाल न करे।', 'लिफ्टला अजून लिफ्ट इन्स्पेक्टरचा परवाना मिळालेला नाही. परवाना मिळेपर्यंत कोणीही (रहिवासी, कामगार, पाहुणे) ती वापरू नये.'],
+  nl_notice: ['Not yet licensed by the Lift Inspector. Use of this lift before the licence is not allowed and is at the building owner\'s risk.', 'लिफ्ट इंस्पेक्टर का लाइसेंस अभी नहीं। लाइसेंस से पहले इस लिफ्ट का इस्तेमाल मना है और इमारत मालिक के जोखिम पर है।', 'लिफ्ट इन्स्पेक्टरचा परवाना अजून नाही. परवान्यापूर्वी ही लिफ्ट वापरण्यास मनाई आहे आणि ते इमारत मालकाच्या जोखमीवर आहे.'],
+  nl_mode_since: ['The controller is kept in inspection mode since {d}.', 'कंट्रोलर {d} से इंस्पेक्शन मोड में रखा है।', 'कंट्रोलर {d} पासून इन्स्पेक्शन मोडमध्ये ठेवला आहे.'],
+  doc_nolicence: ['Print "Do not use" notice for landing doors', 'लैंडिंग दरवाज़ों के लिए "इस्तेमाल न करें" सूचना छापें', 'लँडिंग दारांसाठी "वापरू नका" सूचना छापा'],
+  lm_title: ['Lift mode', 'लिफ्ट मोड', 'लिफ्ट मोड'],
+  lm_insp_say: ['No licence yet: leave the controller in inspection mode and take a photo of the switch / display.', 'अभी लाइसेंस नहीं: कंट्रोलर को इंस्पेक्शन मोड में रखें और स्विच / डिस्प्ले की फोटो लें।', 'अजून परवाना नाही: कंट्रोलर इन्स्पेक्शन मोडमध्ये ठेवा आणि स्विच / डिस्प्लेचा फोटो घ्या.'],
+  lm_normal_say: ['The licence is recorded: switch the controller to normal service and take a photo.', 'लाइसेंस दर्ज है: कंट्रोलर को सामान्य सेवा में करें और फोटो लें।', 'परवाना नोंदला आहे: कंट्रोलर सामान्य सेवेत करा आणि फोटो घ्या.'],
+  lm_ph_insp: ['Controller in inspection mode', 'कंट्रोलर इंस्पेक्शन मोड में', 'कंट्रोलर इन्स्पेक्शन मोडमध्ये'],
+  lm_ph_normal: ['Controller in normal service', 'कंट्रोलर सामान्य सेवा में', 'कंट्रोलर सामान्य सेवेत'],
+  tk_set_insp_mode: ['No licence: keep the lift in inspection mode', 'लाइसेंस नहीं: लिफ्ट इंस्पेक्शन मोड में रखें', 'परवाना नाही: लिफ्ट इन्स्पेक्शन मोडमध्ये ठेवा'],
+  tk_set_normal_mode: ['Licence received: switch to normal service', 'लाइसेंस मिला: सामान्य सेवा में करें', 'परवाना मिळाला: सामान्य सेवेत करा'],
+  ev_LIFT_MODE_SET: ['Lift mode set', 'लिफ्ट मोड तय', 'लिफ्ट मोड ठरवला'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5311,6 +5324,9 @@ function readWhyNot(P, step, rd, at) {
 /* good readings for a step (practice data and tests) */
 const readYes = (step, P) => { const k = SOP_READ[step]; return k === 'dbg' ? { nominal: 1600, levels: Array.from({ length: Math.max(2, +((P || {}).req || {}).stops || 2) }, () => 1600.3) } : k === 'bal' ? { balance: 47.5 } : k === 'earth' ? { ohm: 0.8 } : k === 'final' ? { ard: 24, sw: Object.fromEntries(LIMIT_SW.map(x => [x, 'yes'])) } : undefined; };
 const readText = (rd, step) => { const k = SOP_READ[step]; return !rd ? '' : k === 'dbg' ? t('rd_nominal') + ' ' + rd.nominal + ' · ' + (rd.levels || []).join(' / ') + ' mm' : k === 'bal' ? rd.balance + '%' : k === 'earth' ? rd.ohm + ' Ω' : 'ARD ' + rd.ard + ' V · ' + LIMIT_SW.filter(x => (rd.sw || {})[x] === 'yes').length + '/' + LIMIT_SW.length; };
+/* a working lift without its licence: nobody may use it; the controller stays in inspection mode until the licence */
+const unlicensed = P => ['final_pay', 'handover', 'amc'].includes(P.stage) && !liftLicenceOk(P);
+const noLicBanner = P => unlicensed(P) ? `<div class="err" role="alert" style="font-size:1.05rem">🚫 <b>${t('nl_title')}</b><br>${t('nl_say')}${P.liftMode && P.liftMode.mode === 'inspection' ? '<br>🔒 ' + t('nl_mode_since', { d: fmtD(P.liftMode.t) }) : ''}<br><button class="btn btn-sm" style="margin-top:6px" data-a="openDocP" data-v="${P.id}|nolicence">🖨️ ${t('doc_nolicence')}</button></div>` : '';
 const FAULTS = ['trapped', 'door_close', 'door_reopen', 'level', 'noise', 'no_power'];
 const SITE_CANT = ['no_show', 'unsafe'];
 const floorGaps = P => Math.max(1, Math.min(59, (+(P.req && P.req.stops) || 2) - 1));
@@ -6599,6 +6615,14 @@ const RULES = {
       if (ev.data.how === 'waived') return u.role !== 'owner' ? { k: 'err_role', v: { roles: rolesTxt(['owner']) } } : need((ev.data.note || '').trim(), 'err_reason');
       if (ev.data.how !== 'paid') return 'err_choose';
       return need((ev.data.ref || '').trim(), 'err_ref');
+    }
+  },
+  LIFT_MODE_SET: {
+    roles: ['tech', 'qc', 'admin', 'owner'], project: true, stages: ['qc_final', 'final_pay', 'handover', 'amc'], check: (S, ev, u, P) => {
+      if (u.role === 'tech' && P.tech !== u.uid) return 'err_access';
+      if (!['inspection', 'normal'].includes(ev.data.mode)) return 'err_choose';
+      if (ev.data.mode === 'normal' && !liftLicenceOk(P, ev.t)) return 'err_lift_licence';
+      return need(ev_(ev.data, 'photo').length >= 1, 'err_photos', { n: 1 });
     }
   },
   RELEASED: {
@@ -7939,6 +7963,7 @@ function apply(S, ev) {
     case 'DAMAGE_DECIDED': { const x = P.damages.find(y => y.id === d.did); x.decided = { who: d.who, amount: +d.amount || 0, uid: d.uid || null, note: d.note, by: ev.by, t: ev.t };
       if (d.who === 'builder') (P.charges = P.charges || []).push({ id: 'CH-' + d.did.slice(2), did: d.did, amount: +d.amount, note: d.note, t: ev.t, by: ev.by, status: 'due' }); break; }
     case 'CHARGE_SETTLED': Object.assign(P.charges.find(y => y.id === d.cid), { status: d.how, ref: d.ref || '', settleNote: d.note || '', settledBy: ev.by, settledT: ev.t }); break;
+    case 'LIFT_MODE_SET': P.liftMode = { mode: d.mode, t: ev.t, by: ev.by, ev: ev_(d, 'photo').map(e => e.id) }; break;
     case 'SITE_GROUP_SET': P.group = { gid: d.gid, name: d.name.trim(), tower: String(d.tower || '').trim(), t: ev.t, by: ev.by }; break;
     case 'SOC_VOTED': P.society.votes = Object.assign({}, P.society.votes, { [d.name]: { v: d.v, t: ev.t, by: ev.by, note: d.note || '' } }); break;
     case 'SOC_APPROVED': P.society.approvals[d.name] = { t: ev.t, by: ev.by, sig: ev_(d, 'sign')[0].id }; break;
@@ -8147,6 +8172,9 @@ function needs0(P) {
   for (const m of P.chat) if (m.open && m.toRole) add('answer', m.kind === 'approval' ? ['owner', 'admin'] : uniq([m.toRole]), { mid: m.id, not: m.by, since: m.t, approval: m.kind === 'approval' });
   /* AMC: service visits due within 7 days, renewal within 30 days of the end date */
   if (P.stage === 'amc' && retDue(P) && retDue(P) <= todayStr()) payNeed('retention');
+  if (P.t >= JOURNEY_FROM && P.tech) { const m = (P.liftMode || {}).mode;
+    if (unlicensed(P) && m !== 'inspection') add('set_insp_mode', ['tech'], { uids: [P.tech], urgent: true });
+    else if (!unlicensed(P) && ['handover', 'amc'].includes(P.stage) && m === 'inspection') add('set_normal_mode', ['tech'], { uids: [P.tech] }); }
   for (const x of (P.damages || []).filter(y => !y.decided)) add('decide_damage', ['admin', 'owner'], { did: x.id, urgent: true, since: x.t });
   for (const c of chargesDue(P)) { add('charge_due', ['finance', 'admin'], { cid: c.id, urgent: true, since: c.t }); if (P.customer) add('pay_charge', ['customer'], { uids: [P.customer], cid: c.id, since: c.t }); }
   /* an enquiry nobody has moved for a long time: keep it with a follow-up date, or close it as lost */
@@ -8955,7 +8983,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -9961,6 +9989,12 @@ WIZ.gad = {
       check: c => !c.consent ? 'err_consent' : !(c.signer || '').trim() ? 'err_fill' : c.sig ? null : 'err_sign' }
   ],
   async finish(c, P) { const r = await run([['GAD_SIGNED', P.id, { ticks: c.ticks, powerBy: c.powerBy, consent: true, signer: c.signer.trim(), ev: [c.sig] }]]); return r.ok ? doneRes(P.id, 'gad_done') : r; }
+};
+WIZ.liftMode = {
+  title: 'lm_title', save: 'save', noDraft: true, init: () => ({ ph: [] }),
+  steps: [{ id: 'm', icon: '🔒', say: () => t(W.opts.mode === 'normal' ? 'lm_normal_say' : 'lm_insp_say'), body: () => `<p class="say">${t(W.opts.mode === 'normal' ? 'lm_normal_say' : 'lm_insp_say')}</p>` + photoSlot('ph', W.opts.mode === 'normal' ? 'lm_ph_normal' : 'lm_ph_insp', 1, { tag: 'liftmode' }),
+    check: c => c.ph.length ? null : { k: 'err_photos', v: { n: 1 } } }],
+  async finish(c, P) { const r = await run([['LIFT_MODE_SET', P.id, { mode: W.opts.mode, ev: c.ph }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
 };
 WIZ.ticketAccept = {
   title: 'tk_accept_ticket', save: 'tk_accept_ticket', saveIcon: '🙋', noDraft: true, init: () => ({}),
@@ -11585,7 +11619,7 @@ function customerHome() {
   App.pageSay = t('cust_say', { stage: stName(P.stage), next: nextLine(P) });
   const q = [...P.quotes].reverse().find(x => x.sent);
   const tile = (a, v, i, l) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`;
-  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}<div class="card"><b>${esc(jobNo(P))}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>${custPause(P)}${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
+  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}${noLicBanner(P)}<div class="card"><b>${esc(jobNo(P))}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>${custPause(P)}${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
     ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + tasks.map((n, i) => taskCard(n, i)).join('') : ''}
     ${payCard(P)}
     ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
@@ -11724,7 +11758,7 @@ SCREENS.project = ({ pid, tab }) => {
   App.pageSay = `${P.id}. ${stName(P.stage)}. ${nextLine(P)}`;
   App.tasks = mine;
   const body = { info: projInfo, timeline: projTimeline, chat: projChat, photos: projPhotos, money: projMoney, docs: projDocs }[tab] || projInfo;
-  return topBar(jobNo(P) + ' · ' + projTitle(P), { back: true }) + `<div class="wrap" style="padding-bottom:0"><div class="card">${phaseBar(P)}${jobBars(P)}<div style="margin-top:8px">${stageChip(P)} <span class="chip c-mute">🕒 ${t('days_n', { n: daysSince(P.since) })}</span></div>
+  return topBar(jobNo(P) + ' · ' + projTitle(P), { back: true }) + `<div class="wrap" style="padding-bottom:0">${noLicBanner(P)}<div class="card">${phaseBar(P)}${jobBars(P)}<div style="margin-top:8px">${stageChip(P)} <span class="chip c-mute">🕒 ${t('days_n', { n: daysSince(P.since) })}</span></div>
     <p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${waits.map(n => `<span class="chip c-info" style="margin-top:8px">⏳ ${esc(t('tk_' + n.k))}</span>`).join(' ')}${mine.map((n, i) => `<button class="btn btn-p" style="margin-top:8px" data-a="openTask" data-v="${i}">▶ ${esc(t('tk_' + n.k))}${n.slot ? ' · ' + t('slot_' + n.slot) : ''}</button>`).join('')}</div></div>
     <div class="tabs">${tabs.map(([k, i, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-v="${k}">${i} ${t(l)}</button>`).join('')}</div>
     <main class="wrap" style="padding-top:4px">${body(P)}</main>` + nav('projects');
@@ -12402,6 +12436,11 @@ function gadBody(P) {
     <h3>${t('gad_lift')}</h3>${reqKv(r)}
     <table><tr><th>${t('gad_ours')}</th><th>${t('gad_yours')}</th></tr><tr><td>${t('gad_ours_d')}</td><td style="color:var(--bad)">${t('gad_yours_d')}</td></tr></table>`;
 }
+function docNoLicence(P) {
+  return `<div style="text-align:center;border:6px solid #b91c1c;padding:18px;border-radius:12px">${['en', 'hi', 'mr'].map(l => { const e = k => (L[k] || [])[LANGS.indexOf(l)] || L[k][0];
+    return `<h1 style="color:#b91c1c;margin:6px 0">🚫 ${esc(e('nl_title'))}</h1><p style="font-size:1.1rem">${esc(e('nl_notice'))}</p>`; }).join('<hr>')}
+    <p class="small">${esc(S.org.name)} · ${esc(jobNo(P))} · ${esc(P.site.address)}</p></div>`;
+}
 function docGad(P) {
   const g = P.gad;
   return docHead(P, t('doc_gad'), `${jobNo(P)}-GAD`) + gadBody(P) + (g ? `<h3>${t('gad_promises')}</h3><ul style="padding-left:20px">${GAD_TICKS.map(k => `<li>✅ ${t('gad_t_' + k, { d: fmtD(g.powerBy) })}</li>`).join('')}</ul>
@@ -12448,10 +12487,10 @@ SCREENS.doc = ({ pid, kind, v }) => {
   if (kind === 'po' && !['owner', 'admin', 'supplier'].includes(App.me.role)) return SCREENS.home();
   if (kind === 'grn' && !['owner', 'admin', 'supplier', 'finance', 'tech'].includes(App.me.role)) return SCREENS.home();
   if (['cert', 'bundle'].includes(kind) && !['owner', 'admin', 'qc', 'customer'].includes(App.me.role) && App.me.uid !== statLead()) return SCREENS.home();
-  const ready = { quote: P.quotes.length > 0, agreement: !!P.agreement, handover: !!P.done, po: !!P.po, cert: !!lastPass(P), warranty: !!P.done, bundle: !!P.done, resolution: !!P.society, committee: !!P.society && P.quotes.some(q => q.sent), notice: true, grn: !!P.mhand, charge: (P.charges || []).length > 0, gad: !!P.gad || P.stage === 'site_ok' }[kind];
+  const ready = { quote: P.quotes.length > 0, agreement: !!P.agreement, handover: !!P.done, po: !!P.po, cert: !!lastPass(P), warranty: !!P.done, bundle: !!P.done, resolution: !!P.society, committee: !!P.society && P.quotes.some(q => q.sent), notice: true, nolicence: unlicensed(P), grn: !!P.mhand, charge: (P.charges || []).length > 0, gad: !!P.gad || P.stage === 'site_ok' }[kind];
   if (!ready) return topBar(t('doc_' + kind), { back: true }) + `<main class="wrap"><div class="card center">${t('no_docs_yet')}</div></main>`;
   if (kind === 'quote' && App.me.role === 'customer') { const sent = P.quotes.filter(q => q.sent); if (!sent.length) return SCREENS.home(); if (!sent.some(q => q.v === +v)) v = sent[sent.length - 1].v; }
-  const html = kind === 'quote' ? docQuote(P, v) : kind === 'agreement' ? docAgreement(P) : kind === 'po' ? docPO(P) : kind === 'cert' ? docCert(P) : kind === 'warranty' ? docWarranty(P) : kind === 'resolution' ? docResolution(P) : kind === 'committee' ? docCommittee(P) : kind === 'grn' ? docGrn(P) : kind === 'gad' ? docGad(P) : kind === 'charge' ? docCharge(P) : kind === 'notice' ? docNotice(P) : kind === 'bundle' ? docBundle(P) : docHandover(P);
+  const html = kind === 'quote' ? docQuote(P, v) : kind === 'agreement' ? docAgreement(P) : kind === 'po' ? docPO(P) : kind === 'cert' ? docCert(P) : kind === 'warranty' ? docWarranty(P) : kind === 'resolution' ? docResolution(P) : kind === 'committee' ? docCommittee(P) : kind === 'grn' ? docGrn(P) : kind === 'gad' ? docGad(P) : kind === 'nolicence' ? docNoLicence(P) : kind === 'charge' ? docCharge(P) : kind === 'notice' ? docNotice(P) : kind === 'bundle' ? docBundle(P) : docHandover(P);
   return topBar(t('doc_' + kind), { back: true }) + `<main class="wrap"><div class="row noprint" style="margin-bottom:10px"><button class="btn" data-a="print">🖨️ ${t('print_pdf')}</button><button class="btn" data-a="sayDoc">🔊 ${t('listen')}</button></div><div class="doc" id="docbody">${html}</div></main>`;
 };
 
@@ -14241,7 +14280,7 @@ function openTask(n) {
     record_payment: () => wiz('paynew', pid, { purpose: n.purpose }), verify_payment: () => wiz('payverify', pid, { payId: n.payId }),
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), decide_infeasible: () => wiz('infeasible', pid), approve_drawing: () => go('drawings', { pid }),
-    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), pre_survey: () => wiz('survey', pid), pick_option: () => go('project', { pid, tab: 'info' }), sign_gad: () => wiz('gad', pid), decide_damage: () => wiz('dmgDecide', pid, { did: n.did }), charge_due: () => wiz('chargeSettle', pid, { cid: n.cid }), pay_charge: () => go('doc', { pid, kind: 'charge' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
+    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), pre_survey: () => wiz('survey', pid), pick_option: () => go('project', { pid, tab: 'info' }), sign_gad: () => wiz('gad', pid), decide_damage: () => wiz('dmgDecide', pid, { did: n.did }), charge_due: () => wiz('chargeSettle', pid, { cid: n.cid }), pay_charge: () => go('doc', { pid, kind: 'charge' }), set_insp_mode: () => wiz('liftMode', pid, { mode: 'inspection' }), set_normal_mode: () => wiz('liftMode', pid, { mode: 'normal' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
