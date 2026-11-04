@@ -36,11 +36,12 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const r1 = await ev(`S.projects["${H}"].drawings.ref`);
   assert((await act('DRAWING_ADDED', H, { ref: r1, ev: await pages(2) }, 'PADMIN')).ok && await ev(`S.projects["${H}"].drawings.versions.length === 1 && S.projects["${H}"].drawings.versions[0].ev.length === 2`), 'pages for the released drawing number are added to it');
   assert((await act('DRAWING_ADDED', H, { ref: r1, ev: await pages(1) }, 'PADMIN')).err === 'err_dup_id', 'the same number is not added twice');
-  assert((await act('DRAWING_ADDED', H, { ref: 'DWG-P003-R2', note: 'Pit depth changed', ev: await pages(2) }, 'PADMIN')).ok && await ev(`S.projects["${H}"].drawings.ref === "DWG-P003-R2" && S.projects["${H}"].drawings.versions.length === 2`), 'a new version becomes current; the old one stays');
+  assert((await act('DRAWING_ADDED', H, { ref: 'DWG-P003-R2', note: 'Pit depth changed', ev: await pages(2) }, 'PADMIN')).ok && await ev(`S.projects["${H}"].drawings.ref === r1 || S.projects["${H}"].drawings.ref !== "DWG-P003-R2"`.replace('r1', JSON.stringify(r1))), 'a new version waits for approval; the team still works from the old one');
+  assert((await act('DRAWING_APPROVED', H, { ref: 'DWG-P003-R2' }, 'POWNER')).ok && await ev(`S.projects["${H}"].drawings.ref === "DWG-P003-R2" && S.projects["${H}"].drawings.versions.length === 2`), 'once a second person approves it, it becomes current; the old one stays');
 
   await page.evaluate(H => { loginAs(S.users.PADMIN); go('drawings', { pid: H }); }, H); await page.waitForTimeout(150);
   txt = await page.innerText('main');
-  assert(/DWG-P003-R2/.test(txt) && /Current version/.test(txt) && /Older versions/.test(txt) && await page.$('[data-a="wizOpen"][data-v^="drawingAdd|"]'), 'the office sees the current and older versions and can add one');
+  assert(/DWG-P003-R2/.test(txt) && /Approved: work from this/.test(txt) && /Older versions/.test(txt) && await page.$('[data-a="wizOpen"][data-v^="drawingAdd|"]'), 'the office sees the current and older versions and can add one');
   await page.evaluate(H => { loginAs(S.users[S.projects[H].tech]); ACT.permsDone(); Notify.hide(); go('project', { pid: H }); }, H); await page.waitForTimeout(150);
   await page.evaluate(H => { go('drawings', { pid: H }); }, H); await page.waitForTimeout(150);
   txt = await page.innerText('main');
@@ -50,6 +51,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* the customer */
   const C = await ev('Object.values(S.projects).find(P => P.customer === "PCUST").id');
   await act('DRAWING_ADDED', C, { ref: 'DWG-C-R2', ev: await pages(1) }, 'PADMIN');
+  await act('DRAWING_APPROVED', C, { ref: 'DWG-C-R2' }, 'POWNER');
   await page.evaluate(() => { loginAs(S.users.PCUST); ACT.permsDone(); Notify.hide(); go('docs'); }); await page.waitForTimeout(150);
   assert(await page.$(`[data-a="openDrawings"][data-v="${C}"]`), 'the customer has a Drawings tile in Papers');
   await page.click(`[data-a="openDrawings"][data-v="${C}"]`); await page.waitForTimeout(150);

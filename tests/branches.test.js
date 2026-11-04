@@ -69,7 +69,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* site corrections */
   for (const k of await ev('PREP_ITEMS.map(x => x[0])')) await step('prepare_site', 'BCUST', 'PREP_ITEM_DONE', { item: k, ev: await ph(1, 'site') });
   await step('request_qc', 'BCUST', 'QC_REQUESTED', {});
-  const site = async outcome => ({ meas: { width: 1800, depth: 1900, pit: 1500, head: 4200 }, checks: { plumb: 'yes', pit_dry: outcome === 'approved' ? 'yes' : 'no', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome, items: outcome === 'corrections' ? [{ text: 'Pump the water out of the pit' }] : [], ev: await ph(2, 'site') });
+  const site = async outcome => ({ meas: { width: 1800, depth: 1900, pit: 1500, head: 4200 }, door: { w: 800, h: 2000 }, floors: Array(59).fill(3000), checks: { plumb: 'yes', pit_dry: outcome === 'approved' ? 'yes' : 'no', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome, items: outcome === 'corrections' ? [{ text: 'Pump the water out of the pit' }] : [], ev: await ph(2, 'site') });
   await step('inspect_site', 'POWNER', 'QC_SITE_RESULT', await site('corrections'));
   assert(await stage() === 'site_fix', 'the site needs a correction');
   await step('fix_site', 'BCUST', 'CORRECTION_DONE', { cid: await ev(`S.projects["${pid}"].corrections[0].id`), ev: await ph(1, 'site') });

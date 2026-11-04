@@ -1904,6 +1904,9 @@ const L = {
   s_dwg_add: ['Write the new drawing number and add a photo of each page. The old version stays in the record.', 'नया ड्रॉइंग नंबर लिखें और हर पेज की फ़ोटो जोड़ें। पुराना वर्ज़न रिकॉर्ड में रहेगा।', 'नवीन ड्रॉइंग क्रमांक लिहा आणि प्रत्येक पानाचा फोटो जोडा. जुनी आवृत्ती नोंदीत राहील.'],
   what_dwg_added: ['Drawing saved. Everyone on the job now sees this version.', 'ड्रॉइंग सेव। अब काम पर सभी यही वर्ज़न देखेंगे।', 'ड्रॉइंग जतन झाले. आता कामावरील सर्वांना हीच आवृत्ती दिसेल.'],
   err_dwg_pages: ['Add a photo of at least one drawing page.', 'कम से कम एक ड्रॉइंग पेज की फ़ोटो जोड़ें।', 'किमान एका ड्रॉइंग पानाचा फोटो जोडा.'],
+  ev_QC_SITE_CORRECTED: ['Site check corrected (new version)', 'साइट जाँच सुधारी (नया संस्करण)', 'साइट तपासणी दुरुस्त (नवीन आवृत्ती)'],
+  ev_INFEASIBLE_DECIDED: ['Decision on "cannot be fitted"', '"लग नहीं सकती" पर फ़ैसला', '"बसू शकत नाही" वर निर्णय'],
+  ev_DRAWING_APPROVED: ['Drawing version approved', 'ड्रॉइंग संस्करण मंज़ूर', 'ड्रॉइंग आवृत्ती मंजूर'],
   ev_DRAWING_ADDED: ['Drawing version added', 'ड्रॉइंग वर्ज़न जोड़ा', 'ड्रॉइंग आवृत्ती जोडली'],
   acc_w_drawings: ['Opened the drawings', 'ड्रॉइंग खोले', 'ड्रॉइंग उघडले'],
   stat_title: ['Permit, inspection and licence', 'परमिट, जाँच और लाइसेंस', 'परवानगी, तपासणी आणि परवाना'],
@@ -2853,6 +2856,52 @@ const L = {
   rt_numbers: ['Look at this week\'s numbers', 'इस हफ़्ते के आँकड़े देखें', 'या आठवड्याचे आकडे पहा'],
   rt_decisions: ['Decisions waiting for you: {n}', 'आपके फ़ैसले बाकी: {n}', 'तुमचे निर्णय बाकी: {n}'],
   rt_inspect: ['Inspections planned for today done', 'आज की तय जाँचें पूरी', 'आजच्या ठरलेल्या तपासण्या पूर्ण'],
+  what_qc_not_feasible: ['Saved. The office decides what to do next.', 'सेव हुआ। आगे क्या करना है, ऑफिस तय करेगा।', 'जतन झाले. पुढे काय करायचे ते ऑफिस ठरवेल.'],
+  tk_decide_infeasible: ['Lift cannot be fitted as sold: decide', 'बेची गई लिफ्ट यहाँ नहीं लग सकती: तय करें', 'विकलेली लिफ्ट इथे बसू शकत नाही: ठरवा'],
+  tk_approve_drawing: ['Approve the new drawing', 'नई ड्रॉइंग मंज़ूर करें', 'नवीन ड्रॉइंग मंजूर करा'],
+  err_wait_decision: ['The office must first decide on the "cannot be fitted" report.', 'पहले ऑफिस को "लग नहीं सकती" रिपोर्ट पर फ़ैसला करना होगा।', 'आधी ऑफिसने "बसू शकत नाही" अहवालावर निर्णय घ्यायला हवा.'],
+  err_door: ['Enter the door opening width and height (mm).', 'दरवाज़े की खुली जगह की चौड़ाई और ऊँचाई (mm) लिखें।', 'दाराच्या उघड्या जागेची रुंदी आणि उंची (mm) लिहा.'],
+  err_floors: ['Enter the height between every two floors (mm).', 'हर दो मंज़िलों के बीच की ऊँचाई (mm) लिखें।', 'प्रत्येक दोन मजल्यांमधील उंची (mm) लिहा.'],
+  err_no_check: ['There is no approved site check to correct.', 'सुधारने के लिए कोई मंज़ूर साइट जाँच नहीं है।', 'दुरुस्त करण्यासाठी कोणतीही मंजूर साइट तपासणी नाही.'],
+  infeasible_why: ['Why it cannot be fitted', 'क्यों नहीं लग सकती', 'का बसू शकत नाही'],
+  var_days: ['Extra working days (0 if none)', 'अतिरिक्त कार्य दिवस (न हों तो 0)', 'जास्तीचे कामाचे दिवस (नसल्यास 0)'],
+  var_days_note: ['How many more working days the job takes because of this change. The customer sees it before signing.', 'इस बदलाव से काम कितने दिन और लेगा। ग्राहक सही करने से पहले देखता है।', 'या बदलामुळे काम किती दिवस जास्त घेईल. ग्राहक सही करण्याआधी पाहतो.'],
+  var_days_add: ['This change adds {n} working days.', 'यह बदलाव {n} कार्य दिवस जोड़ता है।', 'हा बदल {n} कामाचे दिवस वाढवतो.'],
+  dwg_st_approved: ['Approved: work from this', 'मंज़ूर: इसी से काम करें', 'मंजूर: यावरूनच काम करा'],
+  dwg_st_draft: ['New version: waiting for approval', 'नया संस्करण: मंज़ूरी बाकी', 'नवीन आवृत्ती: मंजुरी बाकी'],
+  dwg_st_superseded: ['Replaced: do not use', 'बदल दिया गया: इस्तेमाल न करें', 'बदललेली: वापरू नका'],
+  dwg_approve: ['Approve this version', 'यह संस्करण मंज़ूर करें', 'ही आवृत्ती मंजूर करा'],
+  dwg_draft_note: ['The team keeps working from the approved version until another office person approves the new one.', 'जब तक दूसरा ऑफिस व्यक्ति नया संस्करण मंज़ूर नहीं करता, टीम मंज़ूर संस्करण से काम करती रहती है।', 'दुसरी ऑफिस व्यक्ती नवीन आवृत्ती मंजूर करेपर्यंत टीम मंजूर आवृत्तीवरूनच काम करते.'],
+  s_qs_can: ['Could you check the site?', 'क्या आप साइट जाँच पाए?', 'तुम्ही साइट तपासू शकलात का?'],
+  qs_can_yes: ['Yes, I am checking it now', 'हाँ, अभी जाँच रहा हूँ', 'हो, आत्ता तपासत आहे'],
+  qs_no_show: ['Customer not at site', 'ग्राहक साइट पर नहीं', 'ग्राहक साइटवर नाही'],
+  qs_unsafe: ['Site not safe to check', 'साइट जाँचने के लिए सुरक्षित नहीं', 'साइट तपासण्यासाठी सुरक्षित नाही'],
+  qs_ph_door: ['Photo of the locked door / gate', 'बंद दरवाज़े / गेट की फोटो', 'बंद दार / गेटचा फोटो'],
+  qs_ph_unsafe: ['Photo of what is unsafe', 'जो असुरक्षित है उसकी फोटो', 'जे असुरक्षित आहे त्याचा फोटो'],
+  s_qs_door: ['Door opening and floor heights', 'दरवाज़े की खुली जगह और मंज़िलों की ऊँचाई', 'दाराची उघडी जागा आणि मजल्यांची उंची'],
+  qs_door: ['Door opening', 'दरवाज़े की खुली जगह', 'दाराची उघडी जागा'],
+  qs_door_w: ['Door opening width (mm)', 'दरवाज़े की खुली चौड़ाई (mm)', 'दाराची उघडी रुंदी (mm)'],
+  qs_door_h: ['Door opening height (mm)', 'दरवाज़े की खुली ऊँचाई (mm)', 'दाराची उघडी उंची (mm)'],
+  qs_door_narrow: ['Narrower than 700 mm: check with the office before approving.', '700 mm से कम: मंज़ूर करने से पहले ऑफिस से पूछें।', '700 mm पेक्षा कमी: मंजूर करण्याआधी ऑफिसला विचारा.'],
+  qs_floors: ['Height between floors', 'मंज़िलों के बीच की ऊँचाई', 'मजल्यांमधील उंची'],
+  qs_floors_d: ['Floor level to the next floor level, {n} gaps.', 'एक मंज़िल के फ़र्श से अगली मंज़िल के फ़र्श तक, {n} अंतर।', 'एका मजल्याच्या फरशीपासून पुढच्या मजल्याच्या फरशीपर्यंत, {n} अंतरे.'],
+  qs_floor_g: ['Ground', 'ग्राउंड', 'तळमजला'],
+  qs_floor_n: ['Floor {n}', 'मंज़िल {n}', 'मजला {n}'],
+  qs_floor_h: ['Height (mm)', 'ऊँचाई (mm)', 'उंची (mm)'],
+  qs_floor_odd: ['A floor height below 2400 mm or above 6000 mm is unusual: measure again.', '2400 mm से कम या 6000 mm से ज़्यादा ऊँचाई असामान्य है: फिर नापें।', '2400 mm पेक्षा कमी किंवा 6000 mm पेक्षा जास्त उंची असामान्य आहे: पुन्हा मोजा.'],
+  qo_not_feasible: ['Cannot be fitted as sold', 'बेची गई लिफ्ट नहीं लग सकती', 'विकलेली लिफ्ट बसू शकत नाही'],
+  qo_not_feasible_d: ['The lift sold does not fit this site even with changes the customer can make. The office decides next.', 'ग्राहक के बदलाव के बाद भी बेची गई लिफ्ट यहाँ नहीं बैठती। आगे ऑफिस तय करेगा।', 'ग्राहकाने बदल केले तरीही विकलेली लिफ्ट इथे बसत नाही. पुढे ऑफिस ठरवेल.'],
+  s_qc_nf: ['Why the lift cannot be fitted', 'लिफ्ट क्यों नहीं लग सकती', 'लिफ्ट का बसू शकत नाही'],
+  s_infeasible: ['The QC says the lift cannot be fitted as sold. Check again, or change the design with a variation.', 'QC के अनुसार बेची गई लिफ्ट नहीं लग सकती। फिर जाँचें, या वेरिएशन से डिज़ाइन बदलें।', 'QC नुसार विकलेली लिफ्ट बसू शकत नाही. पुन्हा तपासा, किंवा व्हेरिएशनने डिझाइन बदला.'],
+  inf_recheck: ['Check the site again', 'साइट फिर जाँचें', 'साइट पुन्हा तपासा'],
+  inf_recheck_d: ['A QC visits again (you may assign another QC).', 'QC फिर आएगा (दूसरा QC भी दे सकते हैं)।', 'QC पुन्हा येईल (दुसरा QC देऊ शकता).'],
+  inf_redesign: ['Change the design (variation)', 'डिज़ाइन बदलें (वेरिएशन)', 'डिझाइन बदला (व्हेरिएशन)'],
+  inf_redesign_d: ['Sales prepares the changed lift and price; the customer signs it.', 'सेल्स बदली लिफ्ट और कीमत तैयार करेगा; ग्राहक सही करेगा।', 'सेल्स बदललेली लिफ्ट आणि किंमत तयार करेल; ग्राहक सही करेल.'],
+  inf_cancel_note: ['To cancel the job instead, record the refund from the payment screen.', 'काम रद्द करना हो तो भुगतान स्क्रीन से रिफ़ंड दर्ज करें।', 'काम रद्द करायचे असल्यास पेमेंट स्क्रीनवरून परतावा नोंदवा.'],
+  qs_correct: ['Correct the site check', 'साइट जाँच सुधारें', 'साइट तपासणी दुरुस्त करा'],
+  s_qs_correct: ['Correct a measurement', 'एक नाप सुधारें', 'एक मोजमाप दुरुस्त करा'],
+  qs_correct_d: ['The first record stays. This becomes version 2 with your reason, and everyone sees both.', 'पहला रिकॉर्ड रहता है। यह आपके कारण के साथ संस्करण 2 बनता है, और सब दोनों देखते हैं।', 'पहिली नोंद तशीच राहते. ही तुमच्या कारणासह आवृत्ती 2 होते, आणि सर्वांना दोन्ही दिसतात.'],
+  qs_version: ['Version {n}', 'संस्करण {n}', 'आवृत्ती {n}'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -4799,6 +4848,18 @@ const ISC = [[1, 1], [2, 1], [3, 1], [4, 1], [5, 0], [6, 0], [7, 0], [8, 0], [9,
   [32, 11, 'm'], [33, 11], [34, 11], [35, 11, 'm'], [36, 11], [37, 11, 'm'], [38, 11], [39, 11], [40, 0], [41, 0], [42, -1]];
 /* records made before these rules started stay valid */
 const ISC_FROM = '2026-11-01T00:00:00.000Z';
+/* site check details (floor heights, door opening), "could not check", "cannot be fitted", drawing approval: from this date */
+const SURVEY_FROM = '2026-11-04T00:00:00.000Z';
+const SITE_CANT = ['no_show', 'unsafe'];
+const floorGaps = P => Math.max(1, Math.min(59, (+(P.req && P.req.stops) || 2) - 1));
+const lastSiteOk = P => P.qcSite.slice().reverse().find(x => x.outcome === 'approved') || null;
+/* drawings: the newest approved version is the one to work from; newer ones wait for a second person; older ones are replaced */
+const dwgVers = P => (P.drawings && P.drawings.versions) || (P.drawings ? [{ ref: P.drawings.ref, t: P.drawings.t, by: P.drawings.by, ev: [] }] : []);
+function dwgStates(P) { const vs = dwgVers(P); let cur = -1; vs.forEach((v, i) => { if (v.approved || i === 0 || v.t < SURVEY_FROM) cur = i; }); return vs.map((v, i) => i === cur ? 'approved' : i > cur ? 'draft' : 'superseded'); }
+const dwgCurrent = P => { const st = dwgStates(P), i = st.indexOf('approved'); return i < 0 ? null : dwgVers(P)[i]; };
+const dwgDrafts = P => { const st = dwgStates(P); return dwgVers(P).filter((v, i) => st[i] === 'draft'); };
+/* someone other than x can do this job (else the one person may, so a tiny company is never stuck) */
+const otherOffice = (uid, roles) => Object.values(S.users).some(u => u.active && u.uid !== uid && roles.includes(u.role));
 const iscFor = step => ISC.filter(x => x[1] === step);
 const iscYes = step => Object.fromEntries(iscFor(step).map(x => [x[0], 'yes']));
 function iscWhyNot(d) {
@@ -5439,7 +5500,7 @@ function earnings(uid) {
     if (pass && crewAt(P, pass).includes(uid)) out.push({ t: pass.t, pid: P.id, what: 'earn_crew_job', amount: r(c.payCrewJob, pass.t) });
     /* repairs: paid to the person who fixed it once the customer or office confirms the fix */
     P.tickets.forEach(x => { const h = x.status === 'closed' && x.owner === uid && [...x.hist].reverse().find(y => y.status === 'closed'); if (h) out.push({ t: h.t, pid: P.id, what: 'earn_repair', amount: r(c.payAmcVisit, h.t) }); });
-    P.qcFinal.concat(P.qcSite).forEach(x => { if (x.by === uid) out.push({ t: x.t, pid: P.id, what: 'earn_qc_insp', amount: c.payQcInspection }); });
+    P.qcFinal.concat(P.qcSite.filter(x => !x.fix)).forEach(x => { if (x.by === uid) out.push({ t: x.t, pid: P.id, what: 'earn_qc_insp', amount: c.payQcInspection }); });
     if (P.recheck && P.recheck.done && P.recheck.done.by === uid) out.push({ t: P.recheck.done.t, pid: P.id, what: 'earn_qc_recheck', amount: c.payQcInspection });
   }
   return out.sort((a, b) => a.t < b.t ? -1 : 1);
@@ -5847,15 +5908,49 @@ const RULES = {
       const d = ev.data;
       if (P.tech === u.uid || (P.crew || []).includes(u.uid)) return 'err_own_job';
       if (P.qc && P.qc !== u.uid && isActive(P.qc)) return 'err_not_your_qc';
-      if (ev_(d, 'photo').length < 2) return { k: 'err_photos', v: { n: 2 } };
+      if (P.infeasible && !P.infeasible.decided) return 'err_wait_decision';
+      const nw = ev.t >= SURVEY_FROM, cant = nw && d.outcome === 'revisit' && SITE_CANT.includes(d.why);
+      if (ev_(d, 'photo').length < (cant ? 1 : 2)) return { k: 'err_photos', v: { n: cant ? 1 : 2 } };
+      /* the customer was not there, or the site was not safe: a photo, a reason and a new date, nothing measured */
+      if (cant) return !d.revisit ? 'err_date' : need((d.note || '').trim(), 'err_reason');
       if (!QC_SITE_MEAS.every(m => +(d.meas || {})[m] > 0)) return 'err_meas';
+      if (nw && !(+(d.door || {}).w > 0 && +(d.door || {}).h > 0)) return 'err_door';
+      if (nw && !(Array.isArray(d.floors) && d.floors.length >= floorGaps(P) && d.floors.length <= 60 && d.floors.every(x => +x > 0))) return 'err_floors';
       if (!QC_SITE_CHECKS.every(c => ['yes', 'no'].includes((d.checks || {})[c]))) return 'err_checks';
-      if (!['approved', 'corrections', 'revisit'].includes(d.outcome)) return 'err_choose';
+      if (!['approved', 'corrections', 'revisit'].concat(nw ? ['not_feasible'] : []).includes(d.outcome)) return 'err_choose';
+      if (d.outcome === 'not_feasible' && !(d.note || '').trim()) return 'err_reason';
       if (d.outcome === 'approved' && QC_SITE_CHECKS.some(c => d.checks[c] === 'no')) return 'err_approve_fail';
       if (d.outcome === 'approved' && measLow(d.meas).length && d.variation !== true) return 'err_tolerance';
       if (d.outcome === 'corrections' && !(d.items || []).filter(x => (x.text || '').trim()).length) return 'err_items';
       if (d.outcome === 'revisit' && !d.revisit) return 'err_date';
       return null;
+    }
+  },
+  /* a site check is never edited: a mistake is corrected as version 2 with a reason, kept next to version 1 */
+  QC_SITE_CORRECTED: {
+    roles: ['qc', 'admin', 'owner'], project: true, stages: ['site_ok'], gate: (S, u, P) => !lastSiteOk(P) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : u.role === 'qc' && lastSiteOk(P).by !== u.uid ? 'err_access' : null,
+    check: (S, ev, u, P) => {
+      const last = lastSiteOk(P), d = ev.data;
+      if (!last) return 'err_no_check';
+      if (u.role === 'qc' && last.by !== u.uid) return 'err_access';
+      if (!(d.reason || '').trim()) return 'err_reason';
+      if (!QC_SITE_MEAS.every(m => +(d.meas || {})[m] > 0)) return 'err_meas';
+      if (!(+(d.door || {}).w > 0 && +(d.door || {}).h > 0)) return 'err_door';
+      return need(Array.isArray(d.floors) && d.floors.length >= floorGaps(P) && d.floors.length <= 60 && d.floors.every(x => +x > 0), 'err_floors');
+    }
+  },
+  /* the QC found the lift cannot be fitted as sold: the office decides to check again or to change the design (a variation) */
+  INFEASIBLE_DECIDED: {
+    roles: ['admin', 'owner'], project: true, stages: ['qc_site'], gate: (S, u, P) => !P.infeasible || P.infeasible.decided ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => !P.infeasible || P.infeasible.decided ? 'err_already' : !['recheck', 'redesign'].includes(ev.data.decision) ? 'err_choose' : need((ev.data.note || '').trim(), 'err_reason')
+  },
+  /* a new drawing version is used only after a second office person approves it (one person alone may approve their own) */
+  DRAWING_APPROVED: {
+    roles: ['admin', 'owner'], project: true, gate: (S, u, P) => !dwgDrafts(P).length ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    check: (S, ev, u, P) => {
+      const v = dwgDrafts(P).find(x => x.ref === ev.data.ref);
+      if (!v) return 'err_already';
+      return v.by === u.uid && otherOffice(u.uid, ['admin', 'owner']) ? 'err_same_person' : null;
     }
   },
   CORRECTION_DONE: {
@@ -6052,7 +6147,8 @@ const RULES = {
     }
   },
   /* variation quote after the shaft was found smaller than the minimum */
-  VARIATION_PROPOSED: { roles: ['owner', 'admin', 'sales'], project: true, check: (S, ev, u, P) => !P.variation || !['needed', 'declined'].includes(P.variation.status) ? 'err_already' : !(ev.data.note || '').trim() ? 'err_fill' : need(Number.isInteger(+ev.data.amount), 'err_amount') },
+  VARIATION_PROPOSED: { roles: ['owner', 'admin', 'sales'], project: true, check: (S, ev, u, P) => !P.variation || !['needed', 'declined'].includes(P.variation.status) ? 'err_already' : !(ev.data.note || '').trim() ? 'err_fill'
+      : ev.data.days != null && !(Number.isInteger(+ev.data.days) && +ev.data.days >= 0 && +ev.data.days <= 180) ? { k: 'err_cfg_range', v: { a: 0, b: 180 } } : need(Number.isInteger(+ev.data.amount), 'err_amount') },
   VARIATION_SIGNED: {
     roles: ['customer', 'sales'], project: true, check: (S, ev, u, P) => !P.variation || P.variation.status !== 'proposed' ? 'err_already'
       : u.role === 'customer' && P.customer !== u.uid ? 'err_access' : !ev.data.consent ? 'err_consent' : !(ev.data.signer || '').trim() ? 'err_fill' : need(ev_(ev.data, 'sign').length >= 1, 'err_sign')
@@ -6866,13 +6962,26 @@ function apply(S, ev) {
     case 'QC_SITE_RESULT': {
       const items = (d.items || []).filter(x => (x.text || '').trim()).map((x, i) => ({ id: ev.id + '-' + i, scope: 'site', text: x.text, due: x.due || '', role: x.role || 'customer', done: null, t: ev.t }));
       P.qc = ev.by;
-      P.qcSite.push({ t: ev.t, by: ev.by, meas: d.meas, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), revisit: d.revisit || '', note: d.note || '', ev: ev_(d).map(e => e.id) });
+      P.qcSite.push({ t: ev.t, by: ev.by, meas: d.meas, checks: d.checks, outcome: d.outcome, items: items.map(i => i.id), revisit: d.revisit || '', note: d.note || '', ev: ev_(d).map(e => e.id),
+        door: d.door || null, floors: d.floors || null, why: d.why || '', v: 1 });
       P.corrections.push(...items);
+      if (d.outcome === 'not_feasible') P.infeasible = { t: ev.t, by: ev.by, note: d.note, meas: d.meas, decided: null };
       if (d.outcome === 'approved' && d.variation) P.variation = { status: 'needed', low: measLow(d.meas), meas: d.meas, t: ev.t, by: ev.by };
       if (d.outcome === 'approved') setStage(P, 'site_ok', ev);
       if (d.outcome === 'corrections') setStage(P, 'site_fix', ev);
       break;
     }
+    case 'QC_SITE_CORRECTED': {
+      const last = lastSiteOk(P);
+      P.qcSite.push(Object.assign({}, last, { t: ev.t, by: ev.by, meas: d.meas, door: d.door, floors: d.floors, note: d.reason, ev: [], items: [], v: (last.v || 1) + 1, fix: true, was: last.meas }));
+      if (measLow(d.meas).length && !P.variation) P.variation = { status: 'needed', low: measLow(d.meas), meas: d.meas, t: ev.t, by: ev.by };
+      break;
+    }
+    case 'INFEASIBLE_DECIDED':
+      P.infeasible.decided = { t: ev.t, by: ev.by, decision: d.decision, note: d.note };
+      if (d.decision === 'redesign') { P.variation = { status: 'needed', low: measLow(P.infeasible.meas), meas: P.infeasible.meas, t: ev.t, by: ev.by, why: P.infeasible.note }; setStage(P, 'site_ok', ev); }
+      break;
+    case 'DRAWING_APPROVED': { const v = dwgDrafts(P).find(x => x.ref === d.ref); v.approved = { t: ev.t, by: ev.by }; if (dwgCurrent(P) === v) Object.assign(P.drawings, { ref: v.ref, t: ev.t, by: v.by }); break; }
     case 'CORRECTION_DONE': { const c = P.corrections.find(x => x.id === d.cid); c.done = { t: ev.t, by: ev.by, note: d.note || '', ev: ev_(d).map(e => e.id) }; break; }
     case 'RELEASED': P.supplier = d.supplier; P.tech = d.tech; P.partner = companyOf(d.tech); { const vs = (P.drawings && P.drawings.versions) || []; P.drawings = { ref: d.drawings, t: ev.t, by: ev.by, versions: vs.length && vs[vs.length - 1].ref === d.drawings ? vs : vs.concat([{ ref: d.drawings, t: ev.t, by: ev.by, ev: [] }]) }; } P.materials = d.materials;
       P.poN = (P.poN || 0) + 1; P.po = { no: poNo(P), t: ev.t, by: ev.by, supplier: d.supplier, needBy: safeDay(Date.parse(ev.t) + (+S.config.poDays || 7) * 864e5), accepted: null, declined: null };
@@ -6913,14 +7022,15 @@ function apply(S, ev) {
     }
     case 'SURPRISE_SET': P.surprise = { date: d.date, by: ev.by, t: ev.t, done: null }; break;
     case 'SURPRISE_DONE': P.surprise.done = { by: ev.by, t: ev.t, ok: d.ok, note: d.note || '', ev: ev_(d).map(e => e.id), lead: P.tech || null }; (P.surprises = P.surprises || []).push(P.surprise); break;
-    case 'VARIATION_PROPOSED': Object.assign(P.variation, { status: 'proposed', amount: +d.amount, note: d.note, proposedBy: ev.by, proposedT: ev.t }); break;
+    case 'VARIATION_PROPOSED': Object.assign(P.variation, { status: 'proposed', amount: +d.amount, note: d.note, days: +d.days || 0, proposedBy: ev.by, proposedT: ev.t }); break;
     case 'VARIATION_SIGNED': Object.assign(P.variation, { status: 'signed', signed: { by: ev.by, t: ev.t, signer: d.signer, sig: ev_(d, 'sign')[0].id, inPerson: roleOf(ev.by) !== 'customer' } }); if (P.schedule && +P.variation.amount) P.schedule.final = Math.max(0, P.schedule.final + +P.variation.amount); break;
     case 'VARIATION_DECLINED': Object.assign(P.variation, { status: 'declined', declined: { by: ev.by, t: ev.t, note: d.note } }); break;
     case 'DRAWING_ADDED': {
       const vs = P.drawings.versions = P.drawings.versions || [{ ref: P.drawings.ref, t: P.drawings.t, by: P.drawings.by, ev: [] }], last = vs[vs.length - 1];
       const x = { ref: d.ref.trim(), t: ev.t, by: ev.by, ev: ev_(d, 'photo').map(e => e.id), note: d.note || '' };
-      if (last.ref === x.ref && !last.ev.length) vs[vs.length - 1] = x; else vs.push(x);
-      Object.assign(P.drawings, { ref: x.ref, t: ev.t, by: ev.by }); break;
+      if (last.ref === x.ref && !last.ev.length) vs[vs.length - 1] = Object.assign(x, last.approved ? { approved: last.approved } : {}); else vs.push(x);
+      /* the drawing number in use changes only when the version is approved */
+      if (ev.t < SURVEY_FROM || dwgCurrent(P) === x) Object.assign(P.drawings, { ref: x.ref, t: ev.t, by: ev.by }); break;
     }
     case 'STATUTORY_SET': {
       const st = P.statutory = P.statutory || {}, x = Object.assign({ t: ev.t, by: ev.by, ev: ev_(d).map(e => e.id) }, d);
@@ -7224,6 +7334,7 @@ function needs0(P) {
     return p && p.status === 'confirmed';
   };
   const q = lastQuote(P);
+  { const dr = P.drawings && P.stage !== 'lost' ? dwgDrafts(P) : []; if (dr.length) { const x = dr[dr.length - 1]; add('approve_drawing', ['admin', 'owner'], otherOffice(x.by, ['admin', 'owner']) ? { not: x.by, since: x.t } : { since: x.t }); } }
   switch (P.stage) {
     case 'new': add('review_lead', ['sales'], { uids: [P.sales] }); break;
     case 'returned': if (P.lead.bySelf) { add('fix_lead', ['sales']); break; } add('fix_lead', [roleOf(P.createdBy) && ['field', 'sales', 'admin', 'owner'].includes(roleOf(P.createdBy)) ? roleOf(P.createdBy) : 'field'], { uids: [P.createdBy] }); break;
@@ -7240,7 +7351,7 @@ function needs0(P) {
     case 'agreement': add('sign_agreement', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
     case 'signed': payNeed('token'); break;
     case 'site_prep': add(prepDone(P) ? 'request_qc' : 'prepare_site', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
-    case 'qc_site': add('inspect_site', ['qc'], { uids: [P.qc] }); break;
+    case 'qc_site': if (P.infeasible && !P.infeasible.decided) add('decide_infeasible', ['admin', 'owner'], { urgent: true, since: P.infeasible.t }); else add('inspect_site', ['qc'], { uids: [P.qc] }); break;
     case 'site_fix': add(openCorr(P, 'site').length ? 'fix_site' : 'request_qc', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
     case 'site_ok':
       if (variationOpen(P)) add(P.variation.status === 'proposed' ? 'sign_variation' : 'make_variation', P.variation.status === 'proposed' && P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales], urgent: true });
@@ -8105,7 +8216,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -8924,37 +9035,68 @@ function itemsEditor(key) {
 }
 WIZ.qcsite = {
   title: 'tk_inspect_site', save: 'save_result', saveIcon: '🔍',
-  init: P => ({ meas: {}, checks: {}, ph: [], outcome: '', items: [], revisit: '', note: '', stops: P.req ? P.req.stops : '' }),
+  init: P => ({ can: '', meas: {}, door: {}, floors: [], checks: {}, ph: [], outcome: '', items: [], revisit: '', note: '', stops: P.req ? P.req.stops : '' }),
   steps: [
     {
       id: 'info', icon: '📋', say: 's_qc_info',
       body: (c, P) => `<div class="card">${kv([['f_address', esc(P.site.address)], ['gps', P.site.gps ? `<a href="${dirLink(P.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a>` : '']])}${reqKv(P.req)}</div>
         <div class="card"><h3>${t('prep_done_by_customer')}</h3>${PREP_ITEMS.map(([k, i]) => `<div class="list-item"><span>${P.prep[k] ? '✅' : '⬜'} ${i}</span><span class="grow">${t('prep_' + k)}</span></div>${P.prep[k] ? evGrid(P.prep[k].ev) : ''}`).join('')}</div>
-        ${P.qcSite.length ? `<div class="card"><h3>${t('previous_qc')}</h3>${P.qcSite.map(q => `<div>${fmtD(q.t)} · ${t('qo_' + q.outcome)}</div>`).join('')}</div>` : ''}
+        ${P.qcSite.length ? `<div class="card"><h3>${t('previous_qc')}</h3>${P.qcSite.map(q => `<div>${fmtD(q.t)} · ${t('qo_' + q.outcome)}${q.why ? ' · ' + t('qs_' + q.why) : ''}</div>`).join('')}</div>` : ''}
         <div class="warnbox">📜 ${t('checklist_disclaimer')}</div>`
     },
+    { id: 'can', icon: '🚪', say: 's_qs_can', body: () => tiles('can', [['yes', '✅', 'qs_can_yes'], ['no_show', '🚪', 'qs_no_show'], ['unsafe', '⛔', 'qs_unsafe']], 'one'),
+      check: c => { if (!c.can) return 'err_choose'; if (SITE_CANT.includes(c.can)) c.outcome = 'revisit'; return null; } },
     {
-      id: 'meas', icon: '📏', say: 's_qc_meas',
+      id: 'meas', icon: '📏', say: 's_qc_meas', skip: c => SITE_CANT.includes(c.can),
       body: c => QC_SITE_MEAS.map(m => inp('meas.' + m, 'meas_' + m, { type: 'number', mode: 'numeric', big: true }) + `<p class="small ${measLow(c.meas).includes(m) ? '' : 'muted'}" style="margin:-6px 0 8px${measLow(c.meas).includes(m) ? ';color:var(--bad);font-weight:800' : ''}">${measLow(c.meas).includes(m) ? '⚠️ ' : ''}${t('meas_min', { n: S.config[TOL[m]] })}</p>`).join(''),
       check: c => QC_SITE_MEAS.every(m => +c.meas[m] > 0) ? null : 'err_meas'
     },
-    { id: 'checks', icon: '✔️', say: 's_qc_checks', body: () => `<div class="card">${QC_SITE_CHECKS.map(k => ynRow('checks.' + k, 'qcs_' + k)).join('')}</div>`, check: c => QC_SITE_CHECKS.every(k => c.checks[k]) ? null : 'err_checks' },
-    { id: 'photos', icon: '📷', say: 's_qc_photos', body: () => photoSlot('ph', 'ph_site_qc', 2, { video: true, tag: 'qc_site' }), check: c => c.ph.length >= 2 ? null : { k: 'err_photos', v: { n: 2 } } },
+    { id: 'door', icon: '🚪', say: 's_qs_door', skip: c => SITE_CANT.includes(c.can),
+      body: (c, P) => inp('door.w', 'qs_door_w', { type: 'number', mode: 'numeric', big: true }) + inp('door.h', 'qs_door_h', { type: 'number', mode: 'numeric', big: true })
+        + (+c.door.w > 0 && +c.door.w < 700 ? `<div class="warnbox">⚠️ ${t('qs_door_narrow')}</div>` : '')
+        + `<h3>${t('qs_floors')}</h3><p class="small muted">${t('qs_floors_d', { n: floorGaps(P) })}</p>`
+        + Array.from({ length: floorGaps(P) }, (_, i) => `<p class="small" style="margin:6px 0 -4px"><b>${i === 0 ? t('qs_floor_g') : t('qs_floor_n', { n: i })} → ${t('qs_floor_n', { n: i + 1 })}</b></p>` + inp('floors.' + i, 'qs_floor_h', { type: 'number', mode: 'numeric' })).join('')
+        + (c.floors.some(x => +x > 0 && (+x < 2400 || +x > 6000)) ? `<div class="warnbox">⚠️ ${t('qs_floor_odd')}</div>` : ''),
+      check: (c, P) => !(+c.door.w > 0 && +c.door.h > 0) ? 'err_door' : Array.from({ length: floorGaps(P) }, (_, i) => +c.floors[i]).every(x => x > 0) ? null : 'err_floors' },
+    { id: 'checks', icon: '✔️', say: 's_qc_checks', skip: c => SITE_CANT.includes(c.can), body: () => `<div class="card">${QC_SITE_CHECKS.map(k => ynRow('checks.' + k, 'qcs_' + k)).join('')}</div>`, check: c => QC_SITE_CHECKS.every(k => c.checks[k]) ? null : 'err_checks' },
+    { id: 'photos', icon: '📷', say: 's_qc_photos', body: c => SITE_CANT.includes(c.can) ? photoSlot('ph', c.can === 'no_show' ? 'qs_ph_door' : 'qs_ph_unsafe', 1, { tag: 'qc_site' }) : photoSlot('ph', 'ph_site_qc', 2, { video: true, tag: 'qc_site' }),
+      check: c => c.ph.length >= (SITE_CANT.includes(c.can) ? 1 : 2) ? null : { k: 'err_photos', v: { n: SITE_CANT.includes(c.can) ? 1 : 2 } } },
     {
-      id: 'out', icon: '⚖️', say: 's_qc_out',
+      id: 'out', icon: '⚖️', say: 's_qc_out', skip: c => SITE_CANT.includes(c.can),
       enter: c => { if (!c.items.length) { c.items = QC_SITE_CHECKS.filter(k => c.checks[k] === 'no').map(k => ({ text: t('qcs_fix_' + k), due: addDays(7) })); saveDraft(); } },
       body: c => (QC_SITE_CHECKS.some(k => c.checks[k] === 'no') ? `<div class="warnbox">⚠️ ${t('qc_some_no')}</div>` : '') + (measLow(c.meas).length ? `<div class="err">📐 ${t('meas_low', { list: measLow(c.meas).map(m => t('meas_' + m)).join(', ') })}</div>` : '')
-        + tiles('outcome', [[measLow(c.meas).length ? 'approved' : 'approved', measLow(c.meas).length ? '📐' : '✅', measLow(c.meas).length ? 'qo_approved_var' : 'qo_approved', measLow(c.meas).length ? 'qo_approved_var_d' : ''], ['corrections', '🛠️', 'qo_corrections'], ['revisit', '🔁', 'qo_revisit']], 'one'),
+        + tiles('outcome', [[measLow(c.meas).length ? 'approved' : 'approved', measLow(c.meas).length ? '📐' : '✅', measLow(c.meas).length ? 'qo_approved_var' : 'qo_approved', measLow(c.meas).length ? 'qo_approved_var_d' : ''], ['corrections', '🛠️', 'qo_corrections'], ['revisit', '🔁', 'qo_revisit'], ['not_feasible', '⛔', 'qo_not_feasible', 'qo_not_feasible_d']], 'one'),
       check: c => !c.outcome ? 'err_choose' : c.outcome === 'approved' && QC_SITE_CHECKS.some(k => c.checks[k] === 'no') ? 'err_approve_fail' : null
     },
     { id: 'items', icon: '🛠️', say: 's_qc_items', skip: c => c.outcome !== 'corrections', body: () => itemsEditor('items'), check: c => c.items.some(x => (x.text || '').trim()) ? null : 'err_items' },
-    { id: 'revisit', icon: '🔁', say: 's_qc_revisit', skip: c => c.outcome !== 'revisit', body: () => dateTiles('revisit') + inp('note', 'f_reason', { area: true, mic: true }), check: c => c.revisit ? null : 'err_date' },
-    { id: 'review', icon: '✅', say: 's_qc_review', body: c => `<div class="card">${kv(QC_SITE_MEAS.map(m => ['meas_' + m, c.meas[m] + ' mm']))}${QC_SITE_CHECKS.map(k => `<div>${c.checks[k] === 'yes' ? '✅' : '❌'} ${t('qcs_' + k)}</div>`).join('')}<p><b>${t('qo_' + c.outcome)}</b></p>${evGrid(c.ph)}</div>` }
+    { id: 'revisit', icon: '🔁', say: 's_qc_revisit', skip: c => c.outcome !== 'revisit', body: () => dateTiles('revisit') + inp('note', 'f_reason', { area: true, mic: true }),
+      check: c => !c.revisit ? 'err_date' : SITE_CANT.includes(c.can) && !c.note.trim() ? 'err_reason' : null },
+    { id: 'nf', icon: '⛔', say: 's_qc_nf', skip: c => c.outcome !== 'not_feasible', body: () => `<p class="say">${t('qo_not_feasible_d')}</p>` + inp('note', 'infeasible_why', { area: true, mic: true }), check: c => c.note.trim() ? null : 'err_reason' },
+    { id: 'review', icon: '✅', say: 's_qc_review', body: c => SITE_CANT.includes(c.can) ? `<div class="card"><p><b>${t('qs_' + c.can)}</b> · ${fmtD(c.revisit)}</p><p>${esc(c.note)}</p>${evGrid(c.ph)}</div>` : `<div class="card">${kv(QC_SITE_MEAS.map(m => ['meas_' + m, c.meas[m] + ' mm']).concat([['qs_door', c.door.w + ' × ' + c.door.h + ' mm'], ['qs_floors', c.floors.filter(x => +x > 0).join(', ') + ' mm']]))}${QC_SITE_CHECKS.map(k => `<div>${c.checks[k] === 'yes' ? '✅' : '❌'} ${t('qcs_' + k)}</div>`).join('')}<p><b>${t('qo_' + c.outcome)}</b></p>${evGrid(c.ph)}</div>` }
   ],
   async finish(c, P) {
-    const r = await run([['QC_SITE_RESULT', P.id, { meas: c.meas, checks: c.checks, outcome: c.outcome, variation: c.outcome === 'approved' && measLow(c.meas).length > 0, items: c.outcome === 'corrections' ? c.items : [], revisit: c.revisit, note: c.note, ev: c.ph }]]);
-    return r.ok ? doneRes(P.id, 'what_qc_' + c.outcome) : r;
+    const cant = SITE_CANT.includes(c.can), outcome = cant ? 'revisit' : c.outcome;
+    const data = cant ? { outcome, why: c.can, revisit: c.revisit, note: c.note, ev: c.ph }
+      : { meas: c.meas, door: { w: +c.door.w, h: +c.door.h }, floors: Array.from({ length: floorGaps(P) }, (_, i) => +c.floors[i]), checks: c.checks, outcome, variation: outcome === 'approved' && measLow(c.meas).length > 0, items: outcome === 'corrections' ? c.items : [], revisit: c.revisit, note: c.note, ev: c.ph };
+    const r = await run([['QC_SITE_RESULT', P.id, data]]);
+    return r.ok ? doneRes(P.id, 'what_qc_' + outcome) : r;
   }
+};
+WIZ.infeasible = {
+  title: 'tk_decide_infeasible', save: 'save', noDraft: true, init: () => ({ decision: '', note: '' }),
+  steps: [{ id: 'd', icon: '⛔', say: 's_infeasible', body: (c, P) => `<div class="card"><p><b>${t('infeasible_why')}:</b> ${esc(P.infeasible.note)}</p><p class="small muted">${esc(userName(P.infeasible.by))} · ${fmtD(P.infeasible.t, true)}</p>${kv(QC_SITE_MEAS.map(m => ['meas_' + m, (P.infeasible.meas || {})[m] + ' mm']))}</div>`
+      + tiles('decision', [['recheck', '🔁', 'inf_recheck', 'inf_recheck_d'], ['redesign', '📐', 'inf_redesign', 'inf_redesign_d']], 'one') + inp('note', 'f_reason', { area: true, mic: true }) + `<p class="small muted">${t('inf_cancel_note')}</p>`,
+    check: c => !c.decision ? 'err_choose' : c.note.trim() ? null : 'err_reason' }],
+  async finish(c, P) { const r = await run([['INFEASIBLE_DECIDED', P.id, { decision: c.decision, note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+WIZ.sitefixv = {
+  title: 'qs_correct', save: 'save', noDraft: true,
+  init: P => { const l = lastSiteOk(P) || {}; return { meas: Object.assign({}, l.meas), door: Object.assign({}, l.door || {}), floors: (l.floors || []).slice(), reason: '' }; },
+  steps: [{ id: 'm', icon: '📏', say: 's_qs_correct', body: (c, P) => `<p class="small muted">${t('qs_correct_d')}</p>` + QC_SITE_MEAS.map(m => inp('meas.' + m, 'meas_' + m, { type: 'number', mode: 'numeric' })).join('')
+      + inp('door.w', 'qs_door_w', { type: 'number', mode: 'numeric' }) + inp('door.h', 'qs_door_h', { type: 'number', mode: 'numeric' })
+      + Array.from({ length: floorGaps(P) }, (_, i) => inp('floors.' + i, 'qs_floor_h', { type: 'number', mode: 'numeric' })).join('') + inp('reason', 'f_reason', { area: true, mic: true }),
+    check: (c, P) => !QC_SITE_MEAS.every(m => +c.meas[m] > 0) ? 'err_meas' : !(+c.door.w > 0 && +c.door.h > 0) ? 'err_door' : !Array.from({ length: floorGaps(P) }, (_, i) => +c.floors[i]).every(x => x > 0) ? 'err_floors' : c.reason.trim() ? null : 'err_reason' }],
+  async finish(c, P) { const r = await run([['QC_SITE_CORRECTED', P.id, { meas: c.meas, door: { w: +c.door.w, h: +c.door.h }, floors: Array.from({ length: floorGaps(P) }, (_, i) => +c.floors[i]), reason: c.reason.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
 };
 /* ---------- Admin: release drawings & assign team ---------- */
 const usersOf = role => Object.values(S.users).filter(u => u.role === role && u.active);
@@ -9418,7 +9560,7 @@ function varCard(P) {
   const v = P.variation; if (!v) return '';
   const money = seeF(App.me, 'money');
   return `<div class="card"><h3>📐 ${t('var_title')}</h3><div class="${v.status === 'signed' ? 'okbox' : 'warnbox'}">${t('var_st_' + v.status)}</div>
-    <p class="small">${t('meas_low', { list: (v.low || []).map(m => t('meas_' + m) + ' ' + v.meas[m] + ' mm').join(', ') })}</p>${v.note && money ? `<p>${esc(v.note)}</p>` : ''}${v.amount != null && money ? `<p><b>${t('var_amount')}: ${money ? (v.amount >= 0 ? '+' : '−') + moneyFmt(Math.abs(v.amount)) : ''}</b></p>${varCompare(P)}` : ''}</div>`;
+    ${v.why ? `<p class="small">⛔ ${t('infeasible_why')}: ${esc(v.why)}</p>` : ''}${(v.low || []).length ? `<p class="small">${t('meas_low', { list: v.low.map(m => t('meas_' + m) + ' ' + v.meas[m] + ' mm').join(', ') })}</p>` : ''}${v.note && money ? `<p>${esc(v.note)}</p>` : ''}${v.days ? `<p class="small">🗓️ ${t('var_days_add', { n: v.days })}</p>` : ''}${v.amount != null && money ? `<p><b>${t('var_amount')}: ${money ? (v.amount >= 0 ? '+' : '−') + moneyFmt(Math.abs(v.amount)) : ''}</b></p>${varCompare(P)}` : ''}</div>`;
 }
 const moneyFmt = n => money(n);
 /* the agreed price and the new price side by side, so the customer sees exactly what changes */
@@ -9428,10 +9570,11 @@ function varCompare(P) {
   return `<div class="note">⚖️ ${t('var_compare', { a: money(q.total), b: money(q.total + v.amount), c: (pct >= 0 ? '+' : '') + pct + '%' })}</div>`;
 }
 WIZ.variation = {
-  title: 'tk_make_variation', save: 'send', noDraft: true, init: () => ({ note: '', amount: '0' }),
-  steps: [{ id: 'v', icon: '📐', say: 's_variation', body: (c, P) => varCard(P) + inp('note', 'var_what', { area: true, mic: true }) + inp('amount', 'var_amount', { type: 'number', mode: 'numeric' }) + `<p class="small muted">${t('var_amount_note')}</p>`,
-    check: c => !c.note.trim() ? 'err_fill' : Number.isInteger(+c.amount) ? null : 'err_amount' }],
-  async finish(c, P) { const r = await run([['VARIATION_PROPOSED', P.id, { note: c.note.trim(), amount: +c.amount }]]); return r.ok ? doneRes(P.id, 'what_var_sent') : r; }
+  title: 'tk_make_variation', save: 'send', noDraft: true, init: () => ({ note: '', amount: '0', days: '0' }),
+  steps: [{ id: 'v', icon: '📐', say: 's_variation', body: (c, P) => varCard(P) + inp('note', 'var_what', { area: true, mic: true }) + inp('amount', 'var_amount', { type: 'number', mode: 'numeric' }) + `<p class="small muted">${t('var_amount_note')}</p>`
+      + inp('days', 'var_days', { type: 'number', mode: 'numeric' }) + `<p class="small muted">${t('var_days_note')}</p>`,
+    check: c => !c.note.trim() ? 'err_fill' : !Number.isInteger(+c.amount) ? 'err_amount' : Number.isInteger(+c.days) && +c.days >= 0 && +c.days <= 180 ? null : 'err_number' }],
+  async finish(c, P) { const r = await run([['VARIATION_PROPOSED', P.id, { note: c.note.trim(), amount: +c.amount, days: +c.days || 0 }]]); return r.ok ? doneRes(P.id, 'what_var_sent') : r; }
 };
 WIZ.variationSign = {
   title: 'tk_sign_variation', save: 'save', init: P => ({ ok: '', consent: false, signer: P.contact.name, sig: null, note: '' }),
@@ -9468,14 +9611,17 @@ const drawLock = (P, u) => u.role !== 'customer' ? null : P.stage === 'lost' || 
 SCREENS.drawings = ({ pid }) => {
   const P = S.projects[pid], u = App.me;
   if (!P || !canSee(u, P) || !P.drawings) return SCREENS.home();
-  const lock = drawLock(P, u), vs = P.drawings.versions || [{ ref: P.drawings.ref, t: P.drawings.t, by: P.drawings.by, ev: [] }], cur = vs[vs.length - 1];
-  const office = ['owner', 'admin', 'qc'].includes(u.role), ver = (v, old) => `<div class="card"><div class="row wrapw"><b class="grow">📐 ${esc(v.ref)}</b><span class="chip ${old ? 'c-info' : 'c-ok'}">${t(old ? 'dwg_old' : 'dwg_current')}</span></div>
-    <p class="small muted">${fmtD(v.t, true)} · ${esc(userName(v.by))}${v.note ? ' · ' + esc(v.note) : ''}</p>${v.ev.length ? evGrid(v.ev) : `<p class="small muted">${t('dwg_no_pages')}</p>`}</div>`;
+  const lock = drawLock(P, u), vs = dwgVers(P), st = dwgStates(P), cur = dwgCurrent(P) || vs[vs.length - 1], drafts = dwgDrafts(P);
+  const office = ['owner', 'admin', 'qc'].includes(u.role), ver = (v, old) => { const s = st[vs.indexOf(v)];
+    return `<div class="card"><div class="row wrapw"><b class="grow">📐 ${esc(v.ref)}</b><span class="chip ${s === 'approved' ? 'c-ok' : s === 'draft' ? 'c-warn' : 'c-info'}">${t('dwg_st_' + s)}</span></div>
+    <p class="small muted">${fmtD(v.t, true)} · ${esc(userName(v.by))}${v.note ? ' · ' + esc(v.note) : ''}${v.approved ? ' · ✅ ' + esc(userName(v.approved.by)) + ' ' + fmtD(v.approved.t, true) : ''}</p>${v.ev.length ? evGrid(v.ev) : `<p class="small muted">${t('dwg_no_pages')}</p>`}
+    ${s === 'draft' && allowed('DRAWING_APPROVED', P) && !(v.by === u.uid && otherOffice(u.uid, ['admin', 'owner'])) ? `<button class="btn btn-p" data-a="dwgApprove" data-v="${P.id}|${esc(v.ref)}">✅ ${t('dwg_approve')}</button>` : ''}</div>`; };
   App.pageSay = t('dwg_title');
   return topBar(t('dwg_title') + ' · ' + esc(P.id), { back: true }) + `<main class="wrap">${lock ? `<div class="warnbox">🔒 ${t(lock)}</div>` : ver(cur, false)
     + (u.role === 'customer' ? `<div class="note">👁️ ${t('dwg_view_only')}</div>` : '') + `<p class="small muted">${t('dwg_note')}</p>`
     + (allowed('DRAWING_ADDED', P) ? `<button class="btn btn-p" data-a="wizOpen" data-v="drawingAdd|${P.id}">➕ ${t('dwg_add')}</button>` : '')
-    + (office && vs.length > 1 ? `<h2 class="sec">${t('dwg_old')}</h2>` + vs.slice(0, -1).reverse().map(v => ver(v, true)).join('') : '')}</main>` + nav(u.role === 'customer' ? 'docs' : 'projects');
+    + (office && drafts.length ? `<h2 class="sec">${t('dwg_st_draft')}</h2><p class="small muted">${t('dwg_draft_note')}</p>` + drafts.slice().reverse().map(v => ver(v, true)).join('') : '')
+    + (office && vs.some((v, i) => st[i] === 'superseded') ? `<h2 class="sec">${t('dwg_old')}</h2>` + vs.filter((v, i) => st[i] === 'superseded').reverse().map(v => ver(v, true)).join('') : '')}</main>` + nav(u.role === 'customer' ? 'docs' : 'projects');
 };
 WIZ.drawingAdd = {
   title: 'dwg_add', save: 'save', saveIcon: '📐', noDraft: true,
@@ -10653,7 +10799,9 @@ function projInfo(P) {
       <div class="note">📡 ${t('no_tracker')}</div></div>` : ''}
     ${['installing', 'qc_final', 'install_fix', 'final_pay', 'handover', 'amc'].includes(P.stage) ? `<div class="card"><h3>🔧 ${t('installation')}</h3><div class="prog"><i style="width:${sopN / SOP.length * 100}%"></i></div><p>${sopN} / ${SOP.length} ${t('steps_done')}</p>
       ${target != null ? `<span class="chip ${target > S.config.installDays ? 'c-bad' : 'c-info'}">🎯 ${t('target_days', { n: target, m: S.config.installDays })}</span> ${ruleChip('install')}` : ''}</div>` : ''}
-    ${P.qcSite.length || P.qcFinal.length ? `<div class="card"><h3>🔍 ${t('inspections')}</h3>${[...P.qcSite.map(x => [t('tk_inspect_site'), x]), ...P.qcFinal.map(x => [t('tk_final_inspect'), x])].map(([l, x]) => `<div class="list-item"><span class="grow">${l} · ${fmtD(x.t)} · ${userTag(x.by)}</span><b>${t('qo_' + x.outcome)}</b></div>`).join('')}
+    ${P.qcSite.length || P.qcFinal.length ? `<div class="card"><h3>🔍 ${t('inspections')}</h3>${[...P.qcSite.map(x => [t('tk_inspect_site'), x]), ...P.qcFinal.map(x => [t('tk_final_inspect'), x])].map(([l, x]) => `<div class="list-item"><span class="grow">${l} · ${fmtD(x.t)} · ${userTag(x.by)}${x.v > 1 ? ` <span class="chip c-info">${t('qs_version', { n: x.v })}</span>` : ''}${x.why ? ` · ${t('qs_' + x.why)}` : ''}</span><b>${t('qo_' + x.outcome)}</b></div>`
+        + (x.door || x.fix ? `<p class="small muted" style="margin:0 0 6px;overflow-wrap:anywhere">${x.meas ? QC_SITE_MEAS.map(m => t('meas_' + m) + ' ' + x.meas[m]).join(' · ') : ''}${x.door ? ' · ' + t('qs_door') + ' ' + x.door.w + '×' + x.door.h : ''}${x.floors ? ' · ' + t('qs_floors') + ' ' + x.floors.join('/') : ''} mm${x.fix ? '<br>✏️ ' + esc(x.note) : ''}</p>` : '')).join('')}
+      ${allowed('QC_SITE_CORRECTED', P) && lastSiteOk(P) && lastSiteOk(P).door ? `<button class="btn btn-sm" data-a="wizOpen" data-v="sitefixv|${P.id}">✏️ ${t('qs_correct')}</button>` : ''}
       ${P.corrections.map(c => `<div class="small">${c.done ? '✅' : '🛠️'} ${esc(c.text)}</div>`).join('')}</div>` : ''}
     ${P.lost ? `<div class="err">❌ ${t('lr_' + P.lost.reason)} ${esc(P.lost.note || '')}</div>` : ''}
     ${P.done ? `<div class="okbox">🔑 ${t('handover_done', { d: fmtD(P.done.t) })}<br>${t('warranty_until', { d: fmtD(addDays(P.done.warrantyMonths * 30, new Date(P.done.t))) })}</div>` : ''}
@@ -12952,7 +13100,7 @@ function openTask(n) {
     get_decision: () => wiz('decision', pid), prepare_agreement: () => wiz('agreeprep', pid), sign_agreement: () => wiz('sign', pid),
     record_payment: () => wiz('paynew', pid, { purpose: n.purpose }), verify_payment: () => wiz('payverify', pid, { payId: n.payId }),
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
-    inspect_site: () => wiz('qcsite', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
+    inspect_site: () => wiz('qcsite', pid), decide_infeasible: () => wiz('infeasible', pid), approve_drawing: () => go('drawings', { pid }), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
@@ -13055,6 +13203,7 @@ const ACT = {
   nav: v => { Voice.stop(); if (MAIN_TABS.includes(v) && App.me) { App.stack = []; W = null; App.route = { name: 'home', p: {} }; if (v === 'home') { render(); window.scrollTo(0, 0); } else go(v); } else go(v); },
   back: () => { if (!App.locked) back(); },
   sayText: v => Voice.say(v),
+  dwgApprove: async v => { const i = v.indexOf('|'), r = await perform('DRAWING_APPROVED', v.slice(0, i), { ref: v.slice(i + 1) }); if (r.ok) { toast(t('saved_item')); render(); } },
   tvSave: async m => { const r = await perform('TRAINING_VIDEO_SET', null, { module: m, url: String(App.form['tv.' + m] || '').trim() }); if (r.ok) { toast(t('saved_item')); render(); } },
   setToggle: v => { App.set[v] = !(App.set[v] !== false); saveSettings(); render(); },
   personOpen: v => personCard(v),
@@ -13647,7 +13796,7 @@ async function seedPractice() {
     agreement: P => ['sales', 'AGREEMENT_SIGNED', { consent: true, signer: P.contact.name, ev: [ph('sign')] }],
     signed: P => payStep(P, 'token'),
     site_prep: P => { const k = PREP_ITEMS.find(([x]) => !P.prep[x]); return k ? ['sales', 'PREP_ITEM_DONE', { item: k[0], ev: [ph('site', P.site.gps)] }] : ['sales', 'QC_REQUESTED', {}]; },
-    qc_site: P => ['qc', 'QC_SITE_RESULT', { meas: { width: 1800, depth: 1900, pit: 1500, head: 4200 }, checks: { plumb: 'yes', pit_dry: 'yes', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome: 'approved', ev: [ph('site', P.site.gps), ph('shaft', P.site.gps)] }],
+    qc_site: P => ['qc', 'QC_SITE_RESULT', { meas: { width: 1800, depth: 1900, pit: 1500, head: 4200 }, door: { w: 800, h: 2000 }, floors: Array.from({ length: floorGaps(P) }, () => 3000), checks: { plumb: 'yes', pit_dry: 'yes', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome: 'approved', ev: [ph('site', P.site.gps), ph('shaft', P.site.gps)] }],
     site_ok: P => ['admin', 'RELEASED', { supplier: U.supplier, tech: jobSize(P) === 'big' ? U.senior : U.tech, drawings: 'DWG-' + P.id + '-R1', materials: materialList(P.req) }],
     material_order: P => !statOf(P).permit ? ['admin', 'STATUTORY_SET', { item: 'permit', no: 'EP/' + P.id.slice(-3) + '/2026', date: safeDay(nextAt()) }] : !P.po.accepted ? ['supplier', 'PO_ACCEPTED', { date: safeDay(Date.parse(nextAt()) + 2 * 864e5) }]
       : ['supplier', 'DISPATCHED', { packed: P.materials.map(m => m.k), seal: 'SEAL-' + P.id.slice(-3), vehicle: 'MH12 AB 1234', challan: 'DC/' + P.id.slice(-3) + '/26', serialMap: Object.fromEntries(P.materials.filter(m => SERIAL_ITEMS.includes(m.k)).map(m => [m.k, m.k.slice(2, 5).toUpperCase() + '-' + P.id.slice(-3) + '-' + (100 + SERIAL_ITEMS.indexOf(m.k))])), ev: [ph('work'), ph('work')] }],

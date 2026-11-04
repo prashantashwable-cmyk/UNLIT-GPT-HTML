@@ -27,7 +27,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
 
   /* shaft limits and variation */
   const P6 = 'AIEC-P006';
-  const site = async (meas, variation) => act('QC_SITE_RESULT', P6, { meas, checks: { plumb: 'yes', pit_dry: 'yes', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome: 'approved', variation, ev: await photos(2, 'site') }, 'PQC');
+  const site = async (meas, variation) => act('QC_SITE_RESULT', P6, { meas, door: { w: 800, h: 2000 }, floors: Array(59).fill(3000), checks: { plumb: 'yes', pit_dry: 'yes', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome: 'approved', variation, ev: await photos(2, 'site') }, 'PQC');
   assert((await site({ width: 1300, depth: 1900, pit: 1500, head: 4200 })).err === 'err_tolerance', 'a shaft narrower than the minimum cannot simply be approved');
   assert((await site({ width: 1300, depth: 1900, pit: 1500, head: 4200 }, true)).ok && await ev(`S.projects["${P6}"].variation.status`) === 'needed', 'QC approves it with a variation quote');
   assert((await tasks('PSALES', P6)).includes('make_variation'), 'Sales is asked to make the variation quote');
@@ -52,8 +52,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
     await page.evaluate(([lang, uid, name, p]) => { LANG = lang; App.set.lang = lang; loginAs(S.users[uid]); ACT.permsDone(); Notify.hide(); go(name, p); }, [lang, uid, name, p]); await page.waitForTimeout(60);
     if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)) throw new Error(`sideways scroll on ${name} (${lang})`);
   }
-  await page.evaluate(async () => { LANG = 'mr'; loginAs(S.users.PQC); S.projects['AIEC-P008'].stage = 'qc_site'; await wiz('qcsite', 'AIEC-P008'); W.ctx.meas = { width: 1200, depth: 1200, pit: 900, head: 3000 }; W.step = 1; render(); }); await page.waitForTimeout(100);
-  await page.evaluate(() => { W.step = 4; render(); }); await page.waitForTimeout(100);
+  await page.evaluate(async () => { LANG = 'mr'; loginAs(S.users.PQC); S.projects['AIEC-P008'].stage = 'qc_site'; await wiz('qcsite', 'AIEC-P008'); W.ctx.meas = { width: 1200, depth: 1200, pit: 900, head: 3000 }; W.step = 2; render(); }); await page.waitForTimeout(100);
+  await page.evaluate(() => { W.step = 6; render(); }); await page.waitForTimeout(100);
   await page.evaluate(async () => { loginAs(S.users.PTECH); await wiz('peer', 'AIEC-P003', { step: 9 }); }); await page.waitForTimeout(100);
   await page.evaluate(async () => { loginAs(S.users.PADMIN); await wiz('surpriseSet', 'AIEC-P003'); }); await page.waitForTimeout(100);
   const m = await miss(page);

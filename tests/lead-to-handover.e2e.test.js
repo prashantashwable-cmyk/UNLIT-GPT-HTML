@@ -174,10 +174,13 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   assert(await page.evaluate(() => visibleProjects(App.me).length) === 1, 'customer sees one project');
 
   /* --- 5. QC site inspection: corrections first, then approval --- */
+  const doorFloors = async () => { await fill('door.w', 800); await fill('door.h', 2000);
+    const n = await page.evaluate(pid => floorGaps(S.projects[pid]), pid); for (let i = 0; i < n; i++) await fill('floors.' + i, 3000); await next(); };
   await login('Quinn QC');
   await startTask('inspect_site'); await next();
+  await pick('can', 'yes'); await next();
   for (const [m, v] of [['width', 1800], ['depth', 1900], ['pit', 1500], ['head', 4200]]) await fill('meas.' + m, v);
-  await next();
+  await next(); await doorFloors();
   for (const c of ['plumb', 'pit_dry', 'power3', 'access']) await pick('checks.' + c, 'yes');
   await pick('checks.barricade', 'no'); await next();
   await photo('ph'); await photo('ph'); await next();
@@ -189,8 +192,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); };
   await tap(page, '[data-a="clAction"][data-v="QC_REQUESTED"]', { wait: 300 });
   await login('Quinn QC');
   await startTask('inspect_site'); await next();
+  await pick('can', 'yes'); await next();
   for (const [m, v] of [['width', 1800], ['depth', 1900], ['pit', 1500], ['head', 4200]]) await fill('meas.' + m, v);
-  await next(); for (const c of ['plumb', 'pit_dry', 'power3', 'barricade', 'access']) await pick('checks.' + c, 'yes');
+  await next(); await doorFloors(); for (const c of ['plumb', 'pit_dry', 'power3', 'barricade', 'access']) await pick('checks.' + c, 'yes');
   await next(); await photo('ph'); await photo('ph'); await next(); await pick('outcome', 'approved'); await next(); await next(); await doneOk('qc approved');
   assert(await stage(pid) === 'site_ok', 'site_ok');
 

@@ -59,7 +59,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* site preparation and site QC */
   for (const k of await ev('PREP_ITEMS.map(x => x[0])')) await step('prepare_site', 'SCUST', 'PREP_ITEM_DONE', { item: k, ev: await ph(1, 'site') });
   await step('request_qc', 'SCUST', 'QC_REQUESTED', {});
-  await step('inspect_site', 'POWNER', 'QC_SITE_RESULT', { meas: { width: 1800, depth: 1900, pit: 1500, head: 4200 }, checks: { plumb: 'yes', pit_dry: 'yes', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome: 'approved', ev: await ph(2, 'site') });
+  await step('inspect_site', 'POWNER', 'QC_SITE_RESULT', { meas: { width: 1800, depth: 1900, pit: 1500, head: 4200 }, door: { w: 800, h: 2000 }, floors: Array(59).fill(3000), checks: { plumb: 'yes', pit_dry: 'yes', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome: 'approved', ev: await ph(2, 'site') });
 
   /* material */
   const tech = 'PTECH';
