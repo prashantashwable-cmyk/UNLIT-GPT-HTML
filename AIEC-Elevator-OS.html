@@ -3361,6 +3361,21 @@ const L = {
   sun_say: ['Sunlight mode: pure white, thick dark borders, strong colours, and full-size buttons for gloves.', 'धूप मोड: सफ़ेद, मोटी गहरी किनारी, तेज़ रंग, और दस्ताने के लिए बड़े बटन।', 'ऊन मोड: पांढरा, जाड गडद कडा, ठळक रंग, आणि हातमोज्यांसाठी मोठी बटणे.'],
   sun_yes: ['Turn on Sunlight mode', 'धूप मोड चालू करें', 'ऊन मोड चालू करा'],
   sun_no: ['No thanks', 'नहीं, धन्यवाद', 'नको, धन्यवाद'],
+  ask_who: ['Ask {n}.', '{n} से कहें।', '{n} यांना सांगा.'],
+  acc_stopped: ['Access for {n} was stopped on {d}. If this is a mistake, call the office.', '{n} की पहुँच {d} को बंद की गई। अगर गलती है तो ऑफिस को फ़ोन करें।', '{n} यांचा प्रवेश {d} रोजी बंद केला. चूक असल्यास ऑफिसला फोन करा.'],
+  door_missing: ['My name is not here', 'मेरा नाम यहाँ नहीं है', 'माझे नाव इथे नाही'],
+  door_missing_d: ['Your name appears after the office adds you and sends your file to this phone, or after your access is turned back on. Call the office.', 'ऑफिस आपको जोड़कर इस फ़ोन पर आपकी फ़ाइल भेजे, या आपकी पहुँच फिर चालू करे, तब आपका नाम दिखता है। ऑफिस को फ़ोन करें।', 'ऑफिसने तुम्हाला जोडून या फोनवर तुमची फाइल पाठवल्यावर, किंवा प्रवेश पुन्हा चालू केल्यावर तुमचे नाव दिसते. ऑफिसला फोन करा.'],
+  blk_title: ['Work blocked: a paper has ended', 'काम रुका: एक कागज़ खत्म हो गया', 'काम थांबले: एक कागद संपला'],
+  blk_item: ['{x} ended on {d}', '{x} {d} को खत्म', '{x} {d} रोजी संपले'],
+  blk_do: ['New site work is not allowed until it is renewed. Send the renewed paper to the office.', 'नवीनीकरण तक नया साइट काम नहीं। नवीनीकृत कागज़ ऑफिस को भेजें।', 'नूतनीकरण होईपर्यंत नवीन साइट काम नाही. नूतनीकृत कागद ऑफिसला पाठवा.'],
+  blk_open: ['Open my papers', 'मेरे कागज़ खोलें', 'माझे कागद उघडा'],
+  tk_pin_alert: ['Several wrong PIN tries: check with the person', 'कई गलत PIN कोशिशें: व्यक्ति से पूछें', 'अनेक चुकीचे PIN प्रयत्न: व्यक्तीला विचारा'],
+  s_pin_alert: ['Wrong PIN tries locked this login three times', 'गलत PIN से यह लॉगिन तीन बार बंद हुआ', 'चुकीच्या PIN मुळे हे लॉगिन तीनदा बंद झाले'],
+  pa_what: ['Locked three times in a row (last {d}).', 'लगातार तीन बार बंद (आखिरी {d})।', 'सलग तीनदा बंद (शेवटचे {d}).'],
+  pa_do: ['Call the person. If they forgot the PIN, give a new one from Users. If it was not them, give a new PIN and check who has their phone.', 'व्यक्ति को फ़ोन करें। PIN भूले हों तो Users से नया दें। अगर वे नहीं थे, नया PIN दें और देखें उनका फ़ोन किसके पास है।', 'व्यक्तीला फोन करा. PIN विसरले असतील तर Users मधून नवीन द्या. ते नसतील तर नवीन PIN द्या आणि त्यांचा फोन कोणाकडे आहे ते पाहा.'],
+  pa_note: ['What you found / did', 'क्या पता चला / क्या किया', 'काय आढळले / काय केले'],
+  ev_PIN_ALERT: ['Wrong PIN tries reported', 'गलत PIN कोशिशें दर्ज', 'चुकीचे PIN प्रयत्न नोंदले'],
+  ev_PIN_ALERT_SEEN: ['PIN alert checked', 'PIN चेतावनी देखी', 'PIN सूचना तपासली'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5536,7 +5551,7 @@ const hasQc = () => Object.values(S.users).some(u => u.active && u.role === 'qc'
 const svcRoles = () => svcLead() ? [roleOf(svcLead())] : hasQc() ? ['qc'] : ['admin', 'owner'];
 const isSvcOwner = u => ['admin', 'owner'].includes(u.role) || (svcLead() ? u.uid === svcLead() : u.role === 'qc');
 function emptyState() {
-  return { jobNos: {}, stock: { items: {}, bal: {}, moves: [] }, settle: {}, contracts: {}, trainVideos: {}, ratingAppeals: {}, reviewsVoid: [], org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
+  return { pinAlerts: {}, jobNos: {}, stock: { items: {}, bal: {}, moves: [] }, settle: {}, contracts: {}, trainVideos: {}, ratingAppeals: {}, reviewsVoid: [], org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
     templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], enquiries: {}, enqOrder: [], joins: {}, reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {}, lastAt: {}, undone: {} };
 }
 let S = emptyState();
@@ -6169,6 +6184,9 @@ const RULES = {
   ORG_CREATED: { boot: true },
   KEY_ADDED: { roles: ROLES, check: (S, ev) => need(ev.data.kid && ev.data.pub && ev.data.pub.kty === 'EC', 'err_fill') || need(!((S.keys[ev.by] || []).some(x => x.kid === ev.data.kid)), 'err_dup_key') },
   KEY_APPROVED: { roles: ['owner', 'admin'], check: (S, ev) => { const x = (S.keys[ev.data.uid] || []).find(y => y.kid === ev.data.kid); return need(x, 'err_fill') || need(!x.ok, 'err_dup_key'); } },
+  /* 3 lock-outs in a row on one phone: the office is told (the person may have forgotten the PIN, or someone is guessing) */
+  PIN_ALERT: { roles: ROLES, check: (S, ev) => need(Number.isInteger(+ev.data.n) && +ev.data.n >= 1, 'err_fill') },
+  PIN_ALERT_SEEN: { roles: ['owner', 'admin'], check: (S, ev) => S.pinAlerts[ev.data.uid] && !S.pinAlerts[ev.data.uid].seen ? need((ev.data.note || '').trim(), 'err_reason') : 'err_already' },
   PIN_UPGRADED: { roles: ROLES, check: (S, ev) => need(String(ev.data.pin || '').startsWith('p2$') && ev.data.salt, 'err_fill') },
   USER_ADDED: {
     roles: ['owner', 'admin', 'sales', 'partner'], check: (S, ev, u) => {
@@ -7512,7 +7530,7 @@ function validate(S, ev) {
   const u = S.users[ev.by];
   if (!u || !u.active) return 'err_no_user';
   const P0 = R.project ? S.projects[ev.pid] : null;
-  if (!R.roles.includes(u.role) && !ownerCovers(S, R, ev, u, P0)) return { k: 'err_role', v: { roles: rolesTxt(R.roles) } };
+  if (!R.roles.includes(u.role) && !ownerCovers(S, R, ev, u, P0)) return { k: 'err_role', v: { roles: rolesTxt(R.roles), who: Object.values(S.users).filter(x => x.active && x.uid !== u.uid && R.roles.includes(x.role) && x.role !== 'customer').slice(0, 2).map(x => x.name).join(', ') } };
   let P = null;
   if (R.project) {
     P = S.projects[ev.pid];
@@ -7577,6 +7595,7 @@ function apply(S, ev) {
     case 'PIN_UPGRADED': Object.assign(S.users[ev.by], { pin: d.stripped ? null : d.pin, salt: d.stripped ? null : d.salt, pinLen: +d.pinLen || S.users[ev.by].pinLen || 4 }); break;
     case 'USER_UPDATED': {
       const x = S.users[d.uid];
+      if (d.active === false && x.active) Object.assign(x, { stoppedT: ev.t, stoppedBy: ev.by }); if (d.active === true) x.stoppedT = null;
       ['name', 'role', 'pin', 'salt', 'active', 'pinLen'].forEach(k => { if (d[k] !== undefined && !(k === 'name' && d[k] == null)) x[k] = d[k]; });
       if (d.company !== undefined) { x.company = d.company || null; x.memberOk = !!d.company; (x.coLog = x.coLog || []).push({ co: x.company, t: ev.t }); }
       break;
@@ -7866,6 +7885,8 @@ function apply(S, ev) {
       S.stock.moves.push({ id: ev.id, t: ev.t, by: ev.by, sku: d.sku, qty: q, from: d.from, to: d.to, note: d.note || '', pid: /^site:/.test(d.to) ? d.to.slice(5) : /^site:/.test(d.from) ? d.from.slice(5) : null });
       break;
     }
+    case 'PIN_ALERT': S.pinAlerts[ev.by] = { t: ev.t, n: +d.n, dev: ev.dev || '', seen: null }; break;
+    case 'PIN_ALERT_SEEN': S.pinAlerts[d.uid].seen = { t: ev.t, by: ev.by, note: d.note }; break;
     case 'TEMPLATE_SET': S.templates[d.tid] = { tid: d.tid, name: d.name || '', text: d.text, by: ev.by, t: ev.t }; break;
     case 'TEMPLATE_DELETED': delete S.templates[d.tid]; break;
     case 'MSG_LOGGED': P.msgs.push({ id: d.mid, t: ev.t, by: ev.by, template: d.template || '', text: d.text || '', lang: d.lang || '', status: 'opened', hist: [] }); break;
@@ -8272,6 +8293,7 @@ function coverTasks(P, out) {
 function globalNeeds(u, all) { return drawMemo('global', (u && u.uid) + '|' + !!all, () => globalNeeds0(u, all)); }
 function globalNeeds0(u, all) {
   const out = [], add = (k, roles, o = {}) => { const n = splitOA(Object.assign({ k, roles, pid: null }, o)); out.push(n); return n; };
+  for (const [uid, a] of Object.entries(S.pinAlerts || {})) if (!a.seen && S.users[uid]) add('pin_alert', ['admin', 'owner'], { uid, urgent: true, since: a.t });
   { const low = Object.values(S.stock.items).filter(it => it.reorder > 0 && stockQty('store', it.sku) < it.reorder); if (low.length) add('stock_low', ['admin', 'owner'], { n: low.length }); }
   /* unusual looking at customer and project pages by an outside company or its people */
   for (const x of Object.values(S.users).filter(y => OUTSIDERS.includes(y.role))) { const a = accessAlert(x.uid); if (a) add('access_alert', ['admin', 'owner'], { uid: x.uid, why: a.why, n: a.n, urgent: true }); }
@@ -8402,7 +8424,7 @@ function t(k, v) {
 }
 const rolesTxt = rs => uniq(rs).map(r => t('r_' + r)).join(' / ');
 const stName = s => t('st_' + s);
-const errText = e => !e ? '' : typeof e === 'string' ? t(e) : t(e.k, e.v);
+const errText = e => !e ? '' : typeof e === 'string' ? t(e) : t(e.k, e.v) + (e.k === 'err_role' && e.v && e.v.who ? ' ' + t('ask_who', { n: e.v.who }) : '');
 const LOCALE = () => ({ en: 'en-IN', hi: 'hi-IN', mr: 'mr-IN' }[LANG] + '-u-nu-latn');
 function fmtD(iso, time) {
   if (!iso) return '';
@@ -9016,7 +9038,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -9941,6 +9963,12 @@ SCREENS.risk = ({ uid }) => {
   return topBar(t('rk_' + k), { back: true }) + `<main class="wrap">${k === 'risk' ? `<p class="say">${t('rk_note')}</p>` : ''}${rows || `<div class="empty">✅ ${t('rk_none')}</div>`}</main>` + nav('home');
 };
 /* field staff outdoors: offer the sunlight look and full-size buttons once */
+/* papers that ended stop the work they cover: say so first, with what to do */
+function blockedBanner(u) {
+  if (!['tech', 'partner', 'qc'].includes(u.role)) return '';
+  const ended = legalEnded(u.uid); if (!ended.length) return '';
+  return `<div class="err" role="alert">⛔ <b>${t('blk_title')}</b><br>${ended.map(k => t('blk_item', { x: t('lg_' + k), d: fmtD(legalOf(u.uid)[k].expiry) })).join('<br>')}<br><span class="small">${t('blk_do')}</span><br><button class="btn btn-sm" style="margin-top:6px" data-a="nav2" data-v="worker|${u.uid}">🪪 ${t('blk_open')}</button></div>`;
+}
 function sunCard(u) {
   if (!['tech', 'field', 'supplier', 'qc'].includes(u.role) || App.set.sunAsked || (App.set.theme === 'contrast' && getScale() >= 100)) return '';
   return `<div class="card"><h3>☀️ ${t('sun_title')}</h3><p class="small">${t('sun_say')}</p><div class="row wrapw"><button class="btn btn-p" data-a="sunYes">☀️ ${t('sun_yes')}</button><button class="btn" data-a="sunNo">${t('sun_no')}</button></div></div>`;
@@ -10060,6 +10088,12 @@ WIZ.liftMode = {
   steps: [{ id: 'm', icon: '🔒', say: () => t(W.opts.mode === 'normal' ? 'lm_normal_say' : 'lm_insp_say'), body: () => `<p class="say">${t(W.opts.mode === 'normal' ? 'lm_normal_say' : 'lm_insp_say')}</p>` + photoSlot('ph', W.opts.mode === 'normal' ? 'lm_ph_normal' : 'lm_ph_insp', 1, { tag: 'liftmode' }),
     check: c => c.ph.length ? null : { k: 'err_photos', v: { n: 1 } } }],
   async finish(c, P) { const r = await run([['LIFT_MODE_SET', P.id, { mode: W.opts.mode, ev: c.ph }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+WIZ.pinAlert = {
+  title: 'tk_pin_alert', save: 'save', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'p', icon: '🔐', say: 's_pin_alert', body: () => { const a = S.pinAlerts[W.opts.uid] || {}; return `<div class="card"><b>${esc(userName(W.opts.uid))}</b><p>${t('pa_what', { d: fmtD(a.t, true) })}</p></div><p class="small">${t('pa_do')}</p>` + inp('note', 'pa_note', { area: true, mic: true }); },
+    check: c => c.note.trim() ? null : 'err_reason' }],
+  async finish(c) { const r = await run([['PIN_ALERT_SEEN', null, { uid: W.opts.uid, note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('home') } : r; }
 };
 WIZ.ticketAccept = {
   title: 'tk_accept_ticket', save: 'tk_accept_ticket', saveIcon: '🙋', noDraft: true, init: () => ({}),
@@ -11064,10 +11098,12 @@ function langChips() { return `<div class="row wrapw" style="justify-content:cen
 SCREENS.gate = () => {
   if (!App.set.lang) { App.set.lang = LANG; saveSettings(); }
   const last = App.set.lastUser && S.users[App.set.lastUser] && S.users[App.set.lastUser].active ? S.users[App.set.lastUser] : null, mr = App.set.myReq;
+  const gone = App.set.lastUser && S.users[App.set.lastUser] && !S.users[App.set.lastUser].active ? S.users[App.set.lastUser] : null;
   App.pageSay = t('gate_say');
   return `<main class="wrap center" style="padding-top:4vh">${LOGO}<h1 style="margin:10px 0 0;font-size:1.3rem">${esc(S.org ? S.org.name : 'ALL INDIA ELEVATORS COMPANY')}</h1>${langChips()}
     ${last ? `<button class="btn btn-p btn-big" data-a="loginUser" data-v="${last.uid}">${ROLE_ICON[last.role]} ${t('gate_continue', { n: esc(last.name) })} →</button><div style="height:12px"></div>` : ''}
     ${myJoin() && myJoin().st !== 'ok' ? `<button class="btn btn-p btn-big" data-a="nav" data-v="myReq">📨 ${t('jq_gate')}${myJoin().st ? ' · ' + t('jq_st_' + myJoin().st) : ''}</button><div style="height:10px"></div>` : mr && !S.users[mr.uid] ? `<div class="note" style="text-align:left">📨 ${t('gate_my_req', { d: fmtD(mr.t) })}</div>` : ''}
+    ${gone ? `<div class="err" style="text-align:left">⛔ ${t('acc_stopped', { n: esc(gone.name), d: gone.stoppedT ? fmtD(gone.stoppedT) : '' })}${S.config.officeNumber ? `<br><a class="btn btn-sm" style="margin-top:6px" href="tel:${esc(S.config.officeNumber)}">📞 ${t('cl_office_call')}</a>` : ''}</div>` : ''}
     <p class="say">${t('gate_say')}</p>
     <div style="text-align:left">${[[1, 'cust', '🏠', 'door_cust'], [2, 'join', '🧰', 'door_join'], [3, 'staff', '👷', 'door_staff']].map(([n, k, i, l]) => `<button class="door d${n}" data-a="door" data-v="${k}"><span class="i" aria-hidden="true">${i}</span><span><b>${t(l)}</b><small>${t(l + '_d')}</small></span><span aria-hidden="true" style="margin-left:auto;font-size:1.4rem">›</span></button>`).join('')}</div>
     <div class="row wrapw" style="justify-content:center;margin-top:6px">${!S.org && App.mode === 'real' ? `<button class="btn btn-sm" data-a="nav" data-v="newOrg">👑 ${t('gate_new_company')}</button><button class="btn btn-sm" data-a="nav" data-v="restore">🗄️ ${t('rs_title')}</button>` : ''}<button class="btn btn-sm" data-a="practice">🎓 ${t('setup_practice')}</button><button class="btn btn-sm" data-a="nav" data-v="join">📂 ${t('gate_open_file')}</button><button class="btn btn-sm" data-a="nav" data-v="intro">❓ ${t('gate_how')}</button>${App.installEvt ? `<button class="btn btn-sm" data-a="install">📲 ${t('install_app')}</button>` : ''}</div>
@@ -11083,7 +11119,8 @@ SCREENS.door = ({ kind }) => {
   if (kind === 'cust') { App.pageSay = t('door_cust'); body = people + `<div class="tiles one">${tile('nav', 'codeLogin', '🔑', 'code_have')}${tile('nav', 'join', '📂', 'cust_have_file', 'cust_have_file_d')}${joinSrv() ? tile('custNewGuest', '', '🛗', 'cl_new_lift', 'cl_new_lift_d') : ''}${tile('nav', 'enquiry', '📞', 'cust_new_enq', 'cust_new_enq_d')}</div>`; }
   else if (kind === 'staff') { App.pageSay = t('door_staff'); body = people + `<div class="tiles one">${tile('nav', 'codeLogin', '🔑', 'code_have')}${tile('nav', 'join', '📂', 'staff_open_file')}</div><p class="small muted center">🧰 ${t('staff_new_here')}</p><button class="btn" data-a="door" data-v="join">🧰 ${t('door_join')}</button>`; }
   else { App.pageSay = t('join_pick'); body = (App.joinLink ? `<div class="okbox">🏢 ${t('gate_join_for', { n: esc(App.joinLink.org) })}</div>` : '') + `<p class="say">${t('join_pick')}</p><div class="tiles">${JOIN_ROLES.map(([r, i]) => `<button class="tile" data-a="joinRole" data-v="${r}"><span class="i">${i}</span>${t('jr_' + r)}</button>`).join('')}</div>`; }
-  return topBar(t(kind === 'cust' ? 'door_cust' : kind === 'staff' ? 'door_staff' : 'door_join'), { back: true }) + `<main class="wrap">${body}${App.mode === 'practice' ? `<div class="note">🎓 ${t('practice_pin')}</div>` : ''}</main>`;
+  return topBar(t(kind === 'cust' ? 'door_cust' : kind === 'staff' ? 'door_staff' : 'door_join'), { back: true }) + `<main class="wrap">${body}${App.mode === 'practice' ? `<div class="note">🎓 ${t('practice_pin')}</div>` : ''}
+    ${kind !== 'join' ? `<details class="card small"><summary>${t('door_missing')}</summary><p>${t('door_missing_d')}</p>${S.config.officeNumber ? `<a class="btn btn-sm" href="tel:${esc(S.config.officeNumber)}">📞 ${t('cl_office_call')}</a>` : ''}</details>` : ''}</main>`;
 };
 function officeNoField() { const f = App.form; if (f.rqOffice == null) f.rqOffice = (App.joinLink && App.joinLink.office) || S.config.officeNumber || ''; return formInp('rqOffice', 'f_office_no', { type: 'tel', mode: 'tel', max: 15 }); }
 SCREENS.codeLogin = () => {
@@ -11513,7 +11550,7 @@ SCREENS.home = () => {
   if (App.mode === 'practice' && !(App.set.calmSeen || {})[u.uid]) h += `<div class="card"><b>🎓 ${t('calm_t')}</b><p class="small">${t('calm_d')}</p><div class="row wrapw"><button class="btn btn-p" data-a="calmTry">▶ ${t('calm_try')}</button><button class="btn" data-a="calmOk">${t('calm_ok')}</button></div></div>`;
   if (!adm && STAFF.includes(u.role) && daysSince(u.t) < 7) h += firstWeekCard(u);
   if (u.role === 'field') h += shiftCard();
-  h += moneyLine(u) + riskStrip(u) + sunCard(u) + callNextCard(u) + routineCard(u);
+  h += blockedBanner(u) + moneyLine(u) + riskStrip(u) + sunCard(u) + callNextCard(u) + routineCard(u);
   if (u.role === 'tech') { const open = visibleProjects(u).filter(P => checkedIn(P, safeDay(), u.uid) && !(((P.dayEnds || {})[safeDay()] || {})[u.uid]));
     open.forEach(P => { h += `<button class="task" style="margin-top:10px" data-a="wizOpen" data-v="techEnd|${P.id}"><span class="ti">🏁</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_end_day')}</b><span class="small muted">${esc(jobNo(P))} · ${esc(projTitle(P))}</span></span><span class="go">▶</span></button>`; }); }
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))}${tasks[0].pid ? ' · ' + esc(tasks[0].pid) : ''}</p>`;
@@ -14354,7 +14391,7 @@ function openTask(n) {
     record_payment: () => wiz('paynew', pid, { purpose: n.purpose }), verify_payment: () => wiz('payverify', pid, { payId: n.payId }),
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), decide_infeasible: () => wiz('infeasible', pid), approve_drawing: () => go('drawings', { pid }),
-    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), pre_survey: () => wiz('survey', pid), pick_option: () => go('project', { pid, tab: 'info' }), sign_gad: () => wiz('gad', pid), decide_damage: () => wiz('dmgDecide', pid, { did: n.did }), charge_due: () => wiz('chargeSettle', pid, { cid: n.cid }), pay_charge: () => go('doc', { pid, kind: 'charge' }), set_insp_mode: () => wiz('liftMode', pid, { mode: 'inspection' }), set_normal_mode: () => wiz('liftMode', pid, { mode: 'normal' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
+    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), pre_survey: () => wiz('survey', pid), pin_alert: () => wiz('pinAlert', null, { uid: n.uid }), pick_option: () => go('project', { pid, tab: 'info' }), sign_gad: () => wiz('gad', pid), decide_damage: () => wiz('dmgDecide', pid, { did: n.did }), charge_due: () => wiz('chargeSettle', pid, { cid: n.cid }), pay_charge: () => go('doc', { pid, kind: 'charge' }), set_insp_mode: () => wiz('liftMode', pid, { mode: 'inspection' }), set_normal_mode: () => wiz('liftMode', pid, { mode: 'normal' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
@@ -14418,13 +14455,14 @@ async function tryPin(uid) {
   if (L0.until > Date.now()) { App.form.pin = ''; render(); return; }
   const pin = App.form.pin, ok = u.pin && await pinMatches(pin, u); App.form.pin = '';
   if (ok && u.active) {
-    App.set.lock[uid] = { fails: 0, until: 0 }; App.form.pinErr = '';
+    App.set.lock[uid] = { fails: 0, until: 0, outs: 0 }; App.form.pinErr = '';
     if (!String(u.pin).startsWith('p2$') && window.crypto && crypto.subtle) { const salt = rid(10); await perform('PIN_UPGRADED', null, { pin: await pinHash(pin, salt), salt, pinLen: pin.length }, { as: uid, quiet: true }); }
     loginAs(S.users[uid]); return;
   }
   L0.fails++;
   App.form.pinErr = t('wrong_pin', { n: Math.max(0, 5 - L0.fails) });
-  if (L0.fails >= 5) { L0.until = Date.now() + 60000; L0.fails = 0; setTimeout(render, 61000); }
+  if (L0.fails >= 5) { L0.until = Date.now() + 60000; L0.fails = 0; L0.outs = (L0.outs || 0) + 1; setTimeout(render, 61000);
+    if (L0.outs >= 3) { L0.outs = 0; perform('PIN_ALERT', null, { n: 3 }, { as: uid, quiet: true }).catch(() => {}); } }
   App.set.lock[uid] = L0; await saveSettings(); render();
   if (App.set.autoRead) Voice.say(App.form.pinErr);
 }

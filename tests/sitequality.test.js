@@ -44,7 +44,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const last = await ev('Object.fromEntries(iscFor(11).map(x => [x[0], "yes"]))'); last[34] = 'na';
   assert((await act('SOP_STEP_DONE', H, { step: 11, isc: last, ev: await photos(1) }, T)).ok, 'last step saved ("remote monitoring" not fitted = Not here)');
   assert((await act('INSPECTION_REQUESTED', H, {}, T)).err === 'err_snags_open', 'the inspection cannot be asked while a checklist problem is open');
-  assert(JSON.stringify(await tasks(T, H)) === '["fix_install"]', 'the only task is to fix the open problem');
+  { const tk = await tasks(T, H); assert(tk.includes('fix_install') && !tk.includes('request_inspection'), 'the task is to fix the open problem: ' + JSON.stringify(tk)); }
   const cid = await ev(`openCorr(S.projects["${H}"], "install")[0].id`);
   assert((await act('CORRECTION_DONE', H, { cid, ev: await photos(1), note: 'Plate fixed' }, T)).ok, 'the technician fixes it with a photo');
   assert((await tasks(T, H)).includes('request_inspection') && (await act('INSPECTION_REQUESTED', H, {}, T)).ok, 'then the inspection can be asked');
