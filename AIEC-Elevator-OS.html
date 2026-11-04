@@ -3419,6 +3419,23 @@ const L = {
   pg_note_line: ['Rough price seen: {k}, {n} stops, {p} people, {c} cabin, {lo} – {hi}', 'देखी गई अनुमानित कीमत: {k}, {n} स्टॉप, {p} लोग, {c} केबिन, {lo} – {hi}', 'पाहिलेली अंदाजे किंमत: {k}, {n} थांबे, {p} लोक, {c} केबिन, {lo} – {hi}'],
   pg_out_line: ['Outside our service area: {a}', 'हमारे सेवा क्षेत्र से बाहर: {a}', 'आमच्या सेवा क्षेत्राबाहेर: {a}'],
   cfg_serveAreas: ['Areas we serve (comma list, e.g. Pune, PCMC, Hinjewadi). Empty = all areas', 'हम जिन इलाकों में काम करते हैं (कॉमा से, जैसे Pune, PCMC)। खाली = सभी', 'आम्ही काम करतो ते भाग (स्वल्पविरामाने, उदा. Pune, PCMC). रिकामे = सर्व'],
+  pinag_title: ['Enter your PIN again', 'अपना PIN फिर डालें', 'तुमचा PIN पुन्हा टाका'],
+  pinag_why: ['This changes money, rules or who can do what, or takes data off the phone. Your PIN makes sure it is really you.', 'यह पैसे, नियम या कौन क्या कर सकता है बदलता है, या डेटा फ़ोन से बाहर ले जाता है। PIN से पक्का होता है कि यह आप ही हैं।', 'हे पैसे, नियम किंवा कोण काय करू शकतो ते बदलते, किंवा डेटा फोनबाहेर नेते. PIN मुळे खात्री होते की हे तुम्हीच आहात.'],
+  pinag_locked: ['Wrong PIN three times: the app is locked. Sign in again.', 'तीन बार गलत PIN: ऐप लॉक हो गया। फिर से साइन इन करें।', 'तीनदा चुकीचा PIN: अ‍ॅप लॉक झाले. पुन्हा साइन इन करा.'],
+  err_pin_recheck: ['PIN not confirmed. Nothing was changed.', 'PIN की पुष्टि नहीं हुई। कुछ नहीं बदला।', 'PIN ची खात्री झाली नाही. काहीही बदलले नाही.'],
+  bio_title: ['Fingerprint or face unlock', 'फिंगरप्रिंट या चेहरे से खोलें', 'बोटाचा ठसा किंवा चेहऱ्याने उघडा'],
+  bio_d: ['Open the app with this phone\'s fingerprint or face lock. Your PIN always still works.', 'इस फ़ोन के फिंगरप्रिंट या फेस लॉक से ऐप खोलें। आपका PIN हमेशा चलेगा।', 'या फोनच्या ठसा किंवा फेस लॉकने अ‍ॅप उघडा. तुमचा PIN नेहमी चालेल.'],
+  bio_on: ['On for this phone (tap to turn off)', 'इस फ़ोन पर चालू (बंद करने के लिए दबाएँ)', 'या फोनवर चालू (बंद करण्यासाठी दाबा)'],
+  bio_off: ['Turn on', 'चालू करें', 'चालू करा'],
+  bio_use: ['Use fingerprint', 'फिंगरप्रिंट से', 'ठशाने उघडा'],
+  bio_added: ['Fingerprint unlock is on', 'फिंगरप्रिंट से खोलना चालू', 'ठशाने उघडणे चालू'],
+  bio_fail: ['Fingerprint not accepted. Use your PIN.', 'फिंगरप्रिंट नहीं माना गया। PIN डालें।', 'ठसा स्वीकारला नाही. PIN वापरा.'],
+  tk_dev_alert: ['One login used on two phones: check with the person', 'एक लॉगिन दो फ़ोन पर: व्यक्ति से पूछें', 'एक लॉगिन दोन फोनवर: व्यक्तीला विचारा'],
+  s_dev_alert: ['This login was used on more than one phone this week', 'यह लॉगिन इस हफ्ते एक से ज़्यादा फ़ोन पर चला', 'हे लॉगिन या आठवड्यात एकापेक्षा जास्त फोनवर वापरले'],
+  da_what: ['Used on {n} phones in the last 7 days.', 'पिछले 7 दिनों में {n} फ़ोन पर इस्तेमाल।', 'गेल्या 7 दिवसांत {n} फोनवर वापरले.'],
+  da_do: ['A new phone is fine. If someone else is using this PIN, stop it: give each person their own login. Write what you found.', 'नया फ़ोन ठीक है। अगर कोई और यह PIN चला रहा है, रोकें: हर व्यक्ति को अपना लॉगिन दें। जो पता चला वह लिखें।', 'नवीन फोन ठीक आहे. दुसरे कोणी हा PIN वापरत असेल तर थांबवा: प्रत्येकाला स्वतःचे लॉगिन द्या. जे कळले ते लिहा.'],
+  ev_DEVICE_USED: ['Signed in on a phone', 'फ़ोन पर साइन इन', 'फोनवर साइन इन'],
+  ev_DEVICE_ALERT_SEEN: ['Two-phone alert checked', 'दो-फ़ोन चेतावनी देखी', 'दोन-फोन सूचना तपासली'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5594,7 +5611,7 @@ const hasQc = () => Object.values(S.users).some(u => u.active && u.role === 'qc'
 const svcRoles = () => svcLead() ? [roleOf(svcLead())] : hasQc() ? ['qc'] : ['admin', 'owner'];
 const isSvcOwner = u => ['admin', 'owner'].includes(u.role) || (svcLead() ? u.uid === svcLead() : u.role === 'qc');
 function emptyState() {
-  return { pinAlerts: {}, jobNos: {}, stock: { items: {}, bal: {}, moves: [] }, settle: {}, contracts: {}, trainVideos: {}, ratingAppeals: {}, reviewsVoid: [], org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
+  return { pinAlerts: {}, devUse: {}, devAck: {}, jobNos: {}, stock: { items: {}, bal: {}, moves: [] }, settle: {}, contracts: {}, trainVideos: {}, ratingAppeals: {}, reviewsVoid: [], org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
     templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], enquiries: {}, enqOrder: [], joins: {}, reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {}, lastAt: {}, undone: {} };
 }
 let S = emptyState();
@@ -6229,6 +6246,8 @@ const RULES = {
   KEY_APPROVED: { roles: ['owner', 'admin'], check: (S, ev) => { const x = (S.keys[ev.data.uid] || []).find(y => y.kid === ev.data.kid); return need(x, 'err_fill') || need(!x.ok, 'err_dup_key'); } },
   /* 3 lock-outs in a row on one phone: the office is told (the person may have forgotten the PIN, or someone is guessing) */
   PIN_ALERT: { roles: ROLES, check: (S, ev) => need(Number.isInteger(+ev.data.n) && +ev.data.n >= 1, 'err_fill') },
+  DEVICE_USED: { roles: ROLES, check: () => null },
+  DEVICE_ALERT_SEEN: { roles: ['owner', 'admin'], check: (S, ev) => devAlert(S, ev.data.uid, ev.t) ? need((ev.data.note || '').trim(), 'err_reason') : 'err_already' },
   PIN_ALERT_SEEN: { roles: ['owner', 'admin'], check: (S, ev) => S.pinAlerts[ev.data.uid] && !S.pinAlerts[ev.data.uid].seen ? need((ev.data.note || '').trim(), 'err_reason') : 'err_already' },
   PIN_UPGRADED: { roles: ROLES, check: (S, ev) => need(String(ev.data.pin || '').startsWith('p2$') && ev.data.salt, 'err_fill') },
   USER_ADDED: {
@@ -7624,6 +7643,8 @@ function apply(S, ev) {
   const d = ev.data || {};
   let P = ev.pid ? S.projects[ev.pid] : null;
   S.byId[ev.id] = ev; if (ev.type !== 'UNDONE') S.lastAt[ev.pid || '_g'] = ev.id;
+  /* which phones each login was used on, and when last: PIN sharing shows up as two phones in a week */
+  if (ev.dev && ev.by) { const m = (S.devUse = S.devUse || {})[ev.by] = S.devUse[ev.by] || {}; if (!m[ev.dev] || m[ev.dev] < ev.t) m[ev.dev] = ev.t; }
   switch (ev.type) {
     case 'ORG_CREATED': S.org = { id: d.orgId, name: d.name, t: ev.t }; break;
     case 'USER_ADDED':
@@ -7930,6 +7951,7 @@ function apply(S, ev) {
     }
     case 'PIN_ALERT': S.pinAlerts[ev.by] = { t: ev.t, n: +d.n, dev: ev.dev || '', seen: null }; break;
     case 'PIN_ALERT_SEEN': S.pinAlerts[d.uid].seen = { t: ev.t, by: ev.by, note: d.note }; break;
+    case 'DEVICE_ALERT_SEEN': { const a = (S.devAck = S.devAck || {})[d.uid] = S.devAck[d.uid] || { devs: [], notes: [] }; a.devs = uniq(a.devs.concat(devRecent(S, d.uid, ev.t))); a.notes.push({ t: ev.t, by: ev.by, note: d.note }); break; }
     case 'TEMPLATE_SET': S.templates[d.tid] = { tid: d.tid, name: d.name || '', text: d.text, by: ev.by, t: ev.t }; break;
     case 'TEMPLATE_DELETED': delete S.templates[d.tid]; break;
     case 'MSG_LOGGED': P.msgs.push({ id: d.mid, t: ev.t, by: ev.by, template: d.template || '', text: d.text || '', lang: d.lang || '', status: 'opened', hist: [] }); break;
@@ -8337,6 +8359,7 @@ function globalNeeds(u, all) { return drawMemo('global', (u && u.uid) + '|' + !!
 function globalNeeds0(u, all) {
   const out = [], add = (k, roles, o = {}) => { const n = splitOA(Object.assign({ k, roles, pid: null }, o)); out.push(n); return n; };
   for (const [uid, a] of Object.entries(S.pinAlerts || {})) if (!a.seen && S.users[uid]) add('pin_alert', ['admin', 'owner'], { uid, urgent: true, since: a.t });
+  for (const uid of Object.keys(S.devUse || {})) if (devAlert(S, uid, nowISO())) add('dev_alert', ['admin', 'owner'], { uid, urgent: true });
   { const low = Object.values(S.stock.items).filter(it => it.reorder > 0 && stockQty('store', it.sku) < it.reorder); if (low.length) add('stock_low', ['admin', 'owner'], { n: low.length }); }
   /* unusual looking at customer and project pages by an outside company or its people */
   for (const x of Object.values(S.users).filter(y => OUTSIDERS.includes(y.role))) { const a = accessAlert(x.uid); if (a) add('access_alert', ['admin', 'owner'], { uid: x.uid, why: a.why, n: a.n, urgent: true }); }
@@ -8574,7 +8597,37 @@ async function getMedia(key) {
 /* every record carries the version of the rules it was made under; a phone never guesses the meaning of a newer one */
 const EV_V = 1;
 const evV = ev => ev.v || 1;
+/* money going out, forgiving money, who-can-do-what and taking data off the phone need the PIN again (2-minute grace) */
+const RECHECK = (type, d) => ['REFUND_DECIDED', 'REFUND_PAID', 'CONFIG_SET', 'DATA_EXPORTED'].includes(type) || (type === 'CHARGE_SETTLED' && d.how === 'waived') || (type === 'USER_UPDATED' && d.role != null);
+async function pinRecheck() {
+  const u = App.me; if (!(App.mode === 'real' || App.forceRecheck) || !u || !u.pin || Date.now() - (App.pinAt || 0) < 120000) return true;
+  if (App.pinAsk) { const f = App.pinAsk; App.pinAsk = null; f(false); }
+  const bio = Bio.has(u.uid);
+  return new Promise(res => { App.form.rpin = ''; App.form.rpinTries = 0;
+    sheet(`<h2>🔐 ${t('pinag_title')}</h2><p class="small">${t('pinag_why')}</p><input class="in big" id="rpin" data-f="rpin" type="password" inputmode="numeric" autocomplete="off" maxlength="8" aria-label="${t('enter_pin')}"><div id="rcerr"></div><div class="row wrapw" style="margin-top:10px"><button class="btn btn-p btn-big" data-a="recheckGo">✅ ${t('ok')}</button>${bio ? `<button class="btn btn-big" data-a="recheckBio">👆 ${t('bio_use')}</button>` : ''}</div>`);
+    App.pinAsk = res; });
+}
+/* fingerprint / face unlock (optional): the phone's own lock proves it is the owner of this phone; the PIN always still works.
+   Kept per person per phone; nothing leaves the phone. Offered only where the phone has such a lock. */
+const Bio = {
+  ok: false,
+  async probe() { try { this.ok = !!(window.PublicKeyCredential && PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable && await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()); } catch (e) { this.ok = false; } return this.ok; },
+  has(uid) { return this.ok && !!((App.set.bio || {})[App.mode + uid]); },
+  async add(u) {
+    const cred = await navigator.credentials.create({ publicKey: { challenge: crypto.getRandomValues(new Uint8Array(32)), rp: { name: 'AIEC Elevator OS' }, user: { id: new TextEncoder().encode(App.mode + u.uid), name: u.name, displayName: u.name },
+      pubKeyCredParams: [{ type: 'public-key', alg: -7 }, { type: 'public-key', alg: -257 }], authenticatorSelection: { authenticatorAttachment: 'platform', userVerification: 'required' }, timeout: 60000 } });
+    if (!cred) return false;
+    (App.set.bio = App.set.bio || {})[App.mode + u.uid] = b64(cred.rawId); await saveSettings(); return true;
+  },
+  async check(uid) {
+    const id = (App.set.bio || {})[App.mode + uid]; if (!id) return false;
+    try { const a = await navigator.credentials.get({ publicKey: { challenge: crypto.getRandomValues(new Uint8Array(32)), allowCredentials: [{ type: 'public-key', id: Uint8Array.from(atob(id), c => c.charCodeAt(0)) }], userVerification: 'required', timeout: 60000 } }); return !!a; } catch (e) { return false; }
+  },
+  card(u) { if (!this.ok || !u.pin) return ''; const on = this.has(u.uid);
+    return `<div class="card"><h3>👆 ${t('bio_title')}</h3><p class="small muted" style="margin:0 0 6px">${t('bio_d')}</p><div class="tiles one"><button class="tile ${on ? 'on' : ''}" data-a="bioToggle"><span class="i">👆</span>${t(on ? 'bio_on' : 'bio_off')}</button></div></div>`; }
+};
 async function perform(type, pid, data, opt = {}) {
+  if (!opt.as && RECHECK(type, data || {}) && !(await pinRecheck())) { if (!opt.quiet) toast(t('err_pin_recheck'), true); return { ok: false, err: 'err_pin_recheck' }; }
   const by = opt.as || (App.me && App.me.uid);
   /* a new job made on this phone (its key from newPid) gets the next job number */
   if (type === 'LEAD_CREATED' && data && !data.no && !S.projects[pid] && /^AIEC-\d{4}-[A-Za-z0-9]{3}$/.test(pid || '')) data = Object.assign({}, data, { no: newJobNo() });
@@ -8737,7 +8790,7 @@ function sheet(html) {
   App.ovClose = closeSheet;
   loadImages($('#ov'));
 }
-function closeSheet() { $('#ov').innerHTML = ''; App.ovClose = null; }
+function closeSheet() { $('#ov').innerHTML = ''; App.ovClose = null; if (App.pinAsk) { const f = App.pinAsk; App.pinAsk = null; f(false); } }
 
 /* ---------- voice: read aloud + speech input ---------- */
 const Voice = {
@@ -9083,7 +9136,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', dev_alert: '📱', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -10133,6 +10186,20 @@ WIZ.liftMode = {
   steps: [{ id: 'm', icon: '🔒', say: () => t(W.opts.mode === 'normal' ? 'lm_normal_say' : 'lm_insp_say'), body: () => `<p class="say">${t(W.opts.mode === 'normal' ? 'lm_normal_say' : 'lm_insp_say')}</p>` + photoSlot('ph', W.opts.mode === 'normal' ? 'lm_ph_normal' : 'lm_ph_insp', 1, { tag: 'liftmode' }),
     check: c => c.ph.length ? null : { k: 'err_photos', v: { n: 1 } } }],
   async finish(c, P) { const r = await run([['LIFT_MODE_SET', P.id, { mode: W.opts.mode, ev: c.ph }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+/* one login on two phones within 7 days: staff only (customers share with family; the Owner may use phone and laptop) */
+function devRecent(S, uid, at) { const from = new Date(Date.parse(at) - 7 * 864e5).toISOString(); return Object.entries((S.devUse || {})[uid] || {}).filter(([, t0]) => t0 >= from).map(([d]) => d); }
+function devAlert(S, uid, at) {
+  const u = S.users[uid]; if (!u || !u.active || ['customer', 'owner'].includes(u.role)) return false;
+  const r = devRecent(S, uid, at), ack = ((S.devAck || {})[uid] || {}).devs || [];
+  return r.length >= 2 && r.some(d => !ack.includes(d));
+}
+WIZ.devAlert = {
+  title: 'tk_dev_alert', save: 'save', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'd', icon: '📱', say: 's_dev_alert', body: () => { const uid = W.opts.uid, m = (S.devUse || {})[uid] || {};
+    return `<div class="card"><b>${esc(userName(uid))}</b><p>${t('da_what', { n: devRecent(S, uid, nowISO()).length })}</p>${devRecent(S, uid, nowISO()).map(d => `<div class="list-item small"><span class="grow">📱 ${esc(String(d).slice(0, 10))}</span>${fmtD(m[d], true)}</div>`).join('')}</div><p class="small">${t('da_do')}</p>` + inp('note', 'pa_note', { area: true, mic: true }); },
+    check: c => c.note.trim() ? null : 'err_reason' }],
+  async finish(c) { const r = await run([['DEVICE_ALERT_SEEN', null, { uid: W.opts.uid, note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('home') } : r; }
 };
 WIZ.pinAlert = {
   title: 'tk_pin_alert', save: 'save', noDraft: true, init: () => ({ note: '' }),
@@ -11486,6 +11553,7 @@ SCREENS.pin = ({ uid }) => {
     <p class="say">🔢 ${t('enter_pin')}</p><div class="dots" aria-label="${n}/${len}">${Array.from({ length: len }, (_, i) => i).map(i => `<i class="${i < n ? 'f' : ''}"></i>`).join('')}</div>
     ${wait ? `<div class="err">${t('locked', { n: wait })}</div>` : App.form.pinErr ? `<div class="err">${esc(App.form.pinErr)}</div>` : ''}
     <div class="pinpad">${['1', '2', '3', '4', '5', '6', '7', '8', '9', '⌫', '0', '✓'].map(k => `<button data-a="pinKey" data-v="${k}" ${wait ? 'disabled' : ''} aria-label="${k === '⌫' ? t('remove') : k === '✓' ? t('ok') : k}">${k}</button>`).join('')}</div>
+    ${Bio.has(uid) && u.active && !wait ? `<button class="btn btn-big" style="margin-top:14px" data-a="bioLogin" data-v="${uid}">👆 ${t('bio_use')}</button>` : ''}
     ${u.role === 'owner' ? `<button class="btn btn-sm" style="margin-top:14px" data-a="pinRecover" data-v="${u.uid}">🔑 ${t('pr_link')}</button>` : ''}
     ${App.locked ? `<button class="btn" style="margin-top:14px" data-a="logout">🚪 ${t('not_me')}</button>` : ''}</main>`;
 };
@@ -12695,7 +12763,7 @@ SCREENS.me = () => {
       <div class="row small muted" style="justify-content:space-between"><span>20%</span><span>${SCALE_DEFAULT}%</span><span>150%</span></div>
       <div class="tiles three" style="margin-top:8px">${[[SCALE_DEFAULT, 'size_n'], [100, 'size_l'], [130, 'size_xl']].map(([z, l]) => `<button class="tile ${getScale() === z ? 'on' : ''}" data-a="scaleSet" data-v="${z}" style="min-height:64px">${t(l)}<small>${z}%</small></button>`).join('')}</div>
       ${getScale() < 60 ? `<div class="warnbox">⚠️ ${t('scale_small')}</div>` : ''}</div>
-    <div class="card"><h3>⛶ ${t('fs_title')}</h3>${toggleSet('fullscreen', 'fs_on', App.set.fullscreen !== false)}<p class="small muted">${t('fs_note')}</p></div>
+    ${Bio.card(u)}<div class="card"><h3>⛶ ${t('fs_title')}</h3>${toggleSet('fullscreen', 'fs_on', App.set.fullscreen !== false)}<p class="small muted">${t('fs_note')}</p></div>
     <div class="card"><h3>🎨 ${t('theme')}</h3><div class="tiles">${THEMES.map(([k, i]) => `<button class="tile ${(App.set.theme || 'auto') === k ? 'on' : ''}" data-a="setTheme" data-v="${k}" style="min-height:64px"><span class="i">${i}</span>${t('th_' + k)}</button>`).join('')}</div></div>
     <div class="card"><h3>💡 ${t('wake_title')}</h3><div class="tiles one"><button class="tile ${App.set.wake !== false ? 'on' : ''}" data-a="toggleWake"><span class="i">💡</span><span>${t('wake_on')}<br><small>${t(Wake.ok() ? (Wake.lock ? 'wake_now' : 'wake_ready') : 'wake_no')}</small></span></button></div><p class="small muted">${t('wake_note')}</p></div>
     <div class="card"><h3>🔊 ${t('me_voice')}</h3><div class="tiles one"><button class="tile ${guideOn() ? 'on' : ''}" data-a="toggleGuide"><span class="i">🗣️</span><span>${t('voice_guide')}<br><small>${t('voice_guide_d')}</small></span></button>
@@ -13133,6 +13201,7 @@ function archiveKeys(months) {
 }
 async function saveArchived() { try { await KV.set(App.ns + 'archived', [...App.archived]); } catch (e) { /* not critical */ } }
 async function exportFile(kind, forUid, opts) {
+  if (!(await pinRecheck())) return toast(t('err_pin_recheck'), true);
   logAccess('export', kind + (forUid ? ':' + forUid : '')); await flushAccess();
   const pack = await finishPack(exportPack(kind, forUid, opts));
   const sc = await Sync.creds(kind, forUid); if (sc) pack.sync = sc;
@@ -14506,7 +14575,7 @@ function openTask(n) {
     record_payment: () => wiz('paynew', pid, { purpose: n.purpose }), verify_payment: () => wiz('payverify', pid, { payId: n.payId }),
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), decide_infeasible: () => wiz('infeasible', pid), approve_drawing: () => go('drawings', { pid }),
-    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), pre_survey: () => wiz('survey', pid), pin_alert: () => wiz('pinAlert', null, { uid: n.uid }), pick_option: () => go('project', { pid, tab: 'info' }), sign_gad: () => wiz('gad', pid), decide_damage: () => wiz('dmgDecide', pid, { did: n.did }), charge_due: () => wiz('chargeSettle', pid, { cid: n.cid }), pay_charge: () => go('doc', { pid, kind: 'charge' }), set_insp_mode: () => wiz('liftMode', pid, { mode: 'inspection' }), set_normal_mode: () => wiz('liftMode', pid, { mode: 'normal' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
+    accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), pre_survey: () => wiz('survey', pid), pin_alert: () => wiz('pinAlert', null, { uid: n.uid }), dev_alert: () => wiz('devAlert', null, { uid: n.uid }), pick_option: () => go('project', { pid, tab: 'info' }), sign_gad: () => wiz('gad', pid), decide_damage: () => wiz('dmgDecide', pid, { did: n.did }), charge_due: () => wiz('chargeSettle', pid, { cid: n.cid }), pay_charge: () => go('doc', { pid, kind: 'charge' }), set_insp_mode: () => wiz('liftMode', pid, { mode: 'inspection' }), set_normal_mode: () => wiz('liftMode', pid, { mode: 'normal' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
@@ -14562,7 +14631,9 @@ function loginAs(u) {
   go(App.set.permsSeen && App.set.permsSeen[App.mode + u.uid] ? 'home' : 'perms', {}, { replace: true });
   if (App.pendingLift && App.route.name === 'home') { const P = Object.values(S.projects).find(x => x.lift && x.lift.code === App.pendingLift); App.pendingLift = null; if (P && canSee(u, P)) go('project', { pid: P.id }); }
   setTimeout(() => Notify.check(), 900);
-  if (App.mode === 'real') Sign.ensure(u.uid).catch(() => {});
+  /* once a day per person per phone, after this phone's signing key exists so other phones accept the record */
+  const devRec = () => { if (u.role === 'customer') return; const dd = App.set.devDay = App.set.devDay || {}; if (dd[u.uid] === todayStr()) return; dd[u.uid] = todayStr(); perform('DEVICE_USED', null, {}, { as: u.uid, quiet: true }).catch(() => {}); };
+  if (App.mode === 'real') Sign.ensure(u.uid).catch(() => {}).then(devRec); else if (App.forceRecheck) devRec();
 }
 async function tryPin(uid) {
   const u = S.users[uid]; App.set.lock = App.set.lock || {};
@@ -14572,7 +14643,7 @@ async function tryPin(uid) {
   if (ok && u.active) {
     App.set.lock[uid] = { fails: 0, until: 0, outs: 0 }; App.form.pinErr = '';
     if (!String(u.pin).startsWith('p2$') && window.crypto && crypto.subtle) { const salt = rid(10); await perform('PIN_UPGRADED', null, { pin: await pinHash(pin, salt), salt, pinLen: pin.length }, { as: uid, quiet: true }); }
-    loginAs(S.users[uid]); return;
+    App.pinAt = Date.now(); loginAs(S.users[uid]); return;
   }
   L0.fails++;
   App.form.pinErr = t('wrong_pin', { n: Math.max(0, 5 - L0.fails) });
@@ -14818,6 +14889,21 @@ const ACT = {
     if (!r.ok) return bad(t(r.err && r.err.k ? r.err.k : r.err || 'err_generic', r.err && r.err.v));
     App.form = {}; toast(t('pr_done')); loginAs(S.users[v]);
   },
+  bioToggle: async () => {
+    const u = App.me; if (Bio.has(u.uid)) { delete App.set.bio[App.mode + u.uid]; await saveSettings(); render(); return; }
+    /* turning it on needs the PIN first, so a borrowed unlocked phone cannot add someone else's finger */
+    if (!(await pinRecheck())) return toast(t('err_pin_recheck'), true);
+    try { if (await Bio.add(u)) { toast(t('bio_added')); render(); } } catch (e) { toast(t('bio_fail'), true); }
+  },
+  bioLogin: async v => { const u = S.users[v]; if (!u || !u.active) return; if (await Bio.check(v)) { App.set.lock = App.set.lock || {}; App.set.lock[v] = { fails: 0, until: 0, outs: 0 }; App.pinAt = Date.now(); loginAs(u); } else toast(t('bio_fail'), true); },
+  recheckGo: async () => {
+    const u = App.me, el = $('#rpin'), pin = el ? el.value : App.form.rpin || '';
+    if (u && pin && await pinMatches(pin, u)) { App.pinAt = Date.now(); const f = App.pinAsk; App.pinAsk = null; closeSheet(); if (f) f(true); return; }
+    App.form.rpinTries = (App.form.rpinTries || 0) + 1; if (el) el.value = '';
+    if (App.form.rpinTries >= 3) { closeSheet(); toast(t('pinag_locked'), true); App.lockedRoute = App.route; App.locked = true; App.route = { name: 'pin', p: { uid: u.uid } }; render(); return; }
+    const e = $('#rcerr'); if (e) e.innerHTML = `<div class="err">${t('wrong_pin', { n: 3 - App.form.rpinTries })}</div>`;
+  },
+  recheckBio: async () => { if (await Bio.check(App.me.uid)) { App.pinAt = Date.now(); const f = App.pinAsk; App.pinAsk = null; closeSheet(); if (f) f(true); } else toast(t('bio_fail'), true); },
   pinKey: async v => {
     const uid = App.route.p.uid, f = App.form, len = (S.users[uid] && S.users[uid].pinLen) || 4; f.pin = f.pin || '';
     if (v === '⌫') { f.pin = f.pin.slice(0, -1); render(); return; }
@@ -15348,7 +15434,7 @@ async function boot() {
   window.addEventListener('appinstalled', () => { App.installEvt = null; App.installDone = true; toast(t('installed_ok')); render(); });
   /* installed app: ask the phone to keep this app's data even when storage runs low */
   if (isInstalled() && navigator.storage && navigator.storage.persist) navigator.storage.persist().then(ok => { App.persisted = ok; }).catch(() => { });
-  Notify.start();
+  Notify.start(); Bio.probe().then(ok => { if (ok && App.route && ["pin", "me"].includes(App.route.name)) render(); });
   Sync.start();
   /* a new person waiting for the office's answer: check every minute while the app is open */
   setInterval(() => { if (!document.hidden) myReqPoll(); }, 60000); setTimeout(myReqPoll, 1500);

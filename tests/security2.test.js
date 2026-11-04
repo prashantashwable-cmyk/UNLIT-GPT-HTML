@@ -58,12 +58,13 @@ const imp = (page, pack) => page.evaluate(async txt => importText(txt), JSON.str
 
   /* new phone: office approves, then the same file is accepted */
   const r1 = await imp(pa, mine);
-  assert(r1.added === 1 && r1.unsigned === 1 && await pa.evaluate(uid => !S.workers[uid] || !S.workers[uid].profile.phone, tech), 'before approval only the new-phone notice is accepted; the profile from that phone is held back');
+  /* held back: the profile and the phone's daily sign-in record (both made on the not-yet-approved phone) */
+  assert(r1.added === 1 && r1.unsigned === 2 && await pa.evaluate(uid => !S.workers[uid] || !S.workers[uid].profile.phone, tech), 'before approval only the new-phone notice is accepted; the profile from that phone is held back');
   const task = await pa.evaluate(() => myTasks(App.me).find(n => n.k === 'approve_key'));
   assert(task && task.uid === tech, 'the office gets an "approve a new phone" task');
   await pa.evaluate(async n => { ACT.keySheet(n.uid + '|' + n.kid); await ACT.keyApprove(n.uid + '|' + n.kid); }, task);
   const r2 = await imp(pa, mine);
-  assert(r2.added === 1 && r2.rejected === 0 && await pa.evaluate(uid => S.workers[uid].profile.phone === '9822011111', tech), 'after approval the same file is accepted');
+  assert(r2.added === 2 && r2.rejected === 0 && await pa.evaluate(uid => S.workers[uid].profile.phone === '9822011111', tech), 'after approval the same file is accepted');
   const back = await pa.evaluate(uid => finishPack(exportPack('person', uid)), tech);
   await imp(pb, back);
   assert(await pb.evaluate(uid => S.keys[uid].every(k => k.ok), tech), 'the approval reaches the technician\'s phone');
