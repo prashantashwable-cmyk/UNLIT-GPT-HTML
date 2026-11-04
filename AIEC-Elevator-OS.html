@@ -3349,6 +3349,18 @@ const L = {
   s_svc_qr_d: ['Type the 6-letter code printed under the QR sticker inside the car or machine room. It proves the visit was on this lift.', 'कार या मशीन रूम में QR स्टिकर के नीचे छपा 6 अक्षर का कोड लिखें। इससे पता चलता है कि विज़िट इसी लिफ्ट पर हुई।', 'कार किंवा मशीन रूममधील QR स्टिकरखाली छापलेला 6 अक्षरी कोड लिहा. यावरून भेट याच लिफ्टवर झाल्याचे सिद्ध होते.'],
   svc_qr: ['Lift code', 'लिफ्ट कोड', 'लिफ्ट कोड'],
   err_lift_code: ['That is not this lift\'s code. Read it from the sticker on this lift.', 'यह इस लिफ्ट का कोड नहीं। इसी लिफ्ट के स्टिकर से पढ़ें।', 'हा या लिफ्टचा कोड नाही. याच लिफ्टच्या स्टिकरवरून वाचा.'],
+  rk_title: ['Money and work at risk', 'जोखिम में पैसा और काम', 'धोक्यातील पैसा आणि काम'],
+  rk_risk: ['Spent more than received', 'मिले से ज़्यादा खर्च', 'मिळालेल्यापेक्षा जास्त खर्च'],
+  rk_civil: ['Waiting on builder / civil work', 'बिल्डर / सिविल काम का इंतज़ार', 'बिल्डर / सिव्हिल कामाची वाट'],
+  rk_qc: ['Waiting for QC', 'QC का इंतज़ार', 'QC ची वाट'],
+  rk_amc: ['AMC ending in 60 days', '60 दिन में AMC खत्म', '60 दिवसांत AMC संपते'],
+  rk_note: ['Spent = supplier bills paid + approved site expenses + crew pay, against what the customer has paid. The target is ₹0 at risk.', 'खर्च = दिए गए सप्लायर बिल + मंज़ूर साइट खर्च + टीम का भुगतान, ग्राहक के दिए पैसे के सामने। लक्ष्य: ₹0 जोखिम।', 'खर्च = भरलेली सप्लायर बिले + मंजूर साइट खर्च + टीमचे पैसे, ग्राहकाने भरलेल्या पैशांच्या तुलनेत. लक्ष्य: ₹0 धोका.'],
+  rk_row: ['spent {out} · received {inn} · at risk {r}', 'खर्च {out} · मिला {inn} · जोखिम {r}', 'खर्च {out} · मिळाले {inn} · धोका {r}'],
+  rk_none: ['Nothing here.', 'यहाँ कुछ नहीं।', 'इथे काही नाही.'],
+  sun_title: ['Working outdoors?', 'बाहर काम करते हैं?', 'बाहेर काम करता?'],
+  sun_say: ['Sunlight mode: pure white, thick dark borders, strong colours, and full-size buttons for gloves.', 'धूप मोड: सफ़ेद, मोटी गहरी किनारी, तेज़ रंग, और दस्ताने के लिए बड़े बटन।', 'ऊन मोड: पांढरा, जाड गडद कडा, ठळक रंग, आणि हातमोज्यांसाठी मोठी बटणे.'],
+  sun_yes: ['Turn on Sunlight mode', 'धूप मोड चालू करें', 'ऊन मोड चालू करा'],
+  sun_no: ['No thanks', 'नहीं, धन्यवाद', 'नको, धन्यवाद'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -9901,6 +9913,38 @@ function leadScoreCard(P) {
   const s = leadHeat(P);
   return `<div class="card"><h3>🎯 ${t('ls_title', { n: s.n })}</h3><div class="bar"><span class="b"><i style="width:${s.n}%"></i></span><b>${s.n}</b></div><p class="small">${s.why.length ? s.why.map(([v, k]) => '+' + v + ' ' + t(k)).join(' · ') : t('ls_none')}</p><p class="small muted">${t('ls_note')}</p></div>`;
 }
+/* money at risk: what a job has cost us so far (bills paid, approved expenses, crew pay) minus what the customer has paid */
+function labourByPid() { return drawMemo('labour', 'all', () => { const m = {}; for (const u of Object.values(S.users).filter(x => ['tech', 'qc'].includes(x.role))) for (const e of earnings(u.uid)) if (e.pid) m[e.pid] = (m[e.pid] || 0) + e.amount; return m; }); }
+function riskOf(P) {
+  const lab = labourByPid()[P.id] || 0, bills = (P.invoices || []).filter(x => x.status === 'paid').reduce((a, x) => a + invPayable(x), 0), exps = (P.expenses || []).filter(x => x.decided && x.decided.ok).reduce((a, x) => a + x.amount, 0);
+  const out = lab + bills + exps, inn = paidTotal(P); return { out, inn, risk: out - inn };
+}
+function riskLists() { return drawMemo('risk', 'all', () => {
+  const ps = Object.values(S.projects).filter(P => P.stage !== 'lost');
+  const risk = ps.map(P => [P, riskOf(P)]).filter(([, x]) => x.risk > 0).sort((a, b) => b[1].risk - a[1].risk);
+  const civil = ps.filter(P => ['site_prep', 'site_fix'].includes(P.stage) || (P.holds || []).some(h => h.status === 'active') || (P.gad && P.gad.powerBy < todayStr() && stageIdx(P.stage) < stageIdx('installing')));
+  const qc = ps.filter(P => needs(P).some(n => ['inspect_site', 'final_inspect', 'qc_recheck', 'peer_check', 'decide_infeasible'].includes(n.k)));
+  const amc = ps.filter(P => P.stage === 'amc' && !P.amcEnded && P.amcEnd && P.amcEnd <= addDays(60));
+  return { risk, civil, qc, amc }; }); }
+function riskStrip(u) {
+  if (!['owner', 'admin'].includes(u.role)) return '';
+  const R = riskLists(), tot = sum(R.risk.map(([, x]) => x.risk));
+  const cell = (k, icon, label, val, bad) => `<button class="tile${bad ? ' on' : ''}" data-a="nav2" data-v="risk|${k}" style="min-height:76px"><span class="i">${icon}</span><span><b>${val}</b><br><small>${t(label)}</small></span></button>`;
+  return `<div class="card"><h3>🧮 ${t('rk_title')}</h3><div class="tiles">${cell('risk', '💸', 'rk_risk', money(tot) + (R.risk.length ? ' · ' + R.risk.length : ''), tot > 0)}${cell('civil', '🏗️', 'rk_civil', R.civil.length, R.civil.length > 0)}${cell('qc', '🔍', 'rk_qc', R.qc.length, false)}${cell('amc', '🛠️', 'rk_amc', R.amc.length, false)}</div><p class="small muted">${t('rk_note')}</p></div>`;
+}
+SCREENS.risk = ({ uid }) => {
+  const u = App.me; if (!['owner', 'admin'].includes(u.role)) return SCREENS.home();
+  const k = uid || 'risk', R = riskLists();
+  const rows = k === 'risk' ? R.risk.map(([P, x]) => `<div class="list-item"><span class="grow"><b>${esc(jobNo(P))}</b> · ${esc(P.contact.name)} · ${stName(P.stage)}<br><span class="small">${t('rk_row', { out: money(x.out), inn: money(x.inn), r: money(x.risk) })}</span></span><button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶</button></div>`).join('')
+    : (R[k] || []).map(projCard).join('');
+  App.pageSay = t('rk_' + k);
+  return topBar(t('rk_' + k), { back: true }) + `<main class="wrap">${k === 'risk' ? `<p class="say">${t('rk_note')}</p>` : ''}${rows || `<div class="empty">✅ ${t('rk_none')}</div>`}</main>` + nav('home');
+};
+/* field staff outdoors: offer the sunlight look and full-size buttons once */
+function sunCard(u) {
+  if (!['tech', 'field', 'supplier', 'qc'].includes(u.role) || App.set.sunAsked || (App.set.theme === 'contrast' && getScale() >= 100)) return '';
+  return `<div class="card"><h3>☀️ ${t('sun_title')}</h3><p class="small">${t('sun_say')}</p><div class="row wrapw"><button class="btn btn-p" data-a="sunYes">☀️ ${t('sun_yes')}</button><button class="btn" data-a="sunNo">${t('sun_no')}</button></div></div>`;
+}
 function callNext(u) {
   const out = [];
   for (const P of visibleProjects(u).filter(P => P.sales === u.uid && ['accepted', 'contacted', 'requirements', 'quote_ready', 'quoted'].includes(P.stage))) {
@@ -11469,7 +11513,7 @@ SCREENS.home = () => {
   if (App.mode === 'practice' && !(App.set.calmSeen || {})[u.uid]) h += `<div class="card"><b>🎓 ${t('calm_t')}</b><p class="small">${t('calm_d')}</p><div class="row wrapw"><button class="btn btn-p" data-a="calmTry">▶ ${t('calm_try')}</button><button class="btn" data-a="calmOk">${t('calm_ok')}</button></div></div>`;
   if (!adm && STAFF.includes(u.role) && daysSince(u.t) < 7) h += firstWeekCard(u);
   if (u.role === 'field') h += shiftCard();
-  h += moneyLine(u) + callNextCard(u) + routineCard(u);
+  h += moneyLine(u) + riskStrip(u) + sunCard(u) + callNextCard(u) + routineCard(u);
   if (u.role === 'tech') { const open = visibleProjects(u).filter(P => checkedIn(P, safeDay(), u.uid) && !(((P.dayEnds || {})[safeDay()] || {})[u.uid]));
     open.forEach(P => { h += `<button class="task" style="margin-top:10px" data-a="wizOpen" data-v="techEnd|${P.id}"><span class="ti">🏁</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_end_day')}</b><span class="small muted">${esc(jobNo(P))} · ${esc(projTitle(P))}</span></span><span class="go">▶</span></button>`; }); }
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))}${tasks[0].pid ? ' · ' + esc(tasks[0].pid) : ''}</p>`;
@@ -14414,6 +14458,8 @@ const ACT = {
   back: () => { if (!App.locked) back(); },
   sayText: v => Voice.say(v),
   tierPick: async v => { const [pid, k] = v.split('|'), r = await perform('OPTION_CHOSEN', pid, { k }); if (r.ok) { toast(t('tier_chosen', { k: t('tier_' + k) })); render(); } },
+  sunYes: () => { App.set.sunAsked = true; App.set.theme = 'contrast'; applyTheme(); setScale(100); },
+  sunNo: () => { App.set.sunAsked = true; saveSettings(); render(); },
   tktAccept: async v => { const [pid, tid] = v.split('|'), r = await perform('TICKET_ACCEPTED', pid, { tid }); if (r.ok) { toast(t('tkt_accepted')); render(); } },
   dwgApprove: async v => { const i = v.indexOf('|'), r = await perform('DRAWING_APPROVED', v.slice(0, i), { ref: v.slice(i + 1) }); if (r.ok) { toast(t('saved_item')); render(); } },
   tvSave: async m => { const r = await perform('TRAINING_VIDEO_SET', null, { module: m, url: String(App.form['tv.' + m] || '').trim() }); if (r.ok) { toast(t('saved_item')); render(); } },
