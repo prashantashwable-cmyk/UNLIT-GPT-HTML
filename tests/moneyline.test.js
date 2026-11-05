@@ -5,7 +5,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
 (async () => {
   const { browser, page, errors } = await launch();
   await page.evaluate(() => { App.set.lang = 'en'; LANG = 'en'; App.set.introDone = true; App.set.guide = false; enterPractice(); }); await page.waitForTimeout(6000);
-  const line = uid => page.evaluate(u => { loginAs(S.users[u]); ACT.permsDone(); Notify.hide(); go('home'); const c = [...document.querySelectorAll('main .card')].find(x => x.innerText.includes('💰')); return c ? c.innerText : ''; }, uid);
+  const line = uid => page.evaluate(u => { loginAs(S.users[u]); ACT.permsDone(); Notify.hide(); go('home'); const c = [...document.querySelectorAll('main .card')].find(x => x.id !== 'plan' && x.innerText.includes('💰')); return c ? c.innerText : ''; }, uid);
   let l = await line('PQC');
   assert(/Waiting for the office to approve: ₹/.test(l), 'QC sees what waits for approval: ' + l.replace(/\n/g, ' | '));
   const w = await page.evaluate(() => { const w = weeksFor('PQC').find(x => x.week < weekKey(nowISO()) && !x.pay && x.total > 0); return { week: w.week, total: w.total }; });

@@ -42,9 +42,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await home('POWNER');
   assert(await page.evaluate(() => [...document.querySelectorAll('main details.fold')].map(d => d.dataset.fold)[0] === 'dash'), 'the Head Quarter sees money (the dashboard) first by default');
 
-  /* task cards: what, which job, why now (then the two bars) */
+  /* task cards: what, which job, why now (then the two bars and the pay line) */
   await home('PSALES');
-  const lines = await page.evaluate(() => [...document.querySelectorAll('main .task[data-a="openTask"]')].map(c => { const g = c.querySelector('.grow'), cnt = el => el.innerText.split('\n').filter(x => x.trim()).length; return cnt(g) - [...g.querySelectorAll('.tbar')].reduce((s, b) => s + cnt(b), 0); }));
+  const lines = await page.evaluate(() => [...document.querySelectorAll('main .task[data-a="openTask"]')].map(c => { const g = c.querySelector('.grow'), cnt = el => el.innerText.split('\n').filter(x => x.trim()).length; return cnt(g) - [...g.querySelectorAll('.tbar, .tpay')].reduce((s, b) => s + cnt(b), 0); }));
   assert(lines.length && lines.every(n => n <= 3), 'every task card is at most 3 lines before its bars: ' + lines.join(','));
 
   /* a refusal stays */

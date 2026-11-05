@@ -3492,6 +3492,68 @@ const L = {
   qx_d: ['Your work and drafts are kept.', 'आपका काम और ड्राफ़्ट सुरक्षित रहेंगे।', 'तुमचे काम आणि मसुदे जतन राहतील.'],
   qx_stay: ['Stay', 'रुकें', 'थांबा'],
   qx_exit: ['Exit the app', 'ऐप से बाहर निकलें', 'अ‍ॅपमधून बाहेर पडा'],
+  bs_title: ['Before you start', 'शुरू करने से पहले', 'सुरू करण्यापूर्वी'],
+  bs_earn: ['You earn {a} for this', 'इसके लिए आपको {a} मिलेंगे', 'यासाठी तुम्हाला {a} मिळतील'],
+  bs_co_pays: ['{c} pays you', '{c} आपको देगी', '{c} तुम्हाला देईल'],
+  bs_value: ['Work value {a} for {c}. Ask your company your share.', '{c} के लिए काम की कीमत {a}। अपना हिस्सा कंपनी से पूछें।', '{c} साठी कामाची किंमत {a}. तुमचा वाटा कंपनीला विचारा.'],
+  bs_move: ['This task moves {a} for the company', 'यह काम कंपनी के {a} आगे बढ़ाता है', 'हे काम कंपनीचे {a} पुढे नेते'],
+  bs_inc: ['your incentive about {a} when the deal is won', 'सौदा पक्का होने पर आपका इंसेंटिव लगभग {a}', 'सौदा पक्का झाल्यावर तुमचा इन्सेंटिव्ह सुमारे {a}'],
+  bs_field: ['A valid lead earns {a}; a won lead earns {p}% more of the price', 'सही लीड पर {a}; सौदा पक्का होने पर कीमत का {p}% और', 'योग्य लीडसाठी {a}; सौदा पक्का झाल्यास किमतीच्या {p}% अधिक'],
+  bs_no_pay: ['No extra pay for this task; it keeps the job moving.', 'इस काम का अलग भुगतान नहीं; यह काम आगे बढ़ाता है।', 'या कामाचे वेगळे पैसे नाहीत; हे काम पुढे नेते.'],
+  bs_do: ['Your job:', 'आपका काम:', 'तुमचे काम:'],
+  bs_checker: ['Checked by: {x}', 'जाँच करेंगे: {x}', 'तपासणार: {x}'],
+  bs_late: ['This is late: do it first.', 'इसमें देर हो चुकी है: पहले करें।', 'याला उशीर झाला आहे: आधी करा.'],
+  bs_since: ['Waiting {n} day(s)', '{n} दिन से बाकी', '{n} दिवसांपासून बाकी'],
+  bp_lead: ['+{a} more if this lift passes final QC the first time (you lead)', 'अगर यह लिफ्ट पहली बार में फाइनल QC पास करे तो +{a} (आप लीड हैं)', 'ही लिफ्ट पहिल्याच वेळी फायनल QC पास झाल्यास +{a} (तुम्ही लीड)'],
+  bp_crew: ['+{a} more when this lift passes final QC', 'लिफ्ट फाइनल QC पास होने पर +{a}', 'लिफ्ट फायनल QC पास झाल्यावर +{a}'],
+  bpc_week: ['Counted when you save it with photos; paid on Sunday after the office checks the week.', 'फोटो के साथ सेव करने पर गिना जाएगा; हफ्ते की जाँच के बाद रविवार को भुगतान।', 'फोटोसह जतन केल्यावर मोजले जाईल; आठवड्याची तपासणी झाल्यावर रविवारी पैसे.'],
+  bpc_fix: ['Counted when the customer or office confirms the fix; paid on Sunday.', 'ग्राहक या ऑफिस के ठीक होने की पुष्टि पर गिना जाएगा; रविवार को भुगतान।', 'ग्राहक किंवा ऑफिसने दुरुस्ती पक्की केल्यावर मोजले जाईल; रविवारी पैसे.'],
+  bpc_lead: ['Counted when Sales accepts the lead.', 'सेल्स के लीड मानने पर गिना जाएगा।', 'सेल्सने लीड स्वीकारल्यावर मोजले जाईल.'],
+  rp_gen: ['{x}: do what the screen asks; it is done when you press Save with everything it asks for.', '{x}: स्क्रीन जो कहे वह करें; सब कुछ भरकर सेव दबाने पर काम पूरा।', '{x}: स्क्रीन सांगेल ते करा; सगळे भरून सेव्ह दाबल्यावर काम पूर्ण.'],
+  rp_install: ['Step {n} of {m}: {s}. Done when photos of the finished step are saved; the next step then opens.', '{m} में से स्टेप {n}: {s}। पूरे स्टेप की फोटो सेव होने पर पूरा; फिर अगला स्टेप खुलेगा।', '{m} पैकी टप्पा {n}: {s}. पूर्ण टप्प्याचे फोटो जतन झाल्यावर पूर्ण; मग पुढचा टप्पा उघडेल.'],
+  rp_site_checkin: ['Reach the site and check in with your location and a selfie. Done when the app accepts you are at the site.', 'साइट पर पहुँचकर लोकेशन और सेल्फी से चेक-इन करें। ऐप के मानने पर पूरा।', 'साइटवर पोहोचून लोकेशन आणि सेल्फीने चेक-इन करा. अ‍ॅपने मान्य केल्यावर पूर्ण.'],
+  rp_safety_check: ['Wear your safety kit and take the safety selfie before any work. Done when it is saved.', 'काम से पहले सुरक्षा किट पहनें और सुरक्षा सेल्फी लें। सेव होने पर पूरा।', 'काम करण्यापूर्वी सुरक्षा किट घाला आणि सुरक्षा सेल्फी घ्या. जतन झाल्यावर पूर्ण.'],
+  rp_daily_report: ['Before leaving: photos of today\'s work, site tidy, what is left. Done when saved.', 'जाने से पहले: आज के काम की फोटो, साइट साफ़, क्या बाकी है। सेव होने पर पूरा।', 'जाण्यापूर्वी: आजच्या कामाचे फोटो, साइट नीट, काय बाकी. जतन झाल्यावर पूर्ण.'],
+  rp_fix_install: ['Fix each point QC listed, with a photo of each fix. Done when every point is ticked.', 'QC के बताए हर बिंदु को ठीक करें, हर सुधार की फोटो के साथ। सब पर टिक होने पर पूरा।', 'QC ने सांगितलेला प्रत्येक मुद्दा दुरुस्त करा, प्रत्येक दुरुस्तीचा फोटो घ्या. सर्वांवर टिक झाल्यावर पूर्ण.'],
+  rp_amc_visit: ['Service the lift: the checklist, readings and photos. Done when the customer signs or the visit is saved.', 'लिफ्ट की सर्विस: चेकलिस्ट, रीडिंग और फोटो। ग्राहक के साइन या विज़िट सेव होने पर पूरा।', 'लिफ्टची सर्व्हिस: चेकलिस्ट, रीडिंग आणि फोटो. ग्राहकाची सही किंवा भेट जतन झाल्यावर पूर्ण.'],
+  rp_accept_ticket: ['Accept the call and go. The customer is told you are coming.', 'कॉल स्वीकार करें और जाएँ। ग्राहक को बताया जाएगा कि आप आ रहे हैं।', 'कॉल स्वीकारा आणि जा. ग्राहकाला तुम्ही येत असल्याचे कळवले जाईल.'],
+  rp_inspect_site: ['Measure and check the site before installation. Done when every check and photo is saved.', 'इंस्टॉलेशन से पहले साइट नापें और जाँचें। हर जाँच और फोटो सेव होने पर पूरा।', 'इन्स्टॉलेशनपूर्वी साइट मोजा आणि तपासा. प्रत्येक तपासणी आणि फोटो जतन झाल्यावर पूर्ण.'],
+  rp_final_inspect: ['Final inspection of the finished lift. Done when every check, reading and photo is saved.', 'तैयार लिफ्ट की फाइनल जाँच। हर जाँच, रीडिंग और फोटो सेव होने पर पूरा।', 'तयार लिफ्टची अंतिम तपासणी. प्रत्येक तपासणी, रीडिंग आणि फोटो जतन झाल्यावर पूर्ण.'],
+  rp_qc_recheck: ['Check again the points that failed. Done when each is marked pass or fail with a photo.', 'फेल हुए बिंदु फिर से जाँचें। हर एक पर पास या फेल फोटो के साथ होने पर पूरा।', 'नापास मुद्दे पुन्हा तपासा. प्रत्येकावर पास किंवा नापास फोटोसह झाल्यावर पूर्ण.'],
+  rp_prepare_site: ['Get the site ready for installation: each item on the list with a photo.', 'साइट को इंस्टॉलेशन के लिए तैयार करें: सूची की हर चीज़ फोटो के साथ।', 'साइट इन्स्टॉलेशनसाठी तयार करा: यादीतील प्रत्येक गोष्ट फोटोसह.'],
+  rp_request_inspection: ['All steps are done: ask QC for the final inspection.', 'सब स्टेप पूरे: QC से फाइनल जाँच माँगें।', 'सर्व टप्पे पूर्ण: QC कडे अंतिम तपासणी मागा.'],
+  rp_make_quote: ['Make the quotation from the measured needs. Done when it is saved for approval.', 'नापी गई ज़रूरतों से कोटेशन बनाएँ। मंज़ूरी के लिए सेव होने पर पूरा।', 'मोजलेल्या गरजांवरून कोटेशन बनवा. मंजुरीसाठी जतन झाल्यावर पूर्ण.'],
+  rp_send_quote: ['Send the approved quotation to the customer and set when to call back.', 'मंज़ूर कोटेशन ग्राहक को भेजें और वापस कॉल का समय रखें।', 'मंजूर कोटेशन ग्राहकाला पाठवा आणि परत कॉलची वेळ ठेवा.'],
+  rp_follow_up: ['Call the customer, write what they said and the next date.', 'ग्राहक को कॉल करें, उन्होंने क्या कहा और अगली तारीख लिखें।', 'ग्राहकाला कॉल करा, ते काय म्हणाले आणि पुढची तारीख लिहा.'],
+  rp_call_customer: ['Call the customer, write what they said and the next date.', 'ग्राहक को कॉल करें, उन्होंने क्या कहा और अगली तारीख लिखें।', 'ग्राहकाला कॉल करा, ते काय म्हणाले आणि पुढची तारीख लिहा.'],
+  rp_record_payment: ['Record the payment with the receipt or bank reference. Finance then checks it.', 'रसीद या बैंक रेफ़रेंस के साथ भुगतान दर्ज करें। फिर फाइनेंस जाँचेगा।', 'पावती किंवा बँक रेफरन्ससह पेमेंट नोंदवा. मग फायनान्स तपासेल.'],
+  rp_verify_payment: ['Match the payment with the bank statement, then confirm or refuse it.', 'भुगतान को बैंक स्टेटमेंट से मिलाएँ, फिर पक्का या मना करें।', 'पेमेंट बँक स्टेटमेंटशी जुळवा, मग पक्के किंवा नाकारा.'],
+  rp_review_lead: ['Look at the new lead: real and new? Accept it or say why not.', 'नई लीड देखें: सही और नई है? मानें या कारण बताएँ।', 'नवीन लीड पाहा: खरी आणि नवीन आहे? स्वीकारा किंवा कारण सांगा.'],
+  rp_fix_lead: ['Add what the lead is missing so Sales can accept it.', 'लीड में जो कमी है वह जोड़ें ताकि सेल्स उसे मान सके।', 'लीडमध्ये जे कमी आहे ते जोडा म्हणजे सेल्स ती स्वीकारू शकेल.'],
+  rp_pre_survey: ['Measure the shaft at the bottom, middle and top with photos, and get it signed.', 'शाफ्ट को नीचे, बीच और ऊपर फोटो के साथ नापें, और साइन लें।', 'शाफ्ट खाली, मध्ये आणि वर फोटोसह मोजा, आणि सही घ्या.'],
+  ach_ready: ['You are ready for {g}: the office will confirm.', 'आप {g} के लिए तैयार हैं: ऑफिस पक्का करेगा।', 'तुम्ही {g} साठी तयार आहात: ऑफिस पक्के करेल.'],
+  ach_grade: ['Next: {g} · {n} thing(s) left, e.g. {x} ({h}/{need})', 'अगला: {g} · {n} बाकी, जैसे {x} ({h}/{need})', 'पुढे: {g} · {n} बाकी, उदा. {x} ({h}/{need})'],
+  ach_raise: ['+{p}% pay on every step', 'हर स्टेप पर +{p}% भुगतान', 'प्रत्येक टप्प्यावर +{p}% पैसे'],
+  ach_eta: ['about {d} days at your pace', 'आपकी रफ़्तार से लगभग {d} दिन', 'तुमच्या वेगाने सुमारे {d} दिवस'],
+  ach_field: ['This week: {n} paid lead(s) = {a}. 3 more valid leads = {b} more.', 'इस हफ्ते: {n} लीड = {a}। 3 और सही लीड = {b} और।', 'या आठवड्यात: {n} लीड = {a}. आणखी 3 योग्य लीड = {b} अधिक.'],
+  ach_qc: ['Inspections this month: {n}', 'इस महीने की जाँचें: {n}', 'या महिन्यातील तपासण्या: {n}'],
+  ach_sales: ['Won this month: {n} deal(s), {a}', 'इस महीने पक्के: {n} सौदे, {a}', 'या महिन्यात पक्के: {n} सौदे, {a}'],
+  pl_today: ['Today\'s plan · {d}', 'आज की योजना · {d}', 'आजचे नियोजन · {d}'],
+  pl_tomorrow: ['Plan for the next work day · {d}', 'अगले काम के दिन की योजना · {d}', 'पुढच्या कामाच्या दिवसाचे नियोजन · {d}'],
+  pl_off: ['Day off today. Next work day · {d}', 'आज छुट्टी। अगला काम का दिन · {d}', 'आज सुट्टी. पुढचा कामाचा दिवस · {d}'],
+  pl_earn: ['If you finish this plan you earn about {a}', 'यह योजना पूरी करने पर लगभग {a} मिलेंगे', 'हे नियोजन पूर्ण केल्यास सुमारे {a} मिळतील'],
+  pl_lunch: ['Lunch', 'खाना', 'जेवण'],
+  pl_travel: ['Travel ~{m} min', 'रास्ता ~{m} मिनट', 'प्रवास ~{m} मिनिटे'],
+  pl_more: ['{n} more in the plan', 'योजना में {n} और', 'नियोजनात आणखी {n}'],
+  pl_later: ['Will not fit today ({n}), moves to the next day', 'आज नहीं समाएँगे ({n}), अगले दिन', 'आज बसणार नाहीत ({n}), पुढच्या दिवशी'],
+  pl_note: ['Made automatically from your work: late first, then the nearest site. It changes by itself as you finish work or new work comes.', 'आपके काम से अपने आप बनी: देर वाले पहले, फिर पास की साइट। काम पूरा होने या नया आने पर खुद बदलती है।', 'तुमच्या कामावरून आपोआप बनलेले: उशिराचे आधी, मग जवळची साइट. काम पूर्ण झाल्यावर किंवा नवीन आल्यावर आपोआप बदलते.'],
+  sh_title: ['Technician\'s pay share', 'तकनीशियन का भुगतान हिस्सा', 'तंत्रज्ञाचा पैशांचा वाटा'],
+  sh_say: ['What share of the work value do you pay this technician?', 'काम की कीमत का कितना हिस्सा आप इस तकनीशियन को देते हैं?', 'कामाच्या किमतीचा किती वाटा तुम्ही या तंत्रज्ञाला देता?'],
+  sh_d: ['Work value now: {a} per installation step. The technician sees their share before each task.', 'अभी काम की कीमत: हर इंस्टॉलेशन स्टेप {a}। तकनीशियन हर काम से पहले अपना हिस्सा देखेगा।', 'सध्या कामाची किंमत: प्रत्येक इन्स्टॉलेशन टप्पा {a}. तंत्रज्ञ प्रत्येक कामापूर्वी त्याचा वाटा पाहील.'],
+  sh_pct: ['Share in % (0–100)', 'हिस्सा % में (0–100)', 'वाटा % मध्ये (0–100)'],
+  sh_btn: ['Pay share: {p}%', 'भुगतान हिस्सा: {p}%', 'पैशांचा वाटा: {p}%'],
+  ev_COMPANY_SHARE_SET: ['Pay share set', 'भुगतान हिस्सा तय', 'पैशांचा वाटा ठरला'],
+  cfg_salesWonPct: ['Sales incentive % of a won deal (0 = none)', 'पक्के सौदे पर सेल्स इंसेंटिव % (0 = नहीं)', 'पक्क्या सौद्यावर सेल्स इन्सेंटिव्ह % (0 = नाही)'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5400,7 +5462,7 @@ const CFG_LIMITS = (() => {
   const L = {}, set = (keys, a, b) => keys.forEach(k => { L[k] = [a, b]; });
   set(['costAuto', 'costManual'], 10000, 10000000); set(['costPerStop', 'costSS', 'costDismantle', 'cap4', 'cap6', 'cap8', 'cap10', 'cap13', 'install', 'transport'], 0, 5000000);
   set(['gst'], 0, 28); set(['targetMargin'], 1, 90); set(['minMargin'], 0, 90); set(['salesDiscountLimit', 'adminDiscountLimit'], 0, 50); set(['negStep'], 1, 25);
-  set(['token'], 0, 500000); set(['arrivalPct', 'cabinPct', 'leadWonPct', 'cancelBefore', 'cancelAfter', 'dupCommission', 'qcRecheckPct', 'spotTrainee', 'spotTech', 'spotSenior'], 0, 100);
+  set(['token'], 0, 500000); set(['arrivalPct', 'cabinPct', 'leadWonPct', 'salesWonPct', 'cancelBefore', 'cancelAfter', 'dupCommission', 'qcRecheckPct', 'spotTrainee', 'spotTech', 'spotSenior'], 0, 100);
   set(['tokenMode', 'dailySafety', 'licenceGate', 'permitGate', 'peerCheck', 'checkinGate', 'dualControl', 'requireTraining', 'sundayWork'], 0, 1);
   set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'amcCompPrice', 'civilMin', 'civilMax'], 0, 2000000);
   set(['reservePct'], 0, 90); set(['reserveRelease'], 1, 100); set(['agreeVersion'], 1, 99);
@@ -5569,7 +5631,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, qcRecheckPct: 10, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', serveAreas: '', accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', serveAreas: '', salesWonPct: 0, accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, sundayWork: 0, holidays: '', dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -5579,7 +5641,7 @@ const RULE_GROUPS = {
   token: ['token'],
   milestones: ['tokenMode', 'arrivalPct', 'cabinPct', 'retentionPct', 'retentionDays'],
   paydetails: ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc'],
-  fieldpay: ['payLeadValid', 'leadWonPct'],
+  fieldpay: ['payLeadValid', 'leadWonPct', 'salesWonPct'],
   install: ['installDays', 'poDays', 'poAnswerHours', 'geoRadius', 'checkinGate'],
   service: ['acceptMins', 'amcYearly', 'powerYearly', 'warrantyMonths', 'amcVisits', 'validityDays', 'civilMin', 'civilMax', 'cancelBefore', 'cancelAfter'],
   dup: ['dupCommission', 'refReward', 'firstContactHours', 'idleDays'],
@@ -7552,6 +7614,11 @@ const RULES = {
   STAT_LEAD_SET: { roles: ['owner', 'admin'], check: (S, ev) => { const d = ev.data; return d.uid === '' ? null : !S.users[d.uid] || !S.users[d.uid].active || !['qc', 'sales', 'finance', 'admin'].includes(S.users[d.uid].role) ? 'err_pick_person' : null; } },
   SERVICE_LEAD_SET: { roles: ['owner', 'admin'], check: (S, ev) => { const d = ev.data; return d.uid === '' ? null : !S.users[d.uid] || !S.users[d.uid].active || !['qc', 'tech', 'sales', 'admin'].includes(S.users[d.uid].role) ? 'err_pick_person' : null; } },
   BUDDY_SET: { roles: ['owner', 'admin'], check: (S, ev) => { const d = ev.data, x = S.users[d.uid], b = S.users[d.buddy]; return !x || !b || !b.active || d.uid === d.buddy ? 'err_no_user' : null; } },
+  /* a partner company says what share of the work value it pays its technician, so the technician sees their own amount */
+  COMPANY_SHARE_SET: { roles: ['partner', 'owner', 'admin'], check: (S, ev, u) => { const x = S.users[ev.data.uid];
+    if (!x || x.role !== 'tech' || !x.company) return 'err_no_user';
+    if (u.role === 'partner' && x.company !== u.uid) return { k: 'err_access', v: {} };
+    return need(Number.isInteger(+ev.data.pct) && +ev.data.pct >= 0 && +ev.data.pct <= 100, 'err_fill'); } },
   WORKER_PROFILE: {
     roles: STAFF, check: (S, ev, u) => {
       const x = S.users[ev.data.uid];
@@ -8118,6 +8185,7 @@ function apply(S, ev) {
     case 'STAT_LEAD_SET': S.statLead = d.uid || ''; break;
     case 'SERVICE_LEAD_SET': S.serviceLead = d.uid || ''; break;
     case 'BUDDY_SET': worker(d.uid).buddy = d.buddy; break;
+    case 'COMPANY_SHARE_SET': worker(d.uid).share = +d.pct; break;
     case 'WORKER_PROFILE': { const w = worker(d.uid); if (d.stripped) w.profile.filled = true; ['phone', 'area', 'skills', 'availability'].forEach(k => { if (d[k] !== undefined) w.profile[k] = k === 'phone' ? phone10(d[k]) : d[k]; }); w.profile.t = ev.t; break; }
     case 'REFERRAL_SET': { const R = refProject(d.code); P.referral = { from: R.id, code: R.lift.code, t: ev.t, by: ev.by, paid: null }; break; }
     case 'REFERRAL_REWARDED': P.referral.paid = { t: ev.t, by: ev.by, note: d.note.trim(), amount: +S.config.refReward || 0 }; break;
@@ -9342,7 +9410,7 @@ function taskCard(n, i) {
     <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + n.k))}</b><span class="small muted">${esc(info)}</span>${n.urgent || n.level ? '<br>' : ''}${n.urgent && !(n.level >= 2 || n.k === 'escalated') ? `<span class="chip c-bad">⚠️ ${t('urgent')}</span> ` : ''}${escChip(n)}${taskBars(n, null)}</span><span class="go" aria-hidden="true">▶</span></button>`;
   }
   return `<button class="task ${n.urgent ? 'urgent' : ''}" data-a="openTask" data-v="${i}"><span class="ti" aria-hidden="true">${TASK_ICON[n.k] || '▶'}</span>
-    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + (n.k === 'escalated' ? n.ref : n.k)))}${esc(sub)}</b><span class="small muted">${esc(jobNo(P))} · ${esc(projTitle(P))}</span>${whyNow(n)}${taskBars(n, P)}</span><span class="go" aria-hidden="true">▶</span></button>`;
+    <span class="grow" style="flex:1;min-width:0"><b>${esc(t('tk_' + (n.k === 'escalated' ? n.ref : n.k)))}${esc(sub)}</b><span class="small muted">${esc(jobNo(P))} · ${esc(projTitle(P))}</span>${whyNow(n)}${taskBars(n, P)}${App.me && taskPay(n, App.me) ? `<div class="tpay" style="margin-top:4px">${payChip(n, App.me)}</div>` : ''}</span><span class="go" aria-hidden="true">▶</span></button>`;
 }
 /* the third line of a task card: one reason why it matters now (or nothing) */
 function whyNow(n) {
@@ -9479,7 +9547,7 @@ SCREENS.wiz = () => {
   return topBar(t(W.def.title) + (P ? ' · ' + P.id : ''), { back: true, noBell: true }) + `<main class="wrap">
     <div class="stepline"><span>${t('step_of', { n: i + 1, m: steps.length })}</span>${W.resumed ? `<button class="btn btn-sm" data-a="wizRestart">↺ ${t('start_again')}</button>` : ''}</div>
     <div class="prog" role="progressbar" aria-valuemin="1" aria-valuemax="${steps.length}" aria-valuenow="${i + 1}"><i style="width:${Math.round((i + 1) / steps.length * 100)}%"></i></div>
-    ${W.resumed && i === 0 ? `<div class="note">💾 ${t('draft_resumed')}</div>` : ''}
+    ${W.resumed && i === 0 ? `<div class="note">💾 ${t('draft_resumed')}</div>` : ''}${i === 0 && App.curTask && App.curTask.pid === W.pid && App.me ? briefCard(App.curTask, App.me) : ''}
     <div class="big-i" aria-hidden="true">${st.icon}</div><p class="say">${esc(sayTxt)}</p>
     <button class="btn guide-btn" data-a="guide" style="margin:-4px 0 14px">🔊 ${t('g_listen')}</button>
     ${st.body(ctx, P)}
@@ -10285,6 +10353,12 @@ WIZ.devAlert = {
     return `<div class="card"><b>${esc(userName(uid))}</b><p>${t('da_what', { n: devRecent(S, uid, nowISO()).length })}</p>${devRecent(S, uid, nowISO()).map((d, i) => `<div class="list-item small"><span class="grow">📱 ${d === App.set.dev ? t('da_this') : t('da_phone', { n: i + 1 })} <span class="muted">· ${esc(String(d).slice(0, 6))}</span></span>${t('da_last', { d: fmtD(m[d], true) })}</div>`).join('')}</div><p class="small">${t('da_do')}</p>` + inp('note', 'pa_note', { area: true, mic: true }); },
     check: c => c.note.trim() ? null : 'err_reason' }],
   async finish(c) { const r = await run([['DEVICE_ALERT_SEEN', null, { uid: W.opts.uid, note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => go('home') } : r; }
+};
+WIZ.shareSet = {
+  title: 'sh_title', save: 'save', noDraft: true, init: () => ({ pct: String(((S.workers[W.opts.uid] || {}).share) ?? '') }),
+  steps: [{ id: 's', icon: '💰', say: 'sh_say', body: () => `<div class="card"><b>${esc(userName(W.opts.uid))}</b><p class="small">${t('sh_d', { a: money(Math.round(S.config.paySopStep * gradeRate(gradeOf(W.opts.uid)) / 100)) })}</p></div>` + inp('pct', 'sh_pct', { type: 'number', mode: 'numeric', big: true }),
+    check: c => c.pct !== '' && +c.pct >= 0 && +c.pct <= 100 && Number.isInteger(+c.pct) ? null : 'err_fill' }],
+  async finish(c) { const r = await run([['COMPANY_SHARE_SET', null, { uid: W.opts.uid, pct: +c.pct }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
 };
 WIZ.pinAlert = {
   title: 'tk_pin_alert', save: 'save', noDraft: true, init: () => ({ note: '' }),
@@ -11780,7 +11854,7 @@ SCREENS.home = () => {
   if (App.mode === 'practice' && !(App.set.calmSeen || {})[u.uid]) h += `<div class="card"><b>🎓 ${t('calm_t')}</b><p class="small">${t('calm_d')}</p><div class="row wrapw"><button class="btn btn-p" data-a="calmTry">▶ ${t('calm_try')}</button><button class="btn" data-a="calmOk">${t('calm_ok')}</button></div></div>`;
   if (!adm && STAFF.includes(u.role) && daysSince(u.t) < 7) h += firstWeekCard(u);
   if (u.role === 'field') h += shiftCard();
-  h += tourCard(u) + blockedBanner(u) + moneyLine(u) + riskStrip(u) + sunCard(u) + callNextCard(u) + routineCard(u);
+  h += tourCard(u) + blockedBanner(u) + planCard(u) + moneyLine(u) + riskStrip(u) + sunCard(u) + callNextCard(u) + routineCard(u);
   if (u.role === 'tech') { const open = visibleProjects(u).filter(P => checkedIn(P, safeDay(), u.uid) && !(((P.dayEnds || {})[safeDay()] || {})[u.uid]));
     open.forEach(P => { h += `<button class="task" style="margin-top:10px" data-a="wizOpen" data-v="techEnd|${P.id}"><span class="ti">🏁</span><span class="grow" style="flex:1;min-width:0"><b>${t('tk_end_day')}</b><span class="small muted">${esc(jobNo(P))} · ${esc(projTitle(P))}</span></span><span class="go">▶</span></button>`; }); }
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))}${tasks[0].pid ? ' · ' + esc(tasks[0].pid) : ''}</p>`;
@@ -11825,6 +11899,170 @@ SCREENS.home = () => {
   return h + '</main>' + nav('home');
 };
 /* my day: a short routine per role that ticks itself from today's records */
+/* ===================================================================
+   Before you start (owner request): every person knows, before the work,
+   1) what they earn by it, 2) what exactly they must do and who checks it,
+   3) how far their next achievement is, 4) today's plan, made automatically.
+   Amounts come from the same rules that make the weekly pay, so the promise and the pay always match.
+   =================================================================== */
+const PAY_KIND = { install: 'step', amc_visit: 'visit', accept_ticket: 'repair', fix_ticket: 'repair', inspect_site: 'qc', final_inspect: 'qc', qc_recheck: 'qc', surprise_qc: 'qc' };
+const dealValue = P => { const q = P && P.quotes && lastQuote(P); return q ? (q.total || q.price || 0) : 0; };
+function moneyMoved(n, P) {
+  if (!P) return 0;
+  if (['record_payment', 'verify_payment', 'pay_now'].includes(n.k) && P.schedule && n.purpose) return +P.schedule[n.purpose] || 0;
+  if (['review_lead', 'call_customer', 'follow_up', 'write_needs', 'make_quote', 'approve_quote', 'send_quote', 'get_decision', 'prepare_agreement', 'sign_agreement', 'lead_idle', 'amc_renew'].includes(n.k)) return dealValue(P);
+  return 0;
+}
+function taskPay(n, u) {
+  const P = S.projects[n.pid], c = S.config, kind = PAY_KIND[n.k];
+  if (kind && ['tech', 'qc'].includes(u.role)) {
+    const r = a => Math.round((+a || 0) * gradeRate(gradeOf(u.uid)) / 100);
+    const v = kind === 'step' ? r(c.paySopStep) : kind === 'qc' ? +c.payQcInspection || 0 : r(c.payAmcVisit);
+    const extra = n.k === 'install' && P ? (P.tech === u.uid ? { k: 'bp_lead', a: r(c.payQcBonus) } : (P.crew || []).includes(u.uid) ? { k: 'bp_crew', a: r(c.payCrewJob) } : null) : null;
+    const co = u.role === 'tech' ? companyOf(u.uid) : null, sh = co ? (S.workers[u.uid] || {}).share : null;
+    return { value: v, mine: co ? (sh != null ? Math.round(v * sh / 100) : null) : v, co, cond: kind === 'repair' ? 'bpc_fix' : 'bpc_week', extra: extra && extra.a ? extra : null };
+  }
+  if (u.role === 'field' && P && ['fix_lead', 'pre_survey'].includes(n.k)) return { field: true, mine: +c.payLeadValid || 0, pct: +c.leadWonPct || 0, cond: 'bpc_lead' };
+  if (['sales', 'admin', 'owner', 'finance'].includes(u.role) && P) {
+    const move = moneyMoved(n, P); if (!move) return null;
+    const inc = u.role === 'sales' && +c.salesWonPct && !P.hist.some(h => h.s === 'won') && P.sales === u.uid ? Math.round(dealValue(P) * c.salesWonPct / 100) : 0;
+    return { move, inc };
+  }
+  return null;
+}
+const payChip = (n, u) => { const p = taskPay(n, u); if (!p) return ''; const a = p.mine != null ? p.mine : p.move ? 0 : p.value;
+  return p.move ? `<span class="chip c-info">💼 ${money(p.move)}</span> ` : a ? `<span class="chip c-ok">💰 ${money(a)}</span> ` : `<span class="chip c-mute">🏢 ${money(p.value)}</span> `; };
+/* who checks the work, by task */
+const CHECKER = { install: 'qc', fix_install: 'qc', request_inspection: 'qc', site_checkin: 'admin', safety_check: 'admin', daily_report: 'admin', amc_visit: 'admin', accept_ticket: 'customer', fix_ticket: 'customer',
+  inspect_site: 'admin', final_inspect: 'admin', qc_recheck: 'admin', surprise_qc: 'admin', prepare_site: 'qc', make_quote: 'owner', send_quote: 'customer', record_payment: 'finance', fix_lead: 'sales', pre_survey: 'sales', review_lead: 'admin', follow_up: 'admin', call_customer: 'admin' };
+const RESP_KEYS = ['install', 'site_checkin', 'safety_check', 'daily_report', 'fix_install', 'amc_visit', 'accept_ticket', 'inspect_site', 'final_inspect', 'qc_recheck', 'prepare_site', 'request_inspection', 'make_quote', 'send_quote', 'follow_up', 'call_customer', 'record_payment', 'verify_payment', 'review_lead', 'fix_lead', 'pre_survey'];
+function checkerTxt(k, P) {
+  const r = CHECKER[k] || 'admin', who = r === 'qc' && P && P.qc ? userName(P.qc) : r === 'customer' && P ? (P.contact.name || '') : r === 'sales' && P && P.sales ? userName(P.sales) : '';
+  return t('r_' + r) + (who ? ' · ' + who : '');
+}
+function briefCard(n, u) {
+  if (!n || !u) return '';
+  const P = S.projects[n.pid], p = taskPay(n, u);
+  const nx = n.k === 'install' && P ? sopNext(P) : -1;
+  const doTxt = nx >= 0 && nx < SOP.length ? t('rp_install', { n: nx + 1, m: SOP.length, s: t('sop_' + SOP[nx][0]) }) : RESP_KEYS.includes(n.k) ? t('rp_' + n.k) : t('rp_gen', { x: t('tk_' + (n.k === 'escalated' ? n.ref : n.k)) });
+  let pay = '';
+  if (p && p.move) pay = `<div>💼 ${t('bs_move', { a: money(p.move) })}${p.inc ? ' · 💰 ' + t('bs_inc', { a: money(p.inc) }) : ''}</div>`;
+  else if (p && p.field) pay = `<div>💰 ${t('bs_field', { a: money(p.mine), p: p.pct })}</div>`;
+  else if (p) pay = `<div>💰 ${p.mine != null ? t('bs_earn', { a: money(p.mine) }) + (p.co ? ' · ' + t('bs_co_pays', { c: esc(userName(p.co)) }) : '') : t('bs_value', { a: money(p.value), c: esc(userName(p.co)) })}<br><span class="small muted">${t(p.cond)}</span>${p.extra ? `<br><span class="small">🎯 ${t(p.extra.k, { a: money(p.extra.a) })}</span>` : ''}</div>`;
+  else if (STAFF.includes(u.role)) pay = `<div class="small muted">💰 ${t('bs_no_pay')}</div>`;
+  const nw = nextWin(u), since = P && P.since ? daysSince(P.since) : 0;
+  return `<div class="card brief" style="border-left:5px solid var(--gold)"><h3 style="margin-top:0">🧭 ${t('bs_title')}</h3>${pay}
+    <div style="margin-top:6px">📋 <b>${t('bs_do')}</b> ${esc(doTxt)}</div>
+    <div class="small" style="margin-top:4px">👀 ${t('bs_checker', { x: esc(checkerTxt(n.k, P)) })}</div>
+    ${n.overdue || (n.level || 0) >= 1 ? `<div class="small" style="color:var(--bad);font-weight:800;margin-top:4px">⏰ ${t('bs_late')}</div>` : since ? `<div class="small muted" style="margin-top:4px">⏳ ${t('bs_since', { n: since })}</div>` : ''}
+    ${nw ? `<div class="small" style="margin-top:6px">🏆 ${nw}</div>` : ''}</div>`;
+}
+/* the next thing the person is working towards, with an honest "about how long" at their own pace */
+function nextWin(u) {
+  const r = u.role, c = S.config;
+  if (r === 'tech' && gradeOf(u.uid)) {
+    const ls = ladderStatus(u.uid); if (!ls.next || ls.next === 'qc') return '';
+    if (ls.ready) return t('ach_ready', { g: t('gr_' + ls.next) });
+    const miss = ls.checks.filter(x => !x.ok), m0 = miss[0];
+    const raise = Math.max(0, gradeRate(ls.next) - gradeRate(ls.grade));
+    const { lead, crew } = jobsOf(u.uid), from = new Date(Date.now() - 90 * 864e5).toISOString();
+    const recent = lead.concat(crew).filter(P => (passEntry(P) || {}).t >= from).length, perDay = recent / 90;
+    const jobsLeft = miss.filter(x => /jobs/.test(x.k)).reduce((a, x) => Math.max(a, (+x.need || 0) - (+x.have || 0)), 0);
+    const eta = jobsLeft && perDay > 0 ? Math.ceil(jobsLeft / perDay) : 0;
+    return t('ach_grade', { g: t('gr_' + ls.next), n: miss.length, x: t(m0.k, m0.vars || {}), h: m0.have, need: m0.need }) + (raise ? ' · ' + t('ach_raise', { p: raise }) : '') + (eta ? ' · ' + t('ach_eta', { d: eta }) : '');
+  }
+  if (r === 'field') { const wk = earnings(u.uid).filter(e => weekKey(e.t) === weekKey(nowISO())); return +c.payLeadValid ? t('ach_field', { n: wk.length, a: money(sum(wk.map(e => e.amount))), b: money(3 * c.payLeadValid) }) : ''; }
+  if (r === 'qc') { const m = todayStr().slice(0, 7), n = earnings(u.uid).filter(e => e.t.slice(0, 7) === m).length; return t('ach_qc', { n }); }
+  if (r === 'sales') { const m = todayStr().slice(0, 7), won = Object.values(S.projects).filter(P => P.sales === u.uid && P.hist.some(h => h.s === 'won' && h.t.slice(0, 7) === m)); return t('ach_sales', { n: won.length, a: money(sum(won.map(dealValue))) }); }
+  return '';
+}
+/* ---------- today's plan: made from the person's own tasks, urgent first, then the nearest site next ---------- */
+const DUR = { site_checkin: 10, safety_check: 15, fix_install: 120, amc_visit: 60, accept_ticket: 10, fix_ticket: 90, inspect_site: 60, final_inspect: 120, qc_recheck: 60, surprise_qc: 60, daily_report: 15, pre_survey: 45, prepare_site: 30,
+  call_customer: 15, follow_up: 10, make_quote: 30, send_quote: 10, record_payment: 15, verify_payment: 10, review_lead: 15, fix_lead: 10, material_handover: 30, sign_handover: 30, request_inspection: 10 };
+const SITE_KINDS = ['site_checkin', 'safety_check', 'install', 'fix_install', 'amc_visit', 'fix_ticket', 'inspect_site', 'final_inspect', 'qc_recheck', 'surprise_qc', 'pre_survey', 'prepare_site', 'material_handover', 'sign_handover'];
+const WAIT_KINDS = /^wait_|^(arrival|ticket_not_accepted|escalated)$/;
+const hm = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+function workDayOff(day) { const d = new Date(day + 'T12:00:00'); return (d.getDay() === 0 && !+S.config.sundayWork) || String(S.config.holidays || '').includes(day); }
+function dayPlan(u) { return drawMemo('plan', u.uid, () => dayPlan0(u)); }
+function dayPlan0(u) {
+  const START = 9 * 60, END = 18 * 60, L0 = 13 * 60, L1 = 14 * 60;
+  /* App.planNow (local 'YYYY-MM-DDTHH:MM') only for tests */
+  const nowD = App.planNow ? new Date(App.planNow) : new Date(), nowM = nowD.getHours() * 60 + nowD.getMinutes();
+  let day = App.planNow ? App.planNow.slice(0, 10) : todayStr(), from = Math.max(START, Math.ceil(nowM / 5) * 5), next = false;
+  if (workDayOff(day) || nowM >= END - 30) { next = true; let d = new Date(day + 'T12:00:00'); do { d = new Date(d.getTime() + 864e5); } while (workDayOff(d.toISOString().slice(0, 10))); day = d.toISOString().slice(0, 10); from = START; }
+  const all = myTasks(u).filter(n => !WAIT_KINDS.test(n.k));
+  const hot = all.filter(isHot), rest = all.filter(n => !isHot(n));
+  const desk = n => !SITE_KINDS.includes(n.k) || !(S.projects[n.pid] || { site: {} }).site.gps;
+  /* sales and office: desk work (calls) first, then visits; field and site staff: the site first */
+  const deskFirst = ['sales', 'admin', 'owner', 'finance'].includes(u.role);
+  let here = Geo.fresh(3600000), tm = from, lunch = false;
+  const items = [], later = [];
+  const order = [];
+  const pool = rest.slice();
+  hot.forEach(n => order.push(n));
+  if (deskFirst) pool.filter(desk).forEach(n => order.push(n));
+  let sites = pool.filter(n => !desk(n));
+  while (sites.length) { /* nearest next */
+    let bi = 0, bd = Infinity; sites.forEach((n, i) => { const g = S.projects[n.pid].site.gps, d = here ? haversine(here, g) : i; if (d < bd) { bd = d; bi = i; } });
+    const n = sites.splice(bi, 1)[0]; order.push(n); here = S.projects[n.pid].site.gps;
+  }
+  if (!deskFirst) pool.filter(desk).forEach(n => order.push(n));
+  here = Geo.fresh(3600000);
+  const seen = new Set();
+  const place = (o) => {
+    const lunchNow = () => { items.push({ t: Math.max(tm, L0), lunch: true }); tm = Math.max(tm, L0) + 60; lunch = true; };
+    if (!lunch && tm >= L0 && tm < L1) lunchNow();
+    if (tm + (o.travel || 0) + (o.block ? 60 : o.dur) > END) { later.push(o); return false; }
+    if (o.travel) { items.push({ t: tm, move: true, travel: o.travel, km: o.km, pid: o.pid }); tm += o.travel; }
+    if (o.block) {
+      /* the installation step fills the day: a morning part, lunch, an afternoon part, ending 30 min before close */
+      if (!lunch && tm < L0) { const am = L0 - tm >= 30; if (am) items.push(Object.assign({}, o, { t: tm, dur: L0 - tm })); tm = L0; lunchNow(); items.push(Object.assign({}, o, { t: tm, dur: END - 30 - tm, cont: am })); }
+      else items.push(Object.assign({}, o, { t: tm, dur: Math.max(30, END - 30 - tm) }));
+      tm = END - 30; return true;
+    }
+    if (!lunch && tm + o.dur > L0 && tm < L1) lunchNow();
+    items.push(Object.assign({}, o, { t: tm })); tm += o.dur; return true;
+  };
+  for (const n of order) {
+    const P = S.projects[n.pid], g = P && SITE_KINDS.includes(n.k) ? P.site.gps : null;
+    const key = n.k + '|' + (n.pid || '') + '|' + (n.tid || n.uid || n.purpose || ''); if (seen.has(key)) continue; seen.add(key);
+    const km = g && here ? haversine(here, g) / 1000 : 0, travel = g && (!here || km > 0.3) ? (here ? Math.round(km / 25 * 60) + 10 : 20) : 0;
+    const o = { n, k: n.k, pid: n.pid, dur: DUR[n.k] || 20, travel, km: Math.round(km * 10) / 10, pay: taskPay(n, u) };
+    if (n.k === 'install') o.block = true;
+    if (!place(o)) continue;
+    if (g) here = g;
+    /* a technician's first site of the day: check in, safety, the step work, then the end-of-day photos */
+    if (u.role === 'tech' && P && ['site_checkin', 'safety_check'].includes(n.k) && ['install', 'install_fix'].includes(P.stage)) {
+      if (n.k === 'site_checkin') place({ k: 'safety_check', pid: P.id, dur: 15, travel: 0, auto: true });
+      if (P.stage === 'install' && sopNext(P) < SOP.length) place({ k: 'install', pid: P.id, dur: 60, travel: 0, block: true, auto: true, pay: taskPay({ k: 'install', pid: P.id }, u) });
+    }
+  }
+  if (u.role === 'tech' && items.some(x => x.block) && !items.some(x => x.k === 'daily_report')) { tm = Math.max(tm, END - 30); items.push({ k: 'daily_report', t: Math.min(tm, END - 15), dur: 15, auto: true }); }
+  const earn = sum(items.filter(x => !x.cont).map(x => x.pay && x.pay.mine ? x.pay.mine : 0));
+  return { day, next, off: workDayOff(App.planNow ? App.planNow.slice(0, 10) : todayStr()), items, later, earn };
+}
+function planCard(u) {
+  if (!STAFF.includes(u.role) || u.role === 'supplier') return '';
+  const pl = dayPlan(u);
+  if (!pl.items.length && !pl.later.length) return '';
+  const idx = n => (App.tasks || []).indexOf(n);
+  const row = x => {
+    if (x.lunch) return `<div class="list-item small"><b style="width:52px">${hm(x.t)}</b><span class="grow">🍽️ ${t('pl_lunch')}</span></div>`;
+    if (x.move) return `<div class="list-item small muted"><b style="width:52px">${hm(x.t)}</b><span class="grow">🛵 ${t('pl_travel', { m: x.travel })}${x.km ? ' · ' + x.km + ' km' : ''}</span></div>`;
+    const P = S.projects[x.pid], i = x.n ? idx(x.n) : -1, lab = x.k === 'install' && P ? t('rp_install', { n: sopNext(P) + 1, m: SOP.length, s: t('sop_' + SOP[Math.min(sopNext(P), SOP.length - 1)][0]) }) : t('tk_' + (x.k === 'escalated' ? x.n.ref : x.k));
+    const pay = x.pay && !x.cont ? (x.pay.mine ? ` <span class="chip c-ok">💰 ${money(x.pay.mine)}</span>` : x.pay.move ? ` <span class="chip c-info">💼 ${money(x.pay.move)}</span>` : '') : '';
+    const inner = `<b style="width:52px">${hm(x.t)}</b><span class="grow">${TASK_ICON[x.k] || '▶'} ${esc(lab)}${P ? ` <span class="muted">· ${esc(jobNo(P))}</span>` : ''}${pay}<br><span class="muted">~${x.dur >= 60 ? Math.round(x.dur / 6) / 10 + ' h' : x.dur + ' min'}</span></span>`;
+    return i >= 0 ? `<button class="list-item small" style="width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line)" data-a="openTask" data-v="${i}">${inner}<span class="go">▶</span></button>` : `<div class="list-item small">${inner}</div>`;
+  };
+  const nw = nextWin(u);
+  const head = pl.next ? t(pl.off ? 'pl_off' : 'pl_tomorrow', { d: fmtD(pl.day) }) : t('pl_today', { d: fmtD(pl.day) });
+  return `<div class="card" id="plan"><h3 style="margin-top:0">🗓️ ${head}</h3>
+    ${pl.earn ? `<div style="font-weight:800">💰 ${t('pl_earn', { a: money(pl.earn) })}</div>` : ''}${nw ? `<div class="small" style="margin:4px 0">🏆 ${nw}</div>` : ''}
+    ${pl.items.slice(0, 7).map(row).join('')}
+    ${pl.items.length > 7 ? `<details class="small"><summary>🕒 ${t('pl_more', { n: pl.items.length - 7 })}</summary>${pl.items.slice(7).map(row).join('')}</details>` : ''}
+    ${pl.later.length ? `<div class="note small" style="margin-top:6px">📅 ${t('pl_later', { n: pl.later.length })}: ${pl.later.slice(0, 4).map(x => esc(t('tk_' + x.k)) + (x.pid ? ' · ' + esc(jobNo(S.projects[x.pid])) : '')).join(', ')}</div>` : ''}
+    <p class="small muted" style="margin:6px 0 0">${t('pl_note')}</p></div>`;
+}
 function routineCard(u) {
   const from = new Date(Date.parse(coDay(Date.now()) + 'T00:00:00') - CO_TZ).toISOString(), mine = EVENTS.filter(e => e.by === u.uid && e.t >= from), did = (...ty) => mine.some(e => ty.includes(e.type)), cnt = ty => mine.filter(e => e.type === ty).length;
   const hot = myTasks(u).filter(isHot).length;
@@ -12357,7 +12595,7 @@ SCREENS.cl = ({ pid, kind }) => {
     title = t('tk_install');
     const nx = sopNext(P), done = Object.keys(P.sop).length;
     App.pageSay = nx < SOP.length ? t('s_sop_next', { n: nx + 1, step: t('sop_' + SOP[nx][0]) }) : t('s_sop_all');
-    body = needs(P).filter(n => n.info && isMine(n, u)).map(n => `<div class="note">⏳ ${esc(t('tk_' + n.k))}<br><span class="small muted">${t('waiting_sub')}</span></div>`).join('') + `<div class="stepline"><span>${done} / ${SOP.length} ${t('done_word')}</span>${P.mhand ? `<span class="chip ${installUsed(P) > S.config.installDays ? 'c-bad' : 'c-info'}">🎯 ${t('target_days', { n: installUsed(P), m: S.config.installDays })}</span>` : ''}</div><div class="prog"><i style="width:${done / SOP.length * 100}%"></i></div>
+    body = (App.curTask && App.curTask.pid === P.id && ['install', 'safety_check', 'site_checkin'].includes(App.curTask.k) ? briefCard(Object.assign({}, App.curTask, { k: 'install' }), u) : '') + needs(P).filter(n => n.info && isMine(n, u)).map(n => `<div class="note">⏳ ${esc(t('tk_' + n.k))}<br><span class="small muted">${t('waiting_sub')}</span></div>`).join('') + `<div class="stepline"><span>${done} / ${SOP.length} ${t('done_word')}</span>${P.mhand ? `<span class="chip ${installUsed(P) > S.config.installDays ? 'c-bad' : 'c-info'}">🎯 ${t('target_days', { n: installUsed(P), m: S.config.installDays })}</span>` : ''}</div><div class="prog"><i style="width:${done / SOP.length * 100}%"></i></div>
       <div class="note">📜 ${t('sop_disclaimer')}</div>` + (chargesDue(P).length ? `<div class="err">⏸️ ${t('dm_paused', { a: '' })}</div>` : '') + (nx < SOP.length && allowed('DAMAGE_REPORTED', P) ? `<div class="note">📦 ${t('dm_intact')} <button class="btn btn-sm" data-a="wizOpen" data-v="dmgReport|${P.id}">💥 ${t('dm_report')}</button></div>` : '') + (nx < SOP.length && safetyWhyNot(P) ? `<div class="err">${safetyWhyNot(P) === 'err_work_stopped' ? '🛑 ' + t('work_stopped') : `🦺 ${t('err_safety_check')}${P.tech === u.uid ? `<br><button class="btn btn-p" style="margin-top:8px" data-a="wizOpen" data-v="safety|${P.id}">🦺 ${t('tk_safety_check')}</button>` : ''}`}</div>` : '') +
       SOP.map(([k, i], n) => { const blk = P.blockers.find(b => b.open && b.step === n); const st = P.sop[n] ? 'done' : n === nx ? 'cur' : 'lock';
         return `<button class="cl-item ${st}" data-a="clItem" data-v="sop|${n}" ${st === 'lock' ? 'aria-disabled="true"' : ''}><span class="st">${P.sop[n] ? '✅' : blk ? '⛔' : n === nx ? '▶️' : '🔒'}</span><span class="grow"><b>${n + 1}. ${i} ${t('sop_' + k)}</b>${PEER_STEPS.includes(n) && S.config.peerCheck && P.sop[n] ? `<br><span class="small">${((P.peer || {})[n] || {}).ok ? '👀 ✅ ' + t('peer_done', { name: userName(P.peer[n].by) }) : '👀 ⏳ ' + t('peer_waiting')}</span>` : ''}${blk ? `<br><span class="small" style="color:var(--bad)">⛔ ${t('br_' + blk.reason)} → ${t('r_' + blk.role)}</span>` : ''}</span></button>`; }).join('');
@@ -13722,6 +13960,7 @@ SCREENS.worker = ({ uid }) => {
     <div class="card"><h3>🪪 ${t('w_docs')}</h3>${DOCS.map(d => `<div class="list-item"><span class="grow">${t('doc_' + d)}</span><span class="chip ${w.docs[d] === 'verified' ? 'c-ok' : w.docs[d] === 'rejected' ? 'c-bad' : 'c-mute'}">${t('ds_' + (w.docs[d] || 'pending'))}</span>
       ${adm ? `<button class="btn btn-sm" data-a="docVerify" data-v="${uid}|${d}|verified">✅</button><button class="btn btn-sm" data-a="docVerify" data-v="${uid}|${d}|rejected">❌</button>` : ''}</div>`).join('')}<p class="small muted">${t('w_docs_note')}</p></div>
     <div class="card"><h3>🎓 ${t('training')}</h3>${modulesFor(u.role).map(m => `<div class="list-item"><span>${w.training[m] ? '✅' : '⬜'}</span><span class="grow">${t('tr_' + m + '_t')}${w.training[m] ? `<br><span class="small muted">${fmtD(w.training[m].t)} · ${w.training[m].score}/3</span>` : ''}</span>${uid === me.uid && !w.training[m] ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="train||module|${m}">▶</button>` : ''}</div>`).join('') || `<p class="muted">${t('nothing_here')}</p>`}</div>
+    ${u.role === 'tech' && u.company && (me.uid === u.company || ['owner', 'admin'].includes(me.role)) ? `<button class="btn" data-a="wizOpen" data-v="shareSet||uid|${uid}">💰 ${t('sh_btn', { p: (S.workers[uid] || {}).share ?? '—' })}</button>` : ''}
     ${['tech', 'partner'].includes(u.role) && me.role !== 'tech' && (me.role !== 'partner' || uid === me.uid) ? `<button class="btn btn-big" data-a="nav2" data-v="earn|${uid}">💰 ${t(u.role === 'partner' ? 'company_bill' : 'earnings')}</button>` : ''}</main>` + nav('me');
 };
 WIZ.wprofile = {
@@ -14711,6 +14950,7 @@ function whyNot(type, P) {
 }
 function openTask(n) {
   if (!n) return;
+  App.curTask = n;
   const pid = n.pid, P = S.projects[pid];
   const m = {
     review_lead: () => wiz('review', pid), fix_lead: () => wiz('fixlead', pid), call_customer: () => wiz('call', pid), follow_up: () => wiz('call', pid),
