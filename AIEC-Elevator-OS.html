@@ -230,14 +230,19 @@ details.fold>.fold-in{padding:0 12px 12px}details.fold>.fold-in>.card:first-chil
 .dots i{width:20px;height:20px;border-radius:50%;border:3px solid var(--graph)}
 .dots i.f{background:var(--graph)}
 .lmap{height:60vh;min-height:300px;border-radius:var(--r);border:1px solid var(--line);position:relative;z-index:0;isolation:isolate;margin-bottom:10px}
-.mapbox{position:relative}
-.mapfs-b{position:absolute;right:8px;top:8px;z-index:500;min-height:44px;min-width:44px;font-size:1.2rem;padding:0 10px}
+.mapbox{position:relative;zoom:calc(1 / var(--z,1))}
+.mapbox svg.map{touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.mapfs svg.map{touch-action:none}
+.mzoom{display:flex;gap:6px;align-items:center}
+.mzoom[hidden]{display:none}
+.mapfs .mapfs-b{display:none}
+.mzrow{display:flex;gap:6px;align-items:center;margin-top:6px}
+.mapfs-b{min-height:44px;min-width:44px;font-size:1.2rem;padding:0 10px;margin-left:auto}
 .mapfs-x{display:none}
 .mapfs{position:fixed!important;inset:0;z-index:60;background:var(--bg,#fff);padding:8px;margin:0!important;border-radius:0;display:flex;flex-direction:column}
-.mapfs .mapfs-b{display:none}
 .mapfs .mapfs-x{display:flex;margin-bottom:8px}
 .mapfs .lmap{flex:1;height:auto!important;min-height:0;margin:0}
-.mapfs svg.map{max-height:calc(100vh - 90px);width:auto;max-width:100%;margin:auto}
+.mapfs svg.map{max-height:calc(100vh - 150px);width:auto;max-width:100%;margin:auto}
 .ib-out{background:#c62828;border-color:#fff;font-size:1.3rem;font-weight:900}
 .fback{position:fixed;left:12px;bottom:84px;z-index:40;width:60px;height:60px;border-radius:50%;border:3px solid #fff;background:var(--graph);color:#fff;font-size:1.7rem;font-weight:800;box-shadow:0 3px 10px rgba(0,0,0,.35)}
 .hmap{height:40vh;min-height:220px;margin:8px 0 0}
@@ -3554,6 +3559,10 @@ const L = {
   sh_btn: ['Pay share: {p}%', 'भुगतान हिस्सा: {p}%', 'पैशांचा वाटा: {p}%'],
   ev_COMPANY_SHARE_SET: ['Pay share set', 'भुगतान हिस्सा तय', 'पैशांचा वाटा ठरला'],
   cfg_salesWonPct: ['Sales incentive % of a won deal (0 = none)', 'पक्के सौदे पर सेल्स इंसेंटिव % (0 = नहीं)', 'पक्क्या सौद्यावर सेल्स इन्सेंटिव्ह % (0 = नाही)'],
+  mp_full_s: ['Full screen', 'पूरी स्क्रीन', 'पूर्ण स्क्रीन'],
+  mz_in: ['Zoom in', 'बड़ा करें', 'मोठे करा'],
+  mz_out: ['Zoom out', 'छोटा करें', 'लहान करा'],
+  mz_reset: ['Show all', 'सब दिखाएँ', 'सर्व दाखवा'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -12701,7 +12710,7 @@ function homeMapCard(u) {
   const P0 = r === 'customer' ? m.ps[0] : null, onSite = P0 && checkedIn(P0, safeDay());
   return `<div class="card" style="margin-top:12px"><div class="row"><h3 class="grow" style="margin:0">🗺️ ${t(r === 'customer' ? 'hm_title_c' : 'hm_title')}</h3>${r === 'customer' ? '' : `<button class="btn btn-sm" data-a="nav" data-v="map">${t('hm_full')} ▶</button>`}</div>
     ${m.rs ? `<p class="small" style="margin:6px 0">🏍️ ${t('rm_today', { k: m.rs.kmDay, n: m.rs.sitesDay })}</p>` : ''}
-    <div class="mapbox" id="hbox">${mapFsButtons('hbox')}<div id="hmap" class="lmap hmap" hidden></div><div id="hsvg" class="hsvg">${m.svg}</div></div>
+    <div class="mapbox" id="hbox">${mapFsButtons('hbox')}<div id="hmap" class="lmap hmap" hidden></div><div id="hsvg" class="hsvg">${m.svg}</div>${mapRow('hbox', m.svg.startsWith('<svg'))}</div>
     ${onSite ? `<div class="okbox small">🔧 ${t('hm_tech_on')}</div>` : ''}
     ${sel ? `<div style="margin-top:8px">${projCard(sel).replace('class="task"', 'class="task" style="margin:0"')}<a class="btn btn-sm" style="margin-top:6px" href="${dirLink(sel.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>` : `<p class="small muted" style="margin:6px 0 0">${t(r === 'customer' ? 'hm_tap_c' : 'hm_tap')}${late && late.size ? ' · 🔴 ' + t('hm_late') : ''}</p>`}</div>`;
 }
@@ -12718,7 +12727,7 @@ SCREENS.map = () => {
   return topBar(t('map')) + `<main class="wrap"><div class="tabs" style="position:static;padding:0 0 10px">${[['all', '📋', 'all'], ['mine', '👉', 'mine']].concat(office ? [['late', '⏰', 'mf_late'], ['people', '👥', 'mf_people']] : []).map(([v, i, l]) => `<button class="${f === v ? 'on' : ''}" data-a="mfilter" data-v="${v}">${i} ${t(l)}</button>`).join('')}<button data-a="gpsMap">📍 ${t('where_am_i')}</button></div>
     ${office && f === 'people' ? `<div class="tabs" style="position:static;padding:0 0 8px">${['', 'tech', 'field', 'qc', 'sales', 'partner'].map(r => `<button class="${rf === r ? 'on' : ''}" data-a="mrole" data-v="${r}">${r ? ROLE_ICON[r] + ' ' + t('r_' + r) : t('mp_role_all')}</button>`).join('')}</div>` : ''}
     ${rs ? `<div class="card"><div class="small">🏍️ ${t('rm_today', { k: rs.kmDay, n: rs.sitesDay })}</div><div class="small">📅 ${t('rm_month', { k: rs.kmMonth, n: rs.sitesMonth })}</div><div class="small">🗺️ ${t('rm_area', { n: rs.area })}</div></div>` : ''}
-    <div class="mapbox" id="fbox">${mapFsButtons('fbox')}<div id="lmap" class="lmap" hidden></div><div id="svgmap">${svg}</div></div>${sel ? `<div class="card" style="margin-top:10px">${projCard(sel).replace('class="task"', 'class="task" style="margin:0"')}<a class="btn" style="margin-top:8px" href="${dirLink(sel.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>` : ''}
+    <div class="mapbox" id="fbox">${mapFsButtons('fbox')}<div id="lmap" class="lmap" hidden></div><div id="svgmap">${svg}</div>${mapRow('fbox', svg.startsWith('<svg'))}</div>${sel ? `<div class="card" style="margin-top:10px">${projCard(sel).replace('class="task"', 'class="task" style="margin:0"')}<a class="btn" style="margin-top:8px" href="${dirLink(sel.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>` : ''}
     <p class="small muted">🔵 ${t('map_me')} ${route.length ? ' · ┅ ' + t('map_route') : ''} · ${t('map_note')}</p>
     ${rs ? `<div class="card"><h3>🟩 ${t('rm_next')}</h3><p class="small muted">${t('rm_next_d')}</p>${rs.next.length ? rs.next.map((g, i) => `<a class="btn btn-sm" style="margin:2px" href="${dirLink(g)}" target="_blank" rel="noopener">🧭 ${i + 1}</a>`).join('') : `<p class="small">${t('rm_next_none')}</p>`}</div>` : ''}
     ${rs && board.length ? `<div class="card"><h3>🏆 ${t('rm_board')}</h3>${board.map(([uid, pts], i) => `<div class="list-item small" style="${uid === u.uid ? 'background:var(--gold-l);border-radius:8px;padding-inline:6px' : ''}"><b style="width:26px">${['🥇', '🥈', '🥉'][i] || i + 1}</b><span class="grow">${esc(userName(uid))}</span><b>${pts}</b></div>`).join('')}</div>` : ''}
@@ -12739,17 +12748,48 @@ function loadLeaflet() {
   });
   return leafletP;
 }
-AFTER.map = () => liveMap('lmap', 'svgmap', App.mapData, 'map');
+AFTER.map = () => { svgZoomAll(); liveMap('lmap', 'svgmap', App.mapData, 'map'); };
 /* the home card waits until the page is drawn, so the first page opens as fast as before */
-AFTER.home = () => { const go1 = () => liveMap('hmap', 'hsvg', App.homeMap, 'home', { small: true }); if (window.requestIdleCallback) requestIdleCallback(go1, { timeout: 1500 }); else setTimeout(go1, 300); };
+AFTER.home = () => { svgZoomAll(); const go1 = () => liveMap('hmap', 'hsvg', App.homeMap, 'home', { small: true }); if (window.requestIdleCallback) requestIdleCallback(go1, { timeout: 1500 }); else setTimeout(go1, 300); };
 const LIVE_MAPS = {};
 /* ⛶ every map can fill the screen; ✕ or the phone's Back closes it */
-const mapFsButtons = id => `<button class="btn btn-sm mapfs-b" data-a="mapFull" data-v="${id}" aria-label="${t('mp_full')}">⛶</button><button class="btn btn-p btn-big mapfs-x" data-a="mapFullClose" data-v="${id}">✕ ${t('close')}</button>`;
+const mapZoomButtons = id => `<span class="mzoom">${[['in', '+', 'mz_in'], ['out', '−', 'mz_out'], ['reset', '⟲', 'mz_reset']].map(([v, s, l]) => `<button class="btn btn-sm" style="min-width:44px;min-height:44px;font-size:1.3rem;font-weight:900;padding:0" data-a="mapZoom" data-v="${v}|${id}" aria-label="${t(l)}">${s}</button>`).join('')}</span>`;
+/* the drawn (offline) map: pinch, double-tap, wheel and the buttons zoom; one finger pans in full screen; a tap on a pin still opens it */
+function svgZoom(svg) {
+  if (!svg || svg._z) return; svg._z = true;
+  const base = (svg.getAttribute('viewBox') || '0 0 360 360').split(/\s+/).map(Number); svg._base = base; svg._vb = base.slice();
+  const pts = new Map(); let start = null, moved = false, lastTap = 0;
+  const frac = (x, y) => { const r = svg.getBoundingClientRect(); return [(x - r.left) / r.width, (y - r.top) / r.height]; };
+  const center = () => { const a = [...pts.values()]; return a.length > 1 ? [(a[0][0] + a[1][0]) / 2, (a[0][1] + a[1][1]) / 2] : a[0]; };
+  const dist = () => { const a = [...pts.values()]; return a.length > 1 ? Math.hypot(a[0][0] - a[1][0], a[0][1] - a[1][1]) : 0; };
+  svg.addEventListener('pointerdown', e => { pts.set(e.pointerId, [e.clientX, e.clientY]); moved = false; start = { vb: svg._vb.slice(), c: center(), d: dist() }; });
+  svg.addEventListener('pointermove', e => {
+    if (!pts.has(e.pointerId)) return; pts.set(e.pointerId, [e.clientX, e.clientY]);
+    const c = center(), vb = start.vb;
+    if (pts.size > 1 && start.d) { const k = start.d / (dist() || start.d), f = frac(start.c[0], start.c[1]); svgSetView(svg, vb[0] + f[0] * vb[2] * (1 - k), vb[1] + f[1] * vb[3] * (1 - k), vb[2] * k); moved = true; }
+    else if (pts.size === 1 && svg.closest('.mapfs')) { const r = svg.getBoundingClientRect(), dx = (c[0] - start.c[0]) / r.width * vb[2], dy = (c[1] - start.c[1]) / r.height * vb[3]; if (Math.abs(dx) + Math.abs(dy) > vb[2] / 60) { moved = true; svgSetView(svg, vb[0] - dx, vb[1] - dy, vb[2]); } }
+  });
+  const up = e => { pts.delete(e.pointerId); if (pts.size) start = { vb: svg._vb.slice(), c: center(), d: dist() }; };
+  svg.addEventListener('pointerup', e => { up(e); if (moved && !pts.size) setTimeout(() => { moved = false; }, 80); if (!moved && !pts.size) { const now = Date.now(); if (now - lastTap < 320 && !e.target.closest('[data-a]')) svgZoomBy(svg, 1 / 1.6, frac(e.clientX, e.clientY)); lastTap = now; } });
+  svg.addEventListener('pointercancel', up);
+  svg.addEventListener('click', e => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
+  svg.addEventListener('wheel', e => { e.preventDefault(); svgZoomBy(svg, e.deltaY > 0 ? 1.25 : 0.8, frac(e.clientX, e.clientY)); }, { passive: false });
+}
+function svgSetView(svg, x, y, w) {
+  const b = svg._base; w = Math.max(b[2] / 10, Math.min(b[2], w));
+  x = Math.max(b[0] - w / 2, Math.min(b[0] + b[2] - w / 2, x)); y = Math.max(b[1] - w / 2, Math.min(b[1] + b[3] - w / 2, y));
+  svg._vb = [x, y, w, w]; svg.setAttribute('viewBox', svg._vb.map(n => Math.round(n * 10) / 10).join(' '));
+}
+function svgZoomBy(svg, k, f = [0.5, 0.5]) { const vb = svg._vb; svgSetView(svg, vb[0] + f[0] * vb[2] * (1 - k), vb[1] + f[1] * vb[3] * (1 - k), vb[2] * k); }
+const svgZoomAll = () => document.querySelectorAll('.mapbox svg.map').forEach(svgZoom);
+const mapFsButtons = id => `<button class="btn btn-p btn-big mapfs-x" data-a="mapFullClose" data-v="${id}">✕ ${t('close')}</button>`;
+/* the row under a map: zoom buttons (drawn map only) and full screen; nothing covers the pins */
+const mapRow = (id, drawn) => `<div class="mzrow">${drawn ? mapZoomButtons(id) : ''}<button class="btn btn-sm mapfs-b" data-a="mapFull" data-v="${id}" aria-label="${t('mp_full')}">⛶ ${t('mp_full_s')}</button></div>`;
 function mapFullSet(id, on) {
   const box = document.getElementById(id); if (!box) return;
   box.classList.toggle('mapfs', on);
   const lm = LIVE_MAPS[id === 'hbox' ? 'hmap' : 'lmap'];
-  if (lm) { setTimeout(() => lm.invalidateSize(), 60); if (id === 'hbox' && window.leaflet && leaflet.Browser.mobile) lm.dragging[on ? 'enable' : 'disable'](); }
+  if (lm) { setTimeout(() => lm.invalidateSize(), 60); lm.touchZoom.enable(); if (id === 'hbox') { lm.scrollWheelZoom[on ? 'enable' : 'disable'](); if (window.leaflet && leaflet.Browser.mobile) lm.dragging[on ? 'enable' : 'disable'](); } }
   App.ovClose = on ? () => mapFullSet(id, false) : null;
 }
 function liveMap(elId, plotId, d, routeName, o = {}) {
@@ -12757,9 +12797,9 @@ function liveMap(elId, plotId, d, routeName, o = {}) {
   loadLeaflet().then(Lf => {
     const el = document.getElementById(elId), plot = document.getElementById(plotId);
     if (!el || App.route.name !== routeName || el.dataset.on) return;
-    el.hidden = false; el.dataset.on = '1';
+    el.hidden = false; el.dataset.on = '1'; const zb = el.parentNode && el.parentNode.querySelector('.mzoom'); if (zb) zb.hidden = true;
     /* on the home card a finger swipe scrolls the page; zoom with the buttons */
-    const m = Lf.map(el, o.small ? { zoomControl: true, dragging: !Lf.Browser.mobile, tap: false, scrollWheelZoom: false, touchZoom: false } : { zoomControl: true }); LIVE_MAPS[elId] = m;
+    const m = Lf.map(el, o.small ? { zoomControl: true, dragging: !Lf.Browser.mobile, tap: false, scrollWheelZoom: false, touchZoom: true } : { zoomControl: true }); LIVE_MAPS[elId] = m;
     const tiles = Lf.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(m);
     let loaded = false, failed = 0;
     tiles.on('tileload', () => { if (!loaded && d.ps.length && plot) plot.hidden = true; loaded = true; });
@@ -15297,6 +15337,8 @@ const ACT = {
     if (window.AIECAndroid && window.AIECAndroid.exit) { try { window.AIECAndroid.exit(); return; } catch (e) { /* older app: fall through */ } }
     try { window.close(); } catch (e) { /* not allowed */ }
     history.go(-Math.max(1, history.length - 1)); },
+  mapZoom: v => { const [k, id] = v.split('|'), svg = document.querySelector('#' + id + ' svg.map'); if (!svg) return; svgZoom(svg);
+    if (k === 'reset') { const b = svg._base; svgSetView(svg, b[0], b[1], b[2]); } else svgZoomBy(svg, k === 'in' ? 1 / 1.5 : 1.5); },
   pinKey: async v => {
     const uid = App.route.p.uid, f = App.form, len = (S.users[uid] && S.users[uid].pinLen) || 4; f.pin = f.pin || '';
     if (v === '⌫') { f.pin = f.pin.slice(0, -1); render(); return; }
