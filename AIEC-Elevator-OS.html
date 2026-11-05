@@ -230,6 +230,8 @@ details.fold>.fold-in{padding:0 12px 12px}details.fold>.fold-in>.card:first-chil
 .dots i{width:20px;height:20px;border-radius:50%;border:3px solid var(--graph)}
 .dots i.f{background:var(--graph)}
 .lmap{height:60vh;min-height:300px;border-radius:var(--r);border:1px solid var(--line);position:relative;z-index:0;isolation:isolate;margin-bottom:10px}
+.hmap{height:40vh;min-height:220px;margin:8px 0 0}
+.hsvg .map{max-height:40vh;object-fit:contain}
 .lmap .leaflet-popup-content{font:inherit;font-size:.95rem;min-width:200px}
 .pin span{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:var(--graph);border:3px solid var(--gold);font-size:17px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
 .pin span.lost{background:var(--bad)}.pin span.done{background:var(--ok)}
@@ -3465,6 +3467,14 @@ const L = {
   da_phone: ['Phone {n}', 'फ़ोन {n}', 'फोन {n}'],
   da_last: ['last used {d}', 'आख़िरी बार {d}', 'शेवटचा वापर {d}'],
   hq_name_note: ['Everyone else sees you as HEAD QUARTER; only your own Me page shows your name.', 'बाकी सबको आप HEAD QUARTER दिखेंगे; आपका नाम सिर्फ़ आपके अपने "मैं" पेज पर दिखेगा।', 'इतर सर्वांना तुम्ही HEAD QUARTER दिसाल; तुमचे नाव फक्त तुमच्या स्वतःच्या "मी" पानावर दिसेल.'],
+  hm_title: ['My work on the map', 'नक्शे पर मेरा काम', 'नकाशावर माझे काम'],
+  hm_title_c: ['Your lift on the map', 'नक्शे पर आपकी लिफ्ट', 'नकाशावर तुमची लिफ्ट'],
+  hm_full: ['Full map', 'पूरा नक्शा', 'पूर्ण नकाशा'],
+  hm_none: ['No sites on the map yet. Sites appear once their location is saved.', 'नक्शे पर अभी कोई साइट नहीं। लोकेशन सेव होते ही साइट दिखेगी।', 'नकाशावर अजून साइट नाही. लोकेशन जतन होताच साइट दिसेल.'],
+  hm_tap: ['Tap a pin to see the job and get directions.', 'काम देखने और रास्ता पाने के लिए पिन दबाएँ।', 'काम पाहण्यासाठी आणि मार्गासाठी पिन दाबा.'],
+  hm_tap_c: ['Tap the pin for directions to the site.', 'साइट का रास्ता देखने के लिए पिन दबाएँ।', 'साइटचा मार्ग पाहण्यासाठी पिन दाबा.'],
+  hm_late: ['red = late', 'लाल = देर', 'लाल = उशीर'],
+  hm_tech_on: ['Technician is on site today', 'तकनीशियन आज साइट पर है', 'तंत्रज्ञ आज साइटवर आहे'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -9132,14 +9142,14 @@ function topBar(title, o = {}) {
   ${App.me && !o.noBell ? `<button class="ib" data-a="nav" data-v="home" aria-label="${t('my_tasks')}">🔔${n ? `<span class="badge">${n}</span>` : ''}</button>` : ''}</header>`;
 }
 const NAV = {
-  field: [['home', '🏠', 'nav_home'], ['projects', '📍', 'nav_sites'], ['map', '🗺️', 'map'], ['chat', '💬', 'chat'], ['me', '👤', 'me']],
-  sales: [['home', '🏠', 'nav_today'], ['projects', '📋', 'nav_leads'], ['callnext', '📞', 'nav_callnext'], ['map', '🗺️', 'map'], ['me', '👤', 'me']],
+  field: [['home', '🏠', 'nav_home'], ['projects', '📍', 'nav_sites'], ['chat', '💬', 'chat'], ['me', '👤', 'me']],
+  sales: [['home', '🏠', 'nav_today'], ['projects', '📋', 'nav_leads'], ['callnext', '📞', 'nav_callnext'], ['chat', '💬', 'chat'], ['me', '👤', 'me']],
   /* v4 role menus: the technician's day is site work, not office lists; Me stays so sign-out and language are one tap away */
   tech: [['home', '🏠', 'nav_today'], ['stock', '📦', 'nav_material'], ['steps', '🪜', 'nav_steps'], ['damage', '💥', 'nav_damage'], ['mywork', '💰', 'nav_pay'], ['me', '👤', 'me']],
   finance: [['home', '🏠', 'nav_home'], ['projects', '📋', 'projects'], ['chat', '💬', 'chat'], ['me', '👤', 'me']],
   supplier: [['home', '🏠', 'nav_home'], ['projects', '📦', 'nav_orders'], ['chat', '💬', 'chat'], ['me', '👤', 'me']],
   customer: [['home', '🏠', 'nav_mylift'], ['mypay', '💳', 'nav_pay'], ['docs', '📄', 'nav_docs'], ['chat', '💬', 'nav_help'], ['me', '👤', 'me']],
-  default: [['home', '🏠', 'nav_home'], ['projects', '📋', 'projects'], ['map', '🗺️', 'map'], ['chat', '💬', 'chat'], ['me', '👤', 'me']]
+  default: [['home', '🏠', 'nav_home'], ['projects', '📋', 'projects'], ['chat', '💬', 'chat'], ['me', '👤', 'me']]
 };
 function nav(active) {
   const items = NAV[App.me.role] || NAV.default;
@@ -11739,6 +11749,7 @@ SCREENS.home = () => {
   if (tasks.length) h += `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button><p class="small muted center" style="margin:6px 0 0">${esc(t('tk_' + tasks[0].k))}${tasks[0].pid ? ' · ' + esc(tasks[0].pid) : ''}</p>`;
   else h += `<div class="card center"><div class="big-i">☕</div><b>${t('no_tasks')}</b><p class="muted">${t(u.role === 'field' ? 'no_tasks_field' : 'no_tasks_other')}</p></div>`;
   { const ws = myWaits(u); if (ws.length) h += `<div class="note" style="margin-top:10px"><b>⏳ ${t('waiting_t')}</b>${ws.map(n => `<div class="small">${esc(t('tk_' + n.k))}${n.pid ? ' · ' + esc(n.pid) : ''}</div>`).join('')}<span class="small muted">${t('waiting_sub')}</span></div>`; }
+  h += homeMapCard(u);
   if (u.role === 'field' || u.role === 'sales') h += `<button class="btn btn-big ${tasks.length ? '' : 'btn-p'}" style="margin-top:12px" data-a="addSite"><span class="i">➕</span>${t('add_site')}</button>`;
   if (adm && Object.keys(S.users).length < 3) h += `<div class="warnbox" style="margin-top:12px">👥 ${t('add_team_hint')}<br><button class="btn btn-p" style="margin-top:8px" data-a="nav" data-v="users">➕ ${t('add_person')}</button></div>`;
   if (adm) {
@@ -11905,7 +11916,7 @@ function customerHome() {
   const q = [...P.quotes].reverse().find(x => x.sent);
   const tile = (a, v, i, l) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`;
   return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${tourCard(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}${noLicBanner(P)}<div class="card"><b>${esc(jobNo(P))}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>${custPause(P)}${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
-    ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + tasks.map((n, i) => taskCard(n, i)).join('') : ''}
+    ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + homeMapCard(u) + tasks.map((n, i) => taskCard(n, i)).join('') : homeMapCard(u)}
     ${payCard(P)}
     ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
     ${lateCard(P)}${P.done ? warrantyLine(P) : ''}${P.society && !P.done ? socCard(P) : ''}${custRefCard(P)}
@@ -12371,13 +12382,14 @@ function peopleToday(role) {
     .map(u => { const tr = Object.values(S.evidence).filter(e => e.by === u.uid && e.gps && e.t >= from).map(e => ({ t: e.t, g: e.gps })).concat((S.shiftLog || []).filter(x => x.uid === u.uid && x.gps && x.t >= from).map(x => ({ t: x.t, g: x.gps }))).sort((a, b) => a.t < b.t ? 1 : -1)[0]; return tr ? { u, g: tr.g, t: tr.t } : null; })
     .filter(Boolean);
 }
-SCREENS.map = () => {
-  const u = App.me;
-  App.pageSay = t('s_map');
-  const f = App.form.mf || 'all';
+/* the map's content for a person and filter: pins, route, people, next squares and the offline plot (full map and home card) */
+function mapModel(u, f, rf, o = {}) {
   let ps = visibleProjects(u).filter(P => P.site.gps);
   if (f === 'mine') { const ids = new Set(myTasks(u).map(n => n.pid)); ps = ps.filter(P => ids.has(P.id)); }
-  const office = ['owner', 'admin'].includes(u.role), rf = App.form.mr || '';
+  /* home card: a worker's own jobs (tasks or assigned), everyone else the jobs still running */
+  if (f === 'work') { const ids = new Set(myTasks(u).map(n => n.pid)); ps = ps.filter(P => P.stage !== 'lost' && (ids.has(P.id) || [P.tech, P.partner, P.qc, P.sales].includes(u.uid) || (P.crew || []).includes(u.uid))); }
+  if (f === 'live') ps = ps.filter(P => P.stage !== 'lost' && (u.role === 'customer' || P.stage !== 'amc'));
+  const office = ['owner', 'admin'].includes(u.role);
   if (f === 'late') { const ids = new Set(allEscalations().list.map(n => n.pid).filter(Boolean)); ps = ps.filter(P => ids.has(P.id)); }
   const people = office && f === 'people' ? peopleToday(rf) : [];
   if (f === 'people') ps = [];
@@ -12395,12 +12407,34 @@ SCREENS.map = () => {
     svg = `<svg class="map" viewBox="0 0 ${Wd} ${Wd}" role="img" aria-label="${t('map')}">
       ${[1, 2, 3].map(i => `<line x1="${i * Wd / 4}" y1="0" x2="${i * Wd / 4}" y2="${Wd}" stroke="#cfd9c9"/><line x1="0" y1="${i * Wd / 4}" x2="${Wd}" y2="${i * Wd / 4}" stroke="#cfd9c9"/>`).join('')}
       ${route.length > 1 ? `<polyline points="${route.map(gp => X(gp) + ',' + Y(gp)).join(' ')}" fill="none" stroke="#1c5596" stroke-width="3" stroke-dasharray="6 4"/>` : ''}
-      ${ps.map(P => `<g data-a="mapPin" data-v="${P.id}" style="cursor:pointer"><circle cx="${X(P.site.gps)}" cy="${Y(P.site.gps)}" r="${App.form.mp === P.id ? 17 : 13}" fill="${P.stage === 'lost' ? '#a3241c' : P.stage === 'amc' ? '#16703a' : '#23262f'}" stroke="#c9a227" stroke-width="3"/><text x="${X(P.site.gps)}" y="${Y(P.site.gps) + 5}" text-anchor="middle" font-size="13">${STAGES[P.stage][1]}</text></g>`).join('')}
+      ${ps.map(P => `<g data-a="mapPin" data-v="${P.id}" style="cursor:pointer"><circle cx="${X(P.site.gps)}" cy="${Y(P.site.gps)}" r="${App.form.mp === P.id ? 17 : 13}" fill="${P.stage === 'lost' || (o.late && o.late.has(P.id)) ? '#a3241c' : P.stage === 'amc' ? '#16703a' : '#23262f'}" stroke="#c9a227" stroke-width="3"/><text x="${X(P.site.gps)}" y="${Y(P.site.gps) + 5}" text-anchor="middle" font-size="13">${STAGES[P.stage][1]}</text></g>`).join('')}
       ${me ? `<circle cx="${X(me)}" cy="${Y(me)}" r="8" fill="#1c5596" stroke="#fff" stroke-width="3"/>` : ''}
       ${(rs ? rs.next : []).map(g => `<rect x="${X(g) - 12}" y="${Y(g) - 12}" width="24" height="24" fill="none" stroke="#16703a" stroke-width="3" stroke-dasharray="4 3"/>`).join('')}
       ${people.map(x => `<g><circle cx="${X(x.g)}" cy="${Y(x.g)}" r="13" fill="#fff" stroke="#1c5596" stroke-width="2"/><text x="${X(x.g)}" y="${Y(x.g) + 5}" text-anchor="middle" font-size="14">${ROLE_ICON[x.u.role]}</text></g>`).join('')}
       <line x1="12" y1="${Wd - 14}" x2="${12 + Wd / 4}" y2="${Wd - 14}" stroke="#333" stroke-width="3"/><text x="14" y="${Wd - 20}" font-size="11">${km} km</text></svg>`;
   }
+  return { ps, route, me, people, rs, svg };
+}
+/* the map on the first page (v4 owner request): right after "Start my next task"; the full map is one tap away */
+function homeMapCard(u) {
+  const r = u.role, f = ['tech', 'partner', 'qc'].includes(r) ? 'work' : 'live', office = ['owner', 'admin'].includes(r);
+  const late = office ? new Set(allEscalations().list.map(n => n.pid).filter(Boolean)) : null;
+  const m = mapModel(u, f, '', { late });
+  App.homeMap = { ps: m.ps, route: m.route, me: m.me, people: [], next: m.rs ? m.rs.next : [], late };
+  if (!m.ps.length && !m.route.length) return `<div class="card small muted" style="margin-top:12px">🗺️ ${t('hm_none')}</div>`;
+  const sel = App.form.mp && m.ps.find(P => P.id === App.form.mp);
+  const P0 = r === 'customer' ? m.ps[0] : null, onSite = P0 && checkedIn(P0, safeDay());
+  return `<div class="card" style="margin-top:12px"><div class="row"><h3 class="grow" style="margin:0">🗺️ ${t(r === 'customer' ? 'hm_title_c' : 'hm_title')}</h3>${r === 'customer' ? '' : `<button class="btn btn-sm" data-a="nav" data-v="map">${t('hm_full')} ▶</button>`}</div>
+    ${m.rs ? `<p class="small" style="margin:6px 0">🏍️ ${t('rm_today', { k: m.rs.kmDay, n: m.rs.sitesDay })}</p>` : ''}
+    <div id="hmap" class="lmap hmap" hidden></div><div id="hsvg" class="hsvg">${m.svg}</div>
+    ${onSite ? `<div class="okbox small">🔧 ${t('hm_tech_on')}</div>` : ''}
+    ${sel ? `<div style="margin-top:8px">${projCard(sel).replace('class="task"', 'class="task" style="margin:0"')}<a class="btn btn-sm" style="margin-top:6px" href="${dirLink(sel.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>` : `<p class="small muted" style="margin:6px 0 0">${t(r === 'customer' ? 'hm_tap_c' : 'hm_tap')}${late && late.size ? ' · 🔴 ' + t('hm_late') : ''}</p>`}</div>`;
+}
+SCREENS.map = () => {
+  const u = App.me;
+  App.pageSay = t('s_map');
+  const f = App.form.mf || 'all', rf = App.form.mr || '', office = ['owner', 'admin'].includes(u.role);
+  const { ps, route, me, people, rs, svg } = mapModel(u, f, rf);
   const sel = App.form.mp && S.projects[App.form.mp];
   const list = ps.slice().sort((a, b) => me ? haversine(me, a.site.gps) - haversine(me, b.site.gps) : 0);
   App.mapData = { ps, route, me, people, next: rs ? rs.next : [] };
@@ -12430,14 +12464,17 @@ function loadLeaflet() {
   });
   return leafletP;
 }
-AFTER.map = () => {
-  const d = App.mapData;
-  if (!d || !navigator.onLine) return;
+AFTER.map = () => liveMap('lmap', 'svgmap', App.mapData, 'map');
+/* the home card waits until the page is drawn, so the first page opens as fast as before */
+AFTER.home = () => { const go1 = () => liveMap('hmap', 'hsvg', App.homeMap, 'home', { small: true }); if (window.requestIdleCallback) requestIdleCallback(go1, { timeout: 1500 }); else setTimeout(go1, 300); };
+function liveMap(elId, plotId, d, routeName, o = {}) {
+  if (!d || !navigator.onLine || (!d.ps.length && !(d.route || []).length)) return;
   loadLeaflet().then(Lf => {
-    const el = document.getElementById('lmap'), plot = document.getElementById('svgmap');
-    if (!el || App.route.name !== 'map') return;
-    el.hidden = false;
-    const m = Lf.map(el, { zoomControl: true });
+    const el = document.getElementById(elId), plot = document.getElementById(plotId);
+    if (!el || App.route.name !== routeName || el.dataset.on) return;
+    el.hidden = false; el.dataset.on = '1';
+    /* on the home card a finger swipe scrolls the page; zoom with the buttons */
+    const m = Lf.map(el, o.small ? { zoomControl: true, dragging: !Lf.Browser.mobile, tap: false, scrollWheelZoom: false, touchZoom: false } : { zoomControl: true });
     const tiles = Lf.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(m);
     let loaded = false, failed = 0;
     tiles.on('tileload', () => { if (!loaded && d.ps.length && plot) plot.hidden = true; loaded = true; });
@@ -12445,7 +12482,7 @@ AFTER.map = () => {
     const pts = [];
     for (const P of d.ps) {
       const g = P.site.gps; pts.push([g.lat, g.lng]);
-      const icon = Lf.divIcon({ className: 'pin', html: `<span class="${P.stage === 'lost' ? 'lost' : P.stage === 'amc' ? 'done' : ''}">${STAGES[P.stage][1]}</span>`, iconSize: [36, 36], iconAnchor: [18, 18] });
+      const icon = Lf.divIcon({ className: 'pin', html: `<span class="${P.stage === 'lost' || (d.late && d.late.has(P.id)) ? 'lost' : P.stage === 'amc' ? 'done' : ''}">${STAGES[P.stage][1]}</span>`, iconSize: [36, 36], iconAnchor: [18, 18] });
       Lf.marker([g.lat, g.lng], { icon, title: P.id }).addTo(m).bindPopup(`<b>${esc(jobNo(P))}</b> · ${esc(projTitle(P))}<br>${stageChip(P)}<div class="row" style="margin-top:8px"><button class="btn btn-sm" data-a="openProject" data-v="${P.id}">▶ ${t('open_project')}</button><a class="btn btn-sm" href="${dirLink(g)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>`);
     }
     if (d.route.length > 1) { Lf.polyline(d.route.map(g => [g.lat, g.lng]), { color: '#1c5596', weight: 4, dashArray: '6 6' }).addTo(m); d.route.forEach(g => pts.push([g.lat, g.lng])); }

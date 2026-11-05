@@ -28,12 +28,11 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(/Help/.test(await page.innerText('nav.nav')), 'chat is called Help for the customer');
   /* sales */
   await as('PSALES');
-  assert(JSON.stringify(await menu()) === JSON.stringify(['home', 'projects', 'callnext', 'map', 'me']), 'sales menu: Today, Leads, Call next, Map, Me');
+  assert(JSON.stringify(await menu()) === JSON.stringify(['home', 'projects', 'callnext', 'chat', 'me']), 'sales menu: Today, Leads, Call next, Chat, Me (the map is on Today)');
   assert(/most important first|No calls due/.test(await tab('callnext')), 'Call next opens the call list');
-  await tab('me'); assert(await page.$('main [data-a="nav"][data-v="chat"]'), 'sales reaches chat from Me');
   /* office unchanged */
   await as('PADMIN');
-  assert(JSON.stringify(await menu()) === JSON.stringify(['home', 'projects', 'map', 'chat', 'me']), 'office menu unchanged');
+  assert(JSON.stringify(await menu()) === JSON.stringify(['home', 'projects', 'chat', 'me']), 'office menu: Home, Jobs, Chat, Me (the map is on Home)');
   await page.evaluate(() => go('me')); await page.waitForTimeout(200);
   assert(!(await page.$('main [data-a="nav"][data-v="chat"]')), 'no duplicate chat tile when chat is in the menu');
   /* a wrong role on a role page goes home */
