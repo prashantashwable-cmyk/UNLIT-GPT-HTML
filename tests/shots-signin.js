@@ -100,8 +100,19 @@ const ALL = ['en', 'hi', 'mr'];
   await login('PTECH');
   await shot('HM', 'pin_tapped_tech', async () => { await ev(() => { const g = document.querySelector('#hsvg [data-a="mapPin"]'); App.form.mp = g && g.dataset.v; go('home'); }); await W8(150); await ev(() => { const el = document.getElementById('hsvg'); if (el) { el.closest('.card').scrollIntoView(); window.scrollBy(0, -80); } }); });
 
+  /* ---- NV: full-screen map, log out, own back, exit ---- */
+  await login('PTECH');
+  await shot('NV', 'map_full_screen', async () => { await ev(() => { ACT.nav('home'); }); await W8(150); await ev(() => ACT.mapFull('hbox')); }, ALL);
+  await ev(() => mapFullSet('hbox', false));
+  await shot('NV', 'logout_ask', async () => { await ev(() => { closeSheet(); ACT.nav('home'); ACT.logoutAsk(); }); }, ALL);
+  await ev(() => closeSheet());
+  await shot('NV', 'own_back_full_screen', async () => { await ev(() => { App.forceFull = true; go('me'); }); });
+  await ev(() => { App.forceFull = false; });
+  await shot('NV', 'exit_ask', async () => { await ev(() => { closeSheet(); ACT.nav('home'); exitAsk(); }); }, ALL);
+  await ev(() => closeSheet());
+
   /* contact sheet */
-  const groups = ['HM', 'L1', 'L3', 'L5', 'L4', 'L2'], titles = { HM: 'Map on the first page', L1: 'L1 · Rough price before sign-in', L2: 'L2 · Clear states and refusals', L3: 'L3 · Menus per role', L4: 'L4 · Safer sign-in', L5: 'L5 · First day' };
+  const groups = ['NV', 'HM', 'L1', 'L3', 'L5', 'L4', 'L2'], titles = { NV: 'Full-screen map, Log out, Back, Exit', HM: 'Map on the first page', L1: 'L1 · Rough price before sign-in', L2: 'L2 · Clear states and refusals', L3: 'L3 · Menus per role', L4: 'L4 · Safer sign-in', L5: 'L5 · First day' };
   const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sign-in screenshots</title>
 <style>body{font-family:system-ui,sans-serif;margin:16px;background:#f4f4f4;color:#111}h2{margin:24px 0 8px}.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}figure{margin:0;background:#fff;border-radius:8px;padding:6px;box-shadow:0 1px 3px #0002}img{width:100%;border-radius:4px;display:block}figcaption{font-size:12px;margin-top:4px}.bad{background:#fee;border:1px solid #c00;padding:8px;border-radius:6px}</style></head><body>
 <h1>Sign-in and first-use screens</h1><p>${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · phone 390×844 · default zoom</p>

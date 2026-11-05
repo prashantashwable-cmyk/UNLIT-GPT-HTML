@@ -230,6 +230,16 @@ details.fold>.fold-in{padding:0 12px 12px}details.fold>.fold-in>.card:first-chil
 .dots i{width:20px;height:20px;border-radius:50%;border:3px solid var(--graph)}
 .dots i.f{background:var(--graph)}
 .lmap{height:60vh;min-height:300px;border-radius:var(--r);border:1px solid var(--line);position:relative;z-index:0;isolation:isolate;margin-bottom:10px}
+.mapbox{position:relative}
+.mapfs-b{position:absolute;right:8px;top:8px;z-index:500;min-height:44px;min-width:44px;font-size:1.2rem;padding:0 10px}
+.mapfs-x{display:none}
+.mapfs{position:fixed!important;inset:0;z-index:60;background:var(--bg,#fff);padding:8px;margin:0!important;border-radius:0;display:flex;flex-direction:column}
+.mapfs .mapfs-b{display:none}
+.mapfs .mapfs-x{display:flex;margin-bottom:8px}
+.mapfs .lmap{flex:1;height:auto!important;min-height:0;margin:0}
+.mapfs svg.map{max-height:calc(100vh - 90px);width:auto;max-width:100%;margin:auto}
+.ib-out{background:#c62828;border-color:#fff;font-size:1.3rem;font-weight:900}
+.fback{position:fixed;left:12px;bottom:84px;z-index:40;width:60px;height:60px;border-radius:50%;border:3px solid #fff;background:var(--graph);color:#fff;font-size:1.7rem;font-weight:800;box-shadow:0 3px 10px rgba(0,0,0,.35)}
 .hmap{height:40vh;min-height:220px;margin:8px 0 0}
 .hsvg .map{max-height:40vh;object-fit:contain}
 .lmap .leaflet-popup-content{font:inherit;font-size:.95rem;min-width:200px}
@@ -3475,6 +3485,13 @@ const L = {
   hm_tap_c: ['Tap the pin for directions to the site.', 'साइट का रास्ता देखने के लिए पिन दबाएँ।', 'साइटचा मार्ग पाहण्यासाठी पिन दाबा.'],
   hm_late: ['red = late', 'लाल = देर', 'लाल = उशीर'],
   hm_tech_on: ['Technician is on site today', 'तकनीशियन आज साइट पर है', 'तंत्रज्ञ आज साइटवर आहे'],
+  mp_full: ['Full screen map', 'पूरी स्क्रीन पर नक्शा', 'पूर्ण स्क्रीनवर नकाशा'],
+  qlo_title: ['Log out?', 'लॉग आउट करें?', 'लॉग आउट करायचे?'],
+  qlo_d: ['{n} will be signed out on this phone. Your work is saved.', '{n} इस फ़ोन से साइन आउट होंगे। आपका काम सेव है।', '{n} या फोनवरून साइन आउट होतील. तुमचे काम जतन आहे.'],
+  qx_title: ['Exit the app?', 'ऐप से बाहर निकलें?', 'अ‍ॅपमधून बाहेर पडायचे?'],
+  qx_d: ['Your work and drafts are kept.', 'आपका काम और ड्राफ़्ट सुरक्षित रहेंगे।', 'तुमचे काम आणि मसुदे जतन राहतील.'],
+  qx_stay: ['Stay', 'रुकें', 'थांबा'],
+  qx_exit: ['Exit the app', 'ऐप से बाहर निकलें', 'अ‍ॅपमधून बाहेर पडा'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -8752,10 +8769,28 @@ document.addEventListener('visibilitychange', () => {
   if (document.hidden && App.me) flushAccess();
 });
 ['contextmenu', 'copy', 'cut', 'dragstart'].forEach(x => document.addEventListener(x, e => { if (document.body.classList.contains('guard') && !/^(INPUT|TEXTAREA)$/.test((e.target || {}).tagName || '')) e.preventDefault(); }));
+/* full screen hides the phone's own Back, so the app shows its own ← (bottom-left) */
+const isFullNow = () => !!document.fullscreenElement || inAndroidApp() || !!App.forceFull;
+const canGoBack = () => !!W || App.stack.length > 0 || (!!App.me && App.route.name !== 'home') || (!App.me && !['gate', 'login', 'welcome', 'splash', 'boot'].includes(App.route.name));
+document.addEventListener('fullscreenchange', () => { if (App.route) render(); });
+/* the phone's Back: close what is open, else go back, and on the first page ask before leaving the app */
+function aiecBack() {
+  if (App.ovClose) { App.ovClose(); return; }
+  if (!canGoBack()) { exitAsk(); return; }
+  back();
+}
+window.aiecBack = aiecBack;
+function exitAsk() {
+  if (document.getElementById('exitBox')) return;
+  sheet(`<div id="exitBox"><h2>🚪 ${t('qx_title')}</h2><p>${t('qx_d')}</p><div class="row wrapw"><button class="btn btn-p btn-big" data-a="closeSheet">${t('qx_stay')}</button><button class="btn btn-big" data-a="exitApp">${t('qx_exit')}</button></div></div>`, { noClose: true });
+}
 window.addEventListener('popstate', () => {
-  if (App.ovClose) { App.ovClose(); } else back();
+  if (App.exiting) return;
+  aiecBack();
   history.pushState({ aiec: 1 }, '');
 });
+/* closing or reloading the browser tab while signed in: the browser's own "Leave site?" question */
+window.addEventListener('beforeunload', e => { if (App.me && !App.exiting && App.mode === 'real') { e.preventDefault(); e.returnValue = ''; } });
 /* real company use only inside the installed app; practice mode works anywhere */
 const APP_URL = 'https://prashantashwable-cmyk.github.io/UNLIT-GPT-HTML/';
 /* inside the AIEC Android app (a WebView wrapper): it counts as installed, and files and printing go through the app */
@@ -8803,7 +8838,8 @@ function render() {
   document.body.classList.toggle('guard', guard);
   const wm = guard ? `<div class="wm" aria-hidden="true">${Array.from({ length: 24 }, () => `<span>${esc(App.me.name)} · ${esc(App.me.uid.slice(-4))} · ${todayStr()}</span>`).join('')}</div>` : '';
   const cr = App.me && (App.critOpen || []).length && !gated ? `<div class="critbar noprint" role="alert"><span style="font-size:1.4rem">🚨</span><b class="grow">${t('crit_title', { n: App.critOpen.length })}: ${esc(t('tk_' + App.critOpen[0].k))}${App.critOpen[0].pid ? ' · ' + esc(App.critOpen[0].pid) : ''}</b><button class="btn btn-sm" data-a="critGo">▶ ${t('open')}</button><button class="btn btn-sm" data-a="critAck">✋ ${t('crit_ack')}</button></div>` : '';
-  $('#app').innerHTML = banner + cr + errBar() + h + sos + wm;
+  const fb = isFullNow() && canGoBack() && !gated ? `<button class="fback noprint" data-a="back" aria-label="${t('back')}">←</button>` : '';
+  $('#app').innerHTML = banner + cr + errBar() + h + sos + fb + wm;
   try { linkify($('#app main')); } catch (e) { /* links are a help, never a blocker */ }
   Wake.sync();
   if (sos) bindSos();
@@ -8833,8 +8869,8 @@ function toast(msg, bad) {
   if (bad && App.set.autoRead) Voice.say(msg);
 }
 const errBar = () => App.lastErr && App.me ? `<div id="errbar" class="noprint" role="alert" style="background:#fdecea;color:#7a1010;border-bottom:2px solid var(--bad);padding:8px 12px;display:flex;gap:8px;align-items:center"><b>⚠️ ${t('last_refused')}:</b><span class="grow">${esc(App.lastErr.msg)}</span><button class="ib" data-a="errClose" aria-label="✕">✕</button></div>` : '';
-function sheet(html) {
-  $('#ov').innerHTML = `<div class="sheet" data-a="sheetBg"><div class="sheet-in" role="dialog" aria-modal="true">${html}<button class="btn" style="margin-top:12px" data-a="closeSheet">✖ ${t('close')}</button></div></div>`;
+function sheet(html, o = {}) {
+  $('#ov').innerHTML = `<div class="sheet" data-a="sheetBg"><div class="sheet-in" role="dialog" aria-modal="true">${html}${o.noClose ? '' : `<button class="btn" style="margin-top:12px" data-a="closeSheet">✖ ${t('close')}</button>`}</div></div>`;
   App.ovClose = closeSheet;
   loadImages($('#ov'));
 }
@@ -9139,7 +9175,8 @@ function topBar(title, o = {}) {
   <button class="ib" data-a="sayPage" aria-label="${t('listen')}">🔊</button>
   <button class="ib" data-a="help" aria-label="${t('help')}">❓</button>
   <button class="ib" data-a="langSheet" aria-label="${t('language')}">${LANG_SHORT[LANG]}</button>
-  ${App.me && !o.noBell ? `<button class="ib" data-a="nav" data-v="home" aria-label="${t('my_tasks')}">🔔${n ? `<span class="badge">${n}</span>` : ''}</button>` : ''}</header>`;
+  ${App.me && !o.noBell ? `<button class="ib" data-a="nav" data-v="home" aria-label="${t('my_tasks')}">🔔${n ? `<span class="badge">${n}</span>` : ''}</button>` : ''}
+  ${App.me && !App.locked ? `<button class="ib ib-out" data-a="logoutAsk" aria-label="${t('logout')}" title="${t('logout')}">⏻</button>` : ''}</header>`;
 }
 const NAV = {
   field: [['home', '🏠', 'nav_home'], ['projects', '📍', 'nav_sites'], ['chat', '💬', 'chat'], ['me', '👤', 'me']],
@@ -12426,7 +12463,7 @@ function homeMapCard(u) {
   const P0 = r === 'customer' ? m.ps[0] : null, onSite = P0 && checkedIn(P0, safeDay());
   return `<div class="card" style="margin-top:12px"><div class="row"><h3 class="grow" style="margin:0">🗺️ ${t(r === 'customer' ? 'hm_title_c' : 'hm_title')}</h3>${r === 'customer' ? '' : `<button class="btn btn-sm" data-a="nav" data-v="map">${t('hm_full')} ▶</button>`}</div>
     ${m.rs ? `<p class="small" style="margin:6px 0">🏍️ ${t('rm_today', { k: m.rs.kmDay, n: m.rs.sitesDay })}</p>` : ''}
-    <div id="hmap" class="lmap hmap" hidden></div><div id="hsvg" class="hsvg">${m.svg}</div>
+    <div class="mapbox" id="hbox">${mapFsButtons('hbox')}<div id="hmap" class="lmap hmap" hidden></div><div id="hsvg" class="hsvg">${m.svg}</div></div>
     ${onSite ? `<div class="okbox small">🔧 ${t('hm_tech_on')}</div>` : ''}
     ${sel ? `<div style="margin-top:8px">${projCard(sel).replace('class="task"', 'class="task" style="margin:0"')}<a class="btn btn-sm" style="margin-top:6px" href="${dirLink(sel.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>` : `<p class="small muted" style="margin:6px 0 0">${t(r === 'customer' ? 'hm_tap_c' : 'hm_tap')}${late && late.size ? ' · 🔴 ' + t('hm_late') : ''}</p>`}</div>`;
 }
@@ -12443,7 +12480,7 @@ SCREENS.map = () => {
   return topBar(t('map')) + `<main class="wrap"><div class="tabs" style="position:static;padding:0 0 10px">${[['all', '📋', 'all'], ['mine', '👉', 'mine']].concat(office ? [['late', '⏰', 'mf_late'], ['people', '👥', 'mf_people']] : []).map(([v, i, l]) => `<button class="${f === v ? 'on' : ''}" data-a="mfilter" data-v="${v}">${i} ${t(l)}</button>`).join('')}<button data-a="gpsMap">📍 ${t('where_am_i')}</button></div>
     ${office && f === 'people' ? `<div class="tabs" style="position:static;padding:0 0 8px">${['', 'tech', 'field', 'qc', 'sales', 'partner'].map(r => `<button class="${rf === r ? 'on' : ''}" data-a="mrole" data-v="${r}">${r ? ROLE_ICON[r] + ' ' + t('r_' + r) : t('mp_role_all')}</button>`).join('')}</div>` : ''}
     ${rs ? `<div class="card"><div class="small">🏍️ ${t('rm_today', { k: rs.kmDay, n: rs.sitesDay })}</div><div class="small">📅 ${t('rm_month', { k: rs.kmMonth, n: rs.sitesMonth })}</div><div class="small">🗺️ ${t('rm_area', { n: rs.area })}</div></div>` : ''}
-    <div id="lmap" class="lmap" hidden></div><div id="svgmap">${svg}</div>${sel ? `<div class="card" style="margin-top:10px">${projCard(sel).replace('class="task"', 'class="task" style="margin:0"')}<a class="btn" style="margin-top:8px" href="${dirLink(sel.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>` : ''}
+    <div class="mapbox" id="fbox">${mapFsButtons('fbox')}<div id="lmap" class="lmap" hidden></div><div id="svgmap">${svg}</div></div>${sel ? `<div class="card" style="margin-top:10px">${projCard(sel).replace('class="task"', 'class="task" style="margin:0"')}<a class="btn" style="margin-top:8px" href="${dirLink(sel.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a></div>` : ''}
     <p class="small muted">🔵 ${t('map_me')} ${route.length ? ' · ┅ ' + t('map_route') : ''} · ${t('map_note')}</p>
     ${rs ? `<div class="card"><h3>🟩 ${t('rm_next')}</h3><p class="small muted">${t('rm_next_d')}</p>${rs.next.length ? rs.next.map((g, i) => `<a class="btn btn-sm" style="margin:2px" href="${dirLink(g)}" target="_blank" rel="noopener">🧭 ${i + 1}</a>`).join('') : `<p class="small">${t('rm_next_none')}</p>`}</div>` : ''}
     ${rs && board.length ? `<div class="card"><h3>🏆 ${t('rm_board')}</h3>${board.map(([uid, pts], i) => `<div class="list-item small" style="${uid === u.uid ? 'background:var(--gold-l);border-radius:8px;padding-inline:6px' : ''}"><b style="width:26px">${['🥇', '🥈', '🥉'][i] || i + 1}</b><span class="grow">${esc(userName(uid))}</span><b>${pts}</b></div>`).join('')}</div>` : ''}
@@ -12467,6 +12504,16 @@ function loadLeaflet() {
 AFTER.map = () => liveMap('lmap', 'svgmap', App.mapData, 'map');
 /* the home card waits until the page is drawn, so the first page opens as fast as before */
 AFTER.home = () => { const go1 = () => liveMap('hmap', 'hsvg', App.homeMap, 'home', { small: true }); if (window.requestIdleCallback) requestIdleCallback(go1, { timeout: 1500 }); else setTimeout(go1, 300); };
+const LIVE_MAPS = {};
+/* ⛶ every map can fill the screen; ✕ or the phone's Back closes it */
+const mapFsButtons = id => `<button class="btn btn-sm mapfs-b" data-a="mapFull" data-v="${id}" aria-label="${t('mp_full')}">⛶</button><button class="btn btn-p btn-big mapfs-x" data-a="mapFullClose" data-v="${id}">✕ ${t('close')}</button>`;
+function mapFullSet(id, on) {
+  const box = document.getElementById(id); if (!box) return;
+  box.classList.toggle('mapfs', on);
+  const lm = LIVE_MAPS[id === 'hbox' ? 'hmap' : 'lmap'];
+  if (lm) { setTimeout(() => lm.invalidateSize(), 60); if (id === 'hbox' && window.leaflet && leaflet.Browser.mobile) lm.dragging[on ? 'enable' : 'disable'](); }
+  App.ovClose = on ? () => mapFullSet(id, false) : null;
+}
 function liveMap(elId, plotId, d, routeName, o = {}) {
   if (!d || !navigator.onLine || (!d.ps.length && !(d.route || []).length)) return;
   loadLeaflet().then(Lf => {
@@ -12474,7 +12521,7 @@ function liveMap(elId, plotId, d, routeName, o = {}) {
     if (!el || App.route.name !== routeName || el.dataset.on) return;
     el.hidden = false; el.dataset.on = '1';
     /* on the home card a finger swipe scrolls the page; zoom with the buttons */
-    const m = Lf.map(el, o.small ? { zoomControl: true, dragging: !Lf.Browser.mobile, tap: false, scrollWheelZoom: false, touchZoom: false } : { zoomControl: true });
+    const m = Lf.map(el, o.small ? { zoomControl: true, dragging: !Lf.Browser.mobile, tap: false, scrollWheelZoom: false, touchZoom: false } : { zoomControl: true }); LIVE_MAPS[elId] = m;
     const tiles = Lf.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(m);
     let loaded = false, failed = 0;
     tiles.on('tileload', () => { if (!loaded && d.ps.length && plot) plot.hidden = true; loaded = true; });
@@ -15002,6 +15049,14 @@ const ACT = {
   },
   recheckBio: async () => { if (await Bio.check(App.me.uid)) { App.pinAt = Date.now(); const f = App.pinAsk; App.pinAsk = null; closeSheet(); if (f) f(true); } else toast(t('bio_fail'), true); },
   tourStep: v => { App.set.tour = Object.assign({}, App.set.tour, { [App.mode + App.me.uid]: v }); saveSettings(); render(); },
+  mapFull: v => mapFullSet(v, true),
+  mapFullClose: v => mapFullSet(v, false),
+  logoutAsk: () => sheet(`<h2>🚪 ${t('qlo_title')}</h2><p>${t('qlo_d', { n: esc(App.me.name) })}</p><div class="row wrapw"><button class="btn btn-p btn-big" data-a="closeSheet">${t('qx_stay')}</button><button class="btn btn-big" data-a="logoutGo">${t('logout')}</button></div>`, { noClose: true }),
+  logoutGo: () => { closeSheet(); ACT.logout(); },
+  exitApp: () => { closeSheet(); App.exiting = true; flushAccess();
+    if (window.AIECAndroid && window.AIECAndroid.exit) { try { window.AIECAndroid.exit(); return; } catch (e) { /* older app: fall through */ } }
+    try { window.close(); } catch (e) { /* not allowed */ }
+    history.go(-Math.max(1, history.length - 1)); },
   pinKey: async v => {
     const uid = App.route.p.uid, f = App.form, len = (S.users[uid] && S.users[uid].pinLen) || 4; f.pin = f.pin || '';
     if (v === '⌫') { f.pin = f.pin.slice(0, -1); render(); return; }

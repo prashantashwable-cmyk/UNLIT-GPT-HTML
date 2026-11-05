@@ -153,12 +153,18 @@ class MainActivity : Activity() {
         }
     }
 
-    @Deprecated("Back inside the app first; a second press on the first page closes it")
+    @Deprecated("Back is handled by the page: it goes back, and on the first page asks 'Exit the app?'")
     override fun onBackPressed() {
         if (offline.visibility == View.VISIBLE) { super.onBackPressed(); return }
-        if (web.canGoBack()) { web.goBack(); return }
-        val now = System.currentTimeMillis()
-        if (now - lastBack < 2000) super.onBackPressed() else { lastBack = now; toast(getString(R.string.press_again)) }
+        web.evaluateJavascript("(function(){if(window.aiecBack){aiecBack();return 1}return 0})()") { r ->
+            if (r != "1") {
+                /* an older page without the exit question */
+                if (web.canGoBack()) web.goBack() else {
+                    val now = System.currentTimeMillis()
+                    if (now - lastBack < 2000) finish() else { lastBack = now; toast(getString(R.string.press_again)) }
+                }
+            }
+        }
     }
 
     private fun toast(msg: String) = runOnUiThread { Toast.makeText(this, msg, Toast.LENGTH_LONG).show() }
@@ -292,6 +298,10 @@ class MainActivity : Activity() {
 
         @JavascriptInterface
         fun version(): String = BuildConfigLite.VERSION
+
+        /* the page's "Exit the app?" box: Exit closes the app */
+        @JavascriptInterface
+        fun exit() { runOnUiThread { finishAndRemoveTask() } }
     }
 
     private fun writeDownload(name: String, mime: String, bytes: ByteArray) {
