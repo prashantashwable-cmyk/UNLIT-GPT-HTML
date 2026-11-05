@@ -3464,6 +3464,7 @@ const L = {
   da_this: ['This phone', 'यह फ़ोन', 'हा फोन'],
   da_phone: ['Phone {n}', 'फ़ोन {n}', 'फोन {n}'],
   da_last: ['last used {d}', 'आख़िरी बार {d}', 'शेवटचा वापर {d}'],
+  hq_name_note: ['Everyone else sees you as HEAD QUARTER; only your own Me page shows your name.', 'बाकी सबको आप HEAD QUARTER दिखेंगे; आपका नाम सिर्फ़ आपके अपने "मैं" पेज पर दिखेगा।', 'इतर सर्वांना तुम्ही HEAD QUARTER दिसाल; तुमचे नाव फक्त तुमच्या स्वतःच्या "मी" पानावर दिसेल.'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -7667,6 +7668,13 @@ function setStage(P, s, ev) {
   if (P.stage === s) return;
   P.stage = s; P.since = ev.t; P.hist.push({ s, t: ev.t, by: ev.by });
 }
+/* privacy: the Owner is shown as HEAD QUARTER everywhere; the typed name is kept only for the Owner's own Me card */
+const HQ_NAME = 'HEAD QUARTER';
+function hqName(x) {
+  if (!x) return;
+  if (x.role === 'owner') { if (x.name !== HQ_NAME) x.realName = x.name; x.name = HQ_NAME; x.hidden = false; }
+  else if (x.realName) { if (x.name === HQ_NAME) x.name = x.realName; delete x.realName; }
+}
 function apply(S, ev) {
   const d = ev.data || {};
   let P = ev.pid ? S.projects[ev.pid] : null;
@@ -7681,6 +7689,7 @@ function apply(S, ev) {
       if (d.role === 'tech' && d.grade) { const w = worker(d.uid); w.grade = d.grade; w.gradeLog = [{ g: d.grade, t: ev.t, by: ev.by }]; }
       if (d.role === 'tech' && d.trial && ['technician', 'senior'].includes(d.grade)) S.users[d.uid].trial = true;
       if (d.role === 'customer' && S.projects[d.projectId]) S.projects[d.projectId].customer = d.uid;
+      hqName(S.users[d.uid]);
       break;
     case 'KEY_ADDED': { const l = S.keys[ev.by] = S.keys[ev.by] || []; l.push({ kid: d.kid, pub: d.pub, dev: ev.dev, devName: d.devName || '', t: ev.t, ok: !l.some(x => x.ok) }); break; }
     case 'KEY_APPROVED': { const x = S.keys[d.uid].find(y => y.kid === d.kid); x.ok = true; x.okBy = ev.by; x.okT = ev.t; break; }
@@ -7690,6 +7699,7 @@ function apply(S, ev) {
       if (d.active === false && x.active) Object.assign(x, { stoppedT: ev.t, stoppedBy: ev.by }); if (d.active === true) x.stoppedT = null;
       ['name', 'role', 'pin', 'salt', 'active', 'pinLen'].forEach(k => { if (d[k] !== undefined && !(k === 'name' && d[k] == null)) x[k] = d[k]; });
       if (d.company !== undefined) { x.company = d.company || null; x.memberOk = !!d.company; (x.coLog = x.coLog || []).push({ co: x.company, t: ev.t }); }
+      hqName(x);
       break;
     }
     case 'PARTNER_PROFILE': {
@@ -8505,7 +8515,7 @@ function mainNeed(P) { const n = needs(P); return n.find(x => !CHAT_TASKS.includ
 const LANGS = ['en', 'hi', 'mr'];
 /* the Head Quarter (owner of this app and company) */
 const APP_OWNER = 'MR PRASHANT VASANT WABLE';
-const hqCard = () => `<div class="card" style="border:2px solid var(--gold)"><div class="row"><span style="font-size:2rem">🏛️</span><div class="grow"><b>${t('r_owner')}</b><br><b style="font-size:1.15rem">${APP_OWNER}</b></div></div><p class="small muted" style="margin:6px 0 0">${t('hq_note')}</p></div>`;
+const hqCard = () => `<div class="card" style="border:2px solid var(--gold)"><div class="row"><span style="font-size:2rem">🏛️</span><div class="grow"><b style="font-size:1.15rem">${t('r_owner')}</b></div></div><p class="small muted" style="margin:6px 0 0">${t('hq_note')}</p></div>`;
 const LANG_NAME = { en: 'English', hi: 'हिंदी', mr: 'मराठी' };
 const LANG_SHORT = { en: 'EN', hi: 'हि', mr: 'म' };
 const SPEECH = { en: 'en-IN', hi: 'hi-IN', mr: 'mr-IN' };
@@ -11550,7 +11560,7 @@ SCREENS.newOrg = () => {
   if (App.form.org == null) App.form.org = 'ALL INDIA ELEVATORS COMPANY';
   App.pageSay = t('s_new_org');
   return topBar(t('setup_new'), { back: true }) + `<main class="wrap"><div class="big-i">👑</div><p class="say">${t('s_new_org')}</p>
-    ${formInp('org', 'company_name')}${formInp('name', 'your_name', { mic: true })}${formInp('pin1', 'new_pin', { type: 'password', mode: 'numeric', max: 6, big: true })}${formInp('pin2', 'repeat_pin', { type: 'password', mode: 'numeric', max: 4, big: true })}
+    ${formInp('org', 'company_name')}${formInp('name', 'your_name', { mic: true })}<p class="small muted" style="margin:-6px 0 10px">🏛️ ${t('hq_name_note')}</p>${formInp('pin1', 'new_pin', { type: 'password', mode: 'numeric', max: 6, big: true })}${formInp('pin2', 'repeat_pin', { type: 'password', mode: 'numeric', max: 4, big: true })}
     <div class="note">🔒 ${t('pin_note')}</div><div id="ferr"></div></main>
     <div class="foot"><div class="foot-in"><button class="btn btn-ok btn-big" data-a="createOrg">✅ ${t('create_company')}</button></div></div>`;
 };
@@ -12777,7 +12787,7 @@ SCREENS.me = () => {
   /* picture tiles in groups: my work first, then office, settings and the app itself */
   const tile = (a, v, i, l, on) => on === false ? '' : `<button class="tile" data-a="${a}" data-v="${v || ''}"><span class="i" aria-hidden="true">${i}</span>${t(l)}</button>`;
   const group = (icon, l, body) => !body.trim() ? '' : l === 'me_app' ? fold('me_app', t(l), `<div class="tiles">${body}</div>`, { icon, sub: t('fold_tap') }) : `<h2 class="sec">${icon} ${t(l)}</h2><div class="tiles">${body}</div>`;
-  return topBar(t('me')) + `<main class="wrap"><div class="hero"><div class="row"><span style="font-size:2.4rem">${ROLE_ICON[r]}</span><div class="grow"><b>${esc(u.name)}</b><br><span class="muted">${t('r_' + r)}</span></div></div><p class="small muted" style="margin:8px 0 0">${t('role_note')}</p></div>
+  return topBar(t('me')) + `<main class="wrap"><div class="hero"><div class="row"><span style="font-size:2.4rem">${ROLE_ICON[r]}</span><div class="grow"><b>${esc(r === 'owner' ? (u.realName || APP_OWNER) : u.name)}</b><br><span class="muted">${t('r_' + r)}</span></div></div><p class="small muted" style="margin:8px 0 0">${t('role_note')}</p></div>
     ${group('🧰', 'me_work', tile('nav', 'jobs', '🧰', 'jobs_title', ['partner', 'qc'].includes(r)) + tile('nav2', 'worker|' + u.uid, '🏢', 'my_company', r === 'partner') + tile('nav2', 'ladder|' + u.uid, '🪜', 'my_ladder', !!gradeOf(u.uid)) + tile('nav2', 'worker|' + u.uid, '🪪', 'my_profile', staff) + tile('nav', 'faults', '🧯', 'fg_title', ['tech', 'qc', 'admin', 'owner'].includes(r)) + tile('nav', 'stock', '📦', 'sk_my_van', r === 'tech') + tile('nav', 'training', '🎓', 'training', staff) + tile('nav2', 'earn|' + u.uid, '💰', 'earnings', ['qc', 'partner', 'field'].includes(r))
       + tile('nav2', 'leaders|', '🏆', 'leaderboard', staff) + tile('nav', 'templates', '💬', 'templates', ['owner', 'admin', 'sales', 'finance'].includes(r)) + tile('nav', 'helper', '🙋', 'helper') + tile('nav', 'chat', '💬', 'chat', !navHas('chat')))}
     ${group('🏢', 'me_office', tile('nav', 'lifts', '🛗', 'lr_title', adm || r === 'sales') + tile('nav', 'stock', '📦', 'sk_title', adm || r === 'finance') + tile('nav', 'ageing', '⏳', 'ag_title', adm || r === 'finance') + tile('nav', 'posts', '📣', 'posts_title', adm) + tile('nav', 'escalations', '⏫', 'esc_title', adm) + tile('nav', 'workers', '🪪', 'workers', adm) + tile('nav', 'users', '👥', 'users', adm)
@@ -12846,7 +12856,7 @@ SCREENS.perm = () => {
   return topBar(t('what_can_i_do'), { back: true }) + `<main class="wrap"><div class="note">🔐 ${t('perm_say')}</div><div class="card">${mine.map(k => `<div class="list-item">✅ ${esc(t('ev_' + k))}</div>`).join('')}</div>
     <div class="card"><h3>👁️ ${t('i_can_see')}</h3><p>${t('see_' + u.role)}</p></div>${matrix}</main>` + nav('me');
 };
-SCREENS.about = () => topBar(t('about_privacy'), { back: true }) + `<main class="wrap"><div class="card"><b>AIEC Elevator OS</b><p class="small">${t('copyright', { name: APP_OWNER })}</p></div>${['ab_collect', 'ab_who', 'ab_where', 'ab_limits', 'ab_hardware', 'ab_ai', 'ab_sop', 'ab_rules', 'ab_keep'].map(k => `<div class="card"><h3>${t(k)}</h3><p>${t(k + '_d')}</p></div>`).join('')}
+SCREENS.about = () => topBar(t('about_privacy'), { back: true }) + `<main class="wrap"><div class="card"><b>AIEC Elevator OS</b><p class="small">${t('copyright', { name: HQ_NAME + ', ALL INDIA ELEVATORS COMPANY' })}</p></div>${['ab_collect', 'ab_who', 'ab_where', 'ab_limits', 'ab_hardware', 'ab_ai', 'ab_sop', 'ab_rules', 'ab_keep'].map(k => `<div class="card"><h3>${t(k)}</h3><p>${t(k + '_d')}</p></div>`).join('')}
   ${['owner', 'admin'].includes(App.me.role) || App.mode === 'practice' ? `<button class="btn btn-bad" data-a="wipe">🗑️ ${t('wipe_device')}</button>` : ''}</main>` + nav('me');
 
 /* ---------- admin: users ---------- */
@@ -15326,7 +15336,7 @@ async function seedPractice() {
   const ph = (k, gps) => ({ id: 'E' + rid(10), m: media[k], kind: k === 'sign' ? 'sign' : 'photo', label: k, t: cur, gps: gps || null, hash: hash[k], dev: 'practice', q: {} });
   const safePh = P => SAFETY_ITEMS.map(([k]) => Object.assign(ph('work', P.site.gps), { label: 'safe_' + k }));
   await SP('ORG_CREATED', null, { orgId: 'ORG-PRACTICE', name: 'AIEC (Practice)' }, 'owner');
-  const people = [['owner', APP_OWNER, 'owner'], ['admin', 'Sunita Patil', 'admin'], ['field', 'Ramesh Jadhav', 'field'], ['field2', 'Sachin More', 'field'], ['sales', 'Priya Kulkarni', 'sales'],
+  const people = [['owner', HQ_NAME, 'owner'], ['admin', 'Sunita Patil', 'admin'], ['field', 'Ramesh Jadhav', 'field'], ['field2', 'Sachin More', 'field'], ['sales', 'Priya Kulkarni', 'sales'],
     ['finance', 'Meena Joshi', 'finance'], ['qc', 'Vijay Shinde', 'qc'], ['supplier', 'Kaveri Lift Supply', 'supplier'], ['partner', 'Shree Lift Works', 'partner'], ['partner2', 'Om Elevator Services', 'partner'], ['tech', 'Raju Pawar', 'tech']];
   for (const [k, name, role] of people) await SP('USER_ADDED', null, Object.assign({ uid: U[k], name, role, salt, pin }, role === 'tech' ? { company: U.partner } : {}), 'owner');
   for (const [key, value] of [['payUpi', 'aiec.practice@okhdfc'], ['payName', 'AIEC Practice Account'], ['payBank', 'Practice Bank, Pune'], ['payAcc', '000111222333'], ['payIfsc', 'HDFC0000001']]) await SP('CONFIG_SET', null, { key, value }, 'owner');
