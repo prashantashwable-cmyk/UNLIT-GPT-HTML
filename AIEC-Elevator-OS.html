@@ -564,7 +564,7 @@ const L = {
   st_quoted: ['Quotation sent — talking', 'कोटेशन भेजा — बातचीत जारी', 'कोटेशन पाठवले — बोलणी सुरू'],
   st_won: ['Deal won', 'सौदा पक्का', 'व्यवहार पक्का'],
   st_agreement: ['Agreement ready to sign', 'करार साइन के लिए तैयार', 'करार सहीसाठी तयार'],
-  st_signed: ['Signed — token payment', 'साइन हुआ — टोकन भुगतान', 'सही झाली — टोकन पेमेंट'],
+  st_signed: ['Signed — first payment', 'साइन हुआ — पहला भुगतान', 'सही झाली — पहिले पेमेंट'],
   st_site_prep: ['Customer preparing site', 'ग्राहक साइट तैयार कर रहे हैं', 'ग्राहक साइट तयार करत आहेत'],
   st_qc_site: ['Site inspection', 'साइट जाँच', 'साइट तपासणी'],
   st_site_fix: ['Site corrections needed', 'साइट में सुधार ज़रूरी', 'साइटमध्ये दुरुस्ती आवश्यक'],
@@ -3563,6 +3563,38 @@ const L = {
   mz_in: ['Zoom in', 'बड़ा करें', 'मोठे करा'],
   mz_out: ['Zoom out', 'छोटा करें', 'लहान करा'],
   mz_reset: ['Show all', 'सब दिखाएँ', 'सर्व दाखवा'],
+  pay_rails: ['Rails lot payment (30%)', 'रेल लॉट भुगतान (30%)', 'रेल लॉट पेमेंट (30%)'],
+  pay_doors: ['Doors lot payment (40%)', 'दरवाज़ा लॉट भुगतान (40%)', 'दरवाजा लॉट पेमेंट (40%)'],
+  pay_drive: ['Motor, cabin & electrical lot payment (20%)', 'मोटर, केबिन और बिजली लॉट भुगतान (20%)', 'मोटर, केबिन आणि विद्युत लॉट पेमेंट (20%)'],
+  pw_token: ['non-refundable, for site visit and dispatch costs; when the agreement is signed', 'वापस नहीं, साइट विज़िट और भेजने के खर्च के लिए; एग्रीमेंट साइन होने पर', 'परत नाही, साइट भेट आणि पाठवण्याच्या खर्चासाठी; करारावर सही झाल्यावर'],
+  pw_rails: ['when the agreement is signed, before the rails lot is sent', 'एग्रीमेंट साइन होने पर, रेल लॉट भेजने से पहले', 'करारावर सही झाल्यावर, रेल लॉट पाठवण्यापूर्वी'],
+  pw_arrival: ['standard material (returnable and reusable); when material arrives', 'स्टैंडर्ड सामान (वापस करने व दूसरी साइट पर काम आने लायक); सामान पहुँचने पर', 'स्टँडर्ड साहित्य (परत करता येणारे व दुसऱ्या साइटवर वापरता येणारे); साहित्य पोहोचल्यावर'],
+  pw_doors: ['before the doors lot is sent', 'दरवाज़ा लॉट भेजने से पहले', 'दरवाजा लॉट पाठवण्यापूर्वी'],
+  pw_cabin: ['custom material: cabin and DBG; before the cabin is fitted', 'कस्टम सामान: केबिन और DBG; केबिन लगाने से पहले', 'कस्टम साहित्य: केबिन आणि DBG; केबिन बसवण्यापूर्वी'],
+  pw_drive: ['before the motor, cabin and electrical lot is sent', 'मोटर, केबिन और बिजली लॉट भेजने से पहले', 'मोटर, केबिन आणि विद्युत लॉट पाठवण्यापूर्वी'],
+  pw_final: ['before handover', 'हैंडओवर से पहले', 'हस्तांतरणापूर्वी'],
+  pw_retention: ['after the lift has run well for the agreed days', 'तय दिनों तक लिफ्ट ठीक चलने के बाद', 'ठरलेले दिवस लिफ्ट नीट चालल्यानंतर'],
+  ak_pay2: ['Payments: {x}.', 'भुगतान: {x}।', 'पेमेंट: {x}.'],
+  lot_rails: ['rails lot', 'रेल लॉट', 'रेल लॉट'],
+  lot_doors: ['doors lot', 'दरवाज़ा लॉट', 'दरवाजा लॉट'],
+  lot_drive: ['motor, cabin and electrical lot', 'मोटर, केबिन और बिजली लॉट', 'मोटर, केबिन आणि विद्युत लॉट'],
+  lot_now: ['This delivery: {l}', 'यह डिलीवरी: {l}', 'ही डिलिव्हरी: {l}'],
+  err_lot_wait: ['This step needs the {l} on site first.', 'इस स्टेप के लिए पहले {l} साइट पर चाहिए।', 'या टप्प्यासाठी आधी {l} साइटवर हवा.'],
+  err_pay_order: ['The earlier payment must be confirmed first.', 'पहले वाला भुगतान पहले पक्का होना चाहिए।', 'आधीचे पेमेंट आधी पक्के व्हायला हवे.'],
+  tk_dispatch_lot: ['Send the next material lot', 'अगला सामान लॉट भेजें', 'पुढचा साहित्य लॉट पाठवा'],
+  tk_lot_arrival: ['Material lot reached the site: check and record', 'सामान लॉट साइट पर पहुँचा: जाँचें और दर्ज करें', 'साहित्य लॉट साइटवर पोहोचला: तपासा आणि नोंदवा'],
+  tk_wait_lot: ['Waiting for the next material lot (payment or delivery)', 'अगले सामान लॉट का इंतज़ार (भुगतान या डिलीवरी)', 'पुढच्या साहित्य लॉटची वाट (पेमेंट किंवा डिलिव्हरी)'],
+  ev_LOT_DISPATCHED: ['Material lot sent', 'सामान लॉट भेजा', 'साहित्य लॉट पाठवला'],
+  ev_LOT_ARRIVED: ['Material lot arrived', 'सामान लॉट पहुँचा', 'साहित्य लॉट पोहोचला'],
+  pl1_title: ['Plan 1: by material lot', 'प्लान 1: सामान लॉट के हिसाब से', 'प्लॅन 1: साहित्य लॉटनुसार'],
+  pl2_title: ['Plan 2: token + material', 'प्लान 2: टोकन + सामान', 'प्लॅन 2: टोकन + साहित्य'],
+  s_pay_plan: ['Which payment plan did the customer choose?', 'ग्राहक ने कौन सा भुगतान प्लान चुना?', 'ग्राहकाने कोणता पेमेंट प्लॅन निवडला?'],
+  rr_lots: ['After a later material lot was sent', 'बाद का सामान लॉट भेजे जाने के बाद', 'नंतरचा साहित्य लॉट पाठवल्यानंतर'],
+  rr_lots_d: ['Lots already sent are not refunded; other material only if unopened and matching the list.', 'भेजे गए लॉट वापस नहीं; बाकी सामान तभी जब बिना खुला और सूची से मिलता हो।', 'पाठवलेले लॉट परत नाहीत; बाकी साहित्य फक्त न उघडलेले आणि यादीशी जुळणारे असेल तर.'],
+  cfg_payPlan: ['Default payment plan: 1 = 30/40/20/10 by material lot, 2 = ₹ token + 70/20/10', 'डिफ़ॉल्ट भुगतान प्लान: 1 = लॉट के हिसाब से 30/40/20/10, 2 = ₹ टोकन + 70/20/10', 'डिफॉल्ट पेमेंट प्लॅन: 1 = लॉटनुसार 30/40/20/10, 2 = ₹ टोकन + 70/20/10'],
+  cfg_p1RailsPct: ['Plan 1: rails lot %', 'प्लान 1: रेल लॉट %', 'प्लॅन 1: रेल लॉट %'],
+  cfg_p1DoorsPct: ['Plan 1: doors lot %', 'प्लान 1: दरवाज़ा लॉट %', 'प्लॅन 1: दरवाजा लॉट %'],
+  cfg_p1DrivePct: ['Plan 1: motor, cabin & electrical lot %', 'प्लान 1: मोटर, केबिन और बिजली लॉट %', 'प्लॅन 1: मोटर, केबिन आणि विद्युत लॉट %'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5471,7 +5503,7 @@ const CFG_LIMITS = (() => {
   const L = {}, set = (keys, a, b) => keys.forEach(k => { L[k] = [a, b]; });
   set(['costAuto', 'costManual'], 10000, 10000000); set(['costPerStop', 'costSS', 'costDismantle', 'cap4', 'cap6', 'cap8', 'cap10', 'cap13', 'install', 'transport'], 0, 5000000);
   set(['gst'], 0, 28); set(['targetMargin'], 1, 90); set(['minMargin'], 0, 90); set(['salesDiscountLimit', 'adminDiscountLimit'], 0, 50); set(['negStep'], 1, 25);
-  set(['token'], 0, 500000); set(['arrivalPct', 'cabinPct', 'leadWonPct', 'salesWonPct', 'cancelBefore', 'cancelAfter', 'dupCommission', 'qcRecheckPct', 'spotTrainee', 'spotTech', 'spotSenior'], 0, 100);
+  set(['token'], 0, 500000); set(['payPlan'], 1, 2); set(['arrivalPct', 'cabinPct', 'p1RailsPct', 'p1DoorsPct', 'p1DrivePct', 'leadWonPct', 'salesWonPct', 'cancelBefore', 'cancelAfter', 'dupCommission', 'qcRecheckPct', 'spotTrainee', 'spotTech', 'spotSenior'], 0, 100);
   set(['tokenMode', 'dailySafety', 'licenceGate', 'permitGate', 'peerCheck', 'checkinGate', 'dualControl', 'requireTraining', 'sundayWork'], 0, 1);
   set(['payLeadValid', 'refReward', 'payCrewJob', 'payQcInspection', 'paySopStep', 'payQcBonus', 'payAmcVisit'], 0, 200000); set(['amcPrice', 'amcCompPrice', 'civilMin', 'civilMax'], 0, 2000000);
   set(['reservePct'], 0, 90); set(['reserveRelease'], 1, 100); set(['agreeVersion'], 1, 99);
@@ -5640,7 +5672,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, qcRecheckPct: 10, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', serveAreas: '', salesWonPct: 0, accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', serveAreas: '', salesWonPct: 0, payPlan: 2, p1RailsPct: 30, p1DoorsPct: 40, p1DrivePct: 20, accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, sundayWork: 0, holidays: '', dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -5648,7 +5680,7 @@ const RULE_GROUPS = {
   pricing: ['costAuto', 'costManual', 'costPerStop', 'costSS', 'costDismantle', 'costSpecial', 'costArd', 'costCurtain', 'costPremium', 'cap4', 'cap6', 'cap8', 'cap10', 'cap13', 'install', 'transport', 'gst'],
   margins: ['targetMargin', 'salesDiscountLimit', 'adminDiscountLimit', 'minMargin', 'negStep'],
   token: ['token'],
-  milestones: ['tokenMode', 'arrivalPct', 'cabinPct', 'retentionPct', 'retentionDays'],
+  milestones: ['payPlan', 'p1RailsPct', 'p1DoorsPct', 'p1DrivePct', 'tokenMode', 'arrivalPct', 'cabinPct', 'retentionPct', 'retentionDays'],
   paydetails: ['payUpi', 'payName', 'payBank', 'payAcc', 'payIfsc'],
   fieldpay: ['payLeadValid', 'leadWonPct', 'salesWonPct'],
   install: ['installDays', 'poDays', 'poAnswerHours', 'geoRadius', 'checkinGate'],
@@ -5708,7 +5740,11 @@ function calcQuote(cfg, req, discountPct) {
   return { lines, cost, list, discountPct: d, discount, price, gstPct: cfg.gst, gst, total, margin, why, needsApproval: why.length > 0 };
 }
 /* token credited to the material payment (default) or paid on top (Owner/CA decision); an optional cabin milestone */
-function paySchedule(cfg, total) {
+function paySchedule(cfg, total, plan) {
+  if (plan === 1) {
+    const r = Math.round(total * (+cfg.p1RailsPct || 30) / 100), d = Math.round(total * (+cfg.p1DoorsPct || 40) / 100), v = Math.round(total * (+cfg.p1DrivePct || 20) / 100);
+    return { rails: r, doors: d, drive: v, final: Math.max(0, total - r - d - v), plan: 1 };
+  }
   const add = +cfg.tokenMode === 1, token = add ? +cfg.token : Math.min(cfg.token, total);
   const arrival = Math.max(0, Math.round(total * cfg.arrivalPct / 100) - (add ? 0 : token));
   const cabin = +cfg.cabinPct > 0 ? Math.round(total * cfg.cabinPct / 100) : 0;
@@ -5719,7 +5755,30 @@ function paySchedule(cfg, total) {
   if (retention) { out.retention = retention; out.retDays = +cfg.retentionDays || 0; }
   return out;
 }
-const PURPOSES = ['token', 'arrival', 'cabin', 'final', 'retention'];
+const PURPOSES = ['token', 'rails', 'arrival', 'doors', 'cabin', 'drive', 'final', 'retention'];
+/* two payment plans (owner): 1 = by material lot (30% rails · 40% doors · 20% motor, cabin, electrical · 10% handover),
+   2 = ₹10,000 token + 70% standard material + 20% custom material + 10% handover. A job keeps the plan it was won with. */
+const PLAN_FROM = '2026-11-06T00:00:00.000Z';
+const isP1 = P => !!P && P.payPlan === 1;
+const LOT_OF = { m_rails: 'rails', m_anchors: 'rails', m_landing: 'doors', m_cardoor: 'doors' };
+const lotOf = k => LOT_OF[k] || 'drive';
+const LOTS = ['rails', 'doors', 'drive'];
+/* installation steps that need a later lot on site: machine, car, counterweight, ropes, wiring, safety devices (drive); landing doors (doors) */
+const STEP_LOT = { 4: 'drive', 5: 'drive', 6: 'drive', 7: 'drive', 8: 'doors', 9: 'drive', 10: 'drive' };
+const matsFor = (P, lot) => isP1(P) ? P.materials.filter(m => lotOf(m.k) === (lot || 'rails')) : P.materials;
+const lotArrived = (P, lot) => lot === 'rails' ? !!P.arrival : !!((P.lots || {})[lot] || {}).arr;
+const lotSent = (P, lot) => lot === 'rails' ? !!P.dispatch : !!((P.lots || {})[lot] || {}).disp;
+/* may this part be paid now */
+function payOpen(P, k) {
+  if (!isP1(P)) return PAY_STAGE[k] === P.stage && (k !== 'cabin' || sopNext(P) >= CABIN_STEP);
+  if (k === 'rails') return P.stage === 'signed';
+  if (k === 'doors') return ['arrived', 'installing'].includes(P.stage);
+  if (k === 'drive') return ['arrived', 'installing'].includes(P.stage) && payConfirmed(P, 'doors');
+  return ['final', 'retention'].includes(k) && PAY_STAGE[k] === P.stage;
+}
+/* the payment terms in words, for the quotation, agreement and committee sheet */
+const payTermsTxt = s => PURPOSES.filter(k => s[k]).map(k => `${t('pay_' + k)} ${money(s[k])} (${t('pw_' + k)})`).join('; ');
+const payRowsHtml = s => `<table>${PURPOSES.filter(k => s[k]).map(k => `<tr><td>${t('pay_' + k)}<br><span class="small">${t('pw_' + k)}</span></td><td class="r">${money(s[k])}</td></tr>`).join('')}</table>`;
 const retDue = P => P.schedule && P.schedule.retention && P.done ? addDays(+P.schedule.retDays || 0, new Date(P.done.t)) : null;
 const poNo = P => 'PO-' + P.id.replace(/^AIEC-/, '') + '-' + P.poN;
 const paidTotal = P => P.payments.filter(p => p.status === 'confirmed').reduce((a, p) => a + (+p.amount || 0), 0);
@@ -5848,7 +5907,7 @@ const safetyOn = (P, day) => { const x = (P.safety || {})[day]; return !!x && x.
 /* check-in at the site: the lead is asked to check in before the day's safety check; GPS far from the site needs a reason and is looked at by the office (a flag, never proof) */
 const CHECKIN_WHY = [['basement', '🏚️'], ['weak', '📶'], ['site_gps', '📍'], ['no_gps', '🚫']];
 /* the customer's money for the material is in the bank (arrival payment confirmed, or the job is past it) */
-const custCleared = P => payConfirmed(P, 'arrival') || stageIdx(P.stage) > stageIdx('arrived') && P.stage !== 'lost';
+const custCleared = P => payConfirmed(P, isP1(P) ? 'rails' : 'arrival') || stageIdx(P.stage) > stageIdx('arrived') && P.stage !== 'lost';
 const checkedIn = (P, day, uid) => !!(((P.checkins || {})[day] || {})[uid || P.tech]);
 const checkinNeeded = (P, at) => !!+S.config.checkinGate && !checkedIn(P, safeDay(at));
 const checkinDist = (gps, P) => gps && P.site.gps ? haversine(gps, P.site.gps) : null;
@@ -6682,6 +6741,7 @@ const RULES = {
     }
   },
   DEAL_WON: { roles: ['sales'], project: true, stages: ['quoted'], check: (S, ev, u, P) => {
+    if (ev.data.plan != null && ![1, 2].includes(+ev.data.plan)) return 'err_choose';
     const q = lastQuote(P); if (q && q.options && !q.chosen) return 'err_pick_option';
     if (!quoteExpired(q, ev.t)) return null;
     /* a customer who said yes before the expiry (recorded within 7 days) still wins at the quoted price */
@@ -6720,7 +6780,8 @@ const RULES = {
       const d = ev.data;
       /* the customer can report "I have paid" for their own job, with the bank or UPI reference; the office checks it in the bank */
       if (u.role === 'customer' && (P.customer !== u.uid || d.method === 'cash')) return P.customer !== u.uid ? 'err_access' : 'err_choose';
-      if (!PAY_STAGE[d.purpose] || P.stage !== PAY_STAGE[d.purpose]) return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      if (isP1(P) && d.purpose === 'drive' && !payConfirmed(P, 'doors')) return 'err_pay_order';
+      if (!PURPOSES.includes(d.purpose) || !payOpen(P, d.purpose)) return { k: 'err_stage', v: { stage: stName(P.stage) } };
       const a = activePay(P, d.purpose);
       if (a) return 'err_pay_exists';
       if (!P.schedule || !P.schedule[d.purpose] && d.purpose === 'cabin' || +d.amount !== P.schedule[d.purpose]) return 'err_amount';
@@ -6900,10 +6961,37 @@ const RULES = {
       if (P.supplier !== u.uid) return 'err_access';
       if (P.po && P.po.declined) return 'err_po_declined';
       if (App.liveCheck && !(ev.data.challan || '').trim()) return 'err_challan';
-      if (App.liveCheck && P.materials.some(m => SERIAL_ITEMS.includes(m.k) && !((ev.data.serialMap || {})[m.k] || '').trim())) return 'err_serial';
+      if (isP1(P) && !payConfirmed(P, 'rails')) return 'err_payment_gate';
+      if (App.liveCheck && matsFor(P).some(m => SERIAL_ITEMS.includes(m.k) && !((ev.data.serialMap || {})[m.k] || '').trim())) return 'err_serial';
       if (!(ev.data.seal || '').trim()) return 'err_seal';
-      if ((ev.data.packed || []).length !== P.materials.length) return 'err_not_all';
+      if ((ev.data.packed || []).length !== matsFor(P).length) return 'err_not_all';
       return need(ev_(ev.data, 'photo').length >= 2, 'err_photos', { n: 2 });
+    }
+  },
+  /* plan 1: the doors lot and the motor, cabin and electrical lot are sent later, each after its part is confirmed */
+  LOT_DISPATCHED: {
+    roles: ['supplier'], project: true, stages: ['arrived', 'installing'], check: (S, ev, u, P) => {
+      const d = ev.data;
+      if (!isP1(P) || !['doors', 'drive'].includes(d.lot)) return 'err_choose';
+      if (P.supplier !== u.uid) return 'err_access';
+      if (lotSent(P, d.lot)) return 'err_already';
+      if (!payConfirmed(P, d.lot)) return 'err_payment_gate';
+      if (App.liveCheck && !(d.challan || '').trim()) return 'err_challan';
+      if (App.liveCheck && matsFor(P, d.lot).some(m => SERIAL_ITEMS.includes(m.k) && !((d.serialMap || {})[m.k] || '').trim())) return 'err_serial';
+      if (!(d.seal || '').trim()) return 'err_seal';
+      if ((d.packed || []).length !== matsFor(P, d.lot).length) return 'err_not_all';
+      return need(ev_(d, 'photo').length >= 2, 'err_photos', { n: 2 });
+    }
+  },
+  LOT_ARRIVED: {
+    roles: ['tech', 'supplier'], project: true, stages: ['arrived', 'installing'], check: (S, ev, u, P) => {
+      const d = ev.data;
+      if (!isP1(P) || !['doors', 'drive'].includes(d.lot) || !lotSent(P, d.lot)) return 'err_choose';
+      if (P.tech !== u.uid && P.supplier !== u.uid) return 'err_access';
+      if (lotArrived(P, d.lot)) return 'err_already';
+      if (!(d.sealSeen || '').trim()) return 'err_seal';
+      if (!['yes', 'no'].includes(d.sealIntact) || !['good', 'damaged'].includes(d.condition)) return 'err_choose';
+      return need(ev_(d, 'photo').length >= 2, 'err_photos', { n: 2 });
     }
   },
   ARRIVED: {
@@ -6946,7 +7034,7 @@ const RULES = {
   MATERIAL_HANDED: {
     roles: ['tech'], project: true, stages: ['arrived'], check: (S, ev, u, P) => {
       if (P.tech !== u.uid) return 'err_access';
-      if (!payConfirmed(P, 'arrival')) return 'err_payment_gate';
+      if (!payConfirmed(P, isP1(P) ? 'rails' : 'arrival')) return 'err_payment_gate';
       if (openIncidents(P).length) return 'err_incident';
       if (!(ev.data.custName || '').trim()) return 'err_fill';
       if (App.liveCheck) {
@@ -6955,7 +7043,7 @@ const RULES = {
         if (ev.data.custody !== true && !ev.data.custApp) return 'err_custody';
         if (ev_(ev.data, 'photo').length < 1) return 'err_storage_photo';
       }
-      if ((ev.data.items || []).length !== P.materials.length) return 'err_not_all';
+      if ((ev.data.items || []).length !== matsFor(P).length) return 'err_not_all';
       if (ev.data.serialSeen && Object.keys((P.dispatch || {}).serialMap || {}).some(k => !normSerial(ev.data.serialSeen[k]))) return 'err_serial';
       return need(ev_(ev.data, 'sign').length >= (ev.data.custApp ? 1 : 2), 'err_sign');
     }
@@ -6979,6 +7067,8 @@ const RULES = {
       if (ev.data.step === 0 && ev.t >= PERMIT_GATE_FROM && permitMissing(P)) return 'err_permit_first';
       if (!gradeMayLead(u.uid, P)) return 'err_cant_lead';
       if (ev.data.step !== sopNext(P)) return 'err_order';
+      /* plan 1: the step's material lot must be on site */
+      if (isP1(P) && STEP_LOT[ev.data.step] && !lotArrived(P, STEP_LOT[ev.data.step])) return { k: 'err_lot_wait', v: { l: t('lot_' + STEP_LOT[ev.data.step]) } };
       if (ev.t >= JOURNEY_FROM && chargesDue(P).length) return 'err_charge_due';
       { const rw = readWhyNot(P, ev.data.step, ev.data.read, ev.t); if (rw) return rw; }
       if (ev.t >= ISC_FROM) {
@@ -7888,7 +7978,7 @@ function apply(S, ev) {
     case 'OPT_OUT': { const o = P.optOut = P.optOut || {}; (d.channel === 'all' ? ['call', 'whatsapp'] : [d.channel]).forEach(c => { o[c] = { t: ev.t, by: ev.by, note: d.note || '' }; }); break; }
     case 'COUNTER_OFFER': (P.counters = P.counters || []).push({ amount: +d.amount, note: d.note || '', by: ev.by, t: ev.t, qv: (lastQuote(P) || {}).v }); break;
     case 'QUOTE_SENT': { const q = lastQuote(P); q.sent = { t: ev.t, by: ev.by, channel: d.channel }; setStage(P, 'quoted', ev); break; }
-    case 'DEAL_WON': { const q = lastQuote(P); q.accepted = Object.assign({ t: ev.t, by: ev.by }, d.agreedOn ? { on: d.agreedOn } : {}); P.schedule = paySchedule(payCfgAt(ev.t), q.total); P.schedule.quoteV = q.v; P.followUp = null; setStage(P, 'won', ev); break; }
+    case 'DEAL_WON': { const q = lastQuote(P); q.accepted = Object.assign({ t: ev.t, by: ev.by }, d.agreedOn ? { on: d.agreedOn } : {}); P.payPlan = [1, 2].includes(+d.plan) ? +d.plan : ev.t >= PLAN_FROM && +S.config.payPlan === 1 ? 1 : 2; P.schedule = paySchedule(payCfgAt(ev.t), q.total, P.payPlan); P.schedule.quoteV = q.v; P.followUp = null; setStage(P, 'won', ev); break; }
     case 'DEAL_LOST': P.lost = { reason: d.reason, note: d.note || '', by: ev.by, t: ev.t }; P.followUp = null; setStage(P, 'lost', ev); break;
     case 'PROJECT_CANCELLED': {
       P.lost = { reason: 'cancelled', note: d.reason, by: ev.by, t: ev.t, from: P.stage }; P.followUp = null;
@@ -7907,7 +7997,7 @@ function apply(S, ev) {
       p.status = d.status; p.hist.push({ status: d.status, t: ev.t, by: ev.by, ref: d.ref || '', reason: d.reason || '', note: d.note || '' });
       if (d.status === 'confirmed') {
         p.bankRef = d.ref; p.confirmedBy = ev.by; p.confirmedAt = ev.t;
-        if (p.purpose === 'token' && P.stage === 'signed') setStage(P, 'site_prep', ev);
+        if ((p.purpose === 'token' || p.purpose === 'rails') && P.stage === 'signed') setStage(P, 'site_prep', ev);
         if (p.purpose === 'final' && P.stage === 'final_pay') setStage(P, 'handover', ev);
       }
       if (d.status === 'reversed') P.incidents.push({ id: 'I' + ev.id, type: 'pay_reversed', t: ev.t, by: ev.by, note: d.reason, open: true });
@@ -7956,6 +8046,15 @@ function apply(S, ev) {
     case 'CLAIM_DECIDED': { const c = P.claims.find(x => x.id === d.cid); c.status = d.ok ? 'approved' : 'rejected'; c.hist.push({ s: c.status, t: ev.t, by: ev.by, note: d.note || '' }); break; }
     case 'CLAIM_SENT': { const c = P.claims.find(x => x.id === d.cid); c.status = 'sent'; c.challan = d.challan; c.hist.push({ s: 'sent', t: ev.t, by: ev.by, note: d.challan }); break; }
     case 'CLAIM_RECEIVED': { const c = P.claims.find(x => x.id === d.cid); c.status = 'received'; c.hist.push({ s: 'received', t: ev.t, by: ev.by, note: d.note || '', ev: ev_(d).map(e => e.id) }); break; }
+    case 'LOT_DISPATCHED': ((P.lots = P.lots || {})[d.lot] = {}).disp = { t: ev.t, by: ev.by, seal: d.seal.trim(), challan: (d.challan || '').trim(), serialMap: d.serialMap || {}, packed: d.packed, ev: ev_(d).map(e => e.id) }; break;
+    case 'LOT_ARRIVED': {
+      const L = P.lots[d.lot], match = (d.sealSeen || '').trim().toUpperCase() === (L.disp.seal || '').toUpperCase();
+      L.arr = { t: ev.t, by: ev.by, sealSeen: d.sealSeen.trim(), sealMatch: match, sealIntact: d.sealIntact, condition: d.condition, note: d.note || '', ev: ev_(d).map(e => e.id) };
+      if (!match) P.incidents.push({ id: 'I' + ev.id + 'a', type: 'seal_mismatch', t: ev.t, by: ev.by, note: (L.disp.seal + ' ≠ ' + d.sealSeen), open: true });
+      if (d.sealIntact === 'no') P.incidents.push({ id: 'I' + ev.id + 'b', type: 'seal_broken', t: ev.t, by: ev.by, note: d.note || '', open: true });
+      if (d.condition === 'damaged') P.incidents.push({ id: 'I' + ev.id + 'c', type: 'damage', t: ev.t, by: ev.by, note: d.note || '', open: true });
+      break;
+    }
     case 'ARRIVED': {
       const match = (d.sealSeen || '').trim().toUpperCase() === (P.dispatch.seal || '').toUpperCase();
       P.arrival = { t: ev.t, by: ev.by, sealSeen: d.sealSeen.trim(), sealMatch: match, sealIntact: d.sealIntact, condition: d.condition, note: d.note || '', gps: d.gps || null, ev: ev_(d).map(e => e.id) };
@@ -8351,7 +8450,7 @@ function needs0(P) {
       add(quoteExpired(q) && quoteValidTill(q) < addDays(-7) ? 'requote' : 'get_decision', ['sales'], { uids: [P.sales], urgent: quoteExpired(q) || (!!quoteValidTill(q) && quoteValidTill(q) <= addDays(3)), till: quoteValidTill(q) }); break;
     case 'won': add('prepare_agreement', ['sales'], { uids: [P.sales] }); break;
     case 'agreement': add('sign_agreement', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
-    case 'signed': payNeed('token'); break;
+    case 'signed': payNeed(isP1(P) ? 'rails' : 'token'); break;
     case 'site_prep': add(prepDone(P) ? 'request_qc' : 'prepare_site', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
     case 'qc_site': if (P.infeasible && !P.infeasible.decided) add('decide_infeasible', ['admin', 'owner'], { urgent: true, since: P.infeasible.t }); else add('inspect_site', ['qc'], { uids: [P.qc] }); break;
     case 'site_fix': add(openCorr(P, 'site').length ? 'fix_site' : 'request_qc', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] }); break;
@@ -8372,9 +8471,16 @@ function needs0(P) {
     case 'dispatched': add('arrival', ['tech', 'supplier'], { uids: [P.tech, P.supplier] }); break;
     case 'arrived':
       if (P.mhand && P.mhand.wait) { add('mhand_cust_sign', ['customer'], { uids: [P.customer], since: P.mhand.t }); if (Date.now() - Date.parse(P.mhand.t) > 864e5) add('mhand_cust_wait', ['admin', 'owner'], { since: P.mhand.t }); }
-      else if (payNeed('arrival') && !openIncidents(P).length) add('material_handover', ['tech'], { uids: [P.tech] });
+      else if (payNeed(isP1(P) ? 'rails' : 'arrival') && !openIncidents(P).length) add('material_handover', ['tech'], { uids: [P.tech] });
       break;
-    case 'installing': if (permitMissing(P) && sopNext(P) === 0) { add('wait_permit', ['tech'], { uids: [P.tech] }); break; }
+    case 'installing':
+      if (isP1(P)) {
+        /* plan 1: collect 40% then 20%, the supplier sends each lot once paid, and a step waits only for the lot it needs */
+        if (!payConfirmed(P, 'doors')) payNeed('doors'); else if (!payConfirmed(P, 'drive')) payNeed('drive');
+        for (const lot of ['doors', 'drive']) { if (payConfirmed(P, lot) && !lotSent(P, lot)) add('dispatch_lot', ['supplier'], { uids: [P.supplier], lot }); else if (lotSent(P, lot) && !lotArrived(P, lot)) add('lot_arrival', ['tech', 'supplier'], { uids: [P.tech, P.supplier], lot }); }
+        const nl = STEP_LOT[sopNext(P)]; if (nl && !lotArrived(P, nl)) { add('wait_lot', ['tech'], { uids: [P.tech], lot: nl }); break; }
+      }
+      if (permitMissing(P) && sopNext(P) === 0) { add('wait_permit', ['tech'], { uids: [P.tech] }); break; }
       if (P.serialHold && !P.serialHold.ok && sopNext(P) === 0) { add('wait_serial', ['tech'], { uids: [P.tech], since: P.serialHold.t }); add('serial_mismatch', ['admin', 'owner'], { urgent: true, since: P.serialHold.t }); break; }
       if (openCorr(P, 'install').length) { add('fix_install', ['tech'], { uids: [P.tech], since: openCorr(P, 'install')[0].t }); if (sopNext(P) >= SOP.length) break; }
       if (P.schedule && P.schedule.cabin && sopNext(P) >= CABIN_STEP && sopNext(P) < SOP.length && !payNeed('cabin')) { add('wait_cabin_pay', ['tech'], { uids: [P.tech] }); break; }
@@ -8598,7 +8704,7 @@ function isMine(n, u) {
   return ids.length ? ids.includes(u.uid) : true;
 }
 function visibleProjects(u) { return S.order.map(id => S.projects[id]).filter(P => canSee(u, P)); }
-const WAIT_TASKS = ['wait_peer', 'wait_permit', 'wait_serial', 'wait_cabin_pay'];
+const WAIT_TASKS = ['wait_peer', 'wait_permit', 'wait_serial', 'wait_cabin_pay', 'wait_lot'];
 /* things a person is waiting for (shown as information, never counted as their work) */
 function myWaits(u) { const out = []; for (const P of visibleProjects(u)) for (const n of needs(P)) if (n.info && isMine(n, u)) out.push(n); return out; }
 function myTasks(u) { return drawMemo('tasks', u && u.uid, () => myTasks0(u)); }
@@ -9298,7 +9404,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', dev_alert: '📱', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', dev_alert: '📱', dispatch_lot: '🚚', lot_arrival: '📍', wait_lot: '⏳', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -9998,7 +10104,7 @@ WIZ.send = {
 };
 WIZ.decision = {
   title: 'tk_get_decision', save: 'save',
-  init: () => ({ dec: '', due: '', reason: '', agreedOn: '' }),
+  init: () => ({ dec: '', due: '', reason: '', agreedOn: '', plan: String(+S.config.payPlan === 1 ? 1 : 2) }),
   steps: [
     { id: 'dec', icon: '🤝', say: 's_decision', body: (c, P) => (quoteExpired(lastQuote(P)) ? `<div class="err">⏰ ${t('quote_expired', { d: fmtD(quoteValidTill(lastQuote(P))) })}</div>` : `<div class="note">⏰ ${t('quote_valid_till', { d: fmtD(quoteValidTill(lastQuote(P))) })}</div>`) + negHistory(P) + `<div class="card">${quoteBox(lastQuote(P), false)}</div>` + contactButtons(P, 'quote') + tiles('dec', [['yes', '🎉', 'dec_yes'], ['lower', '💬', 'dec_lower'], ['later', '⏰', 'dec_later'], ['no', '🙁', 'dec_no']], 'one'), check: c => c.dec ? null : 'err_choose' },
     { id: 'when', icon: '📅', say: 's_call_when', skip: c => c.dec !== 'later', body: () => dateTiles('due'), check: c => /^\d{4}-\d\d-\d\d$/.test(c.due) ? null : 'err_date' },
@@ -10008,12 +10114,12 @@ WIZ.decision = {
       check: (c, P) => { const q = lastQuote(P), a = c.agreedOn; return /^\d{4}-\d\d-\d\d$/.test(a) && a >= safeDay(q.sent.t) && a <= quoteValidTill(q) && a <= todayStr() && a >= addDays(-7) ? null : 'err_late_yes'; } },
     {
       id: 'yes', icon: '🎉', say: 's_decision_yes', skip: c => c.dec !== 'yes',
-      body: (c, P) => { const q = lastQuote(P), s = paySchedule(payCfgAt(), q.total); return `<div class="card">${kv([['q_total', money(q.total)], ['pay_token', money(s.token)], ['pay_arrival', money(s.arrival)], ['pay_final', money(s.final)]])}<div style="margin-top:6px">${ruleChip('token')} ${ruleChip('milestones')}</div></div>`; }
+      body: (c, P) => { const q = lastQuote(P), s = paySchedule(payCfgAt(), q.total, +c.plan); return `<p class="small" style="font-weight:800">${t('s_pay_plan')}</p>${tiles('plan', [['1', '📦', 'pl1_title'], ['2', '🎟️', 'pl2_title']])}<div class="card">${kv([['q_total', money(q.total)]].concat(PURPOSES.filter(k => s[k]).map(k => ['pay_' + k, money(s[k]) + ' · ' + t('pw_' + k)])))}<div style="margin-top:6px">${ruleChip('token')} ${ruleChip('milestones')}</div></div>`; }
     }
   ],
   async finish(c, P) {
     if (c.dec === 'lower') return { ok: true, go: () => wiz('counter', P.id) };
-    const r = c.dec === 'yes' ? await run([['DEAL_WON', P.id, quoteExpired(lastQuote(P)) ? { agreedOn: c.agreedOn } : {}]]) : c.dec === 'later' ? await run([['FOLLOWUP_SET', P.id, { due: c.due }]]) : await run([['DEAL_LOST', P.id, { reason: c.reason }]]);
+    const r = c.dec === 'yes' ? await run([['DEAL_WON', P.id, Object.assign({ plan: +c.plan }, quoteExpired(lastQuote(P)) ? { agreedOn: c.agreedOn } : {})]]) : c.dec === 'later' ? await run([['FOLLOWUP_SET', P.id, { due: c.due }]]) : await run([['DEAL_LOST', P.id, { reason: c.reason }]]);
     return r.ok ? doneRes(P.id, { yes: 'what_won', later: 'what_followup', no: 'what_lost' }[c.dec]) : r;
   }
 };
@@ -10546,21 +10652,22 @@ WIZ.dispatch = {
   steps: [
     {
       id: 'pack', icon: '📦', say: 's_disp_pack',
-      body: (c, P) => `<div class="card">${P.materials.map(m => { const on = c.packed.includes(m.k); return `<button class="cl-item ${on ? 'done' : ''}" data-a="toggleIn" data-k="packed" data-v="${m.k}" aria-pressed="${on}"><span class="st">${on ? '✅' : '⬜'}</span><span class="grow">${esc(t(m.k))} × ${m.q}${m.fin ? ' (' + t('fin_' + m.fin) + ')' : ''}</span></button>`; }).join('')}</div>
+      body: (c, P) => `${isP1(P) ? `<div class="note">📦 ${t('lot_now', { l: t('lot_' + ((W.opts || {}).lot || 'rails')) })}</div>` : ''}<div class="card">${matsFor(P, (W.opts || {}).lot).map(m => { const on = c.packed.includes(m.k); return `<button class="cl-item ${on ? 'done' : ''}" data-a="toggleIn" data-k="packed" data-v="${m.k}" aria-pressed="${on}"><span class="st">${on ? '✅' : '⬜'}</span><span class="grow">${esc(t(m.k))} × ${m.q}${m.fin ? ' (' + t('fin_' + m.fin) + ')' : ''}</span></button>`; }).join('')}</div>
         <p class="small muted">${t('drawings_ref')}: ${esc(P.drawings ? P.drawings.ref : '')}</p>`,
-      check: (c, P) => c.packed.length === P.materials.length ? null : 'err_not_all'
+      check: (c, P) => c.packed.length === matsFor(P, (W.opts || {}).lot).length ? null : 'err_not_all'
     },
     {
       id: 'serial', icon: '🔢', say: 's_disp_serial',
-      body: (c, P) => P.materials.filter(m => SERIAL_ITEMS.includes(m.k)).map(m => inp('serialMap.' + m.k, m.k, { big: true })).join('') + inp('challan', 'f_challan', { big: true }),
-      check: (c, P) => P.materials.some(m => SERIAL_ITEMS.includes(m.k) && !(c.serialMap[m.k] || '').trim()) ? 'err_serial' : c.challan.trim() ? null : 'err_challan'
+      body: (c, P) => matsFor(P, (W.opts || {}).lot).filter(m => SERIAL_ITEMS.includes(m.k)).map(m => inp('serialMap.' + m.k, m.k, { big: true })).join('') + inp('challan', 'f_challan', { big: true }),
+      check: (c, P) => matsFor(P, (W.opts || {}).lot).some(m => SERIAL_ITEMS.includes(m.k) && !(c.serialMap[m.k] || '').trim()) ? 'err_serial' : c.challan.trim() ? null : 'err_challan'
     },
     { id: 'seal', icon: '🔒', say: 's_disp_seal', body: () => inp('seal', 'f_seal', { big: true, mic: 'text' }) + inp('vehicle', 'f_vehicle', { opt: true }) + inp('serials', 'f_serials', { area: true, opt: true }) + `<div class="note">📡 ${t('no_tracker')}</div>`, check: c => c.seal.trim() ? null : 'err_seal' },
     { id: 'photos', icon: '📷', say: 's_disp_photos', body: () => photoSlot('ph', 'ph_dispatch', 2, { hint: 'ph_dispatch_hint', video: true, tag: 'dispatch' }), check: c => c.ph.length >= 2 ? null : { k: 'err_photos', v: { n: 2 } } },
     { id: 'review', icon: '✅', say: 's_disp_review', body: c => `<div class="card">${kv([['f_challan', esc(c.challan)], ['f_seal', esc(c.seal)], ['f_vehicle', esc(c.vehicle)], ['packed', c.packed.length + ' ' + t('items')]].concat(Object.entries(c.serialMap).map(([k, v]) => [k, esc(v)])))}${evGrid(c.ph)}</div>` }
   ],
   async finish(c, P) { const serialMap = Object.fromEntries(Object.entries(c.serialMap).map(([k, v]) => [k, String(v).trim()]));
-    const r = await run([['DISPATCHED', P.id, { packed: c.packed, seal: c.seal.trim(), vehicle: c.vehicle.trim(), serials: c.serials, challan: c.challan.trim(), serialMap, ev: c.ph }]]); return r.ok ? doneRes(P.id, 'what_dispatched') : r; }
+    const lot = (W.opts || {}).lot, data = { packed: c.packed, seal: c.seal.trim(), vehicle: c.vehicle.trim(), serials: c.serials, challan: c.challan.trim(), serialMap, ev: c.ph };
+    const r = await run([lot ? ['LOT_DISPATCHED', P.id, Object.assign({ lot }, data)] : ['DISPATCHED', P.id, data]]); return r.ok ? doneRes(P.id, 'what_dispatched') : r; }
 };
 /* ---------- Technician / supplier: arrival ---------- */
 WIZ.arrival = {
@@ -10574,7 +10681,8 @@ WIZ.arrival = {
     { id: 'photos', icon: '📷', say: 's_arr_photos', body: () => photoSlot('ph', 'ph_arrival', 2, { video: true, tag: 'arrival' }), check: c => c.ph.length >= 2 ? null : { k: 'err_photos', v: { n: 2 } } }
   ],
   async finish(c, P) {
-    const r = await run([['ARRIVED', P.id, { gps: c.gps, sealSeen: c.sealSeen.trim(), sealIntact: c.sealIntact, condition: c.condition, note: c.note, ev: c.ph }]]);
+    const lot = (W.opts || {}).lot, data = { gps: c.gps, sealSeen: c.sealSeen.trim(), sealIntact: c.sealIntact, condition: c.condition, note: c.note, ev: c.ph };
+    const r = await run([lot ? ['LOT_ARRIVED', P.id, Object.assign({ lot }, data)] : ['ARRIVED', P.id, data]]);
     if (!r.ok) return r;
     return doneRes(P.id, openIncidents(S.projects[P.id]).length ? 'what_arrived_problem' : 'what_arrived');
   }
@@ -10582,11 +10690,11 @@ WIZ.arrival = {
 /* ---------- Technician: material handover (payment gate) ---------- */
 WIZ.mhand = {
   title: 'tk_material_handover', save: 'save_handover', saveIcon: '🤲',
-  init: P => ({ items: P.materials.map(() => 'ok'), signer: P.rep ? 'rep' : 'contact', custName: P.rep ? P.rep.name || '' : P.contact.name || '', csig: null, tsig: null, note: '', custody: false, store: [] }),
+  init: P => ({ items: matsFor(P).map(() => 'ok'), signer: P.rep ? 'rep' : 'contact', custName: P.rep ? P.rep.name || '' : P.contact.name || '', csig: null, tsig: null, note: '', custody: false, store: [] }),
   steps: [
     {
       id: 'items', icon: '📦', say: 's_mh_items',
-      body: (c, P) => `<div class="okbox">🔓 ${t('gate_ok')}</div><div class="note">🔐 ${t('no_lock')}</div><div class="card">${P.materials.map((m, i) => `<div class="check-row"><span class="q">${esc(t(m.k))} × ${m.q}</span><span class="yn">
+      body: (c, P) => `<div class="okbox">🔓 ${t('gate_ok')}</div><div class="note">🔐 ${t('no_lock')}</div><div class="card">${matsFor(P).map((m, i) => `<div class="check-row"><span class="q">${esc(t(m.k))} × ${m.q}</span><span class="yn">
         ${[['ok', '✅'], ['damaged', '💥'], ['missing', '❓']].map(([v, ic]) => `<button class="${c.items[i] === v ? 'on ' + (v === 'ok' ? 'y' : 'n') : ''}" data-a="pick" data-k="items.${i}" data-v="${v}" aria-label="${t('mi_' + v)}" aria-pressed="${c.items[i] === v}">${ic}</button>`).join('')}</span></div>`).join('')}</div>
         <p class="small muted">✅ ${t('mi_ok')} · 💥 ${t('mi_damaged')} · ❓ ${t('mi_missing')}</p>` + inp('note', 'f_note', { area: true, opt: true })
     },
@@ -10603,7 +10711,7 @@ WIZ.mhand = {
     { id: 'tech', icon: '🔧', say: 's_mh_tech', body: () => signSlot('tsig', 'tech_signature'), check: c => c.tsig ? null : 'err_sign' }
   ],
   async finish(c, P) {
-    const items = P.materials.map((m, i) => ({ k: m.k, q: m.q, status: c.items[i] }));
+    const items = matsFor(P).map((m, i) => ({ k: m.k, q: m.q, status: c.items[i] }));
     /* damaged or missing lines become part claims for the office and the supplier; installation can go on with the other parts */
     const claims = items.filter(x => x.status !== 'ok').map(x => ['CLAIM_RAISED', P.id, { cid: 'C-' + rid(5), line: x.k, kind: x.status, qty: x.q, note: t('mi_' + x.status) + (c.note.trim() ? ' · ' + c.note.trim() : ''), src: 'handover' }]);
     const app = custSignsApp(P, c.signer);
@@ -10902,11 +11010,12 @@ function refundRule(P) {
   const from = (P.lost && P.lost.from) || P.stage, i = stageIdx(from);
   if (Object.keys(P.sop).length || i >= stageIdx('installing')) return 'installed';
   if (P.schedule && P.schedule.cabin && payConfirmed(P, 'cabin')) return 'cabin';
+  if (isP1(P) && (lotSent(P, 'doors') || lotSent(P, 'drive'))) return 'lots';
   if (i >= stageIdx('dispatched')) return 'dispatched';
   if (i >= stageIdx('material_order')) return 'ordered';
   return 'before_qc';
 }
-const REFUND_DEDUCT = { before_qc: ['costs'], ordered: ['supplier'], dispatched: ['freight'], cabin: ['material'], installed: [] };
+const REFUND_DEDUCT = { before_qc: ['costs'], ordered: ['supplier'], dispatched: ['freight'], cabin: ['material'], lots: ['material'], installed: [] };
 const qcRejected = P => P.qcSite.length && P.qcSite[P.qcSite.length - 1].outcome !== 'approved';
 function refundSuggest(P, ded) {
   const paid = paidTotal(P), r = refundRule(P), n = k => Math.max(0, Math.round(+(ded || {})[k] || 0));
@@ -10915,6 +11024,7 @@ function refundSuggest(P, ded) {
     case 'ordered': return Math.max(0, paid - (P.schedule ? P.schedule.token : 0) - n('supplier'));
     case 'dispatched': return Math.max(0, paid - n('freight'));
     case 'cabin': return Math.max(0, paid - (P.schedule.cabin || 0) - n('material'));
+    case 'lots': return Math.max(0, paid - sum(['doors', 'drive'].filter(l => lotSent(P, l)).map(l => P.schedule[l] || 0)) - n('material'));
   }
   return 0;
 }
@@ -11011,7 +11121,7 @@ WIZ.surprise = {
   async finish(c, P) { const r = await run([['SURPRISE_DONE', P.id, { ok: c.ok === 'yes', note: c.note.trim(), ev: c.ph }]]); return r.ok ? doneRes(P.id, c.ok === 'yes' ? 'what_surprise_ok' : 'what_surprise_bad') : r; }
 };
 /* ---------- drawings: versions kept; the customer sees them after QC approves the site and the token is found in the bank ---------- */
-const drawLock = (P, u) => u.role !== 'customer' ? null : P.stage === 'lost' || stageIdx(P.stage) < stageIdx('site_ok') ? 'dwg_lock_qc' : !payConfirmed(P, 'token') ? 'dwg_lock_token' : null;
+const drawLock = (P, u) => u.role !== 'customer' ? null : P.stage === 'lost' || stageIdx(P.stage) < stageIdx('site_ok') ? 'dwg_lock_qc' : !payConfirmed(P, isP1(P) ? 'rails' : 'token') ? 'dwg_lock_token' : null;
 SCREENS.drawings = ({ pid }) => {
   const P = S.projects[pid], u = App.me;
   if (!P || !canSee(u, P) || !P.drawings) return SCREENS.home();
@@ -12216,7 +12326,7 @@ function customerHome() {
 }
 /* ---------- how the customer pays: amount due, UPI (app link and QR) and bank transfer to the company account only ---------- */
 function payDue(P) {
-  const k = PURPOSES.find(x => PAY_STAGE[x] === P.stage && P.schedule && P.schedule[x] && !payConfirmed(P, x) && (x !== 'cabin' || sopNext(P) >= CABIN_STEP));
+  const k = PURPOSES.find(x => P.schedule && P.schedule[x] && !payConfirmed(P, x) && payOpen(P, x));
   return k ? { purpose: k, amount: P.schedule[k], pay: activePay(P, k) } : null;
 }
 /* the payment note carries the job number and a short purpose code; many banks show it in the statement, so the bank match can find the job */
@@ -12856,14 +12966,14 @@ function docHead(P, title, no) {
 }
 function docQuote(P, v) {
   const q = P.quotes.find(x => x.v === +v) || lastQuote(P); if (!q) return '';
-  const s = paySchedule(payCfgAt(), q.total);
+  const s = P.schedule && P.schedule.quoteV === q.v ? P.schedule : paySchedule(payCfgAt(), q.total, P.payPlan || (+S.config.payPlan === 1 ? 1 : 2));
   return docHead(P, t('doc_quote'), `${jobNo(P)}-Q${q.v}`) + `<table><tr><td>${t('customer')}</td><td><b>${esc(P.contact.name)}</b></td></tr><tr><td>${t('site')}</td><td>${esc(P.site.address)}</td></tr><tr><td>${t('valid_until')}</td><td>${fmtD(addDays(q.validity || 30, new Date(q.t)))}</td></tr></table>
     ${quoteDiff(P, q).length ? `<div class="note"><b>${t('qd_title', { v: q.v - 1 })}</b><br>${quoteDiff(P, q).map(esc).join('<br>')}</div>` : ''}
     ${q.options ? `<h3>${t('tier_title')}</h3>${tierTable(q)}<p class="small">${q.chosen ? t('tier_chosen', { k: t('tier_' + q.chosen) }) : t('tier_doc_note')}</p>` : ''}
     <h3>${t('lift_needs')}</h3>${reqKv(q.req)}
     <h3>${t('price')}</h3><table>${q.lines.map(([k, val]) => `<tr><td>${t(k)}</td><td class="r">${money(val)}</td></tr>`).join('')}<tr><td><b>${t('q_list')}</b></td><td class="r">${money(q.list)}</td></tr>
     ${q.discount ? `<tr><td>${t('q_discount')} (${q.discountPct}%)</td><td class="r">− ${money(q.discount)}</td></tr>` : ''}<tr><td>${t('q_price')}</td><td class="r">${money(q.price)}</td></tr><tr><td>${t('q_gst', { n: q.gstPct })}</td><td class="r">${money(q.gst)}</td></tr><tr><td><b>${t('q_total')}</b></td><td class="r"><b>${money(q.total)}</b></td></tr></table>
-    <h3>${t('pay_schedule')}</h3><table><tr><td>${t('pay_token')}</td><td class="r">${money(s.token)}</td></tr><tr><td>${t('pay_arrival')}</td><td class="r">${money(s.arrival)}</td></tr><tr><td>${t('pay_final')}</td><td class="r">${money(s.final)}</td></tr></table>
+    <h3>${t('pay_schedule')}</h3>${payRowsHtml(s)}
     ${s.retention ? `<p class="small">${t('pay_retention')}: ${money(s.retention)} · ${t('q_ret_d', { n: s.retDays })}</p>` : ''}${tcoBlock(q)}
     <h3>${t('q_assume')}</h3><ul style="padding-left:20px">${quoteAssumptions(P, q).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
     <h3>${t('scope')}</h3><p>${t('scope_text')}</p><h3>${t('exclusions')}</h3><p>${t('exclusions_text')}</p>${civilLine()}<h3>${t('delivery')}</h3><p>${t('delivery_text', { n: S.config.installDays })}</p>
@@ -12890,7 +13000,7 @@ const cancelText = () => (+S.config.cancelBefore || +S.config.cancelAfter) ? t('
 function agreeKeyPoints(P) {
   const q = P.quotes.find(x => x.v === (P.agreement && P.agreement.quoteV)) || lastQuote(P), s = P.schedule || paySchedule(payCfgAt(), q.total);
   return `<ul style="padding-left:20px;margin:0">${[t('ak_lift', { stops: q.req.stops, cap: t('cap_' + q.req.capacity), type: t('type_' + q.req.type), fin: t('fin_' + q.req.finish) }), t('ak_price', { total: money(q.total) }),
-    t('ak_pay', { token: money(s.token), arrival: money(s.arrival), final: money(s.final) }), t('ak_prep')].concat(P.agreement && P.agreement.signed && P.agreement.signed.t < JOURNEY_FROM ? [] : [t('ak_custody')]).concat([t('ak_warranty', { n: S.config.warrantyMonths }), t('ak_amc', { n: S.config.amcVisits })]).map(x => `<li style="margin:6px 0">${esc(x)}</li>`).join('')}</ul>`;
+    t('ak_pay2', { x: payTermsTxt(s) }), t('ak_prep')].concat(P.agreement && P.agreement.signed && P.agreement.signed.t < JOURNEY_FROM ? [] : [t('ak_custody')]).concat([t('ak_warranty', { n: S.config.warrantyMonths }), t('ak_amc', { n: S.config.amcVisits })]).map(x => `<li style="margin:6px 0">${esc(x)}</li>`).join('')}</ul>`;
 }
 function docAgreement(P, preview) {
   const sg = P.agreement && P.agreement.signed;
@@ -13095,7 +13205,7 @@ function docGad(P) {
 }
 /* a sheet for the society committee / general body: options, votes, cost per flat, payments, time, warranty */
 function docCommittee(P) {
-  const sent = P.quotes.filter(q => q.sent), vt = socVotes(P), q = P.quotes.find(x => x.accepted) || sent[sent.length - 1] || lastQuote(P), sch = paySchedule(payCfgAt(), q.total);
+  const sent = P.quotes.filter(q => q.sent), vt = socVotes(P), q = P.quotes.find(x => x.accepted) || sent[sent.length - 1] || lastQuote(P), sch = P.schedule || paySchedule(payCfgAt(), q.total, +S.config.payPlan === 1 ? 1 : 2);
   return docHead(P, t('doc_committee'), `${jobNo(P)}-CM`) + `<h3>${t('cm_lift')}</h3>${reqKv(P.req)}
     <h3>${t('cm_options')}</h3><table><tr><th>${t('cm_ver')}</th><th>${t('q_total')}</th>${P.society && P.society.flats ? `<th>${t('cm_flat')}</th>` : ''}<th>${t('sv_title')}</th></tr>${sent.map(x => `<tr><td>${x.v}</td><td>${money(x.total)}</td>${P.society && P.society.flats ? `<td>${money(perFlat(P, x.total))}</td>` : ''}<td>${vt[x.v] || 0}</td></tr>`).join('')}</table>
     ${P.society && P.society.flats ? `<p class="small">${t('sv_flats', { n: P.society.flats, f: P.society.free || 0 })}</p>` : ''}
@@ -15000,7 +15110,7 @@ function openTask(n) {
     prepare_site: () => go('cl', { pid, kind: 'prep' }), request_qc: () => go('cl', { pid, kind: P.stage === 'site_fix' ? 'sitefix' : 'prep' }),
     inspect_site: () => wiz('qcsite', pid), decide_infeasible: () => wiz('infeasible', pid), approve_drawing: () => go('drawings', { pid }),
     accept_ticket: () => wiz('ticketAccept', pid, { tid: n.tid }), ticket_not_accepted: () => wiz('ticketAssign', pid, { tid: n.tid }), warranty_call: () => wiz('warrantyCall', pid), approve_finish: () => wiz('finish', pid), finish_change: () => go('project', { pid, tab: 'chat' }), pre_survey: () => wiz('survey', pid), pin_alert: () => wiz('pinAlert', null, { uid: n.uid }), dev_alert: () => wiz('devAlert', null, { uid: n.uid }), pick_option: () => go('project', { pid, tab: 'info' }), sign_gad: () => wiz('gad', pid), decide_damage: () => wiz('dmgDecide', pid, { did: n.did }), charge_due: () => wiz('chargeSettle', pid, { cid: n.cid }), pay_charge: () => go('doc', { pid, kind: 'charge' }), set_insp_mode: () => wiz('liftMode', pid, { mode: 'inspection' }), set_normal_mode: () => wiz('liftMode', pid, { mode: 'normal' }), decide_expense: () => wiz('expDecide', pid, { xid: n.xid }), stock_low: () => go('stock'), first_contact_late: () => go('project', { pid }), lead_idle: () => wiz('decision', pid), daily_report: () => wiz('dreport', pid), fix_site: () => go('cl', { pid, kind: 'sitefix' }), release: () => wiz('release', pid),
-    dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
+    dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), dispatch_lot: () => wiz('dispatch', pid, { lot: n.lot }), lot_arrival: () => wiz('arrival', pid, { lot: n.lot }), wait_lot: () => go('project', { pid }), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
     lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
@@ -15731,18 +15841,18 @@ async function seedPractice() {
     requirements: P => ['sales', 'QUOTE_CREATED', { discountPct: P._disc == null ? 5 : P._disc, reason: 'Opening offer', trade: TRADES[0][0] }],
     quote_approval: () => ['owner', 'QUOTE_DECISION', { decision: 'approve', reason: 'OK' }],
     quote_ready: () => ['sales', 'QUOTE_SENT', { channel: 'whatsapp' }],
-    quoted: () => ['sales', 'DEAL_WON', {}],
+    quoted: P => ['sales', 'DEAL_WON', P._plan ? { plan: P._plan } : {}],
     won: () => ['sales', 'AGREEMENT_PREPARED', {}],
     agreement: P => ['sales', 'AGREEMENT_SIGNED', { consent: true, signer: P.contact.name, ev: [ph('sign')] }],
-    signed: P => payStep(P, 'token'),
+    signed: P => payStep(P, isP1(P) ? 'rails' : 'token'),
     site_prep: P => { const k = PREP_ITEMS.find(([x]) => !P.prep[x]); return k ? ['sales', 'PREP_ITEM_DONE', { item: k[0], ev: [ph('site', P.site.gps)] }] : ['sales', 'QC_REQUESTED', {}]; },
     qc_site: P => ['qc', 'QC_SITE_RESULT', { meas: { width: 1800, depth: 1900, pit: 1500, head: 4200 }, door: { w: 800, h: 2000 }, floors: Array.from({ length: floorGaps(P) }, () => 3000), checks: { plumb: 'yes', pit_dry: 'yes', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome: 'approved', ev: [ph('site', P.site.gps), ph('shaft', P.site.gps)] }],
     site_ok: P => ['admin', 'RELEASED', { supplier: U.supplier, tech: jobSize(P) === 'big' ? U.senior : U.tech, drawings: 'DWG-' + P.id + '-R1', materials: materialList(P.req) }],
     material_order: P => !statOf(P).permit ? ['admin', 'STATUTORY_SET', { item: 'permit', no: 'EP/' + P.id.slice(-3) + '/2026', date: safeDay(nextAt()) }] : !P.po.accepted ? ['supplier', 'PO_ACCEPTED', { date: safeDay(Date.parse(nextAt()) + 2 * 864e5) }]
-      : ['supplier', 'DISPATCHED', { packed: P.materials.map(m => m.k), seal: 'SEAL-' + P.id.slice(-3), vehicle: 'MH12 AB 1234', challan: 'DC/' + P.id.slice(-3) + '/26', serialMap: Object.fromEntries(P.materials.filter(m => SERIAL_ITEMS.includes(m.k)).map(m => [m.k, m.k.slice(2, 5).toUpperCase() + '-' + P.id.slice(-3) + '-' + (100 + SERIAL_ITEMS.indexOf(m.k))])), ev: [ph('work'), ph('work')] }],
+      : ['supplier', 'DISPATCHED', { packed: matsFor(P).map(m => m.k), seal: 'SEAL-' + P.id.slice(-3), vehicle: 'MH12 AB 1234', challan: 'DC/' + P.id.slice(-3) + '/26', serialMap: Object.fromEntries(matsFor(P).filter(m => SERIAL_ITEMS.includes(m.k)).map(m => [m.k, m.k.slice(2, 5).toUpperCase() + '-' + P.id.slice(-3) + '-' + (100 + SERIAL_ITEMS.indexOf(m.k))])), ev: [ph('work'), ph('work')] }],
     dispatched: P => [P.tech, 'ARRIVED', { gps: P.site.gps, sealSeen: 'SEAL-' + P.id.slice(-3), sealIntact: 'yes', condition: 'good', ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
     arrived: P => P.mhand && P.mhand.wait ? [P.customer, 'MATERIAL_RECEIPT_SIGNED', { custName: P.contact.name, custody: true, ev: [ph('sign')] }]
-      : payConfirmed(P, 'arrival') ? [P.tech, 'MATERIAL_HANDED', Object.assign({ serialSeen: Object.assign({}, (P.dispatch || {}).serialMap), items: P.materials.map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, signer: 'contact', custody: !custSignsApp(P, 'contact'), ev: (custSignsApp(P, 'contact') ? [ph('sign')] : [ph('sign'), ph('sign')]).concat([Object.assign(ph('site', P.site.gps), { label: 'storage' })]) }, custSignsApp(P, 'contact') ? { custApp: true } : {})] : payStep(P, 'arrival'),
+      : payConfirmed(P, isP1(P) ? 'rails' : 'arrival') ? [P.tech, 'MATERIAL_HANDED', Object.assign({ serialSeen: Object.assign({}, (P.dispatch || {}).serialMap), items: matsFor(P).map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, signer: 'contact', custody: !custSignsApp(P, 'contact'), ev: (custSignsApp(P, 'contact') ? [ph('sign')] : [ph('sign'), ph('sign')]).concat([Object.assign(ph('site', P.site.gps), { label: 'storage' })]) }, custSignsApp(P, 'contact') ? { custApp: true } : {})] : payStep(P, 'arrival'),
     installing: P => peerWaiting(P).length ? [Object.values(S.users).find(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).uid, 'PEER_CHECKED', { step: peerWaiting(P)[0], ok: true }] : sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? (+S.config.checkinGate && !checkedIn(P, safeDay(nextAt())) ? [P.tech, 'SITE_CHECKED_IN', { day: safeDay(nextAt()), gps: P.site.gps }] : [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }]) : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), isc: iscYes(sopNext(P)), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
     qc_final: P => ['qc', 'QC_FINAL_RESULT', { vals: { level: 3, load: 680, ard: 24 }, checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), crit: Object.fromEntries(QC_CRITICAL.map(k => [k, 'pass'])), earthVal: '0.8 Ω', outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)].concat(QC_CRITICAL.map(k => Object.assign(ph('work', P.site.gps), { label: 'crit_' + k }))) }],
     final_pay: P => payStep(P, 'final'),
@@ -15770,7 +15880,9 @@ async function seedPractice() {
     ['Krishna Plaza, Viman Nagar, Pune', 'Mr. Rao', '9822000007', 18.5679, 73.9143, 'quote_approval', 'field2', { _disc: 35 }],
     ['Vishal Towers, Hinjewadi, Pune', 'Mr. Kulkarni', '9822000010', 18.5913, 73.7389, 'quoted', 'field'],
     ['Near Swargate bus stand, Pune', 'Mr. Pawar', '9822000008', 18.5018, 73.8636, 'new', 'field'],
-    ['Building under construction, Katraj, Pune', '', '9822000009', 18.4575, 73.8677, 'new', 'field']
+    ['Building under construction, Katraj, Pune', '', '9822000009', 18.4575, 73.8677, 'new', 'field'],
+    /* a job on payment plan 1 (by material lot), signed and waiting for the 30% rails payment */
+    ['Ganga Heights, Pashan, Pune', 'Mr. Deshmukh', '9822000012', 18.5362, 73.7997, 'signed', 'field2', { _plan: 1, _use: 'apartment', _stops: 4 }]
   ];
   const ids = [];
   for (const [address, name, phone, lat, lng, target, who, extra] of sites) {

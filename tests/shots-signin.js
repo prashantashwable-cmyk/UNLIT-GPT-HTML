@@ -100,6 +100,11 @@ const ALL = ['en', 'hi', 'mr'];
   await login('PTECH');
   await shot('HM', 'pin_tapped_tech', async () => { await ev(() => { const g = document.querySelector('#hsvg [data-a="mapPin"]'); App.form.mp = g && g.dataset.v; go('home'); }); await W8(150); await ev(() => { const el = document.getElementById('hsvg'); if (el) { el.closest('.card').scrollIntoView(); window.scrollBy(0, -80); } }); });
 
+  /* ---- PP: payment plans ---- */
+  await login('PSALES');
+  await shot('PP', 'plan1_job_money', async () => { await ev(() => { go('project', { pid: 'AIEC-P012', tab: 'money' }); }); }, ['en']);
+  await shot('PP', 'plan1_quotation', async () => { await ev(() => { go('doc', { pid: 'AIEC-P012', kind: 'quote' }); }); await W8(150); await ev(() => { const h = [...document.querySelectorAll('h3')].find(x => /Payment plan|भुगतान|पेमेंट/.test(x.textContent)); if (h) h.scrollIntoView(); }); }, ALL);
+
   /* ---- BW: before starting work ---- */
   for (const uid of ['PTECH', 'PSALES', 'PQC']) {
     await login(uid);
@@ -120,8 +125,14 @@ const ALL = ['en', 'hi', 'mr'];
   await shot('NV', 'exit_ask', async () => { await ev(() => { closeSheet(); ACT.nav('home'); exitAsk(); }); }, ALL);
   await ev(() => closeSheet());
 
+  /* the won wizard's plan choice (last, because it approves and sends a practice quotation) */
+  await ev(async () => { await perform('QUOTE_DECISION', 'AIEC-P008', { decision: 'approve', reason: 'OK' }, { as: 'POWNER', quiet: true }); await perform('QUOTE_SENT', 'AIEC-P008', { channel: 'whatsapp' }, { as: 'PSALES', quiet: true }); });
+  await login('PSALES');
+  await shot('PP', 'won_pick_plan', async () => { await ev(async () => { closeSheet(); W = null; await wiz('decision', 'AIEC-P008'); W.ctx.dec = 'yes'; W.ctx.plan = '1'; W.sid = 'yes'; render(); }); await W8(250); }, ALL);
+  await ev(() => { W = null; });
+
   /* contact sheet */
-  const groups = ['BW', 'NV', 'HM', 'L1', 'L3', 'L5', 'L4', 'L2'], titles = { BW: 'Before starting work', NV: 'Full-screen map, Log out, Back, Exit', HM: 'Map on the first page', L1: 'L1 · Rough price before sign-in', L2: 'L2 · Clear states and refusals', L3: 'L3 · Menus per role', L4: 'L4 · Safer sign-in', L5: 'L5 · First day' };
+  const groups = ['PP', 'BW', 'NV', 'HM', 'L1', 'L3', 'L5', 'L4', 'L2'], titles = { PP: 'Payment plans', BW: 'Before starting work', NV: 'Full-screen map, Log out, Back, Exit', HM: 'Map on the first page', L1: 'L1 · Rough price before sign-in', L2: 'L2 · Clear states and refusals', L3: 'L3 · Menus per role', L4: 'L4 · Safer sign-in', L5: 'L5 · First day' };
   const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sign-in screenshots</title>
 <style>body{font-family:system-ui,sans-serif;margin:16px;background:#f4f4f4;color:#111}h2{margin:24px 0 8px}.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}figure{margin:0;background:#fff;border-radius:8px;padding:6px;box-shadow:0 1px 3px #0002}img{width:100%;border-radius:4px;display:block}figcaption{font-size:12px;margin-top:4px}.bad{background:#fee;border:1px solid #c00;padding:8px;border-radius:6px}</style></head><body>
 <h1>Sign-in and first-use screens</h1><p>${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · phone 390×844 · default zoom</p>
