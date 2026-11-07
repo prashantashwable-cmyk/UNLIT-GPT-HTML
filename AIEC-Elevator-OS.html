@@ -2853,7 +2853,8 @@ const L = {
   th_color: ['Bright & colourful', 'चमकदार और रंगीन', 'उजळ आणि रंगीत'],
   fs_title: ['Full screen', 'पूरी स्क्रीन', 'पूर्ण स्क्रीन'],
   fs_on: ['Start in full screen', 'पूरी स्क्रीन में शुरू करें', 'पूर्ण स्क्रीनमध्ये सुरू करा'],
-  fs_note: ['The app fills the whole screen after your first tap (the phone needs a tap before it allows full screen). Swipe from the top edge to see the phone\'s bar.', 'पहले टैप के बाद ऐप पूरी स्क्रीन लेता है (फ़ोन पूरी स्क्रीन से पहले टैप माँगता है)। फ़ोन की पट्टी के लिए ऊपर से स्वाइप करें।', 'पहिल्या टॅपनंतर ॲप पूर्ण स्क्रीन घेते (पूर्ण स्क्रीनपूर्वी फोनला टॅप लागतो). फोनची पट्टी पाहण्यासाठी वरून स्वाइप करा.'],
+  fs_note: ['The installed app opens full screen by itself. Turn this on only if yours does not: the phone then shows a short "to exit full screen" notice each time the app starts.', 'इंस्टॉल किया ऐप अपने आप पूरी स्क्रीन में खुलता है। अगर आपका नहीं खुलता तभी इसे चालू करें: तब हर बार ऐप शुरू होने पर फ़ोन "पूरी स्क्रीन से बाहर निकलने" का छोटा संदेश दिखाता है।', 'इन्स्टॉल केलेले अ‍ॅप आपोआप पूर्ण स्क्रीनमध्ये उघडते. तुमचे उघडत नसेल तरच हे चालू करा: मग प्रत्येक वेळी अ‍ॅप सुरू झाल्यावर फोन "पूर्ण स्क्रीनमधून बाहेर" असा छोटा संदेश दाखवतो.'],
+  fs_already: ['This app is already in full screen.', 'यह ऐप पहले से पूरी स्क्रीन में है।', 'हे अ‍ॅप आधीच पूर्ण स्क्रीनमध्ये आहे.'],
   pc_stars: ['{s} stars · {n} reviews', '{s} स्टार · {n} रिव्यू', '{s} स्टार · {n} रिव्ह्यू'],
   pc_company: ['Company: {c}', 'कंपनी: {c}', 'कंपनी: {c}'],
   pc_profile: ['Open profile', 'प्रोफ़ाइल खोलें', 'प्रोफाइल उघडा'],
@@ -8981,7 +8982,7 @@ document.addEventListener('visibilitychange', () => {
 });
 ['contextmenu', 'copy', 'cut', 'dragstart'].forEach(x => document.addEventListener(x, e => { if (document.body.classList.contains('guard') && !/^(INPUT|TEXTAREA)$/.test((e.target || {}).tagName || '')) e.preventDefault(); }));
 /* full screen hides the phone's own Back, so the app shows its own ← (bottom-left) */
-const isFullNow = () => !!document.fullscreenElement || inAndroidApp() || !!App.forceFull;
+const isFullNow = () => !!document.fullscreenElement || fullByDisplay() || inAndroidApp() || !!App.forceFull;
 const canGoBack = () => !!W || App.stack.length > 0 || (!!App.me && App.route.name !== 'home') || (!App.me && !['gate', 'login', 'welcome', 'splash', 'boot'].includes(App.route.name));
 document.addEventListener('fullscreenchange', () => { if (App.route) render(); });
 /* the phone's Back: close what is open, else go back, and on the first page ask before leaving the app */
@@ -9019,7 +9020,10 @@ const SCALE_DEFAULT = 75;
 const getScale = () => Math.max(20, Math.min(150, Math.round(+App.set.scale || SCALE_DEFAULT)));
 const THEMES = [['auto', '🌗'], ['light', '☀️'], ['color', '🌈'], ['dark', '🌙'], ['contrast', '🔲']];
 /* full screen: the phone allows it only after a tap, so the first tap of each start asks for it (when switched on) */
-function wantFull() { return App.set.fullscreen !== false && isInstalled(); }
+/* the installed app opens full screen by itself (manifest / Android app) without Chrome's "to exit full screen" notice.
+   Asking the browser for full screen always shows that notice, so it is asked only when the person turns it on. */
+const fullByDisplay = () => !!(window.matchMedia && matchMedia('(display-mode: fullscreen)').matches);
+function wantFull() { return App.set.fullscreen === true && isInstalled() && !inAndroidApp() && !fullByDisplay(); }
 document.addEventListener('pointerdown', () => { try { if (wantFull() && !document.fullscreenElement && document.documentElement.requestFullscreen) document.documentElement.requestFullscreen({ navigationUI: 'hide' }).catch(() => {}); } catch (e) { /* not allowed here */ } }, { passive: true });
 function applyTheme() {
   const th = App.set.theme || 'auto', dark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
@@ -9387,7 +9391,7 @@ function topBar(title, o = {}) {
   <button class="ib" data-a="help" aria-label="${t('help')}">❓</button>
   <button class="ib" data-a="langSheet" aria-label="${t('language')}">${LANG_SHORT[LANG]}</button>
   ${App.me && !o.noBell ? `<button class="ib" data-a="nav" data-v="home" aria-label="${t('my_tasks')}">🔔${n ? `<span class="badge">${n}</span>` : ''}</button>` : ''}
-  ${App.me && !App.locked ? `<button class="ib ib-out" data-a="logoutAsk" aria-label="${t('logout')}" title="${t('logout')}">⏻</button>` : ''}</header>`;
+  ${App.me && !App.locked ? `<button class="ib ib-out" data-a="logoutAsk" aria-label="${t('logout')}" title="${t('logout')}">🚪</button>` : ''}</header>`;
 }
 const NAV = {
   field: [['home', '🏠', 'nav_home'], ['projects', '📍', 'nav_sites'], ['chat', '💬', 'chat'], ['me', '👤', 'me']],
@@ -12256,8 +12260,8 @@ function planCard(u) {
   const head = pl.next ? t(pl.off ? 'pl_off' : 'pl_tomorrow', { d: fmtD(pl.day) }) : t('pl_today', { d: fmtD(pl.day) });
   return `<div class="card" id="plan"><h3 style="margin-top:0">🗓️ ${head}</h3>
     ${pl.earn ? `<div style="font-weight:800">💰 ${t('pl_earn', { a: money(pl.earn) })}</div>` : ''}${nw ? `<div class="small" style="margin:4px 0">🏆 ${nw}</div>` : ''}
-    ${pl.items.slice(0, 7).map(row).join('')}
-    ${pl.items.length > 7 ? `<details class="small"><summary>🕒 ${t('pl_more', { n: pl.items.length - 7 })}</summary>${pl.items.slice(7).map(row).join('')}</details>` : ''}
+    ${pl.items.slice(0, 4).map(row).join('')}
+    ${pl.items.length > 4 ? `<details class="small"><summary>🕒 ${t('pl_more', { n: pl.items.length - 4 })}</summary>${pl.items.slice(4).map(row).join('')}</details>` : ''}
     ${pl.later.length ? `<div class="note small" style="margin-top:6px">📅 ${t('pl_later', { n: pl.later.length })}: ${pl.later.slice(0, 4).map(x => esc(t('tk_' + x.k)) + (x.pid ? ' · ' + esc(jobNo(S.projects[x.pid])) : '')).join(', ')}</div>` : ''}
     <p class="small muted" style="margin:6px 0 0">${t('pl_note')}</p></div>`;
 }
@@ -13352,7 +13356,7 @@ SCREENS.me = () => {
       <div class="row small muted" style="justify-content:space-between"><span>20%</span><span>${SCALE_DEFAULT}%</span><span>150%</span></div>
       <div class="tiles three" style="margin-top:8px">${[[SCALE_DEFAULT, 'size_n'], [100, 'size_l'], [130, 'size_xl']].map(([z, l]) => `<button class="tile ${getScale() === z ? 'on' : ''}" data-a="scaleSet" data-v="${z}" style="min-height:64px">${t(l)}<small>${z}%</small></button>`).join('')}</div>
       ${getScale() < 60 ? `<div class="warnbox">⚠️ ${t('scale_small')}</div>` : ''}</div>
-    ${Bio.card(u)}<div class="card"><h3>⛶ ${t('fs_title')}</h3>${toggleSet('fullscreen', 'fs_on', App.set.fullscreen !== false)}<p class="small muted">${t('fs_note')}</p></div>
+    ${Bio.card(u)}<div class="card"><h3>⛶ ${t('fs_title')}</h3>${fullByDisplay() || inAndroidApp() ? `<div class="okbox small">✅ ${t('fs_already')}</div>` : toggleSet('fullscreen', 'fs_on', App.set.fullscreen === true)}<p class="small muted">${t('fs_note')}</p></div>
     <div class="card"><h3>🎨 ${t('theme')}</h3><div class="tiles">${THEMES.map(([k, i]) => `<button class="tile ${(App.set.theme || 'auto') === k ? 'on' : ''}" data-a="setTheme" data-v="${k}" style="min-height:64px"><span class="i">${i}</span>${t('th_' + k)}</button>`).join('')}</div></div>
     <div class="card"><h3>💡 ${t('wake_title')}</h3><div class="tiles one"><button class="tile ${App.set.wake !== false ? 'on' : ''}" data-a="toggleWake"><span class="i">💡</span><span>${t('wake_on')}<br><small>${t(Wake.ok() ? (Wake.lock ? 'wake_now' : 'wake_ready') : 'wake_no')}</small></span></button></div><p class="small muted">${t('wake_note')}</p></div>
     <div class="card"><h3>🔊 ${t('me_voice')}</h3><div class="tiles one"><button class="tile ${guideOn() ? 'on' : ''}" data-a="toggleGuide"><span class="i">🗣️</span><span>${t('voice_guide')}<br><small>${t('voice_guide_d')}</small></span></button>
