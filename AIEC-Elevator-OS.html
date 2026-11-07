@@ -9387,6 +9387,7 @@ function topBar(title, o = {}) {
   const n = App.me && !App.locked ? myTasks(App.me).filter(x => x.k !== 'escalated' || !['owner', 'admin'].includes(App.me.role)).length : 0;
   return `<header class="top">${o.back ? `<button class="ib" data-a="back" aria-label="${t('back')}">←</button>` : `<span aria-hidden="true" style="font-size:1.7rem;margin:0 2px">🛗</span>`}
   <h1>${esc(title)}</h1>
+  ${!o.noBell && App.route && !['shareApp', 'sharePoster'].includes(App.route.name) ? `<button class="ib" data-a="nav" data-v="shareApp" aria-label="${t('sha_title')}" title="${t('sha_title')}">📤</button>` : ''}
   <button class="ib" data-a="sayPage" aria-label="${t('listen')}">🔊</button>
   <button class="ib" data-a="help" aria-label="${t('help')}">❓</button>
   <button class="ib" data-a="langSheet" aria-label="${t('language')}">${LANG_SHORT[LANG]}</button>

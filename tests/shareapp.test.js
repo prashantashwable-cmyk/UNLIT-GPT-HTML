@@ -11,6 +11,12 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const as = async uid => { await page.evaluate(uid => { loginAs(S.users[uid]); ACT.permsDone(); Notify.hide(); App.form = {}; ACT.nav('home'); }, uid); await page.waitForTimeout(250); };
   /* entry points */
   await as('PFIELD');
+  assert(!!(await page.$('header.top [data-a="nav"][data-v="shareApp"]')), 'the top bar has a Share button next to the sound button');
+  assert(await page.evaluate(() => { const b = document.querySelector('header.top [data-v="shareApp"]'); return b.nextElementSibling && b.nextElementSibling.dataset.a === 'sayPage'; }), 'it sits right before 🔊');
+  assert(await page.evaluate(async () => { const P = Object.values(S.projects).find(x => x.tech === 'PTECH') || Object.values(S.projects)[0]; await wiz('safety', P.id); const has = !!document.querySelector('header.top [data-v="shareApp"]'); W = null; ACT.nav('home'); return !has; }), 'not inside a task (wizard)');
+  await page.click('header.top [data-v="shareApp"]'); await page.waitForTimeout(150);
+  assert(await page.evaluate(() => App.route.name === 'shareApp' && !document.querySelector('header.top [data-v="shareApp"]')), 'it opens the Share page (where it hides itself)');
+  await page.evaluate(() => ACT.nav('home')); await page.waitForTimeout(150);
   assert(!!(await page.$('main [data-a="nav"][data-v="shareApp"]')), 'the first page has a Share button');
   await page.evaluate(() => go('me')); await page.waitForTimeout(150);
   assert(!!(await page.$('main [data-a="nav"][data-v="shareApp"]')), 'Me has "Share the app"');
@@ -42,8 +48,10 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(code ? cm.endsWith('#r=' + code) : /#r=PCUST$/.test(cm), 'a customer\'s link uses their lift code (the referral code they already have)');
   /* before sign-in */
   await page.evaluate(() => { App.me = null; go('gate'); }); await page.waitForTimeout(200);
-  assert(!!(await page.$('[data-a="nav"][data-v="shareApp"]')), 'the gate (before sign-in) has Share');
-  await page.click('[data-a="nav"][data-v="shareApp"]'); await page.waitForTimeout(150);
+  assert(!!(await page.$('main [data-a="nav"][data-v="shareApp"]')), 'the gate (before sign-in) has Share');
+  assert(await page.evaluate(() => { go('door', { kind: 'cust' }); return !!document.querySelector('header.top [data-v="shareApp"]'); }), 'screens before sign-in that have a top bar show it there too');
+  await page.evaluate(() => go('gate')); await page.waitForTimeout(150);
+  await page.click('main [data-a="nav"][data-v="shareApp"]'); await page.waitForTimeout(150);
   assert(/AIEC-Elevator-OS\.html$/.test(await page.inputValue('#shMsg')), 'before sign-in the plain app link is shared');
   /* opening a shared link */
   assert(await ev(`parseRef('#r=PFIELD') === 'PFIELD' && parseRef('#r=<x>') === null && parseRef('#j=1') === null`), 'only a clean code is read from a link');
