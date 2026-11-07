@@ -3624,6 +3624,8 @@ const L = {
   sha_home: ['Know someone who needs a lift? Share the app; enquiries from your link are counted for you.', 'किसी को लिफ्ट चाहिए? ऐप शेयर करें; आपके लिंक की पूछताछ आपके नाम गिनी जाती है।', 'कोणाला लिफ्ट हवी? अ‍ॅप शेअर करा; तुमच्या लिंकच्या चौकशा तुमच्या नावावर मोजल्या जातात.'],
   sha_home_cust: ['Happy with your lift? Recommend us to a friend.', 'लिफ्ट से खुश हैं? किसी दोस्त को हमारी सलाह दें।', 'लिफ्टने समाधानी? मित्राला आमची शिफारस करा.'],
   sha_ref: ['Referred by', 'किसने भेजा', 'कोणी पाठवले'],
+  inst_skip: ['Continue in browser', 'ब्राउज़र में जारी रखें', 'ब्राउझरमध्ये सुरू ठेवा'],
+  inst_later: ['You can install later from 📲 in the top bar or from Me.', 'बाद में ऊपर 📲 या "मैं" से इंस्टॉल कर सकते हैं।', 'नंतर वरच्या 📲 मधून किंवा "मी" मधून इन्स्टॉल करू शकता.'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -9014,7 +9016,8 @@ function isInstalled() {
   const mm = q => window.matchMedia && window.matchMedia(q).matches;
   return mm('(display-mode: standalone)') || mm('(display-mode: fullscreen)') || mm('(display-mode: minimal-ui)') || navigator.standalone === true || document.referrer.startsWith('android-app://') || inAndroidApp();
 }
-const installGate = () => App.mode === 'real' && !isInstalled() && !App.set.devNoInstallGate;
+/* the install screen is shown once in a browser; after 'Continue in browser' the app works there too (📲 stays in the top bar) */
+const installGate = () => App.mode === 'real' && !isInstalled() && !App.set.devNoInstallGate && !App.set.installSeen;
 /* screen scale 20%–150%, 75% unless the person chose another size: zooms the whole page; below 60% a reset button stays on screen */
 const SCALE_DEFAULT = 75;
 const getScale = () => Math.max(20, Math.min(150, Math.round(+App.set.scale || SCALE_DEFAULT)));
@@ -9387,6 +9390,7 @@ function topBar(title, o = {}) {
   const n = App.me && !App.locked ? myTasks(App.me).filter(x => x.k !== 'escalated' || !['owner', 'admin'].includes(App.me.role)).length : 0;
   return `<header class="top">${o.back ? `<button class="ib" data-a="back" aria-label="${t('back')}">←</button>` : `<span aria-hidden="true" style="font-size:1.7rem;margin:0 2px">🛗</span>`}
   <h1>${esc(title)}</h1>
+  ${App.installEvt && !isInstalled() && App.route && App.route.name !== 'install' ? `<button class="ib" data-a="install" aria-label="${t('install_app')}" title="${t('install_app')}">📲</button>` : ''}
   ${!o.noBell && App.route && !['shareApp', 'sharePoster'].includes(App.route.name) ? `<button class="ib" data-a="nav" data-v="shareApp" aria-label="${t('sha_title')}" title="${t('sha_title')}">📤</button>` : ''}
   <button class="ib" data-a="sayPage" aria-label="${t('listen')}">🔊</button>
   <button class="ib" data-a="help" aria-label="${t('help')}">❓</button>
@@ -11504,6 +11508,7 @@ SCREENS.install = () => {
     ${App.installDone ? `<div class="okbox">✅ ${t('inst_done')}</div>` : ''}
     ${steps.length ? `<div class="card"><ol style="padding-left:22px;margin:0;font-size:1.05rem;line-height:1.7">${steps.map(x => `<li>${esc(x)}</li>`).join('')}</ol></div>` : ''}
     ${!web ? `<div class="card center"><b style="font-size:1.05rem;overflow-wrap:anywhere">${APP_URL}</b><br><button class="btn btn-sm" style="margin-top:8px" data-a="copyUrl">📋 ${t('inst_copy')}</button></div>` : ''}
+    <div style="height:10px"></div><button class="btn btn-big" data-a="installSkip">🌐 ${t('inst_skip')}</button><p class="small muted center" style="margin:4px 0 0">${t('inst_later')}</p>
     <div style="height:14px"></div><button class="btn" data-a="practice">🎓 ${t('setup_practice')}<br><small class="muted">${t('inst_practice')}</small></button></main>`;
 };
 SCREENS.boot = () => `<main class="wrap center" style="padding-top:30vh">${LOGO}<p>…</p></main>`;
@@ -15537,6 +15542,7 @@ const ACT = {
   shCopy: async () => { const m = shareMsg(App.me, App.form.shLang || LANG); try { await navigator.clipboard.writeText(m); toast(t('copied')); } catch (e) { const b = $('#shMsg'); if (b) { b.select(); document.execCommand('copy'); toast(t('copied')); } } },
   shShare: async () => { try { await navigator.share({ text: shareMsg(App.me, App.form.shLang || LANG) }); } catch (e) { /* cancelled */ } },
   shPoster: () => { App.form.shPoster = true; go('sharePoster'); },
+  installSkip: async () => { App.set.installSeen = true; await saveSettings(); toast(t('inst_later')); render(); },
   pinKey: async v => {
     const uid = App.route.p.uid, f = App.form, len = (S.users[uid] && S.users[uid].pinLen) || 4; f.pin = f.pin || '';
     if (v === '⌫') { f.pin = f.pin.slice(0, -1); render(); return; }
@@ -16067,7 +16073,7 @@ async function boot() {
     const l = document.createElement('link'); l.rel = 'manifest'; l.href = 'manifest.webmanifest'; document.head.appendChild(l);
     if (location.protocol === 'https:' && 'serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => { });
   }
-  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); App.installEvt = e; if (App.route.name === 'me' || installGate()) render(); });
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); App.installEvt = e; if (App.route) render(); });
   window.addEventListener('appinstalled', () => { App.installEvt = null; App.installDone = true; toast(t('installed_ok')); render(); });
   /* installed app: ask the phone to keep this app's data even when storage runs low */
   if (isInstalled() && navigator.storage && navigator.storage.persist) navigator.storage.persist().then(ok => { App.persisted = ok; }).catch(() => { });

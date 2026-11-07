@@ -1,4 +1,4 @@
-/* Real company use only inside the installed app; practice mode works in the browser. */
+/* In a browser the install screen is shown once; 'Continue in browser' then lets real work go on there. Practice works anywhere; the installed app never sees the screen. */
 const { chromium, APP } = require('./lib');
 const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log('ok -', m); };
 async function open(installed) {
@@ -20,6 +20,14 @@ async function open(installed) {
   assert(await page.evaluate(() => App.mode === 'practice' && App.route.name === 'login' && !!document.querySelector('[data-a="loginUser"]')), 'practice mode still works in the browser');
   await page.evaluate(() => ACT.exitPractice()); await page.waitForTimeout(300);
   assert(/Install the app/.test(await page.innerText('header')), 'leaving practice shows the install screen again');
+  /* ask once: "Continue in browser" opens the app, and the screen does not come back */
+  await page.click('[data-a="installSkip"]'); await page.waitForTimeout(300);
+  assert(await page.evaluate(() => App.route.name !== 'install' && !/Install the app/.test(document.querySelector('header') ? document.querySelector('header').innerText : '')), '"Continue in browser" opens the app');
+  await page.evaluate(() => go('newOrg')); await page.waitForTimeout(150);
+  assert(!!(await page.$('[data-a="createOrg"]')), 'real company setup now works in the browser');
+  await page.reload(); await page.waitForTimeout(800);
+  await page.evaluate(() => go('setup')); await page.waitForTimeout(200);
+  assert(!(await page.$('[data-a="copyUrl"]')) && !(await page.$('[data-a="installSkip"]')), 'after a reload the install screen is not shown again');
   if (errors.length) throw new Error(errors.join('; '));
   await browser.close();
 
