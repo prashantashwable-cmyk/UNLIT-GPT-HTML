@@ -58,7 +58,15 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert((await page.$$('#exitBox')).length === 1, 'asking twice does not stack boxes');
   await page.click('[data-a="exitApp"]'); await page.waitForTimeout(100);
   assert(await ev(`window._exit === 1`), 'Exit closes the app (Android)');
-  await page.evaluate(() => { App.exiting = false; delete window.AIECAndroid; });
+  /* in a browser: never walk back through the tab's history (that can land on GitHub's 404 page) */
+  await page.evaluate(() => { delete window.AIECAndroid; App.exiting = false; window._hist = 0; const g = history.go.bind(history); history.go = n => { window._hist++; }; window._close = window.close; window.close = () => {}; ACT.nav('home'); });
+  await page.waitForTimeout(100); await page.evaluate(() => exitAsk()); await page.waitForTimeout(100);
+  await page.click('[data-a="exitApp"]'); await page.waitForTimeout(500);
+  assert(await ev(`window._hist === 0 && App.route.name === 'closed'`) && /AIEC OS is closed/.test(await page.innerText('main')), 'in a browser, Exit shows "closed" and never leaves the app');
+  await page.click('[data-a="reopen"]'); await page.waitForTimeout(200);
+  assert(await ev(`App.route.name !== 'closed' && !App.exiting`), '"Open again" brings the app back');
+  assert(/AIEC-Elevator-OS\.html/.test(require('fs').readFileSync(require('path').join(__dirname, '..', '404.html'), 'utf8')), 'a wrong address on the site leads to the app (404.html)');
+  await page.evaluate(() => { App.exiting = false; });
   const mm = await miss(page); assert(!mm.length, 'no missing words' + (mm.length ? ': ' + mm.join(' ') : ''));
   const errs = errors.filter(e => !/net::|Failed to fetch|ERR_|nominatim|CORS policy|leaflet/i.test(e)); assert(!errs.length, 'no page errors' + (errs.length ? ': ' + errs.slice(0, 2).join(' | ') : ''));
   await browser.close(); console.log('NAV EASE PASSED');

@@ -3626,6 +3626,9 @@ const L = {
   sha_ref: ['Referred by', 'किसने भेजा', 'कोणी पाठवले'],
   inst_skip: ['Continue in browser', 'ब्राउज़र में जारी रखें', 'ब्राउझरमध्ये सुरू ठेवा'],
   inst_later: ['You can install later from 📲 in the top bar or from Me.', 'बाद में ऊपर 📲 या "मैं" से इंस्टॉल कर सकते हैं।', 'नंतर वरच्या 📲 मधून किंवा "मी" मधून इन्स्टॉल करू शकता.'],
+  cl_closed: ['AIEC OS is closed', 'AIEC OS बंद है', 'AIEC OS बंद आहे'],
+  cl_closed_d: ['You can now close this tab or swipe the app away. Your work is saved.', 'अब आप यह टैब बंद कर सकते हैं या ऐप हटा सकते हैं। आपका काम सेव है।', 'आता तुम्ही हा टॅब बंद करू शकता किंवा अ‍ॅप बाजूला सरकवू शकता. तुमचे काम जतन आहे.'],
+  cl_reopen: ['Open again', 'फिर से खोलें', 'पुन्हा उघडा'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -9045,7 +9048,7 @@ function render() {
   const r = App.route;
   App.pageSay = ''; App.pageHelp = '';
   let h;
-  const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr', 'splash', 'gate', 'door', 'priceGuess', 'shareApp', 'sharePoster', 'enquiry', 'joinReq', 'reqSent', 'codeLogin', 'restore', 'myReq'].includes(r.name) && !(r.name === 'wiz' && !App.me);
+  const gated = installGate() && !['welcome', 'lang', 'intro', 'install', 'qr', 'splash', 'gate', 'door', 'priceGuess', 'shareApp', 'sharePoster', 'closed', 'enquiry', 'joinReq', 'reqSent', 'codeLogin', 'restore', 'myReq'].includes(r.name) && !(r.name === 'wiz' && !App.me);
   const outer = !DRAW_MEMO; if (outer) DRAW_MEMO = new Map();
   try { h = gated ? SCREENS.install() : (SCREENS[r.name] || SCREENS.home)(r.p || {}); }
   catch (e) { console.error(e); h = `<main class="wrap"><div class="err">⚠️ ${esc(e.message)}</div><button class="btn btn-p" data-a="nav" data-v="home">🏠 ${t('nav_home')}</button></main>`; }
@@ -11806,6 +11809,7 @@ function shareHomeCard(u) {
   if (!u || App.set.shareHide) return '';
   return `<div class="card row" style="margin-top:12px;gap:8px"><span style="font-size:1.6rem">📣</span><span class="grow small">${t(u.role === 'customer' ? 'sha_home_cust' : 'sha_home')}</span><button class="btn btn-sm btn-p" data-a="nav" data-v="shareApp">${t('sha_btn')}</button></div>`;
 }
+SCREENS.closed = () => `<main class="wrap center" style="padding-top:22vh">${LOGO}<h2>${t('cl_closed')}</h2><p class="muted">${t('cl_closed_d')}</p><button class="btn btn-p btn-big" data-a="reopen">↩️ ${t('cl_reopen')}</button></main>`;
 SCREENS.sharePoster = () => {
   const u = App.me, link = shareLink(u); let qr = ''; try { qr = QR.svg(link, 320); } catch (e) { qr = ''; }
   return topBar(t('sha_poster'), { back: true }) + `<main class="wrap"><div class="row noprint"><button class="btn btn-p" data-a="print">🖨️ ${t('print_pdf')}</button></div>
@@ -15534,8 +15538,10 @@ const ACT = {
   logoutGo: () => { closeSheet(); ACT.logout(); },
   exitApp: () => { closeSheet(); App.exiting = true; flushAccess();
     if (window.AIECAndroid && window.AIECAndroid.exit) { try { window.AIECAndroid.exit(); return; } catch (e) { /* older app: fall through */ } }
+    /* never walk the tab's history: it can land on a page outside the app (e.g. GitHub's 404). Close if allowed, else a calm 'closed' screen */
     try { window.close(); } catch (e) { /* not allowed */ }
-    history.go(-Math.max(1, history.length - 1)); },
+    setTimeout(() => { if (!window.closed) { App.me = null; W = null; App.stack = []; go('closed', {}, { replace: true }); } }, 300); },
+  reopen: () => { App.exiting = false; go(App.mode === 'practice' ? 'login' : 'gate', {}, { replace: true }); },
   mapZoom: v => { const [k, id] = v.split('|'), svg = document.querySelector('#' + id + ' svg.map'); if (!svg) return; svgZoom(svg);
     if (k === 'reset') { const b = svg._base; svgSetView(svg, b[0], b[1], b[2]); } else svgZoomBy(svg, k === 'in' ? 1 / 1.5 : 1.5); },
   shLang: v => { App.form.shLang = v; render(); },
