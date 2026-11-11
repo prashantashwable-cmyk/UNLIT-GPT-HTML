@@ -1930,7 +1930,7 @@ const L = {
   stat_title: ['Permit, inspection and licence', 'परमिट, जाँच और लाइसेंस', 'परवानगी, तपासणी आणि परवाना'],
   stat_permit: ['Erection permit', 'इरेक्शन परमिट', 'उभारणी परवानगी'],
   stat_inspection: ['Lift Inspector visit', 'लिफ्ट इंस्पेक्टर जाँच', 'लिफ्ट निरीक्षक तपासणी'],
-  stat_licence: ['Lift licence', 'लिफ्ट लाइसेंस', 'लिफ्ट परवाना'],
+  stat_licence: ['Working licence (lift licence)', 'वर्किंग लाइसेंस (लिफ्ट लाइसेंस)', 'वर्किंग परवाना (लिफ्ट परवाना)'],
   stat_needed: ['The lift cannot be handed over for use until the Lift Inspector has passed it and the licence is recorded.', 'लिफ्ट इंस्पेक्टर की पास जाँच और लाइसेंस दर्ज होने तक लिफ्ट उपयोग के लिए नहीं सौंपी जा सकती।', 'लिफ्ट निरीक्षकाने पास केल्याशिवाय आणि परवाना नोंदल्याशिवाय लिफ्ट वापरासाठी सुपूर्द करता येत नाही.'],
   stat_needed_short: ['licence not recorded', 'लाइसेंस दर्ज नहीं', 'परवाना नोंदलेला नाही'],
   stat_note: ['These are records of government papers. The app does not issue permits or licences.', 'ये सरकारी काग़ज़ों के रिकॉर्ड हैं। ऐप परमिट या लाइसेंस जारी नहीं करता।', 'या सरकारी कागदपत्रांच्या नोंदी आहेत. ॲप परवानगी किंवा परवाना देत नाही.'],
@@ -3629,6 +3629,31 @@ const L = {
   cl_closed: ['AIEC OS is closed', 'AIEC OS बंद है', 'AIEC OS बंद आहे'],
   cl_closed_d: ['You can now close this tab or swipe the app away. Your work is saved.', 'अब आप यह टैब बंद कर सकते हैं या ऐप हटा सकते हैं। आपका काम सेव है।', 'आता तुम्ही हा टॅब बंद करू शकता किंवा अ‍ॅप बाजूला सरकवू शकता. तुमचे काम जतन आहे.'],
   cl_reopen: ['Open again', 'फिर से खोलें', 'पुन्हा उघडा'],
+  inc_entrapment: ['Someone was stuck in the lift', 'कोई लिफ्ट में फँसा', 'कोणी लिफ्टमध्ये अडकले'],
+  tk_report_accident: ['Report the accident to the Lift Inspector and police (24 hours)', 'दुर्घटना की सूचना लिफ्ट इंस्पेक्टर और पुलिस को दें (24 घंटे)', 'अपघाताची माहिती लिफ्ट इन्स्पेक्टर आणि पोलिसांना द्या (24 तास)'],
+  tk_insurance_due: ['Lift insurance ending: renew it', 'लिफ्ट बीमा खत्म हो रहा है: नवीनीकरण करें', 'लिफ्ट विमा संपत आहे: नूतनीकरण करा'],
+  stat_insurance: ['Third-party insurance', 'थर्ड-पार्टी बीमा', 'थर्ड-पार्टी विमा'],
+  s_stat_insurance: ['Type the insurance policy details of this lift.', 'इस लिफ्ट की बीमा पॉलिसी का विवरण लिखें।', 'या लिफ्टच्या विमा पॉलिसीचा तपशील लिहा.'],
+  ins_insurer: ['Insurance company', 'बीमा कंपनी', 'विमा कंपनी'],
+  ins_no: ['Policy number', 'पॉलिसी नंबर', 'पॉलिसी क्रमांक'],
+  ins_cover: ['Cover amount', 'कवर राशि', 'कव्हर रक्कम'],
+  act_note: ['Maharashtra Lifts, Escalators and Moving Walks Act 2017 is in force from 1 Nov 2026, with Rules 2026. Check each requirement with your lawyer; this app keeps records, it does not give legal approval.', 'महाराष्ट्र लिफ्ट, एस्केलेटर और मूविंग वॉक अधिनियम 2017, 1 नवंबर 2026 से लागू है, नियम 2026 के साथ। हर ज़रूरत अपने वकील से जाँचें; यह ऐप रिकॉर्ड रखता है, कानूनी मंज़ूरी नहीं देता।', 'महाराष्ट्र लिफ्ट, सरकते जिने आणि मूव्हिंग वॉक अधिनियम 2017, 1 नोव्हेंबर 2026 पासून लागू आहे, नियम 2026 सह. प्रत्येक गरज तुमच्या वकिलाकडून तपासा; हे अ‍ॅप नोंदी ठेवते, कायदेशीर मंजुरी देत नाही.'],
+  lb_title: ['Lift log book', 'लिफ्ट लॉग बुक', 'लिफ्ट लॉग बुक'],
+  lb_closed: ['Incident closed', 'घटना बंद', 'घटना बंद'],
+  lb_job: ['Job number', 'काम नंबर', 'काम क्रमांक'],
+  lb_lift: ['Lift code', 'लिफ्ट कोड', 'लिफ्ट कोड'],
+  lb_date: ['Date', 'तारीख', 'दिनांक'],
+  lb_what: ['What happened', 'क्या हुआ', 'काय झाले'],
+  s_acc_report: ['Record when and to whom the accident was reported.', 'दुर्घटना की सूचना कब और किसे दी, दर्ज करें।', 'अपघाताची माहिती केव्हा आणि कोणाला दिली ते नोंदवा.'],
+  acc_left: ['{n} hours left to report', 'सूचना देने के लिए {n} घंटे बाकी', 'माहिती देण्यासाठी {n} तास बाकी'],
+  acc_late: ['Report is {n} hours late: report now', 'सूचना {n} घंटे देर से: अभी दें', 'माहिती {n} तास उशिरा: आत्ता द्या'],
+  acc_d: ['As the Rules 2026 are reported, an accident must be reported within 24 hours to the Lift Inspector and the local police. The lift stays stopped until it is made safe and approved.', 'नियम 2026 के अनुसार (जैसा बताया गया), दुर्घटना की सूचना 24 घंटे में लिफ्ट इंस्पेक्टर और स्थानीय पुलिस को देनी है। सुरक्षित होने और मंज़ूरी तक लिफ्ट बंद रहेगी।', 'नियम 2026 नुसार (नोंदवल्याप्रमाणे), अपघाताची माहिती 24 तासांत लिफ्ट इन्स्पेक्टर आणि स्थानिक पोलिसांना द्यायची आहे. सुरक्षित होऊन मंजुरी मिळेपर्यंत लिफ्ट बंद राहील.'],
+  acc_inspector: ['Lift Inspector: name, office and reference', 'लिफ्ट इंस्पेक्टर: नाम, कार्यालय और संदर्भ', 'लिफ्ट इन्स्पेक्टर: नाव, कार्यालय आणि संदर्भ'],
+  acc_police: ['Police station and reference', 'पुलिस स्टेशन और संदर्भ', 'पोलीस ठाणे आणि संदर्भ'],
+  acc_at: ['Reported at (date and time)', 'सूचना दी (तारीख और समय)', 'माहिती दिली (दिनांक आणि वेळ)'],
+  acc_done: ['Reported to Inspector and police', 'इंस्पेक्टर और पुलिस को सूचना दी', 'इन्स्पेक्टर आणि पोलिसांना माहिती दिली'],
+  err_report_first: ['First record the report to the Lift Inspector and police.', 'पहले लिफ्ट इंस्पेक्टर और पुलिस को दी गई सूचना दर्ज करें।', 'आधी लिफ्ट इन्स्पेक्टर आणि पोलिसांना दिलेली माहिती नोंदवा.'],
+  ev_INCIDENT_REPORTED: ['Accident reported to authorities', 'दुर्घटना की सूचना अधिकारियों को दी', 'अपघाताची माहिती अधिकाऱ्यांना दिली'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5575,6 +5600,8 @@ const ISC = [[1, 1], [2, 1], [3, 1], [4, 1], [5, 0], [6, 0], [7, 0], [8, 0], [9,
   [32, 11, 'm'], [33, 11], [34, 11], [35, 11, 'm'], [36, 11], [37, 11, 'm'], [38, 11], [39, 11], [40, 0], [41, 0], [42, -1]];
 /* records made before these rules started stay valid */
 const ISC_FROM = '2026-11-01T00:00:00.000Z';
+/* the Maharashtra Lifts, Escalators and Moving Walks Act 2017 is in force from 1 Nov 2026 (Gazette 22 Oct 2026); Rules 2026 notified 28 Oct 2026 */
+const ACT_FROM = '2026-11-01T00:00:00.000Z';
 /* site check details (floor heights, door opening), "could not check", "cannot be fitted", drawing approval: from this date */
 const SURVEY_FROM = '2026-11-04T00:00:00.000Z';
 /* after handover: test values as numbers, breakdown accept and root cause, "watch" parts at service visits */
@@ -5667,10 +5694,13 @@ const SAFETY_ITEMS = [['ppe', '⛑️'], ['scaffold', '🪜'], ['barricade', '�
 /* the selfie is asked for checks made from the day it was added; earlier checks stay valid with their four photos */
 const safetyNeeded = t => SAFETY_ITEMS.filter(([k]) => (k !== 'selfie' || t >= CONTRACT_FROM) && (k !== 'loto' || t >= LIFE_FROM));
 const QC_CRITICAL = ['earthing', 'brakes', 'governor', 'interlocks'];
-const INC_TYPES = [['hazard', '⚠️'], ['injury', '🩹'], ['near_miss', '😮'], ['equipment', '🔧'], ['other', '🚨']];
-const STOP_TYPES = ['hazard', 'sos', 'injury'];
+const INC_TYPES = [['hazard', '⚠️'], ['injury', '🩹'], ['entrapment', '🛗'], ['near_miss', '😮'], ['equipment', '🔧'], ['other', '🚨']];
+/* Maharashtra Lifts Rules 2026 (as reported; Gazette wording to be checked): an accident is reported to the Lift Inspector and local police within 24 hours */
+const REPORT_TYPES = ['injury', 'entrapment'];
+const reportDue = i => REPORT_TYPES.includes(i.type) && !i.reported;
+const STOP_TYPES = ['hazard', 'sos', 'injury', 'entrapment'];
 /* statutory records per lift (who applies is an Owner decision); reasons work can be put on hold; stage moves back the office may make */
-const STAT_ITEMS = [['permit', '📝'], ['inspection', '🏛️'], ['licence', '📜']];
+const STAT_ITEMS = [['permit', '📝'], ['inspection', '🏛️'], ['licence', '📜'], ['insurance', '🛡️']];
 const HOLD_REASONS = [['customer', '🏠'], ['supplier', '🏭'], ['weather', '🌧️'], ['permit', '📝'], ['defect', '🛠️'], ['payment', '💰']];
 /* installation steps another technician must look at before the next step: doors (interlocks), wiring (earthing), safety devices */
 const PEER_STEPS = [8, 9, 10];
@@ -7050,8 +7080,17 @@ const RULES = {
       const i = P.incidents.find(x => x.id === ev.data.iid), d = ev.data;
       if (!i || !i.open) return 'err_already';
       if (!(d.note || '').trim() || !(d.cause || '').trim() || !(d.fix || '').trim()) return 'err_inc_close';
+      if (reportDue(i) && ev.t >= ACT_FROM) return 'err_report_first';
       /* a stop-work incident reopens work only with a photo of the place made safe */
       return STOP_TYPES.includes(i.type) ? need(ev_(d).length >= 1, 'err_photos', { n: 1 }) : null;
+    }
+  },
+  INCIDENT_REPORTED: {
+    roles: ['admin', 'owner'], project: true, check: (S, ev, u, P) => {
+      const i = P.incidents.find(x => x.id === ev.data.iid), d = ev.data;
+      if (!i || !REPORT_TYPES.includes(i.type)) return 'err_choose';
+      if (i.reported) return 'err_already';
+      return need((d.inspector || '').trim() && (d.police || '').trim() && /^\d{4}-\d\d-\d\dT\d\d:\d\d/.test(d.at || ''), 'err_fill');
     }
   },
   /* the customer names a person who receives the material for them (with a letter or ID as proof) */
@@ -7364,6 +7403,8 @@ const RULES = {
         }
         return d.result === 'fail' ? need((d.note || '').trim(), 'err_items') : null;
       }
+      /* third-party insurance of the lift (Act section 23): insurer, policy, valid till */
+      if (d.item === 'insurance') return need((d.insurer || '').trim() && (d.no || '').trim() && ok(d.expiry) && d.expiry > safeDay(ev.t), 'err_fill');
       if (d.item === 'licence') {
         if (!statOf(P).inspection || statOf(P).inspection.result !== 'pass') return 'err_inspection_first';
         return need((d.no || '').trim() && (d.holder || '').trim() && ok(d.expiry) && d.expiry > safeDay(ev.t), 'err_fill');
@@ -8098,6 +8139,7 @@ function apply(S, ev) {
       setStage(P, 'arrived', ev);
       break;
     }
+    case 'INCIDENT_REPORTED': { const i = P.incidents.find(x => x.id === d.iid); i.reported = { inspector: d.inspector.trim(), police: d.police.trim(), at: d.at, note: (d.note || '').trim(), t: ev.t, by: ev.by }; break; }
     case 'INCIDENT_RAISED': P.incidents.push({ id: 'I' + ev.id, type: d.type || 'other', t: ev.t, by: ev.by, note: d.note, witnesses: d.witnesses || '', action: d.action || '', ev: ev_(d).map(e => e.id), open: true }); break;
     case 'INCIDENT_RESOLVED': { const i = P.incidents.find(x => x.id === d.iid); i.open = false; i.resolution = { t: ev.t, by: ev.by, note: d.note, cause: d.cause || '', fix: d.fix || '', ev: ev_(d).map(e => e.id) }; if (i.sid && S.sos[i.sid] && S.sos[i.sid].open) Object.assign(S.sos[i.sid], { open: false, closed: { t: ev.t, by: ev.by, note: d.note } }); break; }
     case 'SAFETY_CHECKED': { const sf = P.safety = P.safety || {}, day = safeDay(ev.t), old = sf[day];
@@ -8534,6 +8576,8 @@ function needs0(P) {
   }
   for (const b of P.blockers) if (b.open) add('resolve_blocker', uniq([b.role, 'admin']), { bid: b.id, urgent: true, since: b.t });
   for (const i of P.incidents) if (i.open) add('resolve_incident', ['admin', 'owner'], { iid: i.id, urgent: true, since: i.t, shared: i.type === 'injury' });
+  for (const i of P.incidents) if (reportDue(i) && i.t >= ACT_FROM) add('report_accident', ['admin', 'owner'], { iid: i.id, urgent: true, alarm: true, shared: true, since: i.t, overdue: Date.now() - Date.parse(i.t) > 24 * 3600e3 });
+  { const ins = statOf(P).insurance; if (ins && P.stage !== 'lost') { const d = Math.round((new Date(ins.expiry + 'T12:00:00') - new Date(todayStr() + 'T12:00:00')) / 864e5); if (d <= (S.config.licWarnDays || 60)) add('insurance_due', statRoles(), { uids: statLead() ? [statLead()] : [], urgent: d <= 7, overdue: d < 0 }); } }
   /* statutory records, holds and disputes */
   if (['site_prep', 'qc_site', 'site_fix', 'site_ok', 'material_order', 'dispatched', 'arrived', 'installing'].includes(P.stage) && !statOf(P).permit) add('record_permit', statRoles(), { uids: statLead() ? [statLead()] : [], urgent: P.stage === 'installing' && permitMissing(P) });
   if (P.stage === 'handover' && S.config.licenceGate && !liftLicenceOk(P)) add('record_licence', statRoles(), { uids: statLead() ? [statLead()] : [], urgent: true, item: statOf(P).inspection && statOf(P).inspection.result === 'pass' ? 'licence' : 'inspection' });
@@ -9444,7 +9488,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', dev_alert: '📱', dispatch_lot: '🚚', lot_arrival: '📍', wait_lot: '⏳', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', dev_alert: '📱', report_accident: '🚓', insurance_due: '🛡️', dispatch_lot: '🚚', lot_arrival: '📍', wait_lot: '⏳', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -11210,8 +11254,9 @@ function statCard(P) {
   const st = statOf(P), l = st.licence, d = liftLicenceDays(P), i = st.inspection;
   const rows = [['stat_permit', st.permit ? `✅ ${esc(st.permit.no)} · ${fmtD(st.permit.date)}` : '—'],
     ['stat_inspection', i ? `${i.result === 'pass' ? '✅' : '❌'} ${fmtD(i.date)}${i.note ? ' · ' + esc(i.note) : ''}${i.result === 'fail' && (i.points || []).length ? '<br>' + i.points.map(n => '📋 ' + n + '. ' + esc(t('isc_' + n))).join('<br>') : ''}${i.result === 'fail' && i.owner ? '<br>🛠️ ' + t('insp_rework_by', { who: t('r_' + i.owner) }) : ''}` : '—'],
-    ['stat_licence', l ? `${d != null && d < 0 ? '❌' : d != null && d <= (S.config.licWarnDays || 60) ? '⚠️' : '✅'} ${esc(l.no)} · ${esc(l.holder)} · ${t('lic_expiry')}: ${fmtD(l.expiry)}` : '—']];
-  return `<div class="card"><h3>📜 ${t('stat_title')}</h3>${statBars(P)}${kv(rows)}${P.stage === 'handover' && S.config.licenceGate && !liftLicenceOk(P) ? `<div class="warnbox">📜 ${t('stat_needed')}</div>` : ''}<p class="small muted">${t('stat_note')}</p>${['owner', 'admin', 'qc'].includes(App.me.role) ? `<button class="btn btn-sm" data-a="nav" data-v="stattracker">📋 ${t('stat_tracker')}</button>` : ''}</div>`;
+    ['stat_licence', l ? `${d != null && d < 0 ? '❌' : d != null && d <= (S.config.licWarnDays || 60) ? '⚠️' : '✅'} ${esc(l.no)} · ${esc(l.holder)} · ${t('lic_expiry')}: ${fmtD(l.expiry)}` : '—'],
+    ['stat_insurance', st.insurance ? `${st.insurance.expiry < todayStr() ? '❌' : '✅'} ${esc(st.insurance.insurer)} · ${esc(st.insurance.no)}${st.insurance.cover ? ' · ' + esc(st.insurance.cover) : ''} · ${t('lic_expiry')}: ${fmtD(st.insurance.expiry)}` : '—']];
+  return `<div class="card"><h3>📜 ${t('stat_title')}</h3>${statBars(P)}${kv(rows)}${P.stage === 'handover' && S.config.licenceGate && !liftLicenceOk(P) ? `<div class="warnbox">📜 ${t('stat_needed')}</div>` : ''}<p class="small muted">${t('stat_note')}</p><div class="note small">⚖️ ${t('act_note')}</div><button class="btn btn-sm" data-a="nav2" data-v="logbook|${P.id}">📒 ${t('lb_title')}</button>${['owner', 'admin', 'qc'].includes(App.me.role) ? `<button class="btn btn-sm" data-a="nav" data-v="stattracker">📋 ${t('stat_tracker')}</button>` : ''}</div>`;
 }
 WIZ.countersign = {
   title: 'cs_title', save: 'save', noDraft: true, init: () => ({ signer: '', sig: null }),
@@ -11233,20 +11278,47 @@ WIZ.recheckReview = {
     check: c => c.note.trim() ? null : 'err_reason' }],
   async finish(c, P) { const r = await run([['QC_RECHECK_REVIEWED', P.id, { note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
 };
+WIZ.accReport = {
+  title: 'tk_report_accident', save: 'save', noDraft: true, init: () => ({ inspector: '', police: '', at: new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 16), note: '' }),
+  steps: [{ id: 'r', icon: '🚓', say: 's_acc_report', body: (c, P) => { const i = P.incidents.find(x => x.id === W.opts.iid) || {}, left = 24 - Math.floor((Date.now() - Date.parse(i.t)) / 3600e3);
+      return `<div class="${left < 0 ? 'err' : 'warnbox'}">⏰ ${left < 0 ? t('acc_late', { n: -left }) : t('acc_left', { n: left })}<br><span class="small">${esc(t('inc_' + i.type))} · ${fmtD(i.t, true)} · ${esc(i.note || '')}</span></div>
+        <p class="small">${t('acc_d')}</p>` + inp('inspector', 'acc_inspector', { mic: true }) + inp('police', 'acc_police', { mic: true }) + inp('at', 'acc_at', { type: 'datetime-local' }) + inp('note', 'f_note', { area: true, opt: true }); },
+    check: c => c.inspector.trim() && c.police.trim() && c.at ? null : 'err_fill' }],
+  async finish(c, P) { const r = await run([['INCIDENT_REPORTED', P.id, { iid: W.opts.iid, inspector: c.inspector.trim(), police: c.police.trim(), at: c.at, note: c.note.trim() }]]); return r.ok ? doneRes(P.id, 'saved_item') : r; }
+};
+/* digital log book of one lift (Act section 24): everything that happened to it, in date order, printable */
+function logEntries(P) {
+  const out = [], st = statOf(P);
+  (st.history || []).forEach(x => out.push({ t: x.t, i: (STAT_ITEMS.find(s => s[0] === x.item) || [])[1] || '📜', w: t('stat_' + x.item), d: [x.no, x.result && t('stat_' + x.result), x.insurer, x.expiry && t('lic_expiry') + ': ' + fmtD(x.expiry), x.note].filter(Boolean).join(' · '), by: x.by }));
+  Object.entries(P.service || {}).forEach(([n, x]) => out.push({ t: x.t, i: '🛠️', w: t('amc_visit_n', { n: +n + 1 }), d: x.note || '', by: x.by }));
+  (P.tickets || []).forEach(x => out.push({ t: x.t, i: '🎫', w: t('tkind_' + x.kind), d: (x.note || '') + (x.status === 'closed' ? ' · ✅' : ''), by: x.by }));
+  (P.incidents || []).forEach(x => { out.push({ t: x.t, i: '🚨', w: t('inc_' + x.type), d: x.note || '', by: x.by }); if (x.reported) out.push({ t: x.reported.t, i: '🚓', w: t('acc_done'), d: x.reported.inspector + ' · ' + x.reported.police, by: x.reported.by }); if (x.resolution) out.push({ t: x.resolution.t, i: '✅', w: t('lb_closed'), d: [x.resolution.cause, x.resolution.fix].filter(Boolean).join(' · '), by: x.resolution.by }); });
+  if (P.done) out.push({ t: P.done.t, i: '🔑', w: t('st_amc'), d: '', by: P.done.by });
+  return out.filter(x => x.t).sort((a, b) => a.t < b.t ? -1 : 1);
+}
+SCREENS.logbook = ({ uid }) => {
+  const P = S.projects[uid], u = App.me; if (!P || !canSee(u, P)) return SCREENS.home();
+  const es = logEntries(P);
+  return topBar(t('lb_title'), { back: true }) + `<main class="wrap"><div class="row noprint"><button class="btn btn-p" data-a="print">🖨️ ${t('print_pdf')}</button></div>
+    <div class="card doc"><h2 style="margin-top:0">📒 ${t('lb_title')}</h2>${kv([['customer', esc(P.contact.name || '')], ['site', esc(P.site.address || '')], ['lb_job', esc(jobNo(P))], ['lb_lift', esc((P.lift || {}).code || '')]])}
+    <table class="mx" style="margin-top:8px"><tr><th>${t('lb_date')}</th><th>${t('lb_what')}</th><th>${t('by')}</th></tr>${es.map(x => `<tr><td>${fmtD(x.t, true)}</td><td>${x.i} <b>${esc(x.w)}</b>${x.d ? '<br><span class="small">' + esc(x.d) + '</span>' : ''}</td><td class="small">${esc(userName(x.by))}</td></tr>`).join('') || `<tr><td colspan="3">${t('nothing_here')}</td></tr>`}</table>
+    <p class="small muted">${t('act_note')}</p></div></main>`;
+};
 WIZ.statutory = {
   title: 'stat_title', save: 'save', noDraft: true,
-  init: (P, o) => ({ item: o.item || '', no: '', date: todayStr(), result: '', note: '', points: [], owner: '', holder: P.partner ? userName(P.partner) : (S.org ? S.org.name : ''), expiry: '', ph: [] }),
+  init: (P, o) => ({ item: o.item || '', insurer: '', cover: '', no: '', date: todayStr(), result: '', note: '', points: [], owner: '', holder: P.partner ? userName(P.partner) : (S.org ? S.org.name : ''), expiry: '', ph: [] }),
   steps: [
     { id: 'item', icon: '📜', say: 's_stat_item', skip: () => !!W.opts.item, body: () => tiles('item', STAT_ITEMS.map(([k, i]) => [k, i, 'stat_' + k]), 'one'), check: c => c.item ? null : 'err_choose' },
     { id: 'd', icon: '📝', say: c => t('s_stat_' + c.item), body: c => c.item === 'permit' ? inp('no', 'stat_no') + inp('date', 'stat_date', { type: 'date' }) + photoSlot('ph', 'stat_photo', 0, { tag: 'permit' })
         : c.item === 'inspection' ? inp('date', 'stat_date', { type: 'date' }) + tiles('result', [['pass', '✅', 'stat_pass'], ['fail', '❌', 'stat_fail']], 'one') + inp('note', c.result === 'fail' ? 'stat_fixes' : 'f_note', { area: true, mic: true, opt: c.result !== 'fail' })
           + (c.result === 'fail' ? `<h3>${t('insp_owner')}</h3>` + tiles('owner', [['tech', ROLE_ICON.tech, 'r_tech'], ['supplier', ROLE_ICON.supplier, 'r_supplier'], ['admin', ROLE_ICON.admin, 'r_admin']], 'three')
             + `<h3>${t('insp_points')}</h3><div class="card">${ISC.filter(x => x[1] >= 0).map(([n]) => `<button class="list-item" style="width:100%;background:none;border:0;text-align:left" data-a="toggleIn" data-k="points" data-v="${n}" aria-pressed="${c.points.includes(String(n))}"><span>${c.points.includes(String(n)) ? '☑️' : '⬜'}</span><span class="grow small">${n}. ${esc(t('isc_' + n))}</span></button>`).join('')}</div>` : '') + photoSlot('ph', 'stat_photo', 0, { tag: 'inspection' })
+        : c.item === 'insurance' ? inp('insurer', 'ins_insurer', { mic: true }) + inp('no', 'ins_no') + inp('cover', 'ins_cover', { opt: true }) + inp('expiry', 'lic_expiry', { type: 'date' }) + photoSlot('ph', 'stat_photo', 0, { tag: 'insurance' })
         : inp('no', 'lic_no') + inp('holder', 'lic_holder', { mic: true }) + inp('expiry', 'lic_expiry', { type: 'date' }) + photoSlot('ph', 'stat_photo', 0, { tag: 'licence' }) + `<div class="note">${t('stat_holder_note')}</div>`,
-      check: c => c.item === 'inspection' ? (!c.result ? 'err_choose' : c.result === 'fail' && !c.note.trim() ? 'err_items' : c.result === 'fail' && !c.owner ? 'err_choose' : null) : c.item === 'licence' ? (!c.no.trim() || !c.holder.trim() ? 'err_fill' : /^\d{4}-\d\d-\d\d$/.test(c.expiry) ? null : 'err_date') : (!c.no.trim() ? 'err_fill' : null) }
+      check: c => c.item === 'inspection' ? (!c.result ? 'err_choose' : c.result === 'fail' && !c.note.trim() ? 'err_items' : c.result === 'fail' && !c.owner ? 'err_choose' : null) : c.item === 'licence' ? (!c.no.trim() || !c.holder.trim() ? 'err_fill' : /^\d{4}-\d\d-\d\d$/.test(c.expiry) ? null : 'err_date') : c.item === 'insurance' ? (!c.insurer.trim() || !c.no.trim() ? 'err_fill' : /^\d{4}-\d\d-\d\d$/.test(c.expiry) && c.expiry > todayStr() ? null : 'err_date') : (!c.no.trim() ? 'err_fill' : null) }
   ],
   async finish(c, P) {
-    const data = c.item === 'permit' ? { no: c.no.trim(), date: c.date } : c.item === 'inspection' ? Object.assign({ date: c.date, result: c.result, note: c.note.trim() }, c.result === 'fail' ? { owner: c.owner, points: c.points.map(Number) } : {}) : { no: c.no.trim(), holder: c.holder.trim(), expiry: c.expiry };
+    const data = c.item === 'permit' ? { no: c.no.trim(), date: c.date } : c.item === 'inspection' ? Object.assign({ date: c.date, result: c.result, note: c.note.trim() }, c.result === 'fail' ? { owner: c.owner, points: c.points.map(Number) } : {}) : c.item === 'insurance' ? { insurer: c.insurer.trim(), no: c.no.trim(), cover: c.cover.trim(), expiry: c.expiry } : { no: c.no.trim(), holder: c.holder.trim(), expiry: c.expiry };
     const r = await run([['STATUTORY_SET', P.id, Object.assign({ item: c.item, ev: c.ph }, data)]]); return r.ok ? doneRes(P.id, 'what_stat_saved') : r;
   }
 };
@@ -14432,7 +14504,7 @@ SCREENS.auto = () => {
 /* ---------- office queue (exceptions first) ---------- */
 const EXC_SEV = {
   sos: 'critical',
-  sla_breach: 'high', lift_licence_due: 'high', record_licence: 'high', licence_renew: 'high', record_permit: 'high', po_declined: 'high', access_alert: 'high', pay_dispute: 'high', resolve_incident: 'high', verify_payment: 'medium',
+  sla_breach: 'high', lift_licence_due: 'high', insurance_due: 'high', report_accident: 'critical', record_licence: 'high', licence_renew: 'high', record_permit: 'high', po_declined: 'high', access_alert: 'high', pay_dispute: 'high', resolve_incident: 'high', verify_payment: 'medium',
   second_approval: 'medium', po_late: 'medium', decide_claim: 'medium', strike_appeal: 'medium', hold_request: 'medium', dispute_open: 'medium', resolve_blocker: 'medium', refund_decide: 'medium', approve_key: 'medium', approve_member: 'medium', assign_ticket: 'medium', suspend_review: 'medium',
   clock_gap: 'low', check_docs: 'low', onb_profile: 'low', review_meeting: 'low', post_nobody: 'low', review_lead: 'low'
 };
@@ -15206,7 +15278,7 @@ function openTask(n) {
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), dispatch_lot: () => wiz('dispatch', pid, { lot: n.lot }), lot_arrival: () => wiz('arrival', pid, { lot: n.lot }), wait_lot: () => go('project', { pid }), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
-    lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
+    lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), insurance_due: () => wiz('statutory', pid, { item: 'insurance' }), report_accident: () => wiz('accReport', pid, { iid: n.iid }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
     sign_handover: () => go('cl', { pid, kind: 'handover' }), complete_handover: () => go('cl', { pid, kind: 'handover' }),
     resolve_blocker: () => wiz('resolve', pid, { bid: n.bid }), resolve_incident: () => wiz('incident', pid, { iid: n.iid }),
