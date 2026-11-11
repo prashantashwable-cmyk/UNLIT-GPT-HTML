@@ -3764,6 +3764,130 @@ const L = {
   kpi_fin_int: ['Finance interest (with consent)', 'फाइनेंस रुचि (सहमति सहित)', 'फायनान्स रस (संमतीसह)'],
   kpi_fin_ref: ['Referred to a bank', 'बैंक को रेफ़र', 'बँकेला रेफर'],
   kpi_fin_conv: ['Referral to loan paid', 'रेफ़रल से लोन मिला', 'रेफरल ते कर्ज मिळाले'],
+  cfg_commRate: ['Marketplace commission (% of each confirmed partner payment)', 'मार्केटप्लेस कमीशन (हर पक्के पार्टनर भुगतान का %)', 'मार्केटप्लेस कमिशन (प्रत्येक पक्क्या भागीदार पेमेंटचा %)'],
+  mkt_title: ['Marketplace job', 'मार्केटप्लेस काम', 'मार्केटप्लेस काम'],
+  mkt_offer: ['Instead of an AIEC quotation, 2-3 licensed partner companies can quote; the customer compares, picks, signs with and pays the partner.', 'AIEC कोटेशन की जगह 2-3 लाइसेंसधारी पार्टनर कंपनियाँ कोटेशन दे सकती हैं; ग्राहक तुलना कर चुनता है, पार्टनर से अनुबंध कर उसे भुगतान करता है।', 'AIEC कोटेशनऐवजी 2-3 परवानाधारक भागीदार कंपन्या कोटेशन देऊ शकतात; ग्राहक तुलना करून निवडतो, भागीदाराशी करार करून त्याला पैसे देतो.'],
+  mkt_make: ['Make this a Marketplace job', 'इसे मार्केटप्लेस काम बनाएँ', 'हे मार्केटप्लेस काम करा'],
+  mkt_model_d: ['Marketplace: the customer signs with and pays the chosen partner. AIEC checks the partners, keeps the records and earns a commission on each payment the customer or Finance confirms.', 'मार्केटप्लेस: ग्राहक चुने गए पार्टनर से अनुबंध कर उसे भुगतान करता है। AIEC पार्टनर जाँचता है, रिकॉर्ड रखता है और ग्राहक या फाइनेंस द्वारा पक्के हर भुगतान पर कमीशन लेता है।', 'मार्केटप्लेस: ग्राहक निवडलेल्या भागीदाराशी करार करून त्याला पैसे देतो. AIEC भागीदार तपासते, नोंदी ठेवते आणि ग्राहक किंवा फायनान्सने पक्क्या केलेल्या प्रत्येक पेमेंटवर कमिशन घेते.'],
+  mkt_agree_note: ['Needs a signed Partner Network Agreement and customer Marketplace Terms (from your lawyer or CA). The app only keeps the records.', 'हस्ताक्षरित पार्टनर नेटवर्क एग्रीमेंट और ग्राहक मार्केटप्लेस शर्तें चाहिए (आपके वकील या CA से)। ऐप सिर्फ़ रिकॉर्ड रखता है।', 'सही केलेला पार्टनर नेटवर्क करार आणि ग्राहक मार्केटप्लेस अटी हव्यात (तुमच्या वकील किंवा CA कडून). अ‍ॅप फक्त नोंदी ठेवते.'],
+  mkt_model_m: ['Marketplace (partners quote)', 'मार्केटप्लेस (पार्टनर कोटेशन)', 'मार्केटप्लेस (भागीदार कोटेशन)'],
+  mkt_model_a: ['Keep as AIEC contract', 'AIEC अनुबंध ही रखें', 'AIEC करारच ठेवा'],
+  s_mkt_model: ['Choose how this job is sold.', 'चुनें कि यह काम कैसे बेचा जाएगा।', 'हे काम कसे विकायचे ते निवडा.'],
+  mkt_send: ['Ask partners to quote', 'पार्टनर से कोटेशन माँगें', 'भागीदारांकडून कोटेशन मागवा'],
+  mkt_rfq_d: ['Choose 2 or 3 companies. Only companies with a valid licence, active status and insurance can be chosen.', '2 या 3 कंपनियाँ चुनें। सिर्फ़ वैध लाइसेंस, सक्रिय स्थिति और बीमा वाली कंपनियाँ।', '2 किंवा 3 कंपन्या निवडा. फक्त वैध परवाना, सक्रिय स्थिती आणि विमा असलेल्या कंपन्या.'],
+  s_mkt_rfq: ['Tick 2 or 3 partner companies.', '2 या 3 पार्टनर कंपनियों पर टिक करें।', '2 किंवा 3 भागीदार कंपन्यांवर टिक करा.'],
+  err_mkt_23: ['Choose 2 or 3 different companies.', '2 या 3 अलग कंपनियाँ चुनें।', '2 किंवा 3 वेगळ्या कंपन्या निवडा.'],
+  err_mkt_100: ['The payment parts must add up to 100%.', 'भुगतान हिस्से मिलकर 100% होने चाहिए।', 'पेमेंटचे भाग मिळून 100% व्हायला हवेत.'],
+  err_mkt_only: ['This is not a Marketplace job.', 'यह मार्केटप्लेस काम नहीं है।', 'हे मार्केटप्लेस काम नाही.'],
+  err_mkt_has_quote: ['An AIEC quotation already exists for this job.', 'इस काम का AIEC कोटेशन पहले से है।', 'या कामाचे AIEC कोटेशन आधीच आहे.'],
+  err_mkt_unpaid: ['Every payment part must be confirmed first.', 'पहले हर भुगतान हिस्सा पक्का होना चाहिए।', 'आधी प्रत्येक पेमेंट भाग पक्का व्हायला हवा.'],
+  err_self_verify: ['The person who recorded a payment cannot confirm it.', 'जिसने भुगतान दर्ज किया वह उसे पक्का नहीं कर सकता।', 'ज्याने पेमेंट नोंदवले तो ते पक्के करू शकत नाही.'],
+  mkt_rfq_to: ['Sent to {n} partners on {d}', '{d} को {n} पार्टनर को भेजा', '{d} रोजी {n} भागीदारांना पाठवले'],
+  mkt_quotes_in: ['{n} quotes in', '{n} कोटेशन आए', '{n} कोटेशन आली'],
+  mkt_picked: ['Customer picked {c} on {d}; waiting for the company to confirm', 'ग्राहक ने {d} को {c} चुना; कंपनी की पुष्टि बाकी', 'ग्राहकाने {d} रोजी {c} निवडले; कंपनीची पुष्टी बाकी'],
+  mkt_accepted: ['{c} took the job on {d}', '{c} ने {d} को काम लिया', '{c} ने {d} रोजी काम घेतले'],
+  mkt_compare: ['Compare quotes', 'कोटेशन की तुलना', 'कोटेशनची तुलना'],
+  mkt_compare_d: ['Look at what each price includes, the time, warranty and each company\'s record. They are listed by record, not by price.', 'देखें कि हर कीमत में क्या शामिल है, समय, वारंटी और कंपनी का रिकॉर्ड। सूची रिकॉर्ड से है, कीमत से नहीं।', 'प्रत्येक किमतीत काय आहे, वेळ, वॉरंटी आणि कंपनीची नोंद पाहा. यादी नोंदीनुसार आहे, किमतीनुसार नाही.'],
+  mkt_mixed: ['These quotes do not cover the same work (civil or electrical differ). Compare carefully: the lower total may leave work for you.', 'ये कोटेशन एक जैसा काम नहीं लेते (सिविल या इलेक्ट्रिकल अलग)। ध्यान से तुलना करें: कम कुल कीमत में काम आप पर छूट सकता है।', 'ही कोटेशन सारखे काम घेत नाहीत (सिव्हिल किंवा इलेक्ट्रिकल वेगळे). नीट तुलना करा: कमी एकूण किमतीत काम तुमच्यावर राहू शकते.'],
+  mkt_no_quotes: ['No quotes yet.', 'अभी कोई कोटेशन नहीं।', 'अजून कोटेशन नाही.'],
+  mkt_direct: ['You may talk to the companies directly. The record of who was sent which job, and when, is kept for the agreement.', 'आप कंपनियों से सीधे बात कर सकते हैं। किसे कौन सा काम कब भेजा, इसका रिकॉर्ड एग्रीमेंट के लिए रखा जाता है।', 'तुम्ही कंपन्यांशी थेट बोलू शकता. कोणाला कोणते काम केव्हा पाठवले याची नोंद करारासाठी ठेवली जाते.'],
+  mkt_pick_this: ['Pick this company', 'यह कंपनी चुनें', 'ही कंपनी निवडा'],
+  mkt_pick_q: ['Pick {c} at {m}? The company confirms, then you sign with them and pay them directly.', '{m} पर {c} चुनें? कंपनी पुष्टि करेगी, फिर आप उनसे अनुबंध कर सीधे भुगतान करेंगे।', '{m} ला {c} निवडायचे? कंपनी पुष्टी करेल, मग तुम्ही त्यांच्याशी करार करून थेट पैसे द्याल.'],
+  mkt_total: ['Total', 'कुल', 'एकूण'],
+  mkt_base: ['Lift price', 'लिफ्ट कीमत', 'लिफ्ट किंमत'],
+  mkt_tax: ['Taxes', 'टैक्स', 'कर'],
+  mkt_freight: ['Freight', 'ढुलाई', 'वाहतूक'],
+  mkt_install: ['Installation', 'इंस्टॉलेशन', 'इन्स्टॉलेशन'],
+  mkt_oem: ['Machine, controller and main parts (make)', 'मशीन, कंट्रोलर और मुख्य पुर्ज़े (कंपनी)', 'मशीन, कंट्रोलर आणि मुख्य भाग (कंपनी)'],
+  mkt_civil: ['Civil work', 'सिविल काम', 'सिव्हिल काम'],
+  mkt_elec: ['Electrical work', 'इलेक्ट्रिकल काम', 'इलेक्ट्रिकल काम'],
+  mkt_incl: ['Included', 'शामिल', 'समाविष्ट'],
+  mkt_excl_s: ['Not included', 'शामिल नहीं', 'समाविष्ट नाही'],
+  mkt_excl: ['Not included (list)', 'शामिल नहीं (सूची)', 'समाविष्ट नाही (यादी)'],
+  mkt_days: ['Days to finish after start', 'शुरू होने के बाद पूरा करने के दिन', 'सुरू झाल्यानंतर पूर्ण करण्याचे दिवस'],
+  mkt_days_n: ['{n} days', '{n} दिन', '{n} दिवस'],
+  mkt_ms: ['Payment parts (%)', 'भुगतान हिस्से (%)', 'पेमेंट भाग (%)'],
+  mkt_ms_booking: ['Booking', 'बुकिंग', 'बुकिंग'],
+  mkt_ms_material: ['Material', 'मटेरियल', 'मटेरियल'],
+  mkt_ms_install: ['Installation', 'इंस्टॉलेशन', 'इन्स्टॉलेशन'],
+  mkt_ms_testing: ['Testing', 'टेस्टिंग', 'टेस्टिंग'],
+  mkt_ms_handover: ['Handover', 'हैंडओवर', 'हस्तांतरण'],
+  mkt_warranty: ['Warranty (months)', 'वारंटी (महीने)', 'वॉरंटी (महिने)'],
+  mkt_months: ['{n} months', '{n} महीने', '{n} महिने'],
+  mkt_amc: ['Yearly AMC (₹, optional)', 'सालाना AMC (₹, वैकल्पिक)', 'वार्षिक AMC (₹, ऐच्छिक)'],
+  mkt_year: ['year', 'साल', 'वर्ष'],
+  mkt_valid: ['Valid till', 'मान्य तक', 'वैध पर्यंत'],
+  mkt_valid_days: ['Valid for (days)', 'कितने दिन मान्य', 'किती दिवस वैध'],
+  mkt_quote_t: ['Your quotation', 'आपका कोटेशन', 'तुमचे कोटेशन'],
+  mkt_std: ['Standard format so the customer can compare fairly.', 'मानक फ़ॉर्मेट ताकि ग्राहक सही तुलना कर सके।', 'प्रमाणित नमुना, म्हणजे ग्राहक योग्य तुलना करू शकेल.'],
+  s_mkt_price: ['Enter the price parts.', 'कीमत के हिस्से भरें।', 'किमतीचे भाग भरा.'],
+  s_mkt_scope: ['Say what is included and what is not.', 'बताएँ क्या शामिल है और क्या नहीं।', 'काय समाविष्ट आहे आणि काय नाही ते सांगा.'],
+  s_mkt_terms: ['Time, payment parts, warranty and validity.', 'समय, भुगतान हिस्से, वारंटी और मान्यता।', 'वेळ, पेमेंट भाग, वॉरंटी आणि वैधता.'],
+  mkt_take: ['Yes, we take this job', 'हाँ, हम यह काम लेंगे', 'हो, आम्ही हे काम घेतो'],
+  mkt_decline: ['No, we cannot', 'नहीं, हम नहीं कर सकते', 'नाही, आम्ही करू शकत नाही'],
+  s_mkt_answer: ['The customer picked your quote. Confirm or decline with a reason.', 'ग्राहक ने आपका कोटेशन चुना। पुष्टि करें या कारण के साथ मना करें।', 'ग्राहकाने तुमचे कोटेशन निवडले. पुष्टी करा किंवा कारणासह नकार द्या.'],
+  mkt_amount: ['Amount received (₹)', 'मिली रकम (₹)', 'मिळालेली रक्कम (₹)'],
+  mkt_utr: ['UTR or receipt number', 'UTR या रसीद नंबर', 'UTR किंवा पावती क्रमांक'],
+  s_mkt_pay: ['Record the payment the customer made to you.', 'ग्राहक ने आपको जो भुगतान किया वह दर्ज करें।', 'ग्राहकाने तुम्हाला केलेले पेमेंट नोंदवा.'],
+  s_mkt_verify: ['Did this payment really reach the company?', 'क्या यह भुगतान सच में कंपनी को मिला?', 'हे पेमेंट खरंच कंपनीला मिळाले का?'],
+  mkt_pay_ok: ['Yes, paid', 'हाँ, भुगतान हुआ', 'हो, पैसे दिले'],
+  mkt_pay_no: ['No / wrong amount', 'नहीं / गलत रकम', 'नाही / चुकीची रक्कम'],
+  mkt_done_note: ['Handover note (lift working, papers given)', 'हैंडओवर नोट (लिफ्ट चालू, कागज़ दिए)', 'हस्तांतरण नोंद (लिफ्ट चालू, कागदपत्रे दिली)'],
+  s_mkt_done: ['Write the handover note.', 'हैंडओवर नोट लिखें।', 'हस्तांतरण नोंद लिहा.'],
+  mkt_log_model_market: ['Made a Marketplace job', 'मार्केटप्लेस काम बनाया', 'मार्केटप्लेस काम केले'],
+  mkt_log_model_aiec: ['Back to AIEC contract', 'AIEC अनुबंध पर वापस', 'AIEC करारावर परत'],
+  mkt_log_rfq: ['Quotes asked from partners', 'पार्टनर से कोटेशन माँगे', 'भागीदारांकडून कोटेशन मागवले'],
+  mkt_log_quote: ['Partner quote received', 'पार्टनर कोटेशन आया', 'भागीदार कोटेशन आले'],
+  mkt_log_pick: ['Customer picked', 'ग्राहक ने चुना', 'ग्राहकाने निवडले'],
+  mkt_log_held: ['Pick held by AIEC', 'AIEC ने चुनाव रोका', 'AIEC ने निवड थांबवली'],
+  mkt_log_accepted: ['Company took the job', 'कंपनी ने काम लिया', 'कंपनीने काम घेतले'],
+  mkt_log_declined: ['Company declined', 'कंपनी ने मना किया', 'कंपनीने नकार दिला'],
+  mkt_log_pay: ['Payment recorded by the company', 'कंपनी ने भुगतान दर्ज किया', 'कंपनीने पेमेंट नोंदवले'],
+  mkt_log_pay_ok: ['Payment confirmed', 'भुगतान पक्का', 'पेमेंट पक्के'],
+  mkt_log_pay_no: ['Payment not confirmed', 'भुगतान पक्का नहीं', 'पेमेंट पक्के नाही'],
+  mkt_log_done: ['Lift handed over', 'लिफ्ट सौंपी गई', 'लिफ्ट हस्तांतरित'],
+  tk_mkt_send_rfq: ['Ask 2-3 partner companies to quote', '2-3 पार्टनर कंपनियों से कोटेशन माँगें', '2-3 भागीदार कंपन्यांकडून कोटेशन मागवा'],
+  tk_mkt_quote: ['Send your quotation for this lift', 'इस लिफ्ट का अपना कोटेशन भेजें', 'या लिफ्टचे तुमचे कोटेशन पाठवा'],
+  tk_mkt_pick: ['Compare the quotes and pick a company', 'कोटेशन की तुलना कर कंपनी चुनें', 'कोटेशनची तुलना करून कंपनी निवडा'],
+  tk_mkt_confirm: ['Customer picked you: confirm the job', 'ग्राहक ने आपको चुना: काम की पुष्टि करें', 'ग्राहकाने तुम्हाला निवडले: कामाची पुष्टी करा'],
+  tk_mkt_record_pay: ['Record the customer\'s payment', 'ग्राहक का भुगतान दर्ज करें', 'ग्राहकाचे पेमेंट नोंदवा'],
+  tk_mkt_verify_pay: ['Confirm a payment made to the company', 'कंपनी को किए भुगतान की पुष्टि करें', 'कंपनीला केलेल्या पेमेंटची पुष्टी करा'],
+  tk_mkt_handover: ['All paid: record the handover', 'सब भुगतान हुआ: हैंडओवर दर्ज करें', 'सर्व पेमेंट झाले: हस्तांतरण नोंदवा'],
+  ev_MODEL_SET: ['Sales model set', 'बिक्री मॉडल तय', 'विक्री मॉडेल ठरले'],
+  ev_RFQ_SENT: ['Quotes asked from partners', 'पार्टनर से कोटेशन माँगे', 'भागीदारांकडून कोटेशन मागवले'],
+  ev_PQUOTE_SENT: ['Partner quote sent', 'पार्टनर कोटेशन भेजा', 'भागीदार कोटेशन पाठवले'],
+  ev_MK_PICKED: ['Customer picked a company', 'ग्राहक ने कंपनी चुनी', 'ग्राहकाने कंपनी निवडली'],
+  ev_MK_PICK_HELD: ['Pick held by AIEC', 'AIEC ने चुनाव रोका', 'AIEC ने निवड थांबवली'],
+  ev_MK_ANSWER: ['Company answered the pick', 'कंपनी ने जवाब दिया', 'कंपनीने उत्तर दिले'],
+  ev_MK_PAY_RECORDED: ['Partner payment recorded', 'पार्टनर भुगतान दर्ज', 'भागीदार पेमेंट नोंदवले'],
+  ev_MK_PAY_VERIFIED: ['Partner payment checked', 'पार्टनर भुगतान जाँचा', 'भागीदार पेमेंट तपासले'],
+  ev_MK_DONE: ['Marketplace lift handed over', 'मार्केटप्लेस लिफ्ट सौंपी', 'मार्केटप्लेस लिफ्ट हस्तांतरित'],
+  ev_COMM_STATUS: ['Commission status changed', 'कमीशन स्थिति बदली', 'कमिशन स्थिती बदलली'],
+  ev_COMM_CREDIT: ['Commission credit note', 'कमीशन क्रेडिट नोट', 'कमिशन क्रेडिट नोट'],
+  cml_title: ['Commission ledger', 'कमीशन खाता', 'कमिशन खाते'],
+  cml_PENDING: ['Pending (payment not yet confirmed)', 'बाकी (भुगतान अभी पक्का नहीं)', 'बाकी (पेमेंट अजून पक्के नाही)'],
+  cml_VERIFIED: ['Verified', 'सत्यापित', 'पडताळले'],
+  cml_INVOICED: ['Invoiced', 'बिल भेजा', 'बिल पाठवले'],
+  cml_DUE: ['Due', 'देय', 'देय'],
+  cml_PAID: ['Paid', 'मिल गया', 'मिळाले'],
+  cml_DISPUTED: ['Disputed', 'विवाद में', 'वादात'],
+  cml_ADJUSTED: ['Adjusted', 'समायोजित', 'समायोजित'],
+  cml_note: ['Rate {r}% of each payment the customer or Finance confirmed. Recorded once per payment. Never marked paid without proof.', 'ग्राहक या फाइनेंस द्वारा पक्के हर भुगतान का {r}%। हर भुगतान पर एक बार। सबूत के बिना कभी "मिल गया" नहीं।', 'ग्राहक किंवा फायनान्सने पक्क्या केलेल्या प्रत्येक पेमेंटचे {r}%. प्रत्येक पेमेंटवर एकदाच. पुराव्याशिवाय कधीही "मिळाले" नाही.'],
+  cml_base: ['On', 'पर', 'वर'],
+  cml_credit: ['Credit note (refund)', 'क्रेडिट नोट (रिफंड)', 'क्रेडिट नोट (परतावा)'],
+  cml_change: ['Change status', 'स्थिति बदलें', 'स्थिती बदला'],
+  cml_credit_btn: ['Refund: credit note', 'रिफंड: क्रेडिट नोट', 'परतावा: क्रेडिट नोट'],
+  cml_none: ['No commission yet. It starts when a Marketplace payment is confirmed.', 'अभी कमीशन नहीं। मार्केटप्लेस भुगतान पक्का होने पर शुरू होगा।', 'अजून कमिशन नाही. मार्केटप्लेस पेमेंट पक्के झाल्यावर सुरू होईल.'],
+  cml_ref: ['Invoice or bank reference', 'बिल या बैंक संदर्भ', 'बिल किंवा बँक संदर्भ'],
+  cml_new_amt: ['New commission amount (₹)', 'नई कमीशन रकम (₹)', 'नवीन कमिशन रक्कम (₹)'],
+  cml_refund: ['Refund amount the partner returned to the customer (₹)', 'पार्टनर ने ग्राहक को लौटाई रकम (₹)', 'भागीदाराने ग्राहकाला परत केलेली रक्कम (₹)'],
+  s_cml: ['Choose the next status.', 'अगली स्थिति चुनें।', 'पुढची स्थिती निवडा.'],
+  s_cml_credit: ['A refund reduces the commission with a credit note.', 'रिफंड क्रेडिट नोट से कमीशन घटाता है।', 'परतावा क्रेडिट नोटने कमिशन कमी करतो.'],
+  kpi_g_market: ['Marketplace', 'मार्केटप्लेस', 'मार्केटप्लेस'],
+  kpi_cov2: ['Marketplace jobs with 2+ quotes', '2+ कोटेशन वाले मार्केटप्लेस काम', '2+ कोटेशन असलेली मार्केटप्लेस कामे'],
+  kpi_comm: ['Commission earned', 'कमाया कमीशन', 'मिळवलेले कमिशन'],
+  kpi_comm_paid: ['Commission collected', 'मिला कमीशन', 'मिळालेले कमिशन'],
+  kpi_comm_days: ['Days to collect commission', 'कमीशन मिलने के दिन', 'कमिशन मिळण्याचे दिवस'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5680,7 +5804,7 @@ const CFG_LIMITS = (() => {
   set(['lvHelperJobs', 'lvTechJobs', 'lvSeniorJobs', 'lvQcJobs', 'lvHelperReviews', 'lvTechReviews', 'lvSeniorReviews', 'lvQcReviews', 'partnerBigJobs'], 0, 500);
   set(['lvHelperStars', 'lvTechStars', 'lvSeniorStars', 'lvQcStars', 'partnerBigStars'], 0, 5); set(['lvTechTrust', 'lvSeniorTrust', 'lvQcTrust', 'lvSeniorPass', 'lvQcPass'], 0, 100);
   set(['lvHelperDays', 'lvTechDays', 'lvSeniorDays'], 0, 3650); set(['strikeDays'], 1, 3650); set(['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior'], 0, 300);
-  set(['postWarnDays'], 0, 60); set(['maxOpenApps', 'maxActiveJobs'], 1, 50); set(['pilotCap'], 0, 50); set(['pinDigits'], 4, 6); set(['partnerMaxStrikes'], 1, 50); set(['licWarnDays'], 1, 365);
+  set(['postWarnDays'], 0, 60); set(['maxOpenApps', 'maxActiveJobs'], 1, 50); set(['pilotCap'], 0, 50); set(['commRate'], 0, 10); set(['pinDigits'], 4, 6); set(['partnerMaxStrikes'], 1, 50); set(['licWarnDays'], 1, 365);
   set(['tolWidth', 'tolDepth', 'tolPit', 'tolHead'], 300, 10000); set(['accessAlert'], 1, 1000); set(['geoRadius'], 20, 5000); set(['safetyRetest'], 0, 60);
   set(['slaUnsafe', 'slaBreakdown', 'slaRepeat', 'slaRoutine'], 1, 720); set(['remindDays'], 0, 60); set(['escalateDays'], 1, 90); set(['escOwnerDays'], 1, 180); set(['onbDays'], 1, 90);
   return L;
@@ -5846,7 +5970,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, qcRecheckPct: 10, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', serveAreas: '', salesWonPct: 0, pilotCap: 5, payPlan: 2, p1RailsPct: 30, p1DoorsPct: 40, p1DrivePct: 20, accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', serveAreas: '', salesWonPct: 0, pilotCap: 5, commRate: 2, payPlan: 2, p1RailsPct: 30, p1DoorsPct: 40, p1DrivePct: 20, accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, sundayWork: 0, holidays: '', dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -5864,7 +5988,7 @@ const RULE_GROUPS = {
   control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'sundayWork', 'holidays', 'dualControl', 'requireTraining'],
   ladder: ['lvHelperJobs', 'lvHelperStars', 'lvHelperReviews', 'lvHelperDays', 'lvTechJobs', 'lvTechStars', 'lvTechReviews', 'lvTechTrust', 'lvTechDays',
     'lvSeniorJobs', 'lvSeniorPass', 'lvSeniorStars', 'lvSeniorReviews', 'lvSeniorTrust', 'lvSeniorDays', 'lvQcJobs', 'lvQcPass', 'lvQcStars', 'lvQcReviews', 'lvQcTrust', 'strikeDays'],
-  market: ['postWarnDays', 'maxOpenApps', 'maxActiveJobs', 'pilotCap'],
+  market: ['postWarnDays', 'maxOpenApps', 'maxActiveJobs', 'pilotCap', 'commRate'],
   partner: ['partnerBigJobs', 'partnerBigStars', 'partnerMaxStrikes', 'licWarnDays'],
   security: ['pinDigits'],
   safety: ['dailySafety', 'sosNumber', 'safetyRetest'],
@@ -5972,7 +6096,7 @@ const svcRoles = () => svcLead() ? [roleOf(svcLead())] : hasQc() ? ['qc'] : ['ad
 const isSvcOwner = u => ['admin', 'owner'].includes(u.role) || (svcLead() ? u.uid === svcLead() : u.role === 'qc');
 function emptyState() {
   return { pinAlerts: {}, devUse: {}, devAck: {}, jobNos: {}, stock: { items: {}, bal: {}, moves: [] }, settle: {}, contracts: {}, trainVideos: {}, ratingAppeals: {}, reviewsVoid: [], org: null, users: {}, config: Object.assign(clone(DEFAULT_CONFIG), { approved: {} }), projects: {}, order: [], evidence: {}, byId: {}, rejected: [], shifts: {}, shiftLog: [],
-    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], enquiries: {}, enqOrder: [], finance: {}, joins: {}, reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {}, lastAt: {}, undone: {} };
+    templates: {}, approvals: {}, approvalOrder: [], workers: {}, pay: {}, escAck: {}, escLog: [], enquiries: {}, enqOrder: [], finance: {}, comm: {}, joins: {}, reviews: [], strikeAppeals: {}, strikeDecisions: {}, spots: {}, skillChecks: [], reviewsHeld: [], posts: {}, postOrder: [], keys: {}, sos: {}, sosOrder: [], access: [], accessSeen: {}, priceLog: {}, dayClose: {}, backup: null, clockReviews: {}, lastAt: {}, undone: {} };
 }
 let S = emptyState();
 let EVENTS = [];
@@ -5992,7 +6116,7 @@ function canSee(u, P) {
     case 'qc': return stageIdx(P.stage) >= stageIdx('site_prep') && P.stage !== 'lost';
     case 'supplier': return P.supplier === u.uid;
     case 'tech': return (peerWaiting(P).length > 0 && !peerWhyNot(u.uid, P)) || P.tech === u.uid || (P.crew || []).includes(u.uid) || Object.values(P.svcOwner || {}).includes(u.uid);
-    case 'partner': return P.partner === u.uid || [P.tech].concat(P.crew || [], Object.values(P.svcOwner || {}), P.tickets.map(x => x.owner)).some(x => x && companyOf(x) === u.uid);
+    case 'partner': return P.partner === u.uid || !!(P.mkt && P.mkt.rfq && P.mkt.rfq.to.includes(u.uid)) || [P.tech].concat(P.crew || [], Object.values(P.svcOwner || {}), P.tickets.map(x => x.owner)).some(x => x && companyOf(x) === u.uid);
     case 'customer': return u.projectId === P.id || (u.projects || []).includes(P.id);
   }
   return false;
@@ -6720,6 +6844,51 @@ const RULES = {
     if (!f || f.withdrawn) return 'err_fn_withdrawn';
     if (!FIN_OUTCOMES.some(([k]) => k === d.outcome)) return 'err_choose';
     return need((d.bank || '').trim(), 'err_fill'); } },
+  MODEL_SET: { roles: ['admin', 'owner'], project: true, stages: ['accepted', 'contacted', 'requirements'], check: (S, ev, u, P) => {
+    if (!['market', 'aiec'].includes(ev.data.model)) return 'err_choose';
+    if (P.quotes.length) return 'err_mkt_has_quote';
+    return P.mkt && P.mkt.rfq ? 'err_already' : null; } },
+  RFQ_SENT: { roles: ['admin', 'owner'], project: true, check: (S, ev, u, P) => {
+    if (!isMkt(P)) return 'err_mkt_only'; if (P.mkt.rfq) return 'err_already';
+    const to = ev.data.to; if (!Array.isArray(to) || to.length < 2 || to.length > 3 || new Set(to).size !== to.length) return 'err_mkt_23';
+    for (const x of to) { const w = rfqWhyNot(x, ev.t); if (w) return w; }
+    return null; } },
+  PQUOTE_SENT: { roles: ['partner'], project: true, check: (S, ev, u, P) => {
+    const d = ev.data; if (!isMkt(P) || !P.mkt.rfq || !P.mkt.rfq.to.includes(ev.by)) return 'err_access';
+    if (P.mkt.accepted || (P.mkt.pick && P.mkt.pick.partner === ev.by)) return 'err_already';
+    if (!['base', 'tax', 'freight', 'install'].every(k => Number.isFinite(+d[k]) && +d[k] >= 0 && +d[k] < 1e8) || !(+d.base > 0)) return 'err_fill';
+    if (!(d.oem || '').trim() || !['incl', 'excl'].includes(d.civil) || !['incl', 'excl'].includes(d.elec)) return 'err_fill';
+    if (!Array.isArray(d.ms) || d.ms.length !== 5 || d.ms.some(x => !(+x >= 0)) || d.ms.reduce((a, x) => a + +x, 0) !== 100) return 'err_mkt_100';
+    return +d.days > 0 && +d.days <= 365 && +d.valid >= 1 && +d.valid <= 90 && +d.warranty >= 0 && +d.warranty <= 120 ? null : 'err_fill'; } },
+  MK_PICKED: { roles: ['customer', 'sales', 'admin', 'owner'], project: true, check: (S, ev, u, P) => {
+    if (!isMkt(P)) return 'err_mkt_only'; if (P.mkt.accepted || P.mkt.pick) return 'err_already';
+    const q = P.mkt.quotes[ev.data.partner]; if (!q) return 'err_choose';
+    if (mktValidTill(q) < coDay(Date.parse(ev.t))) return 'err_quote_expired';
+    return rfqWhyNot(ev.data.partner, ev.t); } },
+  MK_PICK_HELD: { roles: ['admin', 'owner'], project: true, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.accepted ? 'err_already' : need((ev.data.reason || '').trim(), 'err_reason') },
+  MK_ANSWER: { roles: ['partner'], project: true, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.pick.partner !== ev.by || P.mkt.accepted ? 'err_access' : ev.data.yes || (ev.data.note || '').trim() ? null : 'err_reason' },
+  MK_PAY_RECORDED: { roles: ['partner'], project: true, check: (S, ev, u, P) => {
+    const d = ev.data; if (!isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== ev.by) return 'err_access';
+    if (!/^MP[A-Z0-9]{8}$/.test(d.payId || '') || P.mkt.pays.some(x => x.id === d.payId)) return 'err_dup_id';
+    if (!Number.isInteger(d.ms) || !(+P.mkt.terms.ms[d.ms] > 0) || mktMsDone(P, d.ms) || mktPayOf(P, d.ms).length) return 'err_already';
+    if (!(+d.amount > 0) || +d.amount > P.mkt.terms.total) return 'err_amount';
+    return (d.utr || '').trim().length >= 4 ? null : 'err_fill'; } },
+  MK_PAY_VERIFIED: { roles: ['customer', 'finance', 'admin', 'owner'], project: true, check: (S, ev, u, P) => {
+    const p = isMkt(P) && P.mkt.pays.find(x => x.id === ev.data.payId); if (!p || p.status !== 'pending') return 'err_already';
+    if (p.by === ev.by) return 'err_self_verify';
+    return ev.data.ok || (ev.data.note || '').trim() ? null : 'err_reason'; } },
+  MK_DONE: { roles: ['partner'], project: true, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== ev.by || P.stage === 'amc' ? 'err_access' : !mktAllPaid(P) ? 'err_mkt_unpaid' : need((ev.data.note || '').trim(), 'err_fill') },
+  COMM_STATUS: { roles: ['finance', 'admin', 'owner'], check: (S, ev) => { const d = ev.data, c = S.comm[d.cid];
+    if (!c || c.credit) return 'err_no_project';
+    if (!(CML_NEXT[c.status] || []).includes(d.status)) return 'err_choose';
+    if (['DISPUTED', 'ADJUSTED'].includes(d.status) && !(d.note || '').trim()) return 'err_reason';
+    return d.status === 'ADJUSTED' && !(Number.isInteger(d.amount) && d.amount >= 0) ? 'err_fill' : null; } },
+  COMM_CREDIT: { roles: ['finance', 'admin', 'owner'], check: (S, ev) => { const d = ev.data, c = S.comm[d.of];
+    if (!c || c.credit) return 'err_no_project';
+    if (!/^CN[A-Z0-9]{8}$/.test(d.cid || '') || S.comm[d.cid]) return 'err_dup_id';
+    const done = sum(Object.values(S.comm).filter(x => x.of === d.of).map(x => -x.base));
+    if (!(Number.isInteger(d.amount) && d.amount > 0 && d.amount + done <= c.base)) return 'err_amount';
+    return need((d.note || '').trim(), 'err_reason'); } },
   ENQUIRY_CLOSED: { roles: ['admin', 'owner', 'sales', 'field'], check: (S, ev) => { const e = S.enquiries[ev.data.eid]; return !e || !e.open ? 'err_already' : need(ev.data.pid || (ev.data.note || '').trim(), 'err_reason'); } },
   JOIN_DECIDED: { roles: ['admin', 'owner'], check: (S, ev) => { const d = ev.data; return !/^R[A-Z0-9]{8}$/.test(d.rid || '') || S.joins[d.rid] ? 'err_already' : d.ok ? need(S.users[d.uid], 'err_no_user') : need((d.note || '').trim(), 'err_reason'); } },
   CUSTOMER_LINKED: {
@@ -8139,9 +8308,26 @@ function apply(S, ev) {
     case 'SHIFT_STARTED': S.shifts[ev.by] = { start: ev.t, gps: d.gps || null }; S.shiftLog.push({ uid: ev.by, t: ev.t, kind: 'start', gps: d.gps || null }); break;
     case 'SHIFT_ENDED': delete S.shifts[ev.by]; S.shiftLog.push({ uid: ev.by, t: ev.t, kind: 'end', gps: d.gps || null }); break;
     case 'ENQUIRY_ADDED': S.enquiries[d.eid] = { eid: d.eid, name: d.name, phone: d.phone, address: d.address || '', gps: d.gps || null, floors: d.floors || null, who: d.who || '', note: d.note || '', t: ev.t, by: ev.by, open: true }; S.enqOrder.unshift(d.eid); break;
+    case 'MODEL_SET': P.model = d.model; if (d.model === 'market') P.mkt = P.mkt || { rfq: null, quotes: {}, pick: null, accepted: null, terms: null, pays: [], declined: [], log: [] }; if (P.mkt) P.mkt.log.push({ k: 'model_' + d.model, t: ev.t, by: ev.by }); break;
+    case 'RFQ_SENT': P.mkt.rfq = { to: d.to.slice(), t: ev.t, by: ev.by }; P.mkt.log.push({ k: 'rfq', t: ev.t, by: ev.by }); break;
+    case 'PQUOTE_SENT': P.mkt.quotes[ev.by] = { by: ev.by, t: ev.t, base: +d.base, tax: +d.tax, freight: +d.freight, install: +d.install, oem: d.oem.trim(), civil: d.civil, elec: d.elec, excl: (d.excl || '').trim(), days: +d.days, ms: d.ms.map(Number), warranty: +d.warranty, amc: +d.amc || 0, valid: +d.valid }; P.mkt.log.push({ k: 'quote', t: ev.t, by: ev.by }); break;
+    case 'MK_PICKED': { const q = P.mkt.quotes[d.partner]; P.mkt.pick = { partner: d.partner, t: ev.t, by: ev.by, total: mktQuoteTotal(q) }; P.mkt.log.push({ k: 'pick', t: ev.t, by: ev.by, note: userName(d.partner) + ' · ' + money(mktQuoteTotal(q)) }); break; }
+    case 'MK_PICK_HELD': P.mkt.log.push({ k: 'held', t: ev.t, by: ev.by, note: d.reason.trim() }); P.mkt.pick = null; break;
+    case 'MK_ANSWER': if (d.yes) { const q = P.mkt.quotes[ev.by]; P.mkt.accepted = { by: ev.by, t: ev.t }; P.mkt.terms = Object.assign({}, q, { total: mktQuoteTotal(q), ms: q.ms.slice() }); P.partner = ev.by; P.mkt.log.push({ k: 'accepted', t: ev.t, by: ev.by }); setStage(P, 'won', ev); }
+      else { P.mkt.declined.push(ev.by); P.mkt.log.push({ k: 'declined', t: ev.t, by: ev.by, note: d.note.trim() }); P.mkt.pick = null; } break;
+    case 'MK_PAY_RECORDED': P.mkt.pays.push({ id: d.payId, ms: d.ms, amount: Math.round(+d.amount), utr: d.utr.trim(), by: ev.by, t: ev.t, status: 'pending' }); P.mkt.log.push({ k: 'pay', t: ev.t, by: ev.by, note: money(Math.round(+d.amount)) }); break;
+    case 'MK_PAY_VERIFIED': { const p = P.mkt.pays.find(x => x.id === d.payId); Object.assign(p, { status: d.ok ? 'verified' : 'rejected', vBy: ev.by, vT: ev.t, note: (d.note || '').trim() });
+      /* the commission is recorded once per confirmed payment, keyed by the payment, so a repeat cannot double it */
+      const cid = 'C' + p.id; if (d.ok && !S.comm[cid]) { const rate = +S.config.commRate || 0; S.comm[cid] = { id: cid, pid: P.id, partner: P.mkt.accepted.by, payId: p.id, base: p.amount, rate, amt: Math.round(p.amount * rate / 100), status: 'VERIFIED', ref: '', t: ev.t, hist: [{ status: 'VERIFIED', t: ev.t, by: ev.by }] }; }
+      P.mkt.log.push({ k: d.ok ? 'pay_ok' : 'pay_no', t: ev.t, by: ev.by }); break; }
+    case 'MK_DONE': { const start = ev.t.slice(0, 10), n = Math.max(1, S.config.amcVisits), gap = Math.round(365 / n);
+      P.done = { team: { lead: null, crew: [], partner: ev.by }, t: ev.t, by: ev.by, market: true, warrantyMonths: P.mkt.terms.warranty, amc: { start, visits: Array.from({ length: n }, (_, i) => addDays(gap * (i + 1), new Date(ev.t))) } };
+      P.amcEnd = addDays(365, new Date(ev.t)); P.lift = { code: liftCode(P.id + ev.id), label: P.id, t: ev.t }; P.mkt.log.push({ k: 'done', t: ev.t, by: ev.by, note: d.note.trim() }); setStage(P, 'amc', ev); break; }
+    case 'COMM_STATUS': { const c = S.comm[d.cid]; c.status = d.status; if (d.ref) c.ref = d.ref; if (d.status === 'ADJUSTED') c.amt = d.amount; c.hist.push({ status: d.status, t: ev.t, by: ev.by, note: d.note || '' }); break; }
+    case 'COMM_CREDIT': { const c = S.comm[d.of]; S.comm[d.cid] = { id: d.cid, pid: c.pid, partner: c.partner, of: d.of, credit: true, base: -d.amount, rate: c.rate, amt: -Math.round(d.amount * c.rate / 100), status: 'ADJUSTED', ref: '', note: d.note.trim(), t: ev.t, hist: [{ status: 'ADJUSTED', t: ev.t, by: ev.by }] }; break; }
     case 'FIN_INTEREST': { const P = d.pid && S.projects[d.pid], e = d.eid && S.enquiries[d.eid];
       S.finance[d.fid] = { id: d.fid, pid: d.pid || null, eid: d.eid || null, want: d.want, amount: d.amount != null ? Math.round(+d.amount) : null, v: +d.v, t: ev.t, by: ev.by,
-        name: P ? P.name : e ? e.name : '', phone: P ? P.phone : e ? e.phone : '', withdrawn: null, outcome: null, bank: '', note: '', hist: [] }; break; }
+        name: P ? P.contact.name : e ? e.name : '', phone: P ? P.contact.phone : e ? e.phone : '', withdrawn: null, outcome: null, bank: '', note: '', hist: [] }; break; }
     case 'FIN_WITHDRAWN': { const f = S.finance[d.fid]; Object.assign(f, { withdrawn: ev.t, wBy: ev.by, name: '', phone: '' }); break; }
     case 'FIN_REFERRED': { const f = S.finance[d.fid]; f.hist.push({ outcome: d.outcome, bank: d.bank.trim(), t: ev.t, by: ev.by }); Object.assign(f, { outcome: d.outcome, bank: d.bank.trim(), note: (d.note || '').trim() }); break; }
     case 'ENQUIRY_CLOSED': Object.assign(S.enquiries[d.eid], { open: false, closedBy: ev.by, closedT: ev.t, pid: d.pid || null, note2: d.note || '' }); break;
@@ -8663,6 +8849,7 @@ function needs0(P) {
     else if (p.status === 'pending') add('verify_payment', ['finance'], { not: p.recordedBy, payId: p.id, purpose, urgent: true, since: p.t });
     return p && p.status === 'confirmed';
   };
+  if (isMkt(P) && !['amc', 'lost'].includes(P.stage)) { mktNeeds(P, add); return out; }
   const q = lastQuote(P);
   { const dr = P.drawings && P.stage !== 'lost' ? dwgDrafts(P) : []; if (dr.length) { const x = dr[dr.length - 1]; add('approve_drawing', ['admin', 'owner'], otherOffice(x.by, ['admin', 'owner']) ? { not: x.by, since: x.t } : { since: x.t }); } }
   switch (P.stage) {
@@ -9645,7 +9832,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', dev_alert: '📱', report_accident: '🚓', insurance_due: '🛡️', partner_handover: '🔁', capacity_check: '🏗️', dispatch_lot: '🚚', lot_arrival: '📍', wait_lot: '⏳', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', dev_alert: '📱', report_accident: '🚓', insurance_due: '🛡️', partner_handover: '🔁', capacity_check: '🏗️', mkt_send_rfq: '📨', mkt_quote: '💰', mkt_pick: '⚖️', mkt_confirm: '🤝', mkt_record_pay: '🧾', mkt_verify_pay: '🔍', mkt_handover: '🔑', dispatch_lot: '🚚', lot_arrival: '📍', wait_lot: '⏳', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -12736,7 +12923,7 @@ function dashboard(noTitle) {
     <div class="card" style="margin-top:12px"><h3>${t('by_phase')}</h3>${byPhase.map(([l, n]) => `<div class="bar"><span class="lb">${esc(l)}</span><span class="b"><i style="width:${n / mx * 100}%"></i></span><b>${n}</b></div>`).join('')}</div>
     ${Object.keys(lostR).length ? `<div class="card"><h3>${t('lost_reasons')}</h3>${Object.entries(lostR).map(([r, n]) => `<div class="bar"><span class="lb">${t('lr_' + r)}</span><span class="b"><i style="width:${n / lost * 100}%"></i></span><b>${n}</b></div>`).join('')}</div>` : ''}
     <p class="small muted">${t('dash_note')}</p>
-    <div class="row wrapw"><button class="btn btn-sm" data-a="nav" data-v="kpi">🎯 ${t('kpi_title')}</button><button class="btn btn-sm" data-a="nav" data-v="finList">🏦 ${t('fn_list')}</button><button class="btn btn-sm" data-a="nav" data-v="weekly">📅 ${t('week_title')}</button><button class="btn btn-sm" data-a="nav" data-v="auto">⚙️ ${t('auto_title')}</button></div>`;
+    <div class="row wrapw"><button class="btn btn-sm" data-a="nav" data-v="kpi">🎯 ${t('kpi_title')}</button><button class="btn btn-sm" data-a="nav" data-v="finList">🏦 ${t('fn_list')}</button><button class="btn btn-sm" data-a="nav" data-v="commLedger">🧮 ${t('cml_title')}</button><button class="btn btn-sm" data-a="nav" data-v="weekly">📅 ${t('week_title')}</button><button class="btn btn-sm" data-a="nav" data-v="auto">⚙️ ${t('auto_title')}</button></div>`;
 }
 /* ---------- blueprint B3: pilot limit and the KPI board (from the blueprint's KPI list) ---------- */
 function pilotLine() {
@@ -12764,6 +12951,9 @@ function kpiData(days) {
   const conf = evs.filter(e => e.type === 'PAYMENT_STATUS' && e.data.status === 'confirmed').length;
   return [
     ['sales', [['kpi_leads', leads.length], ['kpi_qual', pct(qual.length, leads.length)], ['kpi_survey_conv', pct(wonSurveyed, surveyed.size)], ['kpi_quote_cov', pct(quoted.size, qual.length)], ['kpi_lead_order', pct(won.length, leads.length)], ['kpi_aov', vals.length ? money(Math.round(sum(vals) / vals.length)) : '—'], ['kpi_pay_conf', conf]]],
+    ['market', (() => { const ms = ps.filter(P => isMkt(P) && P.mkt.rfq && P.mkt.rfq.t >= from), cs = Object.values(S.comm || {}).filter(c => c.t >= from), paid = cs.filter(c => c.status === 'PAID');
+      const days = paid.map(c => { const h = c.hist.find(x => x.status === 'PAID'); return h ? Math.round((Date.parse(h.t) - Date.parse(c.t)) / 864e5) : null; }).filter(x => x != null);
+      return [['kpi_cov2', pct(ms.filter(P => Object.keys(P.mkt.quotes).length >= 2).length, ms.length)], ['kpi_comm', money(sum(cs.map(c => c.amt)))], ['kpi_comm_paid', money(sum(paid.map(c => c.amt)))], ['kpi_comm_days', days.length ? Math.round(sum(days) / days.length) + ' ' + t('days') : '—']]; })()],
     ['partners', [['kpi_accept', pct(taken, posts.length)], ['kpi_ontime', pct(open.length - late, open.length)], ['kpi_rework', pct(qcFail, qcs.length)], ['kpi_complaints', of('TICKET_OPENED').length], ['kpi_safety', of('INCIDENT_RAISED').length + of('SOS_RAISED').length], ['kpi_load', +S.config.pilotCap ? liveJobs(S) + ' / ' + S.config.pilotCap : liveJobs(S)]]],
     ['finance', (() => { const fs = Object.values(S.finance || {}).filter(f => f.t >= from), ref = fs.filter(f => f.outcome), dis = fs.filter(f => f.outcome === 'disbursed'); return [['kpi_fin_int', fs.length], ['kpi_fin_ref', ref.length], ['kpi_fin_conv', pct(dis.length, ref.length)]]; })()]
   ];
@@ -12812,6 +13002,141 @@ SCREENS.finList = () => {
     <div class="small">${t('fn_' + f.want)}${f.amount ? ' · ' + money(f.amount) : ''} · ${t('fn_consent_on', { d: fmtD(f.t), v: f.v })}${f.pid ? ' · ' + esc(f.pid) : ''}</div>
     ${f.outcome ? `<div class="small">${FIN_OUTCOMES.find(x => x[0] === f.outcome)[1]} ${t('fn_o_' + f.outcome)} · ${esc(f.bank)}${f.note ? ' · ' + esc(f.note) : ''}</div>` : ''}
     ${f.withdrawn ? `<div class="small muted">${t('fn_withdrawn_d', { d: fmtD(f.withdrawn) })}</div>` : `<button class="btn btn-sm" style="margin-top:6px" data-a="wizOpen" data-v="finRefer||fid|${f.id}">📨 ${t(f.outcome ? 'fn_update' : 'fn_refer')}</button>`}</div>`).join('') : `<p class="muted">${t('fn_none')}</p>`}</main>` + nav('home');
+};
+const MKT_FROM_STAGES = ['accepted', 'contacted', 'requirements'];
+/* ---------- blueprint B5: Marketplace jobs. The customer compares 2-3 partner quotes, picks one, signs with and pays
+   the partner; the partner records each payment, the customer or Finance confirms it, and AIEC's commission is
+   recorded once per confirmed payment. AIEC never holds the lift money. ---------- */
+const MKT_MS = ['booking', 'material', 'install', 'testing', 'handover'];
+const CML_ST = ['VERIFIED', 'INVOICED', 'DUE', 'PAID', 'DISPUTED', 'ADJUSTED'];
+const CML_NEXT = { VERIFIED: ['INVOICED', 'DISPUTED'], INVOICED: ['DUE', 'DISPUTED'], DUE: ['PAID', 'DISPUTED'], PAID: ['DISPUTED'], DISPUTED: ['VERIFIED', 'DUE', 'ADJUSTED'], ADJUSTED: ['INVOICED', 'DUE', 'PAID'] };
+const isMkt = P => !!P && P.model === 'market';
+const mktQuoteTotal = q => +q.base + +q.tax + +q.freight + +q.install;
+/* hard gates for an RFQ: licence, company status, insurance, active */
+const rfqWhyNot = (uid, at) => roleOf(uid) !== 'partner' || !isActive(uid) ? 'err_no_user' : !partnerTakes(uid) ? 'why_pstatus' : !licenceOk(uid, at) ? 'why_licence' : !partnerInsOk(uid, at) ? 'why_insurance' : null;
+const mktPayOf = (P, i) => (P.mkt.pays || []).filter(p => p.ms === i && p.status !== 'rejected');
+const mktMsDone = (P, i) => mktPayOf(P, i).some(p => p.status === 'verified');
+const mktAllPaid = P => P.mkt.terms && P.mkt.terms.ms.every((pc, i) => !+pc || mktMsDone(P, i));
+const mktValidTill = q => addDays(+q.valid, new Date(q.t));
+function mktNeeds(P, add) {
+  const m = P.mkt;
+  if (!m.rfq) return add('mkt_send_rfq', ['admin', 'owner'], { since: P.since });
+  if (!m.accepted) {
+    const waiting = m.rfq.to.filter(u => !m.quotes[u] && !(m.declined || []).includes(u));
+    if (waiting.length) add('mkt_quote', ['partner'], { uids: waiting });
+    if (m.pick) return add('mkt_confirm', ['partner'], { uids: [m.pick.partner], urgent: true, since: m.pick.t });
+    if (Object.keys(m.quotes).length) add('mkt_pick', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] });
+    return;
+  }
+  const pend = (m.pays || []).filter(p => p.status === 'pending');
+  for (const p of pend) add('mkt_verify_pay', P.customer ? ['customer', 'finance'] : ['finance'], { uids: [P.customer], not: p.by, payId: p.id, since: p.t });
+  if (!mktAllPaid(P)) { const i = m.terms.ms.findIndex((pc, k) => +pc && !mktMsDone(P, k)); if (!mktPayOf(P, i).length) add('mkt_record_pay', ['partner'], { uids: [m.accepted.by], ms: i }); }
+  else add('mkt_handover', ['partner'], { uids: [m.accepted.by] });
+}
+function commTotals() {
+  const by = {}; for (const c of Object.values(S.comm || {})) by[c.status] = (by[c.status] || 0) + c.amt;
+  const pend = Object.values(S.projects).filter(isMkt).flatMap(P => (P.mkt.pays || []).filter(p => p.status === 'pending').map(p => Math.round(p.amount * (+S.config.commRate || 0) / 100)));
+  by.PENDING = sum(pend); return by;
+}
+function mktCard(P) {
+  const m = P.mkt, me = App.me, office = ['owner', 'admin', 'sales', 'finance'].includes(me.role);
+  const rows = [];
+  rows.push(`<p class="small">🤝 ${t('mkt_model_d')}</p>`);
+  if (m.rfq) rows.push(`<p class="small">📨 ${t('mkt_rfq_to', { n: m.rfq.to.length, d: fmtD(m.rfq.t) })} · ${t('mkt_quotes_in', { n: Object.keys(m.quotes).length })}</p>`);
+  if (m.pick) rows.push(`<p class="small">👆 ${t('mkt_picked', { c: esc(userName(m.pick.partner)), d: fmtD(m.pick.t) })}</p>`);
+  if (m.accepted) rows.push(`<p class="small">✅ ${t('mkt_accepted', { c: esc(userName(m.accepted.by)), d: fmtD(m.accepted.t) })} · ${money(m.terms.total)}</p>`
+    + m.terms.ms.map((pc, i) => +pc ? `<div class="list-item small"><span>${mktMsDone(P, i) ? '✅' : mktPayOf(P, i).length ? '⏳' : '⬜'}</span><span class="grow">${t('mkt_ms_' + MKT_MS[i])} · ${pc}% · ${money(Math.round(m.terms.total * pc / 100))}</span></div>` : '').join(''));
+  for (const l of (m.log || []).slice(-3)) rows.push(`<p class="small muted">🕑 ${fmtD(l.t)} · ${esc(t('mkt_log_' + l.k))}${l.note ? ': ' + esc(l.note) : ''}</p>`);
+  return `<div class="card"><h3>🛒 ${t('mkt_title')}</h3>${rows.join('')}<div class="row wrapw">${Object.keys(m.quotes).length ? `<button class="btn btn-sm" data-a="nav2" data-v="mktCompare|${P.id}">⚖️ ${t('mkt_compare')}</button>` : ''}
+    ${office && !m.rfq ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="mktRfq|${P.id}">📨 ${t('mkt_send')}</button>` : ''}</div></div>`;
+}
+SCREENS.mktCompare = ({ uid: pid }) => {
+  const P = S.projects[pid], me = App.me; if (!P || !isMkt(P) || !canSee(me, P)) return SCREENS.home();
+  const m = P.mkt, own = me.role === 'partner';
+  /* never ranked by price alone: by tier, then who answered first */
+  const tr = { platinum: 0, gold: 1, silver: 2 };
+  const qs = Object.values(m.quotes).filter(q => !own || q.by === me.uid).sort((a, b) => tr[partnerTier(a.by).tier] - tr[partnerTier(b.by).tier] || (a.t < b.t ? -1 : 1));
+  const mixed = new Set(qs.map(q => q.civil + '/' + q.elec)).size > 1;
+  const canPick = !m.pick && !m.accepted && (me.role === 'customer' || ['sales', 'admin', 'owner'].includes(me.role));
+  App.pageSay = t('mkt_compare');
+  const col = q => { const tier = partnerTier(q.by), done = companyJobs(q.by).length, exp = mktValidTill(q) < todayStr();
+    return `<div class="card"><h3>${TIER_ICON[tier.tier]} ${esc(userName(q.by))}</h3><div class="small muted">${t('ptier_' + tier.tier)} · ${esc(tier.why)}</div>
+    ${kv([['mkt_total', `<b>${money(mktQuoteTotal(q))}</b>`], ['mkt_base', money(q.base)], ['mkt_tax', money(q.tax)], ['mkt_freight', money(q.freight)], ['mkt_install', money(q.install)],
+      ['mkt_oem', esc(q.oem)], ['mkt_civil', t('mkt_' + q.civil)], ['mkt_elec', t('mkt_' + q.elec)], ['mkt_excl', esc(q.excl || '—')], ['mkt_days', t('mkt_days_n', { n: q.days })],
+      ['mkt_ms', q.ms.map((pc, i) => +pc ? t('mkt_ms_' + MKT_MS[i]) + ' ' + pc + '%' : '').filter(Boolean).join(' · ')], ['mkt_warranty', t('mkt_months', { n: q.warranty })], ['mkt_amc', q.amc ? money(q.amc) + '/' + t('mkt_year') : '—'],
+      ['mkt_valid', (exp ? '⚠️ ' : '') + fmtD(mktValidTill(q))]])}
+    ${canPick && !exp ? `<button class="btn btn-p" data-a="mktPick" data-v="${P.id}|${q.by}">👆 ${t('mkt_pick_this')}</button>` : ''}</div>`; };
+  return topBar(t('mkt_compare'), { back: true }) + `<main class="wrap"><p class="small">${t('mkt_compare_d')}</p>${mixed ? `<div class="warnbox small">⚠️ ${t('mkt_mixed')}</div>` : ''}
+    ${qs.map(col).join('') || `<p class="muted">${t('mkt_no_quotes')}</p>`}<p class="small muted">${t('mkt_direct')}</p></main>` + nav('home');
+};
+SCREENS.commLedger = () => {
+  const me = App.me; if (!['owner', 'admin', 'finance'].includes(me.role)) return SCREENS.home();
+  const tot = commTotals(), rows = Object.values(S.comm || {}).sort((a, b) => b.t < a.t ? -1 : 1);
+  App.pageSay = t('cml_title');
+  return topBar(t('cml_title'), { back: true }) + `<main class="wrap"><div class="card">${kv(['PENDING'].concat(CML_ST).map(k => ['cml_' + k, money(tot[k] || 0)]))}<p class="small muted">${t('cml_note', { r: +S.config.commRate || 0 })}</p></div>
+    ${rows.map(c => `<div class="card small"><b>${esc(c.pid)}</b> · ${esc(userName(c.partner))} · <span class="chip ${c.status === 'PAID' ? 'c-ok' : c.status === 'DISPUTED' ? 'c-bad' : 'c-info'}">${t('cml_' + c.status)}</span>
+      <div>${c.credit ? t('cml_credit') + ' · ' : ''}${t('cml_base')}: ${money(c.base)} · ${c.rate}% = <b>${money(c.amt)}</b>${c.ref ? ' · ' + esc(c.ref) : ''}</div>
+      ${!c.credit && (CML_NEXT[c.status] || []).length ? `<button class="btn btn-sm" data-a="wizOpen" data-v="cmlStatus||cid|${c.id}">✏️ ${t('cml_change')}</button> <button class="btn btn-sm" data-a="wizOpen" data-v="cmlCredit||cid|${c.id}">↩️ ${t('cml_credit_btn')}</button>` : ''}</div>`).join('') || `<p class="muted">${t('cml_none')}</p>`}</main>` + nav('home');
+};
+WIZ.mktRfq = {
+  title: 'mkt_send', save: 'save', noDraft: true, init: () => ({ sel: {} }),
+  steps: [{ id: 'r', icon: '📨', say: 's_mkt_rfq', body: () => { const ps = Object.values(S.users).filter(u => u.role === 'partner' && u.active !== false);
+      return `<p class="small">${t('mkt_rfq_d')}</p>` + ps.map(u => { const why = rfqWhyNot(u.uid, nowISO()); return why ? `<div class="list-item small muted">⛔ ${esc(u.name)} · ${t(why)}</div>` : toggleTile('sel.' + u.uid, TIER_ICON[partnerTier(u.uid).tier], u.name + ' · ' + t('ptier_' + partnerTier(u.uid).tier)); }).join(''); },
+    check: c => { const n = Object.values(c.sel).filter(Boolean).length; return n >= 2 && n <= 3 ? null : 'err_mkt_23'; } }],
+  async finish(c) { const r = await run([['RFQ_SENT', W.pid, { to: Object.keys(c.sel).filter(k => c.sel[k]) }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
+WIZ.mktQuote = {
+  title: 'mkt_quote_t', save: 'save', noDraft: true, init: () => ({ base: '', tax: '', freight: '', install: '', oem: '', civil: '', elec: '', excl: '', days: '', m0: '10', m1: '30', m2: '30', m3: '25', m4: '5', warranty: '12', amc: '', valid: '30' }),
+  steps: [
+    { id: 'p', icon: '💰', say: 's_mkt_price', body: () => `<div class="small">${t('mkt_std')}</div>` + inp('base', 'mkt_base', { type: 'number', mode: 'numeric' }) + inp('tax', 'mkt_tax', { type: 'number', mode: 'numeric' }) + inp('freight', 'mkt_freight', { type: 'number', mode: 'numeric' }) + inp('install', 'mkt_install', { type: 'number', mode: 'numeric' }),
+      check: c => ['base', 'tax', 'freight', 'install'].every(k => c[k] !== '' && +c[k] >= 0) && +c.base > 0 ? null : 'err_fill' },
+    { id: 's', icon: '🧾', say: 's_mkt_scope', body: () => inp('oem', 'mkt_oem', { mic: true }) + `<div class="small b">${t('mkt_civil')}</div>` + tiles('civil', [['incl', '✅', 'mkt_incl'], ['excl', '❌', 'mkt_excl_s']]) + `<div class="small b">${t('mkt_elec')}</div>` + tiles('elec', [['incl', '✅', 'mkt_incl'], ['excl', '❌', 'mkt_excl_s']]) + inp('excl', 'mkt_excl', { area: true, mic: true, opt: true }),
+      check: c => !c.oem.trim() ? 'err_fill' : !c.civil || !c.elec ? 'err_choose' : null },
+    { id: 't', icon: '📅', say: 's_mkt_terms', body: () => inp('days', 'mkt_days', { type: 'number', mode: 'numeric' }) + `<div class="small b">${t('mkt_ms')}</div>` + MKT_MS.map((k, i) => inp('m' + i, 'mkt_ms_' + k, { type: 'number', mode: 'numeric' })).join('') + inp('warranty', 'mkt_warranty', { type: 'number', mode: 'numeric' }) + inp('amc', 'mkt_amc', { type: 'number', mode: 'numeric', opt: true }) + inp('valid', 'mkt_valid_days', { type: 'number', mode: 'numeric' }),
+      check: c => !(+c.days > 0) ? 'err_fill' : [0, 1, 2, 3, 4].reduce((a, i) => a + (+c['m' + i] || 0), 0) !== 100 ? 'err_mkt_100' : !(+c.valid > 0) || c.warranty === '' ? 'err_fill' : null }],
+  async finish(c) { const r = await run([['PQUOTE_SENT', W.pid, { base: +c.base, tax: +c.tax, freight: +c.freight, install: +c.install, oem: c.oem.trim(), civil: c.civil, elec: c.elec, excl: c.excl.trim(), days: +c.days, ms: [0, 1, 2, 3, 4].map(i => +c['m' + i] || 0), warranty: +c.warranty, amc: +c.amc || 0, valid: +c.valid }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
+WIZ.mktAnswer = {
+  title: 'tk_mkt_confirm', save: 'save', noDraft: true, init: () => ({ yes: '', note: '' }),
+  steps: [{ id: 'a', icon: '🤝', say: 's_mkt_answer', body: () => tiles('yes', [['yes', '✅', 'mkt_take'], ['no', '❌', 'mkt_decline']], 'one') + inp('note', 'f_note', { area: true, mic: true, opt: true }), check: c => !c.yes ? 'err_choose' : c.yes === 'no' && !c.note.trim() ? 'err_reason' : null }],
+  async finish(c) { const r = await run([['MK_ANSWER', W.pid, { yes: c.yes === 'yes', note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
+WIZ.mktPay = {
+  title: 'tk_mkt_record_pay', save: 'save', noDraft: true, init: () => { const P = S.projects[W.pid], i = W.opts.ms; return { amount: String(Math.round(P.mkt.terms.total * P.mkt.terms.ms[i] / 100)), utr: '' }; },
+  steps: [{ id: 'p', icon: '🧾', say: 's_mkt_pay', body: () => `<div class="card small">${t('mkt_ms_' + MKT_MS[W.opts.ms])}</div>` + inp('amount', 'mkt_amount', { type: 'number', mode: 'numeric' }) + inp('utr', 'mkt_utr'), check: c => !(+c.amount > 0) ? 'err_fill' : c.utr.trim().length >= 4 ? null : 'err_fill' }],
+  async finish(c) { const r = await run([['MK_PAY_RECORDED', W.pid, { payId: 'MP' + rid(8), ms: +W.opts.ms, amount: Math.round(+c.amount), utr: c.utr.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
+WIZ.mktVerify = {
+  title: 'tk_mkt_verify_pay', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
+  steps: [{ id: 'v', icon: '🔍', say: 's_mkt_verify', body: () => { const p = S.projects[W.pid].mkt.pays.find(x => x.id === W.opts.payId) || {}; return `<div class="card small">${t('mkt_ms_' + MKT_MS[p.ms])} · ${money(p.amount)} · UTR ${esc(p.utr || '')}</div>` + tiles('ok', [['yes', '✅', 'mkt_pay_ok'], ['no', '❌', 'mkt_pay_no']], 'one') + inp('note', 'f_note', { opt: true }); },
+    check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }],
+  async finish(c) { const r = await run([['MK_PAY_VERIFIED', W.pid, { payId: W.opts.payId, ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
+WIZ.mktDone = {
+  title: 'tk_mkt_handover', save: 'save', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'd', icon: '🔑', say: 's_mkt_done', body: () => inp('note', 'mkt_done_note', { area: true, mic: true }), check: c => c.note.trim() ? null : 'err_fill' }],
+  async finish(c) { const r = await run([['MK_DONE', W.pid, { note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
+WIZ.cmlStatus = {
+  title: 'cml_change', save: 'save', noDraft: true, init: () => ({ status: '', ref: '', note: '', amount: '' }),
+  steps: [{ id: 'c', icon: '✏️', say: 's_cml', body: () => { const c = S.comm[W.opts.cid]; return tiles('status', (CML_NEXT[c.status] || []).map(k => [k, '•', 'cml_' + k]), 'one') + inp('ref', 'cml_ref', { opt: true }) + inp('note', 'f_note', { opt: true }) + (W.ctx.status === 'ADJUSTED' ? inp('amount', 'cml_new_amt', { type: 'number', mode: 'numeric' }) : ''); },
+    check: c => !c.status ? 'err_choose' : ['DISPUTED', 'ADJUSTED'].includes(c.status) && !c.note.trim() ? 'err_reason' : c.status === 'ADJUSTED' && !(+c.amount >= 0 && c.amount !== '') ? 'err_fill' : null }],
+  async finish(c) { const r = await run([['COMM_STATUS', null, Object.assign({ cid: W.opts.cid, status: c.status, ref: c.ref.trim(), note: c.note.trim() }, c.status === 'ADJUSTED' ? { amount: Math.round(+c.amount) } : {})]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
+WIZ.cmlCredit = {
+  title: 'cml_credit_btn', save: 'save', noDraft: true, init: () => ({ amount: '', note: '' }),
+  steps: [{ id: 'c', icon: '↩️', say: 's_cml_credit', body: () => inp('amount', 'cml_refund', { type: 'number', mode: 'numeric' }) + inp('note', 'f_reason', { area: true }), check: c => !(+c.amount > 0) ? 'err_fill' : c.note.trim() ? null : 'err_reason' }],
+  async finish(c) { const r = await run([['COMM_CREDIT', null, { cid: 'CN' + rid(8), of: W.opts.cid, amount: Math.round(+c.amount), note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
+function mktModelCard(P) {
+  if (isMkt(P)) return mktCard(P);
+  if (!['owner', 'admin'].includes(App.me.role) || !MKT_FROM_STAGES.includes(P.stage) || P.quotes.length) return '';
+  return `<div class="card small"><b>🛒 ${t('mkt_title')}</b><p class="muted">${t('mkt_offer')}</p><button class="btn btn-sm" data-a="wizOpen" data-v="mktModel|${P.id}">🛒 ${t('mkt_make')}</button></div>`;
+}
+WIZ.mktModel = {
+  title: 'mkt_make', save: 'save', noDraft: true, init: () => ({ ok: '' }),
+  steps: [{ id: 'm', icon: '🛒', say: 's_mkt_model', body: () => `<p class="small">${t('mkt_model_d')}</p><p class="small muted">${t('mkt_agree_note')}</p>` + tiles('ok', [['market', '🛒', 'mkt_model_m'], ['aiec', '🏢', 'mkt_model_a']], 'one'), check: c => c.ok ? null : 'err_choose' }],
+  async finish(c) { if (c.ok === 'aiec') return { ok: true, go: () => back() }; const r = await run([['MODEL_SET', W.pid, { model: 'market' }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
 };
 SCREENS.drill = ({ k }) => {
   const list = visibleProjects(App.me).filter(DRILL[k] || DRILL.all);
@@ -12903,7 +13228,7 @@ function projInfo(P) {
   const sopN = Object.keys(P.sop).length;
   const target = installUsed(P);
   const cancelled = P.lost && P.lost.reason === 'cancelled' ? `<div class="err">⛔ ${t('cancelled_on', { d: fmtD(P.lost.t) })}: ${esc(P.lost.note)}${P.payments.some(x => x.status === 'confirmed') ? '<br>🏦 ' + t('refund_note') : ''}</div>` : '';
-  return cancelled + open + dmgCard(P) + tierCard(P) + gadCard(P) + surveyCard(P) + groupCard(P) + socCard(P) + (P.stage === 'site_ok' || P.supCompare ? supCmpCard(P) : '') + expCard(P) + grnBtn(P) + stockSiteCard(P) + dreportCard(P) + leadScoreCard(P) + refCard(P) + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
+  return cancelled + open + mktModelCard(P) + dmgCard(P) + tierCard(P) + gadCard(P) + surveyCard(P) + groupCard(P) + socCard(P) + (P.stage === 'site_ok' || P.supCompare ? supCmpCard(P) : '') + expCard(P) + grnBtn(P) + stockSiteCard(P) + dreportCard(P) + leadScoreCard(P) + refCard(P) + varCard(P) + statCard(P) + materialCard(P) + `<div class="card"><h3>📍 ${t('site')}</h3>${kv([['f_address', esc(P.site.address)], ['f_landmark', esc(P.site.landmark)],
       ['gps', P.site.gps ? `<a href="${mapsLink(P.site.gps)}" target="_blank" rel="noopener">${P.site.gps.lat}, ${P.site.gps.lng}</a> · <a href="${dirLink(P.site.gps)}" target="_blank" rel="noopener">🧭 ${t('directions')}</a>` : t('no')]])}</div>
     ${OUTSIDERS.includes(u.role) ? maskedContact(P) : `<div class="card"><h3>👤 ${t('contact')}</h3>${kv([['f_contact_name', esc(P.contact.name)], ['f_phone', seeF(u, 'phone') ? (P.contact.phone ? `<a href="tel:+91${P.contact.phone}">📞 ${esc(P.contact.phone)}</a>` : t('i_no_phone')) : '🔒 ' + t('hidden')]])}
       ${P.corrected.length ? `<details style="margin-top:6px"><summary class="small">✏️ ${t('corrections_history')} (${P.corrected.length})</summary>${P.corrected.map(c => `<div class="small">${fmtD(c.t, true)} · ${userTag(c.by)} · ${t(c.field === 'address' ? 'f_address' : c.field === 'phone' ? 'f_phone' : 'f_contact_name')}: <s>${esc(c.old)}</s> → <b>${esc(c.val)}</b> (${esc(c.reason)})</div>`).join('')}</details>` : ''}</div>`}
@@ -15558,7 +15883,7 @@ function openTask(n) {
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), dispatch_lot: () => wiz('dispatch', pid, { lot: n.lot }), lot_arrival: () => wiz('arrival', pid, { lot: n.lot }), wait_lot: () => go('project', { pid }), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
-    lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), insurance_due: () => wiz('statutory', pid, { item: 'insurance' }), partner_handover: () => go('project', { pid, tab: 'info' }), capacity_check: () => wiz('capCheck', pid), report_accident: () => wiz('accReport', pid, { iid: n.iid }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
+    lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), insurance_due: () => wiz('statutory', pid, { item: 'insurance' }), partner_handover: () => go('project', { pid, tab: 'info' }), capacity_check: () => wiz('capCheck', pid), mkt_send_rfq: () => wiz('mktRfq', pid), mkt_quote: () => wiz('mktQuote', pid), mkt_pick: () => go('mktCompare', { uid: pid }), mkt_confirm: () => wiz('mktAnswer', pid), mkt_record_pay: () => wiz('mktPay', pid, { ms: n.ms }), mkt_verify_pay: () => wiz('mktVerify', pid, { payId: n.payId }), mkt_handover: () => wiz('mktDone', pid), report_accident: () => wiz('accReport', pid, { iid: n.iid }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
     sign_handover: () => go('cl', { pid, kind: 'handover' }), complete_handover: () => go('cl', { pid, kind: 'handover' }),
     resolve_blocker: () => wiz('resolve', pid, { bid: n.bid }), resolve_incident: () => wiz('incident', pid, { iid: n.iid }),
@@ -15994,6 +16319,8 @@ const ACT = {
   tplDelete: async v => { const r = await perform('TEMPLATE_DELETED', null, { tid: v }); if (r.ok) render(); },
   /* "wizId|pid|key|value|key|value" opens a step-by-step screen with options */
   wizOpen: v => { const [id, pid, ...kvs] = v.split('|'); const o = {}; for (let i = 0; i < kvs.length; i += 2) o[kvs[i]] = /^\d+$/.test(kvs[i + 1]) && kvs[i] !== 'week' ? +kvs[i + 1] : kvs[i + 1]; closeSheet(); wiz(id, pid || null, o); },
+  mktPick: v => { const [pid, c] = v.split('|'), q = S.projects[pid].mkt.quotes[c]; sheet(`<h2>👆 ${t('mkt_pick_this')}</h2><p>${t('mkt_pick_q', { c: esc(userName(c)), m: money(mktQuoteTotal(q)) })}</p><div class="row wrapw"><button class="btn btn-big" data-a="closeSheet">${t('qx_stay')}</button><button class="btn btn-p btn-big" data-a="mktPickGo" data-v="${esc(v)}">${t('mkt_pick_this')}</button></div>`); },
+  mktPickGo: async v => { const [pid, c] = v.split('|'); closeSheet(); const r = await perform('MK_PICKED', pid, { partner: c }); if (r.ok) { toast(t('saved_item')); render(); } },
   kpiDays: v => { App.route.p = { days: +v }; render(); },
   nav2: v => { const [screen, val, src] = v.split('|'); if (App.route.name === screen && screen === 'reviews') { App.route.p = { uid: val, src: src || '' }; render(); return; } if (App.route.name === screen && screen === 'jobs') { App.route.p = { src: src || '' }; render(); return; } go(screen, screen === 'leaders' ? { m: val } : { uid: val, src: src || '' }); },
   svcView: v => { const [pid, i] = v.split('|'), x = S.projects[pid].service[i]; sheet(`<h2>🛠️ ${t('amc_visit_n', { n: +i + 1 })}</h2><p class="small">${userTag(x.by)} · ${fmtD(x.t, true)}${x.met ? ' · ' + esc(x.met) : ''}</p>${AMC_CHECKS.map(k => `<div>${x.checks[k] === 'pass' ? '✅' : '❌'} ${t('amc_' + k)}</div>`).join('')}${x.note ? `<p>${esc(x.note)}</p>` : ''}${evGrid(x.ev)}`); },
@@ -16345,6 +16672,8 @@ async function seedPractice() {
     /* a job on payment plan 1 (by material lot), signed and waiting for the 30% rails payment */
     ['Ganga Heights, Pashan, Pune', 'Mr. Deshmukh', '9822000012', 18.5362, 73.7997, 'signed', 'field2', { _plan: 1, _use: 'apartment', _stops: 4 }]
   ];
+  /* a Marketplace job: two partner quotes waiting for the customer to compare and pick */
+  sites.push(['Sneh Sankul, Ravet, PCMC', 'Mr. Gaikwad', '9822000013', 18.6480, 73.7380, 'requirements', 'field', { _mkt: 1 }]);
   const ids = [];
   for (const [address, name, phone, lat, lng, target, who, extra] of sites) {
     const gps = { lat, lng, acc: 12 };
@@ -16354,6 +16683,11 @@ async function seedPractice() {
     await advance(pid, target);
     ids.push(pid);
   }
+  { const mk = ids[ids.length - 1];
+    if ((await SP('MODEL_SET', mk, { model: 'market' }, 'admin')).ok && (await SP('RFQ_SENT', mk, { to: [U.partner, U.partner2] }, 'admin')).ok) {
+      await SP('PQUOTE_SENT', mk, { base: 1180000, tax: 212400, freight: 25000, install: 95000, oem: 'Montanari machine, Monarch controller', civil: 'excl', elec: 'incl', excl: 'Shaft civil work and scaffolding by the society', days: 45, ms: [10, 30, 30, 25, 5], warranty: 12, amc: 24000, valid: 30 }, 'partner');
+      await SP('PQUOTE_SENT', mk, { base: 1090000, tax: 196200, freight: 30000, install: 80000, oem: 'Sharp machine, Step controller', civil: 'excl', elec: 'excl', excl: 'Civil work, electrical cabling to the machine room', days: 60, ms: [10, 30, 30, 25, 5], warranty: 12, amc: 20000, valid: 30 }, 'partner2');
+    } }
   /* finishing touches so every role has a real task to practise */
   const [amc, hand, hosp, sar, , , omsai, , vishal, , katraj] = ids;
   await SP('PAYMENT_RECORDED', omsai, { payId: 'PAY-' + rid(6), purpose: 'token', amount: S.projects[omsai].schedule.token, method: 'upi', ref: 'UPI' + rid(8) }, 'sales');

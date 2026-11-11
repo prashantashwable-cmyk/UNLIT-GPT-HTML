@@ -5,7 +5,7 @@ const path = require('path');
 const vm = require('vm');
 const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log('ok -', m); };
 const FILE = path.resolve(__dirname, '..', 'AIEC-Elevator-OS.html');
-const BUDGET = 2.2 * 1024 * 1024; /* raise it on purpose, never by accident (2.0 → 2.2 MB with sign-in L4; start-up speed is held by snapshot.test.js) */
+const BUDGET = 2.4 * 1024 * 1024; /* raise it on purpose, never by accident (2.0 → 2.2 MB with sign-in L4; 2.2 → 2.4 MB with the marketplace blueprint; start-up speed is held by snapshot.test.js) */
 try {
   const html = fs.readFileSync(FILE, 'utf8'), bytes = Buffer.byteLength(html);
   assert(bytes <= BUDGET, `app file ${(bytes / 1048576).toFixed(2)} MB is inside the ${(BUDGET / 1048576).toFixed(1)} MB budget`);

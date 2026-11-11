@@ -41,6 +41,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   let txt = await page.innerText('main');
   assert(/does not give loans, rates, EMI or approvals/.test(txt) && /Sunita P/.test(txt) && /₹6,00,000|6,00,000/.test(txt), 'Finance sees the list with the RBI note');
   assert(!/\d+(\.\d+)?\s*%\s*(p\.a|interest)|EMI of|approved for/i.test(txt), 'no rates, EMI amounts or approvals are shown');
+  assert(await ev(`S.finance.FAAAA3333.name === S.projects['${cp}'].contact.name && !!S.finance.FAAAA3333.phone`), 'a customer\'s record carries the job\'s contact name and phone');
   assert((await act('FIN_REFERRED', { fid: 'FAAAA3333', bank: '', outcome: 'referred' }, 'PFIN')).err === 'err_fill', 'a referral names the bank');
   assert((await act('FIN_REFERRED', { fid: 'FAAAA3333', bank: 'SBI Wakad branch', outcome: 'referred', note: 'gave papers by hand' }, 'PFIN')).ok, 'Finance records a referral made by hand');
   assert((await act('FIN_REFERRED', { fid: 'FAAAA3333', bank: 'SBI Wakad branch', outcome: 'disbursed' }, 'PSALES')).err, 'Sales cannot record outcomes');
