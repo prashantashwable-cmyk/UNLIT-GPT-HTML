@@ -6848,43 +6848,43 @@ const RULES = {
     if (!['market', 'aiec'].includes(ev.data.model)) return 'err_choose';
     if (P.quotes.length) return 'err_mkt_has_quote';
     return P.mkt && P.mkt.rfq ? 'err_already' : null; } },
-  RFQ_SENT: { roles: ['admin', 'owner'], project: true, check: (S, ev, u, P) => {
+  RFQ_SENT: { roles: ['admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || P.mkt.rfq ? 'err_access' : null, check: (S, ev, u, P) => {
     if (!isMkt(P)) return 'err_mkt_only'; if (P.mkt.rfq) return 'err_already';
     const to = ev.data.to; if (!Array.isArray(to) || to.length < 2 || to.length > 3 || new Set(to).size !== to.length) return 'err_mkt_23';
     for (const x of to) { const w = rfqWhyNot(x, ev.t); if (w) return w; }
     return null; } },
-  PQUOTE_SENT: { roles: ['partner'], project: true, check: (S, ev, u, P) => {
+  PQUOTE_SENT: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.rfq || !P.mkt.rfq.to.includes(u.uid) || P.mkt.accepted || (P.mkt.pick && P.mkt.pick.partner === u.uid) ? 'err_access' : null, check: (S, ev, u, P) => {
     const d = ev.data; if (!isMkt(P) || !P.mkt.rfq || !P.mkt.rfq.to.includes(ev.by)) return 'err_access';
     if (P.mkt.accepted || (P.mkt.pick && P.mkt.pick.partner === ev.by)) return 'err_already';
     if (!['base', 'tax', 'freight', 'install'].every(k => Number.isFinite(+d[k]) && +d[k] >= 0 && +d[k] < 1e8) || !(+d.base > 0)) return 'err_fill';
     if (!(d.oem || '').trim() || !['incl', 'excl'].includes(d.civil) || !['incl', 'excl'].includes(d.elec)) return 'err_fill';
     if (!Array.isArray(d.ms) || d.ms.length !== 5 || d.ms.some(x => !(+x >= 0)) || d.ms.reduce((a, x) => a + +x, 0) !== 100) return 'err_mkt_100';
     return +d.days > 0 && +d.days <= 365 && +d.valid >= 1 && +d.valid <= 90 && +d.warranty >= 0 && +d.warranty <= 120 ? null : 'err_fill'; } },
-  MK_PICKED: { roles: ['customer', 'sales', 'admin', 'owner'], project: true, check: (S, ev, u, P) => {
+  MK_PICKED: { roles: ['customer', 'sales', 'admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || P.mkt.accepted || P.mkt.pick || !Object.keys(P.mkt.quotes).length ? 'err_access' : null, check: (S, ev, u, P) => {
     if (!isMkt(P)) return 'err_mkt_only'; if (P.mkt.accepted || P.mkt.pick) return 'err_already';
     const q = P.mkt.quotes[ev.data.partner]; if (!q) return 'err_choose';
     if (mktValidTill(q) < coDay(Date.parse(ev.t))) return 'err_quote_expired';
     return rfqWhyNot(ev.data.partner, ev.t); } },
-  MK_PICK_HELD: { roles: ['admin', 'owner'], project: true, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.accepted ? 'err_already' : need((ev.data.reason || '').trim(), 'err_reason') },
-  MK_ANSWER: { roles: ['partner'], project: true, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.pick.partner !== ev.by || P.mkt.accepted ? 'err_access' : ev.data.yes || (ev.data.note || '').trim() ? null : 'err_reason' },
-  MK_PAY_RECORDED: { roles: ['partner'], project: true, check: (S, ev, u, P) => {
+  MK_PICK_HELD: { roles: ['admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.accepted ? 'err_access' : null, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.accepted ? 'err_already' : need((ev.data.reason || '').trim(), 'err_reason') },
+  MK_ANSWER: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.pick.partner !== u.uid || P.mkt.accepted ? 'err_access' : null, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.pick.partner !== ev.by || P.mkt.accepted ? 'err_access' : ev.data.yes || (ev.data.note || '').trim() ? null : 'err_reason' },
+  MK_PAY_RECORDED: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== u.uid || P.stage === 'amc' ? 'err_access' : null, check: (S, ev, u, P) => {
     const d = ev.data; if (!isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== ev.by) return 'err_access';
     if (!/^MP[A-Z0-9]{8}$/.test(d.payId || '') || P.mkt.pays.some(x => x.id === d.payId)) return 'err_dup_id';
     if (!Number.isInteger(d.ms) || !(+P.mkt.terms.ms[d.ms] > 0) || mktMsDone(P, d.ms) || mktPayOf(P, d.ms).length) return 'err_already';
     if (!(+d.amount > 0) || +d.amount > P.mkt.terms.total) return 'err_amount';
     return (d.utr || '').trim().length >= 4 ? null : 'err_fill'; } },
-  MK_PAY_VERIFIED: { roles: ['customer', 'finance', 'admin', 'owner'], project: true, check: (S, ev, u, P) => {
+  MK_PAY_VERIFIED: { roles: ['customer', 'finance', 'admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted ? 'err_access' : null, check: (S, ev, u, P) => {
     const p = isMkt(P) && P.mkt.pays.find(x => x.id === ev.data.payId); if (!p || p.status !== 'pending') return 'err_already';
     if (p.by === ev.by) return 'err_self_verify';
     return ev.data.ok || (ev.data.note || '').trim() ? null : 'err_reason'; } },
-  MK_DONE: { roles: ['partner'], project: true, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== ev.by || P.stage === 'amc' ? 'err_access' : !mktAllPaid(P) ? 'err_mkt_unpaid' : need((ev.data.note || '').trim(), 'err_fill') },
+  MK_DONE: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== u.uid || P.stage === 'amc' ? 'err_access' : null, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== ev.by || P.stage === 'amc' ? 'err_access' : !mktAllPaid(P) ? 'err_mkt_unpaid' : need((ev.data.note || '').trim(), 'err_fill') },
   COMM_STATUS: { roles: ['finance', 'admin', 'owner'], check: (S, ev) => { const d = ev.data, c = S.comm[d.cid];
-    if (!c || c.credit) return 'err_no_project';
+    if (!c || c.credit) return 'err_choose';
     if (!(CML_NEXT[c.status] || []).includes(d.status)) return 'err_choose';
     if (['DISPUTED', 'ADJUSTED'].includes(d.status) && !(d.note || '').trim()) return 'err_reason';
     return d.status === 'ADJUSTED' && !(Number.isInteger(d.amount) && d.amount >= 0) ? 'err_fill' : null; } },
   COMM_CREDIT: { roles: ['finance', 'admin', 'owner'], check: (S, ev) => { const d = ev.data, c = S.comm[d.of];
-    if (!c || c.credit) return 'err_no_project';
+    if (!c || c.credit) return 'err_choose';
     if (!/^CN[A-Z0-9]{8}$/.test(d.cid || '') || S.comm[d.cid]) return 'err_dup_id';
     const done = sum(Object.values(S.comm).filter(x => x.of === d.of).map(x => -x.base));
     if (!(Number.isInteger(d.amount) && d.amount > 0 && d.amount + done <= c.base)) return 'err_amount';
@@ -7074,7 +7074,7 @@ const RULES = {
     }
   },
   QUOTE_CREATED: {
-    roles: ['sales'], project: true, stages: ['requirements', 'quoted'], check: (S, ev, u, P) => {
+    roles: ['sales'], project: true, stages: ['requirements', 'quoted'], gate: (S, u, P) => isMkt(P) ? 'err_access' : null, check: (S, ev, u, P) => {
       if (!P.req) return 'err_no_req';
       if (ev.t >= JOURNEY_FROM && P.t >= JOURNEY_FROM && bigJob(P) && !P.survey) return 'err_survey_first';
       const d = +ev.data.discountPct;
@@ -8849,7 +8849,7 @@ function needs0(P) {
     else if (p.status === 'pending') add('verify_payment', ['finance'], { not: p.recordedBy, payId: p.id, purpose, urgent: true, since: p.t });
     return p && p.status === 'confirmed';
   };
-  if (isMkt(P) && !['amc', 'lost'].includes(P.stage)) { mktNeeds(P, add); return out; }
+  if (isMkt(P) && !['amc', 'lost'].includes(P.stage)) { mktNeeds(P, add); coverTasks(P, out); return out; }
   const q = lastQuote(P);
   { const dr = P.drawings && P.stage !== 'lost' ? dwgDrafts(P) : []; if (dr.length) { const x = dr[dr.length - 1]; add('approve_drawing', ['admin', 'owner'], otherOffice(x.by, ['admin', 'owner']) ? { not: x.by, since: x.t } : { since: x.t }); } }
   switch (P.stage) {

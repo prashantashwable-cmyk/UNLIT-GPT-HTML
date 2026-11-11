@@ -27,7 +27,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const N = await ev(`Object.values(S.projects).find(P => P.stage === 'new').id`);
   assert((await act('LEAD_ACCEPTED', N, {}, 'PSALES')).ok, '(a new lead is accepted by Sales)');
   assert(await page.evaluate(n => { loginAs(S.users.PADMIN); return /Make this a Marketplace job/.test(mktModelCard(S.projects[n])); }, N), 'an accepted lead offers Admin the Marketplace choice');
-  assert((await act('RFQ_SENT', N, { to: ['PPART1', 'PPART2'] }, 'PADMIN')).err === 'err_mkt_only', 'an AIEC contract job cannot go to partners');
+  assert((await act('RFQ_SENT', N, { to: ['PPART1', 'PPART2'] }, 'PADMIN')).err === 'err_access', 'an AIEC contract job cannot go to partners');
   assert((await act('MODEL_SET', N, { model: 'market' }, 'PSALES')).err, 'Sales cannot change the model');
   assert((await act('MODEL_SET', N, { model: 'market' }, 'PADMIN')).ok && await ev(`needs(S.projects['${N}']).some(n => n.k === 'mkt_send_rfq') && !needs(S.projects['${N}']).some(n => n.k === 'make_quote')`), 'Admin makes it Marketplace; the next step is asking partners, not an AIEC quote');
   assert((await act('RFQ_SENT', N, { to: ['PPART1'] }, 'PADMIN')).err === 'err_mkt_23', 'at least 2 companies');

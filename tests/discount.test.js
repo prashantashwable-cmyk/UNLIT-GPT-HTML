@@ -6,7 +6,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const { browser, page, errors } = await launch();
   await page.evaluate(() => { App.set.lang = 'en'; LANG = 'en'; App.set.introDone = true; App.set.guide = false; enterPractice(); }); await page.waitForTimeout(6000);
   const act = (type, pid, data, as) => page.evaluate(([type, pid, data, as]) => perform(type, pid, data, { as, quiet: true }).then(r => ({ ok: r.ok, err: r.err && (r.err.k || r.err) })), [type, pid, data, as]);
-  const P = await page.evaluate(() => Object.values(S.projects).find(x => x.req && ['quoted', 'requirements'].includes(x.stage))?.id || Object.values(S.projects).find(x => x.stage === 'quote_approval').id);
+  const P = await page.evaluate(() => Object.values(S.projects).find(x => x.req && !x.model && ['quoted', 'requirements'].includes(x.stage))?.id || Object.values(S.projects).find(x => x.stage === 'quote_approval').id);
   if (await page.evaluate(p => S.projects[p].stage === 'quote_approval', P)) await act('QUOTE_DECISION', P, { decision: 'reject', reason: 'start again' }, 'POWNER');
   const st = () => page.evaluate(p => S.projects[p].stage, P);
   assert((await act('QUOTE_CREATED', P, { discountPct: 5, reason: 'x' }, 'PSALES')).err === 'err_trade', 'a discount without what the customer gives in return is refused');
