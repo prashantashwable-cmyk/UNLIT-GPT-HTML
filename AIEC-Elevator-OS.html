@@ -3654,6 +3654,78 @@ const L = {
   acc_done: ['Reported to Inspector and police', 'इंस्पेक्टर और पुलिस को सूचना दी', 'इन्स्पेक्टर आणि पोलिसांना माहिती दिली'],
   err_report_first: ['First record the report to the Lift Inspector and police.', 'पहले लिफ्ट इंस्पेक्टर और पुलिस को दी गई सूचना दर्ज करें।', 'आधी लिफ्ट इन्स्पेक्टर आणि पोलिसांना दिलेली माहिती नोंदवा.'],
   ev_INCIDENT_REPORTED: ['Accident reported to authorities', 'दुर्घटना की सूचना अधिकारियों को दी', 'अपघाताची माहिती अधिकाऱ्यांना दिली'],
+  ps_title: ['Company status and checks', 'कंपनी स्थिति और जाँच', 'कंपनी स्थिती आणि तपासणी'],
+  ps_change: ['Change status', 'स्थिति बदलें', 'स्थिती बदला'],
+  s_pstatus: ['Choose the company status and write why.', 'कंपनी की स्थिति चुनें और कारण लिखें।', 'कंपनीची स्थिती निवडा आणि कारण लिहा.'],
+  ps_APPLIED: ['Applied', 'आवेदन किया', 'अर्ज केला'],
+  ps_UNDER_REVIEW: ['Under review', 'जाँच जारी', 'तपासणी सुरू'],
+  ps_VERIFIED: ['Verified', 'सत्यापित', 'पडताळले'],
+  ps_ACTIVE: ['Active', 'सक्रिय', 'सक्रिय'],
+  ps_CONDITIONAL: ['Conditional', 'शर्त के साथ', 'अटीसह'],
+  ps_SUSPENDED: ['Suspended', 'निलंबित', 'निलंबित'],
+  ps_TERMINATED: ['Terminated', 'समाप्त', 'समाप्त'],
+  ps_APPLIED_d: ['Registration not complete: no jobs yet.', 'पंजीकरण अधूरा: अभी काम नहीं।', 'नोंदणी अपूर्ण: अजून कामे नाहीत.'],
+  ps_UNDER_REVIEW_d: ['Documents are being checked: no jobs yet.', 'दस्तावेज़ जाँचे जा रहे हैं: अभी काम नहीं।', 'कागदपत्रे तपासली जात आहेत: अजून कामे नाहीत.'],
+  ps_VERIFIED_d: ['Checks passed; becomes Active once the agreement is signed.', 'जाँच पास; एग्रीमेंट साइन होने पर सक्रिय।', 'तपासणी पास; करारावर सही झाल्यावर सक्रिय.'],
+  ps_ACTIVE_d: ['Can be offered jobs.', 'काम दिए जा सकते हैं।', 'कामे देता येतात.'],
+  ps_CONDITIONAL_d: ['Can take jobs with extra checks until the open point is fixed.', 'खुली बात ठीक होने तक अतिरिक्त जाँच के साथ काम ले सकती है।', 'उघडा मुद्दा सुटेपर्यंत अधिक तपासणीसह कामे घेऊ शकते.'],
+  ps_SUSPENDED_d: ['No new jobs. Open jobs need a handover plan.', 'नए काम नहीं। खुले कामों के लिए हैंडओवर योजना ज़रूरी।', 'नवीन कामे नाहीत. उघड्या कामांसाठी हस्तांतरण योजना हवी.'],
+  ps_TERMINATED_d: ['Agreement ended. No access to new work.', 'एग्रीमेंट खत्म। नए काम नहीं।', 'करार संपला. नवीन कामे नाहीत.'],
+  ptier_silver: ['Silver', 'सिल्वर', 'सिल्व्हर'],
+  ptier_gold: ['Gold', 'गोल्ड', 'गोल्ड'],
+  ptier_platinum: ['Platinum', 'प्लैटिनम', 'प्लॅटिनम'],
+  tier_why: ['{n} finished jobs, {fp}% passed final QC first time, {sk} active strikes', '{n} पूरे काम, {fp}% पहली बार फाइनल QC पास, {sk} सक्रिय स्ट्राइक', '{n} पूर्ण कामे, {fp}% पहिल्यांदा फायनल QC पास, {sk} सक्रिय स्ट्राइक'],
+  ptier_note: ['Tier comes from the work record only; it cannot be bought.', 'टियर सिर्फ़ काम के रिकॉर्ड से; खरीदा नहीं जा सकता।', 'टियर फक्त कामाच्या नोंदीवरून; विकत घेता येत नाही.'],
+  dd_title: ['Due-diligence checks', 'ड्यू-डिलिजेंस जाँच', 'ड्यू-डिलिजन्स तपासणी'],
+  dd_auto: ['from records', 'रिकॉर्ड से', 'नोंदीवरून'],
+  dd_pass: ['Checked, OK', 'जाँचा, ठीक', 'तपासले, ठीक'],
+  dd_fail: ['Not OK', 'ठीक नहीं', 'ठीक नाही'],
+  s_ddcheck: ['Record this check and what you saw.', 'यह जाँच और जो देखा, दर्ज करें।', 'ही तपासणी आणि जे पाहिले ते नोंदवा.'],
+  dd_kyc: ['Company KYC (PAN, GST, legal name)', 'कंपनी KYC (PAN, GST, कानूनी नाम)', 'कंपनी KYC (PAN, GST, कायदेशीर नाव)'],
+  dd_signatory: ['Authorised signatory', 'अधिकृत हस्ताक्षरकर्ता', 'अधिकृत सहीकर्ता'],
+  dd_liftlic: ['Lift contractor licence', 'लिफ्ट कॉन्ट्रैक्टर लाइसेंस', 'लिफ्ट कंत्राटदार परवाना'],
+  dd_eleclic: ['Electrical contractor licence', 'इलेक्ट्रिकल कॉन्ट्रैक्टर लाइसेंस', 'इलेक्ट्रिकल कंत्राटदार परवाना'],
+  dd_insurance: ['Insurance (third-party and workers)', 'बीमा (थर्ड-पार्टी और कर्मचारी)', 'विमा (थर्ड-पार्टी आणि कामगार)'],
+  dd_team: ['Technical team', 'तकनीकी टीम', 'तांत्रिक टीम'],
+  dd_refs: ['Past project references', 'पिछले कामों के संदर्भ', 'मागील कामांचे संदर्भ'],
+  dd_safety: ['Safety record', 'सुरक्षा रिकॉर्ड', 'सुरक्षा नोंद'],
+  dd_service: ['Service capacity and emergency phone', 'सर्विस क्षमता और आपात फ़ोन', 'सर्व्हिस क्षमता आणि आपत्कालीन फोन'],
+  dd_bank: ['Bank details verified', 'बैंक विवरण सत्यापित', 'बँक तपशील पडताळले'],
+  dd_agreement: ['Partner agreement signed', 'पार्टनर एग्रीमेंट साइन', 'भागीदार करारावर सही'],
+  why_pstatus: ['Your company is not active for new jobs yet. The office will update your status.', 'आपकी कंपनी अभी नए कामों के लिए सक्रिय नहीं। ऑफिस स्थिति अपडेट करेगा।', 'तुमची कंपनी अजून नवीन कामांसाठी सक्रिय नाही. ऑफिस स्थिती अपडेट करेल.'],
+  why_insurance: ['The company insurance has ended. Renew it to get new jobs.', 'कंपनी का बीमा खत्म हो गया। नए काम के लिए नवीनीकरण करें।', 'कंपनीचा विमा संपला. नवीन कामांसाठी नूतनीकरण करा.'],
+  tk_partner_handover: ['Company suspended: plan who finishes this job', 'कंपनी निलंबित: यह काम कौन पूरा करेगा तय करें', 'कंपनी निलंबित: हे काम कोण पूर्ण करेल ते ठरवा'],
+  ev_PARTNER_STATUS_SET: ['Company status changed', 'कंपनी स्थिति बदली', 'कंपनी स्थिती बदलली'],
+  ev_PARTNER_DD_SET: ['Company check recorded', 'कंपनी जाँच दर्ज', 'कंपनी तपासणी नोंदवली'],
+  cfg_pilotCap: ['Pilot limit: most jobs live at once (released to material, not handed over). 0 = no limit', 'पायलट सीमा: एक साथ अधिकतम चालू काम (मटेरियल जारी, हैंडओवर बाकी)। 0 = कोई सीमा नहीं', 'पायलट मर्यादा: एकाच वेळी जास्तीत जास्त चालू कामे (मटेरियल जारी, हस्तांतरण बाकी). 0 = मर्यादा नाही'],
+  pil_live: ['{n} of {cap} live jobs', '{cap} में से {n} चालू काम', '{cap} पैकी {n} चालू कामे'],
+  pil_room: ['Room for more. The blueprint pilot keeps Pune + PCMC to a few jobs so each one is done well.', 'और जगह है। ब्लूप्रिंट पायलट में पुणे + PCMC में कुछ ही काम, ताकि हर काम अच्छा हो।', 'अजून जागा आहे. ब्लूप्रिंट पायलटमध्ये पुणे + PCMC मध्ये थोडीच कामे, म्हणजे प्रत्येक काम नीट होईल.'],
+  pil_full: ['Limit reached: the next job is released to material only after a capacity check is recorded.', 'सीमा पूरी: अगला काम क्षमता जाँच दर्ज होने के बाद ही मटेरियल के लिए जारी होगा।', 'मर्यादा पूर्ण: पुढचे काम क्षमता तपासणी नोंदवल्यावरच मटेरियलसाठी जारी होईल.'],
+  pil_ask: ['Who will do this job, and what frees up their time? (team, supplier, QC)', 'यह काम कौन करेगा, और उनका समय कैसे खाली होगा? (टीम, सप्लायर, QC)', 'हे काम कोण करेल, आणि त्यांचा वेळ कसा मोकळा होईल? (टीम, सप्लायर, QC)'],
+  s_capcheck: ['Write why the team can take one more job now.', 'लिखें कि टीम अभी एक और काम क्यों ले सकती है।', 'टीम आता आणखी एक काम का घेऊ शकते ते लिहा.'],
+  err_cap_note: ['Write at least a short line (10 letters or more).', 'कम से कम एक छोटी पंक्ति लिखें (10 अक्षर या अधिक)।', 'किमान एक छोटी ओळ लिहा (10 अक्षरे किंवा जास्त).'],
+  err_pilot_cap: ['The live job limit is reached. Record a capacity check for this job first.', 'चालू काम की सीमा पूरी है। पहले इस काम की क्षमता जाँच दर्ज करें।', 'चालू कामांची मर्यादा पूर्ण आहे. आधी या कामाची क्षमता तपासणी नोंदवा.'],
+  tk_capacity_check: ['Live job limit reached: record a capacity check', 'चालू काम सीमा पूरी: क्षमता जाँच दर्ज करें', 'चालू काम मर्यादा पूर्ण: क्षमता तपासणी नोंदवा'],
+  ev_CAPACITY_CHECKED: ['Capacity check recorded', 'क्षमता जाँच दर्ज', 'क्षमता तपासणी नोंदवली'],
+  kpi_title: ['KPI board', 'KPI बोर्ड', 'KPI बोर्ड'],
+  kpi_week: ['Last 7 days', 'पिछले 7 दिन', 'मागील 7 दिवस'],
+  kpi_month: ['Last 30 days', 'पिछले 30 दिन', 'मागील 30 दिवस'],
+  kpi_g_sales: ['Leads and sales', 'लीड और बिक्री', 'लीड आणि विक्री'],
+  kpi_g_partners: ['Work, partners and safety', 'काम, पार्टनर और सुरक्षा', 'काम, भागीदार आणि सुरक्षा'],
+  kpi_leads: ['New leads', 'नई लीड', 'नवीन लीड'],
+  kpi_qual: ['Qualified (accepted) rate', 'योग्य (स्वीकृत) दर', 'पात्र (स्वीकारलेले) प्रमाण'],
+  kpi_survey_conv: ['Survey to order', 'सर्वे से ऑर्डर', 'सर्व्हे ते ऑर्डर'],
+  kpi_quote_cov: ['Qualified leads that got a quote', 'योग्य लीड जिन्हें कोटेशन मिला', 'पात्र लीड ज्यांना कोटेशन मिळाले'],
+  kpi_lead_order: ['Lead to order', 'लीड से ऑर्डर', 'लीड ते ऑर्डर'],
+  kpi_aov: ['Average order value', 'औसत ऑर्डर मूल्य', 'सरासरी ऑर्डर मूल्य'],
+  kpi_pay_conf: ['Payments confirmed by Finance', 'फाइनेंस द्वारा पक्के भुगतान', 'फायनान्सने पक्की केलेली पेमेंट'],
+  kpi_accept: ['Jobs posted that got an applicant', 'पोस्ट हुए काम जिन पर आवेदन आया', 'पोस्ट केलेली कामे ज्यावर अर्ज आला'],
+  kpi_ontime: ['Open jobs on time (moved in 7 days)', 'समय पर खुले काम (7 दिन में आगे बढ़े)', 'वेळेवर उघडी कामे (7 दिवसांत पुढे गेली)'],
+  kpi_rework: ['QC rework (not passed first time)', 'QC दोबारा काम (पहली बार पास नहीं)', 'QC पुन्हा काम (पहिल्यांदा पास नाही)'],
+  kpi_complaints: ['Complaints and service calls', 'शिकायतें और सर्विस कॉल', 'तक्रारी आणि सर्व्हिस कॉल'],
+  kpi_safety: ['Safety incidents and SOS', 'सुरक्षा घटनाएँ और SOS', 'सुरक्षा घटना आणि SOS'],
+  kpi_load: ['Live jobs now', 'अभी चालू काम', 'आता चालू कामे'],
+  kpi_note: ['Worked out from the app records only. Commission and finance numbers appear once those records start.', 'सिर्फ़ ऐप रिकॉर्ड से। कमीशन और फाइनेंस के आँकड़े उनके रिकॉर्ड शुरू होने पर दिखेंगे।', 'फक्त अ‍ॅपच्या नोंदींवरून. कमिशन आणि फायनान्सचे आकडे त्यांच्या नोंदी सुरू झाल्यावर दिसतील.'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5570,7 +5642,7 @@ const CFG_LIMITS = (() => {
   set(['lvHelperJobs', 'lvTechJobs', 'lvSeniorJobs', 'lvQcJobs', 'lvHelperReviews', 'lvTechReviews', 'lvSeniorReviews', 'lvQcReviews', 'partnerBigJobs'], 0, 500);
   set(['lvHelperStars', 'lvTechStars', 'lvSeniorStars', 'lvQcStars', 'partnerBigStars'], 0, 5); set(['lvTechTrust', 'lvSeniorTrust', 'lvQcTrust', 'lvSeniorPass', 'lvQcPass'], 0, 100);
   set(['lvHelperDays', 'lvTechDays', 'lvSeniorDays'], 0, 3650); set(['strikeDays'], 1, 3650); set(['rateTrainee', 'rateHelper', 'rateTech', 'rateSenior'], 0, 300);
-  set(['postWarnDays'], 0, 60); set(['maxOpenApps', 'maxActiveJobs'], 1, 50); set(['pinDigits'], 4, 6); set(['partnerMaxStrikes'], 1, 50); set(['licWarnDays'], 1, 365);
+  set(['postWarnDays'], 0, 60); set(['maxOpenApps', 'maxActiveJobs'], 1, 50); set(['pilotCap'], 0, 50); set(['pinDigits'], 4, 6); set(['partnerMaxStrikes'], 1, 50); set(['licWarnDays'], 1, 365);
   set(['tolWidth', 'tolDepth', 'tolPit', 'tolHead'], 300, 10000); set(['accessAlert'], 1, 1000); set(['geoRadius'], 20, 5000); set(['safetyRetest'], 0, 60);
   set(['slaUnsafe', 'slaBreakdown', 'slaRepeat', 'slaRoutine'], 1, 720); set(['remindDays'], 0, 60); set(['escalateDays'], 1, 90); set(['escOwnerDays'], 1, 180); set(['onbDays'], 1, 90);
   return L;
@@ -5736,7 +5808,7 @@ const DEFAULT_CONFIG = {
   lvSeniorJobs: 10, lvSeniorPass: 80, lvSeniorStars: 4.2, lvSeniorReviews: 15, lvSeniorTrust: 75, lvSeniorDays: 180,
   lvQcJobs: 20, lvQcPass: 90, lvQcStars: 4.5, lvQcReviews: 30, lvQcTrust: 85, strikeDays: 90,
   rateTrainee: 60, rateHelper: 80, rateTech: 100, rateSenior: 120, payCrewJob: 3000, payQcInspection: 1500, qcRecheckPct: 10, spotTrainee: 50, spotTech: 20, spotSenior: 5,
-  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', serveAreas: '', salesWonPct: 0, payPlan: 2, p1RailsPct: 30, p1DoorsPct: 40, p1DrivePct: 20, accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
+  postWarnDays: 2, maxOpenApps: 5, maxActiveJobs: 3, pinDigits: 4, partnerBigJobs: 2, partnerBigStars: 3.8, partnerMaxStrikes: 5, licWarnDays: 60, dailySafety: 1, sosNumber: '', licenceGate: 1, permitGate: 1, tolWidth: 1500, tolDepth: 1500, tolPit: 1200, tolHead: 3800, peerCheck: 1, officeNumber: '', cityCode: 'PUN', serveAreas: '', salesWonPct: 0, pilotCap: 5, payPlan: 2, p1RailsPct: 30, p1DoorsPct: 40, p1DrivePct: 20, accessAlert: 15, poDays: 7, geoRadius: 150, checkinGate: 1, payUpi: '', payName: '', payBank: '', payAcc: '', payIfsc: '', safetyRetest: 12, slaUnsafe: 4, slaBreakdown: 24, slaRepeat: 24, slaRoutine: 72,
   remindDays: 1, escalateDays: 3, escOwnerDays: 7, onbDays: 7, sundayWork: 0, holidays: '', dualControl: 0, requireTraining: 0, paySopStep: 1000, payQcBonus: 2000, payAmcVisit: 500, amcPrice: 15000
 };
 /* every number belongs to a rule group that the Owner must approve */
@@ -5754,7 +5826,7 @@ const RULE_GROUPS = {
   control: ['remindDays', 'escalateDays', 'escOwnerDays', 'onbDays', 'sundayWork', 'holidays', 'dualControl', 'requireTraining'],
   ladder: ['lvHelperJobs', 'lvHelperStars', 'lvHelperReviews', 'lvHelperDays', 'lvTechJobs', 'lvTechStars', 'lvTechReviews', 'lvTechTrust', 'lvTechDays',
     'lvSeniorJobs', 'lvSeniorPass', 'lvSeniorStars', 'lvSeniorReviews', 'lvSeniorTrust', 'lvSeniorDays', 'lvQcJobs', 'lvQcPass', 'lvQcStars', 'lvQcReviews', 'lvQcTrust', 'strikeDays'],
-  market: ['postWarnDays', 'maxOpenApps', 'maxActiveJobs'],
+  market: ['postWarnDays', 'maxOpenApps', 'maxActiveJobs', 'pilotCap'],
   partner: ['partnerBigJobs', 'partnerBigStars', 'partnerMaxStrikes', 'licWarnDays'],
   security: ['pinDigits'],
   safety: ['dailySafety', 'sosNumber', 'safetyRetest'],
@@ -6081,6 +6153,10 @@ const companyBig = p => { const st = companyStars(p); return companyJobs(p).leng
 const companyLoad = p => Object.values(S.projects).filter(P => P.partner === p && (BUSY.includes(P.stage) || (P.stage === 'handover' && !P.hand.tech))).length;
 /* jobs that keep a person busy: from material arrival until final QC passes (and the lead's own handover signature) */
 const BUSY = ['arrived', 'installing', 'qc_final', 'install_fix'];
+/* blueprint pilot: jobs released to material and not yet handed over; the 6th needs a recorded capacity check */
+const LIVE_STAGES = ['material_order', 'dispatched', 'arrived', 'installing', 'qc_final', 'install_fix', 'final_pay', 'handover'];
+const liveJobs = S => Object.values(S.projects).filter(P => LIVE_STAGES.includes(P.stage)).length;
+const capFull = (S, P) => +S.config.pilotCap > 0 && liveJobs(S) >= +S.config.pilotCap && !(P && P.capOk);
 function activeJobs(uid) {
   const ps = Object.values(S.projects);
   return { lead: ps.filter(P => P.tech === uid && (BUSY.includes(P.stage) || (P.stage === 'handover' && !P.hand.tech))).length, crew: ps.filter(P => BUSY.includes(P.stage) && (P.crew || []).includes(uid)).length };
@@ -6107,6 +6183,9 @@ function jobWhyNot(uid, post, at) {
   const u = S.users[uid]; if (!u || !u.active) return 'why_inactive';
   if (post.kind === 'qc') return u.role === 'qc' ? null : 'why_qc_only';
   if (u.role !== 'partner') return 'why_company';
+  /* blueprint hard gates before any score: company status and insurance */
+  if (!partnerTakes(uid)) return 'why_pstatus';
+  if (!partnerInsOk(uid, at)) return 'why_insurance';
   const P = S.projects[post.pid], c = post.card || {}, size = P ? jobSize(P) : c.size, max = S.config.maxActiveJobs || 3;
   if (post.kind === 'lead' && P && P.partner === uid && P.tech && companyOf(P.tech) === uid) return 'why_own';
   if (!licenceOk(uid, at)) return 'why_licence';
@@ -6997,9 +7076,13 @@ const RULES = {
       const tw = techWhyNot(d.tech, ev.t); if (tw) return tw;
       if (!canLead(d.tech, P, ev.t)) return 'err_cant_lead';
       if (variationOpen(P)) return 'err_variation';
+      if (ev.t >= ACT_FROM && capFull(S, P)) return 'err_pilot_cap';
       if (!(d.drawings || '').trim()) return 'err_fill';
       return need((d.materials || []).length > 0, 'err_fill');
     }
+  },
+  CAPACITY_CHECKED: {
+    roles: ['admin', 'owner'], project: true, stages: ['site_ok'], check: (S, ev) => need((ev.data.note || '').trim().length >= 10, 'err_cap_note')
   },
   ASSIGNED: {
     roles: ['admin', 'owner'], project: true, stages: OPEN_STAGES.concat('amc'), check: (S, ev, u, P) =>
@@ -7793,6 +7876,16 @@ const RULES = {
     if (!x || x.role !== 'tech' || !x.company) return 'err_no_user';
     if (u.role === 'partner' && x.company !== u.uid) return { k: 'err_access', v: {} };
     return need(Number.isInteger(+ev.data.pct) && +ev.data.pct >= 0 && +ev.data.pct <= 100, 'err_fill'); } },
+  PARTNER_STATUS_SET: { roles: ['owner', 'admin'], check: (S, ev) => { const d = ev.data, x = S.users[d.uid];
+    if (!x || x.role !== 'partner') return 'err_no_user';
+    if (!P_STATUS.some(([k]) => k === d.status)) return 'err_choose';
+    if (d.status === 'ACTIVE' && !licenceOk(d.uid, ev.t)) return 'err_why_licence';
+    return need((d.reason || '').trim(), 'err_reason'); } },
+  PARTNER_DD_SET: { roles: ['owner', 'admin'], check: (S, ev) => { const d = ev.data, x = S.users[d.uid];
+    if (!x || x.role !== 'partner') return 'err_no_user';
+    if (!DD_ITEMS.some(([k]) => k === d.item) || typeof d.ok !== 'boolean') return 'err_choose';
+    if (d.expiry != null && !/^\d{4}-\d\d-\d\d$/.test(d.expiry)) return 'err_date';
+    return need((d.note || '').trim(), 'err_fill'); } },
   WORKER_PROFILE: {
     roles: STAFF, check: (S, ev, u) => {
       const x = S.users[ev.data.uid];
@@ -8370,6 +8463,9 @@ function apply(S, ev) {
     case 'SERVICE_LEAD_SET': S.serviceLead = d.uid || ''; break;
     case 'BUDDY_SET': worker(d.uid).buddy = d.buddy; break;
     case 'COMPANY_SHARE_SET': worker(d.uid).share = +d.pct; break;
+    case 'CAPACITY_CHECKED': P.capOk = { note: d.note.trim(), t: ev.t, by: ev.by }; break;
+    case 'PARTNER_STATUS_SET': { const w = worker(d.uid); (w.pstLog = w.pstLog || []).push({ s: d.status, reason: d.reason.trim(), t: ev.t, by: ev.by }); w.pst = { s: d.status, reason: d.reason.trim(), t: ev.t, by: ev.by }; break; }
+    case 'PARTNER_DD_SET': { const w = worker(d.uid); (w.dd = w.dd || {})[d.item] = { ok: d.ok, note: d.note.trim(), expiry: d.expiry || null, t: ev.t, by: ev.by }; break; }
     case 'WORKER_PROFILE': { const w = worker(d.uid); if (d.stripped) w.profile.filled = true; ['phone', 'area', 'skills', 'availability'].forEach(k => { if (d[k] !== undefined) w.profile[k] = k === 'phone' ? phone10(d[k]) : d[k]; }); w.profile.t = ev.t; break; }
     case 'REFERRAL_SET': { const R = refProject(d.code); P.referral = { from: R.id, code: R.lift.code, t: ev.t, by: ev.by, paid: null }; break; }
     case 'REFERRAL_REWARDED': P.referral.paid = { t: ev.t, by: ev.by, note: d.note.trim(), amount: +S.config.refReward || 0 }; break;
@@ -8533,6 +8629,7 @@ function needs0(P) {
     case 'site_ok':
       if (variationOpen(P)) add(P.variation.status === 'proposed' ? 'sign_variation' : 'make_variation', P.variation.status === 'proposed' && P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales], urgent: true });
       else if (gadNeeded(P)) add('sign_gad', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales], since: P.since });
+      else if (capFull(S, P)) add('capacity_check', ['admin', 'owner'], { since: P.since });
       else add('release', ['admin', 'owner']);
       break;
     case 'material_order':
@@ -8576,6 +8673,7 @@ function needs0(P) {
   }
   for (const b of P.blockers) if (b.open) add('resolve_blocker', uniq([b.role, 'admin']), { bid: b.id, urgent: true, since: b.t });
   for (const i of P.incidents) if (i.open) add('resolve_incident', ['admin', 'owner'], { iid: i.id, urgent: true, since: i.t, shared: i.type === 'injury' });
+  if (P.partner && ['SUSPENDED', 'TERMINATED'].includes(partnerStatus(P.partner)) && OPEN_STAGES.includes(P.stage)) add('partner_handover', ['admin', 'owner'], { urgent: true, uid: P.partner });
   for (const i of P.incidents) if (reportDue(i) && i.t >= ACT_FROM) add('report_accident', ['admin', 'owner'], { iid: i.id, urgent: true, alarm: true, shared: true, since: i.t, overdue: Date.now() - Date.parse(i.t) > 24 * 3600e3 });
   { const ins = statOf(P).insurance; if (ins && P.stage !== 'lost') { const d = Math.round((new Date(ins.expiry + 'T12:00:00') - new Date(todayStr() + 'T12:00:00')) / 864e5); if (d <= (S.config.licWarnDays || 60)) add('insurance_due', statRoles(), { uids: statLead() ? [statLead()] : [], urgent: d <= 7, overdue: d < 0 }); } }
   /* statutory records, holds and disputes */
@@ -9488,7 +9586,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', dev_alert: '📱', report_accident: '🚓', insurance_due: '🛡️', dispatch_lot: '🚚', lot_arrival: '📍', wait_lot: '⏳', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', dev_alert: '📱', report_accident: '🚓', insurance_due: '🛡️', partner_handover: '🔁', capacity_check: '🏗️', dispatch_lot: '🚚', lot_arrival: '📍', wait_lot: '⏳', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -12567,7 +12665,7 @@ function dashboard(noTitle) {
   byPhase.push(['🔑 ' + t('st_amc'), cnt('done')], ['❌ ' + t('st_lost'), lost]);
   const mx = Math.max(1, ...byPhase.map(b => b[1]));
   const lostR = {}; ps.filter(DRILL.lost).forEach(P => { const r = P.lost && P.lost.reason; if (r) lostR[r] = (lostR[r] || 0) + 1; });
-  return `${noTitle ? '' : `<h2 class="sec">${t(App.me.role === 'owner' ? 'owner_dash' : 'admin_dash')}</h2>`}
+  return `${noTitle ? '' : `<h2 class="sec">${t(App.me.role === 'owner' ? 'owner_dash' : 'admin_dash')}</h2>`}${pilotLine()}
     <div class="kpis">${kpi('', ps.length, 'k_leads', 'tag_count', 'all')}${kpi('', cnt('valid'), 'k_valid', 'tag_count', 'valid')}
     ${kpi('act', won + lost ? Math.round(won / (won + lost) * 100) + '%' : '—', 'k_conversion', 'tag_actual', 'won')}${kpi('est', money(pipeline), 'k_pipeline', 'tag_estimate', 'pipeline')}
     ${kpi('', money(contract), 'k_contract', 'tag_agreed', 'won')}${kpi('act', money(confirmed), 'k_confirmed', 'tag_verified', 'payments')}
@@ -12576,8 +12674,44 @@ function dashboard(noTitle) {
     <div class="card" style="margin-top:12px"><h3>${t('by_phase')}</h3>${byPhase.map(([l, n]) => `<div class="bar"><span class="lb">${esc(l)}</span><span class="b"><i style="width:${n / mx * 100}%"></i></span><b>${n}</b></div>`).join('')}</div>
     ${Object.keys(lostR).length ? `<div class="card"><h3>${t('lost_reasons')}</h3>${Object.entries(lostR).map(([r, n]) => `<div class="bar"><span class="lb">${t('lr_' + r)}</span><span class="b"><i style="width:${n / lost * 100}%"></i></span><b>${n}</b></div>`).join('')}</div>` : ''}
     <p class="small muted">${t('dash_note')}</p>
-    <div class="row wrapw"><button class="btn btn-sm" data-a="nav" data-v="weekly">📅 ${t('week_title')}</button><button class="btn btn-sm" data-a="nav" data-v="auto">⚙️ ${t('auto_title')}</button></div>`;
+    <div class="row wrapw"><button class="btn btn-sm" data-a="nav" data-v="kpi">🎯 ${t('kpi_title')}</button><button class="btn btn-sm" data-a="nav" data-v="weekly">📅 ${t('week_title')}</button><button class="btn btn-sm" data-a="nav" data-v="auto">⚙️ ${t('auto_title')}</button></div>`;
 }
+/* ---------- blueprint B3: pilot limit and the KPI board (from the blueprint's KPI list) ---------- */
+function pilotLine() {
+  const cap = +S.config.pilotCap; if (!cap) return '';
+  const n = liveJobs(S), full = n >= cap;
+  return `<div class="card ${full ? 'warnbox' : ''}" style="margin:0 0 10px"><b>🏗️ ${t('pil_live', { n, cap })}</b><div class="small muted">${t(full ? 'pil_full' : 'pil_room')}</div></div>`;
+}
+WIZ.capCheck = {
+  title: 'tk_capacity_check', save: 'save', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'c', icon: '🏗️', say: 's_capcheck', body: () => `<div class="card small">${t('pil_live', { n: liveJobs(S), cap: +S.config.pilotCap })}<br>${t('pil_ask')}</div>` + inp('note', 'f_note', { area: true, mic: true }), check: c => c.note.trim().length >= 10 ? null : 'err_cap_note' }],
+  async finish(c) { const r = await run([['CAPACITY_CHECKED', W.pid, { note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
+function kpiData(days) {
+  const from = new Date(Date.now() - days * 864e5).toISOString(), inP = e => e.t >= from, evs = EVENTS.filter(inP), ps = Object.values(S.projects);
+  const of = type => evs.filter(e => e.type === type), pct = (a, b) => b ? Math.round(a / b * 100) + '%' : '—';
+  const leads = ps.filter(P => P.hist[0] && P.hist[0].t >= from);
+  const qual = leads.filter(P => P.hist.some(h => h.s === 'accepted'));
+  const surveyed = new Set(of('SURVEY_DONE').map(e => e.pid)), won = of('DEAL_WON');
+  const wonSurveyed = won.filter(e => S.projects[e.pid] && S.projects[e.pid].survey).length;
+  const quoted = new Set(of('QUOTE_SENT').map(e => e.pid));
+  const vals = won.map(e => { const q = (S.projects[e.pid] || { quotes: [] }).quotes.find(x => x.accepted); return q ? q.total : 0; }).filter(Boolean);
+  const posts = of('JOB_POSTED'), taken = posts.filter(e => EVENTS.some(a => a.type === 'JOB_APPLIED' && a.data.postId === e.data.postId)).length;
+  const qcs = of('QC_FINAL_RESULT').concat(of('QC_SITE_RESULT')), qcFail = qcs.filter(e => e.data.outcome && e.data.outcome !== 'pass').length;
+  const open = ps.filter(P => OPEN_STAGES.includes(P.stage)), late = open.filter(DRILL.delayed).length;
+  const conf = evs.filter(e => e.type === 'PAYMENT_STATUS' && e.data.status === 'confirmed').length;
+  return [
+    ['sales', [['kpi_leads', leads.length], ['kpi_qual', pct(qual.length, leads.length)], ['kpi_survey_conv', pct(wonSurveyed, surveyed.size)], ['kpi_quote_cov', pct(quoted.size, qual.length)], ['kpi_lead_order', pct(won.length, leads.length)], ['kpi_aov', vals.length ? money(Math.round(sum(vals) / vals.length)) : '—'], ['kpi_pay_conf', conf]]],
+    ['partners', [['kpi_accept', pct(taken, posts.length)], ['kpi_ontime', pct(open.length - late, open.length)], ['kpi_rework', pct(qcFail, qcs.length)], ['kpi_complaints', of('TICKET_OPENED').length], ['kpi_safety', of('INCIDENT_RAISED').length + of('SOS_RAISED').length], ['kpi_load', +S.config.pilotCap ? liveJobs(S) + ' / ' + S.config.pilotCap : liveJobs(S)]]]
+  ];
+}
+SCREENS.kpi = ({ days } = {}) => {
+  const u = App.me; if (!['owner', 'admin'].includes(u.role)) return SCREENS.home();
+  const d = +days || 7; App.pageSay = t('kpi_title');
+  return topBar(t('kpi_title'), { back: true }) + `<main class="wrap"><div class="row wrapw" style="margin-bottom:8px">${[7, 30].map(n => `<button class="btn btn-sm ${n === d ? 'btn-p' : ''}" data-a="kpiDays" data-v="${n}">${t(n === 7 ? 'kpi_week' : 'kpi_month')}</button>`).join('')}</div>
+    ${pilotLine()}${kpiData(d).map(([g, rows]) => `<div class="card"><h3>${t('kpi_g_' + g)}</h3>${kv(rows.map(([k, v]) => [k, esc(String(v))]))}</div>`).join('')}
+    <p class="small muted">${t('kpi_note')}</p></main>` + nav('home');
+};
 SCREENS.drill = ({ k }) => {
   const list = visibleProjects(App.me).filter(DRILL[k] || DRILL.all);
   return topBar(t('qu_' + k) === 'qu_' + k ? t('projects') : t('qu_' + k), { back: true }) + `<main class="wrap">${list.length ? list.map(projCard).join('') : `<div class="card center">${t('nothing_here')}</div>`}</main>` + nav('projects');
@@ -13832,7 +13966,8 @@ function exportPack(kind, forUid, opts = {}) {
     const hideName = uid => { const x = S.users[uid]; if (!x || uid === forUid) return false; return ['customer', 'supplier'].includes(x.role) || (x.role === 'tech' && x.company !== myCo) || (x.role === 'partner' && uid !== myCo); };
     events = EVENTS.filter(ev => ev.type.startsWith('JOB_') ? market : ev.pid ? vis.has(ev.pid)
       : ev.type === 'USER_ADDED' && ev.data.role === 'customer' ? vis.has(ev.data.projectId)
-      : ['ORG_CREATED', 'USER_ADDED', 'USER_UPDATED', 'CONFIG_SET', 'KEY_ADDED', 'KEY_APPROVED', 'PARTNER_PROFILE', 'MEMBER_APPROVED', 'MEMBER_REMOVED'].includes(ev.type) || (ev.type === 'DOC_VERIFIED' && roleOf(ev.data.uid) === 'partner') || ev.by === forUid || (staff && LADDER.includes(ev.type)) || (ABOUT.includes(ev.type) && ev.data.uid === forUid))
+      : ['ORG_CREATED', 'USER_ADDED', 'USER_UPDATED', 'CONFIG_SET', 'KEY_ADDED', 'KEY_APPROVED', 'PARTNER_PROFILE', 'MEMBER_APPROVED', 'MEMBER_REMOVED'].includes(ev.type) || (ev.type === 'DOC_VERIFIED' && roleOf(ev.data.uid) === 'partner') || ev.by === forUid || (staff && LADDER.includes(ev.type)) || (ABOUT.includes(ev.type) && ev.data.uid === forUid)
+        || (['PARTNER_STATUS_SET', 'PARTNER_DD_SET'].includes(ev.type) && (!out || ev.data.uid === myCo)))
       .map(ev => {
         const d = ev.data || {}, keys = [], extra = {};
         if (ev.type === 'PIN_UPGRADED' && ev.by !== forUid) { keys.push('pin', 'salt'); extra.stripped = true; }
@@ -14504,7 +14639,7 @@ SCREENS.auto = () => {
 /* ---------- office queue (exceptions first) ---------- */
 const EXC_SEV = {
   sos: 'critical',
-  sla_breach: 'high', lift_licence_due: 'high', insurance_due: 'high', report_accident: 'critical', record_licence: 'high', licence_renew: 'high', record_permit: 'high', po_declined: 'high', access_alert: 'high', pay_dispute: 'high', resolve_incident: 'high', verify_payment: 'medium',
+  sla_breach: 'high', lift_licence_due: 'high', insurance_due: 'high', partner_handover: 'critical', report_accident: 'critical', record_licence: 'high', licence_renew: 'high', record_permit: 'high', po_declined: 'high', access_alert: 'high', pay_dispute: 'high', resolve_incident: 'high', verify_payment: 'medium',
   second_approval: 'medium', po_late: 'medium', decide_claim: 'medium', strike_appeal: 'medium', hold_request: 'medium', dispute_open: 'medium', resolve_blocker: 'medium', refund_decide: 'medium', approve_key: 'medium', approve_member: 'medium', assign_ticket: 'medium', suspend_review: 'medium',
   clock_gap: 'low', check_docs: 'low', onb_profile: 'low', review_meeting: 'low', post_nobody: 'low', review_lead: 'low'
 };
@@ -14889,7 +15024,8 @@ function companySub(p) { const st = companyStars(p), n = companyJobs(p).length; 
 function companyChips(p) {
   const st = companyStars(p), d = licDays(p);
   return `<span class="chip ${licenceOk(p) ? (d != null && d <= (S.config.licWarnDays || 60) ? 'c-warn' : 'c-ok') : 'c-bad'}">📜 ${licenceOk(p) ? (d != null && d <= (S.config.licWarnDays || 60) ? t('lic_days', { n: d }) : t('lic_ok')) : t('lic_bad')}</span> `
-    + (st.count < 3 ? `<span class="chip c-mute">⭐ ${t('stars_new', { n: st.count })}</span>` : `<span class="chip c-info">★ ${starTxt(st.fair)} (${t('reviews_n', { n: st.count })})</span>`);
+    + (st.count < 3 ? `<span class="chip c-mute">⭐ ${t('stars_new', { n: st.count })}</span>` : `<span class="chip c-info">★ ${starTxt(st.fair)} (${t('reviews_n', { n: st.count })})</span>`)
+    + ` <span class="chip c-info">${TIER_ICON[partnerTier(p).tier]} ${t('ptier_' + partnerTier(p).tier)}</span>` + (partnerStatus(p) !== 'ACTIVE' ? ` <span class="chip ${partnerTakes(p) ? 'c-warn' : 'c-bad'}">${t('ps_' + partnerStatus(p))}</span>` : '');
 }
 function memberChip(uid) {
   const u = S.users[uid]; if (!u || u.role !== 'tech') return '';
@@ -14903,10 +15039,52 @@ function memberCard(uid) {
     ${u.company && (adm || (me.role === 'partner' && u.company === me.uid)) ? `<button class="btn btn-sm" data-a="wizOpen" data-v="memberRemove||uid|${uid}">➖ ${t('member_remove')}</button>` : ''}</div>
     <p class="small muted">${t('member_pay_note')}</p></div>`;
 }
+/* ---------- blueprint B2: partner company status, due-diligence checks and tiers ---------- */
+const P_STATUS = [['APPLIED', '📝'], ['UNDER_REVIEW', '🔎'], ['VERIFIED', '✅'], ['ACTIVE', '🟢'], ['CONDITIONAL', '🟡'], ['SUSPENDED', '⛔'], ['TERMINATED', '✖️']];
+const DD_ITEMS = [['kyc', '🪪'], ['signatory', '✍️'], ['liftlic', '📜'], ['eleclic', '⚡'], ['insurance', '🛡️'], ['team', '👷'], ['refs', '🏢'], ['safety', '🦺'], ['service', '📞'], ['bank', '🏦'], ['agreement', '🤝']];
+/* companies set up before this rule: active when their lift licence is valid, otherwise under review */
+function partnerStatus(p) { const w = S.workers[p] || {}; return w.pst ? w.pst.s : licenceOk(p) ? 'ACTIVE' : 'UNDER_REVIEW'; }
+/* the status gate applies once the office has set a status; before that the licence check gives the clearer reason */
+const partnerTakes = p => { const w = S.workers[p]; return !w || !w.pst || ['ACTIVE', 'CONDITIONAL'].includes(w.pst.s); };
+const partnerInsOk = (p, at) => { const x = ((S.workers[p] || {}).dd || {}).insurance; return !x || !x.expiry || x.expiry >= (at ? coDay(new Date(at).getTime()) : todayStr()); };
+/* checks worked out from records where the app has them; the rest are ticked by the office */
+function ddState(p) {
+  const w = S.workers[p] || {}, dd = w.dd || {};
+  const auto = { liftlic: licenceOk(p), team: membersOf(p).length > 0, kyc: (w.docs || {}).id === 'verified' || undefined, agreement: contractOk(p) || undefined };
+  return DD_ITEMS.map(([k, i]) => { const m = dd[k]; return { k, i, ok: m ? m.ok : auto[k], note: m ? m.note : '', expiry: m && m.expiry, auto: !m && auto[k] !== undefined }; });
+}
+/* Silver / Gold / Platinum from the record, never from payment */
+function partnerTier(p) {
+  const jobs = companyJobs(p), n = jobs.length, fp = n ? Math.round(100 * jobs.filter(firstPass).length / n) : 0, sk = companyStrikes(p), tr = companyTrust(p) || 0;
+  return { tier: tierOf(n, fp, sk, tr), why: t('tier_why', { n, fp, sk }) };
+}
+const tierOf = (n, fp, sk, tr) => n >= 10 && fp >= 90 && sk === 0 && tr >= 80 ? 'platinum' : n >= 3 && fp >= 75 && sk <= 1 ? 'gold' : 'silver';
+const TIER_ICON = { silver: '🥈', gold: '🥇', platinum: '💎' };
+function partnerStatusCard(p) {
+  const adm = ['owner', 'admin'].includes(App.me.role), ps = partnerStatus(p), w = S.workers[p] || {}, tr = partnerTier(p);
+  const chip = s => `<span class="chip ${s === 'ACTIVE' ? 'c-ok' : ['SUSPENDED', 'TERMINATED'].includes(s) ? 'c-bad' : s === 'CONDITIONAL' ? 'c-warn' : 'c-info'}">${(P_STATUS.find(x => x[0] === s) || [])[1]} ${t('ps_' + s)}</span>`;
+  return `<div class="card"><h3>🏷️ ${t('ps_title')}</h3><div class="row wrapw">${chip(ps)} <span class="chip c-info">${TIER_ICON[tr.tier]} ${t('ptier_' + tr.tier)}</span></div>
+    <p class="small muted">${t('ps_' + ps + '_d')}</p><p class="small">${TIER_ICON[tr.tier]} ${esc(tr.why)} · ${t('ptier_note')}</p>
+    ${w.pst && w.pst.reason ? `<p class="small">📝 ${esc(w.pst.reason)} · ${esc(userName(w.pst.by))} · ${fmtD(w.pst.t)}</p>` : ''}
+    ${partnerInsOk(p) ? '' : `<div class="err small">🛡️ ${t('why_insurance')}</div>`}
+    <h3 style="margin-top:10px">${t('dd_title')}</h3>${ddState(p).map(x => `<div class="list-item small"><span>${x.ok === true ? '✅' : x.ok === false ? '❌' : '⬜'}</span><span class="grow">${x.i} ${t('dd_' + x.k)}${x.expiry ? ' · ' + t('lic_expiry') + ': ' + fmtD(x.expiry) : ''}${x.note ? '<br><span class="muted">' + esc(x.note) + '</span>' : ''}${x.auto ? ' <span class="muted">· ' + t('dd_auto') + '</span>' : ''}</span>${adm ? `<button class="btn btn-sm" data-a="wizOpen" data-v="ddCheck||uid|${p}|item|${x.k}">✏️</button>` : ''}</div>`).join('')}
+    ${adm ? `<button class="btn btn-p" style="margin-top:8px" data-a="wizOpen" data-v="pStatus||uid|${p}">🏷️ ${t('ps_change')}</button>` : ''}</div>`;
+}
+WIZ.pStatus = {
+  title: 'ps_change', save: 'save', noDraft: true, init: () => ({ status: '', reason: '' }),
+  steps: [{ id: 's', icon: '🏷️', say: 's_pstatus', body: () => tiles('status', P_STATUS.map(([k, i]) => [k, i, 'ps_' + k]), 'one') + inp('reason', 'f_reason', { area: true, mic: true }), check: c => !c.status ? 'err_choose' : c.reason.trim() ? null : 'err_reason' }],
+  async finish(c) { const r = await run([['PARTNER_STATUS_SET', null, { uid: W.opts.uid, status: c.status, reason: c.reason.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
+WIZ.ddCheck = {
+  title: 'dd_title', save: 'save', noDraft: true, init: () => ({ ok: '', note: '', expiry: '' }),
+  steps: [{ id: 'd', icon: '✅', say: 's_ddcheck', body: () => `<div class="card"><b>${t('dd_' + W.opts.item)}</b></div>` + tiles('ok', [['yes', '✅', 'dd_pass'], ['no', '❌', 'dd_fail']], 'one') + inp('note', 'f_note', { area: true, mic: true }) + (['insurance', 'eleclic'].includes(W.opts.item) ? inp('expiry', 'lic_expiry', { type: 'date', opt: true }) : ''),
+    check: c => !c.ok ? 'err_choose' : c.note.trim() ? null : 'err_fill' }],
+  async finish(c) { const r = await run([['PARTNER_DD_SET', null, Object.assign({ uid: W.opts.uid, item: W.opts.item, ok: c.ok === 'yes', note: c.note.trim() }, c.expiry ? { expiry: c.expiry } : {})]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+};
 function companyCard(p) {
   const me = App.me, l = licOf(p) || {}, own = me.uid === p, adm = ['owner', 'admin'].includes(me.role);
   const ms = membersOf(p), jobs = companyJobs(p), tr = companyTrust(p), sk = companyStrikes(p);
-  return `<div class="card"><h3>📜 ${t('lic_title')}</h3>${kv([['lic_no', esc(l.licNo || '')], ['lic_holder', esc(l.licHolder || '')], ['lic_authority', esc(l.licAuthority || '')], ['lic_expiry', l.licExpiry ? fmtD(l.licExpiry) : ''], ['lic_gst', esc(l.gst || '')]])}
+  return partnerStatusCard(p) + `<div class="card"><h3>📜 ${t('lic_title')}</h3>${kv([['lic_no', esc(l.licNo || '')], ['lic_holder', esc(l.licHolder || '')], ['lic_authority', esc(l.licAuthority || '')], ['lic_expiry', l.licExpiry ? fmtD(l.licExpiry) : ''], ['lic_gst', esc(l.gst || '')]])}
       <div style="margin-top:6px">${companyChips(p)}</div>${licenceOk(p) ? '' : `<div class="warnbox">⚠️ ${t('lic_needed')}</div>`}
       ${own || adm ? `<button class="btn btn-sm" style="margin-top:8px" data-a="wizOpen" data-v="partnerLic||uid|${p}">✏️ ${t('edit')}</button>` : ''}</div>
     <div class="card"><h3>📊 ${t('co_record')}</h3>${kv([['co_jobs', jobs.length], ['co_trust', tr == null ? t('trust_new') : tr], ['co_strikes', sk], ['co_big', t(companyBig(p) ? 'yes' : 'no')]])}<p class="small muted">${t('co_record_note')}</p></div>
@@ -15278,7 +15456,7 @@ function openTask(n) {
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), dispatch_lot: () => wiz('dispatch', pid, { lot: n.lot }), lot_arrival: () => wiz('arrival', pid, { lot: n.lot }), wait_lot: () => go('project', { pid }), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
-    lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), insurance_due: () => wiz('statutory', pid, { item: 'insurance' }), report_accident: () => wiz('accReport', pid, { iid: n.iid }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
+    lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), insurance_due: () => wiz('statutory', pid, { item: 'insurance' }), partner_handover: () => go('project', { pid, tab: 'info' }), capacity_check: () => wiz('capCheck', pid), report_accident: () => wiz('accReport', pid, { iid: n.iid }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
     sign_handover: () => go('cl', { pid, kind: 'handover' }), complete_handover: () => go('cl', { pid, kind: 'handover' }),
     resolve_blocker: () => wiz('resolve', pid, { bid: n.bid }), resolve_incident: () => wiz('incident', pid, { iid: n.iid }),
@@ -15706,6 +15884,7 @@ const ACT = {
   tplDelete: async v => { const r = await perform('TEMPLATE_DELETED', null, { tid: v }); if (r.ok) render(); },
   /* "wizId|pid|key|value|key|value" opens a step-by-step screen with options */
   wizOpen: v => { const [id, pid, ...kvs] = v.split('|'); const o = {}; for (let i = 0; i < kvs.length; i += 2) o[kvs[i]] = /^\d+$/.test(kvs[i + 1]) && kvs[i] !== 'week' ? +kvs[i + 1] : kvs[i + 1]; closeSheet(); wiz(id, pid || null, o); },
+  kpiDays: v => { App.route.p = { days: +v }; render(); },
   nav2: v => { const [screen, val, src] = v.split('|'); if (App.route.name === screen && screen === 'reviews') { App.route.p = { uid: val, src: src || '' }; render(); return; } if (App.route.name === screen && screen === 'jobs') { App.route.p = { src: src || '' }; render(); return; } go(screen, screen === 'leaders' ? { m: val } : { uid: val, src: src || '' }); },
   svcView: v => { const [pid, i] = v.split('|'), x = S.projects[pid].service[i]; sheet(`<h2>🛠️ ${t('amc_visit_n', { n: +i + 1 })}</h2><p class="small">${userTag(x.by)} · ${fmtD(x.t, true)}${x.met ? ' · ' + esc(x.met) : ''}</p>${AMC_CHECKS.map(k => `<div>${x.checks[k] === 'pass' ? '✅' : '❌'} ${t('amc_' + k)}</div>`).join('')}${x.note ? `<p>${esc(x.note)}</p>` : ''}${evGrid(x.ev)}`); },
   docVerify: v => { const [uid, doc, status] = v.split('|'); App.form.dvNote = ''; sheet(`<h2>🪪 ${t('doc_' + doc)} · ${t('ds_' + status)}</h2><p>${esc(userName(uid))}</p>${formInp('dvNote', status === 'rejected' ? 'f_reason' : 'f_note')}<p class="small muted">${t('w_docs_note')}</p><button class="btn btn-p btn-big" data-a="docVerifyGo" data-v="${v}">💾 ${t('save')}</button>`); },
