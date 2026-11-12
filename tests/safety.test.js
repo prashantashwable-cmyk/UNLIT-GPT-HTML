@@ -11,7 +11,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const tasks = uid => page.evaluate(uid => myTasks(S.users[uid]).map(n => n.k), uid);
   const H = 'AIEC-P003'; /* hospital job, installing, lead PSENIOR, company PPART1 */
   const sop = () => act('SOP_STEP_DONE', H, { step: sopNext(S.projects[H]), ev: [] }, 'PSENIOR');
-  const sopOk = async () => page.evaluate(async H => { const P = S.projects[H]; const r = await perform('SOP_STEP_DONE', H, { step: sopNext(P), isc: iscYes(sopNext(P)), ev: [{ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'work', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }] }, { as: 'PSENIOR', quiet: true }); return { ok: r.ok, err: r.err && (r.err.k || r.err) }; }, H);
+  const sopOk = async () => page.evaluate(async H => { const P = S.projects[H]; const r = await perform('SOP_STEP_DONE', H, { step: sopNext(P), isc: iscYes(sopNext(P)), read: readYes(sopNext(P), P), ev: [{ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'work', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }] }, { as: 'PSENIOR', quiet: true }); return { ok: r.ok, err: r.err && (r.err.k || r.err) }; }, H);
 
   assert(await ev('S.rejected.length === 0 && Object.values(S.projects).some(P => Object.keys(P.safety || {}).length)'), 'practice data has daily safety checks for past work days and no refused records');
 

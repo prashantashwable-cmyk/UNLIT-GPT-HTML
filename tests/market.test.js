@@ -59,7 +59,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const cel = await page.evaluate(() => { loginAs(S.users.PPART2); Notify.hide(); const n = (App.notifyLog || []).length; Notify.check(); return (App.notifyLog || []).slice(n).map(x => x.title); });
   assert(cel.some(x => /got the job/.test(x)), 'the company hears "You got the job": ' + cel.join(' | '));
   const shot = await ev('[{ id: "E" + rid(10), m: "x", kind: "photo", label: "amc", t: nowISO(), gps: null, hash: "h" + rid(8), dev: "practice", q: {} }]');
-  assert((await act('SERVICE_DONE', 'AIEC-P001', { visit: 0, checks: { ride: 'pass', doors: 'pass', alarm: 'pass', brake: 'pass', ropes: 'pass', oil: 'pass', pit: 'pass' }, ev: shot }, 'POM1')).ok, 'the company\'s technician saves the visit');
+  assert((await act('SERVICE_DONE', 'AIEC-P001', { visit: 0, checks: { ride: 'pass', doors: 'pass', alarm: 'pass', brake: 'pass', ropes: 'pass', oil: 'pass', pit: 'pass' }, qr: await ev(`S.projects['AIEC-P001'].lift.code`), ev: shot }, 'POM1')).ok, 'the company\'s technician saves the visit');
   assert(await ev('weeksFor("PPART2").some(w => w.lines.some(l => l.what === "earn_amc_visit" && l.who === "POM1"))'), 'the visit is on Om Elevator Services\' bill');
 
   /* lead post: the company's team goes on the job */

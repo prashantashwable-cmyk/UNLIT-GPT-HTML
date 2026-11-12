@@ -10,7 +10,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const act = (type, pid, data, as) => page.evaluate(([type, pid, data, as]) => perform(type, pid, data, { as, quiet: true }).then(r => ({ ok: r.ok, err: r.err && (r.err.k || r.err) })), [type, pid, data, as]);
   const sign = () => ev(`[{ id: 'E' + rid(10), m: 'x', kind: 'sign', t: nowISO(), hash: 'h' + rid(8) }]`);
   /* (a new job waiting at "site checked": a practice job is put there) */
-  const P = await ev(`(P => { P.stage = 'site_ok'; P.t = nowISO(); P.po = null; return P.id; })(Object.values(S.projects).find(P => P.stage === 'material_order' && lastSiteOk(P)))`);
+  const P = await ev(`(P => { P.stage = 'site_ok'; P.t = nowISO(); P.po = null; P.gad = null; return P.id; })(Object.values(S.projects).find(P => P.stage === 'material_order' && lastSiteOk(P)))`);
   assert(await ev(`needs(S.projects["${P}"]).some(n => n.k === 'sign_gad') && !needs(S.projects["${P}"]).some(n => n.k === 'release')`), 'the customer is asked to sign before the office can release material');
   const rel = await act('RELEASED', P, { supplier: 'PSUP', tech: 'PTECH', drawings: 'DWG-X1', materials: await ev(`materialList(S.projects["${P}"].req)`) }, 'PADMIN');
   assert(rel.err === 'err_gad_first', 'material cannot be ordered before the sign-off');

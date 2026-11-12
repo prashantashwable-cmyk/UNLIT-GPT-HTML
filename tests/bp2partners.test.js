@@ -44,7 +44,13 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(!!(await page.$('[data-v^="pStatus||"]')) && !!(await page.$('[data-v^="ddCheck||"]')), 'Admin can change the status and record checks');
   await page.click('[data-v^="pStatus||"]'); await page.waitForTimeout(300);
   assert(/Choose the company status/.test(await page.innerText('main')), 'the status wizard opens');
-  await page.evaluate(() => { W = null; });
+  await page.click('main .tile[data-a="pick"][data-k="status"][data-v="ACTIVE"]'); await page.waitForTimeout(100); await page.fill('main [data-k="reason"]', 'Extra QC done on two jobs'); await page.click('[data-a="wizNext"]'); await page.waitForTimeout(400);
+  assert(await ev(`S.workers['${C}'].pst.s === 'ACTIVE' && S.workers['${C}'].pstLog.length === 3`), 'the status is changed through the screen');
+  await page.evaluate(c => go('worker', { uid: c }), C); await page.waitForTimeout(250);
+  await page.click('main [data-v$="|item|bank"]'); await page.waitForTimeout(300);
+  await page.click('main .tile[data-a="pick"][data-k="ok"][data-v="yes"]'); await page.waitForTimeout(100); await page.fill('main [data-k="note"]', 'Cancelled cheque seen'); await page.click('[data-a="wizNext"]'); await page.waitForTimeout(400);
+  assert(await ev(`S.workers['${C}'].dd.bank.ok === true`), 'a check is ticked through the screen');
+  await act('PARTNER_STATUS_SET', { uid: C, status: 'CONDITIONAL', reason: 'Back to conditional for the rest of this test' }, 'PADMIN');
   await page.evaluate(c => { loginAs(S.users[c]); ACT.permsDone(); Notify.hide(); go('worker', { uid: c }); }, C); await page.waitForTimeout(300);
   assert(/Company status and checks/.test(await page.innerText('main')) && !(await page.$('[data-v^="pStatus||"]')), 'the company sees its own status but cannot change it');
   /* rebuild */

@@ -30,7 +30,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert((await tasks(T, H)).includes('fix_install'), 'the technician gets "fix installation problems" while work goes on');
   /* steps 6 to 9 */
   while (await nx() < 10) {
-    const st = await nx(); const r = await act('SOP_STEP_DONE', H, { step: st, isc: await ev(`iscYes(${st})`), ev: await photos(1) }, T);
+    const st = await nx(); const r = await act('SOP_STEP_DONE', H, { step: st, isc: await ev(`iscYes(${st})`), read: await ev(`readYes(${st}, S.projects["${H}"]) || null`), ev: await photos(1) }, T);
     if (r.err === 'err_peer_check') { assert((await act('PEER_CHECKED', H, { step: await ev(`peerWaiting(S.projects["${H}"])[0]`), ok: true }, 'PTECH')).ok, 'co-worker check'); continue; }
     assert(r.ok, 'step ' + st + ' done with its inspector points: ' + r.err);
   }
@@ -42,7 +42,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert((await act('SOP_STEP_DONE', H, { step: 10, isc: bad, ev: await photos(1) }, T)).ok, 'safety devices step saved');
   if (await ev(`peerWaiting(S.projects["${H}"]).length`)) await act('PEER_CHECKED', H, { step: await ev(`peerWaiting(S.projects["${H}"])[0]`), ok: true }, 'PTECH');
   const last = await ev('Object.fromEntries(iscFor(11).map(x => [x[0], "yes"]))'); last[34] = 'na';
-  assert((await act('SOP_STEP_DONE', H, { step: 11, isc: last, ev: await photos(1) }, T)).ok, 'last step saved ("remote monitoring" not fitted = Not here)');
+  assert((await act('SOP_STEP_DONE', H, { step: 11, isc: last, read: await ev(`readYes(11, S.projects["${H}"]) || null`), ev: await photos(1) }, T)).ok, 'last step saved ("remote monitoring" not fitted = Not here)');
   assert((await act('INSPECTION_REQUESTED', H, {}, T)).err === 'err_snags_open', 'the inspection cannot be asked while a checklist problem is open');
   { const tk = await tasks(T, H); assert(tk.includes('fix_install') && !tk.includes('request_inspection'), 'the task is to fix the open problem: ' + JSON.stringify(tk)); }
   const cid = await ev(`openCorr(S.projects["${H}"], "install")[0].id`);

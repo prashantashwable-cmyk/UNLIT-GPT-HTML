@@ -44,7 +44,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const checks = { ride: 'pass', doors: 'fail', alarm: 'pass', brake: 'pass', ropes: 'pass', oil: 'pass', pit: 'pass' };
   const ev1 = await page.evaluate(() => [{ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'amc', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }]);
   assert(!(await act('SERVICE_DONE', 'AIEC-P001', { visit: 0, checks, ev: ev1 }, 'PSALES')).ok, 'only the technician can do a service visit');
-  assert((await act('SERVICE_DONE', 'AIEC-P001', { visit: 0, checks, met: 'Mr. Gokhale', ev: ev1 }, 'PTECH')).ok && await P('AIEC-P001', '!!P.service[0]'), 'technician saves service visit with checks and photo');
+  const qr = await P('AIEC-P001', 'P.lift.code'); /* lifts handed over under the newer journey are serviced only after scanning their code */
+  assert((await act('SERVICE_DONE', 'AIEC-P001', { visit: 0, checks, met: 'Mr. Gokhale', qr, ev: ev1 }, 'PTECH')).ok && await P('AIEC-P001', '!!P.service[0]'), 'technician saves service visit with checks and photo');
   assert(!(await act('SERVICE_DONE', 'AIEC-P001', { visit: 0, checks, ev: ev1 }, 'PTECH')).ok, 'the same visit cannot be saved twice');
   const end0 = await P('AIEC-P001', 'P.amcEnd');
   assert((await act('AMC_RENEWED', 'AIEC-P001', { years: 2, amount: 28000 }, 'PSALES')).ok && (await P('AIEC-P001', 'P.amcEnd')) > end0, 'AMC renewal extends the contract');

@@ -25,7 +25,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   /* service visit: wearing */
   const vi = await ev(`(P => P.done.amc.visits.findIndex((d, i) => !P.service[i]))(S.projects["${A}"])`), tech = await ev(`S.projects["${A}"].tech`);
   const checks = { ride: 'pass', doors: 'fair', alarm: 'pass', brake: 'pass', ropes: 'fair', oil: 'pass', pit: 'pass' };
-  if (vi >= 0) assert((await act('SERVICE_DONE', A, { visit: vi, checks, ev: await photos(1) }, tech)).ok, 'a service visit can mark parts "wearing"');
+  if (vi >= 0) assert((await act('SERVICE_DONE', A, { visit: vi, checks, qr: await ev(`S.projects['${A}'].lift.code`), ev: await photos(1) }, tech)).ok, 'a service visit can mark parts "wearing"');
 
   /* breakdown */
   assert((await act('TICKET_OPENED', A, { tid: 'T-LL1', kind: 'breakdown', text: 'Lift stuck at 2nd floor' }, 'PADMIN')).ok, 'a breakdown is reported');

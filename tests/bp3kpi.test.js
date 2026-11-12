@@ -21,6 +21,9 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await ev(`WIZ.release.steps[0].check({ supplier: 'PSUP' }, S.projects['${pid}'])`) === 'err_pilot_cap', 'the release wizard stops at the limit');
   await page.evaluate(p => { loginAs(S.users.PADMIN); ACT.permsDone(); Notify.hide(); wiz('release', p); }, pid); await page.waitForTimeout(300);
   assert(/live job limit is reached/.test(await page.innerText('main')) && !!(await page.$('main [data-v^="capCheck|"]')), 'it says why and offers the capacity check');
+  await page.click('main [data-v^="capCheck|"]'); await page.waitForTimeout(300);
+  await page.fill('main [data-k="note"]', 'ok'); await page.click('[data-a="wizNext"]'); await page.waitForTimeout(300);
+  assert(/at least a short line/.test(await page.innerText('main')) && !(await ev(`S.projects['${pid}'].capOk`)), 'the capacity check form (opened from the release screen) asks for a real note');
   await page.evaluate(() => { W = null; ACT.nav('home'); });
   assert(await ev(`(() => { const e = validate(S, ${REL}); return e && (e.k || e); })()`) === null, 'the limit is a working limit: a release already in the records is never refused by it (old records stay valid)');
   assert((await act('CAPACITY_CHECKED', pid, { note: 'ok' }, 'PADMIN')).err === 'err_cap_note', 'the check needs a real note');

@@ -51,6 +51,18 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await ev(`!!S.finance.FAAAA3333.withdrawn && S.finance.FAAAA3333.name === '' && S.finance.FAAAA3333.phone === ''`), 'withdrawing removes the name and phone from the finance record');
   assert((await act('FIN_REFERRED', { fid: 'FAAAA3333', bank: 'HDFC', outcome: 'referred' }, 'PFIN')).err === 'err_fn_withdrawn', 'a withdrawn person cannot be referred');
   assert(await ev(`(() => { const S2 = rebuild(EVENTS); return !!S2.finance.FAAAA3333.withdrawn && S2.finance.FAAAA3333.hist.length === 1; })()`), 'all of it survives a rebuild');
+  /* the office buttons, tapped (a form that crashes on opening cannot hide behind a rule test) */
+  await page.evaluate(() => { loginAs(S.users.PFIN); ACT.permsDone(); Notify.hide(); go('finList'); }); await page.waitForTimeout(250);
+  await page.click(`main [data-v="finRefer||fid|${fe.id}"]`); await page.waitForTimeout(350);
+  assert(/Bank or finance company/.test(await page.innerText('main')), '"Record referral" opens its form');
+  await page.fill('main [data-k="bank"]', 'HDFC Baner'); await page.click('main .tile[data-a="pick"][data-k="outcome"][data-v="referred"]'); await page.waitForTimeout(100); await page.click('[data-a="wizNext"]'); await page.waitForTimeout(400);
+  assert(await ev(`S.finance['${fe.id}'].outcome === 'referred' && S.finance['${fe.id}'].bank === 'HDFC Baner'`), 'the referral is saved through the form');
+  assert((await act('FIN_INTEREST', { fid: 'FAAAA5555', eid: '${o.rid}'.replace(/^\$.*/, ''), want: 'yes', consent: true, v: 1 }, 'PCUST')).err, 'a customer login cannot attach finance interest to an enquiry');
+  await page.evaluate(() => go('finList')); await page.waitForTimeout(250);
+  await page.click(`main [data-a="finWithdraw"][data-v="${fe.id}"]`); await page.waitForTimeout(200);
+  assert(/asks AIEC to stop sharing/.test(await page.innerText('#ov')), 'the office can withdraw for a person who phones in');
+  await page.click('[data-a="finWithdrawGo"]'); await page.waitForTimeout(350);
+  assert(await ev(`!!S.finance['${fe.id}'].withdrawn && S.finance['${fe.id}'].name === ''`), 'the withdrawal removes their name and phone');
   /* who receives finance records */
   const packs = await page.evaluate(cp => { App.me = S.users.PADMIN; const f = uid => exportPack('person', uid).events.filter(e => e.type.startsWith('FIN_')).length; return { fin: f('PFIN'), tech: f('PTECH'), sales: f('PSALES'), cust: f('PCUST') }; }, cp);
   assert(packs.fin >= 4 && packs.tech === 0 && packs.cust === 3, 'finance records go to Finance and to that customer only: ' + JSON.stringify(packs));

@@ -9,6 +9,8 @@ const BUDGET = 2.4 * 1024 * 1024; /* raise it on purpose, never by accident (2.0
 try {
   const html = fs.readFileSync(FILE, 'utf8'), bytes = Buffer.byteLength(html);
   assert(bytes <= BUDGET, `app file ${(bytes / 1048576).toFixed(2)} MB is inside the ${(BUDGET / 1048576).toFixed(1)} MB budget`);
+  { const build = (html.match(/const APP_BUILD = (\d+);/) || [])[1], sw = (fs.readFileSync(path.join(__dirname, '..', 'sw.js'), 'utf8').match(/aiec-os-v(\d+)/) || [])[1];
+    assert(build && build === sw, `the version shown on Me (${build}) is the cache number in sw.js (${sw})`); }
   const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]), app = scripts.sort((a, b) => b.length - a.length)[0];
   new vm.Script(app, { filename: 'app.js' });
   assert(true, 'the app script parses');

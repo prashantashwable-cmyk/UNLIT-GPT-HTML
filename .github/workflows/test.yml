@@ -1,10 +1,16 @@
 name: tests
 # Every pull request and every push to main runs the fast checks first (words, script, size), then the browser
 # tests in four parts side by side. A red result means: do not ship this file to phones.
+# Every Monday the same tests also run as if it were 45 days later: rules that start on fixed dates must not break the
+# practice company or the tests as time passes (that happened on 12 Nov 2026 and was found only by an audit).
+# The last job checks that the public link really serves this version (GitHub Pages silently stopped publishing on
+# 7 Nov 2026, after the repository was made private and public again).
 on:
   pull_request:
   push:
     branches: [main]
+  schedule:
+    - cron: '30 2 * * 1'
 permissions:
   contents: read
 concurrency:
@@ -42,6 +48,8 @@ jobs:
           key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
       - run: node tests/run-all.js --shard=${{ matrix.shard }}/4
+        env:
+          AIEC_SHIFT_DAYS: ${{ github.event_name == 'schedule' && '45' || '' }}
   screens:
     needs: static
     runs-on: ubuntu-latest
@@ -67,3 +75,19 @@ jobs:
           name: screenshots
           path: tests/out/shots/
           retention-days: 30
+  live:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: The public link serves this version
+        run: |
+          want=$(grep -o 'aiec-os-v[0-9]*' sw.js | head -1)
+          for i in $(seq 1 36); do
+            got=$(curl -fsS "https://prashantashwable-cmyk.github.io/UNLIT-GPT-HTML/sw.js?t=$(date +%s)" | grep -o 'aiec-os-v[0-9]*' | head -1 || true)
+            if [ "$got" = "$want" ]; then echo "The public link serves $got"; exit 0; fi
+            sleep 30
+          done
+          echo "::error::The public link still serves '$got', not '$want'. GitHub Pages is not publishing. Repository Settings > Pages > Source: Deploy from a branch > main, / (root) > Save."
+          exit 1

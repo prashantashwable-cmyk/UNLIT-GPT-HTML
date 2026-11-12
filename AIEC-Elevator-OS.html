@@ -3768,7 +3768,7 @@ const L = {
   mkt_title: ['Marketplace job', 'मार्केटप्लेस काम', 'मार्केटप्लेस काम'],
   mkt_offer: ['Instead of an AIEC quotation, 2-3 licensed partner companies can quote; the customer compares, picks, signs with and pays the partner.', 'AIEC कोटेशन की जगह 2-3 लाइसेंसधारी पार्टनर कंपनियाँ कोटेशन दे सकती हैं; ग्राहक तुलना कर चुनता है, पार्टनर से अनुबंध कर उसे भुगतान करता है।', 'AIEC कोटेशनऐवजी 2-3 परवानाधारक भागीदार कंपन्या कोटेशन देऊ शकतात; ग्राहक तुलना करून निवडतो, भागीदाराशी करार करून त्याला पैसे देतो.'],
   mkt_make: ['Make this a Marketplace job', 'इसे मार्केटप्लेस काम बनाएँ', 'हे मार्केटप्लेस काम करा'],
-  mkt_model_d: ['Marketplace: the customer signs with and pays the chosen partner. AIEC checks the partners, keeps the records and earns a commission on each payment the customer or Finance confirms.', 'मार्केटप्लेस: ग्राहक चुने गए पार्टनर से अनुबंध कर उसे भुगतान करता है। AIEC पार्टनर जाँचता है, रिकॉर्ड रखता है और ग्राहक या फाइनेंस द्वारा पक्के हर भुगतान पर कमीशन लेता है।', 'मार्केटप्लेस: ग्राहक निवडलेल्या भागीदाराशी करार करून त्याला पैसे देतो. AIEC भागीदार तपासते, नोंदी ठेवते आणि ग्राहक किंवा फायनान्सने पक्क्या केलेल्या प्रत्येक पेमेंटवर कमिशन घेते.'],
+  mkt_model_d: ['Marketplace: the customer signs with and pays the chosen partner. AIEC checks the partners, inspects the lift once before handover, keeps the records and earns a commission on each confirmed payment.', 'मार्केटप्लेस: ग्राहक चुने गए पार्टनर से अनुबंध कर उसे भुगतान करता है। AIEC पार्टनर जाँचता है, हैंडओवर से पहले एक बार लिफ्ट जाँचता है, रिकॉर्ड रखता है और ग्राहक या फाइनेंस द्वारा पक्के हर भुगतान पर कमीशन लेता है।', 'मार्केटप्लेस: ग्राहक निवडलेल्या भागीदाराशी करार करून त्याला पैसे देतो. AIEC भागीदार तपासते, हस्तांतरणापूर्वी एकदा लिफ्ट तपासते, नोंदी ठेवते आणि ग्राहक किंवा फायनान्सने पक्क्या केलेल्या प्रत्येक पेमेंटवर कमिशन घेते.'],
   mkt_agree_note: ['Needs a signed Partner Network Agreement and customer Marketplace Terms (from your lawyer or CA). The app only keeps the records.', 'हस्ताक्षरित पार्टनर नेटवर्क एग्रीमेंट और ग्राहक मार्केटप्लेस शर्तें चाहिए (आपके वकील या CA से)। ऐप सिर्फ़ रिकॉर्ड रखता है।', 'सही केलेला पार्टनर नेटवर्क करार आणि ग्राहक मार्केटप्लेस अटी हव्यात (तुमच्या वकील किंवा CA कडून). अ‍ॅप फक्त नोंदी ठेवते.'],
   mkt_model_m: ['Marketplace (partners quote)', 'मार्केटप्लेस (पार्टनर कोटेशन)', 'मार्केटप्लेस (भागीदार कोटेशन)'],
   mkt_model_a: ['Keep as AIEC contract', 'AIEC अनुबंध ही रखें', 'AIEC करारच ठेवा'],
@@ -3867,7 +3867,7 @@ const L = {
   cml_title: ['Commission ledger', 'कमीशन खाता', 'कमिशन खाते'],
   cml_PENDING: ['Pending (payment not yet confirmed)', 'बाकी (भुगतान अभी पक्का नहीं)', 'बाकी (पेमेंट अजून पक्के नाही)'],
   cml_VERIFIED: ['Verified', 'सत्यापित', 'पडताळले'],
-  cml_INVOICED: ['Invoiced', 'बिल भेजा', 'बिल पाठवले'],
+  cml_INVOICED: ['Bill sent', 'बिल भेजा', 'बिल पाठवले'],
   cml_DUE: ['Due', 'देय', 'देय'],
   cml_PAID: ['Paid', 'मिल गया', 'मिळाले'],
   cml_DISPUTED: ['Disputed', 'विवाद में', 'वादात'],
@@ -3888,6 +3888,63 @@ const L = {
   kpi_comm: ['Commission earned', 'कमाया कमीशन', 'मिळवलेले कमिशन'],
   kpi_comm_paid: ['Commission collected', 'मिला कमीशन', 'मिळालेले कमिशन'],
   kpi_comm_days: ['Days to collect commission', 'कमीशन मिलने के दिन', 'कमिशन मिळण्याचे दिवस'],
+  mkt_declined_n: ['{n} declined', '{n} ने मना किया', '{n} ने नकार दिला'],
+  mkt_paid_part: ['paid so far {m}', 'अब तक {m} मिला', 'आतापर्यंत {m} मिळाले'],
+  mkt_contact_on: ['shared on {d}', '{d} को दिया', '{d} रोजी दिला'],
+  mkt_contact_wait: ['The customer\'s name and phone are not shared with the company yet.', 'ग्राहक का नाम और फ़ोन अभी कंपनी को नहीं दिया गया।', 'ग्राहकाचे नाव आणि फोन अजून कंपनीला दिलेले नाही.'],
+  mkt_insp_asked: ['AIEC inspection asked on {d}', '{d} को AIEC जाँच माँगी', '{d} रोजी AIEC तपासणी मागितली'],
+  mkt_insp_pass: ['AIEC inspection passed on {d}', '{d} को AIEC जाँच पास', '{d} रोजी AIEC तपासणी पास'],
+  mkt_insp_fail: ['AIEC inspection on {d}: points to fix', '{d} की AIEC जाँच: ठीक करने की बातें', '{d} ची AIEC तपासणी: दुरुस्त करायचे मुद्दे'],
+  mkt_insp_none: ['AIEC inspects the lift once before handover.', 'हैंडओवर से पहले AIEC एक बार लिफ्ट जाँचता है।', 'हस्तांतरणापूर्वी AIEC एकदा लिफ्ट तपासते.'],
+  mkt_lic_wait: ['working licence still to be recorded', 'वर्किंग लाइसेंस दर्ज होना बाकी', 'वर्किंग परवाना नोंदवणे बाकी'],
+  mkt_comm_line: ['Commission {m} · received {p}', 'कमीशन {m} · मिला {p}', 'कमिशन {m} · मिळाले {p}'],
+  mkt_send_more: ['Ask more companies', 'और कंपनियों से पूछें', 'आणखी कंपन्यांना विचारा'],
+  mkt_hold_btn: ['Hold this pick', 'यह चुनाव रोकें', 'ही निवड थांबवा'],
+  mkt_i_paid: ['I paid the company', 'मैंने कंपनी को भुगतान किया', 'मी कंपनीला पैसे दिले'],
+  mkt_back_btn: ['Back to AIEC contract', 'AIEC अनुबंध पर वापस', 'AIEC करारावर परत'],
+  mkt_back_d: ['The companies stop seeing this job and AIEC quotes it itself. Use this when nobody quotes or everyone declines.', 'कंपनियों को यह काम दिखना बंद होगा और AIEC खुद कोटेशन देगा। जब कोई कोटेशन न दे या सब मना करें तब करें।', 'कंपन्यांना हे काम दिसणे बंद होईल आणि AIEC स्वतः कोटेशन देईल. कोणी कोटेशन दिले नाही किंवा सर्वांनी नकार दिला तेव्हा वापरा.'],
+  s_mkt_back: ['Write why this job goes back to an AIEC contract.', 'लिखें कि यह काम AIEC अनुबंध पर क्यों लौट रहा है।', 'हे काम AIEC करारावर का परत जात आहे ते लिहा.'],
+  mkt_declined_c: ['This company declined the job.', 'इस कंपनी ने काम से मना किया।', 'या कंपनीने काम नाकारले.'],
+  mkt_rfq_now: ['{n} companies are asked now.', 'अभी {n} कंपनियों से पूछा गया है।', 'सध्या {n} कंपन्यांना विचारले आहे.'],
+  mkt_rfq_none: ['No other company can be asked now.', 'अभी और किसी कंपनी से नहीं पूछा जा सकता।', 'आता दुसऱ्या कोणत्याही कंपनीला विचारता येत नाही.'],
+  s_mkt_hold: ['Write why this pick is held, and whether the company stays in.', 'लिखें कि यह चुनाव क्यों रोका, और कंपनी रहेगी या नहीं।', 'ही निवड का थांबवली आणि कंपनी राहील का ते लिहा.'],
+  mkt_hold_again: ['The customer picks again (company stays)', 'ग्राहक फिर चुनेगा (कंपनी रहेगी)', 'ग्राहक पुन्हा निवडेल (कंपनी राहील)'],
+  mkt_hold_drop: ['Remove this company from the job', 'इस कंपनी को इस काम से हटाएँ', 'या कंपनीला या कामातून काढा'],
+  s_mkt_intro: ['Share the name and phone with the chosen company.', 'चुनी गई कंपनी को नाम और फ़ोन दें।', 'निवडलेल्या कंपनीला नाव आणि फोन द्या.'],
+  mkt_intro_d: ['{c} needs the customer\'s name and phone to arrange the contract and the work. Until this is shared the company sees only the site address.', '{c} को अनुबंध और काम के लिए ग्राहक का नाम और फ़ोन चाहिए। इसे देने तक कंपनी को सिर्फ़ साइट का पता दिखता है।', '{c} ला करार आणि कामासाठी ग्राहकाचे नाव आणि फोन हवा. तो देईपर्यंत कंपनीला फक्त साइटचा पत्ता दिसतो.'],
+  mkt_intro_yes: ['I agree to share my name and phone with this company', 'मैं इस कंपनी को अपना नाम और फ़ोन देने से सहमत हूँ', 'मी या कंपनीला माझे नाव आणि फोन देण्यास सहमत आहे'],
+  mkt_intro_yes_office: ['The customer agreed to share their name and phone', 'ग्राहक नाम और फ़ोन देने को सहमत है', 'ग्राहक नाव आणि फोन देण्यास सहमत आहे'],
+  mkt_left: ['still to pay {m}', 'बाकी {m}', 'बाकी {m}'],
+  mkt_pay_by: ['Recorded by {n}', '{n} ने दर्ज किया', '{n} ने नोंदवले'],
+  err_mkt_amount: ['The amount is more than what is left for this part ({m}).', 'रकम इस हिस्से की बाकी रकम ({m}) से ज़्यादा है।', 'रक्कम या भागाच्या बाकी रकमेपेक्षा ({m}) जास्त आहे.'],
+  err_mkt_pay_wait: ['A payment for this part is waiting to be confirmed.', 'इस हिस्से का एक भुगतान पुष्टि के इंतज़ार में है।', 'या भागाचे एक पेमेंट पुष्टीच्या प्रतीक्षेत आहे.'],
+  err_mkt_declined: ['This company declined. Pick another.', 'इस कंपनी ने मना किया। दूसरी चुनें।', 'या कंपनीने नकार दिला. दुसरी निवडा.'],
+  err_mkt_insp: ['The AIEC inspection must pass before handover.', 'हैंडओवर से पहले AIEC जाँच पास होनी चाहिए।', 'हस्तांतरणापूर्वी AIEC तपासणी पास व्हायला हवी.'],
+  s_mkt_ready: ['Tell AIEC the lift is ready to be inspected.', 'AIEC को बताएँ कि लिफ्ट जाँच के लिए तैयार है।', 'लिफ्ट तपासणीसाठी तयार आहे हे AIEC ला सांगा.'],
+  mkt_ready_note: ['What is finished (installation, tests)', 'क्या पूरा हुआ (इंस्टॉलेशन, टेस्ट)', 'काय पूर्ण झाले (इन्स्टॉलेशन, टेस्ट)'],
+  tk_mkt_ready: ['Lift ready: ask for the AIEC inspection', 'लिफ्ट तैयार: AIEC जाँच माँगें', 'लिफ्ट तयार: AIEC तपासणी मागा'],
+  tk_mkt_fix: ['Fix the inspection points, then ask again', 'जाँच की बातें ठीक करें, फिर दोबारा माँगें', 'तपासणीचे मुद्दे दुरुस्त करा, मग पुन्हा मागा'],
+  tk_mkt_inspect: ['Inspect a Marketplace lift before handover', 'हैंडओवर से पहले मार्केटप्लेस लिफ्ट जाँचें', 'हस्तांतरणापूर्वी मार्केटप्लेस लिफ्ट तपासा'],
+  tk_mkt_introduce: ['Share the customer\'s contact with the company', 'ग्राहक का संपर्क कंपनी को दें', 'ग्राहकाचा संपर्क कंपनीला द्या'],
+  tk_mkt_hold: ['The picked company cannot take jobs now: hold the pick', 'चुनी गई कंपनी अभी काम नहीं ले सकती: चुनाव रोकें', 'निवडलेली कंपनी आता काम घेऊ शकत नाही: निवड थांबवा'],
+  tk_mkt_followup: ['Marketplace job is quiet: call the customer and the companies', 'मार्केटप्लेस काम रुका है: ग्राहक और कंपनियों को फ़ोन करें', 'मार्केटप्लेस काम थांबले आहे: ग्राहक आणि कंपन्यांना फोन करा'],
+  s_mkt_insp_ph: ['Take photos of the lift and the machine room.', 'लिफ्ट और मशीन रूम की फ़ोटो लें।', 'लिफ्ट आणि मशीन रूमचे फोटो घ्या.'],
+  ph_mkt_insp: ['Photos of the lift and machine room', 'लिफ्ट और मशीन रूम की फ़ोटो', 'लिफ्ट आणि मशीन रूमचे फोटो'],
+  s_mkt_insp: ['Is the lift safe to hand over?', 'क्या लिफ्ट सौंपने के लिए सुरक्षित है?', 'लिफ्ट हस्तांतरणासाठी सुरक्षित आहे का?'],
+  mkt_insp_d: ['Check the safety devices, doors, levelling, emergency systems and earthing, as at a final inspection.', 'फाइनल जाँच की तरह सुरक्षा उपकरण, दरवाज़े, लेवलिंग, आपात व्यवस्था और अर्थिंग जाँचें।', 'फायनल तपासणीप्रमाणे सुरक्षा उपकरणे, दरवाजे, लेव्हलिंग, आपत्कालीन व्यवस्था आणि अर्थिंग तपासा.'],
+  mkt_insp_ok: ['Safe to hand over', 'सौंपने के लिए सुरक्षित', 'हस्तांतरणासाठी सुरक्षित'],
+  mkt_insp_bad: ['Not yet: points to fix', 'अभी नहीं: ठीक करने की बातें', 'अजून नाही: दुरुस्त करायचे मुद्दे'],
+  mkt_insp_points: ['Points to fix', 'ठीक करने की बातें', 'दुरुस्त करायचे मुद्दे'],
+  mkt_log_intro: ['Customer\'s contact shared with the company', 'ग्राहक का संपर्क कंपनी को दिया', 'ग्राहकाचा संपर्क कंपनीला दिला'],
+  mkt_log_ready: ['Company asked for the AIEC inspection', 'कंपनी ने AIEC जाँच माँगी', 'कंपनीने AIEC तपासणी मागितली'],
+  mkt_log_insp_pass: ['AIEC inspection passed', 'AIEC जाँच पास', 'AIEC तपासणी पास'],
+  mkt_log_insp_fail: ['AIEC inspection: points to fix', 'AIEC जाँच: ठीक करने की बातें', 'AIEC तपासणी: दुरुस्त करायचे मुद्दे'],
+  ev_MK_INTRODUCED: ['Customer\'s contact shared with the company', 'ग्राहक का संपर्क कंपनी को दिया', 'ग्राहकाचा संपर्क कंपनीला दिला'],
+  ev_MK_READY: ['Company asked for the AIEC inspection', 'कंपनी ने AIEC जाँच माँगी', 'कंपनीने AIEC तपासणी मागितली'],
+  ev_MK_INSPECTED: ['AIEC inspection of a Marketplace lift', 'मार्केटप्लेस लिफ्ट की AIEC जाँच', 'मार्केटप्लेस लिफ्टची AIEC तपासणी'],
+  fn_withdraw_office: ['Withdraw at the person\'s request', 'व्यक्ति के कहने पर वापस लें', 'व्यक्तीच्या सांगण्यावरून मागे घ्या'],
+  fn_withdraw_q_office: ['Use this when the person asks AIEC to stop sharing their details for finance. Their name and phone are removed from this list.', 'जब व्यक्ति कहे कि AIEC फाइनेंस के लिए उनका विवरण देना बंद करे तब करें। उनका नाम और फ़ोन इस सूची से हट जाएगा।', 'व्यक्तीने AIEC ला फायनान्ससाठी त्यांचा तपशील देणे थांबवायला सांगितल्यावर वापरा. त्यांचे नाव आणि फोन या यादीतून काढले जातील.'],
+  app_version: ['Version {n}', 'वर्ज़न {n}', 'आवृत्ती {n}'],
   jq_photo: ['Your photo (face clearly seen)', 'आपकी फोटो (चेहरा साफ़ दिखे)', 'तुमचा फोटो (चेहरा स्पष्ट दिसावा)'],
   jq_id_photo: ['ID photo (Aadhaar, PAN or driving licence)', 'पहचान पत्र की फोटो (आधार, PAN या ड्राइविंग लाइसेंस)', 'ओळखपत्राचा फोटो (आधार, PAN किंवा वाहन परवाना)'],
   jq_id_photo_co: ['Company paper photo (GST or licence certificate)', 'कंपनी कागज़ की फोटो (GST या लाइसेंस प्रमाणपत्र)', 'कंपनी कागदाचा फोटो (GST किंवा परवाना प्रमाणपत्र)'],
@@ -5314,10 +5371,17 @@ const PRIVATE_V2 = {
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
   MSG_LOGGED: ['text'], CONFIG_SET: ['value'], AGREEMENT_SIGNED: ['signer'], PARTNER_PROFILE: ['licNo', 'licHolder', 'licAuthority', 'gst'],
+  GAD_SIGNED: ['signer'], SURVEY_DONE: ['signer'], CAPACITY_CHECKED: ['note'], MK_INTRODUCED: ['name', 'phone'],
+  PQUOTE_SENT: ['base', 'tax', 'freight', 'install', 'oem', 'civil', 'elec', 'excl', 'days', 'ms', 'warranty', 'amc', 'valid'],
   MATERIAL_HANDED: ['custName'], MATERIAL_RECEIPT_SIGNED: ['custName'], HANDOVER_SIGNED: ['signer'], CUSTOMER_RATED: ['name', 'note'], REP_SET: ['name', 'phone'],
   VARIATION_PROPOSED: ['amount', 'note'], VARIATION_SIGNED: ['signer'], SURPRISE_SET: ['date'], COUNTER_OFFER: ['amount', 'note'], REFUND_PROPOSED: ['amount', 'deduct', 'note'], REFUND_PAID: ['ref']
 };
 const isPriv2 = (type, k) => (PRIVATE_V2[type] || []).includes(k);
+/* which fields of a signed record are private was fixed when it was signed (they have a nonce, or a fingerprint once cut).
+   A field made private in a later version is public in an older signed record: it stays readable and the old
+   signature stays valid. */
+const hasOwn = (o, k) => !!o && Object.prototype.hasOwnProperty.call(o, k);
+const sigPriv = (ev, k) => ev.sig && ev.sig.v === 2 ? hasOwn(ev.sig.pn, k) || hasOwn(ev.sig.ph2, k) : isPriv2(ev.type, k);
 const privOf = ev => ev.sig && ev.sig.v === 2 ? isPriv2 : isPriv;
 const keyHashSrc = (nonce, k, v) => nonce + '|' + k + '|' + JSON.stringify(v === undefined ? null : v);
 const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
@@ -5329,7 +5393,7 @@ async function sigPayload(ev, ph) {
     const hs = [];
     for (const k of Object.keys(d).sort()) {
       if (k === 'stripped') continue;
-      if (!isPriv2(ev.type, k)) { pub[k] = d[k]; continue; }
+      if (!sigPriv(ev, k)) { pub[k] = d[k]; continue; }
       const cut = ev.sig.ph2 && Object.prototype.hasOwnProperty.call(ev.sig.ph2, k);
       hs.push([k, cut ? ev.sig.ph2[k] : await sha256(keyHashSrc((ev.sig.pn || {})[k] || '', k, d[k]))]);
     }
@@ -6106,17 +6170,17 @@ function canSee(u, P) {
   if (!u || !P) return false;
   if (u.role !== 'customer' && P.tickets && P.tickets.some(x => x.owner === u.uid)) return true;
   /* the statutory liaison sees every signed job, to file its permits and licences */
-  if (u.role !== 'customer' && S.statLead === u.uid && P.stage !== 'lost' && stageIdx(P.stage) >= stageIdx('signed')) return true;
+  if (u.role !== 'customer' && S.statLead === u.uid && P.stage !== 'lost' && (stageIdx(P.stage) >= stageIdx('signed') || (isMkt(P) && !!P.mkt.accepted))) return true;
   /* the service lead sees lifts with an open fault ticket, to decide who fixes it */
   if (u.role !== 'customer' && S.serviceLead === u.uid && P.tickets && P.tickets.some(x => x.status === 'open')) return true;
   switch (u.role) {
     case 'owner': case 'admin': case 'finance': return true;
     case 'field': return P.createdBy === u.uid || P.contributors.includes(u.uid);
     case 'sales': return !P.sales || P.sales === u.uid;
-    case 'qc': return stageIdx(P.stage) >= stageIdx('site_prep') && P.stage !== 'lost';
+    case 'qc': return P.stage !== 'lost' && (stageIdx(P.stage) >= stageIdx('site_prep') || (isMkt(P) && !!P.mkt.accepted));
     case 'supplier': return P.supplier === u.uid;
     case 'tech': return (peerWaiting(P).length > 0 && !peerWhyNot(u.uid, P)) || P.tech === u.uid || (P.crew || []).includes(u.uid) || Object.values(P.svcOwner || {}).includes(u.uid);
-    case 'partner': return P.partner === u.uid || !!(P.mkt && P.mkt.rfq && P.mkt.rfq.to.includes(u.uid)) || [P.tech].concat(P.crew || [], Object.values(P.svcOwner || {}), P.tickets.map(x => x.owner)).some(x => x && companyOf(x) === u.uid);
+    case 'partner': return P.partner === u.uid || (isMkt(P) && !!P.mkt.rfq && P.mkt.rfq.to.includes(u.uid) && !P.mkt.accepted) || [P.tech].concat(P.crew || [], Object.values(P.svcOwner || {}), P.tickets.map(x => x.owner)).some(x => x && companyOf(x) === u.uid);
     case 'customer': return u.projectId === P.id || (u.projects || []).includes(P.id);
   }
   return false;
@@ -6300,7 +6364,7 @@ function teamWhyNot(p, post, team, at) {
   return null;
 }
 /* company record: finished jobs, fair stars from its members' reviews, strikes earned on its jobs, trust */
-function companyJobs(p) { return Object.values(S.projects).filter(P => { const x = passEntry(P); return x && (x.partner !== undefined ? x.partner : P.partner) === p; }); }
+function companyJobs(p) { return Object.values(S.projects).filter(P => { if (isMkt(P)) return !!P.mkt.accepted && P.mkt.accepted.by === p && mktInspPassed(P); const x = passEntry(P); return x && (x.partner !== undefined ? x.partner : P.partner) === p; }); }
 const companyStars = (p, src) => starsCalc(S.reviews.filter(r => (!src || r.src === src) && (r.co !== undefined ? r.co : companyAt(r.uid, r.t)) === p), S.reviews.filter(r => !src || r.src === src));
 function companyStrikes(p, at) { return membersOf(p, true).reduce((a, m) => a + strikesOf(m, at).filter(x => x.active && companyAt(m, x.t) === p).reduce((b, x) => b + x.n, 0), 0); }
 function companyTrust(p, at) {
@@ -6413,7 +6477,7 @@ function canLead(uid, P, at) {
 }
 const passedQc = P => P.qcFinal.some(x => x.outcome === 'pass');
 const doneLead = P => (P.done && P.done.team ? P.done.team.lead : leadAt(P, passEntry(P)));
-const firstPass = P => !!P.qcFinal[0] && (P.qcFinal[0].outcome === 'pass' || (P.qcFinal[0].cause && P.qcFinal[0].cause !== 'work'));
+const firstPass = P => isMkt(P) ? !!P.mkt.insp[0] && P.mkt.insp[0].outcome === 'pass' : !!P.qcFinal[0] && (P.qcFinal[0].outcome === 'pass' || (P.qcFinal[0].cause && P.qcFinal[0].cause !== 'work'));
 /* who did a finished job: the team saved when final QC passed (older records: the team at that time) */
 const passEntry = P => P.qcFinal.find(x => x.outcome === 'pass');
 const leadAt = (P, x) => (x && x.lead !== undefined ? x.lead : P.tech);
@@ -6710,7 +6774,7 @@ const canUndo = id => !!App.me && !undoWhyNot(S, id, App.me.uid, nowISO());
 /* small teams: when no other active person holds the Sales, Finance or QC role a step needs, the Admin may do it (and gets the task); the Head Quarter only when there is no Admin;
    with such a person in the team the usual separation stays. Physical work (technician, supplier, partner, field) is never covered. */
 const COVER_ROLES = ['sales', 'finance', 'qc'];
-const COVER_EV = ['RESERVE_SETTLED', 'LEAD_INFO_ADDED', 'SUP_INVOICE_PAID', 'LEAD_ACCEPTED', 'LEAD_RETURNED', 'CONTACT_LOGGED', 'FOLLOWUP_SET', 'REQ_SAVED', 'QUOTE_CREATED', 'QUOTE_SENT', 'DEAL_WON', 'COUNTER_OFFER', 'AGREEMENT_PREPARED', 'AGREEMENT_SIGNED',
+const COVER_EV = ['MK_INSPECTED', 'RESERVE_SETTLED', 'LEAD_INFO_ADDED', 'SUP_INVOICE_PAID', 'LEAD_ACCEPTED', 'LEAD_RETURNED', 'CONTACT_LOGGED', 'FOLLOWUP_SET', 'REQ_SAVED', 'QUOTE_CREATED', 'QUOTE_SENT', 'DEAL_WON', 'COUNTER_OFFER', 'AGREEMENT_PREPARED', 'AGREEMENT_SIGNED',
   'PAYMENT_RECORDED', 'PAYMENT_STATUS', 'PREP_ITEM_DONE', 'QC_REQUESTED', 'QC_SITE_RESULT', 'QC_FINAL_RESULT', 'SURPRISE_DONE', 'VARIATION_SIGNED', 'VARIATION_DECLINED', 'REFUND_PROPOSED', 'REFUND_PAID', 'PAY_PAID', 'CUSTOMER_RATED', 'HANDOVER_SIGNED', 'CORRECTION_DONE'];
 /* the person a same-person rule keeps out (the one who recorded a payment, proposed a refund or approved pay) */
 function coverExcl(S, ev, P) {
@@ -6835,9 +6899,10 @@ const RULES = {
     if (d.amount != null && !(+d.amount > 0 && +d.amount < 1e8)) return 'err_amount';
     if (d.pid) { const P = S.projects[d.pid]; if (!P) return 'err_no_project'; if (u.role === 'customer' && !canSee(u, P)) return 'err_access';
       if (Object.values(S.finance).some(f => f.pid === d.pid && !f.withdrawn)) return 'err_already'; return null; }
-    if (d.eid) return need(S.enquiries[d.eid], 'err_no_project');
+    /* interest on an enquiry is recorded by the office from the person's request, never by a customer login */
+    if (d.eid) return u.role === 'customer' ? 'err_access' : need(S.enquiries[d.eid], 'err_no_project');
     return 'err_no_project'; } },
-  FIN_WITHDRAWN: { roles: ['customer', 'sales', 'admin', 'owner'], check: (S, ev, u) => { const f = S.finance[ev.data.fid];
+  FIN_WITHDRAWN: { roles: ['customer', 'sales', 'admin', 'owner', 'finance'], check: (S, ev, u) => { const f = S.finance[ev.data.fid];
     if (!f || f.withdrawn) return 'err_already';
     return u.role === 'customer' && !(f.pid && S.projects[f.pid] && canSee(u, S.projects[f.pid])) ? 'err_access' : null; } },
   FIN_REFERRED: { roles: ['admin', 'owner', 'finance'], check: (S, ev) => { const d = ev.data, f = S.finance[d.fid];
@@ -6845,39 +6910,57 @@ const RULES = {
     if (!FIN_OUTCOMES.some(([k]) => k === d.outcome)) return 'err_choose';
     return need((d.bank || '').trim(), 'err_fill'); } },
   MODEL_SET: { roles: ['admin', 'owner'], project: true, stages: ['accepted', 'contacted', 'requirements'], check: (S, ev, u, P) => {
-    if (!['market', 'aiec'].includes(ev.data.model)) return 'err_choose';
-    if (P.quotes.length) return 'err_mkt_has_quote';
-    return P.mkt && P.mkt.rfq ? 'err_already' : null; } },
-  RFQ_SENT: { roles: ['admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || P.mkt.rfq ? 'err_access' : null, check: (S, ev, u, P) => {
-    if (!isMkt(P)) return 'err_mkt_only'; if (P.mkt.rfq) return 'err_already';
-    const to = ev.data.to; if (!Array.isArray(to) || to.length < 2 || to.length > 3 || new Set(to).size !== to.length) return 'err_mkt_23';
+    if (ev.data.model === 'market') return P.quotes.length ? 'err_mkt_has_quote' : P.mkt ? 'err_already' : null;
+    /* back to an AIEC contract while no company has been awarded the job */
+    if (ev.data.model === 'aiec') return !isMkt(P) || P.mkt.accepted ? 'err_already' : need((ev.data.reason || '').trim(), 'err_reason');
+    return 'err_choose'; } },
+  /* also used to ask more companies later: 2 or 3 at a time, companies that declined make room for others */
+  RFQ_SENT: { roles: ['admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || P.mkt.accepted ? 'err_access' : null, check: (S, ev, u, P) => {
+    const to = ev.data.to, cur = P.mkt.rfq ? P.mkt.rfq.to : [];
+    if (!Array.isArray(to) || !to.length || new Set(to).size !== to.length || to.some(x => cur.includes(x))) return 'err_mkt_23';
+    const live = mktLive(P.mkt).length + to.length; if (live < 2 || live > 3) return 'err_mkt_23';
     for (const x of to) { const w = rfqWhyNot(x, ev.t); if (w) return w; }
     return null; } },
-  PQUOTE_SENT: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.rfq || !P.mkt.rfq.to.includes(u.uid) || P.mkt.accepted || (P.mkt.pick && P.mkt.pick.partner === u.uid) ? 'err_access' : null, check: (S, ev, u, P) => {
-    const d = ev.data; if (!isMkt(P) || !P.mkt.rfq || !P.mkt.rfq.to.includes(ev.by)) return 'err_access';
-    if (P.mkt.accepted || (P.mkt.pick && P.mkt.pick.partner === ev.by)) return 'err_already';
+  PQUOTE_SENT: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.rfq || !P.mkt.rfq.to.includes(u.uid) || P.mkt.accepted || (P.mkt.pick && P.mkt.pick.partner === u.uid) ? 'err_access' : null, check: (S, ev) => {
+    const d = ev.data;
     if (!['base', 'tax', 'freight', 'install'].every(k => Number.isFinite(+d[k]) && +d[k] >= 0 && +d[k] < 1e8) || !(+d.base > 0)) return 'err_fill';
     if (!(d.oem || '').trim() || !['incl', 'excl'].includes(d.civil) || !['incl', 'excl'].includes(d.elec)) return 'err_fill';
     if (!Array.isArray(d.ms) || d.ms.length !== 5 || d.ms.some(x => !(+x >= 0)) || d.ms.reduce((a, x) => a + +x, 0) !== 100) return 'err_mkt_100';
     return +d.days > 0 && +d.days <= 365 && +d.valid >= 1 && +d.valid <= 90 && +d.warranty >= 0 && +d.warranty <= 120 ? null : 'err_fill'; } },
+  /* only what every phone holds decides a pick (the quotation, its date, a decline): a company that lost its licence or
+     status meanwhile is stopped by the office holding the pick */
   MK_PICKED: { roles: ['customer', 'sales', 'admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || P.mkt.accepted || P.mkt.pick || !Object.keys(P.mkt.quotes).length ? 'err_access' : null, check: (S, ev, u, P) => {
-    if (!isMkt(P)) return 'err_mkt_only'; if (P.mkt.accepted || P.mkt.pick) return 'err_already';
     const q = P.mkt.quotes[ev.data.partner]; if (!q) return 'err_choose';
-    if (mktValidTill(q) < coDay(Date.parse(ev.t))) return 'err_quote_expired';
-    return rfqWhyNot(ev.data.partner, ev.t); } },
-  MK_PICK_HELD: { roles: ['admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.accepted ? 'err_access' : null, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.accepted ? 'err_already' : need((ev.data.reason || '').trim(), 'err_reason') },
-  MK_ANSWER: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.pick.partner !== u.uid || P.mkt.accepted ? 'err_access' : null, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.pick.partner !== ev.by || P.mkt.accepted ? 'err_access' : ev.data.yes || (ev.data.note || '').trim() ? null : 'err_reason' },
-  MK_PAY_RECORDED: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== u.uid || P.stage === 'amc' ? 'err_access' : null, check: (S, ev, u, P) => {
-    const d = ev.data; if (!isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== ev.by) return 'err_access';
+    if (P.mkt.declined.includes(ev.data.partner)) return 'err_mkt_declined';
+    return !q.cut && mktValidTill(q) < coDay(Date.parse(ev.t)) ? 'err_quote_expired' : null; } },
+  MK_PICK_HELD: { roles: ['admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.accepted ? 'err_access' : null, check: (S, ev) => need((ev.data.reason || '').trim(), 'err_reason') },
+  MK_ANSWER: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.pick || P.mkt.pick.partner !== u.uid || P.mkt.accepted ? 'err_access' : null, check: (S, ev) => ev.data.yes || (ev.data.note || '').trim() ? null : 'err_reason' },
+  /* the customer's name and phone reach the chosen company only when the customer (or Sales on their word) shares them */
+  MK_INTRODUCED: { roles: ['customer', 'sales', 'admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.contact ? 'err_access' : null,
+    check: (S, ev) => !(ev.data.name || '').trim() ? 'err_fill' : !validPhone(ev.data.phone || '') ? 'err_phone' : need(ev.data.consent === true, 'err_consent') },
+  /* either side records a payment; a part is done only when confirmed payments cover its amount */
+  MK_PAY_RECORDED: { roles: ['partner', 'customer'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || P.stage === 'amc' || (u.role === 'partner' && P.mkt.accepted.by !== u.uid) ? 'err_access' : null, check: (S, ev, u, P) => {
+    const d = ev.data;
     if (!/^MP[A-Z0-9]{8}$/.test(d.payId || '') || P.mkt.pays.some(x => x.id === d.payId)) return 'err_dup_id';
-    if (!Number.isInteger(d.ms) || !(+P.mkt.terms.ms[d.ms] > 0) || mktMsDone(P, d.ms) || mktPayOf(P, d.ms).length) return 'err_already';
-    if (!(+d.amount > 0) || +d.amount > P.mkt.terms.total) return 'err_amount';
+    if (!Number.isInteger(d.ms) || !(+P.mkt.terms.ms[d.ms] > 0) || mktMsDone(P, d.ms)) return 'err_already';
+    if (mktMsWait(P, d.ms)) return 'err_mkt_pay_wait';
+    if (!Number.isInteger(d.amount) || d.amount <= 0 || d.amount > mktMsLeft(P, d.ms)) return { k: 'err_mkt_amount', v: { m: money(mktMsLeft(P, d.ms)) } };
     return (d.utr || '').trim().length >= 4 ? null : 'err_fill'; } },
-  MK_PAY_VERIFIED: { roles: ['customer', 'finance', 'admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted ? 'err_access' : null, check: (S, ev, u, P) => {
-    const p = isMkt(P) && P.mkt.pays.find(x => x.id === ev.data.payId); if (!p || p.status !== 'pending') return 'err_already';
-    if (p.by === ev.by) return 'err_self_verify';
+  /* the side that recorded a payment never confirms it: the company's entry is confirmed by the customer or Finance,
+     the customer's by the company or Finance */
+  MK_PAY_VERIFIED: { roles: ['customer', 'partner', 'finance', 'admin', 'owner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || (u.role === 'partner' && P.mkt.accepted.by !== u.uid) ? 'err_access' : null, check: (S, ev, u, P) => {
+    const p = P.mkt.pays.find(x => x.id === ev.data.payId); if (!p || p.status !== 'pending') return 'err_already';
+    if (p.by === ev.by || roleOf(p.by) === u.role) return 'err_self_verify';
     return ev.data.ok || (ev.data.note || '').trim() ? null : 'err_reason'; } },
-  MK_DONE: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== u.uid || P.stage === 'amc' ? 'err_access' : null, check: (S, ev, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== ev.by || P.stage === 'amc' ? 'err_access' : !mktAllPaid(P) ? 'err_mkt_unpaid' : need((ev.data.note || '').trim(), 'err_fill') },
+  /* one AIEC inspection before handover: the company says the lift is ready, AIEC's QC passes it or lists what to fix */
+  MK_READY: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== u.uid || P.stage === 'amc' || P.mkt.ready || mktInspPassed(P) ? 'err_access' : null, check: (S, ev) => need((ev.data.note || '').trim(), 'err_fill') },
+  MK_INSPECTED: { roles: ['qc'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || !P.mkt.ready ? 'err_access' : null, check: (S, ev) => {
+    const d = ev.data;
+    if (!['pass', 'fail'].includes(d.outcome)) return 'err_choose';
+    if (d.outcome === 'fail' && !(d.points || '').trim()) return 'err_reason';
+    return need(ev_(d).length >= 2, 'err_photos', { n: 2 }); } },
+  MK_DONE: { roles: ['partner'], project: true, gate: (S, u, P) => !isMkt(P) || !P.mkt.accepted || P.mkt.accepted.by !== u.uid || P.stage === 'amc' ? 'err_access' : null,
+    check: (S, ev, u, P) => !mktAllPaid(P) ? 'err_mkt_unpaid' : !mktInspPassed(P) ? 'err_mkt_insp' : S.config.licenceGate && !liftLicenceOk(P, ev.t) ? 'err_lift_licence' : need((ev.data.note || '').trim(), 'err_fill') },
   COMM_STATUS: { roles: ['finance', 'admin', 'owner'], check: (S, ev) => { const d = ev.data, c = S.comm[d.cid];
     if (!c || c.credit) return 'err_choose';
     if (!(CML_NEXT[c.status] || []).includes(d.status)) return 'err_choose';
@@ -7074,7 +7157,7 @@ const RULES = {
     }
   },
   QUOTE_CREATED: {
-    roles: ['sales'], project: true, stages: ['requirements', 'quoted'], gate: (S, u, P) => isMkt(P) ? 'err_access' : null, check: (S, ev, u, P) => {
+    roles: ['sales'], project: true, stages: ['requirements', 'quoted'], check: (S, ev, u, P) => {
       if (!P.req) return 'err_no_req';
       if (ev.t >= JOURNEY_FROM && P.t >= JOURNEY_FROM && bigJob(P) && !P.survey) return 'err_survey_first';
       const d = +ev.data.discountPct;
@@ -7692,14 +7775,16 @@ const RULES = {
     }
   },
   STATUTORY_SET: {
-    roles: ['owner', 'admin', 'qc', 'sales', 'finance'], project: true, gate: (S, u, P) => !isStatOwner(u) ? 'err_access' : P.stage === 'lost' || stageIdx(P.stage) < stageIdx('signed') ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
+    roles: ['owner', 'admin', 'qc', 'sales', 'finance'], project: true, gate: (S, u, P) => !isStatOwner(u) ? 'err_access' : P.stage === 'lost' || (stageIdx(P.stage) < stageIdx('signed') && !(isMkt(P) && P.mkt.accepted)) ? { k: 'err_stage', v: { stage: stName(P.stage) } } : null,
     check: (S, ev, u, P) => {
       if (!isStatOwner(u)) return 'err_access';
       const d = ev.data, ok = x => /^\d{4}-\d\d-\d\d$/.test(x || '');
-      if (P.stage === 'lost' || stageIdx(P.stage) < stageIdx('signed')) return { k: 'err_stage', v: { stage: stName(P.stage) } };
+      /* a Marketplace job stays at "won" while the company works: its register opens with the award, the government inspection after AIEC's own */
+      const mk = isMkt(P) && !!P.mkt.accepted;
+      if (P.stage === 'lost' || (stageIdx(P.stage) < stageIdx('signed') && !mk)) return { k: 'err_stage', v: { stage: stName(P.stage) } };
       if (d.item === 'permit') return need((d.no || '').trim() && ok(d.date), 'err_fill');
       if (d.item === 'inspection') {
-        if (stageIdx(P.stage) < stageIdx('qc_final') && P.stage !== 'amc') return { k: 'err_stage', v: { stage: stName(P.stage) } };
+        if (stageIdx(P.stage) < stageIdx('qc_final') && P.stage !== 'amc' && !(mk && mktInspPassed(P))) return { k: 'err_stage', v: { stage: stName(P.stage) } };
         if (!ok(d.date) || !['pass', 'fail'].includes(d.result)) return 'err_fill';
         if (d.result === 'fail' && !(d.note || '').trim()) return 'err_items';
         if (d.result === 'fail' && ev.t >= ISC_FROM) {
@@ -8211,6 +8296,7 @@ function validate(S, ev) {
     if (!P) return 'err_no_project';
     if (!R.open && !canSee(u, P)) return 'err_access';
     if (R.stages && !R.stages.includes(P.stage)) return { k: 'err_stage', v: { stage: stName(P.stage) } };
+    if (mktBlocked(ev.type, P)) return 'err_access';
   }
   /* who and at which stage, shared with allowed() so a button never shows for an action the rule then refuses */
   if (R.gate && (!R.project || P)) { const g = R.gate(S, u, P, ev.t); if (g) return g; }
@@ -8307,23 +8393,32 @@ function apply(S, ev) {
     case 'SHIFT_STARTED': S.shifts[ev.by] = { start: ev.t, gps: d.gps || null }; S.shiftLog.push({ uid: ev.by, t: ev.t, kind: 'start', gps: d.gps || null }); break;
     case 'SHIFT_ENDED': delete S.shifts[ev.by]; S.shiftLog.push({ uid: ev.by, t: ev.t, kind: 'end', gps: d.gps || null }); break;
     case 'ENQUIRY_ADDED': S.enquiries[d.eid] = { eid: d.eid, name: d.name, phone: d.phone, address: d.address || '', gps: d.gps || null, floors: d.floors || null, who: d.who || '', note: d.note || '', t: ev.t, by: ev.by, open: true }; S.enqOrder.unshift(d.eid); break;
-    case 'MODEL_SET': P.model = d.model; if (d.model === 'market') P.mkt = P.mkt || { rfq: null, quotes: {}, pick: null, accepted: null, terms: null, pays: [], declined: [], log: [] }; if (P.mkt) P.mkt.log.push({ k: 'model_' + d.model, t: ev.t, by: ev.by }); break;
-    case 'RFQ_SENT': P.mkt.rfq = { to: d.to.slice(), t: ev.t, by: ev.by }; P.mkt.log.push({ k: 'rfq', t: ev.t, by: ev.by }); break;
-    case 'PQUOTE_SENT': P.mkt.quotes[ev.by] = { by: ev.by, t: ev.t, base: +d.base, tax: +d.tax, freight: +d.freight, install: +d.install, oem: d.oem.trim(), civil: d.civil, elec: d.elec, excl: (d.excl || '').trim(), days: +d.days, ms: d.ms.map(Number), warranty: +d.warranty, amc: +d.amc || 0, valid: +d.valid }; P.mkt.log.push({ k: 'quote', t: ev.t, by: ev.by }); break;
-    case 'MK_PICKED': { const q = P.mkt.quotes[d.partner]; P.mkt.pick = { partner: d.partner, t: ev.t, by: ev.by, total: mktQuoteTotal(q) }; P.mkt.log.push({ k: 'pick', t: ev.t, by: ev.by, note: userName(d.partner) + ' · ' + money(mktQuoteTotal(q)) }); break; }
-    case 'MK_PICK_HELD': P.mkt.log.push({ k: 'held', t: ev.t, by: ev.by, note: d.reason.trim() }); P.mkt.pick = null; break;
-    case 'MK_ANSWER': if (d.yes) { const q = P.mkt.quotes[ev.by]; P.mkt.accepted = { by: ev.by, t: ev.t }; P.mkt.terms = Object.assign({}, q, { total: mktQuoteTotal(q), ms: q.ms.slice() }); P.partner = ev.by; P.mkt.log.push({ k: 'accepted', t: ev.t, by: ev.by }); setStage(P, 'won', ev); }
-      else { P.mkt.declined.push(ev.by); P.mkt.log.push({ k: 'declined', t: ev.t, by: ev.by, note: d.note.trim() }); P.mkt.pick = null; } break;
-    case 'MK_PAY_RECORDED': P.mkt.pays.push({ id: d.payId, ms: d.ms, amount: Math.round(+d.amount), utr: d.utr.trim(), by: ev.by, t: ev.t, status: 'pending' }); P.mkt.log.push({ k: 'pay', t: ev.t, by: ev.by, note: money(Math.round(+d.amount)) }); break;
+    case 'MODEL_SET':
+      if (d.model === 'market') { P.model = 'market'; P.mkt = { rfq: null, quotes: {}, pick: null, accepted: null, terms: null, contact: null, pays: [], declined: [], ready: null, insp: [], closed: null, log: [{ k: 'model_market', t: ev.t, by: ev.by }] }; }
+      else { P.model = 'aiec'; P.mkt.closed = ev.t; P.mkt.pick = null; P.mkt.log.push({ k: 'model_aiec', t: ev.t, by: ev.by, note: (d.reason || '').trim() }); }
+      break;
+    case 'RFQ_SENT': P.mkt.rfq = P.mkt.rfq ? Object.assign(P.mkt.rfq, { to: P.mkt.rfq.to.concat(d.to) }) : { to: d.to.slice(), t: ev.t, by: ev.by }; P.mkt.log.push({ k: 'rfq', t: ev.t, by: ev.by }); break;
+    case 'PQUOTE_SENT':
+      /* a file for another company carries a rival's quotation with its details removed */
+      P.mkt.quotes[ev.by] = d.base == null ? { by: ev.by, t: ev.t, cut: true } : { by: ev.by, t: ev.t, base: +d.base, tax: +d.tax, freight: +d.freight, install: +d.install, oem: d.oem.trim(), civil: d.civil, elec: d.elec, excl: (d.excl || '').trim(), days: +d.days, ms: d.ms.map(Number), warranty: +d.warranty, amc: +d.amc || 0, valid: +d.valid };
+      P.mkt.declined = P.mkt.declined.filter(x => x !== ev.by); P.mkt.log.push({ k: 'quote', t: ev.t, by: ev.by, who: ev.by }); break;
+    case 'MK_PICKED': { const q = P.mkt.quotes[d.partner], amt = q && !q.cut ? mktQuoteTotal(q) : null; P.mkt.pick = { partner: d.partner, t: ev.t, by: ev.by, total: amt }; P.mkt.log.push({ k: 'pick', t: ev.t, by: ev.by, who: d.partner, amt }); break; }
+    case 'MK_PICK_HELD': P.mkt.log.push({ k: 'held', t: ev.t, by: ev.by, who: P.mkt.pick.partner, note: (d.reason || '').trim() }); if (d.drop) P.mkt.declined.push(P.mkt.pick.partner); P.mkt.pick = null; break;
+    case 'MK_ANSWER': if (d.yes) { const q = P.mkt.quotes[ev.by]; P.mkt.accepted = { by: ev.by, t: ev.t }; P.mkt.terms = !q || q.cut ? { cut: true, total: null, ms: [] } : Object.assign({}, q, { total: mktQuoteTotal(q), ms: q.ms.slice() }); P.partner = ev.by; P.mkt.log.push({ k: 'accepted', t: ev.t, by: ev.by, who: ev.by }); setStage(P, 'won', ev); }
+      else { P.mkt.declined.push(ev.by); P.mkt.log.push({ k: 'declined', t: ev.t, by: ev.by, who: ev.by, note: (d.note || '').trim() }); P.mkt.pick = null; } break;
+    case 'MK_INTRODUCED': P.mkt.contact = { name: (d.name || '').trim(), phone: d.phone ? phone10(d.phone) : '', t: ev.t, by: ev.by }; P.mkt.log.push({ k: 'intro', t: ev.t, by: ev.by }); break;
+    case 'MK_PAY_RECORDED': P.mkt.pays.push({ id: d.payId, ms: d.ms, amount: Math.round(+d.amount), utr: (d.utr || '').trim(), by: ev.by, t: ev.t, status: 'pending' }); P.mkt.log.push({ k: 'pay', t: ev.t, by: ev.by, amt: Math.round(+d.amount) }); break;
     case 'MK_PAY_VERIFIED': { const p = P.mkt.pays.find(x => x.id === d.payId); Object.assign(p, { status: d.ok ? 'verified' : 'rejected', vBy: ev.by, vT: ev.t, note: (d.note || '').trim() });
       /* the commission is recorded once per confirmed payment, keyed by the payment, so a repeat cannot double it */
       const cid = 'C' + p.id; if (d.ok && !S.comm[cid]) { const rate = +S.config.commRate || 0; S.comm[cid] = { id: cid, pid: P.id, partner: P.mkt.accepted.by, payId: p.id, base: p.amount, rate, amt: Math.round(p.amount * rate / 100), status: 'VERIFIED', ref: '', t: ev.t, hist: [{ status: 'VERIFIED', t: ev.t, by: ev.by }] }; }
-      P.mkt.log.push({ k: d.ok ? 'pay_ok' : 'pay_no', t: ev.t, by: ev.by }); break; }
+      P.mkt.log.push({ k: d.ok ? 'pay_ok' : 'pay_no', t: ev.t, by: ev.by, amt: p.amount }); break; }
+    case 'MK_READY': P.mkt.ready = { t: ev.t, by: ev.by, note: (d.note || '').trim() }; P.mkt.log.push({ k: 'ready', t: ev.t, by: ev.by }); break;
+    case 'MK_INSPECTED': P.mkt.insp.push({ t: ev.t, by: ev.by, outcome: d.outcome, points: (d.points || '').trim(), ev: ev_(d).map(e => e.id) }); P.mkt.ready = null; P.mkt.log.push({ k: d.outcome === 'pass' ? 'insp_pass' : 'insp_fail', t: ev.t, by: ev.by }); break;
     case 'MK_DONE': { const start = ev.t.slice(0, 10), n = Math.max(1, S.config.amcVisits), gap = Math.round(365 / n);
       P.done = { team: { lead: null, crew: [], partner: ev.by }, t: ev.t, by: ev.by, market: true, warrantyMonths: P.mkt.terms.warranty, amc: { start, visits: Array.from({ length: n }, (_, i) => addDays(gap * (i + 1), new Date(ev.t))) } };
-      P.amcEnd = addDays(365, new Date(ev.t)); P.lift = { code: liftCode(P.id + ev.id), label: P.id, t: ev.t }; P.mkt.log.push({ k: 'done', t: ev.t, by: ev.by, note: d.note.trim() }); setStage(P, 'amc', ev); break; }
+      P.amcEnd = addDays(365, new Date(ev.t)); P.lift = { code: liftCode(P.id + ev.id), label: P.id, t: ev.t }; P.mkt.log.push({ k: 'done', t: ev.t, by: ev.by, note: (d.note || '').trim() }); setStage(P, 'amc', ev); break; }
     case 'COMM_STATUS': { const c = S.comm[d.cid]; c.status = d.status; if (d.ref) c.ref = d.ref; if (d.status === 'ADJUSTED') c.amt = d.amount; c.hist.push({ status: d.status, t: ev.t, by: ev.by, note: d.note || '' }); break; }
-    case 'COMM_CREDIT': { const c = S.comm[d.of]; S.comm[d.cid] = { id: d.cid, pid: c.pid, partner: c.partner, of: d.of, credit: true, base: -d.amount, rate: c.rate, amt: -Math.round(d.amount * c.rate / 100), status: 'ADJUSTED', ref: '', note: d.note.trim(), t: ev.t, hist: [{ status: 'ADJUSTED', t: ev.t, by: ev.by }] }; break; }
+    case 'COMM_CREDIT': { const c = S.comm[d.of]; S.comm[d.cid] = { id: d.cid, pid: c.pid, partner: c.partner, of: d.of, credit: true, base: -d.amount, rate: c.rate, amt: -Math.round(d.amount * c.rate / 100), status: 'ADJUSTED', ref: '', note: (d.note || '').trim(), t: ev.t, hist: [{ status: 'ADJUSTED', t: ev.t, by: ev.by }] }; break; }
     case 'FIN_INTEREST': { const P = d.pid && S.projects[d.pid], e = d.eid && S.enquiries[d.eid];
       S.finance[d.fid] = { id: d.fid, pid: d.pid || null, eid: d.eid || null, want: d.want, amount: d.amount != null ? Math.round(+d.amount) : null, v: +d.v, t: ev.t, by: ev.by,
         name: P ? P.contact.name : e ? e.name : '', phone: P ? P.contact.phone : e ? e.phone : '', withdrawn: null, outcome: null, bank: '', note: '', hist: [] }; break; }
@@ -8707,7 +8802,7 @@ function apply(S, ev) {
     case 'SERVICE_LEAD_SET': S.serviceLead = d.uid || ''; break;
     case 'BUDDY_SET': worker(d.uid).buddy = d.buddy; break;
     case 'COMPANY_SHARE_SET': worker(d.uid).share = +d.pct; break;
-    case 'CAPACITY_CHECKED': P.capOk = { note: d.note.trim(), t: ev.t, by: ev.by }; break;
+    case 'CAPACITY_CHECKED': P.capOk = { note: (d.note || '').trim(), t: ev.t, by: ev.by }; break;
     case 'PARTNER_STATUS_SET': { const w = worker(d.uid); (w.pstLog = w.pstLog || []).push({ s: d.status, reason: d.reason.trim(), t: ev.t, by: ev.by }); w.pst = { s: d.status, reason: d.reason.trim(), t: ev.t, by: ev.by }; break; }
     case 'PARTNER_DD_SET': { const w = worker(d.uid); (w.dd = w.dd || {})[d.item] = { ok: d.ok, note: d.note.trim(), expiry: d.expiry || null, t: ev.t, by: ev.by }; break; }
     case 'WORKER_PROFILE': { const w = worker(d.uid); if (d.stripped) w.profile.filled = true; ['phone', 'area', 'skills', 'availability'].forEach(k => { if (d[k] !== undefined) w.profile[k] = k === 'phone' ? phone10(d[k]) : d[k]; }); w.profile.t = ev.t; break; }
@@ -8733,7 +8828,7 @@ function apply(S, ev) {
       Object.assign(q, { lines: o.lines, cost: o.cost, list: o.list, discount: o.discount, price: o.price, gst: o.gst, total: o.total, margin: o.margin, req: clone(o.req), chosen: d.k, chosenBy: { t: ev.t, by: ev.by } });
       P.req = Object.assign({}, P.req, { finish: o.req.finish, ard: o.req.ard, curtain: o.req.curtain, premium: o.req.premium }); P.materials = materialList(P.req); break; }
     case 'GAD_SIGNED': { const l = lastSiteOk(P) || {};
-      P.gad = { t: ev.t, by: ev.by, signer: d.signer.trim(), sig: ev_(d, 'sign')[0].id, ticks: d.ticks, powerBy: d.powerBy, finish: (P.req || {}).finish, meas: l.meas || null, door: l.door || null, floors: l.floors || null, inPerson: roleOf(ev.by) !== 'customer' };
+      P.gad = { t: ev.t, by: ev.by, signer: (d.signer || '').trim(), sig: ev_(d, 'sign')[0].id, ticks: d.ticks, powerBy: d.powerBy, finish: (P.req || {}).finish, meas: l.meas || null, door: l.door || null, floors: l.floors || null, inPerson: roleOf(ev.by) !== 'customer' };
       P.finishOk = { ok: true, note: '', finish: (P.req || {}).finish, t: ev.t, by: ev.by, inPerson: roleOf(ev.by) !== 'customer' }; break; }
     case 'DAMAGE_REPORTED': (P.damages = P.damages || []).push({ id: d.did, item: d.item.trim(), note: d.note.trim(), ev: ev_(d).map(e => e.id), by: ev.by, t: ev.t, decided: null }); break;
     case 'DAMAGE_DECIDED': { const x = P.damages.find(y => y.id === d.did); x.decided = { who: d.who, amount: +d.amount || 0, uid: d.uid || null, note: d.note, by: ev.by, t: ev.t };
@@ -9267,6 +9362,8 @@ async function getMedia(key) {
 /* 2: records made from this version on are held to the rules that came with it (accident report before closing);
    older phones answer "update the app" for them instead of guessing */
 const EV_V = 2, ACT_V = 2;
+/* shown on Me; the same number as the cache name in sw.js (checked by the tests), so anyone can tell which version a phone runs */
+const APP_BUILD = 104;
 const evV = ev => ev.v || 1;
 /* money going out, forgiving money, who-can-do-what and taking data off the phone need the PIN again (2-minute grace) */
 const RECHECK = (type, d) => ['REFUND_DECIDED', 'REFUND_PAID', 'CONFIG_SET', 'DATA_EXPORTED'].includes(type) || (type === 'CHARGE_SETTLED' && d.how === 'waived') || (type === 'USER_UPDATED' && d.role != null);
@@ -9327,7 +9424,7 @@ async function perform(type, pid, data, opt = {}) {
 function allowed(type, P) {
   const R = RULES[type], u = App.me;
   if (!R || !u || (!R.roles.includes(u.role) && !(u.role === 'owner' && COVER_EV.includes(type) && R.roles.some(r => COVER_ROLES.includes(r) && !Object.values(S.users).some(x => x.active && x.role === r))))) return false;
-  if (P) { if (!R.open && !canSee(u, P)) return false; if (R.stages && !R.stages.includes(P.stage)) return false; }
+  if (P) { if (!R.open && !canSee(u, P)) return false; if (R.stages && !R.stages.includes(P.stage)) return false; if (mktBlocked(type, P)) return false; }
   if (R.gate && (!R.project || P) && R.gate(S, u, P || null, nowISO())) return false;
   return true;
 }
@@ -9833,7 +9930,7 @@ const TASK_ICON = {
   help_newbie: '🤝', wait_permit: '📜', wait_serial: '🔢', serial_mismatch: '🔢', legal_renew: '🪪', po_silent: '📑', inspection_rework: '🏛️', sign_contract: '📝', settle_reserve: '🏦', rating_appeal: '⚖️', referral_reward: '🎁', soc_approvals: '🏘️',
   review_lead: '🔍', fix_lead: '↩️', call_customer: '📞', follow_up: '⏰', write_needs: '📝', make_quote: '🧮', approve_quote: '✅', send_quote: '📤',
   get_decision: '🤝', prepare_agreement: '📄', sign_agreement: '✍️', record_payment: '💰', verify_payment: '🏦', prepare_site: '🧱', request_qc: '🔍',
-  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', dev_alert: '📱', report_accident: '🚓', insurance_due: '🛡️', partner_handover: '🔁', capacity_check: '🏗️', mkt_send_rfq: '📨', mkt_quote: '💰', mkt_pick: '⚖️', mkt_confirm: '🤝', mkt_record_pay: '🧾', mkt_verify_pay: '🔍', mkt_handover: '🔑', dispatch_lot: '🚚', lot_arrival: '📍', wait_lot: '⏳', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
+  inspect_site: '🔍', decide_infeasible: '⛔', approve_drawing: '📐', accept_ticket: '🙋', ticket_not_accepted: '⏳', warranty_call: '🛡️', approve_finish: '🎨', finish_change: '🎨', decide_expense: '🧾', stock_low: '📦', pin_alert: '🔐', dev_alert: '📱', report_accident: '🚓', insurance_due: '🛡️', partner_handover: '🔁', capacity_check: '🏗️', mkt_send_rfq: '📨', mkt_quote: '💰', mkt_pick: '⚖️', mkt_confirm: '🤝', mkt_record_pay: '🧾', mkt_verify_pay: '🔍', mkt_handover: '🔑', mkt_introduce: '👤', mkt_inspect: '🔍', mkt_ready: '🔍', mkt_fix: '🛠️', mkt_hold: '✋', mkt_followup: '📞', dispatch_lot: '🚚', lot_arrival: '📍', wait_lot: '⏳', pre_survey: '📐', pick_option: '🥈', sign_gad: '✍️', decide_damage: '💥', charge_due: '🧾', pay_charge: '🧾', set_insp_mode: '🔒', set_normal_mode: '🔓', first_contact_late: '⏰', lead_idle: '💤', daily_report: '📝', fix_site: '🛠️', release: '📐', dispatch: '📦', arrival: '🚚', material_handover: '🤲', mhand_cust_sign: '✍️', mhand_cust_wait: '📞', install: '🔧', request_inspection: '🔍',
   final_inspect: '🔍', fix_install: '🛠️', sign_handover: '✍️', complete_handover: '🔑', new_enquiry: '📞', chat_obstacle: '🚧', chat_obstacle_late: '🚧', chat_followup: '📅', chat_appt: '🤝', appt_today: '🤝', plan_today: '🗓️', resolve_blocker: '⛔', resolve_incident: '🚨', answer: '❓',
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
@@ -12824,9 +12921,9 @@ function customerHome() {
   App.pageSay = t('cust_say', { stage: stName(P.stage), next: nextLine(P) });
   const q = [...P.quotes].reverse().find(x => x.sent);
   const tile = (a, v, i, l) => `<button class="tile" data-a="${a}" data-v="${v}"><span class="i">${i}</span>${t(l)}</button>`;
-  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${tourCard(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}${noLicBanner(P)}<div class="card"><b>${esc(jobNo(P))}</b> · ${esc(P.site.address)}<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>${custPause(P)}${stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
+  return topBar(t('nav_mylift')) + `<main class="wrap">${hero(u)}${tourCard(u)}${js.length > 1 ? `<div class="card"><h3>🏗️ ${t('builder_sites')}</h3><div class="row wrapw">${js.map(id => `<button class="btn btn-sm ${id === P.id ? 'btn-p' : ''}" data-a="custSite" data-v="${id}" aria-pressed="${id === P.id}">${esc(id)} · ${esc(S.projects[id].site.address.slice(0, 24))}</button>`).join('')}</div></div>` : ''}${noLicBanner(P)}<div class="card"><b>${esc(jobNo(P))}</b> · ${esc(P.site.address)}${isMkt(P) && !P.done ? '' : `<div style="margin:8px 0">${phaseBar(P)}${jobBars(P)}</div>`}${custPause(P)}${isMkt(P) && !P.done ? '' : stageChip(P)}<p style="margin:8px 0 0">👉 ${esc(nextLine(P))}</p>${P.tech ? `<p class="small" style="margin:8px 0 0">🔧 ${t('your_tech')}: <b>${esc(userName(P.tech))}</b> ${gradeChip(P.tech)} ${starChip(P.tech)}</p>` : ''}</div>
     ${tasks.length ? `<button class="btn btn-p btn-big" data-a="openTask" data-v="0"><span class="i">▶</span>${t('start_next')}</button>` + homeMapCard(u) + tasks.map((n, i) => taskCard(n, i)).join('') : homeMapCard(u)}
-    ${payCard(P)}
+    ${isMkt(P) ? mktCard(P) : ''}${payCard(P)}
     ${P.stage === 'quoted' && allowed('COUNTER_OFFER', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="counter|${P.id}">💬 ${t('counter_offer')}</button>` : ''}
     ${lateCard(P)}${P.done ? warrantyLine(P) : ''}${P.society && !P.done ? socCard(P) : ''}${custRefCard(P)}
     ${P.done && allowed('TICKET_OPENED', P) ? `<button class="btn btn-big" style="margin-top:12px" data-a="wizOpen" data-v="ticket|${P.id}">🚨 ${t('ticket_new')}</button>` : ''}
@@ -12992,7 +13089,7 @@ WIZ.finInterest = {
   async finish(c) { const P = S.projects[W.pid]; const r = await run([['FIN_INTEREST', null, Object.assign({ fid: 'F' + rid(8), pid: W.pid, want: c.want, consent: true, v: FIN_CONSENT_V }, c.amount !== '' ? { amount: Math.round(+c.amount) } : {})]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
 };
 WIZ.finRefer = {
-  title: 'fn_refer', save: 'save', noDraft: true, init: () => { const f = S.finance[W.opts.fid] || {}; return { bank: f.bank || '', outcome: '', note: '' }; },
+  title: 'fn_refer', save: 'save', noDraft: true, init: (P, o) => { const f = S.finance[o.fid] || {}; return { bank: f.bank || '', outcome: '', note: '' }; },
   steps: [{ id: 'r', icon: '📨', say: 's_fn_refer', body: () => finBanner() + inp('bank', 'fn_bank', { mic: true }) + tiles('outcome', FIN_OUTCOMES.map(([k, i]) => [k, i, 'fn_o_' + k]), 'one') + inp('note', 'f_note', { area: true, mic: true, opt: true }),
     check: c => !c.bank.trim() ? 'err_fill' : !c.outcome ? 'err_choose' : null }],
   async finish(c) { const r = await run([['FIN_REFERRED', null, { fid: W.opts.fid, bank: c.bank.trim(), outcome: c.outcome, note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
@@ -13004,12 +13101,12 @@ SCREENS.finList = () => {
   return topBar(t('fn_list'), { back: true }) + `<main class="wrap">${finBanner()}${rows.length ? rows.map(f => `<div class="card"><b>${f.withdrawn ? t('fn_withdrawn') : esc(f.name || '')}</b>${f.withdrawn ? '' : ' · ' + esc(f.phone || '')}
     <div class="small">${t('fn_' + f.want)}${f.amount ? ' · ' + money(f.amount) : ''} · ${t('fn_consent_on', { d: fmtD(f.t), v: f.v })}${f.pid ? ' · ' + esc(f.pid) : ''}</div>
     ${f.outcome ? `<div class="small">${FIN_OUTCOMES.find(x => x[0] === f.outcome)[1]} ${t('fn_o_' + f.outcome)} · ${esc(f.bank)}${f.note ? ' · ' + esc(f.note) : ''}</div>` : ''}
-    ${f.withdrawn ? `<div class="small muted">${t('fn_withdrawn_d', { d: fmtD(f.withdrawn) })}</div>` : `<button class="btn btn-sm" style="margin-top:6px" data-a="wizOpen" data-v="finRefer||fid|${f.id}">📨 ${t(f.outcome ? 'fn_update' : 'fn_refer')}</button>`}</div>`).join('') : `<p class="muted">${t('fn_none')}</p>`}</main>` + nav('home');
+    ${f.withdrawn ? `<div class="small muted">${t('fn_withdrawn_d', { d: fmtD(f.withdrawn) })}</div>` : `<div class="row wrapw" style="margin-top:6px"><button class="btn btn-sm" data-a="wizOpen" data-v="finRefer||fid|${f.id}">📨 ${t(f.outcome ? 'fn_update' : 'fn_refer')}</button><button class="btn btn-sm" data-a="finWithdraw" data-v="${f.id}">↩️ ${t('fn_withdraw_office')}</button></div>`}</div>`).join('') : `<p class="muted">${t('fn_none')}</p>`}</main>` + nav('home');
 };
 const MKT_FROM_STAGES = ['accepted', 'contacted', 'requirements'];
 /* ---------- blueprint B5: Marketplace jobs. The customer compares 2-3 partner quotes, picks one, signs with and pays
-   the partner; the partner records each payment, the customer or Finance confirms it, and AIEC's commission is
-   recorded once per confirmed payment. AIEC never holds the lift money. ---------- */
+   the partner; either side records each payment and the other side or Finance confirms it; AIEC's commission is
+   recorded once per confirmed payment. AIEC never holds the lift money. AIEC inspects once before handover. ---------- */
 const MKT_MS = ['booking', 'material', 'install', 'testing', 'handover'];
 const CML_ST = ['VERIFIED', 'INVOICED', 'DUE', 'PAID', 'DISPUTED', 'ADJUSTED'];
 const CML_NEXT = { VERIFIED: ['INVOICED', 'DISPUTED'], INVOICED: ['DUE', 'DISPUTED'], DUE: ['PAID', 'DISPUTED'], PAID: ['DISPUTED'], DISPUTED: ['VERIFIED', 'DUE', 'ADJUSTED'], ADJUSTED: ['INVOICED', 'DUE', 'PAID'] };
@@ -13017,58 +13114,101 @@ const isMkt = P => !!P && P.model === 'market';
 const mktQuoteTotal = q => +q.base + +q.tax + +q.freight + +q.install;
 /* hard gates for an RFQ: licence, company status, insurance, active */
 const rfqWhyNot = (uid, at) => roleOf(uid) !== 'partner' || !isActive(uid) ? 'err_no_user' : !partnerTakes(uid) ? 'why_pstatus' : !licenceOk(uid, at) ? 'why_licence' : !partnerInsOk(uid, at) ? 'why_insurance' : null;
-const mktPayOf = (P, i) => (P.mkt.pays || []).filter(p => p.ms === i && p.status !== 'rejected');
-const mktMsDone = (P, i) => mktPayOf(P, i).some(p => p.status === 'verified');
-const mktAllPaid = P => P.mkt.terms && P.mkt.terms.ms.every((pc, i) => !+pc || mktMsDone(P, i));
+/* a payment part is done only when confirmed payments cover its amount (several payments may make it up) */
+const mktMsDue = (P, i) => Math.round(P.mkt.terms.total * (+P.mkt.terms.ms[i] || 0) / 100);
+const mktMsPaid = (P, i) => sum(P.mkt.pays.filter(p => p.ms === i && p.status === 'verified').map(p => p.amount));
+const mktMsLeft = (P, i) => Math.max(0, mktMsDue(P, i) - mktMsPaid(P, i));
+const mktMsDone = (P, i) => mktMsLeft(P, i) === 0;
+const mktMsWait = (P, i) => P.mkt.pays.some(p => p.ms === i && p.status === 'pending');
+const mktNextMs = P => P.mkt.terms.ms.findIndex((pc, k) => +pc > 0 && !mktMsDone(P, k));
+const mktAllPaid = P => !!P.mkt.terms && !P.mkt.terms.cut && mktNextMs(P) < 0;
+const mktInspPassed = P => { const x = P.mkt.insp[P.mkt.insp.length - 1]; return !!x && x.outcome === 'pass'; };
+const mktLive = m => (m.rfq ? m.rfq.to : []).filter(u => !m.declined.includes(u));
 const mktValidTill = q => addDays(+q.valid, new Date(q.t));
+const mktLastAct = m => [m.rfq && m.rfq.t, m.accepted && m.accepted.t, m.ready && m.ready.t, m.contact && m.contact.t].concat(Object.values(m.quotes).map(q => q.t), m.pays.map(p => p.vT || p.t), m.insp.map(x => x.t), m.log.map(l => l.t)).filter(Boolean).sort().pop();
+const mktLicWait = P => !!S.config.licenceGate && !liftLicenceOk(P);
+/* AIEC-contract steps that do not belong on a Marketplace job (the company and the customer deal directly) */
+const MKT_BLOCK = new Set(['QUOTE_CREATED', 'QUOTE_DECISION', 'QUOTE_SENT', 'OPTION_CHOSEN', 'DEAL_WON', 'COUNTER_OFFER', 'AGREEMENT_PREPARED', 'AGREEMENT_SIGNED', 'PAYMENT_RECORDED', 'PAYMENT_STATUS',
+  'REFUND_PROPOSED', 'REFUND_DECIDED', 'REFUND_PAID', 'PREP_ITEM_DONE', 'QC_REQUESTED', 'QC_SITE_RESULT', 'GAD_SIGNED', 'RELEASED', 'ASSIGNED', 'FINISH_APPROVED', 'VARIATION_PROPOSED', 'VARIATION_SIGNED', 'VARIATION_DECLINED',
+  'HANDOVER_SIGNED', 'HANDOVER_COMPLETED']);
+const mktBlocked = (type, P) => isMkt(P) && P.stage !== 'amc' && MKT_BLOCK.has(type);
 function mktNeeds(P, add) {
-  const m = P.mkt;
+  const m = P.mkt, quiet = (since, days) => Date.now() - Date.parse(since) > days * 864e5;
   if (!m.rfq) return add('mkt_send_rfq', ['admin', 'owner'], { since: P.since });
   if (!m.accepted) {
-    const waiting = m.rfq.to.filter(u => !m.quotes[u] && !(m.declined || []).includes(u));
+    const waiting = mktLive(m).filter(u => !m.quotes[u]);
     if (waiting.length) add('mkt_quote', ['partner'], { uids: waiting });
-    if (m.pick) return add('mkt_confirm', ['partner'], { uids: [m.pick.partner], urgent: true, since: m.pick.t });
-    if (Object.keys(m.quotes).length) add('mkt_pick', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] });
+    if (m.pick) {
+      add('mkt_confirm', ['partner'], { uids: [m.pick.partner], urgent: true, since: m.pick.t });
+      /* the picked company lost its licence, status or insurance meanwhile: the office holds the pick */
+      if (rfqWhyNot(m.pick.partner, nowISO())) add('mkt_hold', ['admin', 'owner'], { urgent: true });
+      return;
+    }
+    if (mktLive(m).some(u => m.quotes[u])) add('mkt_pick', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales] });
+    /* nothing has moved for 5 days: the office chases the companies, asks more, or takes the job back */
+    if (quiet(mktLastAct(m), 5)) add('mkt_followup', ['admin', 'owner'], { since: mktLastAct(m) });
     return;
   }
-  const pend = (m.pays || []).filter(p => p.status === 'pending');
-  for (const p of pend) add('mkt_verify_pay', P.customer ? ['customer', 'finance'] : ['finance'], { uids: [P.customer], not: p.by, payId: p.id, since: p.t });
-  if (!mktAllPaid(P)) { const i = m.terms.ms.findIndex((pc, k) => +pc && !mktMsDone(P, k)); if (!mktPayOf(P, i).length) add('mkt_record_pay', ['partner'], { uids: [m.accepted.by], ms: i }); }
-  else add('mkt_handover', ['partner'], { uids: [m.accepted.by] });
+  if (m.terms.cut) return;
+  const win = m.accepted.by, i = mktNextMs(P);
+  if (!m.contact) add('mkt_introduce', P.customer ? ['customer', 'sales'] : ['sales'], { uids: [P.customer, P.sales], urgent: true, since: m.accepted.t });
+  for (const p of m.pays.filter(p => p.status === 'pending')) add('mkt_verify_pay', roleOf(p.by) === 'customer' ? ['partner', 'finance'] : P.customer ? ['customer', 'finance'] : ['finance'], { uids: [P.customer, win], not: p.by, payId: p.id, since: p.t });
+  if (i >= 0 && !mktMsWait(P, i)) add('mkt_record_pay', ['partner'], { uids: [win], ms: i });
+  if (m.ready) add('mkt_inspect', ['qc'], { since: m.ready.t, urgent: true });
+  else if (!mktInspPassed(P)) { if (i < 0 || i >= 3 || m.insp.length) add(m.insp.length ? 'mkt_fix' : 'mkt_ready', ['partner'], { uids: [win] }); }
+  else if (mktLicWait(P)) add('record_licence', statRoles(), { uids: statLead() ? [statLead()] : [], urgent: true, item: statOf(P).inspection && statOf(P).inspection.result === 'pass' ? 'licence' : 'inspection' });
+  if (i < 0 && mktInspPassed(P) && !mktLicWait(P)) add('mkt_handover', ['partner'], { uids: [win] });
+  /* an awarded job with no payment or inspection activity for 14 days: the office calls the customer and the company */
+  if (i >= 0 && quiet(mktLastAct(m), 14)) add('mkt_followup', ['admin', 'owner'], { since: mktLastAct(m) });
 }
 function commTotals() {
   const by = {}; for (const c of Object.values(S.comm || {})) by[c.status] = (by[c.status] || 0) + c.amt;
   const pend = Object.values(S.projects).filter(isMkt).flatMap(P => (P.mkt.pays || []).filter(p => p.status === 'pending').map(p => Math.round(p.amount * (+S.config.commRate || 0) / 100)));
   by.PENDING = sum(pend); return by;
 }
+/* log lines keep ids and numbers; names and money are written when shown */
+const mktLogText = l => t('mkt_log_' + l.k) + (l.who ? ': ' + userName(l.who) : '') + (l.amt != null ? ' · ' + money(l.amt) : '') + (l.note ? ': ' + l.note : '');
 function mktCard(P) {
-  const m = P.mkt, me = App.me, office = ['owner', 'admin', 'sales', 'finance'].includes(me.role);
-  const rows = [];
+  const m = P.mkt, me = App.me, adm = ['owner', 'admin'].includes(me.role), office = adm || ['sales', 'finance'].includes(me.role), win = m.accepted && m.accepted.by === me.uid;
+  const rows = [], btn = [];
   rows.push(`<p class="small">🤝 ${t('mkt_model_d')}</p>`);
-  if (m.rfq) rows.push(`<p class="small">📨 ${t('mkt_rfq_to', { n: m.rfq.to.length, d: fmtD(m.rfq.t) })} · ${t('mkt_quotes_in', { n: Object.keys(m.quotes).length })}</p>`);
+  if (m.rfq) rows.push(`<p class="small">📨 ${t('mkt_rfq_to', { n: m.rfq.to.length, d: fmtD(m.rfq.t) })} · ${t('mkt_quotes_in', { n: Object.keys(m.quotes).length })}${m.declined.length ? ' · ' + t('mkt_declined_n', { n: m.declined.length }) : ''}</p>`);
   if (m.pick) rows.push(`<p class="small">👆 ${t('mkt_picked', { c: esc(userName(m.pick.partner)), d: fmtD(m.pick.t) })}</p>`);
-  if (m.accepted) rows.push(`<p class="small">✅ ${t('mkt_accepted', { c: esc(userName(m.accepted.by)), d: fmtD(m.accepted.t) })} · ${money(m.terms.total)}</p>`
-    + m.terms.ms.map((pc, i) => +pc ? `<div class="list-item small"><span>${mktMsDone(P, i) ? '✅' : mktPayOf(P, i).length ? '⏳' : '⬜'}</span><span class="grow">${t('mkt_ms_' + MKT_MS[i])} · ${pc}% · ${money(Math.round(m.terms.total * pc / 100))}</span></div>` : '').join(''));
-  for (const l of (m.log || []).slice(-3)) rows.push(`<p class="small muted">🕑 ${fmtD(l.t)} · ${esc(t('mkt_log_' + l.k))}${l.note ? ': ' + esc(l.note) : ''}</p>`);
-  return `<div class="card"><h3>🛒 ${t('mkt_title')}</h3>${rows.join('')}<div class="row wrapw">${Object.keys(m.quotes).length ? `<button class="btn btn-sm" data-a="nav2" data-v="mktCompare|${P.id}">⚖️ ${t('mkt_compare')}</button>` : ''}
-    ${office && !m.rfq ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="mktRfq|${P.id}">📨 ${t('mkt_send')}</button>` : ''}</div></div>`;
+  if (m.accepted && !m.terms.cut) {
+    rows.push(`<p class="small">✅ ${t('mkt_accepted', { c: esc(userName(m.accepted.by)), d: fmtD(m.accepted.t) })} · ${money(m.terms.total)}</p>`
+      + m.terms.ms.map((pc, i) => +pc ? `<div class="list-item small"><span>${mktMsDone(P, i) ? '✅' : mktMsWait(P, i) ? '⏳' : '⬜'}</span><span class="grow">${t('mkt_ms_' + MKT_MS[i])} · ${pc}% · ${money(mktMsDue(P, i))}${!mktMsDone(P, i) && mktMsPaid(P, i) ? ' · ' + t('mkt_paid_part', { m: money(mktMsPaid(P, i)) }) : ''}</span></div>` : '').join(''));
+    /* the customer's contact reaches the chosen company only when the customer (or Sales on their word) shares it */
+    if (office || win || me.role === 'customer') rows.push(m.contact ? `<p class="small">👤 ${esc(m.contact.name)} · ${win ? `<a href="tel:+91${esc(m.contact.phone)}">📞 ${esc(m.contact.phone)}</a>` : '📞 ' + esc(m.contact.phone)} <span class="muted">· ${t('mkt_contact_on', { d: fmtD(m.contact.t) })}</span></p>` : `<p class="small muted">👤 ${t('mkt_contact_wait')}</p>`);
+    const x = m.insp[m.insp.length - 1];
+    rows.push(`<p class="small">🔍 ${m.ready ? t('mkt_insp_asked', { d: fmtD(m.ready.t) }) : x ? t(x.outcome === 'pass' ? 'mkt_insp_pass' : 'mkt_insp_fail', { d: fmtD(x.t) }) + (x.points ? ': ' + esc(x.points) : '') : t('mkt_insp_none')}${mktInspPassed(P) && mktLicWait(P) ? ' · 📜 ' + t('mkt_lic_wait') : ''}</p>`);
+    if (office || win) { const cs = Object.values(S.comm || {}).filter(c => c.pid === P.id); if (cs.length) rows.push(`<p class="small">🧮 ${t('mkt_comm_line', { m: money(sum(cs.map(c => c.amt))), p: money(sum(cs.filter(c => c.status === 'PAID').map(c => c.amt))) })}</p>`); }
+  }
+  for (const l of m.log.slice(-4)) rows.push(`<p class="small muted">🕑 ${fmtD(l.t)} · ${esc(mktLogText(l))}</p>`);
+  if (Object.keys(m.quotes).length) btn.push(`<button class="btn btn-sm" data-a="nav2" data-v="mktCompare|${P.id}">⚖️ ${t('mkt_compare')}</button>`);
+  if (adm && !m.accepted && mktLive(m).length < 3) btn.push(`<button class="btn btn-sm ${m.rfq ? '' : 'btn-p'}" data-a="wizOpen" data-v="mktRfq|${P.id}">📨 ${t(m.rfq ? 'mkt_send_more' : 'mkt_send')}</button>`);
+  if (allowed('MK_PICK_HELD', P)) btn.push(`<button class="btn btn-sm" data-a="wizOpen" data-v="mktHold|${P.id}">✋ ${t('mkt_hold_btn')}</button>`);
+  if (allowed('MK_INTRODUCED', P)) btn.push(`<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="mktIntro|${P.id}">👤 ${t('tk_mkt_introduce')}</button>`);
+  if (me.role === 'customer' && allowed('MK_PAY_RECORDED', P) && mktNextMs(P) >= 0 && !mktMsWait(P, mktNextMs(P))) btn.push(`<button class="btn btn-sm" data-a="wizOpen" data-v="mktPay|${P.id}|ms|${mktNextMs(P)}">🧾 ${t('mkt_i_paid')}</button>`);
+  if (allowed('MK_READY', P)) btn.push(`<button class="btn btn-sm" data-a="wizOpen" data-v="mktReady|${P.id}">🔍 ${t('tk_mkt_ready')}</button>`);
+  if (adm && isMkt(P) && !m.accepted) btn.push(`<button class="btn btn-sm" data-a="wizOpen" data-v="mktBack|${P.id}">↩️ ${t('mkt_back_btn')}</button>`);
+  return `<div class="card"><h3>🛒 ${t('mkt_title')}</h3>${rows.join('')}<div class="row wrapw">${btn.join('')}</div></div>`;
 }
 SCREENS.mktCompare = ({ uid: pid }) => {
   const P = S.projects[pid], me = App.me; if (!P || !isMkt(P) || !canSee(me, P)) return SCREENS.home();
   const m = P.mkt, own = me.role === 'partner';
   /* never ranked by price alone: by tier, then who answered first */
   const tr = { platinum: 0, gold: 1, silver: 2 };
-  const qs = Object.values(m.quotes).filter(q => !own || q.by === me.uid).sort((a, b) => tr[partnerTier(a.by).tier] - tr[partnerTier(b.by).tier] || (a.t < b.t ? -1 : 1));
-  const mixed = new Set(qs.map(q => q.civil + '/' + q.elec)).size > 1;
-  const canPick = !m.pick && !m.accepted && (me.role === 'customer' || ['sales', 'admin', 'owner'].includes(me.role));
+  const qs = Object.values(m.quotes).filter(q => !q.cut && (!own || q.by === me.uid)).sort((a, b) => tr[partnerTier(a.by).tier] - tr[partnerTier(b.by).tier] || (a.t < b.t ? -1 : 1));
+  const live = qs.filter(q => !m.declined.includes(q.by)), mixed = new Set(live.map(q => q.civil + '/' + q.elec)).size > 1;
+  const canPick = allowed('MK_PICKED', P);
   App.pageSay = t('mkt_compare');
-  const col = q => { const tier = partnerTier(q.by), done = companyJobs(q.by).length, exp = mktValidTill(q) < todayStr();
-    return `<div class="card"><h3>${TIER_ICON[tier.tier]} ${esc(userName(q.by))}</h3><div class="small muted">${t('ptier_' + tier.tier)} · ${esc(tier.why)}</div>
+  const col = q => { const tier = partnerTier(q.by), exp = mktValidTill(q) < todayStr(), out = m.declined.includes(q.by);
+    return `<div class="card"><h3>${TIER_ICON[tier.tier]} ${esc(userName(q.by))}</h3><div class="small muted">${t('ptier_' + tier.tier)} · ${esc(tier.why)}</div>${out ? `<div class="warnbox small">✖️ ${t('mkt_declined_c')}</div>` : ''}
     ${kv([['mkt_total', `<b>${money(mktQuoteTotal(q))}</b>`], ['mkt_base', money(q.base)], ['mkt_tax', money(q.tax)], ['mkt_freight', money(q.freight)], ['mkt_install', money(q.install)],
       ['mkt_oem', esc(q.oem)], ['mkt_civil', t('mkt_' + q.civil)], ['mkt_elec', t('mkt_' + q.elec)], ['mkt_excl', esc(q.excl || '—')], ['mkt_days', t('mkt_days_n', { n: q.days })],
       ['mkt_ms', q.ms.map((pc, i) => +pc ? t('mkt_ms_' + MKT_MS[i]) + ' ' + pc + '%' : '').filter(Boolean).join(' · ')], ['mkt_warranty', t('mkt_months', { n: q.warranty })], ['mkt_amc', q.amc ? money(q.amc) + '/' + t('mkt_year') : '—'],
       ['mkt_valid', (exp ? '⚠️ ' : '') + fmtD(mktValidTill(q))]])}
-    ${canPick && !exp ? `<button class="btn btn-p" data-a="mktPick" data-v="${P.id}|${q.by}">👆 ${t('mkt_pick_this')}</button>` : ''}</div>`; };
+    ${canPick && !exp && !out ? `<button class="btn btn-p" data-a="mktPick" data-v="${P.id}|${q.by}">👆 ${t('mkt_pick_this')}</button>` : ''}</div>`; };
   return topBar(t('mkt_compare'), { back: true }) + `<main class="wrap"><p class="small">${t('mkt_compare_d')}</p>${mixed ? `<div class="warnbox small">⚠️ ${t('mkt_mixed')}</div>` : ''}
     ${qs.map(col).join('') || `<p class="muted">${t('mkt_no_quotes')}</p>`}<p class="small muted">${t('mkt_direct')}</p></main>` + nav('home');
 };
@@ -13081,12 +13221,13 @@ SCREENS.commLedger = () => {
       <div>${c.credit ? t('cml_credit') + ' · ' : ''}${t('cml_base')}: ${money(c.base)} · ${c.rate}% = <b>${money(c.amt)}</b>${c.ref ? ' · ' + esc(c.ref) : ''}</div>
       ${!c.credit && (CML_NEXT[c.status] || []).length ? `<button class="btn btn-sm" data-a="wizOpen" data-v="cmlStatus||cid|${c.id}">✏️ ${t('cml_change')}</button> <button class="btn btn-sm" data-a="wizOpen" data-v="cmlCredit||cid|${c.id}">↩️ ${t('cml_credit_btn')}</button>` : ''}</div>`).join('') || `<p class="muted">${t('cml_none')}</p>`}</main>` + nav('home');
 };
+const mktSaved = r => r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r;
 WIZ.mktRfq = {
   title: 'mkt_send', save: 'save', noDraft: true, init: () => ({ sel: {} }),
-  steps: [{ id: 'r', icon: '📨', say: 's_mkt_rfq', body: () => { const ps = Object.values(S.users).filter(u => u.role === 'partner' && u.active !== false);
-      return `<p class="small">${t('mkt_rfq_d')}</p>` + ps.map(u => { const why = rfqWhyNot(u.uid, nowISO()); return why ? `<div class="list-item small muted">⛔ ${esc(u.name)} · ${t(why)}</div>` : toggleTile('sel.' + u.uid, TIER_ICON[partnerTier(u.uid).tier], u.name + ' · ' + t('ptier_' + partnerTier(u.uid).tier)); }).join(''); },
-    check: c => { const n = Object.values(c.sel).filter(Boolean).length; return n >= 2 && n <= 3 ? null : 'err_mkt_23'; } }],
-  async finish(c) { const r = await run([['RFQ_SENT', W.pid, { to: Object.keys(c.sel).filter(k => c.sel[k]) }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+  steps: [{ id: 'r', icon: '📨', say: 's_mkt_rfq', body: (c, P) => { const cur = P.mkt.rfq ? P.mkt.rfq.to : [], ps = Object.values(S.users).filter(u => u.role === 'partner' && u.active !== false && !cur.includes(u.uid));
+      return `<p class="small">${t('mkt_rfq_d')}</p>${cur.length ? `<p class="small muted">${t('mkt_rfq_now', { n: mktLive(P.mkt).length })}</p>` : ''}` + (ps.map(u => { const why = rfqWhyNot(u.uid, nowISO()); return why ? `<div class="list-item small muted">⛔ ${esc(u.name)} · ${t(why)}</div>` : (on => `<div class="tiles one"><button class="tile ${on ? 'on' : ''}" data-a="toggle" data-k="sel.${u.uid}" aria-pressed="${on}"><span class="i" aria-hidden="true">${on ? '☑️' : TIER_ICON[partnerTier(u.uid).tier]}</span><span>${esc(u.name)} · ${t('ptier_' + partnerTier(u.uid).tier)}</span></button></div>`)(!!c.sel[u.uid]); }).join('') || `<p class="muted">${t('mkt_rfq_none')}</p>`); },
+    check: (c, P) => { const n = Object.values(c.sel).filter(Boolean).length, live = mktLive(P.mkt).length + n; return n >= 1 && live >= 2 && live <= 3 ? null : 'err_mkt_23'; } }],
+  async finish(c) { return mktSaved(await run([['RFQ_SENT', W.pid, { to: Object.keys(c.sel).filter(k => c.sel[k]) }]])); }
 };
 WIZ.mktQuote = {
   title: 'mkt_quote_t', save: 'save', noDraft: true, init: () => ({ base: '', tax: '', freight: '', install: '', oem: '', civil: '', elec: '', excl: '', days: '', m0: '10', m1: '30', m2: '30', m3: '25', m4: '5', warranty: '12', amc: '', valid: '30' }),
@@ -13097,49 +13238,78 @@ WIZ.mktQuote = {
       check: c => !c.oem.trim() ? 'err_fill' : !c.civil || !c.elec ? 'err_choose' : null },
     { id: 't', icon: '📅', say: 's_mkt_terms', body: () => inp('days', 'mkt_days', { type: 'number', mode: 'numeric' }) + `<div class="small b">${t('mkt_ms')}</div>` + MKT_MS.map((k, i) => inp('m' + i, 'mkt_ms_' + k, { type: 'number', mode: 'numeric' })).join('') + inp('warranty', 'mkt_warranty', { type: 'number', mode: 'numeric' }) + inp('amc', 'mkt_amc', { type: 'number', mode: 'numeric', opt: true }) + inp('valid', 'mkt_valid_days', { type: 'number', mode: 'numeric' }),
       check: c => !(+c.days > 0) ? 'err_fill' : [0, 1, 2, 3, 4].reduce((a, i) => a + (+c['m' + i] || 0), 0) !== 100 ? 'err_mkt_100' : !(+c.valid > 0) || c.warranty === '' ? 'err_fill' : null }],
-  async finish(c) { const r = await run([['PQUOTE_SENT', W.pid, { base: +c.base, tax: +c.tax, freight: +c.freight, install: +c.install, oem: c.oem.trim(), civil: c.civil, elec: c.elec, excl: c.excl.trim(), days: +c.days, ms: [0, 1, 2, 3, 4].map(i => +c['m' + i] || 0), warranty: +c.warranty, amc: +c.amc || 0, valid: +c.valid }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+  async finish(c) { return mktSaved(await run([['PQUOTE_SENT', W.pid, { base: +c.base, tax: +c.tax, freight: +c.freight, install: +c.install, oem: c.oem.trim(), civil: c.civil, elec: c.elec, excl: c.excl.trim(), days: +c.days, ms: [0, 1, 2, 3, 4].map(i => +c['m' + i] || 0), warranty: +c.warranty, amc: +c.amc || 0, valid: +c.valid }]])); }
 };
 WIZ.mktAnswer = {
   title: 'tk_mkt_confirm', save: 'save', noDraft: true, init: () => ({ yes: '', note: '' }),
   steps: [{ id: 'a', icon: '🤝', say: 's_mkt_answer', body: () => tiles('yes', [['yes', '✅', 'mkt_take'], ['no', '❌', 'mkt_decline']], 'one') + inp('note', 'f_note', { area: true, mic: true, opt: true }), check: c => !c.yes ? 'err_choose' : c.yes === 'no' && !c.note.trim() ? 'err_reason' : null }],
-  async finish(c) { const r = await run([['MK_ANSWER', W.pid, { yes: c.yes === 'yes', note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+  async finish(c) { return mktSaved(await run([['MK_ANSWER', W.pid, { yes: c.yes === 'yes', note: c.note.trim() }]])); }
+};
+WIZ.mktHold = {
+  title: 'mkt_hold_btn', save: 'save', noDraft: true, init: () => ({ reason: '', drop: '' }),
+  steps: [{ id: 'h', icon: '✋', say: 's_mkt_hold', body: (c, P) => `<div class="card small">${esc(userName(P.mkt.pick.partner))}</div>` + inp('reason', 'f_reason', { area: true, mic: true }) + tiles('drop', [['no', '🔁', 'mkt_hold_again'], ['yes', '✖️', 'mkt_hold_drop']], 'one'), check: c => !c.reason.trim() ? 'err_reason' : c.drop ? null : 'err_choose' }],
+  async finish(c) { return mktSaved(await run([['MK_PICK_HELD', W.pid, { reason: c.reason.trim(), drop: c.drop === 'yes' }]])); }
+};
+WIZ.mktBack = {
+  title: 'mkt_back_btn', save: 'save', noDraft: true, init: () => ({ reason: '' }),
+  steps: [{ id: 'b', icon: '↩️', say: 's_mkt_back', body: () => `<p class="small">${t('mkt_back_d')}</p>` + inp('reason', 'f_reason', { area: true, mic: true }), check: c => c.reason.trim() ? null : 'err_reason' }],
+  async finish(c) { return mktSaved(await run([['MODEL_SET', W.pid, { model: 'aiec', reason: c.reason.trim() }]])); }
+};
+WIZ.mktIntro = {
+  title: 'tk_mkt_introduce', save: 'save', noDraft: true, init: P => ({ name: P.contact.name || '', phone: P.contact.phone || '', consent: '' }),
+  steps: [{ id: 'i', icon: '👤', say: 's_mkt_intro', body: (c, P) => `<p class="small">${t('mkt_intro_d', { c: esc(userName(P.mkt.accepted.by)) })}</p>` + inp('name', 'your_name') + inp('phone', 'f_mobile', { type: 'tel', mode: 'tel', max: 13 }) + tiles('consent', [['yes', '☑️', App.me.role === 'customer' ? 'mkt_intro_yes' : 'mkt_intro_yes_office']], 'one'),
+    check: c => !c.name.trim() ? 'err_fill' : !validPhone(c.phone) ? 'err_phone' : c.consent === 'yes' ? null : 'err_consent' }],
+  async finish(c) { return mktSaved(await run([['MK_INTRODUCED', W.pid, { name: c.name.trim(), phone: phone10(c.phone), consent: true }]])); }
 };
 WIZ.mktPay = {
-  title: 'tk_mkt_record_pay', save: 'save', noDraft: true, init: () => { const P = S.projects[W.pid], i = W.opts.ms; return { amount: String(Math.round(P.mkt.terms.total * P.mkt.terms.ms[i] / 100)), utr: '' }; },
-  steps: [{ id: 'p', icon: '🧾', say: 's_mkt_pay', body: () => `<div class="card small">${t('mkt_ms_' + MKT_MS[W.opts.ms])}</div>` + inp('amount', 'mkt_amount', { type: 'number', mode: 'numeric' }) + inp('utr', 'mkt_utr'), check: c => !(+c.amount > 0) ? 'err_fill' : c.utr.trim().length >= 4 ? null : 'err_fill' }],
-  async finish(c) { const r = await run([['MK_PAY_RECORDED', W.pid, { payId: 'MP' + rid(8), ms: +W.opts.ms, amount: Math.round(+c.amount), utr: c.utr.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+  title: 'tk_mkt_record_pay', save: 'save', noDraft: true, init: (P, o) => ({ amount: String(mktMsLeft(P, o.ms)), utr: '' }),
+  steps: [{ id: 'p', icon: '🧾', say: 's_mkt_pay', body: (c, P) => `<div class="card small">${t('mkt_ms_' + MKT_MS[W.opts.ms])} · ${t('mkt_left', { m: money(mktMsLeft(P, W.opts.ms)) })}</div>` + inp('amount', 'mkt_amount', { type: 'number', mode: 'numeric' }) + inp('utr', 'mkt_utr'),
+    check: (c, P) => !(+c.amount > 0) ? 'err_fill' : +c.amount > mktMsLeft(P, W.opts.ms) ? { k: 'err_mkt_amount', v: { m: money(mktMsLeft(P, W.opts.ms)) } } : c.utr.trim().length >= 4 ? null : 'err_fill' }],
+  async finish(c) { return mktSaved(await run([['MK_PAY_RECORDED', W.pid, { payId: 'MP' + rid(8), ms: +W.opts.ms, amount: Math.round(+c.amount), utr: c.utr.trim() }]])); }
 };
 WIZ.mktVerify = {
   title: 'tk_mkt_verify_pay', save: 'save', noDraft: true, init: () => ({ ok: '', note: '' }),
-  steps: [{ id: 'v', icon: '🔍', say: 's_mkt_verify', body: () => { const p = S.projects[W.pid].mkt.pays.find(x => x.id === W.opts.payId) || {}; return `<div class="card small">${t('mkt_ms_' + MKT_MS[p.ms])} · ${money(p.amount)} · UTR ${esc(p.utr || '')}</div>` + tiles('ok', [['yes', '✅', 'mkt_pay_ok'], ['no', '❌', 'mkt_pay_no']], 'one') + inp('note', 'f_note', { opt: true }); },
+  steps: [{ id: 'v', icon: '🔍', say: 's_mkt_verify', body: (c, P) => { const p = P.mkt.pays.find(x => x.id === W.opts.payId) || {}; return `<div class="card small">${t('mkt_ms_' + MKT_MS[p.ms])} · ${money(p.amount)} · UTR ${esc(p.utr || '')}<br>${t('mkt_pay_by', { n: esc(userName(p.by)) })}</div>` + tiles('ok', [['yes', '✅', 'mkt_pay_ok'], ['no', '❌', 'mkt_pay_no']], 'one') + inp('note', 'f_note', { opt: true }); },
     check: c => !c.ok ? 'err_choose' : c.ok === 'no' && !c.note.trim() ? 'err_reason' : null }],
-  async finish(c) { const r = await run([['MK_PAY_VERIFIED', W.pid, { payId: W.opts.payId, ok: c.ok === 'yes', note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+  async finish(c) { return mktSaved(await run([['MK_PAY_VERIFIED', W.pid, { payId: W.opts.payId, ok: c.ok === 'yes', note: c.note.trim() }]])); }
+};
+WIZ.mktReady = {
+  title: 'tk_mkt_ready', save: 'save', noDraft: true, init: () => ({ note: '' }),
+  steps: [{ id: 'r', icon: '🔍', say: 's_mkt_ready', body: () => inp('note', 'mkt_ready_note', { area: true, mic: true }), check: c => c.note.trim() ? null : 'err_fill' }],
+  async finish(c) { return mktSaved(await run([['MK_READY', W.pid, { note: c.note.trim() }]])); }
+};
+WIZ.mktInspect = {
+  title: 'tk_mkt_inspect', save: 'save_result', saveIcon: '🔍', init: () => ({ ok: '', points: '', ph: [] }),
+  steps: [
+    { id: 'p', icon: '📷', say: 's_mkt_insp_ph', body: () => photoSlot('ph', 'ph_mkt_insp', 2, { tag: 'mktinsp' }), check: c => c.ph.length >= 2 ? null : { k: 'err_photos', v: { n: 2 } } },
+    { id: 'r', icon: '⚖️', say: 's_mkt_insp', body: c => `<p class="small">${t('mkt_insp_d')}</p>` + tiles('ok', [['pass', '✅', 'mkt_insp_ok'], ['fail', '❌', 'mkt_insp_bad']], 'one') + inp('points', 'mkt_insp_points', { area: true, mic: true, opt: c.ok !== 'fail' }), check: c => !c.ok ? 'err_choose' : c.ok === 'fail' && !c.points.trim() ? 'err_reason' : null }],
+  async finish(c) { return mktSaved(await run([['MK_INSPECTED', W.pid, { outcome: c.ok, points: c.points.trim(), ev: c.ph }]])); }
 };
 WIZ.mktDone = {
   title: 'tk_mkt_handover', save: 'save', noDraft: true, init: () => ({ note: '' }),
   steps: [{ id: 'd', icon: '🔑', say: 's_mkt_done', body: () => inp('note', 'mkt_done_note', { area: true, mic: true }), check: c => c.note.trim() ? null : 'err_fill' }],
-  async finish(c) { const r = await run([['MK_DONE', W.pid, { note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+  async finish(c) { return mktSaved(await run([['MK_DONE', W.pid, { note: c.note.trim() }]])); }
 };
 WIZ.cmlStatus = {
   title: 'cml_change', save: 'save', noDraft: true, init: () => ({ status: '', ref: '', note: '', amount: '' }),
   steps: [{ id: 'c', icon: '✏️', say: 's_cml', body: () => { const c = S.comm[W.opts.cid]; return tiles('status', (CML_NEXT[c.status] || []).map(k => [k, '•', 'cml_' + k]), 'one') + inp('ref', 'cml_ref', { opt: true }) + inp('note', 'f_note', { opt: true }) + (W.ctx.status === 'ADJUSTED' ? inp('amount', 'cml_new_amt', { type: 'number', mode: 'numeric' }) : ''); },
     check: c => !c.status ? 'err_choose' : ['DISPUTED', 'ADJUSTED'].includes(c.status) && !c.note.trim() ? 'err_reason' : c.status === 'ADJUSTED' && !(+c.amount >= 0 && c.amount !== '') ? 'err_fill' : null }],
-  async finish(c) { const r = await run([['COMM_STATUS', null, Object.assign({ cid: W.opts.cid, status: c.status, ref: c.ref.trim(), note: c.note.trim() }, c.status === 'ADJUSTED' ? { amount: Math.round(+c.amount) } : {})]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+  async finish(c) { return mktSaved(await run([['COMM_STATUS', null, Object.assign({ cid: W.opts.cid, status: c.status, ref: c.ref.trim(), note: c.note.trim() }, c.status === 'ADJUSTED' ? { amount: Math.round(+c.amount) } : {})]])); }
 };
 WIZ.cmlCredit = {
   title: 'cml_credit_btn', save: 'save', noDraft: true, init: () => ({ amount: '', note: '' }),
   steps: [{ id: 'c', icon: '↩️', say: 's_cml_credit', body: () => inp('amount', 'cml_refund', { type: 'number', mode: 'numeric' }) + inp('note', 'f_reason', { area: true }), check: c => !(+c.amount > 0) ? 'err_fill' : c.note.trim() ? null : 'err_reason' }],
-  async finish(c) { const r = await run([['COMM_CREDIT', null, { cid: 'CN' + rid(8), of: W.opts.cid, amount: Math.round(+c.amount), note: c.note.trim() }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+  async finish(c) { return mktSaved(await run([['COMM_CREDIT', null, { cid: 'CN' + rid(8), of: W.opts.cid, amount: Math.round(+c.amount), note: c.note.trim() }]])); }
 };
 function mktModelCard(P) {
-  if (isMkt(P)) return mktCard(P);
-  if (!['owner', 'admin'].includes(App.me.role) || !MKT_FROM_STAGES.includes(P.stage) || P.quotes.length) return '';
+  if (P.mkt && (isMkt(P) || P.mkt.rfq)) return mktCard(P);
+  if (!['owner', 'admin'].includes(App.me.role) || !MKT_FROM_STAGES.includes(P.stage) || P.quotes.length || P.mkt) return '';
   return `<div class="card small"><b>🛒 ${t('mkt_title')}</b><p class="muted">${t('mkt_offer')}</p><button class="btn btn-sm" data-a="wizOpen" data-v="mktModel|${P.id}">🛒 ${t('mkt_make')}</button></div>`;
 }
 WIZ.mktModel = {
   title: 'mkt_make', save: 'save', noDraft: true, init: () => ({ ok: '' }),
   steps: [{ id: 'm', icon: '🛒', say: 's_mkt_model', body: () => `<p class="small">${t('mkt_model_d')}</p><p class="small muted">${t('mkt_agree_note')}</p>` + tiles('ok', [['market', '🛒', 'mkt_model_m'], ['aiec', '🏢', 'mkt_model_a']], 'one'), check: c => c.ok ? null : 'err_choose' }],
-  async finish(c) { if (c.ok === 'aiec') return { ok: true, go: () => back() }; const r = await run([['MODEL_SET', W.pid, { model: 'market' }]]); return r.ok ? { ok: true, toast: 'saved_item', go: () => back() } : r; }
+  async finish(c) { if (c.ok === 'aiec') return { ok: true, go: () => back() }; return mktSaved(await run([['MODEL_SET', W.pid, { model: 'market' }]])); }
 };
 SCREENS.drill = ({ k }) => {
   const list = visibleProjects(App.me).filter(DRILL[k] || DRILL.all);
@@ -14013,7 +14183,7 @@ SCREENS.me = () => {
       + (App.installEvt ? tile('install', '', '📲', 'install_app') : '') + (App.mode === 'practice' ? tile('resetPractice', '', '♻️', 'reset_practice') + tile('exitPractice', '', '🚪', 'exit_practice') : ''))}
     ${!App.installEvt ? (standalone ? `<div class="okbox" style="margin-top:10px">📲 ${t('installed_ok')}</div>` : `<p class="small muted">📲 ${t('install_hint')}</p>`) : ''}
     <button class="btn btn-bad" style="margin-top:14px" data-a="logout">🚪 ${t('logout')}</button>
-    <p class="small muted center">${storageLabel()} · ${EVENTS.length} ${t('records')}</p></main>` + nav('me');
+    <p class="small muted center">${storageLabel()} · ${EVENTS.length} ${t('records')} · ${t('app_version', { n: APP_BUILD })}</p></main>` + nav('me');
 };
 const storageLabel = () => ({ idb: '💾 ' + t('storage_ok'), ls: '💾 ' + t('storage_ls_short'), mem: '⚠️ ' + t('storage_mem_short') })[KV.mode];
 function dayStats(u, d) {
@@ -14353,7 +14523,7 @@ const ACCESS_LABELS = ['project', 'safetylog', 'doc', 'worker', 'earn', 'users',
 const OUTSIDERS = ['partner', 'tech', 'supplier'];
 const PRICE_GROUPS = ['pricing', 'margins', 'token', 'milestones', 'amc', 'dup'];
 const OUT_HIDE = {
-  ENQUIRY_ADDED: ['name', 'phone', 'address', 'note', 'gps'],
+  ENQUIRY_ADDED: ['name', 'phone', 'address', 'note', 'gps'], GAD_SIGNED: ['signer'], SURVEY_DONE: ['signer'], CAPACITY_CHECKED: ['note'],
   SUPPLIER_INVOICE: ['no', 'amount', 'gst'], SUP_INVOICE_DECIDED: ['deduct', 'note'], SUP_INVOICE_PAID: ['ref'],
   LEAD_CREATED: ['name', 'phone', 'note'], LEAD_INFO_ADDED: ['note', 'phone', 'name'], CONTACT_CORRECTED: ['value'], CONTACT_LOGGED: ['note'],
   QUOTE_CREATED: ['discountPct', 'reason'], QUOTE_DECISION: ['reason'], PAYMENT_RECORDED: ['amount', 'ref', 'method', 'note'], PAYMENT_STATUS: ['ref', 'reason', 'note'],
@@ -14363,7 +14533,7 @@ const OUT_HIDE = {
 const strip = (ev, keys, extra) => { const e = redact(ev, keys); return e === ev ? ev : Object.assign(e, { data: Object.assign(e.data, extra || {}) }); };
 /* a copy of a record with some private fields removed (set to empty); fields that the record's signature cannot hide stay */
 function redact(ev, keys) {
-  const d = ev.data || {}, can = ev.sig && ev.sig.s ? privOf(ev) : isPriv2, drop = keys.filter(k => d[k] != null && can(ev.type, k));
+  const d = ev.data || {}, can = ev.sig && ev.sig.s ? (ev.sig.v === 2 ? (ty, k) => isPriv2(ty, k) && sigPriv(ev, k) : isPriv) : isPriv2, drop = keys.filter(k => d[k] != null && can(ev.type, k));
   if (!drop.length) return ev;
   if (ev.sig && ev.sig.s && ev.sig.v !== 2 && Object.keys(d).some(k => isPriv(ev.type, k) && !drop.includes(k) && d[k] != null)) return ev; /* older signature: all or nothing */
   const data = Object.assign({}, d); drop.forEach(k => { data[k] = null; });
@@ -14386,6 +14556,10 @@ function exportPack(kind, forUid, opts = {}) {
     const worked = P => Object.values(P.sop).some(x => x.by === forUid) || P.qcFinal.some(x => x.by === forUid || x.lead === forUid || (x.crew || []).includes(forUid)) || P.qcSite.some(x => x.by === forUid)
       || Object.values(P.service).some(x => x.by === forUid) || P.tickets.some(x => x.owner === forUid);
     const vis = new Set(Object.values(S.projects).filter(P => canSee(target, P) || worked(P)).map(P => P.id));
+    /* a company that was asked to quote and did not get the job receives the records up to the award (or up to the job's
+       return to an AIEC contract), so its phone closes the job; nothing after that */
+    const lostAt = {};
+    if (target.role === 'partner') for (const P of Object.values(S.projects)) { const m = P.mkt; if (!m || !m.rfq || !m.rfq.to.includes(forUid) || vis.has(P.id)) continue; const till = m.accepted && m.accepted.by !== forUid ? m.accepted.t : m.closed; if (till) lostAt[P.id] = till; }
     /* everyone's level, documents and training travel to every staff phone, so level rules agree on all phones; private details are removed */
     const LADDER = ['PROMOTED', 'DEMOTED', 'DOC_VERIFIED', 'LEGAL_SET', 'TRAINING_PASSED', 'SKILL_CHECKED', 'WORKER_PROFILE'];
     const ABOUT = ['STRIKE_DECIDED', 'REVIEW_HELD', 'PAY_APPROVED', 'PAY_PAID', 'PAY_DISPUTE_ANSWERED'];
@@ -14393,10 +14567,11 @@ function exportPack(kind, forUid, opts = {}) {
     const out = OUTSIDERS.includes(target.role), myCo = target.role === 'partner' ? forUid : target.company || null;
     /* names a partner company or technician does not get: customers, suppliers, other companies and their people */
     const hideName = uid => { const x = S.users[uid]; if (!x || uid === forUid) return false; return ['customer', 'supplier'].includes(x.role) || (x.role === 'tech' && x.company !== myCo) || (x.role === 'partner' && uid !== myCo); };
-    events = EVENTS.filter(ev => ev.type.startsWith('JOB_') ? market : ev.pid ? vis.has(ev.pid)
+    events = EVENTS.filter(ev => ev.type.startsWith('JOB_') ? market : ev.pid ? vis.has(ev.pid) || (!!lostAt[ev.pid] && ev.t <= lostAt[ev.pid])
       : ev.type === 'USER_ADDED' && ev.data.role === 'customer' ? vis.has(ev.data.projectId)
       : ['ORG_CREATED', 'USER_ADDED', 'USER_UPDATED', 'CONFIG_SET', 'KEY_ADDED', 'KEY_APPROVED', 'PARTNER_PROFILE', 'MEMBER_APPROVED', 'MEMBER_REMOVED'].includes(ev.type) || (ev.type === 'DOC_VERIFIED' && roleOf(ev.data.uid) === 'partner') || ev.by === forUid || (staff && LADDER.includes(ev.type)) || (ABOUT.includes(ev.type) && ev.data.uid === forUid)
-        || (['PARTNER_STATUS_SET', 'PARTNER_DD_SET'].includes(ev.type) && (!out || ev.data.uid === myCo))
+        || (['PARTNER_STATUS_SET', 'PARTNER_DD_SET'].includes(ev.type) && (['owner', 'admin', 'sales', 'finance'].includes(target.role) || ev.data.uid === forUid))
+        || (ev.type.startsWith('COMM_') && (target.role === 'finance' || (target.role === 'partner' && (S.comm[ev.data.cid] || {}).partner === forUid)))
         || (ev.type.startsWith('FIN_') && (target.role === 'finance' || (target.role === 'customer' && (ev.data.pid ? vis.has(ev.data.pid) : Object.values(S.finance).some(f => f.id === ev.data.fid && f.pid && vis.has(f.pid)))))))
       .map(ev => {
         const d = ev.data || {}, keys = [], extra = {};
@@ -14406,6 +14581,9 @@ function exportPack(kind, forUid, opts = {}) {
           if (out && d.name && hideName(d.uid)) keys.push('name');
         }
         if (ev.type === 'WORKER_PROFILE' && d.uid !== forUid) { keys.push('phone', 'area'); extra.stripped = !!(d.phone && d.area); }
+        /* a rival company's quotation travels without its price and terms; the office's capacity note stays in the office */
+        if (ev.type === 'PQUOTE_SENT' && out && ev.by !== myCo) keys.push(...PRIVATE_V2.PQUOTE_SENT);
+        if (ev.type === 'CAPACITY_CHECKED' && target.role === 'customer') keys.push('note');
         if (ev.type === 'JOB_APPLIED' && ev.by !== forUid && !['owner', 'admin'].includes(target.role)) keys.push(...(out && ev.by !== myCo ? ['note', 'gps', 'team'] : ['note', 'gps']));
         /* partner companies, technicians and suppliers never receive customer contacts, prices, sales notes or other companies' licence details */
         if (out && ev.by !== forUid) {
@@ -15069,7 +15247,7 @@ SCREENS.auto = () => {
 /* ---------- office queue (exceptions first) ---------- */
 const EXC_SEV = {
   sos: 'critical',
-  sla_breach: 'high', lift_licence_due: 'high', insurance_due: 'high', partner_handover: 'critical', report_accident: 'critical', record_licence: 'high', licence_renew: 'high', record_permit: 'high', po_declined: 'high', access_alert: 'high', pay_dispute: 'high', resolve_incident: 'high', verify_payment: 'medium',
+  sla_breach: 'high', lift_licence_due: 'high', insurance_due: 'high', partner_handover: 'critical', mkt_hold: 'high', mkt_inspect: 'high', report_accident: 'critical', record_licence: 'high', licence_renew: 'high', record_permit: 'high', po_declined: 'high', access_alert: 'high', pay_dispute: 'high', resolve_incident: 'high', verify_payment: 'medium',
   second_approval: 'medium', po_late: 'medium', decide_claim: 'medium', strike_appeal: 'medium', hold_request: 'medium', dispute_open: 'medium', resolve_blocker: 'medium', refund_decide: 'medium', approve_key: 'medium', approve_member: 'medium', assign_ticket: 'medium', suspend_review: 'medium',
   clock_gap: 'low', check_docs: 'low', onb_profile: 'low', review_meeting: 'low', post_nobody: 'low', review_lead: 'low'
 };
@@ -15886,7 +16064,7 @@ function openTask(n) {
     dispatch: () => wiz('dispatch', pid), arrival: () => wiz('arrival', pid), dispatch_lot: () => wiz('dispatch', pid, { lot: n.lot }), lot_arrival: () => wiz('arrival', pid, { lot: n.lot }), wait_lot: () => go('project', { pid }), material_handover: () => wiz('mhand', pid), mhand_cust_sign: () => wiz('mhandCust', pid), mhand_cust_wait: () => go('project', { pid }),
     install: () => go('cl', { pid, kind: 'sop' }), safety_check: () => wiz('safety', pid), review_safety: () => go('safetylog', { pid }), sos: () => wiz('sosClose', null, { sid: n.sid }), access_alert: () => go('access', { uid: n.uid }), record_permit: () => wiz('statutory', pid, { item: 'permit' }), requote: () => wiz('quote', pid), wait_cabin_pay: () => go('project', { pid, tab: 'money' }), accept_po: () => wiz('poAccept', pid), approve_invoice: () => wiz('invDecide', pid, { iid: n.iid }), pay_invoice: () => wiz('invPay', pid, { iid: n.iid }), site_checkin: () => wiz('checkin', pid), review_checkin: () => wiz('checkinReview', pid, { day: n.day, uid: n.uid }), pay_now: () => go('pay', { pid }), withdraw_quote: () => wiz('approve', pid), clock_gap: () => go('clock'), day_close: () => wiz('dayClose'), sla_breach: () => go('project', { pid, tab: 'info' }), po_declined: () => wiz('assign', pid), po_late: () => go('project', { pid }), decide_claim: () => wiz('claimDecide', pid, { cid: n.cid }), send_claim: () => wiz('claimSend', pid, { cid: n.cid }), receive_claim: () => wiz('claimReceive', pid, { cid: n.cid }), refund_calc: () => wiz('refund', pid), refund_decide: () => wiz('refundDecide', pid), refund_pay: () => wiz('refundPay', pid), peer_check: () => wiz('peer', pid, { step: n.step }), wait_peer: () => go('cl', { pid, kind: 'sop' }), surprise_qc: () => wiz('surprise', pid),
     make_variation: () => wiz('variation', pid), sign_variation: () => wiz('variationSign', pid), record_licence: () => wiz('statutory', pid, { item: n.item }),
-    lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), insurance_due: () => wiz('statutory', pid, { item: 'insurance' }), partner_handover: () => go('project', { pid, tab: 'info' }), capacity_check: () => wiz('capCheck', pid), mkt_send_rfq: () => wiz('mktRfq', pid), mkt_quote: () => wiz('mktQuote', pid), mkt_pick: () => go('mktCompare', { uid: pid }), mkt_confirm: () => wiz('mktAnswer', pid), mkt_record_pay: () => wiz('mktPay', pid, { ms: n.ms }), mkt_verify_pay: () => wiz('mktVerify', pid, { payId: n.payId }), mkt_handover: () => wiz('mktDone', pid), report_accident: () => wiz('accReport', pid, { iid: n.iid }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
+    lift_licence_due: () => wiz('statutory', pid, { item: 'licence' }), insurance_due: () => wiz('statutory', pid, { item: 'insurance' }), partner_handover: () => go('project', { pid, tab: 'info' }), capacity_check: () => wiz('capCheck', pid), mkt_send_rfq: () => wiz('mktRfq', pid), mkt_quote: () => wiz('mktQuote', pid), mkt_pick: () => go('mktCompare', { uid: pid }), mkt_confirm: () => wiz('mktAnswer', pid), mkt_record_pay: () => wiz('mktPay', pid, { ms: n.ms }), mkt_verify_pay: () => wiz('mktVerify', pid, { payId: n.payId }), mkt_handover: () => wiz('mktDone', pid), mkt_introduce: () => wiz('mktIntro', pid), mkt_inspect: () => wiz('mktInspect', pid), mkt_ready: () => wiz('mktReady', pid), mkt_fix: () => wiz('mktReady', pid), mkt_hold: () => wiz('mktHold', pid), mkt_followup: () => go('project', { pid, tab: 'info' }), report_accident: () => wiz('accReport', pid, { iid: n.iid }), hold_request: () => wiz('holdDecide', pid, { hid: n.hid }), hold_end: () => wiz('holdEnd', pid, { hid: n.hid }), dispute_open: () => go('project', { pid, tab: 'info' }), request_inspection: () => go('cl', { pid, kind: P.stage === 'install_fix' ? 'instfix' : 'sop' }),
     final_inspect: () => wiz('qcfinal', pid), fix_install: () => go('cl', { pid, kind: 'instfix' }),
     sign_handover: () => go('cl', { pid, kind: 'handover' }), complete_handover: () => go('cl', { pid, kind: 'handover' }),
     resolve_blocker: () => wiz('resolve', pid, { bid: n.bid }), resolve_incident: () => wiz('incident', pid, { iid: n.iid }),
@@ -16159,7 +16337,7 @@ const ACT = {
   },
   enqFin: v => { App.form.rqFin = v; if (v === 'no') App.form.rqFinOk = false; render(); },
   enqFinOk: () => { App.form.rqFinOk = !App.form.rqFinOk; render(); },
-  finWithdraw: v => sheet(`<h2>↩️ ${t('fn_withdraw')}</h2><p>${t('fn_withdraw_q')}</p><div class="row wrapw"><button class="btn btn-big" data-a="closeSheet">${t('qx_stay')}</button><button class="btn btn-p btn-big" data-a="finWithdrawGo" data-v="${esc(v)}">${t('fn_withdraw')}</button></div>`),
+  finWithdraw: v => sheet(`<h2>↩️ ${t('fn_withdraw')}</h2><p>${t(App.me.role === 'customer' ? 'fn_withdraw_q' : 'fn_withdraw_q_office')}</p><div class="row wrapw"><button class="btn btn-big" data-a="closeSheet">${t('qx_stay')}</button><button class="btn btn-p btn-big" data-a="finWithdrawGo" data-v="${esc(v)}">${t('fn_withdraw')}</button></div>`),
   finWithdrawGo: async v => { closeSheet(); const r = await perform('FIN_WITHDRAWN', null, { fid: v }); if (r.ok) { toast(t('fn_withdrawn')); render(); } },
   enqVisit: async v => { const e = S.enquiries[v]; if (!e) return; await wiz('lead', null); Object.assign(W.ctx, { name: e.name, phone: e.phone, address: e.address || '', gps: W.ctx.gps || e.gps, enq: v }); render(); },
   enqClose: async v => { const note = prompt(t('f_reason')); if (!note) return; const r = await perform('ENQUIRY_CLOSED', null, { eid: v, note }); if (r.ok) render(); },
@@ -16602,8 +16780,15 @@ async function seedPractice() {
   const salt = 'practice', pin = await pinHash('1111', salt);
   const U = { owner: 'POWNER', admin: 'PADMIN', field: 'PFIELD', field2: 'PFIELD2', sales: 'PSALES', finance: 'PFIN', qc: 'PQC', supplier: 'PSUP', partner: 'PPART1', partner2: 'PPART2', tech: 'PTECH', senior: 'PSENIOR', helper: 'PHELP', trainee: 'PTRAIN', customer: 'PCUST' };
   const T0 = Date.now() - 30 * 864e5; let tick = 0, cur = new Date(T0).toISOString();
-  const at = () => { cur = new Date(Math.min(T0 + (tick++) * 2.4 * 3600e3, Date.now() - 3600e3 + tick * 1000)).toISOString(); return cur; };
-  const nextAt = () => new Date(Math.min(T0 + tick * 2.4 * 3600e3, Date.now() - 3600e3 + (tick + 1) * 1000)).toISOString();
+  /* the practice clock: the story of the last 30 days, then the hospital's last work on yesterday's day shift, then the
+     rest an hour ago. However many records the story needs, today always starts clean (nobody has checked in yet),
+     at any hour and on any date. Time never runs backwards. */
+  const Y8 = (() => { const d = new Date(); d.setHours(0, 0, 0, 0); return d.getTime() - 16 * 3600e3; })(); /* yesterday 08:00 */
+  let org = T0, tk0 = 0, step = 2.4 * 3600e3, cap = Y8, last = T0 - 1000;
+  const timeOf = n => Math.max(last + 1000, Math.min(org + (n - tk0) * step, cap + (n + 1) * 1000));
+  const at = () => { last = timeOf(tick++); cur = new Date(last).toISOString(); return cur; };
+  const nextAt = () => new Date(timeOf(tick)).toISOString();
+  const phase = (o, st, c) => { org = o; tk0 = tick; step = st; cap = c; };
   const SP = async (type, pid, data, who) => { const r = await perform(type, pid, data, { as: U[who] || who, t: at(), noSave: true, quiet: true }); if (!r.ok) console.warn('practice seed', type, pid, errText(r.err)); return r; };
   const media = {}, hash = {};
   for (const k of ['building', 'shaft', 'context', 'site', 'work']) { const d = samplePhoto(k); media[k] = await putMedia(d); hash[k] = await sha256(d); }
@@ -16699,6 +16884,7 @@ async function seedPractice() {
   for (const s of ['tech', 'qc']) await SP('HANDOVER_SIGNED', hand, { slot: s, consent: true, signer: userName(U[s]), ev: [ph('sign')] }, s);
   await SP('USER_ADDED', null, { uid: U.customer, name: 'Mrs. Kale', role: 'customer', projectId: hand, salt, pin }, 'admin');
   await SP('CHAT_POSTED', hand, { text: 'When will the lift start working for us?', kind: 'question', toRole: 'sales' }, 'customer');
+  phase(Math.max(last + 60e3, Y8 + 3600e3), 40 * 60e3, Date.now() - 3600e3); /* yesterday from 09:00, a step every 40 minutes */
   for (let i = 0; i < 5; i++) {
     for (let k = 0; k < 4 && !safetyOn(S.projects[hosp], safeDay(nextAt())); k++) {
       const Ph = S.projects[hosp], d0 = safeDay(nextAt());
@@ -16707,7 +16893,10 @@ async function seedPractice() {
     }
     await SP('SOP_STEP_DONE', hosp, { step: sopNext(S.projects[hosp]), isc: iscYes(sopNext(S.projects[hosp])), read: readYes(sopNext(S.projects[hosp]), S.projects[hosp]), ev: [ph('work', S.projects[hosp].site.gps)] }, S.projects[hosp].tech);
   }
+  /* under the newer journey the cabin part is paid before the cabin step: paid here, so the Senior has installation work to practise on any date */
+  for (let k = 0; k < 2 && S.projects[hosp].schedule && S.projects[hosp].schedule.cabin && !payConfirmed(S.projects[hosp], 'cabin'); k++) { const [who, type, data] = payStep(S.projects[hosp], 'cabin'); await SP(type, hosp, data, who); }
   await SP('BLOCKER_RAISED', hosp, { step: null, reason: 'help', role: 'admin', note: 'Need extra scaffolding for top floor' }, S.projects[hosp].tech);
+  phase(Date.now() - 3600e3, 1000, Date.now() - 3600e3); /* everything else: about an hour ago */
   await SP('HOLD_REQUESTED', sar, { reason: 'customer', note: 'Family function at the building for 3 days; customer asked to stop work', ev: [] }, S.projects[sar].tech);
   await SP('DEAL_LOST', vishal, { reason: 'price', note: 'Chose another company' }, 'sales');
   await SP('LEAD_RETURNED', katraj, { reason: 'photo', note: 'Shaft photo not clear. Please take again.' }, 'sales');
