@@ -1,5 +1,5 @@
 /* Quality: shaft limits with a signed variation quote before release, co-worker check of safety-critical steps, surprise QC. */
-const { launch, miss } = require('./lib');
+const { launch, miss, signGad } = require('./lib');
 const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log('ok -', m); };
 (async () => {
   const { browser, page, errors } = await launch();
@@ -32,10 +32,11 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert((await site({ width: 1300, depth: 1900, pit: 1500, head: 4200 }, true)).ok && await ev(`S.projects["${P6}"].variation.status`) === 'needed', 'QC approves it with a variation quote');
   assert((await tasks('PSALES', P6)).includes('make_variation'), 'Sales is asked to make the variation quote');
   const rel = () => page.evaluate(P6 => perform('RELEASED', P6, { supplier: 'PSUP', tech: 'PTECH', drawings: 'DWG-1', materials: materialList(S.projects[P6].req || { stops: 4, type: 'auto', capacity: '6', finish: 'ss' }) }, { as: 'PADMIN', quiet: true }).then(r => r.err), P6);
-  assert(await rel() === 'err_variation', 'material cannot be released before the variation is signed');
+  assert(['err_variation', 'err_gad_first'].includes(await rel()), 'material cannot be released before the variation is signed');
   const final0 = await ev(`S.projects["${P6}"].schedule.final`);
   assert((await act('VARIATION_PROPOSED', P6, { note: 'Smaller car (4 persons) to fit the 1300 mm shaft', amount: -25000 }, 'PSALES')).ok, 'Sales proposes a smaller car with a lower price');
   assert((await act('VARIATION_SIGNED', P6, { consent: true, signer: 'Mr. Joshi', ev: [{ id: 'E' + Date.now(), m: 'x', kind: 'sign', t: new Date().toISOString(), hash: 'h' }] }, 'PSALES')).ok, 'the customer signs in person');
+  assert(await signGad(page, P6), '(the customer signs the layout where the newer journey asks for it)');
   assert(await ev(`S.projects["${P6}"].schedule.final`) === final0 - 25000 && !(await rel()), 'the final payment changes and material can now be released');
 
   /* surprise QC */

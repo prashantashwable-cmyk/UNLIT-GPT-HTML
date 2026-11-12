@@ -43,6 +43,7 @@ const importInto = async (page, pack) => page.evaluate(async txt => { App.set.mo
   const ok6 = await pa.evaluate(async () => {
     const P = S.projects['AIEC-P006'];
     const g = await perform('QC_SITE_RESULT', P.id, { meas: { width: 1800, depth: 1900, pit: 1500, head: 4200 }, door: { w: 800, h: 2000 }, floors: Array(59).fill(3000), checks: { plumb: 'yes', pit_dry: 'yes', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome: 'approved', ev: [1, 2].map(() => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'site', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} })) }, { as: 'PQC', quiet: true });
+    if (gadNeeded(S.projects[P.id])) await perform('GAD_SIGNED', P.id, { ticks: Object.fromEntries(GAD_TICKS.map(k => [k, true])), powerBy: addDays(5), consent: true, signer: 'Customer', ev: [{ id: 'E' + rid(10), m: 'x', kind: 'sign', t: nowISO(), hash: 'h' + rid(8) }] }, { as: 'PADMIN', quiet: true });
     const r = await perform('RELEASED', P.id, { supplier: 'PSUP', tech: 'PSENIOR', drawings: 'DWG-1', materials: materialList(P.req || { stops: 4, type: 'auto', capacity: '6', finish: 'ss' }) }, { as: 'PADMIN', quiet: true });
     return [g.ok, r.ok, r.err];
   });

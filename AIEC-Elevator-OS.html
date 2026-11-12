@@ -7299,7 +7299,6 @@ const RULES = {
       const tw = techWhyNot(d.tech, ev.t); if (tw) return tw;
       if (!canLead(d.tech, P, ev.t)) return 'err_cant_lead';
       if (variationOpen(P)) return 'err_variation';
-      if (ev.t >= ACT_FROM && capFull(S, P)) return 'err_pilot_cap';
       if (!(d.drawings || '').trim()) return 'err_fill';
       return need((d.materials || []).length > 0, 'err_fill');
     }
@@ -7386,7 +7385,7 @@ const RULES = {
       const i = P.incidents.find(x => x.id === ev.data.iid), d = ev.data;
       if (!i || !i.open) return 'err_already';
       if (!(d.note || '').trim() || !(d.cause || '').trim() || !(d.fix || '').trim()) return 'err_inc_close';
-      if (reportDue(i) && ev.t >= ACT_FROM) return 'err_report_first';
+      if (reportDue(i) && evV(ev) >= ACT_V) return 'err_report_first';
       /* a stop-work incident reopens work only with a photo of the place made safe */
       return STOP_TYPES.includes(i.type) ? need(ev_(d).length >= 1, 'err_photos', { n: 1 }) : null;
     }
@@ -9265,7 +9264,9 @@ async function getMedia(key) {
 }
 /* ---------- the only way to change data ---------- */
 /* every record carries the version of the rules it was made under; a phone never guesses the meaning of a newer one */
-const EV_V = 1;
+/* 2: records made from this version on are held to the rules that came with it (accident report before closing);
+   older phones answer "update the app" for them instead of guessing */
+const EV_V = 2, ACT_V = 2;
 const evV = ev => ev.v || 1;
 /* money going out, forgiving money, who-can-do-what and taking data off the phone need the PIN again (2-minute grace) */
 const RECHECK = (type, d) => ['REFUND_DECIDED', 'REFUND_PAID', 'CONFIG_SET', 'DATA_EXPORTED'].includes(type) || (type === 'CHARGE_SETTLED' && d.how === 'waived') || (type === 'USER_UPDATED' && d.role != null);
@@ -11058,7 +11059,9 @@ WIZ.release = {
   title: 'tk_release', save: 'release_now', saveIcon: '📐',
   init: P => ({ supplier: P.supplier || '', tech: P.tech || '', drawings: 'DWG-' + P.id + '-R1', mats: clone(P.materials.length ? P.materials : materialList(P.req)) }),
   steps: [
-    { id: 'sup', icon: '🏭', say: 's_rel_sup', body: () => personTiles('supplier', 'supplier'), check: c => roleOf(c.supplier) === 'supplier' ? null : 'err_pick_supplier' },
+    { id: 'sup', icon: '🏭', say: 's_rel_sup', body: (c, P) => (capFull(S, P) ? `<div class="warnbox">🏗️ ${t('err_pilot_cap')}</div><button class="btn btn-p" data-a="wizOpen" data-v="capCheck|${P.id}">🏗️ ${t('tk_capacity_check')}</button>` : '') + personTiles('supplier', 'supplier'),
+      /* the live-job limit is a working limit: this wizard keeps it, the records' rules do not (so old records can never be refused by it) */
+      check: (c, P) => capFull(S, P) ? 'err_pilot_cap' : roleOf(c.supplier) === 'supplier' ? null : 'err_pick_supplier' },
     { id: 'tech', icon: '🔧', say: 's_rel_tech', body: () => personTiles('tech', 'tech'), check: c => roleOf(c.tech) === 'tech' ? null : 'err_pick_tech' },
     {
       id: 'mat', icon: '📐', say: 's_rel_mat',
@@ -16626,7 +16629,9 @@ async function seedPractice() {
     new: () => ['sales', 'LEAD_ACCEPTED', {}],
     accepted: () => ['sales', 'CONTACT_LOGGED', { channel: 'call', outcome: 'interested', note: 'Wants lift for the building' }],
     contacted: P => ['sales', 'REQ_SAVED', { req: { use: P._use || 'apartment', stops: P._stops || 5, capacity: '6', type: 'auto', finish: P._fin || 'ss', shaft: 'yes', power: 'yes', timeline: '3m' } }],
-    requirements: P => ['sales', 'QUOTE_CREATED', { discountPct: P._disc == null ? 5 : P._disc, reason: 'Opening offer', trade: TRADES[0][0] }],
+    requirements: P => P.t >= JOURNEY_FROM && bigJob(P) && !P.survey
+      ? ['sales', 'SURVEY_DONE', { levels: Object.fromEntries(SV_LEVELS.map(k => [k, { w: 1800, d: 1900 }])), pit: 1500, head: 4200, wall: 'rcc', signer: P.contact.name || 'Site in-charge', ev: SV_PHOTOS.map(k => Object.assign(ph('shaft', P.site.gps), { label: 'sv_' + k })).concat([ph('sign')]) }]
+      : ['sales', 'QUOTE_CREATED', { discountPct: P._disc == null ? 5 : P._disc, reason: 'Opening offer', trade: TRADES[0][0] }],
     quote_approval: () => ['owner', 'QUOTE_DECISION', { decision: 'approve', reason: 'OK' }],
     quote_ready: () => ['sales', 'QUOTE_SENT', { channel: 'whatsapp' }],
     quoted: P => ['sales', 'DEAL_WON', P._plan ? { plan: P._plan } : {}],
@@ -16635,13 +16640,13 @@ async function seedPractice() {
     signed: P => payStep(P, isP1(P) ? 'rails' : 'token'),
     site_prep: P => { const k = PREP_ITEMS.find(([x]) => !P.prep[x]); return k ? ['sales', 'PREP_ITEM_DONE', { item: k[0], ev: [ph('site', P.site.gps)] }] : ['sales', 'QC_REQUESTED', {}]; },
     qc_site: P => ['qc', 'QC_SITE_RESULT', { meas: { width: 1800, depth: 1900, pit: 1500, head: 4200 }, door: { w: 800, h: 2000 }, floors: Array.from({ length: floorGaps(P) }, () => 3000), checks: { plumb: 'yes', pit_dry: 'yes', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome: 'approved', ev: [ph('site', P.site.gps), ph('shaft', P.site.gps)] }],
-    site_ok: P => ['admin', 'RELEASED', { supplier: U.supplier, tech: jobSize(P) === 'big' ? U.senior : U.tech, drawings: 'DWG-' + P.id + '-R1', materials: materialList(P.req) }],
+    site_ok: P => gadNeeded(P) ? ['sales', 'GAD_SIGNED', { ticks: Object.fromEntries(GAD_TICKS.map(k => [k, true])), powerBy: safeDay(Date.parse(nextAt()) + 5 * 864e5), consent: true, signer: P.contact.name || 'Customer', ev: [ph('sign')] }] : ['admin', 'RELEASED', { supplier: U.supplier, tech: jobSize(P) === 'big' ? U.senior : U.tech, drawings: 'DWG-' + P.id + '-R1', materials: materialList(P.req) }],
     material_order: P => !statOf(P).permit ? ['admin', 'STATUTORY_SET', { item: 'permit', no: 'EP/' + P.id.slice(-3) + '/2026', date: safeDay(nextAt()) }] : !P.po.accepted ? ['supplier', 'PO_ACCEPTED', { date: safeDay(Date.parse(nextAt()) + 2 * 864e5) }]
       : ['supplier', 'DISPATCHED', { packed: matsFor(P).map(m => m.k), seal: 'SEAL-' + P.id.slice(-3), vehicle: 'MH12 AB 1234', challan: 'DC/' + P.id.slice(-3) + '/26', serialMap: Object.fromEntries(matsFor(P).filter(m => SERIAL_ITEMS.includes(m.k)).map(m => [m.k, m.k.slice(2, 5).toUpperCase() + '-' + P.id.slice(-3) + '-' + (100 + SERIAL_ITEMS.indexOf(m.k))])), ev: [ph('work'), ph('work')] }],
     dispatched: P => [P.tech, 'ARRIVED', { gps: P.site.gps, sealSeen: 'SEAL-' + P.id.slice(-3), sealIntact: 'yes', condition: 'good', ev: [ph('work', P.site.gps), ph('work', P.site.gps)] }],
     arrived: P => P.mhand && P.mhand.wait ? [P.customer, 'MATERIAL_RECEIPT_SIGNED', { custName: P.contact.name, custody: true, ev: [ph('sign')] }]
       : payConfirmed(P, isP1(P) ? 'rails' : 'arrival') ? [P.tech, 'MATERIAL_HANDED', Object.assign({ serialSeen: Object.assign({}, (P.dispatch || {}).serialMap), items: matsFor(P).map(m => ({ k: m.k, q: m.q, status: 'ok' })), custName: P.contact.name, signer: 'contact', custody: !custSignsApp(P, 'contact'), ev: (custSignsApp(P, 'contact') ? [ph('sign')] : [ph('sign'), ph('sign')]).concat([Object.assign(ph('site', P.site.gps), { label: 'storage' })]) }, custSignsApp(P, 'contact') ? { custApp: true } : {})] : payStep(P, 'arrival'),
-    installing: P => peerWaiting(P).length ? [Object.values(S.users).find(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).uid, 'PEER_CHECKED', { step: peerWaiting(P)[0], ok: true }] : sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? (+S.config.checkinGate && !checkedIn(P, safeDay(nextAt())) ? [P.tech, 'SITE_CHECKED_IN', { day: safeDay(nextAt()), gps: P.site.gps }] : [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }]) : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), isc: iscYes(sopNext(P)), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
+    installing: P => peerWaiting(P).length ? [Object.values(S.users).find(x => x.role === 'tech' && !peerWhyNot(x.uid, P)).uid, 'PEER_CHECKED', { step: peerWaiting(P)[0], ok: true }] : sopNext(P) < SOP.length && !safetyOn(P, safeDay(nextAt())) ? (+S.config.checkinGate && !checkedIn(P, safeDay(nextAt())) ? [P.tech, 'SITE_CHECKED_IN', { day: safeDay(nextAt()), gps: P.site.gps }] : [P.tech, 'SAFETY_CHECKED', { ev: safePh(P) }]) : sopNext(P) < SOP.length && sopNext(P) >= CABIN_STEP && P.schedule && P.schedule.cabin && !payConfirmed(P, 'cabin') ? payStep(P, 'cabin') : sopNext(P) < SOP.length ? [P.tech, 'SOP_STEP_DONE', { step: sopNext(P), isc: iscYes(sopNext(P)), read: readYes(sopNext(P), P), ev: [ph('work', P.site.gps)] }] : [P.tech, 'INSPECTION_REQUESTED', {}],
     qc_final: P => ['qc', 'QC_FINAL_RESULT', { vals: { level: 3, load: 680, ard: 24 }, checks: Object.fromEntries(QC_FINAL_CHECKS.map(k => [k, 'pass'])), crit: Object.fromEntries(QC_CRITICAL.map(k => [k, 'pass'])), earthVal: '0.8 Ω', outcome: 'pass', stars: P.id === 'AIEC-P002' ? 4 : 5, ev: [ph('work', P.site.gps), ph('work', P.site.gps)].concat(QC_CRITICAL.map(k => Object.assign(ph('work', P.site.gps), { label: 'crit_' + k }))) }],
     final_pay: P => payStep(P, 'final'),
     handover: P => { const s = SLOTS.find(x => !P.hand[x]); return s ? [s === 'qc' ? 'qc' : P.tech, 'HANDOVER_SIGNED', Object.assign({ slot: s, consent: true, signer: s === 'customer' ? P.contact.name : userName(U[s]), ev: [ph('sign')].concat(s === 'customer' ? [Object.assign(ph('work', P.site.gps), { label: 'handover' })] : []) }, s === 'customer' ? { why: 'noapp' } : {})]
@@ -16700,7 +16705,7 @@ async function seedPractice() {
       if (+S.config.checkinGate && !checkedIn(Ph, d0)) await SP('SITE_CHECKED_IN', hosp, { day: d0, gps: Ph.site.gps }, Ph.tech);
       else await SP('SAFETY_CHECKED', hosp, { ev: safePh(Ph) }, Ph.tech);
     }
-    await SP('SOP_STEP_DONE', hosp, { step: sopNext(S.projects[hosp]), isc: iscYes(sopNext(S.projects[hosp])), ev: [ph('work', S.projects[hosp].site.gps)] }, S.projects[hosp].tech);
+    await SP('SOP_STEP_DONE', hosp, { step: sopNext(S.projects[hosp]), isc: iscYes(sopNext(S.projects[hosp])), read: readYes(sopNext(S.projects[hosp]), S.projects[hosp]), ev: [ph('work', S.projects[hosp].site.gps)] }, S.projects[hosp].tech);
   }
   await SP('BLOCKER_RAISED', hosp, { step: null, reason: 'help', role: 'admin', note: 'Need extra scaffolding for top floor' }, S.projects[hosp].tech);
   await SP('HOLD_REQUESTED', sar, { reason: 'customer', note: 'Family function at the building for 3 days; customer asked to stop work', ev: [] }, S.projects[sar].tech);

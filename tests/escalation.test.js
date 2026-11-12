@@ -71,7 +71,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(!(await act('ESC_ACTED', pid2, { key: e2.eid, ref: e2.ref, level: 2, action: 'called', until: await ev('addDays(10)'), note: 'x' }, 'PADMIN')).ok, 'a new date more than 7 days away is refused');
   assert(!(await act('ESC_ACTED', pid2, { key: e2.eid, ref: e2.ref, level: 2, action: 'called', until: tomorrow, note: 'x' }, 'PSALES')).ok, 'only Owner/Admin can act on escalations');
   assert((await act('ESC_ACTED', pid2, { key: e2.eid, ref: e2.ref, level: 2, action: 'called', until: tomorrow, note: 'Vijay will go tomorrow' }, 'PADMIN')).ok, 'admin records "I spoke to them"');
-  assert(!(await page.evaluate(pid2 => needs(S.projects[pid2]).some(n => n.k === 'escalated'), pid2)), 'escalation waits until the agreed date');
+  assert(!(await page.evaluate(([pid2, eid]) => needs(S.projects[pid2]).some(n => n.k === 'escalated' && n.eid === eid), [pid2, e2.eid])), 'escalation waits until the agreed date');
   assert((await page.evaluate(pid2 => needs(S.projects[pid2]).find(n => n.k === 'inspect_site').level, pid2)) === 2, 'the QC person still sees the "Admin informed" warning');
   await act('ESC_ACTED', pid2, { key: e2.eid, ref: e2.ref, level: 2, action: 'called', until: tomorrow, note: 'Called again' }, 'PADMIN');
   await page.evaluate(k => { S.escAck[k].until = addDays(-1); }, e2.eid);

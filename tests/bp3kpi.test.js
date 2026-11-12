@@ -1,7 +1,7 @@
 /* Blueprint B3 — pilot limit and KPI board: jobs released to material and not yet handed over are "live"; at the limit
    (setting, default 5) the next job is released only after the office records a capacity check (a task asks for it);
    the dashboard shows "n of 5 live jobs"; a KPI board for the last 7 or 30 days from the blueprint's KPI list. */
-const { launch, miss } = require('./lib');
+const { launch, miss, signGad } = require('./lib');
 const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log('ok -', m); };
 (async () => {
   const { browser, page, errors } = await launch();
@@ -12,19 +12,23 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const live = await ev(`liveJobs(S)`);
   /* set the limit to what is live now, so the next release meets it */
   assert((await act('CONFIG_SET', null, { key: 'pilotCap', value: live }, 'POWNER')).ok, `the limit can be changed (set to ${live})`);
-  const R = await ev(`(() => { const P = Object.values(S.projects).find(P => P.stage === 'site_ok') || null; return P && P.id; })()`);
-  let pid = R;
-  if (!pid) { pid = await ev(`Object.values(S.projects).find(P => ['signed','site_prep','qc_site'].includes(P.stage)).id`); await page.evaluate(p => { S.projects[p].stage = 'site_ok'; }, pid); }
+  const pid = 'AIEC-P006'; /* waiting for the site inspection */
+  assert((await act('QC_SITE_RESULT', pid, { meas: { width: 1800, depth: 1900, pit: 1500, head: 4200 }, door: { w: 800, h: 2000 }, floors: Array(59).fill(3000), checks: { plumb: 'yes', pit_dry: 'yes', power3: 'yes', barricade: 'yes', access: 'yes' }, outcome: 'approved', ev: await ev(`[1, 2].map(() => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'site', t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }))`) }, 'PQC')).ok && await signGad(page, pid), '(a job passes its site inspection and is ready for material)');
   assert(await ev(`capFull(S, S.projects['${pid}'])`), 'at the limit a waiting job is held');
   const n = await ev(`needs(S.projects['${pid}']).map(x => x.k)`);
   assert(n.includes('capacity_check') && !n.includes('release'), 'the office is asked for a capacity check instead of the release: ' + n.join(','));
-  const relErr = await ev(`(() => { const e = validate(S, { id: 'r1', n: 1, t: nowISO(), by: 'PADMIN', type: 'RELEASED', pid: '${pid}', data: { supplier: 'PSUP', tech: 'PTECH', drawings: 'x', materials: ['m_rails'] }, dev: 'x', v: 1 }); return e && (e.k || e); })()`);
-  assert(relErr === 'err_pilot_cap' || relErr === 'err_gad_first' || relErr === 'err_variation', 'the release is refused at the limit (' + relErr + ')');
+  const REL = `{ id: 'r1', n: 1, t: nowISO(), by: 'PADMIN', type: 'RELEASED', pid: '${pid}', data: { supplier: 'PSUP', tech: 'PSENIOR', drawings: 'x', materials: materialList(S.projects['${pid}'].req) }, dev: 'x', v: EV_V }`;
+  assert(await ev(`WIZ.release.steps[0].check({ supplier: 'PSUP' }, S.projects['${pid}'])`) === 'err_pilot_cap', 'the release wizard stops at the limit');
+  await page.evaluate(p => { loginAs(S.users.PADMIN); ACT.permsDone(); Notify.hide(); wiz('release', p); }, pid); await page.waitForTimeout(300);
+  assert(/live job limit is reached/.test(await page.innerText('main')) && !!(await page.$('main [data-v^="capCheck|"]')), 'it says why and offers the capacity check');
+  await page.evaluate(() => { W = null; ACT.nav('home'); });
+  assert(await ev(`(() => { const e = validate(S, ${REL}); return e && (e.k || e); })()`) === null, 'the limit is a working limit: a release already in the records is never refused by it (old records stay valid)');
   assert((await act('CAPACITY_CHECKED', pid, { note: 'ok' }, 'PADMIN')).err === 'err_cap_note', 'the check needs a real note');
   assert((await act('CAPACITY_CHECKED', pid, { note: 'Ramesh crew free after P003 handover on Monday' }, 'PSALES')).err, 'Sales cannot record it');
   assert((await act('CAPACITY_CHECKED', pid, { note: 'Ramesh crew free after P003 handover on Monday' }, 'PADMIN')).ok, 'Admin records the capacity check');
   assert(!(await ev(`capFull(S, S.projects['${pid}'])`)) && !(await ev(`needs(S.projects['${pid}']).some(x => x.k === 'capacity_check')`)), 'that job can now be released');
-  assert(await ev(`EVENTS.some(e => e.type === 'CAPACITY_CHECKED' && e.pid === '${pid}' && /Ramesh/.test(e.data.note))`) && (!R || await ev(`!!rebuild(EVENTS).projects['${pid}'].capOk`)), 'the check is kept as a record' + (R ? ' and survives a rebuild' : ''));
+  assert(await ev(`!!rebuild(EVENTS).projects['${pid}'].capOk`), 'the check is kept as a record and survives a rebuild');
+  assert(await ev(`WIZ.release.steps[0].check({ supplier: 'PSUP' }, S.projects['${pid}'])`) === null, 'the release wizard now lets it through');
   assert((await act('CONFIG_SET', null, { key: 'pilotCap', value: 0 }, 'POWNER')).ok && !(await ev(`capFull(S, null)`)), '0 means no limit');
   await act('CONFIG_SET', null, { key: 'pilotCap', value: 5 }, 'POWNER');
   /* dashboard and KPI board */

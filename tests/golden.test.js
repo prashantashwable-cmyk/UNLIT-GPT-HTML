@@ -23,8 +23,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
 
   /* new records carry the version; a record from a newer app is refused with a clear message, never misread */
   const v = await page.evaluate(async () => { const r = await perform('CHAT_POSTED', 'AIEC-P003', { text: 'hello' }, { as: 'PADMIN', quiet: true }); return r.ok && r.ev.v; });
-  assert(v === 1, 'a new record is stamped with the record version');
-  const newer = await page.evaluate(() => { const e = validate(S, { id: 'X-1', n: 1, t: nowISO(), by: 'PADMIN', type: 'CHAT_POSTED', pid: 'AIEC-P003', data: { text: 'from the future' }, dev: 'X', v: 2 }); return e && (e.k || e); });
+  assert(v === 2 && await page.evaluate(() => EV_V === 2), 'a new record is stamped with the record version (2 since the Lifts Act rules)');
+  const newer = await page.evaluate(() => { const e = validate(S, { id: 'X-1', n: 1, t: nowISO(), by: 'PADMIN', type: 'CHAT_POSTED', pid: 'AIEC-P003', data: { text: 'from the future' }, dev: 'X', v: EV_V + 1 }); return e && (e.k || e); });
   assert(newer === 'err_newer_app' && /newer version of the app/.test(await page.evaluate(() => t('err_newer_app'))), 'a record made by a newer app is refused with "update the app"');
   const errs = errors.filter(e => !/net::|Failed to fetch|ERR_|nominatim|CORS policy/.test(e)); assert(!errs.length, 'no page errors' + (errs.length ? ': ' + errs.slice(0, 2).join(' | ') : ''));
   await browser.close(); console.log('GOLDEN HISTORY PASSED');
