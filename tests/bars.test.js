@@ -25,7 +25,8 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(!badL.length, 'every bar says it in words, not only colour' + (badL.length ? ': ' + badL.slice(0, 4).join(' / ') : ''));
 
   const one = await page.evaluate(() => { loginAs(S.users.PSALES); ACT.permsDone(); Notify.hide(); App.form = {}; go('home');
-    const cards = [...document.querySelectorAll('main .task[data-a="openTask"]')]; return cards.length && cards.every(c => { const b = [...c.querySelectorAll('.tbar .tb')], l = [...c.querySelectorAll('.tbar .tbl')]; return b.length === 2 && b[0].classList.contains('tw') && /^🧩/.test(l[0].textContent) && /^⏳/.test(l[1].textContent); }); });
+    /* tasks on Marketplace jobs carry no AIEC stage bars (the company and customer run that job) */
+    const cards = [...document.querySelectorAll('main .task[data-a="openTask"]')].filter(c => { const n = App.tasks[+c.dataset.v]; return !(n && n.pid && isMkt(S.projects[n.pid])); }); return cards.length && cards.every(c => { const b = [...c.querySelectorAll('.tbar .tb')], l = [...c.querySelectorAll('.tbar .tbl')]; return b.length === 2 && b[0].classList.contains('tw') && /^🧩/.test(l[0].textContent) && /^⏳/.test(l[1].textContent); }); });
   assert(one, 'every task shows two bars together: progress above, deadline below');
   const pace = await page.evaluate(() => [paceBar(60, 'x', { pct: 40, label: 'Day 2 of 5' }), paceBar(20, 'x', { pct: 60, label: 'Day 3 of 5' }), paceBar(20, 'x', { pct: 100, label: 'over' }), paceBar(20, 'x', { paused: 'P' })].map(h => /tp-(\w+)/.exec(h)[1]));
   assert(JSON.stringify(pace) === '["ok","warn","bad","pause"]', 'work ahead of time = on time, behind = behind, past the limit = late, blocked = paused: ' + pace);
@@ -70,7 +71,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   const places = await page.evaluate(() => {
     const two = el => !!el && !!el.querySelector('.tbar') && [...el.querySelectorAll('.tbar')].every(b => b.querySelectorAll('.tb').length === 2), out = {};
     loginAs(S.users.PADMIN); ACT.permsDone(); Notify.hide(); App.form = {}; go('projects');
-    const pc = [...document.querySelectorAll('#plist .task')]; out.projects = pc.length > 0 && pc.every(two);
+    const pc = [...document.querySelectorAll('#plist .task')].filter(el => !isMkt(S.projects[el.dataset.v])); out.projects = pc.length > 0 && pc.every(two);
     const A = Object.values(S.projects).find(P => P.done && P.done.amc.visits.length);
     if (A) { const d = document.createElement('div'); d.innerHTML = amcCard(A); out.amc = two(d); out.tickets = [...d.querySelectorAll('.list-item[style*="block"]')].every(two); } else out.amc = out.tickets = 'none';
     const tk = { id: 'TX', status: 'assigned', sev: 'breakdown', t: new Date(Date.now() - 2 * 3600e3).toISOString(), hist: [] }, d2 = document.createElement('div'); d2.innerHTML = ticketBars(tk, A || Object.values(S.projects)[0]);
