@@ -66,7 +66,11 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   await as('PADMIN'); await page.evaluate(n => go('project', { pid: n, tab: 'info' }), N); await page.waitForTimeout(300);
   await page.click('main [data-v^="mktHold|"]'); await page.waitForTimeout(300); await fill('reason', 'Customer wants to visit a reference site first'); await pick('drop', 'no'); await save();
   assert(await ev(`!S.projects['${N}'].mkt.pick && !S.projects['${N}'].mkt.declined.includes('PPART1')`), 'Admin holds the pick with a reason (the button is on the job page)');
-  assert((await act('MK_PICKED', N, { partner: 'PPART1' }, 'PSALES')).ok && (await act('MK_ANSWER', N, { yes: true }, 'PPART1')).ok, 'picked again and confirmed by the company');
+  assert((await act('MK_PICKED', N, { partner: 'PPART1' }, 'PSALES')).ok, 'picked again');
+  await act('PARTNER_STATUS_SET', null, { uid: 'PPART1', status: 'SUSPENDED', reason: 'Licence copy under question' }, 'PADMIN');
+  assert((await tasksOf('PADMIN', N)).includes('mkt_hold'), 'if the picked company can no longer take jobs, the office is told to hold the pick');
+  await act('PARTNER_STATUS_SET', null, { uid: 'PPART1', status: 'ACTIVE', reason: 'Licence copy checked' }, 'PADMIN');
+  assert(!(await tasksOf('PADMIN', N)).includes('mkt_hold') && (await act('MK_ANSWER', N, { yes: true }, 'PPART1')).ok, 'cleared; the company confirms the job');
   assert(await ev(`(() => { const P = S.projects['${N}']; return P.partner === 'PPART1' && P.stage === 'won' && P.mkt.terms.total === 1152000 && !canSee(S.users.PPART2, P); })()`), 'the job is won at the quoted terms; the other company no longer sees it');
   /* AIEC-contract steps are not part of this job */
   assert(await page.evaluate(n => { loginAs(S.users.PSALES); const P = S.projects[n]; return !allowed('AGREEMENT_PREPARED', P) && !allowed('PAYMENT_RECORDED', P) && !allowed('QUOTE_CREATED', P); }, N) && (await act('AGREEMENT_PREPARED', N, {}, 'PSALES')).err === 'err_access', 'AIEC agreement, AIEC payments and AIEC quotes are not offered or accepted on a Marketplace job');
@@ -130,6 +134,10 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   if (await ev(`S.projects['${B}'].stage === 'returned'`)) await act('LEAD_RESUBMITTED', B, {}, await ev(`S.projects['${B}'].createdBy`));
   await act('LEAD_ACCEPTED', B, {}, 'PSALES');
   assert((await act('MODEL_SET', B, { model: 'market' }, 'PADMIN')).ok && (await act('RFQ_SENT', B, { to: ['PPART1', 'PPART2'] }, 'PADMIN')).ok, '(a second Marketplace job is sent to two companies)');
+  /* a third company joins and is asked too */
+  for (const [type, data] of [['USER_ADDED', { uid: 'PX3', name: 'Trio Lifts', role: 'partner', salt: 'practice', pin: await ev('S.users.PCUST.pin') }], ['PARTNER_PROFILE', { uid: 'PX3', licNo: 'MH/LIFT/2025/0099', licHolder: 'Trio Lifts', licAuthority: 'Electrical Inspector, Pune', licExpiry: await ev('addDays(300)') }]]) assert((await act(type, null, data, 'PADMIN')).ok, '(' + type + ' for a third company)');
+  for (const d of await ev('REQ_DOCS.partner')) await act('DOC_VERIFIED', null, { uid: 'PX3', doc: d, status: 'verified' }, 'PADMIN');
+  assert((await act('RFQ_SENT', B, { to: ['PPART1'] }, 'PADMIN')).err === 'err_mkt_23' && (await act('RFQ_SENT', B, { to: ['PX3'] }, 'PADMIN')).ok && await ev(`S.projects['${B}'].mkt.rfq.to.length === 3`), 'more companies can be asked later, up to three at a time, never the same one twice');
   await page.evaluate(b => { const m = S.projects[b].mkt; const old = new Date(Date.now() - 6 * 864e5).toISOString(); m.rfq.t = old; m.log.forEach(l => { l.t = old; }); }, B);
   assert(await ev(`needs0(S.projects['${B}']).some(n => n.k === 'mkt_followup')`), 'no quote for 5 days: the office gets a follow-up task');
   await as('PADMIN'); await page.evaluate(b => go('project', { pid: b, tab: 'info' }), B); await page.waitForTimeout(300);
