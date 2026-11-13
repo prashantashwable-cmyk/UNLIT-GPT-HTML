@@ -43,7 +43,7 @@ const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log(
   assert(await ev('JSON.stringify(paySchedule({ token: 10000, tokenMode: 0, arrivalPct: 80, cabinPct: 10 }, 1000000))') === JSON.stringify({ token: 10000, arrival: 790000, final: 100000, cabin: 100000 }), 'with a cabin milestone the plan is token, arrival, cabin and final');
   assert(await ev('(s => s.token + s.arrival + s.cabin + s.final)(paySchedule({ token: 10000, tokenMode: 1, arrivalPct: 80, cabinPct: 10 }, 1000000))') === 1010000, 'a token "on top" is added to the price');
   const H = 'AIEC-P003';
-  await page.evaluate(H => { S.projects[H].schedule.cabin = 50000; }, H);
+  await page.evaluate(H => { const P = S.projects[H]; P.schedule.cabin = 50000; P.payments = P.payments.filter(p => p.purpose !== 'cabin'); /* practice pays the cabin part on newer jobs; here it is unpaid */ }, H);
   await act('SITE_CHECKED_IN', H, { day: await ev('safeDay()'), gps: await ev(`S.projects["${H}"].site.gps`) }, 'PSENIOR');
   await act('SAFETY_CHECKED', H, { ev: await ev(`SAFETY_ITEMS.map(([k]) => ({ id: 'E' + rid(10), m: 'x', kind: 'photo', label: 'safe_' + k, t: nowISO(), gps: null, hash: 'h' + rid(8), dev: 'practice', q: {} }))`) }, 'PSENIOR');
   assert(await ev(`sopNext(S.projects["${H}"])`) === 5 && (await act('SOP_STEP_DONE', H, { step: 5, isc: await ev('iscYes(5)'), ev: await photos(1) }, 'PSENIOR')).err === 'err_payment_gate', 'the cabin step waits for the cabin payment');

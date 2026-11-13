@@ -9363,7 +9363,7 @@ async function getMedia(key) {
    older phones answer "update the app" for them instead of guessing */
 const EV_V = 2, ACT_V = 2;
 /* shown on Me; the same number as the cache name in sw.js (checked by the tests), so anyone can tell which version a phone runs */
-const APP_BUILD = 104;
+const APP_BUILD = 105;
 const evV = ev => ev.v || 1;
 /* money going out, forgiving money, who-can-do-what and taking data off the phone need the PIN again (2-minute grace) */
 const RECHECK = (type, d) => ['REFUND_DECIDED', 'REFUND_PAID', 'CONFIG_SET', 'DATA_EXPORTED'].includes(type) || (type === 'CHARGE_SETTLED' && d.how === 'waived') || (type === 'USER_UPDATED' && d.role != null);
@@ -9906,6 +9906,7 @@ function stageChip(P) {
   return `<span class="chip ${cls}">${STAGES[s][1]} ${esc(stName(s))}</span>`;
 }
 function phaseBar(P) {
+  if (isMkt(P) && !P.done) return '';
   const cur = STAGES[P.stage][0];
   if (cur < 0) return `<div class="phases">${PHASES.map(([k, i]) => `<div class="ph"><span class="i">${i}</span>${t('ph_' + k)}</div>`).join('')}</div>`;
   return `<div class="phases" aria-label="${t('progress')}">${PHASES.map(([k, i], n) => {
@@ -9935,6 +9936,8 @@ const TASK_ICON = {
   amc_visit: '🛠️', amc_renew: '♻️', assign_ticket: '🎫', work_ticket: '🔧', confirm_ticket: '✅', escalated: '⏫', second_approval: '👥', approve_pay: '💰', pay_tech: '🏦', pay_dispute: '🙋', training: '🎓', onb_profile: '🪪', check_docs: '📑',
   rate_work: '⭐', rate_crew: '⭐', promotion_ready: '⬆️', strike_appeal: '⚖️', review_meeting: '🗣️', suspend_review: '⛔', spot_check: '🔎', reassign_work: '🔁', backup_due: '💾', approve_key: '🔑', approve_member: '🏢', link_company: '🏢', safety_check: '🦺', review_safety: '🦺', sos: '🆘', access_alert: '🛡️', record_permit: '📝', requote: '⏰', wait_cabin_pay: '⏳', accept_po: '📑', approve_invoice: '🧾', pay_invoice: '🏦', site_checkin: '📍', review_checkin: '📍', pay_now: '💳', withdraw_quote: '↩️', sla_breach: '⏱️', clock_gap: '🕰️', day_close: '🌙', po_declined: '🏭', po_late: '⏰', decide_claim: '📦', send_claim: '🚚', receive_claim: '📥', refund_calc: '↩️', refund_decide: '↩️', refund_pay: '🏦', peer_check: '👀', wait_peer: '⏳', surprise_qc: '🕵️', make_variation: '📐', sign_variation: '✍️', record_licence: '📜', lift_licence_due: '📜', hold_request: '⏸️', hold_end: '▶️', dispute_open: '⚖️', licence_renew: '📜', fill_team: '👷', job_open: '🧰', pick_applicant: '👥', post_nobody: '📣', post_job: '📣'
 };
+/* who signed, as an outside party may see it: "Customer", never the name */
+const signerShown = n => App.me && OUTSIDERS.includes(App.me.role) ? t('r_customer') : (n || '');
 function projTitle(P) { if (App.me && OUTSIDERS.includes(App.me.role)) return (P.site.address || '').split(/[,\n]/)[0] || areaOf(P) || P.id; return P.contact.name || (P.site.address || '').split(/[,\n]/)[0] || t('unnamed_site'); }
 /* ---------- two bars on every responsibility: work done (only when the work has parts) and time used against the real limit ---------- */
 const STEP_TASKS = ['install', 'safety_check', 'site_checkin', 'request_inspection', 'wait_cabin_pay', 'peer_check', 'fix_install'];
@@ -9999,12 +10002,14 @@ function paceBar(wp, wtxt, tm) {
     + `<span class="tbl">⏳ ${ttxt}${ptxt ? ` · <b>${pace === 'ok' ? '✅' : pace === 'warn' ? '⚠️' : '🔴'} ${ptxt}</b>` : ''}</span>${bar(tcls, pace === 'pause' || pace === 'fin' ? 100 : tp, ttxt)}</span>`;
 }
 function taskBars(n, P) {
+  if (P && isMkt(P) && !P.done) return '';
   const w = workOf(n, P), tm = timeOf(n, P), wp = w && w.t ? Math.round(w.d / w.t * 100) : 0;
   return paceBar(wp, w ? t('tb_work', { d: w.d, t: w.t, p: wp }) : t('tb_one'), tm);
 }
 /* the whole job: how far along it is (stage order) */
 const jobPct = P => P.stage === 'lost' ? 0 : P.stage === 'amc' || P.done ? 100 : Math.max(0, Math.round(stageIdx(P.stage) / stageIdx('amc') * 100));
 function jobBars(P) {
+  if (isMkt(P) && !P.done) return '';
   const p = jobPct(P), n = !P.done && P.stage !== 'lost' ? mainNeed(P) : null;
   return paceBar(p, t('tb_job', { p }), n ? timeOf(n, P) : P.stage === 'lost' ? { fin: t('st_lost') } : P.done || P.stage === 'amc' ? { fin: '✅ ' + t('tb_finished') } : null);
 }
@@ -10942,7 +10947,7 @@ function docCharge(P) {
 }
 function gadCard(P) {
   if (!(P.gad || (P.stage === 'site_ok' && P.t >= JOURNEY_FROM))) return '';
-  return `<div class="card"><h3>✍️ ${t('doc_gad')}</h3>${P.gad ? `<div class="okbox">✅ ${t('gad_signed_by', { n: esc(P.gad.signer), d: fmtD(P.gad.t, true) })}</div>` : `<div class="warnbox">${t('gad_wait')}</div>`}
+  return `<div class="card"><h3>✍️ ${t('doc_gad')}</h3>${P.gad ? `<div class="okbox">✅ ${t('gad_signed_by', { n: esc(signerShown(P.gad.signer)), d: fmtD(P.gad.t, true) })}</div>` : `<div class="warnbox">${t('gad_wait')}</div>`}
     <div class="row wrapw"><button class="btn btn-sm" data-a="openDocP" data-v="${P.id}|gad">📄 ${t('doc_gad')}</button>${!P.gad && allowed('GAD_SIGNED', P) ? `<button class="btn btn-sm btn-p" data-a="wizOpen" data-v="gad|${P.id}">✍️ ${t('tk_sign_gad')}</button>` : ''}</div></div>`;
 }
 function tierTable(q, chooseP) {
@@ -10961,7 +10966,7 @@ function surveyCard(P) {
   const sv = P.survey, can = allowed('SURVEY_DONE', P);
   if (!sv) return can && bigJob(P) ? `<button class="btn btn-sm${P.stage === 'requirements' ? ' btn-p' : ''}" style="margin-bottom:10px" data-a="wizOpen" data-v="survey|${P.id}">📐 ${t('svy_title')}</button>` : '';
   return `<div class="card"><h3>📐 ${t('svy_title')}${sv.v > 1 ? ' · ' + t('qs_version', { n: sv.v }) : ''}</h3>${kv([['sv_clear_t', sv.w + ' × ' + sv.d + ' mm'], ['sv_plumb', sv.plumb + ' mm'], ['meas_pit', sv.pit + ' mm'], ['meas_head', sv.head + ' mm'], ['sv_wall', t('sv_w_' + sv.wall)]])}
-    ${svSpecial(sv) ? `<div class="warnbox">⚠️ ${t('sv_special', { p: +S.config.lowPit || 1400, h: +S.config.lowHead || 3900 })}</div>` : ''}<p class="small muted">${esc(userName(sv.by))} · ${fmtD(sv.t, true)} · ${sv.sig ? '✍️ ' + esc(sv.signer) : '🚶 ' + esc(sv.noSign)}</p>${evGrid(sv.ev)}
+    ${svSpecial(sv) ? `<div class="warnbox">⚠️ ${t('sv_special', { p: +S.config.lowPit || 1400, h: +S.config.lowHead || 3900 })}</div>` : ''}<p class="small muted">${esc(userName(sv.by))} · ${fmtD(sv.t, true)} · ${sv.sig ? '✍️ ' + esc(signerShown(sv.signer)) : '🚶 ' + esc(sv.noSign)}</p>${evGrid(sv.ev)}
     ${can ? `<button class="btn btn-sm" data-a="wizOpen" data-v="survey|${P.id}">✏️ ${t('sv_again')}</button>` : ''}</div>`;
 }
 WIZ.gad = {
@@ -13173,7 +13178,7 @@ function mktCard(P) {
   const rows = [], btn = [];
   rows.push(`<p class="small">🤝 ${t('mkt_model_d')}</p>`);
   if (m.rfq) rows.push(`<p class="small">📨 ${t('mkt_rfq_to', { n: m.rfq.to.length, d: fmtD(m.rfq.t) })} · ${t('mkt_quotes_in', { n: Object.keys(m.quotes).length })}${m.declined.length ? ' · ' + t('mkt_declined_n', { n: m.declined.length }) : ''}</p>`);
-  if (m.pick) rows.push(`<p class="small">👆 ${t('mkt_picked', { c: esc(userName(m.pick.partner)), d: fmtD(m.pick.t) })}</p>`);
+  if (m.pick && !m.accepted) rows.push(`<p class="small">👆 ${t('mkt_picked', { c: esc(userName(m.pick.partner)), d: fmtD(m.pick.t) })}</p>`);
   if (m.accepted && !m.terms.cut) {
     rows.push(`<p class="small">✅ ${t('mkt_accepted', { c: esc(userName(m.accepted.by)), d: fmtD(m.accepted.t) })} · ${money(m.terms.total)}</p>`
       + m.terms.ms.map((pc, i) => +pc ? `<div class="list-item small"><span>${mktMsDone(P, i) ? '✅' : mktMsWait(P, i) ? '⏳' : '⬜'}</span><span class="grow">${t('mkt_ms_' + MKT_MS[i])} · ${pc}% · ${money(mktMsDue(P, i))}${!mktMsDone(P, i) && mktMsPaid(P, i) ? ' · ' + t('mkt_paid_part', { m: money(mktMsPaid(P, i)) }) : ''}</span></div>` : '').join(''));
@@ -14099,7 +14104,7 @@ function docNoLicence(P) {
 function docGad(P) {
   const g = P.gad;
   return docHead(P, t('doc_gad'), `${jobNo(P)}-GAD`) + gadBody(P) + (g ? `<h3>${t('gad_promises')}</h3><ul style="padding-left:20px">${GAD_TICKS.map(k => `<li>✅ ${t('gad_t_' + k, { d: fmtD(g.powerBy) })}</li>`).join('')}</ul>
-    <p>${t('gad_signed_by', { n: esc(g.signer), d: fmtD(g.t, true) })}${g.inPerson ? ' · ' + t('gad_in_person', { n: esc(userName(g.by)) }) : ''}</p><img class="sigimg" data-m="${(S.evidence[g.sig] || {}).m || ''}" alt="">` : `<p class="small">${t('gad_unsigned')}</p>`) + `<p class="small muted">${t('gad_note')}</p>`;
+    <p>${t('gad_signed_by', { n: esc(signerShown(g.signer)), d: fmtD(g.t, true) })}${g.inPerson ? ' · ' + t('gad_in_person', { n: esc(userName(g.by)) }) : ''}</p><img class="sigimg" data-m="${(S.evidence[g.sig] || {}).m || ''}" alt="">` : `<p class="small">${t('gad_unsigned')}</p>`) + `<p class="small muted">${t('gad_note')}</p>`;
 }
 /* a sheet for the society committee / general body: options, votes, cost per flat, payments, time, warranty */
 function docCommittee(P) {

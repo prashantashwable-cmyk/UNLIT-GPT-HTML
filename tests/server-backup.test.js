@@ -1,5 +1,7 @@
 /* Locked backups of the whole company on the server. Head Quarter keeps a recovery code on paper; with the server address,
    the setup secret and that code, a brand-new phone brings the whole company back even if every office phone is lost. */
+/* the test server here runs on the real clock, so this test does not take part in clock-shifted runs */
+process.env.AIEC_SHIFT_DAYS = '';
 const { launch, miss } = require('./lib');
 const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log('ok -', m); };
 (async () => {

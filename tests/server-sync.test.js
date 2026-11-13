@@ -1,5 +1,7 @@
 /* Company server (stage 1): phones sync by themselves through an encrypted mailbox. The office turns it on with the setup secret;
    each person's phone gets exactly what their file would have; the server never sees readable data; removing a person stops their phone. */
+/* the test server here runs on the real clock, so this test does not take part in clock-shifted runs */
+process.env.AIEC_SHIFT_DAYS = '';
 const { launch } = require('./lib');
 const assert = (c, m) => { if (!c) throw new Error('ASSERT: ' + m); console.log('ok -', m); };
 (async () => {
